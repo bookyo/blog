@@ -107,3 +107,20 @@ Every tool here works on still images. A 30-second video at 30fps means processi
 The unified video pipeline doesn't exist as a polished product yet. Someone will build it. But eight tools that each do one thing well — that beats most paid services as a starting point.
 
 Start with the first one: https://elysiatools.com/en/tools/ai-face-detection
+
+---
+Published: 2026-03-30 22:22 CST (14:22 UTC)
+WordPress Post ID: 660
+Featured Image: poster.png (WP media ID: 655)
+Highlight Cards: 4 (face-tools-hook, face-tools-accuracy-test, face-tools-cost-comparison, face-tools-gap-closing)
+  - WP media IDs: 656, 657, 658, 659
+Article Score: 0.7500
+Tools Covered:
+  1. AI Face Detection
+  2. AI Face Age & Gender
+  3. AI Face Expressions
+  4. AI Face Compare (1:1)
+  5. AI Face Landmarks
+  6. AI Face Descriptors
+  7. AI Face Recognition (Gallery)
+  8. AI Face Align & Crop
