@@ -1,0 +1,22 @@
+{
+  "title": "8 Ways to Make Excel Spreadsheets Actually Useful (Not Just Organized)",
+  "slug": "8-ways-to-make-excel-spreadsheets-actually-useful-not-just-organized",
+  "url": "https://blog.flowrust.com/2026/04/02/8-ways-to-make-excel-spreadsheets-actually-useful-not-just-organized/",
+  "published": "2026-04-02T02:19:14Z",
+  "wp_id": 759,
+  "featured_media_id": 754,
+  "topic": "XLSX Advanced Formatting Tools",
+  "tools_covered": [
+    "xlsx-freeze-pane-manager",
+    "xlsx-print-setup-pack",
+    "xlsx-conditional-formatting-rule",
+    "xlsx-sparkline-injector",
+    "xlsx-chart-embedder",
+    "xlsx-data-validation-dropdown",
+    "xlsx-kpi-dashboard-generator",
+    "xlsx-multi-tab-report-pack"
+  ],
+  "article_score": 0.8664,
+  "highlight_cards": 4,
+  "tags": ["data-productivity", "excel-tips", "spreadsheet-tools", "workflow-automation"]
+}
