@@ -1,4 +1,14 @@
 
+## 2026-04-02: 8 Free Tools for the Setup Work Every Developer Keeps Deferring
+
+**URL:** https://blog.flowrust.com/2026/04/02/8-free-tools-for-the-setup-work-every-developer-keeps-deferring/
+**WP Post ID:** 775
+**Featured Image ID:** 770
+**Score:** 0.8298 (A-)
+**Highlight Cards:** 4 (opening-hook=771, animation-cycle=772, schema-drift=773, closing-insight=774)
+**Tools Covered:** Test Data Faker Builder, API Mock Server, SVG Favicon Generator, CSS Animation Generator, JSON Schema Generator, OpenAPI to TypeScript Generator, API Request Code Snippet Generator, JSON-LD Generator from CSV
+**Slug:** 8-free-tools-for-the-setup-work-every-developer-keeps-deferring
+
 ## 2026-04-01: 8 Free Data Engineering Tools for Debugging Without the Guesswork
 
 **URL:** https://blog.flowrust.com/2026/04/01/8-free-data-engineering-tools-for-debugging-without-the-guesswork-2/
