@@ -42,6 +42,17 @@
 **Tools Covered:** Audio Chipmunk Effect, Audio Tremolo, Audio Phaser, Audio Chorus, Audio Bitcrusher, Audio Distortion, Audio Wah-Wah, Audio Granulator
 **Slug:** 8-free-audio-effects-that-will-transform-your-sound-design
 
+## 2026-04-02: Your Audio Is Louder Than It Sounds
+
+**URL:** https://blog.flowrust.com/2026/04/02/your-audio-is-louder-than-it-sounds/
+**WP Post ID:** 782
+**Featured Image ID:** 777
+**Score:** 0.7532 (B+)
+**Highlight Cards:** 4 (opening-hook=778, true-peak-revelation=779, lra-insight=780, closing-insight=781)
+**WP Media IDs:** poster=777, opening-hook=778, true-peak-revelation=779, lra-insight=780, closing-insight=781
+**Tools Covered:** Audio LUFS Meter, Audio True Peak Meter, Audio Stereo Correlation Meter, Audio Dynamic Range Meter, Audio Peak Detector, Audio Dynamic Range Report, Audio BPM Detector, Audio Key Detector
+**Slug:** your-audio-is-louder-than-it-sounds
+
 ## 2026-04-02: 8 Ways to Make Excel Spreadsheets Actually Useful (Not Just Organized)
 - **Topic:** XLSX Advanced Formatting Tools (Freeze Panes, Print Setup, Conditional Formatting, Sparklines, Charts, Data Validation, KPI Dashboard, Multi-Tab Report)
 - **Slug:** 8-ways-to-make-excel-spreadsheets-actually-useful-not-just-organized
