@@ -62,3 +62,11 @@
 - **Score:** 0.8664 (A-)
 - **Highlight Cards:** 4
 - **Tools:** xlsx-freeze-pane-manager, xlsx-print-setup-pack, xlsx-conditional-formatting-rule, xlsx-sparkline-injector, xlsx-chart-embedder, xlsx-data-validation-dropdown, xlsx-kpi-dashboard-generator, xlsx-multi-tab-report-pack
+
+## 2026-04-02: Your Color System Is Probably Failing 8% of Your Users
+**Tools Covered:** Color Blindness Simulator, Accessible Color Palette Contrast Checker, Color Vision Accessibility Checker, Color Contrast Checker, Image Color Palette Extractor, Color Scheme Generator, Color Inverter
+**Slug:** your-color-system-is-probably-failing-8-of-your-users
+**WP Post ID:** 789
+**Highlight Cards:** 4 (opening-hook, scale-stat, two-problems, closing)
+**WP Media IDs:** poster=784, opening-hook=785, scale-stat=786, two-problems=787, closing=788
+**Article Score:** 0.7527 (B+)
