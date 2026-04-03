@@ -80,3 +80,5 @@
 **Highlight Cards:** 4 (opening-hook=792, snowball-psychology=794, inflation-revelation=793, closing-cta=795)
 **Tools Covered:** Loan Calculator, Amortization Schedule, Daily Compound Interest Calculator, Future Value Calculator, Annuity Calculator, Capital Gains Tax Calculator, Debt Snowball Calculator, Inflation Calculator
 **Slug:** 8-free-finance-calculators-real-numbers
+
+| 2026-04-03 | 8 Data Validators Your Software Probably Gets Wrong | Validation | https://blog.flowrust.com/2026/04/03/8-data-validators-your-software-probably-gets-wrong/ | Credit Card, ISBN, SemVer, VIN, Passport, US EIN, IBAN & SWIFT, SWIFT Code |
