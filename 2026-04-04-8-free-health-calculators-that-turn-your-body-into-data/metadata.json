@@ -1,0 +1,36 @@
+{
+  "slug": "8-free-health-calculators-that-turn-your-body-into-data",
+  "title": "8 Free Health Calculators That Turn Your Body Into Data",
+  "date": "2026-04-04",
+  "wp_post_id": 851,
+  "featured_image_id": 850,
+  "highlight_cards": [
+    {
+      "slug": "bmr-mistake",
+      "wp_media_id": 846
+    },
+    {
+      "slug": "tdee-real-number",
+      "wp_media_id": 847
+    },
+    {
+      "slug": "vo2-max-definition",
+      "wp_media_id": 848
+    },
+    {
+      "slug": "calorie-comparison",
+      "wp_media_id": 849
+    }
+  ],
+  "tools_covered": [
+    "BMR Calculator",
+    "Body Fat Calculator (US Navy)",
+    "TDEE Calculator",
+    "Calorie Burned Calculator",
+    "One Rep Max Calculator",
+    "Sleep Cycle Calculator",
+    "VO2 Max Calculator",
+    "Water Intake Calculator"
+  ],
+  "score": 0.8009
+}
