@@ -114,3 +114,15 @@
 **WP Media IDs:** poster=853, chaos-discovery=854, logistic-map=855, horizon-problem=856
 **Visualizations Covered:** Mandelbrot Set, Julia Set, Logistic Map, Bifurcation Diagram, Double Pendulum, Lorenz Attractor, Cellular Automata Rule 30/110, Henon Map
 **Slug:** 8-free-fractal-chaos-visualizations-that-reveal-why-simple-rules-create-infinite-complexity
+
+
+## 2026-04-05: 8 Free Data Analysis Tools That Replace What SPSS Charges $130/Month For
+
+**URL:** https://blog.flowrust.com/2026/04/05/8-free-data-analysis-tools-replace-spss/
+**WP Post ID:** 893
+**Featured Image ID:** 888
+**Score:** 0.8284 (A-)
+**Highlight Cards:** 4 (hook-data-quality, normality-six-months, correlation-device-type, regression-residual)
+**WP Media IDs:** poster=888, hook-data-quality=889, normality-six-months=890, correlation-device-type=891, regression-residual=892
+**Tools Covered:** Dataset Quality Profiler, Normality Tester, Correlation Analyzer, Regression Analyzer, Time Series Anomaly Detector, Outlier Detector, Data Distribution Analyzer, Pivot Table Generator
+**Slug:** 8-free-data-analysis-tools-replace-spss
