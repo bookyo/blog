@@ -103,3 +103,14 @@
 **Slug:** 8-free-finance-calculators-real-numbers
 
 | 2026-04-03 | 8 Data Validators Your Software Probably Gets Wrong | Validation | https://blog.flowrust.com/2026/04/03/8-data-validators-your-software-probably-gets-wrong/ | Credit Card, ISBN, SemVer, VIN, Passport, US EIN, IBAN & SWIFT, SWIFT Code |
+
+## 2026-04-04: 8 Free Fractal & Chaos Visualizations That Reveal Why Simple Rules Create Infinite Complexity
+
+**URL:** https://blog.flowrust.com/2026/04/04/8-free-fractal-chaos-visualizations-that-reveal-why-simple-rules-create-infinite-complexity/
+**WP Post ID:** 857
+**Featured Image ID:** 853
+**Score:** 0.7885 (B+)
+**Highlight Cards:** 3 (chaos-discovery=854, logistic-map=855, horizon-problem=856)
+**WP Media IDs:** poster=853, chaos-discovery=854, logistic-map=855, horizon-problem=856
+**Visualizations Covered:** Mandelbrot Set, Julia Set, Logistic Map, Bifurcation Diagram, Double Pendulum, Lorenz Attractor, Cellular Automata Rule 30/110, Henon Map
+**Slug:** 8-free-fractal-chaos-visualizations-that-reveal-why-simple-rules-create-infinite-complexity
