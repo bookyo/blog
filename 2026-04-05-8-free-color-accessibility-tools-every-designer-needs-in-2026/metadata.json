@@ -1,0 +1,37 @@
+{
+  "title": "8 Free Color Accessibility Tools Every Designer Needs in 2026",
+  "slug": "8-free-color-accessibility-tools-every-designer-needs-in-2026",
+  "published": "2026-04-05T02:18:27",
+  "url": "https://blog.flowrust.com/2026/04/05/8-free-color-accessibility-tools-every-designer-needs-in-2026/",
+  "featured_image_id": 878,
+  "highlight_cards": [
+    {
+      "id": 878,
+      "slug": "gov-uk-case",
+      "wp_url": "https://blog.flowrust.com/wp-content/uploads/2026/04/gov-uk-case.png"
+    },
+    {
+      "id": 879,
+      "slug": "28-combinations",
+      "wp_url": "https://blog.flowrust.com/wp-content/uploads/2026/04/28-combinations.png"
+    },
+    {
+      "id": 880,
+      "slug": "grayscale-test",
+      "wp_url": "https://blog.flowrust.com/wp-content/uploads/2026/04/grayscale-test.png"
+    }
+  ],
+  "score": 0.8008,
+  "iterations": 5,
+  "topic": "Color Accessibility Tools",
+  "tools_featured": [
+    "color-blindness-simulator",
+    "color-contrast-checker",
+    "color-accessibility-checker",
+    "accessible-color-palette-contrast-checker",
+    "color-vision-accessibility-checker",
+    "color-scheme-generator",
+    "color-blind-safe-palette-generator",
+    "color-mixer"
+  ]
+}
