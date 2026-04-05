@@ -136,3 +136,11 @@
 **WP Media IDs:** poster=888, hook-data-quality=889, normality-six-months=890, correlation-device-type=891, regression-residual=892
 **Tools Covered:** Dataset Quality Profiler, Normality Tester, Correlation Analyzer, Regression Analyzer, Time Series Anomaly Detector, Outlier Detector, Data Distribution Analyzer, Pivot Table Generator
 **Slug:** 8-free-data-analysis-tools-replace-spss
+
+## 2026-04-06 — Astronomy Tools
+- **8 Free Astronomy Tools That Help You Read the Sky**
+  - URL: https://blog.flowrust.com/2026/04/06/8-free-astronomy-tools-read-sky/
+  - Tags: astronomy, astronomy-tools, photography-tips, solar-tracking, stargazing
+  - Tools covered: Blue Hour, Golden Hour, Sunrise & Sunset, Daylight, Moon Phase, Planet Position, Meteor Shower, Constellation Finder
+  - Highlight cards: 4 (opening, moonlight revelation, daylight asymmetry, closing)
+  - Featured image: poster (WP ID 927)
