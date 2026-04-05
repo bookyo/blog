@@ -1,3 +1,13 @@
+## 2026-04-05: 8 Free Mental Wellness Tools That Actually Work (And Why Your Body Believes Them)
+
+**URL:** https://blog.flowrust.com/2026/04/05/8-free-mental-wellness-tools-that-actually-work-and-why-your-body-believes-them/
+**WP Post ID:** 900
+**Featured Image WP ID:** 895 (poster)
+**Highlight Cards:** 4 (stress-statistics, 478-breathing-science, pmr-evidence, closing-challenge)
+**Tools covered:** 4-7-8 Breathing, Progressive Muscle Relaxation, Autogenic Training, Guided Meditation Practice, Meditation Timer, Sleep Cycle Calculator, 20-20-20 Eye Care, Holmes-Rahe Stress Scale
+**Article score:** 0.7702 (B+)
+**Featured tools category:** Health - Mental Wellness
+
 
 ## 2026-04-04: 8 Free Health Calculators That Turn Your Body Into Data
 
