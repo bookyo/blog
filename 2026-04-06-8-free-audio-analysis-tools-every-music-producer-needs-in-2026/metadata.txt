@@ -1,0 +1,19 @@
+Article: 8-free-audio-analysis-tools-every-music-producer-needs-in-2026
+Published: 2026-04-06T10:21:06
+Post ID: 939
+Post URL: https://blog.flowrust.com/2026/04/06/8-free-audio-analysis-tools-every-music-producer-needs-in-2026/
+Featured Media ID: 934
+Highlight Cards: 4
+  - opening-hook-17.png (ID: 935)
+  - lufs-numbers.png (ID: 936)
+  - dynamic-range.png (ID: 937)
+  - closing-8.png (ID: 938)
+Tools Featured:
+  1. Audio LUFS Meter (audio-lufs-meter)
+  2. Audio True Peak Meter (audio-true-peak-meter)
+  3. Audio Loudness Report (audio-loudness-report)
+  4. Audio Dynamic Range Meter (audio-dynamic-range-meter)
+  5. Audio BPM Detector (audio-bpm-detector)
+  6. Audio Key Detector (audio-key-detector)
+  7. Audio Goniometer (audio-goniometer)
+  8. Audio Stereo Correlation Meter (audio-stereo-correlation-meter)
