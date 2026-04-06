@@ -1,0 +1,24 @@
+{
+  "title": "8 Free JSON Tools That Close the Gap Between Your API Design and Your Code",
+  "slug": "8-free-json-tools-schema-to-typescript",
+  "wp_url": "https://blog.flowrust.com/2026/04/06/8-free-json-tools-that-close-the-gap-between-your-api-design-and-your-code/",
+  "wp_post_id": 955,
+  "featured_image_id": 951,
+  "highlight_cards": {
+    "opening-hook": 952,
+    "pipeline-assembly": 953,
+    "closing-insight": 954
+  },
+  "article_score": 0.811,
+  "tools_covered": [
+    "json-schema-generator",
+    "json-schema-validator",
+    "json-schema-to-zod-schema-converter",
+    "openapi-to-typescript-generator",
+    "api-request-code-snippet-generator",
+    "openapi-diff-breach-detector",
+    "api-response-contract-validator",
+    "jsonpath-query-tool"
+  ],
+  "date": "2026-04-06"
+}
