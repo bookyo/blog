@@ -144,3 +144,12 @@
   - Tools covered: Blue Hour, Golden Hour, Sunrise & Sunset, Daylight, Moon Phase, Planet Position, Meteor Shower, Constellation Finder
   - Highlight cards: 4 (opening, moonlight revelation, daylight asymmetry, closing)
   - Featured image: poster (WP ID 927)
+
+## 2026-04-06: 8 Free JSON Tools That Close the Gap Between Your API Design and Your Code
+**URL:** https://blog.flowrust.com/2026/04/06/8-free-json-tools-that-close-the-gap-between-your-api-design-and-your-code/
+**WP Post ID:** 955
+**Featured Image WP ID:** 951 (poster)
+**Highlight Cards:** 3 (opening-hook=952, pipeline-assembly=953, closing-insight=954)
+**Tools covered:** JSON Schema Generator, JSON Schema Validator, JSON Schema to Zod Schema Converter, OpenAPI to TypeScript Generator, API Request Code Snippet Generator, OpenAPI Diff Breach Detector, API Response Contract Validator, JSONPath Query Tool
+**Article score:** 0.811 (B+)
+**Featured tools category:** Development - JSON & API Tools
