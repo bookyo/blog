@@ -163,3 +163,5 @@
 **Tools covered:** JSON Schema Generator, JSON Schema Validator, JSON Schema to Zod Schema Converter, OpenAPI to TypeScript Generator, API Request Code Snippet Generator, OpenAPI Diff Breach Detector, API Response Contract Validator, JSONPath Query Tool
 **Article score:** 0.811 (B+)
 **Featured tools category:** Development - JSON & API Tools
+
+- [your-audio-sounds-flat-these-free-tools-fix-it](https://blog.flowrust.com/2026/04/07/your-audio-sounds-flat-these-free-tools-fix-it/) - 2026-04-07 - Audio effects tools (Reverb, Echo, Chorus, Flanger, Phaser, Tremolo, Vibrato, Delay)
