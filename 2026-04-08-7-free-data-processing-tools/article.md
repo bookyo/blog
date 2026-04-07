@@ -113,3 +113,28 @@ None of these tools do anything you couldn't implement yourself. That's not the 
 A developer who reaches for a tool instead of writing boilerplate saves roughly 2–3 hours per week on data processing tasks alone. Over a year, that's 100–150 hours — three full workweeks of pure overhead elimination.
 
 Seven tools. Zero installs. All free. Pick the ones that match your stack and stop writing the same helper twice.
+
+---
+
+## Publishing Metadata
+
+- **Published**: 2026-04-08 14:18 CST (22:18 UTC)
+- **Post ID**: 1032
+- **Featured Image (Poster)**: WP Media ID 1027
+- **Highlight Cards**: 4
+  - opening-hook (WP media ID: 1028)
+  - json-schema-scenario (WP media ID: 1029)
+  - pii-compliance (WP media ID: 1030)
+  - closing-stat (WP media ID: 1031)
+- **Tools featured**:
+  1. JSON Schema Validator (Validation)
+  2. JSONPath Query Tool (Development)
+  3. PII Finder (Data Processing)
+  4. Log Parser (Data Processing)
+  5. Chunk Array (Data Processing)
+  6. Uniq Array (Data Processing)
+  7. Difference Arrays (Data Processing)
+- **Category**: Data Processing (NEW topic)
+- **Article score**: 0.7500 (B+, exactly at 0.75 threshold after 3 iterations)
+- **Iteration focus**: hook (0.59→0.75), ending (0.4), voice improvements
+- **GitHub**: committed to ~/www/blog/2026-04-08-7-free-data-processing-tools/
