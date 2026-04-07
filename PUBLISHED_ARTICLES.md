@@ -175,3 +175,14 @@
 **Featured tools category:** Development - JSON & API Tools
 
 - [your-audio-sounds-flat-these-free-tools-fix-it](https://blog.flowrust.com/2026/04/07/your-audio-sounds-flat-these-free-tools-fix-it/) - 2026-04-07 - Audio effects tools (Reverb, Echo, Chorus, Flanger, Phaser, Tremolo, Vibrato, Delay)
+
+## 2026-04-07: Stop Guessing Coordinates — 8 Free Geography Tools That Do the Math for You
+
+**URL:** https://blog.flowrust.com/2026/04/07/stop-guessing-coordinates-8-free-geography-tools-that-do-the-math-for-you/
+**WP Post ID:** 998
+**Featured Image WP ID:** 994 (poster)
+**Highlight Cards:** 3 (opening-hook=995, geohash-precision=996, why-it-matters=997)
+**Tools Covered:** Great Circle Distance Calculator, Bearing Calculator, Midpoint Calculator, Geohash Generator, Geohash Decoder, Area Calculator Map, Distance Between Cities, Coordinate DMS Converter
+**Article Score:** 0.7623 (B+)
+**Slug:** stop-guessing-coordinates-8-free-geography-tools-that-do-the-math-for-you
+**Category:** Geography / Utilities
