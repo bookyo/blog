@@ -196,3 +196,11 @@
 **Article Score:** 0.7623 (B+)
 **Slug:** stop-guessing-coordinates-8-free-geography-tools-that-do-the-math-for-you
 **Category:** Geography / Utilities
+
+## 2026-04-08: 8 Free Audio Tools for Album Art, Metadata, and Channel Control That Actually Work
+**Status:** FAILED - Dev.to API key invalid (401)
+**Theme:** Audio Tools (Album Art, Metadata & Channel Control)
+**Tools:** audio-album-art-adder, audio-album-art-extractor, audio-metadata-viewer, audio-metadata-editor, audio-metadata-remover, audio-channel-mapper, audio-channel-mixer, audio-channel-swap
+**Poster:** https://raw.githubusercontent.com/bookyo/blog/main/2026-04-08-8-free-audio-tools-album-art-metadata-channel-control/poster.png
+**Article:** 2026-04-08-8-free-audio-tools-album-art-metadata-channel-control/article.md
+**Issue:** Dev.to API key YLAoSq6MdnbmRk26QZkvc2mx needs regeneration
