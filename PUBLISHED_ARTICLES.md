@@ -204,3 +204,12 @@
 **Poster:** https://raw.githubusercontent.com/bookyo/blog/main/2026-04-08-8-free-audio-tools-album-art-metadata-channel-control/poster.png
 **Article:** 2026-04-08-8-free-audio-tools-album-art-metadata-channel-control/article.md
 **Issue:** Dev.to API key YLAoSq6MdnbmRk26QZkvc2mx needs regeneration
+
+## 2026-04-10: You Can't Predict This. Neither Can the Best Computer on Earth.
+
+**URL:** https://blog.flowrust.com/2026/04/10/you-cant-predict-this-neither-can-the-best-computer-on-earth-2/
+**WP Post ID:** 1135
+**Featured Image WP ID:** 1129 (poster)
+**Highlight Cards:** 5 (opening-hook=1130, lorenz-paper-clip=1131, hair-width-divergence=1132, ten-day-wall=1133, closing-statement=1134)
+**Tools Covered:** Double Pendulum (visualization)
+**Slug:** you-cant-predict-this-neither-can-the-best-computer-on-earth-2
