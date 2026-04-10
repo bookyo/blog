@@ -213,3 +213,13 @@
 **Highlight Cards:** 5 (opening-hook=1130, lorenz-paper-clip=1131, hair-width-divergence=1132, ten-day-wall=1133, closing-statement=1134)
 **Tools Covered:** Double Pendulum (visualization)
 **Slug:** you-cant-predict-this-neither-can-the-best-computer-on-earth-2
+
+## 2026-04-10 - The $310,000 Mistake Smart People Make With Their Money
+- **WP Post ID**: 1142
+- **URL**: https://blog.flowrust.com/2026/04/10/the-310000-mistake-smart-people-make-with-their-money/
+- **Score**: 0.7803
+- **Tools**: rule-of-72, amortization-schedule, rent-vs-buy, debt-snowball-calculator, compound-interest-daily, capital-gains-tax, future-value, loan-calculator
+- **Highlight Cards**: 3 (sarah-mortgage:1139, 310k-gap:1140, loan-doubling:1141)
+- **Featured Image**: 1138
+- **GitHub**: 2026-04-10-the-310000-mistake-smart-people-make-with-their-money/article.md
+
