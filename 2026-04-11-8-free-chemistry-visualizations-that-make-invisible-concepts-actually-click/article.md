@@ -123,3 +123,11 @@ The equivalence point jump in a redox titration can exceed 500 mV — a dramatic
 These eight tools cover a lot of ground. But there's a gap worth naming: real-time reaction kinetics visualization. You can model equilibrium, titration, and electrochemistry interactively — but watching a reaction rate change as you adjust temperature, concentration, or a catalyst? That visualization is harder to build and harder to find.
 
 The Arrhenius equation (k = Ae^(-Ea/RT)) is one of the most practically important in all of chemistry — it describes everything from how food spoils at room temperature to how industrial catalysts accelerate chemical production. An interactive treatment as good as what these eight tools offer would be genuinely valuable. The chemistry visualizations above are the best place to start, but kinetics remains the next frontier.
+
+---
+Published: 2026-04-11
+Post ID: 1176
+URL: https://blog.flowrust.com/2026/04/11/8-free-chemistry-visualizations-that-make-invisible-concepts-actually-click/
+Featured Image ID: 1175
+Highlight Cards: 4 (opening-hook, blood-buffer, redox-jump, arrhenius-gap)
+Article Score: 0.763 (3 iterations)
