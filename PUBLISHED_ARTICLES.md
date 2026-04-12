@@ -1,3 +1,13 @@
+## 2026-04-12: 5 Free Designer & Generator Tools That Do the Work in Seconds
+
+**URL:** https://blog.flowrust.com/2026/04/12/5-free-designer-generator-tools-that-do-the-work-in-seconds/
+**WP Post ID:** 1203
+**Featured Image WP ID:** 1199 (poster)
+**Highlight Cards:** 3 (opening-hook=1200, waterfall-chart=1201, closing-gap=1202)
+**Tools Covered:** QR Code Generator, QR Code Decoder, Barcode Generator, Word Cloud Generator, Waterfall Chart Generator
+**Article Score:** 0.8506 (A-)
+**Slug:** 5-free-designer-generator-tools-that-do-the-work-in-seconds
+
 ## 2026-04-08: 8 Free Audio Tools for Album Art, Metadata, and Channel Control That Actually Work
 
 **URL:** https://blog.flowrust.com/2026/04/08/8-free-audio-tools-for-album-art-metadata-and-channel-control-that-actually-work/

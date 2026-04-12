@@ -1,3 +1,14 @@
+2026-04-12 10:10 UTC | designer-generator-tools | WP ID 1203 | Featured: 1199 | Cards: 3
+
+## 2026-04-12 - 5 Free Designer & Generator Tools That Do the Work in Seconds
+- **WP Post ID**: 1203
+- **URL**: https://blog.flowrust.com/2026/04/12/5-free-designer-generator-tools-that-do-the-work-in-seconds/
+- **Featured Image**: poster (WP ID 1199)
+- **Highlight Cards**: 3 (opening-hook:1200, waterfall-chart:1201, closing-gap:1202)
+- **Score**: 0.8506 (A-)
+- **Slug**: 5-free-designer-generator-tools-that-do-the-work-in-seconds
+- **Tools Featured**: qr-code-generator, qr-code-decoder, barcode-generator, word-cloud-generator, waterfall-chart-generator
+
 2026-04-11 10:16 UTC | golden-hour-astronomy-tools | WP ID 1169 | Featured: 1164 | Cards: 4
 
 ## 2026-04-11 - Stop Guessing Golden Hour: 5 Free Tools Every Photographer Needs in 2026
