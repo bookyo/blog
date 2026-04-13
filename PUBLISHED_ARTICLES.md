@@ -233,3 +233,13 @@
 - **Featured Image**: 1138
 - **GitHub**: 2026-04-10-the-310000-mistake-smart-people-make-with-their-money/article.md
 
+
+## 2026-04-14: 8 Free AI Vision Tools That Run Locally and Replace Cloud Services
+
+**URL:** https://blog.flowrust.com/2026/04/14/8-free-ai-vision-tools-that-run-locally-and-replace-cloud-services/
+**WP Post ID:** 1236
+**Featured Image WP ID:** 1231 (poster)
+**Highlight Cards:** 4 (opening-hook=1232, face-pipeline=1233, emotion-distribution=1234, local-advantage=1235)
+**Tools Covered:** AI Face Detection, AI Face Align & Crop, AI Face Descriptors, AI Face Landmarks, AI Face Age & Gender, AI Face Compare (1:1), AI Face Expressions, AI Face Recognition (Gallery), AI Image to Receipt JSON, AI Image to Markdown
+**Article Score:** 0.7627 (B+)
+**Slug:** 8-free-ai-vision-tools-that-run-locally-and-replace-cloud-services
