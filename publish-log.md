@@ -1,3 +1,24 @@
+
+## 2026-04-15 02:28 UTC — 8 Free Security Validation Tools
+- **WP Post ID**: 1270
+- **WP URL**: https://blog.flowrust.com/2026/04/15/8-free-security-validation-tools-that-catch-what-your-code-misses/
+- **Featured Image**: poster (WP ID 1265)
+- **Highlight Cards**: 4 (opening-scene:1266, fraud-hold:1267, sql-injection-breach:1268, closing-question:1269)
+- **Score**: 0.8382 (A-) — 4 iterations
+- **Slug**: 8-free-security-validation-tools-that-catch-what-your-code-misses
+- **Tools Covered**:
+  - [Credit Card Validator](https://elysiatools.com/en/tools/credit-card-validator)
+  - [Strong Password Validator](https://elysiatools.com/en/tools/strong-password-validator)
+  - [SQL Injection Detector](https://elysiatools.com/en/tools/sql-injection-detector)
+  - [XSS Payload Detector](https://elysiatools.com/en/tools/xss-payload-detector)
+  - [IBAN & SWIFT Validator](https://elysiatools.com/en/tools/iban-swift-validator)
+  - [VIN Validator](https://elysiatools.com/en/tools/vin-validator)
+  - [ISBN Validator](https://elysiatools.com/en/tools/isbn-validator)
+  - [Passport Validator](https://elysiatools.com/en/tools/passport-validator)
+- **Category**: Security Validation
+- **GitHub Commit**: e879954
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-15-8-free-security-validation-tools-that-catch-what-your-code-misses
+
 2026-04-12 10:10 UTC | designer-generator-tools | WP ID 1203 | Featured: 1199 | Cards: 3
 
 ## 2026-04-12 - 5 Free Designer & Generator Tools That Do the Work in Seconds
