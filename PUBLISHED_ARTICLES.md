@@ -243,3 +243,4 @@
 **Tools Covered:** AI Face Detection, AI Face Align & Crop, AI Face Descriptors, AI Face Landmarks, AI Face Age & Gender, AI Face Compare (1:1), AI Face Expressions, AI Face Recognition (Gallery), AI Image to Receipt JSON, AI Image to Markdown
 **Article Score:** 0.7627 (B+)
 **Slug:** 8-free-ai-vision-tools-that-run-locally-and-replace-cloud-services
+- 2026-04-14 | [8-free-financial-calculators](/Users/quyue/www/blog/2026-04-14-8-free-financial-calculators/article.md) | WP: [1256](https://blog.flowrust.com/2026/04/14/8-free-financial-calculators-that-do-the-math-in-seconds/) | score: 0.7574 | 8 tools (amortization-schedule, annuity-calculator, bond-yield-calculator, capital-gains-tax, compound-interest-daily, debt-snowball-calculator, loan-calculator, rent-vs-buy)

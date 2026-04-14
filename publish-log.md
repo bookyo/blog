@@ -69,3 +69,13 @@
 - **Visualizations Covered**: gravitational-waves, beat-frequency, coriolis-force, lissajous-figures, stern-gerlach-experiment
 - **Category**: Physics Visualizations
 - **GitHub Commit**: 10fbe7b
+
+## 2026-04-14 — 8-free-financial-calculators
+- **Title**: 8 Free Financial Calculators That Do the Math in Seconds
+- **Score**: 0.7574 (B+)
+- **WP Post ID**: 1256
+- **WP URL**: https://blog.flowrust.com/2026/04/14/8-free-financial-calculators-that-do-the-math-in-seconds/
+- **Featured Media**: 1252 (poster)
+- **Highlight Cards**: 3 (financial-literacy-hook: 1253, loan-rate-impact: 1254, closing-reflection: 1255)
+- **Tools**: amortization-schedule, annuity-calculator, bond-yield-calculator, capital-gains-tax, compound-interest-daily, debt-snowball-calculator, loan-calculator, rent-vs-buy
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-14-8-free-financial-calculators
