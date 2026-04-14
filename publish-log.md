@@ -58,3 +58,14 @@
 - Poster WP ID: 1231
 - Highlight Cards: 4 (1232-1235)
 - GitHub commit: 1b85e57
+
+## 2026-04-14 14:18 UTC - Physics Visualizations Article
+- **WP Post ID**: 1250
+- **URL**: https://blog.flowrust.com/2026/04/14/6-free-interactive-physics-visualizations-that-make-invisible-forces-finally-make-sense/
+- **Featured Image**: poster (WP ID 1249)
+- **Highlight Cards**: 4 (ligo-signal:1245, stern-gerlach:1246, coriolis-misconception:1247, intuition-closing:1248)
+- **Score**: 0.7730 (B+)
+- **Slug**: 6-free-interactive-physics-visualizations-that-make-invisible-forces-finally-make-sense
+- **Visualizations Covered**: gravitational-waves, beat-frequency, coriolis-force, lissajous-figures, stern-gerlach-experiment
+- **Category**: Physics Visualizations
+- **GitHub Commit**: 10fbe7b
