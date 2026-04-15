@@ -113,3 +113,14 @@
 - **Tools Featured**: uuid-generator, hash-generator, password-generator, random-string-generator, random-number-generator, qr-code-generator, barcode-generator, array-generator
 - **Category**: Developer Tools / Generators
 - **GitHub Commit**: 9afb0b0
+
+## 2026-04-15 18:18 UTC
+- **Slug**: 8-free-statistics-calculators-that-do-the-hard-math-for-you
+- **Title**: 8 Free Statistics Calculators That Do the Hard Math for You
+- **WordPress ID**: 1300
+- **URL**: https://blog.flowrust.com/2026/04/15/8-free-statistics-calculators-that-do-the-hard-math-for-you/
+- **Featured Image ID**: 1295
+- **Highlight Cards**: 4 (the-setup, confidence-interval, regression-equation, closing)
+- **Score**: 0.8008 (B+)
+- **Tools**: standard-deviation-calculator, variance-calculator, z-score-calculator, confidence-interval-calculator, correlation-calculator, regression-calculator, anova-calculator, normal-distribution-calculator
+- **GitHub Commit**: d7baaec (local only — push pending)
