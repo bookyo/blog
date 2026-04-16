@@ -1,4 +1,16 @@
 
+## 2026-04-16 19:25 UTC — Dev.to Publishing Failed (API Key Read-Only)
+- **Issue**: API key `YLAoSq6MdnbmRk26QZkvc2mx` returns 401 on POST requests (read-only)
+- **Root Cause**: API key lacks article creation permissions
+- **Resolution**: Need to regenerate key at Dev.to → Settings → API Keys
+- **Posters pushed to GitHub** (raw URLs ready):
+  - AI Image Tools: https://raw.githubusercontent.com/bookyo/blog/main/posters/2026-04-16-ai-image-tools-poster.png
+  - Sports Performance: https://raw.githubusercontent.com/bookyo/blog/main/posters/2026-04-16-sports-performance-poster.png
+  - Electronics Viz: https://raw.githubusercontent.com/bookyo/blog/main/posters/2026-04-16-electronics-visualizations-poster.png
+  - Probability: https://raw.githubusercontent.com/bookyo/blog/main/posters/2026-04-16-probability-gambling-poster.png
+  - Data Viz: https://raw.githubusercontent.com/bookyo/blog/main/posters/2026-04-16-data-visualization-poster.png
+  - Economics Viz: https://raw.githubusercontent.com/bookyo/blog/main/posters/2026-04-16-economics-visualizations-poster.png
+
 ## 2026-04-16 08:00 UTC — 8 Interactive Physics Visualizations That Make Quantum Mechanics Understandable
 - **WP Post ID**: 1327
 - **WP URL**: https://blog.flowrust.com/2026/04/16/8-interactive-physics-visualizations-that-make-quantum-mechanics-actually-understandable/
