@@ -1,3 +1,17 @@
+## 2026-04-16: The Math Law Behind Every Fraud Detection Tool You've Ever Used
+
+**URL:** https://blog.flowrust.com/2026/04/16/the-math-law-behind-every-fraud-detection-tool-youve-ever-used/
+**WP Post ID:** 1357
+**Featured Image WP ID:** 1358 (poster)
+**Highlight Cards:** None
+**Tools Covered:** Benford's Law Visualization
+**Article Score:** ~0.68 (B)
+**Slug:** the-math-law-behind-every-fraud-detection-tool-youve-ever-used
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/benfords-law
+**Article File:** /Users/quyue/www/blog/2026-04-17-benfords-law-fraud-detection/article.md
+
+---
+
 ## 2026-04-16: 8 Free API & Data Developer Tools That Replace What You're Cobbling Together
 
 **URL:** https://blog.flowrust.com/2026/04/16/8-free-api-data-developer-tools-that-replace-what-youre-cobbling-together/
