@@ -165,3 +165,23 @@
 - **Category**: Science / Chemistry
 - **GitHub Commit**: pending
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-16-8-free-chemistry-visualizations-that-make-reaction-kinetics-actually-click
+
+## 2026-04-16 14:19 UTC — 8 Free Math Calculators That Save Your Brain When Numbers Get Ugly
+- **WP Post ID**: 1348
+- **WP URL**: https://blog.flowrust.com/2026/04/16/8-free-math-calculators-that-save-your-brain-when-numbers-get-ugly/
+- **Featured Image**: poster (WP ID 1343)
+- **Highlight Cards**: 4 (opening-hook:1344, continued-fraction-insight:1345, license-plate-story:1346, closing-cta:1347)
+- **Score**: 0.8165 (B+)
+- **Slug**: 8-free-math-calculators-that-save-your-brain-when-numbers-get-ugly
+- **Tools Featured**:
+  - [Fraction Decimal Converter](https://elysiatools.com/en/tools/fraction-decimal-converter)
+  - [Matrix Calculator](https://elysiatools.com/en/tools/matrix-calculator)
+  - [Fibonacci Sequence Generator](https://elysiatools.com/en/tools/fibonacci-generator)
+  - [Continued Fraction Calculator](https://elysiatools.com/en/tools/continued-fraction)
+  - [Prime Factorization Calculator](https://elysiatools.com/en/tools/prime-factorization)
+  - [Prime Number Checker](https://elysiatools.com/en/tools/prime-number-checker)
+  - [Quadratic & Linear Equation Solver](https://elysiatools.com/en/tools/quadratic-equation-solver)
+  - [Perimeter Calculator](https://elysiatools.com/en/tools/perimeter-calculator)
+- **Category**: Math & Numbers
+- **GitHub Commit**: eca2a6d
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-16-8-free-math-calculators-that-save-your-brain-when-numbers-get-ugly
