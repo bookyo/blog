@@ -1,4 +1,23 @@
 
+## 2026-04-16 08:00 UTC — 8 Interactive Physics Visualizations That Make Quantum Mechanics Understandable
+- **WP Post ID**: 1327
+- **WP URL**: https://blog.flowrust.com/2026/04/16/8-interactive-physics-visualizations-that-make-quantum-mechanics-actually-understandable/
+- **Featured Image**: poster (not generated)
+- **Highlight Cards**: none
+- **Score**: N/A (listicle format)
+- **Slug**: 8-interactive-physics-visualizations-that-make-quantum-mechanics-actually-understandable
+- **Visualizations Covered**:
+  - [Double Slit Quantum Trajectory](https://elysiatools.com/en/visualizations/double-slit-quantum)
+  - [Single Slit Diffraction](https://elysiatools.com/en/visualizations/single-slit-diffraction)
+  - [Wave Superposition](https://elysiatools.com/en/visualizations/wave-superposition)
+  - [Standing Wave](https://elysiatools.com/en/visualizations/standing-wave)
+  - [Doppler Effect](https://elysiatools.com/en/visualizations/doppler-effect)
+  - [Photoelectric Effect](https://elysiatools.com/en/visualizations/photoelectric-effect)
+  - [Spring Oscillator](https://elysiatools.com/en/visualizations/spring-oscillator)
+  - [Projectile Motion](https://elysiatools.com/en/visualizations/projectile-motion)
+- **Category**: Physics Visualizations
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-16-8-interactive-physics-visualizations-that-make-quantum-mechanics-actually-understandable
+
 ## 2026-04-15 02:28 UTC — 8 Free Security Validation Tools
 - **WP Post ID**: 1270
 - **WP URL**: https://blog.flowrust.com/2026/04/15/8-free-security-validation-tools-that-catch-what-your-code-misses/
