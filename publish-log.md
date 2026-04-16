@@ -197,3 +197,23 @@
 - **Category**: Math & Numbers
 - **GitHub Commit**: eca2a6d
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-16-8-free-math-calculators-that-save-your-brain-when-numbers-get-ugly
+
+## 2026-04-17 06:19 UTC — 8 Free Audio Analysis Tools That Replace Your DAW for 80% of Daily Tasks
+- **WP Post ID**: 1385
+- **WP URL**: https://blog.flowrust.com/2026/04/17/8-free-audio-analysis-tools-that-replace-your-daw-for-80-of-daily-tasks/
+- **Featured Image**: poster (WP ID 1380)
+- **Highlight Cards**: 4 (1381-1384: spotify-normalization-hook, lufs-three-numbers, dialog-isolation, closing-statement)
+- **Score**: 0.808 (B+) — 4 iterations
+- **Slug**: 8-free-audio-analysis-tools-that-replace-your-daw-for-80-of-daily-tasks
+- **Tools Featured**:
+  - [Audio Loudness Normalize (LUFS)](https://elysiatools.com/en/tools/audio-loudness-normalize)
+  - [Audio Loudness Report (LUFS)](https://elysiatools.com/en/tools/audio-loudness-report)
+  - [Audio LUFS Meter](https://elysiatools.com/en/tools/audio-lufs-meter)
+  - [Audio BPM Detector](https://elysiatools.com/en/tools/audio-bpm-detector)
+  - [Audio Key Detector](https://elysiatools.com/en/tools/audio-key-detector)
+  - [Audio Dialog Isolation](https://elysiatools.com/en/tools/audio-dialog-isolation)
+  - [Audio Denoise Chain](https://elysiatools.com/en/tools/audio-denoise-chain)
+  - [Audio Spectrogram Generator](https://elysiatools.com/en/tools/audio-spectrogram-generator)
+- **Category**: Audio / Podcasting Tools
+- **GitHub Commit**: 1861225
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-17-8-free-audio-analysis-tools
