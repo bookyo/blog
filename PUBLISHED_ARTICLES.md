@@ -292,3 +292,17 @@
 **Article Score:** 0.7627 (B+)
 **Slug:** 8-free-ai-vision-tools-that-run-locally-and-replace-cloud-services
 - 2026-04-14 | [8-free-financial-calculators](/Users/quyue/www/blog/2026-04-14-8-free-financial-calculators/article.md) | WP: [1256](https://blog.flowrust.com/2026/04/14/8-free-financial-calculators-that-do-the-math-in-seconds/) | score: 0.7574 | 8 tools (amortization-schedule, annuity-calculator, bond-yield-calculator, capital-gains-tax, compound-interest-daily, debt-snowball-calculator, loan-calculator, rent-vs-buy)
+
+---
+
+## 2026-04-17: 8 Free Date & Time Tools That Replace the Calendars You're Still Fighting With
+
+**URL:** https://blog.flowrust.com/2026/04/17/8-free-date-time-tools-for-distributed-teams/
+**WP Post ID:** 1378
+**Featured Image WP ID:** 1377 (poster)
+**Highlight Cards:** None
+**Tools Covered:** Time Zone Workflow Scheduler, Timezone Duration Calculator, Business Day Calculator, Holiday Calculator, Date Overlap Checker, ICS Calendar Recurrence Rule Expander, Time Adder/Subtractor, ISO 8601 Converter
+**Article Score:** 0.7163 (B)
+**Slug:** 8-free-date-time-tools-for-distributed-teams
+**ElysiaTools URL:** https://elysiatools.com/en/categories/date--time
+**Article File:** /Users/quyue/www/blog/2026-04-17-8-free-date-time-tools/date-time-tools-article.md
