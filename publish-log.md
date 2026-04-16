@@ -143,3 +143,25 @@
 - **Score**: 0.8008 (B+)
 - **Tools**: standard-deviation-calculator, variance-calculator, z-score-calculator, confidence-interval-calculator, correlation-calculator, regression-calculator, anova-calculator, normal-distribution-calculator
 - **GitHub Commit**: d7baaec (local only — push pending)
+
+---
+
+## 2026-04-16 11:19 UTC — 8 Free Chemistry Visualizations That Make Reaction Kinetics Actually Click
+- **WP Post ID**: 1341
+- **WP URL**: https://blog.flowrust.com/2026/04/16/8-free-chemistry-visualizations-that-make-reaction-kinetics-actually-click-2/
+- **Featured Image**: poster (WP ID 1336)
+- **Highlight Cards**: 4 (opening-hook:1337, buffer-enzyme:1338, acid-base:1339, closing:1340)
+- **Score**: 0.77 (B+)
+- **Slug**: 8-free-chemistry-visualizations-that-make-reaction-kinetics-actually-click
+- **Visualizations Covered**:
+  - [Enzyme Kinetics](https://elysiatools.com/en/visualizations/enzyme-kinetics)
+  - [Acid-Base Indicators](https://elysiatools.com/en/visualizations/acid-base-indicators)
+  - [Arrhenius Equation](https://elysiatools.com/en/visualizations/arrhenius-equation)
+  - [First-Order Reaction](https://elysiatools.com/en/visualizations/first-order-reaction)
+  - [Buffer Solution](https://elysiatools.com/en/visualizations/buffer-solution)
+  - [Redox Titration](https://elysiatools.com/en/visualizations/redox-titration)
+  - [Solubility Equilibrium](https://elysiatools.com/en/visualizations/solubility-equilibrium)
+  - [Precipitation Reactions](https://elysiatools.com/en/visualizations/precipitation)
+- **Category**: Science / Chemistry
+- **GitHub Commit**: pending
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-16-8-free-chemistry-visualizations-that-make-reaction-kinetics-actually-click
