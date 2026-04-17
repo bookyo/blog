@@ -1,3 +1,17 @@
+## 2026-04-17: Why a Positive Medical Test Doesn't Mean What You Think It Does
+
+**URL:** https://blog.flowrust.com/2026/04/17/why-a-positive-medical-test-doesnt-mean-what-you-think-it-does/
+**WP Post ID:** 1394
+**Featured Image WP ID:** 1396 (poster)
+**Highlight Cards:** None
+**Visualizations Covered:** Bayes' Theorem
+**Article Score:** 0.8420 (A-)
+**Slug:** why-a-positive-medical-test-doesnt-mean-what-you-think-it-does
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/bayes-theorem
+**Article File:** /Users/quyue/www/blog/2026-04-17-bayes-theorem/article.md
+
+---
+
 ## 2026-04-16: The Mystery of How Nature Syncs Without a Conductor
 
 **URL:** https://blog.flowrust.com/2026/04/16/kuramoto-synchronization-the-mystery-of-how-nature-syncs-without-a-conductor/

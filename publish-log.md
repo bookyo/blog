@@ -198,6 +198,19 @@
 - **GitHub Commit**: eca2a6d
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-16-8-free-math-calculators-that-save-your-brain-when-numbers-get-ugly
 
+## 2026-04-17 12:00 UTC — Why a Positive Medical Test Doesn't Mean What You Think It Does
+- **WP Post ID**: 1394
+- **WP URL**: https://blog.flowrust.com/2026-04/17/why-a-positive-medical-test-doesnt-mean-what-you-think-it-does/
+- **Featured Image**: poster (WP ID 1396)
+- **Highlight Cards**: none
+- **Score**: 0.8420 (A-) — 5 iterations
+- **Slug**: why-a-positive-medical-test-doesnt-mean-what-you-think-it-does
+- **Visualizations Covered**:
+  - [Bayes' Theorem Visualization](https://elysiatools.com/en/visualizations/bayes-theorem)
+- **Category**: Math Visualization / Probability
+- **GitHub Commit**: fbf71c8
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-17-bayes-theorem
+
 ## 2026-04-17 06:19 UTC — 8 Free Audio Analysis Tools That Replace Your DAW for 80% of Daily Tasks
 - **WP Post ID**: 1385
 - **WP URL**: https://blog.flowrust.com/2026/04/17/8-free-audio-analysis-tools-that-replace-your-daw-for-80-of-daily-tasks/
