@@ -225,6 +225,25 @@
 - **GitHub Commit**: fbf71c8
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-17-bayes-theorem
 
+## 2026-04-17 20:35 UTC — 8 Free URL Developer Tools That Replace the Scripts You're Still Writing
+- **WP Post ID**: 1406
+- **WP URL**: https://blog.flowrust.com/2026/04/17/8-free-url-developer-tools-that-replace-the-scripts-youre-still-writing/
+- **Featured Image**: poster (WP ID 1407)
+- **Highlight Cards**: none
+- **Score**: 0.9087 (A) — 4 iterations
+- **Slug**: 8-free-url-developer-tools-that-replace-the-scripts-youre-still-writing
+- **Tools Featured**:
+  - [URL Encoder/Decoder](https://elysiatools.com/en/tools/url-encoder)
+  - [URL Expander](https://elysiatools.com/en/tools/url-expander)
+  - [URL Parameter Builder](https://elysiatools.com/en/tools/url-parameter-builder)
+  - [URL Parameter Extractor](https://elysiatools.com/en/tools/url-parameter-extractor)
+  - [URL Shortener](https://elysiatools.com/en/tools/url-shortener)
+  - [URL Validator](https://elysiatools.com/en/tools/url-validator)
+  - [Batch URL Validator](https://elysiatools.com/en/tools/batch-url-validator)
+  - [User-Agent Parser](https://elysiatools.com/en/tools/user-agent-parser)
+- **Category**: Developer Tools
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-18-8-free-url-developer-tools-that-replace-the-scripts-youre-still-writing
+
 ## 2026-04-17 06:19 UTC — 8 Free Audio Analysis Tools That Replace Your DAW for 80% of Daily Tasks
 - **WP Post ID**: 1385
 - **WP URL**: https://blog.flowrust.com/2026/04/17/8-free-audio-analysis-tools-that-replace-your-daw-for-80-of-daily-tasks/
