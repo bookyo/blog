@@ -1,5 +1,19 @@
+## 2026-04-17 16:23 UTC — 4 Computer Science Visualizations That Make Abstract Algorithms Click
+- **WP Post ID**: 1398
+- **WP URL**: https://blog.flowrust.com/2026/04/17/4-computer-science-visualizations-that-make-abstract-algorithms-click/
+- **Featured Image**: poster (WP ID 1397)
+- **Highlight Cards**: none
+- **Score**: 0.7590 (B+)
+- **Slug**: 4-computer-science-visualizations-that-make-abstract-algorithms-click
+- **Visualizations Covered**:
+  - [Sorting Network](https://elysiatools.com/en/visualizations/sorting-network)
+  - [Turing Pattern](https://elysiatools.com/en/visualizations/turing-pattern)
+  - [IFS Fractals](https://elysiatools.com/en/visualizations/ifs-fractals)
+  - [PDE Wave & Heat Equation](https://elysiatools.com/en/visualizations/pde-wave-heat-grid)
+- **Category**: Computer Science Visualizations
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-17-4-computer-science-visualizations
 
-## 2026-04-16 19:25 UTC — Dev.to Publishing Failed (API Key Read-Only)
+
 - **Issue**: API key `YLAoSq6MdnbmRk26QZkvc2mx` returns 401 on POST requests (read-only)
 - **Root Cause**: API key lacks article creation permissions
 - **Resolution**: Need to regenerate key at Dev.to → Settings → API Keys

@@ -1,3 +1,17 @@
+## 2026-04-17: 4 Computer Science Visualizations That Make Abstract Algorithms Click
+
+**URL:** https://blog.flowrust.com/2026/04/17/4-computer-science-visualizations-that-make-abstract-algorithms-click/
+**WP Post ID:** 1398
+**Featured Image WP ID:** 1397 (poster)
+**Highlight Cards:** None
+**Visualizations Covered:** Sorting Network, Turing Pattern, IFS Fractals, PDE Wave & Heat Equation
+**Article Score:** 0.7590 (B+)
+**Slug:** 4-computer-science-visualizations-that-make-abstract-algorithms-click
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/sorting-network
+**Article File:** /Users/quyue/www/blog/2026-04-17-4-computer-science-visualizations/article.md
+
+---
+
 ## 2026-04-17: Why a Positive Medical Test Doesn't Mean What You Think It Does
 
 **URL:** https://blog.flowrust.com/2026/04/17/why-a-positive-medical-test-doesnt-mean-what-you-think-it-does/
