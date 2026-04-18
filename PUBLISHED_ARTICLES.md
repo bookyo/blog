@@ -1,3 +1,18 @@
+## 2026-04-18: The Simple Idea Behind Every MP3, JPEG, and 5G Network
+
+**URL:** https://blog.flowrust.com/2026/04/18/the-simple-idea-behind-every-mp3-jpeg-and-5g-network/
+**WP Post ID:** 1470
+**Featured Image WP ID:** 1469 (poster)
+**Highlight Cards:** None
+**Visualizations Covered:** Fourier Series
+**Article Score:** 0.7982 (B+)
+**Slug:** the-simple-idea-behind-every-mp3-jpeg-and-5g-network
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/fourier-series
+**Article File:** /Users/quyue/www/blog/2026-04-18-fourier-series-interactive-math/article/article.md
+**Tags:** Fourier Series, signal processing, math visualization
+
+---
+
 ## 2026-04-18: Why Smart People Follow Crowds: The Math That Explains Every Viral Trend and Market Bubble
 
 **URL:** https://blog.flowrust.com/2026/04/18/why-smart-people-follow-crowds-information-cascade-4/
