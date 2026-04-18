@@ -355,3 +355,12 @@
 - **WP ID:** 1446
 - **Featured Image:** 1445
 - **Topic:** Neuroscience Math Visualizations (Hodgkin-Huxley + Perceptron)
+
+## 2026-04-18: The Mathematical Reason Fireflies Synchronize — and Why It Matters More Than You Think
+- **Slug**: kuramoto-synchronization
+- **WordPress ID**: 1461
+- **URL**: https://blog.flowrust.com/2026/04/18/the-mathematical-reason-fireflies-synchronize-and-why-it-matters-more-than-you-think/
+- **Visualization**: Kuramoto Synchronization Model (https://elysiatools.com/en/visualizations/kuramoto-synchronization)
+- **Tags**: Information Cascades (551), behavioral economics (149), behavioral science (288)
+- **Score**: 0.7484 (B+)
+- **Commit**: dff2ebf
