@@ -1,3 +1,18 @@
+## 2026-04-18: Why Smart People Follow Crowds: The Math That Explains Every Viral Trend and Market Bubble
+
+**URL:** https://blog.flowrust.com/2026/04/18/why-smart-people-follow-crowds-information-cascade-4/
+**WP Post ID:** 1452
+**Featured Image WP ID:** None
+**Highlight Cards:** None
+**Visualizations Covered:** Information Cascade
+**Article Score:** 0.7417 (B+)
+**Slug:** why-smart-people-follow-crowds-information-cascade-4
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/information-cascade
+**Article File:** /Users/quyue/www/blog/2026-04-18-why-smart-people-follow-crowds-information-cascade/article.md
+**Tags:** Information Cascades, behavioral economics, behavioral science
+
+---
+
 ## 2026-04-17: 4 Computer Science Visualizations That Make Abstract Algorithms Click
 
 **URL:** https://blog.flowrust.com/2026/04/17/4-computer-science-visualizations-that-make-abstract-algorithms-click/
