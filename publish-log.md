@@ -265,3 +265,22 @@
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-17-8-free-audio-analysis-tools
 
 ### 2026-04-18 | the-math-behind-every-thought-neuroscience-visualizations | WP ID: 1446 | Score: 0.8227 | Cards: 3
+
+## 2026-04-18 Dev.to Publishing Attempt — BLOCKED
+- **Date**: 2026-04-18 12:37 UTC
+- **API Key Status**: Read-only (YLAoSq6MdnbmRk26QZkvc2mx) — POST returns 401
+- **SSL Status**: TLS/SSL connections to api.dev.to fail via MITM proxy
+- **Browser Status**: Not logged in to Dev.to
+- **GitHub Push**: Works (SSH key auth confirmed)
+- **Articles Ready for Dev.to** (GitHub URLs live, posters pushed):
+  - `2026-04-18-why-broken-things-never-fix-themselves-entropy-explained/` ✅
+    - Score: ~0.85 (A-) — physics visualization, Boltzmann entropy
+    - Poster: https://raw.githubusercontent.com/bookyo/blog/main/posters/2026-04-18-entropy-explained-poster.png
+  - `2026-04-18-the-math-behind-every-thought-neuroscience-visualizations/` ✅
+    - Score: 0.8227 (B+) — Hodgkin-Huxley + Perceptron
+  - `2026-04-18-3-interactive-sociology-visualizations/` ✅
+  - `2026-04-18-8-free-audio-analysis-tools-that-replace-expensive-studio-software/` ✅
+  - `2026-04-18-8-free-audio-cleanup-enhancement-tools/` ✅
+  - `2026-04-18-probability-gambling-tools/` ✅
+- **Gap**: 2026-04-05 through 2026-04-17 (13 days, ~70+ articles) also ready on WordPress
+- **Action Required**: Regenerate Dev.to API key with "Article" scope at https://dev.to/settings/keys
