@@ -334,3 +334,9 @@
 **Slug:** 8-free-date-time-tools-for-distributed-teams
 **ElysiaTools URL:** https://elysiatools.com/en/categories/date--time
 **Article File:** /Users/quyue/www/blog/2026-04-17-8-free-date-time-tools/date-time-tools-article.md
+
+## 2026-04-18 - the-math-behind-every-thought-neuroscience-visualizations
+- **URL:** https://blog.flowrust.com/2026/04/18/the-math-behind-every-thought-you-have-3-interactive-visualizations-that-make-neuroscience-make-sense/
+- **WP ID:** 1446
+- **Featured Image:** 1445
+- **Topic:** Neuroscience Math Visualizations (Hodgkin-Huxley + Perceptron)
