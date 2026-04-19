@@ -1,3 +1,17 @@
+
+## 2026-04-19: The Hidden Math Behind Every Audio App You Have Ever Used
+
+**URL:** https://blog.flowrust.com/2026/04/19/hidden-math-spectrogram-analyzer/
+**WP Post ID:** 1557
+**Featured Image WP ID:** 1556 (poster)
+**Highlight Cards:** None
+**Visualizations Covered:** Spectrogram Analyzer
+**Article Score:** 0.7654 (B+)
+**Slug:** hidden-math-spectrogram-analyzer
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/spectrogram-analyzer
+**Article File:** /Users/quyue/www/blog/2026-04-20-spectrogram-analyzer/article.md
+**Tags:** spectrogram, signal processing, STFT, audio visualization, frequency analysis
+
 ## 2026-04-19: The Ancient Geometry Secret Behind Every GPS, Robot, and 3D Movie
 
 **URL:** https://blog.flowrust.com/2026/04/18/the-ancient-geometry-secret-behind-every-gps-robot-and-3d-movie/
