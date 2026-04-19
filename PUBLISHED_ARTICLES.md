@@ -1,3 +1,18 @@
+## 2026-04-19: The Ancient Geometry Secret Behind Every GPS, Robot, and 3D Movie
+
+**URL:** https://blog.flowrust.com/2026/04/18/the-ancient-geometry-secret-behind-every-gps-robot-and-3d-movie/
+**WP Post ID:** 1526
+**Featured Image WP ID:** 1525 (poster)
+**Highlight Cards:** None
+**Visualizations Covered:** Law of Cosines
+**Article Score:** 0.7799 (B+)
+**Slug:** the-ancient-geometry-secret-behind-every-gps-robot-and-3d-movie
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/law-of-cosines
+**Article File:** /Users/quyue/www/blog/2026-04-19-law-of-cosines-interactive-math/article.md
+**Tags:** law of cosines, geometry, trigonometry, math visualization, GPS, robotics
+
+---
+
 ## 2026-04-19: Why Magnets Magically Align at a Certain Temperature
 
 **URL:** https://blog.flowrust.com/2026/04/19/why-magnets-magically-align-at-a-certain-temperature/
