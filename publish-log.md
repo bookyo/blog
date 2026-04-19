@@ -1,3 +1,17 @@
+## 2026-04-19 14:00 UTC — Why Magnets Magically Align at a Certain Temperature
+- **WP Post ID**: 1517
+- **WP URL**: https://blog.flowrust.com/2026/04/19/why-magnets-magically-align-at-a-certain-temperature/
+- **Featured Image**: poster (WP ID 1514)
+- **Highlight Cards**: none
+- **Score**: 0.7547 (B+)
+- **Slug**: why-magnets-magically-align-at-a-certain-temperature
+- **Visualizations Covered**: Ising Model (https://elysiatools.com/en/visualizations/ising-model)
+- **Category**: Physics/Statistical Mechanics
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-19-why-magnets-magically-align-at-a-certain-temperature
+- **Poster note**: Generated using Google Chrome + playwright-core (Node v24 via nvm)
+
+---
+
 ## 2026-04-17 16:23 UTC — 4 Computer Science Visualizations That Make Abstract Algorithms Click
 - **WP Post ID**: 1398
 - **WP URL**: https://blog.flowrust.com/2026/04/17/4-computer-science-visualizations-that-make-abstract-algorithms-click/

@@ -1,3 +1,18 @@
+## 2026-04-19: Why Magnets Magically Align at a Certain Temperature
+
+**URL:** https://blog.flowrust.com/2026/04/19/why-magnets-magically-align-at-a-certain-temperature/
+**WP Post ID:** 1517
+**Featured Image WP ID:** 1514 (poster)
+**Highlight Cards:** None
+**Visualizations Covered:** Ising Model
+**Article Score:** 0.7547 (B+)
+**Slug:** why-magnets-magically-align-at-a-certain-temperature
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/ising-model
+**Article File:** /Users/quyue/www/blog/2026-04-19-why-magnets-magically-align-at-a-certain-temperature/article.md
+**Tags:** physics, statistical-mechanics, phase-transition, ising-model, visualization
+
+---
+
 ## 2026-04-18: The Simple Idea Behind Every MP3, JPEG, and 5G Network
 
 **URL:** https://blog.flowrust.com/2026/04/18/the-simple-idea-behind-every-mp3-jpeg-and-5g-network/
