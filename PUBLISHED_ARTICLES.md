@@ -394,3 +394,20 @@
 **ElysiaTools URL:** https://elysiatools.com/en/visualizations/landauer-principle
 **Article File:** /Users/quyue/www/blog/2026-04-19-landauer-principle-information-erasur/article/article.md
 **Tags:** Landauer Principle, thermodynamics, computing, physics, information theory
+
+---
+
+## 2026-04-19: Why Smart People Make Irrational Choices — and Why Math Explains It Better Than Psychology
+
+**URL:** https://blog.flowrust.com/2026/04/19/why-smart-people-make-irrational-choices-and-why-math-explains-it-better-than-psychology/
+**WP Post ID:** 1507
+**Featured Image WP ID:** 1506 (poster)
+**Highlight Cards:** 3 (prisoners-dilemma-payoff, stag-hunt-conclusion, inadequate-equilibria)
+**Visualizations Covered:** Nash Equilibrium Visualizer, Game Theory Simulator
+**Article Score:** 0.8061 (B+)
+**Slug:** why-smart-people-make-irrational-choices-and-why-math-explains-it-better-than-psychology
+**ElysiaTools URLs:**
+  - https://elysiatools.com/en/visualizations/nash-equilibrium
+  - https://elysiatools.com/en/visualizations/game-theory-simulator
+**Article File:** /Users/quyue/www/blog/2026-04-19-why-smart-people-make-irrational-choices/article.md
+**Tags:** Game Theory, Nash Equilibrium, Decision Making, Psychology, Mathematics
