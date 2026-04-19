@@ -379,3 +379,18 @@
 - **Tags**: Information Cascades (551), behavioral economics (149), behavioral science (288)
 - **Score**: 0.7484 (B+)
 - **Commit**: dff2ebf
+
+---
+
+## 2026-04-19: Why Erasing a Single Bit Costs Energy: The Fundamental Limit of Computing
+
+**URL:** https://blog.flowrust.com/2026/04/19/landauer-principle-information-erasur/
+**WP Post ID:** 1501
+**Featured Image WP ID:** None
+**Highlight Cards:** None
+**Visualizations Covered:** Landauer Principle
+**Article Score:** 0.8014 (B+)
+**Slug:** landauer-principle-information-erasur
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/landauer-principle
+**Article File:** /Users/quyue/www/blog/2026-04-19-landauer-principle-information-erasur/article/article.md
+**Tags:** Landauer Principle, thermodynamics, computing, physics, information theory
