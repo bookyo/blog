@@ -1,3 +1,17 @@
+## 2026-04-19: Supabase in Action: 3 Patterns for Building Firebase-Grade Backends
+
+**URL:** https://blog.flowrust.com/2026/04/19/supabase-backend-patterns-firebase-alternative/
+**WP Post ID:** 1572
+**Featured Image WP ID:** 1567 (poster)
+**Highlight Cards:** 4 (1568, 1569, 1570, 1571)
+**Article Score:** N/A (article pre-written)
+**Slug:** supabase-backend-patterns-firebase-alternative
+**ElysiaTools URLs:**
+  - https://elysiatools.com/en/samples/supabase (implied by article topic)
+**Article File:** /Users/quyue/www/blog/2026-04-20-supabase-backend-patterns/article.md
+**Tags:** Supabase, Firebase, PostgreSQL, Backend, Authentication, Real-time, Database
+
+
 
 ## 2026-04-19: The Hidden Math Behind Every Audio App You Have Ever Used
 
