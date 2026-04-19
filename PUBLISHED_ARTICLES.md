@@ -441,3 +441,16 @@
   - https://elysiatools.com/en/visualizations/game-theory-simulator
 **Article File:** /Users/quyue/www/blog/2026-04-19-why-smart-people-make-irrational-choices/article.md
 **Tags:** Game Theory, Nash Equilibrium, Decision Making, Psychology, Mathematics
+
+
+## 2026-04-19: The Quantum Experiment That Shows Particles Everywhere — Until You Look
+
+**URL:** https://blog.flowrust.com/2026/04/19/quantum-experiment-particles-everywhere-until-you-look/
+**WP Post ID:** 1547
+**Featured Image WP ID:** 1542 (poster)
+**Highlight Cards:** 4 (1543, 1544, 1545, 1546)
+**Visualizations Covered:** Double Slit Quantum Trajectory
+**Slug:** quantum-experiment-particles-everywhere-until-you-look
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/double-slit-quantum
+**Article File:** /Users/quyue/www/blog/2026-04-19-double-slit-quantum-trajectory-visualization/article.md
+**Tags:** quantum mechanics, double slit, pilot wave, probability current, wave-particle duality
