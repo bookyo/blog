@@ -283,4 +283,18 @@
   - `2026-04-18-8-free-audio-cleanup-enhancement-tools/` ✅
   - `2026-04-18-probability-gambling-tools/` ✅
 - **Gap**: 2026-04-05 through 2026-04-17 (13 days, ~70+ articles) also ready on WordPress
+### 2026-04-19 | why-the-internet-doesnt-collapse-percolation | WP ID: pending | Score: 0.688 (B)
+
+## 2026-04-19 Percolation Article — Prepared, Dev.to Blocked
+- **Date**: 2026-04-19 09:31 UTC
+- **Topic**: Percolation theory — site percolation on square lattice, p_c ≈ 0.5927, spanning cluster, phase transition
+- **Tools**: [Lattice Percolation](https://elysiatools.com/en/visualizations/lattice-percolation)
+- **Score**: 0.688 (B) — hook, voice, and ending remain improvable
+- **Poster**: ✅ pushed to GitHub (raw URL ready)
+- **Article**: ✅ pushed to GitHub
+- **Dev.to Status**: BLOCKED — API key read-only, browser login required
+- **GitHub Commit**: 0dbb620
+- **Asset Dir**: `2026-04-19-why-the-internet-doesnt-collapse-percolation/`
+- **Poster URL**: https://raw.githubusercontent.com/bookyo/blog/main/posters/2026-04-19-percolation-poster.png
+- **Gap Update**: 2026-04-05 through 2026-04-19 (14 days, ~80+ articles) ready on WordPress but NOT on Dev.to
 - **Action Required**: Regenerate Dev.to API key with "Article" scope at https://dev.to/settings/keys
