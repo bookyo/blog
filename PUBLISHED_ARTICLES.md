@@ -482,3 +482,16 @@
 **ElysiaTools URL:** https://elysiatools.com/en/visualizations/double-slit-quantum
 **Article File:** /Users/quyue/www/blog/2026-04-19-double-slit-quantum-trajectory-visualization/article.md
 **Tags:** quantum mechanics, double slit, pilot wave, probability current, wave-particle duality
+
+## 2026-04-20: The Algorithm Nature Uses to Grow Lightning, Crystals, and Blood Vessels
+
+**URL:** https://blog.flowrust.com/2026/04/19/diffusion-limited-aggregation-algorithm-nature/
+**WP Post ID:** 1592
+**Featured Image WP ID:** 1591 (poster)
+**Highlight Cards:** None
+**Visualizations Covered:** Diffusion-Limited Aggregation
+**Article Score:** 0.7050 (B)
+**Slug:** diffusion-limited-aggregation-algorithm-nature
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/diffusion-limited-aggregation
+**Article File:** /Users/quyue/www/blog/2026-04-20-diffusion-limited-aggregation/article.md
+**Tags:** DLA, diffusion-limited aggregation, fractal, Brownian motion, Witten-Sander, chaos theory, visualization
