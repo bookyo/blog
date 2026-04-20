@@ -1,0 +1,19 @@
+{
+  "date": "2026-04-20",
+  "slug": "5-validation-tools-every-developer-uses-daily",
+  "title": "5 Validation Tools Every Developer Uses Daily (And Didn't Know Were Free)",
+  "wp_post_id": 1617,
+  "wp_post_url": "https://blog.flowrust.com/2026/04/20/5-validation-tools-every-developer-uses-daily-and-didnt-know-were-free/",
+  "featured_media_id": 1616,
+  "featured_media_url": "https://blog.flowrust.com/wp-content/uploads/2026/04/poster-126.png",
+  "highlight_cards": [
+    {"slug": "card-01", "wp_media_id": 1612, "wp_url": "https://blog.flowrust.com/wp-content/uploads/2026/04/card-01-2.png"},
+    {"slug": "card-02", "wp_media_id": 1613, "wp_url": "https://blog.flowrust.com/wp-content/uploads/2026/04/card-02-2.png"},
+    {"slug": "card-03", "wp_media_id": 1614, "wp_url": "https://blog.flowrust.com/wp-content/uploads/2026/04/card-03-2.png"},
+    {"slug": "card-04", "wp_media_id": 1615, "wp_url": "https://blog.flowrust.com/wp-content/uploads/2026/04/card-04-1.png"}
+  ],
+  "article_score": 0.787,
+  "iterations": 4,
+  "tools_featured": ["credit-card-validator", "iban-swift-validator", "semver-validator", "vin-validator", "cron-expression-validator"],
+  "status": "published"
+}
