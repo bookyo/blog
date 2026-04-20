@@ -495,3 +495,16 @@
 **ElysiaTools URL:** https://elysiatools.com/en/visualizations/diffusion-limited-aggregation
 **Article File:** /Users/quyue/www/blog/2026-04-20-diffusion-limited-aggregation/article.md
 **Tags:** DLA, diffusion-limited aggregation, fractal, Brownian motion, Witten-Sander, chaos theory, visualization
+
+## 2026-04-20: Why a Simple Glass Triangle Creates Every Rainbow You've Ever Seen
+
+**URL:** https://blog.flowrust.com/2026/04/20/why-simple-glass-triangle-creates-every-rainbow-youve-ever-seen/
+**WP Post ID:** 1599
+**Featured Image WP ID:** 1594 (poster)
+**Highlight Cards:** 4 (1595, 1596, 1597, 1598)
+**Visualizations Covered:** Prism Dispersion
+**Article Score:** 0.7686 (B+)
+**Slug:** why-simple-glass-triangle-creates-every-rainbow-youve-ever-seen
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/prism-dispersion
+**Article File:** /Users/quyue/www/blog/2026-04-20-why-simple-glass-triangle-creates-every-rainbow-youve-ever-seen/article.md
+**Tags:** physics, optics, prism, dispersion, rainbow, newton, spectroscopy, visualization
