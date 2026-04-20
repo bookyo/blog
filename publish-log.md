@@ -312,3 +312,17 @@
 - **Poster URL**: https://raw.githubusercontent.com/bookyo/blog/main/posters/2026-04-19-percolation-poster.png
 - **Gap Update**: 2026-04-05 through 2026-04-19 (14 days, ~80+ articles) ready on WordPress but NOT on Dev.to
 - **Action Required**: Regenerate Dev.to API key with "Article" scope at https://dev.to/settings/keys
+
+### 2026-04-20 | law-of-cosines-visualization | Dev.to: BLOCKED (API read-only, browser not logged in)
+- **Date**: 2026-04-20 09:57 UTC
+- **Topic**: Law of Cosines visualization — interactive triangle geometry tool
+- **Tools**: [Law of Cosines](https://elysiatools.com/en/visualizations/law-of-cosines)
+- **Article**: ✅ ~/www/blog/2026-04-20-law-of-cosines-visualization/article.md
+- **Poster**: ✅ pushed to GitHub
+  - Poster URL: https://raw.githubusercontent.com/bookyo/blog/main/posters/2026-04-20-law-of-cosines-visualization-poster.png
+- **Dev.to Status**: BLOCKED — API key read-only (YLAoSq6MdnbmRk26QZkvc2mx), browser login required
+- **DNS Block**: api.dev.to NXDOMAIN in this environment (dev.to works via browser, api.dev.to does not resolve)
+- **Asset Dir**: `2026-04-20-law-of-cosines-visualization/`
+- **Action Required**: 
+  1. Regenerate Dev.to API key with "Article" scope at https://dev.to/settings/keys
+  2. OR log into Dev.to in browser to enable session-based publishing
