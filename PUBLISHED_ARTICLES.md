@@ -483,7 +483,22 @@
 **Article File:** /Users/quyue/www/blog/2026-04-19-double-slit-quantum-trajectory-visualization/article.md
 **Tags:** quantum mechanics, double slit, pilot wave, probability current, wave-particle duality
 
-## 2026-04-20: The Algorithm Nature Uses to Grow Lightning, Crystals, and Blood Vessels
+## 2026-04-20: Where Does It End Up? The Beautiful Mathematics of Attractor Basins
+
+**URL:** https://blog.flowrust.com/2026/04/20/where-does-it-end-up-attractor-basins/
+**WP Post ID:** 1606
+**Featured Image WP ID:** 1601 (poster)
+**Highlight Cards:** 4 (1602, 1603, 1604, 1605)
+**Visualizations Covered:** Attractor Basin
+**Article Score:** 0.7462 (B+)
+**Slug:** where-does-it-end-up-attractor-basins
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/attractor-basin
+**Article File:** /Users/quyue/www/blog/2026-04-20-attractor-basin/article.md
+**Tags:** attractor basins, fractals, Newton's method, complex dynamics, fractal boundaries, visualization
+
+---
+
+## 2026-04-19: The Algorithm Nature Uses to Grow Lightning, Crystals, and Blood Vessels
 
 **URL:** https://blog.flowrust.com/2026/04/19/diffusion-limited-aggregation-algorithm-nature/
 **WP Post ID:** 1592
