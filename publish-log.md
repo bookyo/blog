@@ -1,3 +1,13 @@
+## 2026-04-21 02:20 UTC — The One Equation That Sets the Absolute Speed Limit on Every Heat Engine (Carnot Cycle)
+- **Date**: 2026-04-21
+- **Topic**: Carnot Cycle — thermodynamics, heat engine efficiency limit
+- **Tool**: [Carnot Cycle Visualization](https://elysiatools.com/en/visualizations/carnot-cycle)
+- **Article**: ✅ ~/www/blog/2026-04-21-carnot-cycle-physics/article.md (Score: 0.7613, B+)
+- **Poster**: ✅ pushed to GitHub
+  - Poster URL: https://raw.githubusercontent.com/bookyo/blog/main/2026-04-21-carnot-cycle-physics/poster.png
+- **Dev.to Status**: BLOCKED — API key read-only (YLAoSq6MdnbmRk26QZkvc2mx), session not logged in in browser
+- **Action Required**: Regenerate Dev.to API key with "Article" scope at https://dev.to/settings/keys
+
 ## 2026-04-19 14:00 UTC — Why Magnets Magically Align at a Certain Temperature
 - **WP Post ID**: 1517
 - **WP URL**: https://blog.flowrust.com/2026/04/19/why-magnets-magically-align-at-a-certain-temperature/
