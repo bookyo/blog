@@ -156,3 +156,12 @@ What question are you not asking—because your current tools don't make it easy
 [Explore all data visualization tools on ElysiaTools →](https://elysiatools.com/en/visualizations/sankey-diagram-generator)
 
 *All tools are free, run in the browser, and require no account.*
+---
+
+## Publication Log
+- Post ID: 1691
+- Published: 2026-04-22 02:17 UTC
+- Featured Image: poster.png (WP media ID 1690)
+- Highlight Cards: 3 (card-opening, card-sankey, card-pattern)
+- Article Score: 0.8296
+- Topics: Data Visualization (Sankey, Chord, Network, Box Plot, Heatmap, Gantt, Funnel)
