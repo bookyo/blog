@@ -1,3 +1,17 @@
+## 2026-04-22: 7 Free Astro Samples That Make Modern Static Sites Actually Fun
+
+**URL:** https://blog.flowrust.com/2026/04/22/7-free-astro-samples-that-make-modern-static-sites-actually-fun/
+**WP Post ID:** 1685
+**Featured Image WP ID:** 1684 (poster)
+**Highlight Cards:** None
+**Sample Covered:** Astro Samples
+**Slug:** 2026-04-22-7-free-astro-samples-that-make-modern-static-sites-actually-fun
+**ElysiaTools URL:** https://elysiatools.com/en/samples/astro
+**Article File:** /Users/quyue/www/blog/2026-04-22-7-free-astro-samples-that-make-modern-static-sites-actually-fun/article.md
+**Tags:** astro, static-sites, web-development, javascript, samples
+
+---
+
 ## 2026-04-21: Why the Simplest Pendulum You Can Build Is Also Impossible to Predict
 
 **URL:** https://blog.flowrust.com/2026/04/19/2026-04-21-double-pendulum-chaos-2/

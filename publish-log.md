@@ -1,3 +1,13 @@
+## 2026-04-22 01:12 UTC — 7 Free Astro Samples That Make Modern Static Sites Actually Fun
+- **WP Post ID**: 1685
+- **WP URL**: https://blog.flowrust.com/2026/04/22/7-free-astro-samples-that-make-modern-static-sites-actually-fun/
+- **Featured Image**: poster (WP ID 1684)
+- **Highlight Cards**: none
+- **Slug**: 2026-04-22-7-free-astro-samples-that-make-modern-static-sites-actually-fun
+- **Sample**: [Astro Samples](https://elysiatools.com/en/samples/astro)
+- **Category**: Web Development / Samples
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-22-7-free-astro-samples-that-make-modern-static-sites-actually-fun
+
 ## 2026-04-21 23:20 UTC — The Math Behind Why a Circle Can Draw Anything
 - **WP Post ID**: 1682
 - **WP URL**: https://blog.flowrust.com/2026/04/19/fourier-series-circle-draw-anything/
