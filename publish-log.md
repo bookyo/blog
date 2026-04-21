@@ -1,3 +1,13 @@
+## 2026-04-21 08:00 UTC — 5 Free Tools to Find SQL Injection and XSS Before Hackers Do
+- **WP Post ID**: 1641
+- **WP URL**: https://blog.flowrust.com/2026/04/19/5-free-security-tools-every-developer-needs/
+- **Featured Image**: poster (WP ID 1622)
+- **Highlight Cards**: none
+- **Slug**: 5-free-security-tools-every-developer-needs
+- **Tools**: [SQL Injection Detector](https://elysiatools.com/en/tools/sql-injection-detector), [XSS Payload Detector](https://elysiatools.com/en/tools/xss-payload-detector), [Regex Linter](https://elysiatools.com/en/tools/syntax-error), [Regex Benchmark](https://elysiatools.com/en/tools/regex-benchmark), [PII Finder](https://elysiatools.com/en/tools/pii-finder)
+- **Category**: Security / Dev Tools
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-21-5-free-security-tools-every-developer-needs
+
 ## 2026-04-21 04:12 UTC — The One Equation That Sets the Absolute Speed Limit on Every Heat Engine (Carnot Cycle)
 - **WP Post ID**: 1629
 - **WP URL**: https://blog.flowrust.com/2026/04/21/the-one-equation-that-sets-the-absolute-speed-limit-on-every-heat-engine/

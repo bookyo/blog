@@ -1,3 +1,19 @@
+## 2026-04-21: 5 Free Tools to Find SQL Injection and XSS Before Hackers Do
+
+**URL:** https://blog.flowrust.com/2026/04/19/5-free-security-tools-every-developer-needs/
+**WP Post ID:** 1641
+**Featured Image WP ID:** 1622 (poster)
+**Highlight Cards:** None
+**Tools Covered:** SQL Injection Detector, XSS Payload Detector, Regex Linter, Regex Benchmark, PII Finder
+**Slug:** 5-free-security-tools-every-developer-needs
+**ElysiaTools URLs:**
+- https://elysiatools.com/en/tools/sql-injection-detector
+- https://elysiatools.com/en/tools/xss-payload-detector
+- https://elysiatools.com/en/tools/syntax-error
+- https://elysiatools.com/en/tools/regex-benchmark
+- https://elysiatools.com/en/tools/pii-finder
+**Article File:** /Users/quyue/www/blog/2026-04-21-5-free-security-tools-every-developer-needs/article.md
+**Tags:** security, sql injection, xss, developer tools, regex, pii
 ## 2026-04-19: Supabase in Action: 3 Patterns for Building Firebase-Grade Backends
 
 **URL:** https://blog.flowrust.com/2026/04/19/supabase-backend-patterns-firebase-alternative/
