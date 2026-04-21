@@ -1,3 +1,15 @@
+## 2026-04-21: Why the Simplest Pendulum You Can Build Is Also Impossible to Predict
+
+**URL:** https://blog.flowrust.com/2026/04/19/2026-04-21-double-pendulum-chaos-2/
+**WP Post ID:** 1670
+**Featured Image WP ID:** 1669 (poster)
+**Highlight Cards:** None
+**Visualizations Covered:** Double Pendulum
+**Article Score:** 0.7269 (B)
+**Slug:** 2026-04-21-double-pendulum-chaos-2
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/double-pendulum
+**Article File:** /Users/quyue/www/blog/2026-04-21-double-pendulum-chaos/article.md
+**Tags:** chaos, double-pendulum, physics, lagrangian-mechanics, phase-space, strange-attractor
 ## 2026-04-21: 5 Free Tools to Find SQL Injection and XSS Before Hackers Do
 
 **URL:** https://blog.flowrust.com/2026/04/19/5-free-security-tools-every-developer-needs/
