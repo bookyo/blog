@@ -1,3 +1,15 @@
+## 2026-04-21 23:20 UTC — The Math Behind Why a Circle Can Draw Anything
+- **WP Post ID**: 1682
+- **WP URL**: https://blog.flowrust.com/2026/04/19/fourier-series-circle-draw-anything/
+- **Featured Image**: poster (WP ID 1681)
+- **Highlight Cards**: none
+- **Score**: 0.7685 (B+)
+- **Slug**: fourier-series-circle-draw-anything
+- **Visualization**: [Fourier Series](https://elysiatools.com/en/visualizations/fourier-series)
+- **Category**: Math Visualization
+- **GitHub Commit**: 04cd596
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-19-fourier-series
+
 ## 2026-04-21 08:00 UTC — 5 Free Tools to Find SQL Injection and XSS Before Hackers Do
 - **WP Post ID**: 1641
 - **WP URL**: https://blog.flowrust.com/2026/04/19/5-free-security-tools-every-developer-needs/
