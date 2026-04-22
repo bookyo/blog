@@ -1,3 +1,14 @@
+## 2026-04-22 21:51 UTC — 3 Free tRPC Samples That Make TypeScript APIs Actually Type-Safe
+- **WP Post ID**: 1723
+- **WP URL**: https://blog.flowrust.com/2026/04/22/3-free-trpc-samples-end-to-end-type-safe-apis/
+- **Featured Image**: poster (WP ID 1722)
+- **Highlight Cards**: none
+- **Score**: 0.7778 (B+)
+- **Slug**: 3-free-trpc-samples-end-to-end-type-safe-apis
+- **Sample**: [tRPC Samples](https://elysiatools.com/en/samples/trpc)
+- **Category**: Development / Samples
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-22-3-free-trpc-samples-end-to-end-type-safe-apis
+
 ## 2026-04-22 01:12 UTC — 7 Free Astro Samples That Make Modern Static Sites Actually Fun
 - **WP Post ID**: 1685
 - **WP URL**: https://blog.flowrust.com/2026/04/22/7-free-astro-samples-that-make-modern-static-sites-actually-fun/
