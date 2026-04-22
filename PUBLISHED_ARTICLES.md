@@ -592,3 +592,9 @@
 - https://elysiatools.com/en/tools/macro-nutrient-calculator
 **Article File:** /Users/quyue/www/blog/2026-04-22-7-free-health-fitness-calculators-no-sign-up/article.md
 **Tags:** health, fitness, calculators, body-composition, nutrition, wellness
+## Why a Simple Spring Can Predict Stock Crashes and Bridge Collapses
+- **Published**: 2026-04-21 (WP ID 1735)
+- **URL**: https://blog.flowrust.com/2026/04/21/why-a-simple-spring-can-predict-stock-crashes-and-bridge-collapses/
+- **Visualization**: [Duffing Oscillator](https://elysiatools.com/en/visualizations/duffing-oscillator)
+- **Slug**: why-a-simple-spring-can-predict-stock-crashes-and-bridge-collapses
+

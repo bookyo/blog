@@ -1,3 +1,14 @@
+## 2026-04-23 01:58 UTC — Why a Simple Spring Can Predict Stock Crashes and Bridge Collapses
+- **WP Post ID**: 1735
+- **WP URL**: https://blog.flowrust.com/2026/04/21/why-a-simple-spring-can-predict-stock-crashes-and-bridge-collapses/
+- **Featured Image**: poster (WP ID 1734)
+- **Highlight Cards**: none
+- **Slug**: why-a-simple-spring-can-predict-stock-crashes-and-bridge-collapses
+- **Visualization**: [Duffing Oscillator](https://elysiatools.com/en/visualizations/duffing-oscillator)
+- **Category**: Math / Physics / Chaos Theory
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-23-duffing-oscillator-chaos
+
+
 ## 2026-04-22 21:51 UTC — 3 Free tRPC Samples That Make TypeScript APIs Actually Type-Safe
 - **WP Post ID**: 1723
 - **WP URL**: https://blog.flowrust.com/2026/04/22/3-free-trpc-samples-end-to-end-type-safe-apis/
