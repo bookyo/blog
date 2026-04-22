@@ -598,3 +598,14 @@
 - **Visualization**: [Duffing Oscillator](https://elysiatools.com/en/visualizations/duffing-oscillator)
 - **Slug**: why-a-simple-spring-can-predict-stock-crashes-and-bridge-collapses
 
+
+## 2026-04-23: Why the Most Devastating Events Are the Hardest to See Coming
+
+- **WordPress Post ID:** 1744
+- **URL:** https://blog.flowrust.com/2026/04/23/why-the-most-devastated-events-are-the-hardest-to-see-coming/
+- **Featured Image (Poster) WP ID:** 1743
+- **Highlight Cards:** 0
+- **Topic:** Black Swan Theory (Taleb)
+- **Visualizations Covered:**
+  - Black Swan Theory: https://elysiatools.com/en/visualizations/black-swan
+- **Local Assets:** ~/www/blog/2026-04-23-black-swan-theory/

@@ -434,3 +434,15 @@
 - **Tools Featured**: solar-eclipse-calculator
 - **Category**: Astronomy
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-22-solar-eclipse-calculator
+
+## 2026-04-23 06:10 UTC — Why the Most Devastating Events Are the Hardest to See Coming
+- **WP Post ID**: 1744
+- **WP URL**: https://blog.flowrust.com/2026/04/23/why-the-most-devastated-events-are-the-hardest-to-see-coming/
+- **Featured Image**: poster (WP ID 1743)
+- **Highlight Cards**: none
+- **Score**: 0.7567 (B+)
+- **Slug**: why-the-most-devastated-events-are-the-hardest-to-see-coming
+- **Visualizations Covered**:
+  - [Black Swan Theory](https://elysiatools.com/en/visualizations/black-swan)
+- **Category**: Risk Theory / Probability / Economics
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-23-black-swan-theory
