@@ -371,11 +371,24 @@
   2. OR log into Dev.to in browser to enable session-based publishing
 
 ## 2026-04-22 09:20 UTC — Every developer knows the feeling. You build a form, ship it, and three weeks later someone complains their credit card won't process. Or worse — a payment system accepts an invalid IBAN and your bank flags the transfer.
-- **WP Post ID**: 1698
-- **WP URL**: https://blog.flowrust.com/2026/04/22/7-free-online-validators-that-save-you-from-costly-mistakes/
-- **Featured Image**: poster (WP ID 1697)
-- **Highlight Cards**: none
-- **Slug**: 7-free-online-validators-that-save-you-from-costly-mistakes
-- **Tools**: credit-card-validator, iban-swift-validator, eu-vat-validator, btc-address-validator, eth-address-validator, vin-validator, global-postal-code-validator
-- **Category**: Validation / Security
-- **Asset Dir**: /Users/quyue/www/blog/2026-04-22-7-free-online-validators-that-save-you-from-costly-mistakes
+|- **WP Post ID**: 1698
+|- **WP URL**: https://blog.flowrust.com/2026/04/22/7-free-online-validators-that-save-you-from-costly-mistakes/
+|- **Featured Image**: poster (WP ID 1697)
+|- **Highlight Cards**: none
+|- **Slug**: 7-free-online-validators-that-save-you-from-costly-mistakes
+|- **Tools**: credit-card-validator, iban-swift-validator, eu-vat-validator, btc-address-validator, eth-address-validator, vin-validator, global-postal-code-validator
+|- **Category**: Validation / Security
+|- **Asset Dir**: /Users/quyue/www/blog/2026-04-22-7-free-online-validators-that-save-you-from-costly-mistakes
+
+## 2026-04-22 11:27 UTC — Physics Visualizations Article — Dev.to BLOCKED, GitHub Pushed ✅
+|- **Date**: 2026-04-22 11:27 UTC
+|- **Topic**: 7 Free Physics Visualizations That Reveal What Your Textbooks Won't Show You
+|- **Visualizations**: black-hole-hawking-radiation, gravitational-waves, quantum-tunneling, coriolis-force, bernoulli-equation, lissajous-figures, huygens-principle
+|- **Article**: ✅ ~/www/blog/2026-04-22-7-free-physics-visualizations-what-textbooks-dont-show/article.md
+|- **Poster**: ✅ pushed to GitHub
+|- **Poster URL**: https://raw.githubusercontent.com/bookyo/blog/main/2026-04-22-7-free-physics-visualizations-what-textbooks-dont-show/poster.png
+|- **GitHub Push**: ✅ (2 commits pushed to origin/main)
+|- **Dev.to Status**: BLOCKED — API key `YLAoSq6MdnbmRk26QZkvc2mx` returns 401 on POST (read-only, lacks Article scope)
+|- **Browser Status**: BLOCKED — /new requires login, no elysiatools session cookie
+|- **Gap Update**: 2026-04-05 through 2026-04-22 (~17 days, ~90+ articles) ready on WordPress but NOT on Dev.to
+|- **Action Required**: Regenerate Dev.to API key with "Article" scope at https://dev.to/settings/keys
