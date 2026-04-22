@@ -402,3 +402,13 @@
 - **Tools**: bmi-calculator, bmr-calculator, daily-calorie-needs, calorie-burned-calculator, sleep-cycle-calculator, water-intake-calculator, macro-nutrient-calculator
 - **Category**: Health & Fitness
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-22-7-free-health-fitness-calculators-no-sign-up
+
+## 2026-04-22 09:30 UTC — When the Sun Disappears: How to Never Miss a Solar Eclipse Again
+- **WP Post ID**: 1712
+- **WP URL**: https://blog.flowrust.com/2026/04/22/solar-eclipse-calculator-never-miss-an-eclipse-again/
+- **Featured Image**: poster (WP ID 1711)
+- **Highlight Cards**: none
+- **Slug**: solar-eclipse-calculator-never-miss-an-eclipse-again
+- **Tools Featured**: solar-eclipse-calculator
+- **Category**: Astronomy
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-22-solar-eclipse-calculator
