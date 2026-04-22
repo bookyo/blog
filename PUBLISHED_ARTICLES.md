@@ -609,3 +609,13 @@
 - **Visualizations Covered:**
   - Black Swan Theory: https://elysiatools.com/en/visualizations/black-swan
 - **Local Assets:** ~/www/blog/2026-04-23-black-swan-theory/
+
+## The Math That Connects Pollen Grains to Billion-Dollar Trades
+- **Published**: 2026-04-23 (WP ID 1751)
+- **URL**: https://blog.flowrust.com/2026/04/23/the-math-that-connects-pollen-grains-to-billion-dollar-trades/
+- **Visualization**: [Brownian Motion & Random Walk](https://elysiatools.com/en/visualizations/brownian-motion-random-walk)
+- **Slug**: the-math-that-connects-pollen-grains-to-billion-dollar-trades
+- **Featured Image (Poster) WP ID:** 1750
+- **Highlight Cards:** 3 (five-minds:1748, square-root-law:1747, black-scholes-limits:1749)
+- **Article Score:** 0.7507 (B+)
+- **Tags:** Brownian Motion, Random Walk, Stochastic Processes, Geometric Brownian Motion, Black-Scholes, Monte Carlo Simulation, Finance, Mathematical Finance, Physics Visualization, Diffusion

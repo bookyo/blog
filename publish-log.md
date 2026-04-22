@@ -446,3 +446,15 @@
   - [Black Swan Theory](https://elysiatools.com/en/visualizations/black-swan)
 - **Category**: Risk Theory / Probability / Economics
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-23-black-swan-theory
+
+## 2026-04-23 06:10 UTC — Brownian Motion & Random Walk
+- **Article:** The Math That Connects Pollen Grains to Billion-Dollar Trades
+- **Slug:** the-math-that-connects-pollen-grains-to-billion-dollar-trades
+- **WP URL:** https://blog.flowrust.com/2026/04/23/the-math-that-connects-pollen-grains-to-billion-dollar-trades/
+- **WP Post ID:** 1751
+- **Featured Image:** brownian-poster.png (WP media ID: 1750)
+- **Highlight Cards:** 3 (five-minds.png:1748, square-root-law.png:1747, black-scholes-limits.png:1749)
+- **Visualization:** brownian-motion-random-walk (math category)
+- **GitHub:** commit a43051e
+- **Article Score:** 0.7507 (B+)
+- **Iteration:** 3 rounds
