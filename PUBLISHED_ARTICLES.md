@@ -565,3 +565,11 @@
 **ElysiaTools URL:** https://elysiatools.com/en/visualizations/prism-dispersion
 **Article File:** /Users/quyue/www/blog/2026-04-20-why-simple-glass-triangle-creates-every-rainbow-youve-ever-seen/article.md
 **Tags:** physics, optics, prism, dispersion, rainbow, newton, spectroscopy, visualization
+
+## 2026-04-22 | 7 Free Physics Visualizations That Reveal What Your Textbooks Won't Show You
+- **WP URL**: https://blog.flowrust.com/2026/04/22/7-free-physics-visualizations-that-reveal-what-your-textbooks-wont-show-you/
+- **Featured Image ID**: 1701
+- **Highlight Cards**: 4 (opening-ligo-detection, quantum-tunneling-sun, coriolis-myths, closing-physics-understanding)
+- **Score**: 0.7686
+- **GitHub Dir**: 2026-04-22-7-free-physics-visualizations-what-textbooks-dont-show
+- **ElysiaTools Visualizations**: Black Hole Hawking Radiation, Gravitational Waves, Quantum Tunneling, Coriolis Force, Bernoulli's Equation, Lissajous Figures, Huygens' Principle
