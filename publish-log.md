@@ -392,3 +392,13 @@
 |- **Browser Status**: BLOCKED — /new requires login, no elysiatools session cookie
 |- **Gap Update**: 2026-04-05 through 2026-04-22 (~17 days, ~90+ articles) ready on WordPress but NOT on Dev.to
 |- **Action Required**: Regenerate Dev.to API key with "Article" scope at https://dev.to/settings/keys
+
+## 2026-04-22 13:00 UTC — # 7 Free Health & Fitness Calculators That Actually Beat the Paid Apps
+- **WP Post ID**: 1709
+- **WP URL**: https://blog.flowrust.com/2026/04/21/7-free-health-fitness-calculators-no-sign-up/
+- **Featured Image**: poster (WP ID 1708)
+- **Highlight Cards**: none
+- **Slug**: 7-free-health-fitness-calculators-no-sign-up
+- **Tools**: bmi-calculator, bmr-calculator, daily-calorie-needs, calorie-burned-calculator, sleep-cycle-calculator, water-intake-calculator, macro-nutrient-calculator
+- **Category**: Health & Fitness
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-22-7-free-health-fitness-calculators-no-sign-up
