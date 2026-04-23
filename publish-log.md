@@ -469,3 +469,15 @@
 - **Visualization:** two-sided-markets (economics category)
 - **Article Score:** 0.8298 (A-)
 - **Iteration:** 1 round
+
+## 2026-04-23 06:34 UTC — Why the Solstice & Equinox Calculator Should Be Your New Favorite Astronomy Tool
+- **WP Post ID**: 1768
+- **WP URL**: https://blog.flowrust.com/2026/04/23/solstice-equinox-calculator-why-it-should-be-your-new-favorite-astronomy-tool/
+- **Featured Image**: poster (WP ID 1767)
+- **Highlight Cards**: none
+- **Slug**: solstice-equinox-calculator-why-it-should-be-your-new-favorite-astronomy-tool
+- **Tools Featured**: solstice-equinox
+- **Category**: Astronomy
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-23-solstice-equinox-calculator
+- **Article Score:** 0.7433 (B+)
+- **Iteration:** 2 rounds (ending improved 0.36→0.36)
