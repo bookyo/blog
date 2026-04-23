@@ -458,3 +458,14 @@
 - **GitHub:** commit a43051e
 - **Article Score:** 0.7507 (B+)
 - **Iteration:** 3 rounds
+
+## 2026-04-23 10:20 UTC — Two-Sided Market Economics
+- **Article:** Why Free Users Subsidize Your Product: Two-Sided Market Economics Explained
+- **Slug:** why-free-users-subsidize-your-product-two-sided-market-economics
+- **WP URL:** https://blog.flowrust.com/2026/04/23/why-free-users-subsidize-your-product-two-sided-market-economics/
+- **WP Post ID:** 1759
+- **Featured Image:** poster.png (WP media ID: 1758)
+- **Highlight Cards:** none
+- **Visualization:** two-sided-markets (economics category)
+- **Article Score:** 0.8298 (A-)
+- **Iteration:** 1 round

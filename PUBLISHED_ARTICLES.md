@@ -619,3 +619,15 @@
 - **Highlight Cards:** 3 (five-minds:1748, square-root-law:1747, black-scholes-limits:1749)
 - **Article Score:** 0.7507 (B+)
 - **Tags:** Brownian Motion, Random Walk, Stochastic Processes, Geometric Brownian Motion, Black-Scholes, Monte Carlo Simulation, Finance, Mathematical Finance, Physics Visualization, Diffusion
+
+## 2026-04-23: Why Free Users Subsidize Your Product: Two-Sided Market Economics Explained
+
+**URL:** https://blog.flowrust.com/2026/04/23/why-free-users-subsidize-your-product-two-sided-market-economics/
+**WP Post ID:** 1759
+**Featured Image WP ID:** 1758 (poster)
+**Highlight Cards:** None
+**Visualizations Covered:** Two-Sided Markets
+**Slug:** why-free-users-subsidize-your-product-two-sided-market-economics
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/two-sided-markets
+**Article File:** /Users/quyue/www/blog/2026-04-23-why-free-users-subsidize-your-product-two-sided-market-economics/article.md
+**Tags:** platform economics, two-sided markets, network effects, pricing strategy, growth flywheel
