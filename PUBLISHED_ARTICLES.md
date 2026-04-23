@@ -631,3 +631,15 @@
 **ElysiaTools URL:** https://elysiatools.com/en/visualizations/two-sided-markets
 **Article File:** /Users/quyue/www/blog/2026-04-23-why-free-users-subsidize-your-product-two-sided-market-economics/article.md
 **Tags:** platform economics, two-sided markets, network effects, pricing strategy, growth flywheel
+
+## 2026-04-24: Why Simple Rules Create Infinite Complexity
+
+**URL:** https://blog.flowrust.com/2026/04/24/why-simple-rules-create-infinite-complexity-cellular-automata-rule-30/
+**WP Post ID:** 1799
+**Featured Image WP ID:** 1798 (poster)
+**Highlight Cards:** None
+**Visualizations Covered:** Cellular Automata Rule 30 / Rule 110
+**Slug:** why-simple-rules-create-infinite-complexity-cellular-automata-rule-30
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/cellular-automata-rule-30-110
+**Article File:** /Users/quyue/www/blog/2026-04-24-cellular-automata-rule-30-110/article.md
+**Tags:** cellular automata, rule 30, rule 110, complexity, wolfram, emergence, visualization

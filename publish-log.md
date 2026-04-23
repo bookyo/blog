@@ -481,3 +481,23 @@
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-23-solstice-equinox-calculator
 - **Article Score:** 0.7433 (B+)
 - **Iteration:** 2 rounds (ending improved 0.36→0.36)
+## 2026-04-24 02:10 UTC — Why Your Research Was Right But You Ignored It
+- **Article**: Information Cascade — Why Smart People Follow the Crowd Against Their Own Data
+- **Slug**: why-your-research-was-right-but-you-ignored-it
+- **WP URL**: https://blog.flowrust.com/2026/04/24/why-your-research-was-right-but-you-ignored-it/
+- **WP Post ID:** 1796
+- **Featured Image:** information-cascade-poster.png (WP media ID: 1791)
+- **Highlight Cards:** 4 (cascade-evidence:1792, cascade-three-domains:1793, cascade-fix:1794, cascade-ending:1795)
+- **Visualization:** information-cascade (math category)
+- **GitHub:** commit d84f289
+- **Article Score:** 0.7728 (B+)
+- **Iteration:** 3 rounds
+## 2026-04-24 02:53 UTC — Why Simple Rules Create Infinite Complexity
+- **WP Post ID**: 1799
+- **WP URL**: https://blog.flowrust.com/2026/04/24/why-simple-rules-create-infinite-complexity-cellular-automata-rule-30/
+- **Featured Image**: poster (WP ID 1798)
+- **Highlight Cards**: none
+- **Slug**: why-simple-rules-create-infinite-complexity-cellular-automata-rule-30
+- **Visualization**: [Cellular Automata Rule 30/110](https://elysiatools.com/en/visualizations/cellular-automata-rule-30-110)
+- **Category**: Math / Computer Science
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-24-cellular-automata-rule-30-110
