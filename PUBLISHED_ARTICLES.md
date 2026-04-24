@@ -643,3 +643,23 @@
 **ElysiaTools URL:** https://elysiatools.com/en/visualizations/cellular-automata-rule-30-110
 **Article File:** /Users/quyue/www/blog/2026-04-24-cellular-automata-rule-30-110/article.md
 **Tags:** cellular automata, rule 30, rule 110, complexity, wolfram, emergence, visualization
+
+## 2026-04-25: 8 Free AI Face Analysis Tools That Run Locally
+
+**URL:** https://blog.flowrust.com/2026/04/25/8-free-ai-face-analysis-tools-that-run-locally/
+**WP Post ID:** 1832
+**Featured Image WP ID:** 1831 (poster)
+**Highlight Cards:** 3 (emotion-categories:1828, tool-layers:1829, diversity-gap:1830)
+**Tools Covered:** AI Face Detection, AI Face Align & Crop, AI Face Landmarks, AI Face Descriptors, AI Face Age & Gender, AI Face Expressions, AI Face Compare (1:1), AI Face Recognition (Gallery)
+**Slug:** 8-free-ai-face-analysis-tools-that-run-locally
+**ElysiaTools URLs:**
+- https://elysiatools.com/en/tools/ai-face-detection
+- https://elysiatools.com/en/tools/ai-face-align-crop
+- https://elysiatools.com/en/tools/ai-face-landmarks
+- https://elysiatools.com/en/tools/ai-face-descriptors
+- https://elysiatools.com/en/tools/ai-face-age-gender
+- https://elysiatools.com/en/tools/ai-face-expressions
+- https://elysiatools.com/en/tools/ai-face-compare
+- https://elysiatools.com/en/tools/ai-face-recognition
+**Article File:** /Users/quyue/www/blog/2026-04-25-8-free-ai-face-analysis-tools-that-run-locally/article.md
+**Tags:** face analysis, ai, local processing, face-api.js, tensorflow.js, computer vision, local-first

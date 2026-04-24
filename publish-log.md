@@ -524,3 +524,14 @@
 - **GitHub:** commit c0831dc
 - **Article Score:** 0.8015 (B+)
 - **Iteration:** 3 rounds
+
+## 2026-04-25 02:20 UTC — 8 Free AI Face Analysis Tools That Run Locally
+- **WP Post ID**: 1832
+- **WP URL**: https://blog.flowrust.com/2026/04/25/8-free-ai-face-analysis-tools-that-run-locally/
+- **Featured Image**: poster (WP ID 1831)
+- **Highlight Cards**: 3 (emotion-categories:1828, tool-layers:1829, diversity-gap:1830)
+- **Slug**: 8-free-ai-face-analysis-tools-that-run-locally
+- **Tools Featured**: ai-face-detection, ai-face-align-crop, ai-face-landmarks, ai-face-descriptors, ai-face-age-gender, ai-face-expressions, ai-face-compare, ai-face-recognition
+- **Category**: AI Tools
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-25-8-free-ai-face-analysis-tools-that-run-locally
+- **GitHub:** commit 58ae7af (already pushed at 00:33)

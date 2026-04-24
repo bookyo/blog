@@ -60,6 +60,8 @@ Age estimation is trickier than it sounds. Lighting, makeup, and facial expressi
 
 Seven emotion categories — neutral, happy, sad, angry, fearful, disgusted, surprised — each with a probability score. Works on multiple faces simultaneously in a single image.
 
+![Seven Emotions, One Image, No Cloud](https://blog.flowrust.com/wp-content/uploads/2026/04/emotion-categories.png)
+
 Customer sentiment from a photo. UX research from video frames. Accessibility features that adapt based on user frustration vs. satisfaction. The use cases are broader than they first appear.
 
 **Use it:** [AI Face Expressions](https://elysiatools.com/en/tools/ai-face-expressions)
@@ -90,6 +92,8 @@ Build a team directory, a celebrity lookalike finder, an event photo organizer, 
 
 Think of them as layers:
 
+![From Detection to Recognition: The Four-Layer Stack](https://blog.flowrust.com/wp-content/uploads/2026/04/tool-layers.png)
+
 - **Layer 1 — Detection:** Find where faces are (1)
 - **Layer 2 — Extraction:** Crop aligned faces (2), extract landmarks (3) and descriptors (4)
 - **Layer 3 — Analysis:** Read attributes like age/gender (5) and emotions (6)
@@ -100,6 +104,8 @@ You can stop at any layer. Upload a photo and just count faces? Tool 1. Want to 
 ---
 
 ## The Open Problem: Face Analysis Still Struggles With Diversity
+
+![The Diversity Gap Still Haunts Face Analysis](https://blog.flowrust.com/wp-content/uploads/2026/04/diversity-gap.png)
 
 Current face detection models — including the ones powering these tools — still show measurable accuracy gaps across skin tones, ages, and occlusions. It's a documented problem in the academic literature and one that the open-source community is actively working to close.
 
