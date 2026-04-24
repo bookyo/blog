@@ -1,3 +1,14 @@
+## backpropagation-deep-dive
+- **Title**: The Algorithm That Made Deep Learning Possible: Understanding Backpropagation
+- **Slug**: backpropagation-deep-dive-elysia-tools
+- **WP ID**: 1843
+- **Date**: 2026-04-25
+- **URL**: https://blog.flowrust.com/2026/04/24/backpropagation-deep-dive-elysia-tools/
+- **Visualization**: backpropagation-deep-dive
+- **Score**: 0.7867
+- **Tags**: ML, AI, deep learning, backpropagation
+
+
 ## 2026-04-22: 7 Free Astro Samples That Make Modern Static Sites Actually Fun
 
 **URL:** https://blog.flowrust.com/2026/04/22/7-free-astro-samples-that-make-modern-static-sites-actually-fun/

@@ -1,3 +1,15 @@
+
+## 2026-04-25 08:00 UTC — The Algorithm That Made Deep Learning Possible: Understanding Backpropagation
+- **WP Post ID**: 1843
+- **WP URL**: https://blog.flowrust.com/2026/04/24/backpropagation-deep-dive-elysia-tools/
+- **Featured Image**: poster (WP ID 1842)
+- **Highlight Cards**: none
+- **Score**: 0.7867 (B+)
+- **Slug**: backpropagation-deep-dive-elysia-tools
+- **Visualization**: [Backpropagation Deep Dive](https://elysiatools.com/en/visualizations/backpropagation-deep-dive)
+- **Category**: Machine Learning / AI
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-25-backpropagation-deep-dive
+
 ## 2026-04-24 12:00 UTC — Why Your Research Was Right But You Ignored It
 - **WP Post ID**: 1826
 - **WP URL**: https://blog.flowrust.com/2026/04/22/why-your-research-was-right-but-you-ignored-it-2/
