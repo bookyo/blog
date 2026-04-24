@@ -1,3 +1,14 @@
+## 2026-04-24 12:00 UTC — Why Your Research Was Right But You Ignored It
+- **WP Post ID**: 1826
+- **WP URL**: https://blog.flowrust.com/2026/04/22/why-your-research-was-right-but-you-ignored-it-2/
+- **Featured Image**: poster (WP ID 1825)
+- **Highlight Cards**: none
+- **Score**: 0.79 (B+)
+- **Slug**: why-your-research-was-right-but-you-ignored-it-2
+- **Visualization**: [Information Cascade](https://elysiatools.com/en/visualizations/information-cascade)
+- **Category**: Sociology / Economics / Game Theory
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-24-information-cascade
+
 ## 2026-04-23 01:58 UTC — Why a Simple Spring Can Predict Stock Crashes and Bridge Collapses
 - **WP Post ID**: 1735
 - **WP URL**: https://blog.flowrust.com/2026/04/21/why-a-simple-spring-can-predict-stock-crashes-and-bridge-collapses/
