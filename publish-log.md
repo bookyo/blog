@@ -501,3 +501,15 @@
 - **Visualization**: [Cellular Automata Rule 30/110](https://elysiatools.com/en/visualizations/cellular-automata-rule-30-110)
 - **Category**: Math / Computer Science
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-24-cellular-automata-rule-30-110
+
+## 2026-04-24 06:10 UTC — Why Some Outbreaks Die Quietly and Others Become Pandemics
+- **Article**: Epidemic on Network (SIR Model) — Network topology and epidemic dynamics
+- **Slug**: why-some-outbreaks-die-quietly-and-others-become-pandemics
+- **WP URL**: https://blog.flowrust.com/2026/04/24/why-some-outbreaks-die-quietly-and-others-become-pandemics/
+- **WP Post ID:** 1806
+- **Featured Image:** poster.png (WP media ID: 1801)
+- **Highlight Cards:** 4 (patient-31:1802, scale-free-superspreaders:1803, r0-misleading:1804, targeted-immunization:1805)
+- **Visualization:** epidemic-network (math category)
+- **GitHub:** commit c0831dc
+- **Article Score:** 0.8015 (B+)
+- **Iteration:** 3 rounds
