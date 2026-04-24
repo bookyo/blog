@@ -535,3 +535,26 @@
 - **Category**: AI Tools
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-25-8-free-ai-face-analysis-tools-that-run-locally
 - **GitHub:** commit 58ae7af (already pushed at 00:33)
+
+## 2026-04-25 05:51 UTC — The Minimum Energy Required to Forget One Bit
+|- **Article**: Landauer's Principle — Why erasing information costs energy, Maxwell's demon, and the thermodynamic limit of computing
+|- **Slug**: the-minimum-energy-required-to-forget-one-bit
+|- **Dev.to Status**: BLOCKED — API key read-only, browser requires login
+|- **Featured Image**: poster.png (GitHub URL: https://raw.githubusercontent.com/bookyo/blog/main/2026-04-25-landauer-principle/poster.png)
+|- **Visualization**: [Landauer's Principle](https://elysiatools.com/en/visualizations/landauer-principle)
+|- **Category**: Physics / Information Theory / Thermodynamics
+|- **Asset Dir**: /Users/quyue/www/blog/2026-04-25-landauer-principle
+|- **Article Score**: 0.7071 (B) — 5 iterations
+|- **GitHub**: commit 6a44f3b
+|- **Note**: Dev.to blocked — API key read-only. Needs fresh API key with Article scope.
+
+## 2026-04-25 06:17 UTC — The Mathematician Who Accidentally Built a Universe with Four Rules
+- **WP Post ID**: 1840
+- **WP URL**: https://blog.flowrust.com/2026/04/25/the-mathematician-who-accidentally-built-a-universe-with-four-rules/
+- **Featured Image**: poster (WP ID 1835)
+- **Highlight Cards**: 4 (opening-death:1836, density-ceiling:1837, glider-gun:1838, undecidable:1839)
+- **Score**: 0.7858 (B+)
+- **Slug**: the-mathematician-who-accidentally-built-a-universe-with-four-rules
+- **Visualization**: [Conway's Game of Life](https://elysiatools.com/en/visualizations/game-of-life)
+- **Category**: Math / Computer Science / Cellular Automata
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-25-the-mathematician-who-accidentally-built-a-universe-with-four-rules
