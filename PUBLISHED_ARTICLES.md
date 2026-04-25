@@ -692,3 +692,4 @@
 - https://elysiatools.com/en/tools/ai-face-recognition
 **Article File:** /Users/quyue/www/blog/2026-04-25-8-free-ai-face-analysis-tools-that-run-locally/article.md
 **Tags:** face analysis, ai, local processing, face-api.js, tensorflow.js, computer vision, local-first
+2026-04-25 | Stop Manually Editing CSVs — 8 Free Tools That Do the Work for You | csv-tools | [WordPress](https://blog.flowrust.com/2026/04/25/stop-manually-editing-csvs-8-free-tools-that-do-the-work-for-you/) | WP ID 1861 | Score 0.7717 (B+)

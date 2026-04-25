@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schelling Segregation Model</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px;
+    height: 630px;
+    background: #0a0a0f;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .grid-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    opacity: 0.08;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .badge {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.5px;
+  }
+  .domain {
+    color: rgba(255,255,255,0.4);
+    font-size: 14px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .main {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+  }
+  .title {
+    font-size: 64px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.1;
+    max-width: 900px;
+    letter-spacing: -1.5px;
+  }
+  .title span {
+    color: #f97316;
+  }
+  .subtitle {
+    font-size: 22px;
+    color: rgba(255,255,255,0.55);
+    max-width: 700px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .bottom {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    max-width: 700px;
+  }
+  .tag {
+    background: rgba(249,115,22,0.15);
+    border: 1px solid rgba(249,115,22,0.3);
+    color: #f97316;
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .cta {
+    background: #f97316;
+    color: #0a0a0f;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.3px;
+  }
+  .grid-preview {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
+    opacity: 0.3;
+  }
+  .grid-row {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  .cell {
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+  }
+  .cell-a { background: #3b82f6; }
+  .cell-b { background: #f97316; }
+  .cell-empty { background: rgba(255,255,255,0.05); }
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<div class="top-bar">
+  <div class="badge">Interactive Visualization</div>
+  <div class="domain">elysiatools.com</div>
+</div>
+
+<div class="main">
+  <div class="title">Why Gentle Preferences Create <span>Extreme Segregation</span></div>
+  <div class="subtitle">Thomas Schelling's 1971 board-game experiment showed that mild individual choices — the kind nobody would call prejudice — systematically produce near-total segregation. No bad actors required.</div>
+</div>
+
+<div class="bottom">
+  <div class="tags">
+    <div class="tag">Schelling Model</div>
+    <div class="tag">Game Theory</div>
+    <div class="tag">Emergence</div>
+    <div class="tag">Nobel Prize</div>
+  </div>
+  <div class="cta">Run the Simulation →</div>
+</div>
+
+<div class="grid-preview">
+  <div class="grid-row"><div class="cell cell-a"></div><div class="cell cell-b"></div><div class="cell cell-b"></div><div class="cell cell-b"></div><div class="cell cell-empty"></div><div class="cell cell-b"></div><div class="cell cell-b"></div><div class="cell cell-b"></div></div>
+  <div class="grid-row"><div class="cell cell-b"></div><div class="cell cell-b"></div><div class="cell cell-b"></div><div class="cell cell-empty"></div><div class="cell cell-a"></div><div class="cell cell-b"></div><div class="cell cell-b"></div><div class="cell cell-b"></div></div>
+  <div class="grid-row"><div class="cell cell-b"></div><div class="cell cell-b"></div><div class="cell cell-b"></div><div class="cell cell-a"></div><div class="cell cell-b"></div><div class="cell cell-empty"></div><div class="cell cell-a"></div><div class="cell cell-a"></div></div>
+  <div class="grid-row"><div class="cell cell-b"></div><div class="cell cell-empty"></div><div class="cell cell-b"></div><div class="cell cell-b"></div><div class="cell cell-b"></div><div class="cell cell-a"></div><div class="cell cell-a"></div><div class="cell cell-a"></div></div>
+  <div class="grid-row"><div class="cell cell-a"></div><div class="cell cell-a"></div><div class="cell cell-b"></div><div class="cell cell-b"></div><div class="cell cell-empty"></div><div class="cell cell-a"></div><div class="cell cell-a"></div><div class="cell cell-a"></div></div>
+  <div class="grid-row"><div class="cell cell-a"></div><div class="cell cell-a"></div><div class="cell cell-a"></div><div class="cell cell-a"></div><div class="cell cell-b"></div><div class="cell cell-b"></div><div class="cell cell-a"></div><div class="cell cell-empty"></div></div>
+</div>
+
+</body>
+</html>
