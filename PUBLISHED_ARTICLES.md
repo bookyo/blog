@@ -1,3 +1,21 @@
+## 4 Free Puzzle Generator Tools That Will Keep You Entertained for Hours
+
+**URL:** https://blog.flowrust.com/2026/04/25/4-free-puzzle-generator-tools-that-will-keep-you-entertained-for-hours/
+**WP Post ID:** 1853
+**Featured Image WP ID:** 1852 (poster)
+**Highlight Cards:** None
+**Tools Covered:** Sudoku Generator, Sudoku Solver, Word Search Generator, Maze Generator
+**Slug:** 4-free-puzzle-generator-tools-that-will-keep-you-entertained-for-hours
+**ElysiaTools URLs:**
+- https://elysiatools.com/en/tools/sudoku-generator
+- https://elysiatools.com/en/tools/sudoku-solver
+- https://elysiatools.com/en/tools/word-search-generator
+- https://elysiatools.com/en/tools/maze-generator
+**Article File:** /Users/quyue/www/blog/2026-04-25-4-free-puzzle-tools-2026/article.md
+**Tags:** puzzle, sudoku, word-search, maze, generator, free-tools
+
+---
+
 ## backpropagation-deep-dive
 - **Title**: The Algorithm That Made Deep Learning Possible: Understanding Backpropagation
 - **Slug**: backpropagation-deep-dive-elysia-tools

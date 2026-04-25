@@ -1,4 +1,14 @@
 
+## 2026-04-25 12:00 UTC — 4 Free Puzzle Generator Tools That Will Keep You Entertained for Hours
+- **WP Post ID**: 1853
+- **WP URL**: https://blog.flowrust.com/2026/04/25/4-free-puzzle-generator-tools-that-will-keep-you-entertained-for-hours/
+- **Featured Image**: poster (WP ID 1852)
+- **Highlight Cards**: none
+- **Slug**: 4-free-puzzle-generator-tools-that-will-keep-you-entertained-for-hours
+- **Tools**: sudoku-generator, sudoku-solver, word-search-generator, maze-generator
+- **Category**: Puzzle / Generator Tools
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-25-4-free-puzzle-tools-2026
+
 ## 2026-04-25 08:00 UTC — The Algorithm That Made Deep Learning Possible: Understanding Backpropagation
 - **WP Post ID**: 1843
 - **WP URL**: https://blog.flowrust.com/2026/04/24/backpropagation-deep-dive-elysia-tools/
