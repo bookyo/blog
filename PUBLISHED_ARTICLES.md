@@ -1,3 +1,14 @@
+
+
+**URL:** https://blog.flowrust.com/2026/04/26/forced-pendulum-chaos-discovery/
+**Title:** The Pendulum That Led Scientists to Discover Chaos
+**Published:** 2026-04-26
+**Visualization:** [Forced Pendulum](https://elysiatools.com/en/visualizations/forced-pendulum)
+**Tags:** chaos theory, physics
+**Score:** 0.7801 (B+)
+**Slug:** forced-pendulum-chaos-discovery
+**Featured Image:** WP Media 1881
+
 ## 2026-04-25: The Butterfly Effect Was an Accident: How One Meteorologist Discovered Chaos Theory
 
 **URL:** https://blog.flowrust.com/2026/04/25/the-butterfly-effect-was-an-accident-how-one-meteorologist-discovered-chaos-theory/

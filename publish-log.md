@@ -1,4 +1,15 @@
 
+
+## 2026-04-25 16:25 UTC — The Pendulum That Led Scientists to Discover Chaos
+- **WP Post ID**: 1882
+- **WP URL**: https://blog.flowrust.com/2026/04/26/forced-pendulum-chaos-discovery/
+- **Featured Image**: poster (WP ID 1881)
+- **Highlight Cards**: none
+- **Slug**: forced-pendulum-chaos-discovery
+- **Visualization**: [Forced Pendulum](https://elysiatools.com/en/visualizations/forced-pendulum)
+- **Category**: Math / Physics / Chaos Theory
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-26-forced-pendulum-chaos
+
 ## 2026-04-25 12:00 UTC — 4 Free Puzzle Generator Tools That Will Keep You Entertained for Hours
 - **WP Post ID**: 1853
 - **WP URL**: https://blog.flowrust.com/2026/04/25/4-free-puzzle-generator-tools-that-will-keep-you-entertained-for-hours/
