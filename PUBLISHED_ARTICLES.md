@@ -1,3 +1,17 @@
+## 2026-04-25: Why the Strongest Strategies Don't Always Win: The Mathematics of Evolution
+
+**URL:** https://blog.flowrust.com/2026/04/25/why-the-strongest-strategies-dont-always-win-replicator-dynamics/
+**WP Post ID:** 1873
+**Featured Image WP ID:** 1872 (poster)
+**Highlight Cards:** None
+**Visualization Covered:** Replicator Dynamics
+**Slug:** why-the-strongest-strategies-dont-always-win-replicator-dynamics
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/replicator-dynamics
+**Article Score:** 0.8228 (A-)
+**Tags:** Game Theory, Evolutionary Biology, Replicator Dynamics, Interactive Visualization
+
+---
+
 ## 4 Free Puzzle Generator Tools That Will Keep You Entertained for Hours
 
 **URL:** https://blog.flowrust.com/2026/04/25/4-free-puzzle-generator-tools-that-will-keep-you-entertained-for-hours/
@@ -693,3 +707,16 @@
 **Article File:** /Users/quyue/www/blog/2026-04-25-8-free-ai-face-analysis-tools-that-run-locally/article.md
 **Tags:** face analysis, ai, local processing, face-api.js, tensorflow.js, computer vision, local-first
 2026-04-25 | Stop Manually Editing CSVs — 8 Free Tools That Do the Work for You | csv-tools | [WordPress](https://blog.flowrust.com/2026/04/25/stop-manually-editing-csvs-8-free-tools-that-do-the-work-for-you/) | WP ID 1861 | Score 0.7717 (B+)
+
+## 2026-04-25: The Giant Squid That Changed Everything: How One Neuron Won a Nobel Prize
+
+**URL:** https://blog.flowrust.com/2026/04/25/the-giant-squid-that-changed-everything-how-one-neuron-won-a-nobel-prize/
+**WP Post ID:** 1870
+**Featured Image WP ID:** 1869 (poster)
+**Highlight Cards:** 3 (1866: the-equation, 1867: the-spike-process, 1868: beyond-neurons)
+**Visualization Covered:** Hodgkin-Huxley Neuron Model
+**Article Score:** 0.8588 (A-)
+**Slug:** the-giant-squid-that-changed-everything-how-one-neuron-won-a-nobel-prize
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/hodgkin-huxley-neuron
+**Article File:** /Users/quyue/www/blog/2026-04-25-the-giant-squid-that-changed-everything-how-one-neuron-won-a-nobel-prize/article.md
+**Tags:** Hodgkin-Huxley, neuron, action potential, neuroscience, computational biology, Nobel Prize, ion channels, squid axon
