@@ -1,4 +1,33 @@
 
+## 2026-04-26 04:31 UTC — Einstein's 1921 Nobel Prize Was About Light Acting Like Particles
+- **WP Post ID**: 1897
+- **WP URL**: https://blog.flowrust.com/2026/04/25/einstein-1921-nobel-prize-photoelectric-effect/
+- **Featured Image**: poster (WP ID 1896)
+- **Score**: N/A (pre-prepared article)
+- **Slug**: einstein-1921-nobel-prize-photoelectric-effect
+- **Visualization**: [Photoelectric Effect](https://elysiatools.com/en/visualizations/photoelectric-effect)
+- **Category**: Quantum Physics / Physics
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-26-photoelectric-effect-quantum-light
+
+## 2026-04-26 04:31 UTC — 7 Free Date & Time Tools That Will Save You Hours Every Week
+- **WP Post ID**: 1894
+- **WP URL**: https://blog.flowrust.com/2026/04/25/7-free-date-time-tools-no-sign-up/
+- **Featured Image**: poster (WP ID 1891)
+- **Score**: 0.7297 (B)
+- **Slug**: 7-free-date-time-tools-no-sign-up
+- **Category**: Date & Time / Developer Tools
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-26-7-free-date-time-tools-no-sign-up
+
+## 2026-04-26 04:30 UTC — 7 Free File Integrity & Security Tools Every Developer Needs
+- **WP Post ID**: 1892
+- **WP URL**: https://blog.flowrust.com/2026/04/25/7-free-file-integrity-security-tools-every-developer-needs/
+- **Featured Image**: poster (WP ID 1890)
+- **Score**: 0.7368 (B)
+- **Slug**: 7-free-file-integrity-security-tools-every-developer-needs
+- **Category**: Security / Developer Tools
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-26-7-free-file-security-tools-every-developer-needs
+
+
 
 ## 2026-04-25 16:25 UTC — The Pendulum That Led Scientists to Discover Chaos
 - **WP Post ID**: 1882
