@@ -604,3 +604,24 @@
 - **Tool**: [AI Regex Explainer](https://elysiatools.com/en/tools/ai-regex-explainer)
 - **Category**: Development / AI Tools
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-25-ai-regex-explainer
+
+## 2026-04-25 18:10 UTC — The Giant Squid That Changed Everything: How One Neuron Won a Nobel Prize
+- **WP Post ID**: 1870
+- **WP URL**: https://blog.flowrust.com/2026/04/25/the-giant-squid-that-changed-everything-how-one-neuron-won-a-nobel-prize/
+- **Featured Image**: poster (WP ID 1869)
+- **Highlight Cards**: 3 (1866, 1867, 1868)
+- **Score**: 0.8588 (A-)
+- **Slug**: the-giant-squid-that-changed-everything-how-one-neuron-won-a-nobel-prize
+- **Visualization**: [Hodgkin-Huxley Neuron Model](https://elysiatools.com/en/visualizations/hodgkin-huxley-neuron)
+- **Category**: Neuroscience / Computational Biology / Physics
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-25-the-giant-squid-that-changed-everything-how-one-neuron-won-a-nobel-prize
+- **GitHub Commit**: 12c16c7
+
+## 2026-04-25 — 8 Free AI Face Analysis Tools That Run Locally
+- **Status**: Dev.to BLOCKED — API key read-only (401 on POST), no authenticated session available
+- **WordPress**: Not submitted (Dev.to-only per config)
+- **Topic**: 8 AI Face Analysis Tools (Detection, Align & Crop, Landmarks, Descriptors, Age & Gender, Expressions, Compare 1:1, Gallery Recognition)
+- **Cover Image**: https://raw.githubusercontent.com/bookyo/blog/main/2026-04-25-8-free-ai-face-analysis-tools-that-run-locally/poster.png
+- **GitHub Commit**: already on GitHub
+- **Article File**: ~/www/blog/2026-04-25-8-free-ai-face-analysis-tools-that-run-locally/article.md
+- **Tools Featured**: ai-face-detection, ai-face-align-crop, ai-face-landmarks, ai-face-descriptors, ai-face-age-gender, ai-face-expressions, ai-face-compare, ai-face-recognition
