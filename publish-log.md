@@ -580,3 +580,27 @@
 - **Visualization**: [Conway's Game of Life](https://elysiatools.com/en/visualizations/game-of-life)
 - **Category**: Math / Computer Science / Cellular Automata
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-25-the-mathematician-who-accidentally-built-a-universe-with-four-rules
+
+## 2026-04-25 14:23 CST (06:23 UTC) — Stop Manually Editing CSVs — 8 Free Tools That Do the Work for You
+- **WP Post ID**: 1861
+- **WP URL**: https://blog.flowrust.com/2026/04/25/stop-manually-editing-csvs-8-free-tools-that-do-the-work-for-you/
+- **Featured Image**: poster (WP ID 1856)
+- **Highlight Cards**: 4 (csv-stats-hook:1857, csv-filter-capabilities:1858, csv-sorter-numeric:1859, csv-grouper-gap:1860)
+- **Score**: 0.7717 (B+)
+- **Slug**: stop-manually-editing-csvs-8-free-tools-that-do-the-work-for-you
+- **Tools Featured**: csv-filter, csv-sorter, csv-data-grouper, csv-row-column-transposer, csv-merger, csv-column-selector, csv-splitter, csv-to-markdown
+- **Category**: Data Processing / Development Tools
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-25-stop-manually-editing-csvs-8-free-tools-that-do-the-work-for-you
+- **GitHub**: commit 1ca6d8d
+
+
+## 2026-04-25 16:00 UTC — Stop Dreading Regex — Let AI Break It Down for You
+- **WP Post ID**: 1864
+- **WP URL**: https://blog.flowrust.com/2026/04/24/stop-dreading-regex-let-ai-break-it-down-for-you/
+- **Featured Image**: poster (WP ID 1863)
+- **Highlight Cards**: none
+- **Score**: 0.7758 (B+)
+- **Slug**: stop-dreading-regex-let-ai-break-it-down-for-you
+- **Tool**: [AI Regex Explainer](https://elysiatools.com/en/tools/ai-regex-explainer)
+- **Category**: Development / AI Tools
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-25-ai-regex-explainer
