@@ -689,3 +689,15 @@
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-25-the-equation-that-shows-how-chaos-has-rules
 - **GitHub Commit**: c9ad927
 
+
+## 2026-04-26 06:10 UTC — Why Every Digital Filter Starts With a Dot and a Circle
+- **WP Post ID**: 1902
+- **WP URL**: https://blog.flowrust.com/2026/04/26/why-every-digital-filter-starts-with-a-dot-and-a-circle/
+- **Featured Image**: poster (local)
+- **Highlight Cards**: 3 (z-plane-landscape:1899, stability-bug:1900, six-filter-presets:1901)
+- **Score**: 0.7708 (B+)
+- **Slug**: why-every-digital-filter-starts-with-a-dot-and-a-circle
+- **Visualization**: [Z-Transform Visualizer](https://elysiatools.com/en/visualizations/z-transform)
+- **Category**: Signal Processing / Z-Transform / Digital Filters
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-26-why-every-digital-filter-starts-with-a-dot-and-a-circle
+- **GitHub Commit**: pending
