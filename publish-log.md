@@ -647,3 +647,16 @@
 - **Visualization**: [Lorenz Attractor](https://elysiatools.com/en/visualizations/lorenz-attractor)
 - **Category**: Chaos Theory / Physics / Mathematics
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-25-the-butterfly-effect-was-an-accident-how-one-meteorologist-discovered-chaos-theory
+
+## 2026-04-25 18:22 UTC — The Equation That Shows How Chaos Has Rules
+- **WP Post ID**: 1888
+- **WP URL**: https://blog.flowrust.com/2026/04/25/the-equation-that-shows-how-chaos-has-rules/
+- **Featured Image**: poster (WP media ID: 1884)
+- **Highlight Cards**: 3 (chaos-definition:1885, period-doubling:1886, feigenbaum:1887)
+- **Score**: 0.7733 (B+)
+- **Slug**: the-equation-that-shows-how-chaos-has-rules
+- **Visualization**: [Hénon Map](https://elysiatools.com/en/visualizations/henon-map)
+- **Category**: Chaos Theory / Mathematics / Physics
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-25-the-equation-that-shows-how-chaos-has-rules
+- **GitHub Commit**: c9ad927
+

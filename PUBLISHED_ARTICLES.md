@@ -745,3 +745,14 @@
 **ElysiaTools URL:** https://elysiatools.com/en/visualizations/hodgkin-huxley-neuron
 **Article File:** /Users/quyue/www/blog/2026-04-25-the-giant-squid-that-changed-everything-how-one-neuron-won-a-nobel-prize/article.md
 **Tags:** Hodgkin-Huxley, neuron, action potential, neuroscience, computational biology, Nobel Prize, ion channels, squid axon
+
+**URL:** https://blog.flowrust.com/2026/04/25/the-equation-that-shows-how-chaos-has-rules/
+**Title:** The Equation That Shows How Chaos Has Rules
+**Slug:** the-equation-that-shows-how-chaos-has-rules
+**Date:** 2026-04-25
+**Score:** 0.7733 (B+)
+**Tags:** chaos-theory, henon-map, fractals, nonlinear-dynamics, period-doubling
+**Visualizations Covered:** Hénon Map (https://elysiatools.com/en/visualizations/henon-map)
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/henon-map
+**Article File:** /Users/quyue/www/blog/2026-04-25-the-equation-that-shows-how-chaos-has-rules/article.md
+
