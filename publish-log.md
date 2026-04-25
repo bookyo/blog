@@ -625,3 +625,14 @@
 - **GitHub Commit**: already on GitHub
 - **Article File**: ~/www/blog/2026-04-25-8-free-ai-face-analysis-tools-that-run-locally/article.md
 - **Tools Featured**: ai-face-detection, ai-face-align-crop, ai-face-landmarks, ai-face-descriptors, ai-face-age-gender, ai-face-expressions, ai-face-compare, ai-face-recognition
+
+## 2026-04-25 14:10 UTC — The Butterfly Effect Was an Accident: How One Meteorologist Discovered Chaos Theory
+- **WP Post ID**: 1879
+- **WP URL**: https://blog.flowrust.com/2026/04/25/the-butterfly-effect-was-an-accident-how-one-meteorologist-discovered-chaos-theory/
+- **Featured Image**: poster (WP ID 1875)
+- **Highlight Cards**: 3 (lorenz-equations, butterfly-effect, chaos-implication)
+- **Score**: 0.7753 (B+)
+- **Slug**: the-butterfly-effect-was-an-accident-how-one-meteorologist-discovered-chaos-theory
+- **Visualization**: [Lorenz Attractor](https://elysiatools.com/en/visualizations/lorenz-attractor)
+- **Category**: Chaos Theory / Physics / Mathematics
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-25-the-butterfly-effect-was-an-accident-how-one-meteorologist-discovered-chaos-theory

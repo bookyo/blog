@@ -1,3 +1,17 @@
+## 2026-04-25: The Butterfly Effect Was an Accident: How One Meteorologist Discovered Chaos Theory
+
+**URL:** https://blog.flowrust.com/2026/04/25/the-butterfly-effect-was-an-accident-how-one-meteorologist-discovered-chaos-theory/
+**WP Post ID:** 1879
+**Featured Image WP ID:** 1875 (poster)
+**Highlight Cards:** 3 (lorenz-equations, butterfly-effect, chaos-implication)
+**Visualization Covered:** Lorenz Attractor
+**Slug:** the-butterfly-effect-was-an-accident-how-one-meteorologist-discovered-chaos-theory
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/lorenz-attractor
+**Article Score:** 0.7753 (B+)
+**Tags:** Chaos Theory, Butterfly Effect, Edward Lorenz, Mathematics, Physics, Deterministic Chaos
+
+---
+
 ## 2026-04-25: Why the Strongest Strategies Don't Always Win: The Mathematics of Evolution
 
 **URL:** https://blog.flowrust.com/2026/04/25/why-the-strongest-strategies-dont-always-win-replicator-dynamics/
