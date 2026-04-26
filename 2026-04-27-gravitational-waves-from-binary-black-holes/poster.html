@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gravitational Waves</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a12;
+    color: #e8e8f0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 48px;
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+  .badge {
+    background: rgba(120, 80, 255, 0.25);
+    border: 1px solid rgba(120, 80, 255, 0.6);
+    color: #a090ff;
+    padding: 6px 16px;
+    border-radius: 24px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .elysia {
+    color: rgba(255,255,255,0.4);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #ffffff 0%, #b0a8ff 60%, #7060ee 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .subtitle {
+    font-size: 18px;
+    color: rgba(255,255,255,0.55);
+    max-width: 520px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+  .waveform {
+    height: 120px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  canvas { width: 100%; height: 100%; }
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 20px;
+  }
+  .stats {
+    display: flex;
+    gap: 40px;
+  }
+  .stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #a090ff;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+  .url {
+    color: rgba(255,255,255,0.3);
+    font-size: 14px;
+    font-family: monospace;
+  }
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="badge">Physics · Visualization</div>
+  <div class="elysia">ElysiaTools</div>
+</div>
+
+<h1>When Two Black Holes<br>Collide, They Send<br>Shockwaves Through<br>the Fabric of Reality</h1>
+
+<p class="subtitle">Ripples in spacetime from binary black hole mergers — visualized interactively in your browser. No physics degree required.</p>
+
+<div class="waveform">
+  <canvas id="waveCanvas"></canvas>
+</div>
+
+<div class="bottom">
+  <div class="stats">
+    <div>
+      <div class="stat-value">1.3B</div>
+      <div class="stat-label">light-years away</div>
+    </div>
+    <div>
+      <div class="stat-value">GW150914</div>
+      <div class="stat-label">First detection</div>
+    </div>
+    <div>
+      <div class="stat-value">3 phases</div>
+      <div class="stat-label">inspiral · merger · ringdown</div>
+    </div>
+  </div>
+  <div class="url">elysiatools.com/en/visualizations/gravitational-waves</div>
+</div>
+
+<script>
+const canvas = document.getElementById('waveCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = canvas.offsetWidth * 2;
+canvas.height = canvas.offsetHeight * 2;
+ctx.scale(2, 2);
+
+const w = canvas.offsetWidth;
+const h = canvas.offsetHeight;
+
+function drawWave(phase) {
+  const cx = w / 2;
+  const cy = h / 2;
+  ctx.clearRect(0, 0, w, h);
+
+  // Grid lines
+  ctx.strokeStyle = 'rgba(120, 80, 255, 0.1)';
+  ctx.lineWidth = 1;
+  for (let y = 0; y < h; y += 20) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+  }
+  for (let x = 0; x < w; x += 20) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+  }
+
+  // Central axis
+  ctx.strokeStyle = 'rgba(120, 80, 255, 0.3)';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
+
+  // Gravitational wave rings emanating from center
+  const numRings = 8;
+  for (let i = 0; i < numRings; i++) {
+    const t = (Date.now() / 1200 + i * 0.7 + phase) % 1;
+    const radius = t * (w * 0.45);
+    const alpha = (1 - t) * 0.6;
+    const strain = 2 + Math.sin(t * Math.PI * 3) * 1.5;
+
+    ctx.strokeStyle = `rgba(160, 120, 255, ${alpha})`;
+    ctx.lineWidth = 2;
+    ctx.setLineDash([4, 4]);
+
+    // Plus polarization
+    const yStretch = cy + (radius * strain * 0.06) * Math.sin(t * Math.PI * 6);
+    ctx.beginPath();
+    ctx.moveTo(cx - radius, cy);
+    ctx.lineTo(cx + radius, cy);
+    ctx.stroke();
+
+    // Cross polarization (offset)
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - radius * 0.4);
+    ctx.lineTo(cx, cy + radius * 0.4);
+    ctx.stroke();
+
+    ctx.setLineDash([]);
+  }
+
+  // Central mass blobs
+  const angle1 = Date.now() / 2000;
+  const angle2 = Date.now() / 2000 + Math.PI;
+  const r = 22;
+  const dist = 16 + Math.sin(Date.now() / 800) * 4;
+
+  const bx1 = cx + dist * Math.cos(angle1);
+  const by1 = cy + dist * Math.sin(angle1) * 0.3;
+  const bx2 = cx + dist * Math.cos(angle2);
+  const by2 = cy + dist * Math.sin(angle2) * 0.3;
+
+  // Orbital trail
+  ctx.strokeStyle = 'rgba(160, 120, 255, 0.15)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.ellipse(cx, cy, dist + 4, dist * 0.3, 0, 0, Math.PI * 2);
+  ctx.stroke();
+
+  // Black hole 1
+  const grad1 = ctx.createRadialGradient(bx1, by1, 0, bx1, by1, r);
+  grad1.addColorStop(0, '#1a0820');
+  grad1.addColorStop(0.7, '#0d0510');
+  grad1.addColorStop(1, 'rgba(100,60,180,0.6)');
+  ctx.fillStyle = grad1;
+  ctx.beginPath();
+  ctx.arc(bx1, by1, r, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Black hole 2
+  const grad2 = ctx.createRadialGradient(bx2, by2, 0, bx2, by2, r);
+  grad2.addColorStop(0, '#1a0820');
+  grad2.addColorStop(0.7, '#0d0510');
+  grad2.addColorStop(1, 'rgba(100,60,180,0.6)');
+  ctx.fillStyle = grad2;
+  ctx.beginPath();
+  ctx.arc(bx2, by2, r, 0, Math.PI * 2);
+  ctx.fill();
+
+  // LIGO detector indicators
+  ctx.fillStyle = 'rgba(80, 200, 120, 0.8)';
+  ctx.font = '9px monospace';
+  ctx.fillText('LIGO Hanford', 8, h - 8);
+  ctx.fillText('LIGO Livingston', w - 100, h - 8);
+
+  requestAnimationFrame(() => drawWave(phase + 0.02));
+}
+
+drawWave(0);
+</script>
+</body>
+</html>
