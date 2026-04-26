@@ -1,5 +1,3 @@
-
-
 ## 2026-04-26 08:42 UTC — The Circuit That Proved Chaos Hides Inside the Simplest Electronics
 ## 2026-04-26 08:58 UTC — 4 Free Tailwind CSS Samples That Make Utility-First CSS Actually Click
 - **WP Post ID**: 1925
@@ -764,3 +762,14 @@
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-26-chrome-extension-screenshots-icons-free-tools
 - **Tools**: chrome-web-store-screenshots-resized, png-to-icons
 | 2026-04-27 02:10 UTC | why-your-recordings-sound-flat-and-the-5-free-tools-that-fix-it | WP#1952 | ✅ |
+## 2026-04-27 05:22 UTC — 7 Free Interactive Physics Simulations That Make Hard Concepts Click
+- **WP Post ID**: 1958
+- **WP URL**: https://blog.flowrust.com/2026/04/27/7-free-interactive-physics-simulations-that-make-hard-concepts-click/
+- **Featured Image**: poster (WP ID 1957)
+- **Score**: 0.6811 (B)
+- **Slug**: 7-free-interactive-physics-simulations-that-make-hard-concepts-click
+- **Visualizations**: projectile-motion, wave-superposition, doppler-effect, simple-pendulum, spring-oscillator, standing-wave, double-slit
+- **Category**: Physics / Visualizations
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-27-7-free-interactive-physics-simulations-that-make-hard-concepts-click
+
+

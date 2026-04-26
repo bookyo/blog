@@ -106,12 +106,14 @@ This simulation lets you fire individual electrons and watch them accumulate. To
 
 ---
 
-## One Problem These Simulations Still Can't Solve
+## The Bridge Between Equations and Intuition
 
-These 7 visualizations cover mechanics, waves, and quantum physics—but they can't yet simulate **general relativity**. Curved spacetime, gravitational time dilation, black hole event horizons. The math is formidable and the interactive visualizations are scarce.
+These 7 simulations prove something worth remembering: **physics doesn't have to live in a textbook.**
 
-If you're aware of good free interactive tools for GR concepts, I'd genuinely like to know.
+Mechanics, waves, harmonic motion, quantum mechanics—concepts that take chapters to describe in words become obvious after five minutes with a slider. That shift from memorizing to *understanding* is what separates someone who can pass an exam from someone who can explain why the sky is blue.
+
+The double slit simulation makes this especially clear. You can read a hundred pages about wave-particle duality, but watching electrons accumulate into an interference pattern one by one—and then watching that pattern vanish the moment you try to detect which slit each electron passes through—tells you something no page can.
 
 ---
 
-*All 7 simulations are free, browser-based, and require no account. Browse the full collection of 230+ interactive science and math visualizations at [ElysiaTools.com](https://elysiatools.com).*
+*All 7 simulations run free in your browser, no account needed. Explore the full collection of 230+ interactive science and math visualizations at [ElysiaTools.com](https://elysiatools.com).*

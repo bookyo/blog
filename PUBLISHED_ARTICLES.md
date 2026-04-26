@@ -1,5 +1,3 @@
-
-
 **URL:** https://blog.flowrust.com/2026/04/26/forced-pendulum-chaos-discovery/
 **Title:** The Pendulum That Led Scientists to Discover Chaos
 **Published:** 2026-04-26
@@ -801,3 +799,15 @@
 - **Slug**: why-your-recordings-sound-flat-and-the-5-free-tools-that-fix-it
 - **Score**: 0.8152
 - **Highlight Cards**: 3 (dynamics-explained, multiband-explained, gated-reverb)
+---
+
+## 2026-04-27: 7 Free Interactive Physics Simulations That Make Hard Concepts Click
+
+**URL:** https://blog.flowrust.com/2026/04/27/7-free-interactive-physics-simulations-that-make-hard-concepts-click/
+**WP Post ID:** 1958
+**Featured Image WP ID:** 1957 (poster)
+**Visualizations Covered:** Projectile Motion, Wave Superposition, Doppler Effect, Simple Pendulum, Spring Oscillator, Standing Wave, Double Slit Quantum Trajectory
+**Slug:** 7-free-interactive-physics-simulations-that-make-hard-concepts-click
+**Article Score:** 0.6811 (B)
+**Tags:** physics, simulations, interactive, wave-motion, quantum-mechanics, projectile-motion, doppler-effect
+**Article File:** /Users/quyue/www/blog/2026-04-27-7-free-interactive-physics-simulations-that-make-hard-concepts-click/article.md
