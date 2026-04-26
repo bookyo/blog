@@ -9,6 +9,20 @@
 **Slug:** forced-pendulum-chaos-discovery
 **Featured Image:** WP Media 1881
 
+## 2026-04-26: The Equation That Shows Why Simple Rules Create Infinite Complexity
+
+**URL:** https://blog.flowrust.com/2026/04/25/the-equation-that-shows-why-simple-rules-create-infinite-complexity/
+**WP Post ID:** 1938
+**Featured Image WP ID:** 1937 (poster)
+**Visualization Covered:** Bifurcation Diagram
+**Slug:** the-equation-that-shows-why-simple-rules-create-infinite-complexity
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/bifurcation-diagram
+**Article Score:** 0.6927 (B)
+**Tags:** chaos theory, logistic map, feigenbaum-constant, nonlinear dynamics, bifurcation, mathematics
+**Article File:** /Users/quyue/www/blog/2026-04-26-bifurcation-diagram-chaos-theory/article.md
+
+---
+
 ## 2026-04-25: The Butterfly Effect Was an Accident: How One Meteorologist Discovered Chaos Theory
 
 **URL:** https://blog.flowrust.com/2026/04/25/the-butterfly-effect-was-an-accident-how-one-meteorologist-discovered-chaos-theory/
