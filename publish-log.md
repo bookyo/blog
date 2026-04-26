@@ -752,3 +752,14 @@
 - **URL**: https://blog.flowrust.com/2026/04/26/why-your-heart-doesnt-need-a-clock-to-keep-time/
 - **Featured Image**: WP Media ID 1929
 - **Cards**: 2 (limit-cycle-insight, mu-parameter)
+
+## 2026-04-26 22:18 UTC — Why Your Chrome Extension Screenshots Look Unprofessional
+- **WP Post ID**: 1943
+- **WP URL**: https://blog.flowrust.com/2026/04/26/why-your-chrome-extension-screenshots-look-unprofessional-and-the-free-tool-that-fixes-them-in-seconds/
+- **Featured Image**: poster (WP ID 1940)
+- **Highlight Cards**: 2 (dimension-mismatch: 1941, icon-workflow: 1942)
+- **Score**: 0.7947 (B+)
+- **Slug**: why-your-chrome-extension-screenshots-look-unprofessional-and-the-free-tool-that-fixes-them-in-seconds
+- **Category**: Developer Tools / Chrome Extensions
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-26-chrome-extension-screenshots-icons-free-tools
+- **Tools**: chrome-web-store-screenshots-resized, png-to-icons
