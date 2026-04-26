@@ -792,3 +792,12 @@
 **ElysiaTools URL:** https://elysiatools.com/en/visualizations/van-der-pol
 **Article File:** /Users/quyue/www/blog/2026-04-26-van-der-pol-oscillator/article.md
 **Tags:** van-der-pol, limit-cycle, nonlinear-dynamics, chaos, relaxation-oscillation, physics
+
+## 2026-04-27 - Why Your Recordings Sound Flat and the 5 Free Tools That Fix It
+- **URL**: https://blog.flowrust.com/2026/04/27/why-your-recordings-sound-flat-and-the-5-free-tools-that-fix-it/
+- **WP Post ID**: 1952
+- **Featured Image ID**: 1948
+- **Topic**: Audio Dynamics Tools (Compressor, Limiter, Expander, Noise Gate, Multi-band Compressor)
+- **Slug**: why-your-recordings-sound-flat-and-the-5-free-tools-that-fix-it
+- **Score**: 0.8152
+- **Highlight Cards**: 3 (dynamics-explained, multiband-explained, gated-reverb)

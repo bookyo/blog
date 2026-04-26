@@ -763,3 +763,4 @@
 - **Category**: Developer Tools / Chrome Extensions
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-26-chrome-extension-screenshots-icons-free-tools
 - **Tools**: chrome-web-store-screenshots-resized, png-to-icons
+| 2026-04-27 02:10 UTC | why-your-recordings-sound-flat-and-the-5-free-tools-that-fix-it | WP#1952 | ✅ |
