@@ -756,3 +756,14 @@
 **ElysiaTools URL:** https://elysiatools.com/en/visualizations/henon-map
 **Article File:** /Users/quyue/www/blog/2026-04-25-the-equation-that-shows-how-chaos-has-rules/article.md
 
+
+**URL:** https://blog.flowrust.com/2026/04/26/the-pendulum-that-proves-you-cant-predict-the-future/
+**WP Post ID:** 1922
+**Featured Image WP ID:** 1921 (poster)
+**Highlight Cards:** 3 (1918: butterfly-effect, 1919: heart-periodicity, 1920: lorenz-discovery)
+**Visualization Covered:** Double Pendulum Chaos
+**Article Score:** 0.7353 (B)
+**Slug:** the-pendulum-that-proves-you-cant-predict-the-future
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/double-pendulum
+**Article File:** /Users/quyue/www/blog/2026-04-26-the-pendulum-that-proves-you-cant-predict-the-future/article.md
+**Tags:** chaos-theory, double-pendulum, lorenz, edward-lorenz, robert-may, nonlinear-dynamics, chaos, physics

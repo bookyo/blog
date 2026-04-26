@@ -722,3 +722,15 @@
 - **Tool**: [Audio Bit Depth Reducer](https://elysiatools.com/en/tools/audio-bit-depth-reducer)
 - **Category**: Media / Audio Processing
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-26-audio-bit-depth-reducer
+
+
+## 2026-04-26 06:10 UTC — The Pendulum That Proves You Can't Predict the Future
+- **WP Post ID**: 1922
+- **WP URL**: https://blog.flowrust.com/2026/04/26/the-pendulum-that-proves-you-cant-predict-the-future/
+- **Featured Image**: poster (WP ID 1921)
+- **Highlight Cards**: 3 (1918: butterfly-effect, 1919: heart-periodicity, 1920: lorenz-discovery)
+- **Score**: 0.7353 (B)
+- **Slug**: the-pendulum-that-proves-you-cant-predict-the-future
+- **Visualization**: [Double Pendulum Chaos](https://elysiatools.com/en/visualizations/double-pendulum)
+- **Category**: Physics / Chaos Theory / Mathematics
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-26-the-pendulum-that-proves-you-cant-predict-the-future
