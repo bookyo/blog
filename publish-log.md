@@ -1,4 +1,15 @@
 
+
+## 2026-04-26 08:42 UTC — The Circuit That Proved Chaos Hides Inside the Simplest Electronics
+- **WP Post ID**: 1905
+- **WP URL**: https://blog.flowrust.com/2026/04/26/chuas-circuit-chaos-electronics/
+- **Featured Image**: poster (WP ID 1904)
+- **Highlight Cards**: none
+- **Slug**: chuas-circuit-chaos-electronics
+- **Visualization**: [Chua's Circuit](https://elysiatools.com/en/visualizations/chuas-circuit)
+- **Category**: Physics / Electronics / Chaos Theory
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-26-chuas-circuit-chaos
+
 ## 2026-04-26 04:31 UTC — Einstein's 1921 Nobel Prize Was About Light Acting Like Particles
 - **WP Post ID**: 1897
 - **WP URL**: https://blog.flowrust.com/2026/04/25/einstein-1921-nobel-prize-photoelectric-effect/
@@ -701,3 +712,4 @@
 - **Category**: Signal Processing / Z-Transform / Digital Filters
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-26-why-every-digital-filter-starts-with-a-dot-and-a-circle
 - **GitHub Commit**: pending
+
