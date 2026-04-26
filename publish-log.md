@@ -713,3 +713,12 @@
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-26-why-every-digital-filter-starts-with-a-dot-and-a-circle
 - **GitHub Commit**: pending
 
+
+## 2026-04-26 12:43 UTC — Audio Bit Depth Reducer: The Free Tool That Fixes 24-Bit Audio Files for CD, Streaming, and Legacy Systems
+- **WP Post ID**: 1916
+- **WP URL**: https://blog.flowrust.com/2026/04/26/audio-bit-depth-reducer-24-bit-to-16-bit/
+- **Featured Image**: poster (WP ID 1915)
+- **Slug**: audio-bit-depth-reducer-24-bit-to-16-bit
+- **Tool**: [Audio Bit Depth Reducer](https://elysiatools.com/en/tools/audio-bit-depth-reducer)
+- **Category**: Media / Audio Processing
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-26-audio-bit-depth-reducer
