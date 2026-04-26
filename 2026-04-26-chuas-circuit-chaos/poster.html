@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chua's Circuit Chaos</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0f;
+    width: 1200px;
+    height: 630px;
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+  .bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(0,255,204,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,204,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+  }
+  .orb1 { width: 400px; height: 400px; background: #00ffcc; top: -100px; right: -50px; }
+  .orb2 { width: 300px; height: 300px; background: #ff0066; bottom: -80px; left: 100px; }
+  .orb3 { width: 200px; height: 200px; background: #6600ff; top: 200px; left: 400px; }
+  
+  .content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 48px 56px;
+    color: #fff;
+  }
+  
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,255,204,0.1);
+    border: 1px solid rgba(0,255,204,0.3);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 13px;
+    color: #00ffcc;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    width: fit-content;
+    margin-bottom: 28px;
+  }
+  .badge-dot {
+    width: 6px; height: 6px;
+    background: #00ffcc;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.5); }
+  }
+  
+  .title {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 18px;
+    background: linear-gradient(135deg, #ffffff 0%, #00ffcc 50%, #ff0066 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    max-width: 800px;
+  }
+  
+  .subtitle {
+    font-size: 22px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+    max-width: 700px;
+    margin-bottom: 32px;
+  }
+  
+  .attractor {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 380px;
+    height: 380px;
+  }
+  
+  .attractor-svg {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .bottom-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  
+  .formulas {
+    display: flex;
+    gap: 32px;
+  }
+  .formula {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    font-family: 'Courier New', monospace;
+  }
+  .formula span {
+    display: block;
+    color: rgba(255,255,255,0.7);
+    font-size: 15px;
+    margin-bottom: 2px;
+  }
+  
+  .cta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #00ffcc, #00ccaa);
+    color: #0a0a0f;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .cta-arrow { font-size: 18px; }
+  
+  .site-name {
+    font-size: 14px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="glow-orb orb1"></div>
+<div class="glow-orb orb2"></div>
+<div class="glow-orb orb3"></div>
+
+<div class="content">
+  <div class="badge">
+    <div class="badge-dot"></div>
+    Interactive Visualization
+  </div>
+  
+  <h1 class="title">The Circuit That Proved<br>Chaos Hides in Simplest Electronics</h1>
+  
+  <p class="subtitle">Leon Chua built a five-component circuit in 1983 expecting ordinary nonlinear behavior. What appeared on the oscilloscope became the most famous chaotic attractor in electronics.</p>
+  
+  <div class="attractor">
+    <svg class="attractor-svg" viewBox="0 0 380 380">
+      <defs>
+        <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#00ffcc" stop-opacity="0.8"/>
+          <stop offset="100%" stop-color="#00ffcc" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#ff0066" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#ff0066" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <!-- Background glows -->
+      <ellipse cx="130" cy="190" rx="90" ry="90" fill="url(#glow1)"/>
+      <ellipse cx="250" cy="190" rx="90" ry="90" fill="url(#glow2)"/>
+      <ellipse cx="190" cy="190" rx="40" ry="40" fill="rgba(102,0,255,0.3)"/>
+      
+      <!-- Double scroll attractor paths - stylized -->
+      <g opacity="0.9">
+        <!-- Left scroll (cyan) -->
+        <path d="M130,190 Q90,130 110,90 Q140,60 170,80 Q200,100 190,140 Q180,170 190,190 Q200,210 170,240 Q130,270 100,240 Q80,200 90,160 Q100,130 130,140 Q150,150 130,190" 
+              fill="none" stroke="#00ffcc" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M130,190 Q100,160 115,125 Q135,95 165,105 Q195,120 180,155 Q165,180 180,200 Q195,220 165,245 Q125,275 95,245 Q75,205 88,165 Q100,135 130,155 Q155,170 130,190" 
+              fill="none" stroke="#00ffcc" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+        <path d="M130,190 Q105,170 118,140 Q138,115 162,122 Q188,135 172,162 Q155,185 172,205 Q188,225 162,248 Q128,275 100,250 Q82,215 93,178 Q105,150 130,165 Q155,180 130,190" 
+              fill="none" stroke="#00ffcc" stroke-width="1" stroke-linecap="round" opacity="0.35"/>
+        
+        <!-- Right scroll (magenta) -->
+        <path d="M250,190 Q290,130 270,90 Q240,60 210,80 Q180,100 190,140 Q200,170 190,190 Q180,210 210,240 Q250,270 280,240 Q300,200 290,160 Q280,130 250,140 Q230,150 250,190" 
+              fill="none" stroke="#ff0066" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M250,190 Q280,160 265,125 Q245,95 215,105 Q185,120 200,155 Q215,180 200,200 Q185,220 215,245 Q255,275 285,245 Q305,205 292,165 Q280,135 250,155 Q225,170 250,190" 
+              fill="none" stroke="#ff0066" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+        <path d="M250,190 Q275,170 262,140 Q242,115 218,122 Q192,135 208,162 Q225,185 208,205 Q192,225 218,248 Q252,275 280,250 Q298,215 287,178 Q275,150 250,165 Q225,180 250,190" 
+              fill="none" stroke="#ff0066" stroke-width="1" stroke-linecap="round" opacity="0.35"/>
+        
+        <!-- Connecting line through origin -->
+        <path d="M190,190 L250,190" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+        
+        <!-- Equilibrium points -->
+        <circle cx="130" cy="190" r="5" fill="#00ffcc" opacity="0.9"/>
+        <circle cx="250" cy="190" r="5" fill="#ff0066" opacity="0.9"/>
+        <circle cx="190" cy="190" r="4" fill="#ffffff" opacity="0.6"/>
+        
+        <!-- Labels -->
+        <text x="130" y="220" text-anchor="middle" fill="#00ffcc" font-size="12" opacity="0.7">Equilibrium 1</text>
+        <text x="250" y="220" text-anchor="middle" fill="#ff0066" font-size="12" opacity="0.7">Equilibrium 2</text>
+        <text x="190" y="165" text-anchor="middle" fill="#ffffff" font-size="11" opacity="0.5">Origin</text>
+      </g>
+      
+      <!-- Title overlay -->
+      <text x="190" y="370" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="10" letter-spacing="2">DOUBLE-SCROLL ATTRACTOR — CHUA'S CIRCUIT</text>
+    </svg>
+  </div>
+  
+  <div class="bottom-row">
+    <div class="formulas">
+      <div class="formula">
+        <span>dx/dt = α(y − x − g(x))</span>
+        g(x) = m₁x + ½(m₀−m₁)(|x+1|−|x−1|)
+      </div>
+      <div class="formula">
+        <span>dy/dt = x − y + z</span>
+        Classic params: α≈15.6, β≈28, m₀≈−1.143, m₁≈−0.714
+      </div>
+    </div>
+    <a class="cta" href="https://elysiatools.com/en/visualizations/chuas-circuit">
+      Explore on ElysiaTools <span class="cta-arrow">→</span>
+    </a>
+  </div>
+</div>
+</body>
+</html>
