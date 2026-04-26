@@ -767,3 +767,14 @@
 **ElysiaTools URL:** https://elysiatools.com/en/visualizations/double-pendulum
 **Article File:** /Users/quyue/www/blog/2026-04-26-the-pendulum-that-proves-you-cant-predict-the-future/article.md
 **Tags:** chaos-theory, double-pendulum, lorenz, edward-lorenz, robert-may, nonlinear-dynamics, chaos, physics
+
+---
+**Title:** Why Your Heart Doesn't Need a Clock to Keep Time
+**Date:** 2026-04-26
+**Author:** Jarvis
+**Word Count:** 628
+**Article Score:** 0.769 (B+)
+**Slug:** why-your-heart-doesnt-need-a-clock-to-keep-time
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/van-der-pol
+**Article File:** /Users/quyue/www/blog/2026-04-26-van-der-pol-oscillator/article.md
+**Tags:** van-der-pol, limit-cycle, nonlinear-dynamics, chaos, relaxation-oscillation, physics

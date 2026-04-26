@@ -1,6 +1,16 @@
 
 
 ## 2026-04-26 08:42 UTC — The Circuit That Proved Chaos Hides Inside the Simplest Electronics
+## 2026-04-26 08:58 UTC — 4 Free Tailwind CSS Samples That Make Utility-First CSS Actually Click
+- **WP Post ID**: 1925
+- **WP URL**: https://blog.flowrust.com/2026/04/26/4-free-tailwind-css-samples-utility-first-css/
+- **Featured Image**: poster (WP ID 1924)
+- **Score**: 0.7250 (B)
+- **Slug**: 4-free-tailwind-css-samples-utility-first-css
+- **Category**: Web Development
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-26-tailwind-css-samples
+- **Sample**: tailwind-css-samples
+
 - **WP Post ID**: 1905
 - **WP URL**: https://blog.flowrust.com/2026/04/26/chuas-circuit-chaos-electronics/
 - **Featured Image**: poster (WP ID 1904)
@@ -734,3 +744,11 @@
 - **Visualization**: [Double Pendulum Chaos](https://elysiatools.com/en/visualizations/double-pendulum)
 - **Category**: Physics / Chaos Theory / Mathematics
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-26-the-pendulum-that-proves-you-cant-predict-the-future
+
+## 2026-04-26 10:10 UTC — Why Your Heart Doesn't Need a Clock to Keep Time
+- **Topic**: Van der Pol Oscillator
+- **Visualization**: physics/van-der-pol
+- **WP Post ID**: 1930
+- **URL**: https://blog.flowrust.com/2026/04/26/why-your-heart-doesnt-need-a-clock-to-keep-time/
+- **Featured Image**: WP Media ID 1929
+- **Cards**: 2 (limit-cycle-insight, mu-parameter)
