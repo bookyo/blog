@@ -814,3 +814,12 @@
 - **Visualization**: [Kuramoto Synchronization](https://elysiatools.com/en/visualizations/kuramoto-synchronization)
 - **Category**: Math / Physics / Synchronization
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-27-kuramoto-synchronization-fireflies
+
+## 2026-04-28 02:XX UTC — The Mysterious Case of the Two Clocks That Refused to Beat Out of Step
+- **WP Post ID**: 1995
+- **WP URL**: https://blog.flowrust.com/2026/04/27/2026-04-28-huygens-clocks-synchronization/
+- **Featured Image**: poster (WP ID 1994)
+- **Slug**: 2026-04-28-huygens-clocks-synchronization
+- **Visualization**: [Huygens Clocks](https://elysiatools.com/en/visualizations/huygens-clocks)
+- **Category**: Physics / Synchronization / Kuramoto Model
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-28-huygens-clocks-synchronization
