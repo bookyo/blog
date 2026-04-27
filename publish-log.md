@@ -803,3 +803,14 @@
 - **Category**: Physics / Special Relativity / Visualizations
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-27-stellar-aberration
 - **Tags**: stellar aberration, special relativity, James Bradley, Lorentz factor, physics visualization, headlight effect
+
+## 2026-04-27 18:19 UTC — Why 50,000 Fireflies Suddenly Blink Together
+- **WP Post ID**: 1988
+- **WP URL**: https://blog.flowrust.com/2026/04/27/why-50000-fireflies-suddenly-blink-together/
+- **Featured Image**: poster (WP ID 1984)
+- **Highlight Cards**: 3 (fireflies-hook WP ID 1985, phase-transition WP ID 1986, millennium-bridge WP ID 1987)
+- **Score**: 0.7718 (B+)
+- **Slug**: why-50000-fireflies-suddenly-blink-together
+- **Visualization**: [Kuramoto Synchronization](https://elysiatools.com/en/visualizations/kuramoto-synchronization)
+- **Category**: Math / Physics / Synchronization
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-27-kuramoto-synchronization-fireflies
