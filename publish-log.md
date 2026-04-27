@@ -1,3 +1,13 @@
+## 2026-04-27 18:00 UTC — The Five Numbers Every Options Trader Watches Like a Hawk
+- **WP Post ID**: 1983
+- **WP URL**: https://blog.flowrust.com/2026/04/27/the-five-numbers-every-options-trader-watches-like-a-hawk/
+- **Featured Image**: poster (WP ID 1982)
+- **Score**: 0.7518 (B+)
+- **Slug**: the-five-numbers-every-options-trader-watches-like-a-hawk
+- **Visualization**: option-greeks-visualizer (https://elysiatools.com/en/visualizations/option-greeks-visualizer)
+- **Category**: Finance / Mathematical Visualization
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-27-option-greeks-visualizer
+
 ## 2026-04-26 08:42 UTC — The Circuit That Proved Chaos Hides Inside the Simplest Electronics
 ## 2026-04-26 08:58 UTC — 4 Free Tailwind CSS Samples That Make Utility-First CSS Actually Click
 - **WP Post ID**: 1925

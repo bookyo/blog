@@ -1,0 +1,15 @@
+{
+  "poster_id": 1984,
+  "article_id": 1988,
+  "article_url": "https://blog.flowrust.com/2026/04/27/why-50000-fireflies-suddenly-blink-together/",
+  "slug": "kuramoto-synchronization-fireflies",
+  "date": "2026-04-27",
+  "viz_id": "kuramoto-synchronization",
+  "viz_url": "https://elysiatools.com/en/visualizations/kuramoto-synchronization",
+  "score": 0.7718,
+  "card_ids": [
+    1985,
+    1986,
+    1987
+  ]
+}

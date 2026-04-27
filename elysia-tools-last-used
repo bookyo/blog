@@ -58,6 +58,8 @@ bifurcation-diagram-done
 chrome-web-store-screenshots-resized-done
 png-to-icons-done
 
+option-greeks-visualizer-done
+
 gravitational-waves-done
 
 projectile-motion-done
@@ -77,3 +79,12 @@ double-slit-done
 animation-generator-done
 enzyme-kinetics-done
 stellar-aberration-done
+
+## 2026-04-27 08:20 UTC — 8 Free Supabase Sample Projects That Replace Firebase
+- **Topic**: Supabase samples
+- **Status**: FAILED - Dev.to API key returned 401 Unauthorized
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-27-8-free-supabase-samples-that-replace-firebase
+- **Article**: article.md (score 0.80/A)
+- **Poster**: poster.png (pushed to GitHub)
+- **GitHub URL**: https://github.com/bookyo/blog/commit/c1eb23c
+- **Issue**: Dev.to API key invalid/expired
