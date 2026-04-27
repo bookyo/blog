@@ -1,4 +1,15 @@
 ## 2026-04-27 18:00 UTC — The Five Numbers Every Options Trader Watches Like a Hawk
+## 2026-04-28: {{ARTICLE TITLE}}
+**URL:** https://blog.flowrust.com/2026/04/28/four-step-math-convolution-explained/
+**WP Post ID:** 1998
+**Featured Image WP ID:** 1997 (poster)
+**Highlight Cards:** None
+**Visualization Covered:** Convolution
+**Slug:** four-step-math-convolution-explained
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/convolution
+**Article Score:** 0.7384 (B)
+**Tags:** convolution, signal processing, neural networks, audio, image processing
+
 - **WP Post ID**: 1983
 - **WP URL**: https://blog.flowrust.com/2026/04/27/the-five-numbers-every-options-trader-watches-like-a-hawk/
 - **Featured Image**: poster (WP ID 1982)

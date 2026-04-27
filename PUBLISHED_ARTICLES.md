@@ -7,6 +7,17 @@
 **Slug:** forced-pendulum-chaos-discovery
 **Featured Image:** WP Media 1881
 
+## 2026-04-28: The Four-Line Math That Makes Every Photo Filter, Audio Effect, and AI Vision System Work
+
+**URL:** https://blog.flowrust.com/2026/04/28/four-step-math-convolution-explained/
+**WP Post ID:** 1998
+**Featured Image WP ID:** 1997 (poster)
+**Visualization Covered:** Convolution
+**Slug:** four-step-math-convolution-explained
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/convolution
+**Article Score:** 0.7384 (B)
+**Tags:** convolution, signal processing, neural networks, audio, image processing
+
 ## 2026-04-26: The Equation That Shows Why Simple Rules Create Infinite Complexity
 
 **URL:** https://blog.flowrust.com/2026/04/25/the-equation-that-shows-why-simple-rules-create-infinite-complexity/
