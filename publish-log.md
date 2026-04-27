@@ -783,3 +783,13 @@
 - **Category**: Design / CSS / Web Development
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-27-css-animation-generator
 2026-04-27 | enzyme-kinetics-michaelis-menten | enzyme-kinetics | 10:17:56
+
+## 2026-04-27 13:00 UTC — The Telescope That Accidentally Proved Einstein Right — 180 Years Before He Was Born
+- **WP URL**: https://blog.flowrust.com/2026/04/27/the-telescope-that-accidentally-proved-einstein-right-180-years-before-he-was-born/
+- **WP Post ID**: 1972
+- **Featured Image WP ID**: 1974
+- **Slug**: the-telescope-that-accidentally-proved-einstein-right-180-years-before-he-was-born
+- **Visualization**: [Stellar Aberration](https://elysiatools.com/en/visualizations/stellar-aberration)
+- **Category**: Physics / Special Relativity / Visualizations
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-27-stellar-aberration
+- **Tags**: stellar aberration, special relativity, James Bradley, Lorentz factor, physics visualization, headlight effect
