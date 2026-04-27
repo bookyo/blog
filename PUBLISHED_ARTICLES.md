@@ -811,3 +811,16 @@
 **Article Score:** 0.6811 (B)
 **Tags:** physics, simulations, interactive, wave-motion, quantum-mechanics, projectile-motion, doppler-effect
 **Article File:** /Users/quyue/www/blog/2026-04-27-7-free-interactive-physics-simulations-that-make-hard-concepts-click/article.md
+
+## 2026-04-27: Why the Pill That Lowers Your Blood Pressure Is Also a Math Problem
+
+**URL:** https://blog.flowrust.com/2026/04/27/why-the-pill-that-lowers-your-blood-pressure-is-also-a-math-problem/
+**WP Post ID:** 1970
+**Featured Image WP ID:** 1966 (poster)
+**Highlight Cards:** 3 (enzyme-saturation=1967, three-inhibition-types=1968, lineweaver-burk=1969)
+**Visualization Covered:** Enzyme Kinetics
+**Slug:** why-the-pill-that-lowers-your-blood-pressure-is-also-a-math-problem
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/enzyme-kinetics
+**Article Score:** 0.8181 (B+)
+**Tags:** enzyme kinetics, michaelis-menten, drug design, biochemistry, Vmax, Km, pharmaceutical industry
+**Article File:** /Users/quyue/www/blog/2026-04-27-enzyme-kinetics-article/article.md

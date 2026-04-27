@@ -773,3 +773,13 @@
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-27-7-free-interactive-physics-simulations-that-make-hard-concepts-click
 
 
+
+## 2026-04-27 01:33 UTC — The CSS Property That Makes Web Interfaces Feel Alive (And How to Generate It in Seconds)
+- **WP Post ID**: 1964
+- **WP URL**: https://blog.flowrust.com/2026/04/27/the-css-property-that-makes-web-interfaces-feel-alive/
+- **Featured Image**: poster (WP media ID: 1963)
+- **Slug**: the-css-property-that-makes-web-interfaces-feel-alive
+- **Tool**: [CSS Animation Generator](https://elysiatools.com/en/tools/animation-generator)
+- **Category**: Design / CSS / Web Development
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-27-css-animation-generator
+2026-04-27 | enzyme-kinetics-michaelis-menten | enzyme-kinetics | 10:17:56
