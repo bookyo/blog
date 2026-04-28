@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Card 1 - Lyapunov Definition</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Outfit', sans-serif; margin: 0; padding: 0; background: #0a0a0f; color: white; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+.card { width: 1080px; padding: 64px 96px; box-sizing: border-box; }
+.eyebrow { font-size: 16px; font-weight: 700; color: #FF3B3B; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 24px; }
+.section { font-size: 14px; color: #666666; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+.title { font-size: 52px; font-weight: 800; color: #ffffff; line-height: 1.2; margin: 0 0 32px 0; }
+.dek { font-size: 22px; font-weight: 400; color: #aaaaaa; line-height: 1.6; margin: 0 0 40px 0; }
+.quote-box { background: #111118; border-left: 4px solid #00FF94; padding: 24px 32px; margin: 0 0 40px 0; }
+.quote { font-family: 'JetBrains Mono', monospace; font-size: 18px; color: #00FF94; margin: 0; line-height: 1.6; }
+.bullets { list-style: none; padding: 0; margin: 0; }
+.bullets li { font-size: 18px; color: #888888; padding: 12px 0; border-bottom: 1px solid #1a1a24; line-height: 1.5; }
+.bullets li:last-child { border-bottom: none; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="eyebrow">The Formula</div>
+  <div class="section">Key Concept</div>
+  <h1 class="title">Two Identical Systems.<br>One Number Decides Their Fate.</h1>
+  <p class="dek">λ tells you how fast nearly-identical starting conditions drift apart — and whether prediction is even possible.</p>
+  <div class="quote-box">
+    <p class="quote">λ > 0: trajectories diverge exponentially. Chaos.<br>λ = 0: periodic motion. λ < 0: stable, predictable.</p>
+  </div>
+  <ul class="bullets">
+    <li>λ quantifies the exponential separation rate of nearby trajectories</li>
+    <li>λ < 0 means convergence — the system settles toward a fixed state</li>
+    <li>λ = 0 means periodicity — trajectories hold their separation</li>
+    <li>λ > 0 means chaos — deterministic but unpredictable in the long term</li>
+  </ul>
+</div>
+</body>
+</html>

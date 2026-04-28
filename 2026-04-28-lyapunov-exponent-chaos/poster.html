@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lyapunov Exponent - Chaos Visualization</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Outfit', sans-serif; margin: 0; padding: 0; background: #0a0a0f; color: white; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+.container { width: 1080px; text-align: center; padding: 80px 108px; box-sizing: border-box; }
+.lambda { font-family: 'JetBrains Mono', monospace; font-size: 280px; font-weight: 700; color: #00FF94; line-height: 1; margin: 0; letter-spacing: -10px; }
+.label { font-size: 48px; font-weight: 700; color: #ffffff; margin-top: 20px; letter-spacing: -1px; }
+.formula { font-family: 'JetBrains Mono', monospace; font-size: 24px; color: #666666; margin-top: 48px; letter-spacing: 0px; }
+.tagline { font-size: 28px; font-weight: 300; color: #888888; margin-top: 48px; line-height: 1.5; }
+.divider { width: 120px; height: 3px; background: #00FF94; margin: 48px auto; }
+.status { display: flex; justify-content: center; gap: 60px; margin-top: 48px; }
+.status-item { text-align: center; }
+.status-value { font-size: 32px; font-weight: 700; }
+.status-label { font-size: 16px; color: #666666; margin-top: 8px; text-transform: uppercase; letter-spacing: 2px; }
+.chaotic .status-value { color: #FF3B3B; }
+.stable .status-value { color: #00FF94; }
+.url { font-size: 18px; color: #444444; margin-top: 64px; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="lambda">λ</div>
+  <div class="label">Lyapunov Exponent</div>
+  <div class="formula">λ &gt; 0 = Chaos &nbsp;|&nbsp; λ = 0 = Critical &nbsp;|&nbsp; λ &lt; 0 = Stable</div>
+  <div class="tagline">The one number that reveals<br>whether the universe is predictable</div>
+  <div class="divider"></div>
+  <div class="status">
+    <div class="status-item chaotic">
+      <div class="status-value">+λ</div>
+      <div class="status-label">Chaotic</div>
+    </div>
+    <div class="status-item">
+      <div class="status-value" style="color: #FFD700;">0</div>
+      <div class="status-label">Critical</div>
+    </div>
+    <div class="status-item stable">
+      <div class="status-value">−λ</div>
+      <div class="status-label">Stable</div>
+    </div>
+  </div>
+  <div class="url">elysiatools.com/en/visualizations/lyapunov-exponent</div>
+</div>
+</body>
+</html>

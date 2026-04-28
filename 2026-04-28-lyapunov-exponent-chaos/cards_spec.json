@@ -1,0 +1,49 @@
+{
+  "cards": [
+    {
+      "slug": "lyapunov-definition",
+      "eyebrow": "The Formula",
+      "section_label": "Key Concept",
+      "title": "Two Identical Systems. One Number Decides Their Fate.",
+      "dek": "λ tells you how fast nearly-identical starting conditions drift apart — and whether prediction is even possible.",
+      "quote": "λ > 0: trajectories diverge exponentially. Chaos. λ = 0: periodic motion. λ < 0: stable, predictable.",
+      "bullets": [
+        "λ quantifies the exponential separation rate of nearby trajectories",
+        "λ < 0 means convergence — the system settles toward a fixed state",
+        "λ = 0 means periodicity — trajectories hold their separation",
+        "λ > 0 means chaos — deterministic but unpredictable in the long term"
+      ],
+      "theme": "ember"
+    },
+    {
+      "slug": "butterfly-effect",
+      "eyebrow": "The Insight",
+      "section_label": "Key Paragraph 2",
+      "title": "The Butterfly Doesn't Cause the Tornado",
+      "dek": "A positive Lyapunov exponent means the growth of uncertainty is exponential — not that tiny causes create huge effects arbitrarily.",
+      "quote": "For weather systems, λ ≈ 0.9 per day. A perturbation doubles in size roughly every 18 hours.",
+      "bullets": [
+        "Exponential divergence, not unbounded growth — that's the real meaning of chaos",
+        "Weather is unpredictable beyond 10-14 days not because models are bad, but because uncertainty compounds exponentially",
+        "The butterfly shifts initial conditions; exponential divergence does the rest",
+        "This is why long-range weather prediction is physically impossible, not just practically difficult"
+      ],
+      "theme": "ocean"
+    },
+    {
+      "slug": "practical-applications",
+      "eyebrow": "Why It Matters",
+      "section_label": "Key Paragraph 3",
+      "title": "λ Is Being Used to Predict Seizures, Market Crashes, and Grid Failures",
+      "dek": "The Lyapunov exponent isn't just theoretical — it's a real diagnostic tool applied across biology, finance, and engineering.",
+      "quote": "EEG readings show characteristic Lyapunov exponent shifts 15-30 minutes before seizures.",
+      "bullets": [
+        "Epilepsy: λ analysis of brain activity provides seizure early warning",
+        "Power grids: cascade failures can be detected minutes before they become inevitable",
+        "Finance: fat tails in market returns emerge from slightly positive λ — not Gaussian randomness",
+        "Neural networks: learning is most effective at λ ≈ 0, the edge of chaos"
+      ],
+      "theme": "forest"
+    }
+  ]
+}
