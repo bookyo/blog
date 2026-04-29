@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Turing Pattern Highlight Cards</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Outfit', sans-serif; }
+.card { display: none; }
+.card.active { display: flex; }
+</style>
+</head>
+<body class="bg-black flex items-center justify-center min-h-screen">
+
+<!-- Card 1: Opening Hook -->
+<div class="card active w-[1080px] text-center px-[108px] py-20" id="card1">
+  <div>
+    <p class="text-[18px] text-[#00FF94] tracking-[0.3em] uppercase mb-6">Opening Hook</p>
+    <h2 class="text-[64px] font-black text-white leading-tight">How Alan Turing's Dying Equation Explains Why Leopards Have Spots</h2>
+    <p class="text-[20px] text-[#888888] mt-10">In 1952, a mathematician famous for breaking Enigma codes asked: can the same equation that describes chemicals mixing in a jar explain why a leopard has spots?</p>
+  </div>
+</div>
+
+<!-- Card 2: The Core Insight -->
+<div class="card w-[1080px] text-center px-[108px] py-20" id="card2">
+  <div>
+    <p class="text-[18px] text-[#00FF94] tracking-[0.3em] uppercase mb-6">Key Insight</p>
+    <h2 class="text-[72px] font-black text-white leading-tight">Two Chemicals,<br>Infinite Patterns</h2>
+    <p class="text-[20px] text-[#888888] mt-8">The Gray-Scott model: an activator and an inhibitor feed, react, and diffuse — producing spots, stripes, spirals, and coral-like structures from pure mathematics.</p>
+    <div class="mt-8 bg-[#111] rounded-2xl p-6 inline-block">
+      <code class="text-[#00FF94] text-lg font-mono">Du/Dv ≈ 2:1</code>
+      <p class="text-[#666] text-sm mt-2">The ratio that determines pattern scale</p>
+    </div>
+  </div>
+</div>
+
+<!-- Card 3: The Equation -->
+<div class="card w-[1080px] text-center px-[108px] py-16" id="card3">
+  <div>
+    <p class="text-[18px] text-[#00FF94] tracking-[0.3em] uppercase mb-6">The Mathematics</p>
+    <h2 class="text-[48px] font-black text-white leading-tight mb-8">dU/dt = Du · ∇²U − U·V² + f·(1−U)<br>dV/dt = Dv · ∇²V + U·V² − (f+k)·V</h2>
+    <p class="text-[20px] text-[#888888]">Three parameters control everything:<br><span class="text-white font-bold">f</span> = feed rate · <span class="text-white font-bold">k</span> = kill rate · <span class="text-white font-bold">Du/Dv</span> = diffusion ratio</p>
+    <p class="text-[#666] text-base mt-6">Change f by 0.001 and the entire pattern transforms</p>
+  </div>
+</div>
+
+<!-- Card 4: Biology Connection -->
+<div class="card w-[1080px] text-center px-[108px] py-20" id="card4">
+  <div>
+    <p class="text-[18px] text-[#00FF94] tracking-[0.3em] uppercase mb-6">From Math to Life</p>
+    <h2 class="text-[56px] font-black text-white leading-tight">Your Fingerprints Followed a Turing Pattern</h2>
+    <p class="text-[20px] text-[#888888] mt-6">Evidence of reaction-diffusion dynamics found in:</p>
+    <div class="grid grid-cols-2 gap-4 mt-6 max-w-[600px] mx-auto text-left">
+      <div class="bg-[#111] rounded-xl p-4"><span class="text-[#00FF94]">→</span> <span class="text-white">Mammalian coat patterns</span></div>
+      <div class="bg-[#111] rounded-xl p-4"><span class="text-[#00FF94]">→</span> <span class="text-white">Feather spacing in bird embryos</span></div>
+      <div class="bg-[#111] rounded-xl p-4"><span class="text-[#00FF94]">→</span> <span class="text-white">Digit formation in hands</span></div>
+      <div class="bg-[#111] rounded-xl p-4"><span class="text-[#00FF94]">→</span> <span class="text-white">Hair follicle distribution</span></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
