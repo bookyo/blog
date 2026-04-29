@@ -897,3 +897,13 @@
 - **Highlight Cards**: 2 (card-01-soc WP Media 2072, card-02-abelian WP Media 2073)
 - **Visualization**: https://elysiatools.com/en/visualizations/abelian-sandpile
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-30-abelian-sandpile
+
+## mandelbrot-set (2026-04-30)
+
+- **Title**: The Infinite World Inside the Simplest Equation in Mathematics
+- **WP ID**: 2079
+- **URL**: https://blog.flowrust.com/2026/04/17/infinite-world-inside-the-simplest-equation-in-mathematics/
+- **Poster**: https://blog.flowrust.com/wp-content/uploads/2026/04/poster-199.png (WP Media 2076)
+- **Highlight Cards**: 2 (card-01 WP Media 2077, card-02 WP Media 2078)
+- **Visualization**: https://elysiatools.com/en/visualizations/mandelbrot-set
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-30-mandelbrot-set
