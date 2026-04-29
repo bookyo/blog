@@ -1,5 +1,26 @@
 ## 2026-04-27 18:00 UTC — The Five Numbers Every Options Trader Watches Like a Hawk
-## 2026-04-28: {{ARTICLE TITLE}}
+
+## 2026-04-29: Why a Spinning Top Doesn't Fall Over — Even When It Should
+- **WP Post ID**: 2029
+- **WP URL**: https://blog.flowrust.com/2026/04/19/gyroscopic-precession-why-spinning-objects-dont-fall/
+- **Featured Image**: poster (WP ID 2028)
+- **Highlight Cards**: none
+- **Slug**: gyroscopic-precession-why-spinning-objects-dont-fall
+- **Visualization**: [Gyroscopic Precession](https://elysiatools.com/en/visualizations/gyroscopic-precession)
+- **Category**: Physics / Classical Mechanics
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-29-gyroscopic-precession
+
+
+## 2026-04-28 18:00 UTC — The Map That Shows Why the Same Starting Point Can Lead to Three Different Destinations
+- **WP Post ID**: 2016
+- **WP URL**: https://blog.flowrust.com/2026/04/27/attractor-basin-fractal-chaos/
+- **Featured Image**: poster (WP ID 2012)
+- **Highlight Cards**: 3 (2013, 2014, 2015)
+- **Slug**: attractor-basin-fractal-chaos
+- **Visualization**: [Attractor Basin](https://elysiatools.com/en/visualizations/attractor-basin)
+- **Category**: Math / Chaos Theory / Fractals
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-28-attractor-basin-fractal-chaos
+
 **URL:** https://blog.flowrust.com/2026/04/28/four-step-math-convolution-explained/
 **WP Post ID:** 1998
 **Featured Image WP ID:** 1997 (poster)
@@ -834,3 +855,35 @@
 - **Visualization**: [Huygens Clocks](https://elysiatools.com/en/visualizations/huygens-clocks)
 - **Category**: Physics / Synchronization / Kuramoto Model
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-28-huygens-clocks-synchronization
+
+## 2026-04-28 14:42 UTC — Lyapunov Exponent Article
+- **WP Post ID**: 2009
+- **WP URL**: https://blog.flowrust.com/2026/04/27/lyapunov-exponent-chaos-predictability/
+- **Featured Image**: poster (WP ID 2005)
+- **Slug**: lyapunov-exponent-chaos-predictability
+- **Visualization**: lyapunov-exponent (https://elysiatools.com/en/visualizations/lyapunov-exponent)
+- **Category**: Chaos Theory / Mathematical Visualization
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-28-lyapunov-exponent-chaos
+- **Article**: article.md → article_with_cards.html
+- **Highlight Cards**: 3 cards (card1.png, card2.png, card3.png)
+- **GitHub Commit**: a5402d1
+
+
+## 2026-04-29 08:00 UTC — How Alan Turing's Dying Equation Explains Why Leopards Have Spots
+- **WP Post ID**: 2036
+- **WP URL**: https://blog.flowrust.com/2026/04/27/turing-pattern-reaction-diffusion-equation/
+- **Featured Image**: poster (WP ID 2031)
+- **Highlight Cards**: 4 (2032, 2033, 2034, 2035)
+- **Slug**: turing-pattern-reaction-diffusion-equation
+- **Visualization**: [Turing Pattern](https://elysiatools.com/en/visualizations/turing-pattern)
+- **Category**: Math / Biology / Turing Patterns
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-29-turing-pattern-reaction-diffusion
+
+## spatial-rps (2026-04-28)
+
+- **Title**: Why Nature Loves the Game Rock-Paper-Scissors
+- **WP ID**: 2067
+- **URL**: https://blog.flowrust.com/2026/04/28/why-nature-loves-rock-paper-scissors-cyclic-dominance/
+- **Poster**: https://blog.flowrust.com/wp-content/uploads/2026/04/spatial-rps-poster.png
+- **Visualization**: https://elysiatools.com/en/visualizations/spatial-rps
+- **Cards**: 4 highlight cards (Cyclic Dominance, Spiral Waves Emergence, Spatial Structure Key Insight, Real-World Applications)

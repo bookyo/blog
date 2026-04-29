@@ -1,4 +1,25 @@
 **URL:** https://blog.flowrust.com/2026/04/26/forced-pendulum-chaos-discovery/
+
+## 2026-04-29: How Alan Turing's Dying Equation Explains Why Leopards Have Spots
+
+**URL:** https://blog.flowrust.com/2026/04/27/turing-pattern-reaction-diffusion-equation/
+**WP Post ID:** 2036
+**Featured Image WP ID:** 2031 (poster)
+**Highlight Cards:** 4 (2032, 2033, 2034, 2035)
+**Visualization Covered:** Turing Pattern (Gray-Scott Reaction-Diffusion)
+**Slug:** turing-pattern-reaction-diffusion-equation
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/turing-pattern
+**Tags:** mathematics, biology, turing-patterns, morphogenesis, gray-scott, reaction-diffusion, developmental-biology
+
+
+## 2026-04-29: Why a Spinning Top Doesn't Fall Over — Even When It Should
+- **WP Post ID**: 2029
+- **WP URL**: https://blog.flowrust.com/2026/04/19/gyroscopic-precession-why-spinning-objects-dont-fall/
+- **Featured Image**: WP Media 2028
+- **Slug**: gyroscopic-precession-why-spinning-objects-dont-fall
+- **Visualization**: [Gyroscopic Precession](https://elysiatools.com/en/visualizations/gyroscopic-precession)
+- **Tags**: physics, angular-momentum, gyroscope, classical-mechanics, precession, nutation
+
 **Title:** The Pendulum That Led Scientists to Discover Chaos
 **Published:** 2026-04-26
 **Visualization:** [Forced Pendulum](https://elysiatools.com/en/visualizations/forced-pendulum)
@@ -6,6 +27,67 @@
 **Score:** 0.7801 (B+)
 **Slug:** forced-pendulum-chaos-discovery
 **Featured Image:** WP Media 1881
+
+
+## 2026-04-29 — Strange Attractors: Where Chaos Draws Its Own Shape
+
+- **Topic**: Strange attractors, chaos theory, fractal dimension
+- **Status**: PUBLISHED
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-29-strange-attractors
+- **Article**: article.md (5530 bytes)
+- **Poster**: poster.png (WP Media ID 2055)
+- **Cards**: 3 highlight cards (WP Media IDs 2056, 2057, 2058)
+- **WP Post ID**: 2059
+- **WP URL**: https://blog.flowrust.com/2026/04/28/strange-attractors-where-chaos-draws-its-own-shape/
+- **Visualization URL**: https://elysiatools.com/en/visualizations/strange-attractors
+- **Tags**: chaos-theory, fractal-dimension, dynamical-systems, strange-attractors, nonlinear-dynamics, lyapunov-exponent, nonlinear-physics
+
+## 2026-04-28: The Shape That's Neither Circle Nor Rectangle — and That Made Both Obsolete
+
+**URL:** https://blog.flowrust.com/2026/04/27/superellipse-math-art-of-shapes/
+**WP Post ID:** 2026
+**Featured Image WP ID:** 2021 (poster)
+**Highlight Cards:** 4 (2022, 2023, 2024, 2025)
+**Visualization Covered:** Superellipse (Lamé Curve)
+**Slug:** superellipse-math-art-of-shapes
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/superellipse
+**Tags:** mathematics, superellipse, piet-hein, design, lamé-curve, squircle
+
+---
+
+
+## 2026-04-28: The Map That Shows Why the Same Starting Point Can Lead to Three Different Destinations
+
+**URL:** https://blog.flowrust.com/2026/04/27/attractor-basin-fractal-chaos/
+**WP Post ID:** 2016
+**Featured Image WP ID:** 2012 (poster)
+**Highlight Cards:** 3 (2013, 2014, 2015)
+**Visualization Covered:** Attractor Basin (Newton Fractals)
+**Slug:** attractor-basin-fractal-chaos
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/attractor-basin
+**Tags:** chaos theory, fractal, newton-method, dynamical systems, mathematics
+
+## 2026-04-28: The One Number That Reveals Whether Any System Is Truly Predictable
+
+**URL:** https://blog.flowrust.com/2026/04/27/lyapunov-exponent-chaos-predictability/
+**WP Post ID:** 2009
+**Featured Image WP ID:** 2005 (poster)
+**Visualization Covered:** Lyapunov Exponent
+**Slug:** lyapunov-exponent-chaos-predictability
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/lyapunov-exponent
+**Tags:** chaos theory, lyapunov-exponent, nonlinear dynamics, prediction, dynamical systems
+
+## 2026-04-28: The One Number That Tells a Neural Network "You're Wrong" — And Exactly How Wrong
+
+**URL:** https://blog.flowrust.com/2026/04/28/cross-entropy-loss-explained/
+**WP Post ID:** 2001
+**Featured Image WP ID:** 2000 (poster)
+**Visualization Covered:** Cross-Entropy Loss
+**Slug:** cross-entropy-loss-explained
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/cross-entropy-loss
+**Tags:** machine learning, cross-entropy, neural networks, deep learning, loss function
+
+---
 
 ## 2026-04-28: The Four-Line Math That Makes Every Photo Filter, Audio Effect, and AI Vision System Work
 
@@ -835,3 +917,10 @@
 **Article Score:** 0.8181 (B+)
 **Tags:** enzyme kinetics, michaelis-menten, drug design, biochemistry, Vmax, Km, pharmaceutical industry
 **Article File:** /Users/quyue/www/blog/2026-04-27-enzyme-kinetics-article/article.md
+
+## spatial-rps (Spatial Rock-Paper-Scissors)
+- **Published**: 2026-04-28
+- **Title**: Why Nature Loves the Game Rock-Paper-Scissors
+- **URL**: https://blog.flowrust.com/2026/04/28/why-nature-loves-rock-paper-scissors-cyclic-dominance/
+- **Tool**: https://elysiatools.com/en/visualizations/spatial-rps
+- **Category**: sociology
