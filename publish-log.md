@@ -887,3 +887,13 @@
 - **Poster**: https://blog.flowrust.com/wp-content/uploads/2026/04/spatial-rps-poster.png
 - **Visualization**: https://elysiatools.com/en/visualizations/spatial-rps
 - **Cards**: 4 highlight cards (Cyclic Dominance, Spiral Waves Emergence, Spatial Structure Key Insight, Real-World Applications)
+
+## abelian-sandpile (2026-04-30)
+
+- **Title**: Why the Sandpile Is the Most Counterintuitive Model in Physics
+- **WP ID**: 2074
+- **URL**: https://blog.flowrust.com/2026/04/18/why-the-sandpile-is-the-most-counterintuitive-model-in-physics/
+- **Poster**: https://blog.flowrust.com/wp-content/uploads/2026/04/poster-198.png (WP Media 2071)
+- **Highlight Cards**: 2 (card-01-soc WP Media 2072, card-02-abelian WP Media 2073)
+- **Visualization**: https://elysiatools.com/en/visualizations/abelian-sandpile
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-30-abelian-sandpile
