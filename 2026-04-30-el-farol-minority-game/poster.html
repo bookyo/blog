@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Farol Poster</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #000000;
+  font-family: 'Outfit', sans-serif;
+  width: 1080px;
+  min-height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.outer {
+  width: 100%;
+  text-align: center;
+  padding: 80px;
+}
+.bar {
+  position: relative;
+  height: 8px;
+  background: #1a1a2e;
+  border-radius: 4px;
+  margin: 60px auto;
+  max-width: 700px;
+  overflow: visible;
+}
+.bar-fill {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #00FF94 0%, #00FF94 var(--pct), #1a1a2e var(--pct));
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+.threshold-marker {
+  position: absolute;
+  top: -30px;
+  left: 60%;
+  transform: translateX(-50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: #00FF94;
+  letter-spacing: 2px;
+}
+.threshold-label {
+  position: absolute;
+  top: 14px;
+  left: 60%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: #666;
+  letter-spacing: 1px;
+}
+.theta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 120px;
+  font-weight: 900;
+  color: #00FF94;
+  line-height: 1;
+  letter-spacing: -4px;
+}
+.theta-label {
+  font-size: 18px;
+  color: #666;
+  margin-top: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.title {
+  font-size: 42px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  letter-spacing: -1px;
+}
+.subtitle {
+  font-size: 16px;
+  color: #888;
+  line-height: 1.5;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #00FF94;
+  border: 1px solid #00FF94;
+  padding: 4px 12px;
+  margin: 30px 6px 0 6px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+<div class="outer">
+  <div class="title">The Bar That Proved Markets<br>Can Coordinate Without a Planner</div>
+  <div class="subtitle">How 100 people independently deciding whether to show up at a bar<br>self-organize into equilibrium — with no communication and no central planner.</div>
+  <div style="margin-top: 50px;">
+    <div class="theta">θ</div>
+    <div class="theta-label">Threshold converges</div>
+  </div>
+  <div class="bar" style="--pct: 60%">
+    <div class="bar-fill"></div>
+    <div class="threshold-marker">60%</div>
+    <div class="threshold-label">THRESHOLD</div>
+  </div>
+  <div>
+    <span class="tag">Bounded Rationality</span>
+    <span class="tag">Minority Game</span>
+    <span class="tag">Complexity Economics</span>
+  </div>
+</div>
+</body>
+</html>

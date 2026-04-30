@@ -1,3 +1,13 @@
+## 2026-04-30 01:00 UTC — The Bar That Proved Markets Can Coordinate Without a Planner
+- **WP Post ID**: 2098
+- **WP URL**: https://blog.flowrust.com/2026/04/28/el-farol-minority-game-market-coordination/
+- **Featured Image**: poster (WP ID 2094)
+- **Highlight Cards**: 3 (2095, 2096, 2097)
+- **Slug**: el-farol-minority-game-market-coordination
+- **Visualization**: [El Farol Minority Game](https://elysiatools.com/en/visualizations/el-farol-game)
+- **Category**: Complexity Economics / Game Theory / Emergence
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-30-el-farol-minority-game
+
 ## 2026-04-27 18:00 UTC — The Five Numbers Every Options Trader Watches Like a Hawk
 
 ## 2026-04-29: Why a Spinning Top Doesn't Fall Over — Even When It Should

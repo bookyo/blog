@@ -1,5 +1,16 @@
 **URL:** https://blog.flowrust.com/2026/04/26/forced-pendulum-chaos-discovery/
 
+## 2026-04-30: The Bar That Proved Markets Can Coordinate Without a Planner
+
+**URL:** https://blog.flowrust.com/2026/04/28/el-farol-minority-game-market-coordination/
+**WP Post ID:** 2098
+**Featured Image WP ID:** 2094 (poster)
+**Highlight Cards:** 3 (2095, 2096, 2097)
+**Visualization Covered:** El Farol Minority Game
+**Slug:** el-farol-minority-game-market-coordination
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/el-farol-game
+**Tags:** complexity economics, bounded rationality, game theory, minority game, emergence, self-organization, W. Brian Arthur, Santa Fe Institute
+
 ## 2026-04-29: How Alan Turing's Dying Equation Explains Why Leopards Have Spots
 
 **URL:** https://blog.flowrust.com/2026/04/27/turing-pattern-reaction-diffusion-equation/
