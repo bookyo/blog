@@ -924,3 +924,26 @@
 - **URL**: https://blog.flowrust.com/2026/04/28/why-nature-loves-rock-paper-scissors-cyclic-dominance/
 - **Tool**: https://elysiatools.com/en/visualizations/spatial-rps
 - **Category**: sociology
+
+## 2026-04-30: The Bar That Proved Markets Can Coordinate Without a Planner
+
+**URL:** https://blog.flowrust.com/2026/04/29/el-farol-minority-game/
+**WP Post ID:** 2085
+**Featured Image WP ID:** 2081 (poster)
+**Highlight Cards:** 2082, 2083, 2084
+**Visualization Covered:** El Farol Minority Game
+**Slug:** el-farol-minority-game
+
+## 2026-04-30: You Test Positive for a Rare Disease. The Doctor Says You Probably Don't.
+
+- **Topic**: Bayes' Theorem, False Positive Paradox, Base Rate Neglect
+- **Status**: PUBLISHED
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-30-bayes-theorem
+- **Article**: article.md
+- **Poster**: poster.png (WP Media ID 2087)
+- **Cards**: 4 highlight cards (WP Media IDs 2088, 2089, 2090, 2091)
+- **WP Post ID**: 2092
+- **WP URL**: https://blog.flowrust.com/2026/04/29/bayes-theorem-false-positive-paradox/
+- **Visualization**: Bayes' Theorem
+- **ElysiaTools URL**: https://elysiatools.com/en/visualizations/bayes-theorem
+- **Tags**: bayes-theorem, probability, false-positive-paradox, base-rate, statistics, bayesian-inference, medical-testing
