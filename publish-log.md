@@ -1,3 +1,15 @@
+## 2026-05-01 - Black Hole Hawking Radiation
+
+**Post ID:** 2136
+**URL:** https://blog.flowrust.com/2026/05/01/black-hole-hawking-radiation-evaporation/
+**Title:** The Most Counterintuitive Prediction in Physics: Black Holes Slowly Evaporate Into Nothing
+**Topic:** Black Hole Hawking Radiation (physics)
+**Tags:** black-holes, hawking-radiation, thermodynamics, quantum-gravity, information-paradox
+**Featured Image ID:** 2132
+**Highlight Cards:** 2133, 2134, 2135
+
+---
+
 ## 2026-04-30 22:00 UTC — Why the Sandpile Is the Most Counterintuitive Model in Physics
 - **WP Post ID**: 2123
 - **WP URL**: https://blog.flowrust.com/2026/04/29/abelian-sandpile-self-organized-criticality/

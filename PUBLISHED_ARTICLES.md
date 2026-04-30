@@ -1,3 +1,10 @@
+## 2026-05-01 | Black Hole Hawking Radiation
+- **URL:** https://blog.flowrust.com/2026/05/01/black-hole-hawking-radiation-evaporation/
+- **WP ID:** 2136
+- **Topic:** black-hole-hawking-radiation
+- **Category:** physics
+
+
 
 ## 2026-04-30: The Secret Language Behind Every Smooth Curve You See Online
 
