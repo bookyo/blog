@@ -1,4 +1,36 @@
-**URL:** https://blog.flowrust.com/2026/04/26/forced-pendulum-chaos-discovery/
+
+## 2026-04-30: The Secret Language Behind Every Smooth Curve You See Online
+
+**URL:** https://blog.flowrust.com/2026/04/30/bezier-curves-secret-language/
+**WP Post ID:** 2110
+**Featured Image WP ID:** 2106 (poster)
+**Highlight Cards:** 3 (2107, 2108, 2109)
+**Visualization Covered:** Bézier Curves
+**Slug:** bezier-curves-secret-language
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/bezier-curves
+**Tags:** mathematics, computer-graphics, bezier-curves, parametric-curves, bernstein-polynomial, de-casteljau, font-design, vector-graphics
+
+## 2026-04-30: Abelian Sandpile — Why the Sandpile Is the Most Counterintuitive Model in Physics
+
+**URL:** https://blog.flowrust.com/2026/04/29/abelian-sandpile-self-organized-criticality/
+**WP Post ID:** 2123
+**Featured Image WP ID:** 2120 (poster)
+**Highlight Cards:** 2 (2121, 2122)
+**Visualization Covered:** Abelian Sandpile
+**Slug:** abelian-sandpile-self-organized-criticality
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/abelian-sandpile
+**Tags:** physics, self-organized-criticality, sandpile, complexity, phase-transition, power-law, fractal, tipping-points
+
+## 2026-04-30: The Mandelbrot Set — The Infinite World Inside the Simplest Equation in Mathematics
+
+**URL:** https://blog.flowrust.com/2026/04/29/mandelbrot-set-infinite-world/
+**WP Post ID:** 2118
+**Featured Image WP ID:** 2115 (poster)
+**Highlight Cards:** 2 (2116, 2117)
+**Visualization Covered:** Mandelbrot Set
+**Slug:** mandelbrot-set-infinite-world
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/mandelbrot-set
+**Tags:** mathematics, fractal, mandelbrot-set, complex-numbers, chaos-theory, self-similarity, infinity, complex-dynamics
 
 ## 2026-04-30: The Bar That Proved Markets Can Coordinate Without a Planner
 
@@ -958,3 +990,15 @@
 - **Visualization**: Bayes' Theorem
 - **ElysiaTools URL**: https://elysiatools.com/en/visualizations/bayes-theorem
 - **Tags**: bayes-theorem, probability, false-positive-paradox, base-rate, statistics, bayesian-inference, medical-testing
+
+---
+**Title:** Why the Siren's Pitch Changes Before It Reaches You
+**Slug:** doppler-effect-siren-pitch
+**URL:** https://blog.flowrust.com/2026/04/30/doppler-effect-siren-pitch/
+**WP Post ID:** 2130
+**Publish Date:** 2026-04-30
+**Visualization:** Doppler Effect
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/doppler-effect
+**Tags:** doppler-effect, wave-theory, acoustics, physics, siren's-pitch, red-shift, blue-shift, hubble-constant, bat-navigation, echolocation
+**Featured Image:** poster (WP ID 2126)
+**Highlight Cards:** 3 (WP IDs 2127, 2128, 2129)

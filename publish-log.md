@@ -1,3 +1,23 @@
+## 2026-04-30 22:00 UTC — Why the Sandpile Is the Most Counterintuitive Model in Physics
+- **WP Post ID**: 2123
+- **WP URL**: https://blog.flowrust.com/2026/04/29/abelian-sandpile-self-organized-criticality/
+- **Featured Image**: poster (WP ID 2120)
+- **Highlight Cards**: 2 (2121, 2122)
+- **Slug**: abelian-sandpile-self-organized-criticality
+- **Visualization**: [Abelian Sandpile](https://elysiatools.com/en/visualizations/abelian-sandpile)
+- **Category**: Physics / Self-Organized Criticality / Complexity
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-30-abelian-sandpile
+
+## 2026-04-30 22:00 UTC — The Infinite World Inside the Simplest Equation in Mathematics
+- **WP Post ID**: 2118
+- **WP URL**: https://blog.flowrust.com/2026/04/29/mandelbrot-set-infinite-world/
+- **Featured Image**: poster (WP ID 2115)
+- **Highlight Cards**: 2 (2116, 2117)
+- **Slug**: mandelbrot-set-infinite-world
+- **Visualization**: [Mandelbrot Set](https://elysiatools.com/en/visualizations/mandelbrot-set)
+- **Category**: Math / Fractals / Chaos Theory
+- **Asset Dir**: /Users/quyue/www/blog/2026-04-30-mandelbrot-set
+
 ## 2026-04-30 01:00 UTC — The Bar That Proved Markets Can Coordinate Without a Planner
 - **WP Post ID**: 2098
 - **WP URL**: https://blog.flowrust.com/2026/04/28/el-farol-minority-game-market-coordination/
@@ -917,3 +937,13 @@
 - **Highlight Cards**: 2 (card-01 WP Media 2077, card-02 WP Media 2078)
 - **Visualization**: https://elysiatools.com/en/visualizations/mandelbrot-set
 - **Asset Dir**: /Users/quyue/www/blog/2026-04-30-mandelbrot-set
+
+## 2026-05-01 02:00 UTC — Why the Siren's Pitch Changes Before It Reaches You
+- **WP Post ID**: 2130
+- **WP URL**: https://blog.flowrust.com/2026/04/30/doppler-effect-siren-pitch/
+- **Featured Image**: poster (WP ID 2126)
+- **Highlight Cards**: 3 (2127, 2128, 2129)
+- **Slug**: doppler-effect-siren-pitch
+- **Visualization**: [Doppler Effect](https://elysiatools.com/en/visualizations/doppler-effect)
+- **Category**: Physics / Wave Theory / Acoustics
+- **Asset Dir**: /Users/quyue/www/blog/2026-05-01-doppler-effect
