@@ -995,3 +995,11 @@
 - **Asset Dir**: /Users/quyue/www/blog/2026-05-02-n-body-gravity
 - **Visualization**: [N-Body Gravity Simulation](https://elysiatools.com/en/visualizations/n-body-gravity)
 
+
+## diffusion-limited-aggregation (2026-05-02)
+
+- **WordPress Post ID**: 2169
+- **Status**: Published
+- **Link**: https://blog.flowrust.com/2026/05/01/diffusion-limited-aggregation/
+- **Tools**: [Diffusion-Limited Aggregation](https://elysiatools.com/en/visualizations/diffusion-limited-aggregation)
+- **Date**: 2026-05-02
