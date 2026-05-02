@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N-Body Gravity Article Poster</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Outfit', sans-serif; }
+.bg-stars {
+  background-image: 
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 20%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 80%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 40%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 60%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 10% 90%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(2px 2px at 15% 50%, rgba(0,180,216,0.6) 0%, transparent 100%),
+    radial-gradient(2px 2px at 85% 25%, rgba(0,180,216,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35% 85%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 95% 75%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 15%, rgba(255,255,255,0.7) 0%, transparent 100%);
+}
+</style>
+</head>
+<body class="bg-black min-h-screen flex items-center justify-center">
+  <div class="w-[1080px] text-center px-[108px] py-24 bg-stars relative">
+    <!-- Decorative orbit rings -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div class="w-[400px] h-[400px] rounded-full border border-[#00B4D8]/20 absolute"></div>
+      <div class="w-[600px] h-[600px] rounded-full border border-[#00B4D8]/10 absolute"></div>
+      <div class="w-[800px] h-[800px] rounded-full border border-[#00B4D8]/5 absolute"></div>
+    </div>
+    
+    <!-- Core focus: very large, centered -->
+    <div class="relative z-10">
+      <h1 class="text-[180px] font-black text-white tracking-tight leading-none">3</h1>
+      <p class="text-[56px] font-bold text-[#00B4D8] mt-2 tracking-tight">BODIES</p>
+    </div>
+    
+    <!-- Secondary -->
+    <div class="relative z-10 mt-10">
+      <p class="text-[42px] font-semibold text-white tracking-tight">All It Takes to Break Determinism</p>
+    </div>
+    
+    <!-- Description -->
+    <div class="relative z-10 mt-12">
+      <p class="text-[18px] text-[#666666] leading-relaxed">
+        Newton's law runs the universe. RK4 keeps it honest.<br>
+        Interactive N-Body Gravity Simulation — chaos theory in your browser.
+      </p>
+    </div>
+    
+    <!-- Accent dot -->
+    <div class="relative z-10 mt-12 flex justify-center">
+      <div class="w-3 h-3 rounded-full bg-[#00B4D8]"></div>
+    </div>
+  </div>
+</body>
+</html>
