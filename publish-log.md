@@ -959,3 +959,39 @@
 - **Visualization**: [Doppler Effect](https://elysiatools.com/en/visualizations/doppler-effect)
 - **Category**: Physics / Wave Theory / Acoustics
 - **Asset Dir**: /Users/quyue/www/blog/2026-05-01-doppler-effect
+
+
+## 2026-05-01 19:30 UTC — Why Economic Ideas Spread Like Viruses
+- **WP Post ID**: 2143
+- **WP URL**: https://blog.flowrust.com/2026/04/30/narrative-economics-sir-model/
+- **Featured Image**: poster (WP ID 2139)
+- **Highlight Cards**: 3 (2140, 2141, 2142)
+- **Slug**: narrative-economics-sir-model
+- **Visualization**: [Narrative Economics](https://elysiatools.com/en/visualizations/narrative-economics)
+- **Category**: Economics / Narrative Economics / Complexity
+- **Asset Dir**: /Users/quyue/www/blog/2026-05-01-narrative-economics
+
+## 2026-05-02 04:00 UTC — The Wave That Survives Every Collision
+- **WP Post ID**: 2149
+- **URL**: https://blog.flowrust.com/2026/05/01/kdv-soliton-wave-that-survives-every-collision/
+- **Featured Image**: poster (WP ID 2145)
+- **Highlight Cards**: 3 (2146, 2147, 2148)
+- **Slug**: kdv-soliton-wave-that-survives-every-collision
+- **Visualization**: [KdV Soliton](https://elysiatools.com/en/visualizations/kdv-soliton)
+- **Category**: Math / Physics / Nonlinear Dynamics
+- **Asset Dir**: /Users/quyue/www/blog/2026-05-02-kdv-soliton
+
+## 2026-05-02 04:00 UTC — The Simple Formula That Predicts Chaos
+- **WP Post ID**: 2157
+- **WP URL**: https://blog.flowrust.com/2026/04/30/logistic-map-chaos-formula/
+- **Featured Image**: poster (WP ID 2152)
+- **Highlight Cards**: 4 (2153, 2154, 2155, 2156)
+- **Slug**: logistic-map-chaos-formula
+- **Visualization**: [Logistic Map](https://elysiatools.com/en/visualizations/logistic-map)
+- **Category**: Math / Chaos Theory / Population Dynamics
+- **Asset Dir**: /Users/quyue/www/blog/2026-05-02-logistic-map
+
+## 2026-05-02 00:01 UTC — Three Bodies Are All It Takes to Break Determinism
+- **Asset Dir**: /Users/quyue/www/blog/2026-05-02-n-body-gravity
+- **Visualization**: [N-Body Gravity Simulation](https://elysiatools.com/en/visualizations/n-body-gravity)
+
