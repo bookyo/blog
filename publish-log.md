@@ -1,4 +1,25 @@
 ## 2026-05-01 - Black Hole Hawking Radiation
+## 2026-05-03 13:00 UTC — The Heisenberg Uncertainty Principle of Sound
+- **WP Post ID**: 2213
+- **WP URL**: https://blog.flowrust.com/2026/05/03/spectrogram-analyzer-heisenberg-uncertainty-sound/
+- **Featured Image**: poster (WP ID 2209)
+- **Highlight Cards**: 3 (2210, 2211, 2212)
+- **Slug**: spectrogram-analyzer-heisenberg-uncertainty-sound
+- **Visualization**: [Spectrogram Analyzer](https://elysiatools.com/en/visualizations/spectrogram-analyzer)
+- **Category**: Signal Processing / Physics / Mathematics
+- **Asset Dir**: /Users/quyue/www/blog/2026-05-03-spectrogram-analyzer
+
+
+## 2026-05-03 04:15 UTC — The Algorithm That Keeps the World Stable: PID Control
+- **WP Post ID**: 2200
+- **WP URL**: https://blog.flowrust.com/2026/05/02/pid-controller-algorithm-keeps-world-stable/
+- **Featured Image**: poster (WP ID 2196)
+- **Highlight Cards**: 3 (2197, 2198, 2199)
+- **Slug**: pid-controller-algorithm-keeps-world-stable
+- **Visualization**: [PID Controller](https://elysiatools.com/en/visualizations/pid-controller)
+- **Category**: Control Theory / Engineering / Mathematics
+- **Asset Dir**: /Users/quyue/www/blog/2026-05-03-pid-controller-stability
+
 
 **Post ID:** 2136
 **URL:** https://blog.flowrust.com/2026/05/01/black-hole-hawking-radiation-evaporation/
@@ -9,6 +30,17 @@
 **Highlight Cards:** 2133, 2134, 2135
 
 ---
+
+
+## 2026-05-03 00:42 UTC — The Day a Botanist Accidentally Proved Atoms Exist
+- **WP Post ID**: 2194
+- **WP URL**: https://blog.flowrust.com/2026/05/02/brownian-motion-random-walk-botanist-mathematician/
+- **Featured Image**: poster (WP ID 2189)
+- **Highlight Cards**: 4 (2190, 2191, 2192, 2193)
+- **Slug**: brownian-motion-random-walk-botanist-mathematician
+- **Visualization**: [Brownian Motion & Random Walk](https://elysiatools.com/en/visualizations/brownian-motion-random-walk)
+- **Category**: Physics / Mathematics / Finance
+- **Asset Dir**: /Users/quyue/www/blog/2026-05-03-brownian-motion-random-walk
 
 ## 2026-04-30 22:00 UTC — Why the Sandpile Is the Most Counterintuitive Model in Physics
 - **WP Post ID**: 2123
@@ -1003,3 +1035,46 @@
 - **Link**: https://blog.flowrust.com/2026/05/01/diffusion-limited-aggregation/
 - **Tools**: [Diffusion-Limited Aggregation](https://elysiatools.com/en/visualizations/diffusion-limited-aggregation)
 - **Date**: 2026-05-02
+
+## 2026-05-02 16:00 UTC — The One Equation That Explains Why You Keep Failing at New Habits
+- **WP Post ID**: 2179
+- **WP URL**: https://blog.flowrust.com/2026/04/30/fogg-behavior-model-habit-change/
+- **Featured Image**: poster (WP ID 2175)
+- **Highlight Cards**: 3 (2176, 2177, 2178)
+- **Slug**: fogg-behavior-model-habit-change
+- **Visualization**: [Fogg Behavior Model](https://elysiatools.com/en/visualizations/fogg-behavior-model)
+- **Category**: Psychology / Behavior Change / Product Design
+- **Asset Dir**: /Users/quyue/www/blog/2026-05-02-fogg-behavior-model
+
+## 2026-05-02 12:33 UTC — Beat Frequency Article Published
+- **Topic**: beat-frequency (physics visualization)
+- **Status**: SUCCESS
+- **WP ID**: 2185
+- **URL**: https://blog.flowrust.com/2026/05/01/beat-frequency-why-musicians-listen-for-silence/
+- **Tools used**: beat-frequency
+## 2026-05-03: lorenz-attractor (Chaos Theory)
+- Title: The Accidental Discovery That Changed Everything Scientists Believed About Predictability
+- URL: https://blog.flowrust.com/2026/05/03/lorenz-attractor-chaos-theory/
+- Tool: https://elysiatools.com/en/visualizations/lorenz-attractor
+- Tags: chaos theory, lorenz attractor, deterministic chaos, nonlinear dynamics
+- Published: 2026-05-03 09:00 UTC
+
+## 2026-05-03 16:00 UTC — Adsorption Isotherms Article Published
+- **Topic**: adsorption-isotherms (chemistry visualization)
+- **Status**: SUCCESS
+- **WP ID**: 2220
+- **URL**: https://blog.flowrust.com/2026/05/03/adsorption-isotherms-carbon-capture/
+- **Tools used**: adsorption-isotherms
+
+## 2026-05-03 21:25 UTC — Fifth Consumption Era article published
+- **Topic**: Fifth Consumption Era economics
+- **Status**: PUBLISHED
+- **Asset Dir**: /Users/quyue/www/blog/2026-05-03-fifth-consumption-era
+- **Article**: article.md
+- **Poster**: poster.png (WP Media ID 2222)
+- **Cards**: 3 highlight cards (WP Media IDs 2223, 2224, 2225)
+- **WP Post ID**: 2226
+- **WP URL**: https://blog.flowrust.com/2026/05/03/fifth-consumption-era/
+- **Visualization**: Fifth Consumption Era
+- **ElysiaTools URL**: https://elysiatools.com/en/visualizations/fifth-consumption-era
+- **Tags**: fifth consumption era, consumption patterns, 7S framework, wellbeing economy, demographic transition

@@ -1,4 +1,24 @@
 ## 2026-05-01 | Black Hole Hawking Radiation
+
+
+## 2026-05-03 | PID Controller — The Quiet Engine of Modern Engineering
+
+**URL:** https://blog.flowrust.com/2026/05/02/pid-controller-algorithm-keeps-world-stable/
+**WP Post ID:** 2200
+**Featured Image WP ID:** 2196 (poster)
+**Highlight Cards:** 3 (2197, 2198, 2199)
+**Visualization Covered:** PID Controller
+**Slug:** pid-controller-algorithm-keeps-world-stable
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/pid-controller
+**Tags:** control-theory, PID, engineering, automation, feedback, robotics, drones, embedded-systems
+
+
+## 2026-05-03 | Brownian Motion & Random Walk
+- **URL:** https://blog.flowrust.com/2026/05/02/brownian-motion-random-walk-botanist-mathematician/
+- **WP ID:** 2194
+- **Topic:** brownian-motion-random-walk
+- **Category:** physics/mathematics/finance
+
 - **URL:** https://blog.flowrust.com/2026/05/01/black-hole-hawking-radiation-evaporation/
 - **WP ID:** 2136
 - **Topic:** black-hole-hawking-radiation
@@ -1009,3 +1029,38 @@
 **Tags:** doppler-effect, wave-theory, acoustics, physics, siren's-pitch, red-shift, blue-shift, hubble-constant, bat-navigation, echolocation
 **Featured Image:** poster (WP ID 2126)
 **Highlight Cards:** 3 (WP IDs 2127, 2128, 2129)
+
+
+## 2026-05-01: Why Economic Ideas Spread Like Viruses
+
+**URL:** https://blog.flowrust.com/2026/04/30/narrative-economics-sir-model/
+**WP Post ID:** 2143
+**Featured Image WP ID:** 2139 (poster)
+**Highlight Cards:** 3 (2140, 2141, 2142)
+**Visualization Covered:** Narrative Economics
+**Slug:** narrative-economics-sir-model
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/narrative-economics
+**Tags:** narrative economics, robert shiller, sir model, epidemiology, economic narratives, viral ideas, bitcoin, laffer curve
+
+## 2026-05-03: The 100-Year-Old Equation Decides Whether Carbon Capture Succeeds or Fails
+
+**URL:** https://blog.flowrust.com/2026/05/03/adsorption-isotherms-carbon-capture/
+**WP Post ID:** 2220
+**Featured Image WP ID:** 2215 (poster)
+**Highlight Cards:** 4 (2216, 2217, 2218, 2219)
+**Visualization Covered:** Adsorption Isotherms
+**Slug:** adsorption-isotherms-carbon-capture
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/adsorption-isotherms
+**Tags:** adsorption isotherms, langmuir, bet, freundlich, carbon capture, surface chemistry, heterogeneous catalysis, iupac, porous materials, activated carbon
+
+
+## 2026-05-03: Why the Next Economy Won't Be About Buying More Stuff
+
+**URL:** https://blog.flowrust.com/2026/05/03/fifth-consumption-era/
+**WP Post ID:** 2226
+**Featured Image WP ID:** 2222 (poster)
+**Highlight Cards:** 3 (2223, 2224, 2225)
+**Visualization Covered:** Fifth Consumption Era
+**Slug:** fifth-consumption-era
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/fifth-consumption-era
+**Tags:** fifth consumption era, consumption patterns, 7S framework, wellbeing economy, demographic transition, spiritual fulfillment, product-as-a-service, minimalism, emotional architecture
