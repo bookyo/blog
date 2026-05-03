@@ -1078,3 +1078,25 @@
 - **Visualization**: Fifth Consumption Era
 - **ElysiaTools URL**: https://elysiatools.com/en/visualizations/fifth-consumption-era
 - **Tags**: fifth consumption era, consumption patterns, 7S framework, wellbeing economy, demographic transition
+## 2026-05-04 01:28 UTC — The Gallery of Shapes That Prove Chaos Has a Hidden Order
+- **WP Post ID**: 2233
+- **WP URL**: https://blog.flowrust.com/2026/05/03/strange-attractors-chaos-order/
+- **Featured Image**: poster (WP ID 2228)
+- **Highlight Cards**: 4 (2229, 2230, 2231, 2232)
+- **Slug**: strange-attractors-chaos-order
+- **Visualization**: [Strange Attractors Gallery](https://elysiatools.com/en/visualizations/strange-attractors)
+- **Category**: Math / Chaos Theory / Dynamical Systems
+- **Asset Dir**: /Users/quyue/www/blog/2026-05-04-strange-attractors-chaos
+
+
+
+
+## 2026-05-03 21:46 UTC — The Simplest Equation That Proves Chaos Has a Hidden Order
+- **WP Post ID**: 2239
+- **WP URL**: https://blog.flowrust.com/2026/05/02/tent-map-chaos-simple-equation/
+- **Featured Image**: poster (WP ID 2235)
+- **Highlight Cards**: 3 (2236, 2237, 2238)
+- **Slug**: tent-map-chaos-simple-equation
+- **Visualization**: [Tent Map](https://elysiatools.com/en/visualizations/tent-map)
+- **Category**: Math / Chaos Theory / Dynamical Systems
+- **Asset Dir**: /Users/quyue/www/blog/2026-05-03-tent-map-chaos-simple-equation
