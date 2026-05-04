@@ -1,0 +1,14 @@
+{
+  "poster_id": 2247,
+  "poster_url": "https://blog.flowrust.com/wp-content/uploads/2026/05/poster-19.png",
+  "card_ids": {
+    "card-01.png": 2248,
+    "card-02.png": 2249,
+    "card-03.png": 2250
+  },
+  "card_urls": {
+    "card-01.png": "https://blog.flowrust.com/wp-content/uploads/2026/05/card-01-8.png",
+    "card-02.png": "https://blog.flowrust.com/wp-content/uploads/2026/05/card-02-8.png",
+    "card-03.png": "https://blog.flowrust.com/wp-content/uploads/2026/05/card-03-8.png"
+  }
+}
