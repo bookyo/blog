@@ -1,3 +1,13 @@
+## 2026-05-04 14:00 UTC — Why You Can't Touch Anything
+- **WP Post ID**: 2251
+- **WP URL**: https://blog.flowrust.com/2026/05/03/electric-field-lines-invisible-forces/
+- **Featured Image**: poster (WP ID 2247)
+- **Highlight Cards**: 3 (2248, 2249, 2250)
+- **Slug**: electric-field-lines-invisible-forces
+- **Visualization**: [Electric Field Lines](https://elysiatools.com/en/visualizations/electric-field-lines)
+- **Category**: Physics / Electromagnetism
+- **Asset Dir**: ~/www/blog/2026-05-04-electric-field-lines-invisible-forces
+
 ## 2026-05-01 - Black Hole Hawking Radiation
 ## 2026-05-03 13:00 UTC — The Heisenberg Uncertainty Principle of Sound
 - **WP Post ID**: 2213
@@ -1100,3 +1110,13 @@
 - **Visualization**: [Tent Map](https://elysiatools.com/en/visualizations/tent-map)
 - **Category**: Math / Chaos Theory / Dynamical Systems
 - **Asset Dir**: /Users/quyue/www/blog/2026-05-03-tent-map-chaos-simple-equation
+
+## 2026-05-04 01:53 UTC — Gradient Descent vs Newton Method: Why ML Chose First-Order Optimization
+- **WP Post ID**: 2245
+- **WP URL**: https://blog.flowrust.com/2026/05/03/gradient-descent-newton-method-10x-faster/
+- **Featured Image**: poster (WP ID 2241)
+- **Highlight Cards**: 3 (2242, 2243, 2244)
+- **Slug**: gradient-descent-newton-method-10x-faster
+- **Visualization**: [Gradient Descent / Newton Method](https://elysiatools.com/en/visualizations/gradient-descent-newton)
+- **Category**: Machine Learning / Optimization / Mathematics
+- **Asset Dir**: /Users/quyue/www/blog/2026-05-04-gradient-descent-newton

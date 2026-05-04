@@ -1,3 +1,16 @@
+
+## 2026-05-03 | Gradient Descent vs Newton Method
+
+**URL:** https://blog.flowrust.com/2026/05/03/gradient-descent-newton-method-10x-faster/
+**WP Post ID:** 2245
+**Featured Image WP ID:** 2241 (poster)
+**Highlight Cards:** 3 (2242, 2243, 2244)
+**Visualization Covered:** Gradient Descent / Newton Method
+**Slug:** gradient-descent-newton-method-10x-faster
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/gradient-descent-newton
+**Tags:** machine-learning, optimization, gradient-descent, newton-method, second-order, hessian, deep-learning, L-BFGS
+
+
 ## 2026-05-01 | Black Hole Hawking Radiation
 
 
@@ -1064,3 +1077,53 @@
 **Slug:** fifth-consumption-era
 **ElysiaTools URL:** https://elysiatools.com/en/visualizations/fifth-consumption-era
 **Tags:** fifth consumption era, consumption patterns, 7S framework, wellbeing economy, demographic transition, spiritual fulfillment, product-as-a-service, minimalism, emotional architecture
+
+## 2026-05-04: Why You Can't Touch Anything — And Why That's the Most Important Fact in Physics
+
+**URL:** https://blog.flowrust.com/2026/05/03/electric-field-lines-invisible-forces/
+**WP Post ID:** 2251
+**Featured Image WP ID:** 2247 (poster)
+**Highlight Cards:** 3 (2248, 2249, 2250)
+**Visualization Covered:** Electric Field Lines
+**Slug:** electric-field-lines-invisible-forces
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/electric-field-lines
+**Tags:** electric field lines, electromagnetism, physics, touch, electric dipole, Coulomb's law, Faraday, superposition, capacitor, electrostatic
+
+
+## The Quiet Math Behind Every Icon on Your Phone
+- **URL**: https://blog.flowrust.com/2026/05/04/the-quiet-math-behind-every-icon-on-your-phone/
+- **Tool**: superellipse (Lamé curve / squircle visualization)
+- **Published**: 2026-05-04
+- **Tags**: mathematics, design, apple, lamé-curve, squircle, piet-hein
+
+## Article: Why a Single Drop of Phenolphthalein Turns Water Magenta
+- **Date**: 2026-05-04
+- **URL**: https://blog.flowrust.com/2026/05/04/why-ph-indicator-changes-color/
+- **Visualization Covered**: Acid-Base Indicators
+- **Slug**: why-ph-indicator-changes-color
+- **ElysiaTools URL**: https://elysiatools.com/en/visualizations/acid-base-indicators
+- **Article File**: /Users/quyue/www/blog/2026-05-04-why-ph-indicator-changes-color/article.md
+- **Tags**: chemistry, acid-base, equilibrium, titration, phenolphthalein, Henderson-Hasselbalch
+
+## 2026-05-05 | Capillary Action — Why Water Defies Gravity in Thin Tubes
+
+**URL:** https://blog.flowrust.com/2026/05/01/capillary-action-physics/
+**WP Post ID:** 2270
+**Featured Image WP ID:** 2266 (poster)
+**Highlight Cards:** 3 (2267, 2268, 2269)
+**Visualization Covered:** Capillary Action
+**Slug:** capillary-action-physics
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/capillary-action
+**Tags:** physics, surface-chemistry, fluid-dynamics, capillary-action, jurins-law, surface-tension, microfluidics, plants, diagnostics
+
+## 2026-05-05 | Why Planets Don't Fall Into the Sun
+
+**URL:** https://blog.flowrust.com/2026/05/04/why-planets-dont-fall-into-the-sun/
+**WP Post ID:** 2276
+**Featured Image WP ID:** 2272 (poster)
+**Highlight Cards:** 3 (2273, 2274, 2275)
+**Visualization Covered:** Orbital Simulation
+**Slug:** why-planets-dont-fall-into-the-sun
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/orbital-simulation
+**Tags:** orbital-mechanics, gravity, kepler, newton, chaos-theory, physics, multi-body, solar-system
+
