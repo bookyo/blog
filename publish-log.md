@@ -1158,3 +1158,4 @@
 - **Visualization**: [Newton Fractal](https://elysiatools.com/en/visualizations/newton-fractal)
 - **Category**: Math / Fractals / History of Science
 - **Asset Dir**: ~/www/blog/2026-05-05-newton-fractal
+2026-05-06: arrhenius-equation article published (WP ID 2308)
