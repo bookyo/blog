@@ -1,4 +1,15 @@
 
+## 2026-05-06 | The Soviet Theory That Predicted Every Economic Crisis Since 1920
+
+**URL:** https://blog.flowrust.com/2026/05/05/kondratieff-wave-50-year-economic-cycles/
+**WP Post ID:** 2316
+**Featured Image WP ID:** 2312 (poster)
+**Highlight Cards:** 3 (2313, 2314, 2315)
+**Visualization Covered:** Kondratieff Wave
+**Slug:** kondratieff-wave-50-year-economic-cycles
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/kondratieff-wave
+**Tags:** kondratieff-wave, economic-cycles, long-wave-theory, economics, Nikolai-Kondratieff, AI, new-energy, life-sciences
+
 ## 2026-05-03 | Gradient Descent vs Newton Method
 
 **URL:** https://blog.flowrust.com/2026/05/03/gradient-descent-newton-method-10x-faster/
@@ -1136,3 +1147,14 @@
 - **Category**: Math / Physics / Historical Mathematics
 - **Asset Dir**: ~/www/blog/2026-05-05-cycloid-trochoid-math
 
+
+## 2026-05-06 | Why One Experiment Forced Physics to Accept That Nature Is Fundamentally Digital
+
+**URL:** https://blog.flowrust.com/2026/05/06/stern-gerlach-quantum-spin/
+**WP Post ID:** 2324
+**Featured Image WP ID:** 2320 (poster)
+**Highlight Cards:** 3 (2321, 2322, 2323)
+**Visualization Covered:** Stern-Gerlach Experiment
+**Slug:** stern-gerlach-quantum-spin
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/stern-gerlach-experiment
+**Tags:** quantum mechanics, spin, spatial quantization, stern-gerlach, physics, MRI, quantum computing, electron spin
