@@ -1158,3 +1158,12 @@
 **Slug:** stern-gerlach-quantum-spin
 **ElysiaTools URL:** https://elysiatools.com/en/visualizations/stern-gerlach-experiment
 **Tags:** quantum mechanics, spin, spatial quantization, stern-gerlach, physics, MRI, quantum computing, electron spin
+## capacitor-charge-discharge-rc-circuits
+
+- **Date**: 2026-05-06
+- **Title**: Why Your Phone Charges Slowly When It's Cold — and What Physics Has to Do With It
+- **Slug**: capacitor-charge-discharge-rc-circuits-why-your-phone-charges-slowly
+- **URL**: https://blog.flowrust.com/2026/05/05/capacitor-charge-discharge-rc-circuits-why-your-phone-charges-slowly/
+- **WP Post ID**: 2330
+- **Visualization**: capacitor-charge-discharge
+
