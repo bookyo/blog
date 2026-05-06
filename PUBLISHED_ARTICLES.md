@@ -1,4 +1,15 @@
 
+## 2026-05-07 | The Day a Scientist Proved Earth Moves — By Watching Stars Do Something Strange
+
+**URL:** https://blog.flowrust.com/2026/05/06/stellar-aberration-james-bradley-proof-earth-moves/
+**WP Post ID:** 2336
+**Featured Image WP ID:** 2332 (poster)
+**Highlight Cards:** 3 (2333, 2334, 2335)
+**Visualization Covered:** Stellar Aberration
+**Slug:** stellar-aberration-james-bradley-proof-earth-moves
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/stellar-aberration
+**Tags:** stellar-aberration, special-relativity, physics, james-bradley, GPS, astrometry, lorentz-factor, relativistic-effects, astronomy
+
 ## 2026-05-06 | The Soviet Theory That Predicted Every Economic Crisis Since 1920
 
 **URL:** https://blog.flowrust.com/2026/05/05/kondratieff-wave-50-year-economic-cycles/
