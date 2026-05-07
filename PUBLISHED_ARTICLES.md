@@ -1,3 +1,23 @@
+## 2026-05-08 | The Invisible Map Inside Every Atom: What Hydrogen Reveals About the Nature of Reality
+## 2026-05-07 09:00 UTC — The Day a Scientist Proved Earth Moves — By Watching Stars Do Something Strange
+- **WP Post ID**: 2360
+- **WP URL**: https://blog.flowrust.com/2026/05/06/stellar-aberration-earth-moves/
+- **Featured Image**: poster (WP ID 2356)
+- **Highlight Cards**: 3 (2357, 2358, 2359)
+- **Slug**: stellar-aberration-earth-moves
+- **Visualization**: [Stellar Aberration](https://elysiatools.com/en/visualizations/stellar-aberration)
+- **Category**: Physics / Special Relativity / Historical Astronomy
+- **Asset Dir**: ~/www/blog/2026-05-07-stellar-aberration
+
+
+**URL:** https://blog.flowrust.com/2026/05/06/hydrogen-atom-wave-function/
+**WP Post ID:** 2354
+**Featured Image WP ID:** 2353 (poster)
+**Highlight Cards:** 3 (2350, 2351, 2352)
+**Visualization Covered:** Hydrogen Wave Function
+**Slug:** hydrogen-atom-wave-function
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/hydrogen-wave-function
+**Tags:** hydrogen, quantum-mechanics, schrodinger-equation, atomic-physics, wave-function, probability, bohr-radius, quantum-numbers, orbitals
 
 ## 2026-05-07 | The Day a Scientist Proved Earth Moves — By Watching Stars Do Something Strange
 
@@ -1178,3 +1198,22 @@
 - **WP Post ID**: 2330
 - **Visualization**: capacitor-charge-discharge
 
+
+
+## 2026-05-07 — The One Law of Physics That Explains Why Time Flows Forward
+- **WP Post ID**: 2342
+- **WP URL**: https://blog.flowrust.com/2026/05/07/entropy-second-law-time-arrow/
+- **Featured Image**: poster (WP ID 2338)
+- **Highlight Cards**: 3 (2339, 2340, 2341)
+- **Slug**: entropy-second-law-time-arrow
+- **Visualization**: [Entropy](https://elysiatools.com/en/visualizations/entropy)
+- **Category**: Physics / Thermodynamics
+- **Asset Dir**: ~/www/blog/2026-05-07-entropy-second-law
+
+## 2026-05-08 — The Day a Pendulum Proved Earth Spins — And Why the Discovery Took 2,000 Years
+- **WP Post ID**: 2348
+- **WP URL**: https://blog.flowrust.com/2026/05/06/coriolis-force-earth-rotation/
+- **Slug**: coriolis-force-earth-rotation
+- **Visualization**: [Coriolis Force](https://elysiatools.com/en/visualizations/coriolis-force)
+- **Category**: Physics / Earth's Rotation
+- **Tags**: coriolis-force, foucault-pendulum, earth-rotation, physics, meteorology
