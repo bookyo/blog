@@ -1,0 +1,47 @@
+<h1>The Spiral That Appears Everywhere: What a Simple Circuit Reveals About the Nature of Decay</h1>
+<p>Charge a capacitor. Connect it to an inductor. Watch the voltage across the circuit swing wildly at first, then quieter, then quieter still — until it stops. You've just watched energy die in slow motion, expressed in the language of differential equations and spiraling phase trajectories.</p>
+<p>The RLC circuit — a resistor, an inductor, and a capacitor wired in series — is one of the most teaching-dense systems in all of physics. Its behavior is governed by one equation:</p>
+<p><strong>Lq'' + Rq' + q/C = 0</strong></p>
+<p>Three terms. One for inertia (the inductor resists changes in current), one for dissipation (the resistor converts electrical energy to heat), and one for restoration (the capacitor pushes charge back toward equilibrium). From this single equation flows an entire taxonomy of behavior: underdamped oscillation, critical damping, overdamped decay, and resonance.</p>
+<p>Each of these behaviors appears elsewhere in nature, and the connections are not merely metaphorical.</p>
+<h2>The Underdamped Case: When Oscillation Outlives Itself</h2>
+<p>Set the resistance low. The circuit rings — charge sloshing back and forth between capacitor and inductor, current leading voltage by a quarter cycle. The frequency of this damped oscillation is:</p>
+<br/><img src="https://blog.flowrust.com/wp-content/uploads/2026/05/card-01-27.png" alt="The Spiral That Never Lies" style="width:100%;max-width:1080px;margin:2rem 0;"/><br/>
+<p><strong>ω_d = √(ω₀² − γ²)</strong></p>
+<p>where ω₀ = 1/√(LC) is the natural frequency and γ = R/2L is the damping coefficient. The amplitude decays as e^(−γt), while the frequency is slightly below the ideal case.</p>
+<p>What makes this interesting is not the circuit — it's that <strong>the same equation describes a pendulum swinging underwater, a cavity laser losing photons, a population overshooting its carrying capacity, and a stock price briefly spiking before returning to fundamental value</strong>. The underdamped harmonic oscillator is a universal motif, and the RLC circuit lets you see every parameter, adjust it in real time, and watch the transition between regimes.</p>
+<h2>The Phase Portrait: A Spiral Is a Spiral Is a Spiral</h2>
+<p>The most revealing view of an RLC circuit is not voltage versus time. It is the <strong>phase portrait</strong> — charge on the x-axis, current on the y-axis.</p>
+<br/><img src="https://blog.flowrust.com/wp-content/uploads/2026/05/card-02-27.png" alt="Three Regimes One Equation" style="width:100%;max-width:1080px;margin:2rem 0;"/><br/>
+<p>In an ideal LC circuit (no resistance), the trajectory is a closed ellipse, tracing constant energy. Add resistance and the ellipse becomes a spiral, curling inward toward the origin as energy bleeds away as heat. Each full loop represents one oscillation cycle. The tighter the spiral, the greater the damping.</p>
+<p>This same spiral geometry appears in:</p>
+<p>- <strong>Predator-prey models</strong> in ecology (Lotka-Volterra), where populations spiral toward equilibrium - <strong>The arms race between competing technologies</strong>, where advantages decay as heat (dissipation) removes them - <strong>Opinion dynamics in social systems</strong>, where controversial views gradually moderate toward consensus</p>
+<p>The phase portrait strips away the calendar and shows you only the geometry of change. Two systems that share the same phase structure — the same topological features, the same inward spiral — are operating by the same underlying logic, regardless of whether they involve electrons, foxes, or financial speculators.</p>
+<h2>Resonance: When Forcing Finds the Natural Frequency</h2>
+<p>Apply an alternating voltage source to the circuit and drive it. The steady-state current amplitude depends on drive frequency ω according to:</p>
+<br/><img src="https://blog.flowrust.com/wp-content/uploads/2026/05/card-03-27.png" alt="Why Your Radio Knows Its Frequency" style="width:100%;max-width:1080px;margin:2rem 0;"/><br/>
+<p><strong>I = V / √(R² + (ωL − 1/ωC)²)</strong></p>
+<p>At ω = ω₀ = 1/√(LC), the inductive and capacitive reactances cancel. Current reaches its maximum. This is <strong>resonance</strong> — and the sharpness of the peak is measured by the quality factor <strong>Q = ω₀L/R</strong>.</p>
+<p>High-Q circuits (low resistance relative to reactance) have very sharp resonance peaks. This is how a radio tuner picks a single station from the air: the station's carrier frequency hits the circuit's natural frequency, current spikes, and the signal is extracted from noise.</p>
+<p>The physics is identical to a swing. Push a swing at its natural frequency and it builds amplitude with each push. Push at the wrong frequency and the swing barely moves. The mathematics is the same. The RLC circuit is, again, the same phenomenon in electrical clothing.</p>
+<h2>Damping Regimes as a Decision Framework</h2>
+<p>Here is where the circuit becomes useful beyond physics.</p>
+<p>The three damping regimes map directly onto how systems respond to displacement from equilibrium:</p>
+<p>| Regime | Condition | Behavior | Metaphor | |--------|-----------|----------|----------| | <strong>Underdamped</strong> (ζ < 1) | Oscillates, amplitude decays | Most common in nature | Overshoot and correct | | <strong>Critically damped</strong> (ζ = 1) | Fastest return, no oscillation | Engineering ideal for doors, gauges | Respond quickly, don't overshoot | | <strong>Overdamped</strong> (ζ > 1) | Slow return, no oscillation | Systems with heavy friction | Inertial delay, sluggish correction |</p>
+<p>Control engineers spend careers optimizing where a system sits on this spectrum. Too underdamped and a control system oscillates and overshoots (the Mars Climate Orbiter, the Boeing 737 Max). Too overdamped and it can't respond fast enough to disturbances. The sweet spot — critical damping — is a design target for suspension systems, earthquake engineering, and automatic gain control in audio.</p>
+<p>The RLC circuit lets you place any system at any point on this spectrum and watch the consequences in real time. That is not a small thing.</p>
+<h2>Energy: Where It Goes and Why It Never Comes Back</h2>
+<p>The circuit's total energy at any moment is:</p>
+<p><strong>E = q²/2C + LI²/2</strong></p>
+<p>The first term is energy stored in the capacitor's electric field. The second is energy stored in the inductor's magnetic field. In an ideal LC circuit, these trade off perfectly — when one is maximum, the other is zero — and total energy is constant.</p>
+<p>The resistor breaks this symmetry. At every instant, power <strong>P = I²R</strong> is being converted to heat and lost irretrievably. The total energy decays as:</p>
+<p><strong>E(t) = E₀ · e^(−2γt)</strong></p>
+<p>This is the <strong>Second Law of Thermodynamics in miniature</strong>. The RLC circuit is an entropy pump: it takes ordered energy (coherent oscillation) and converts it to disordered energy (heat). The spiral in the phase portrait is the signature of this process — a system with a memory of its initial condition gradually forgetting it, as information is erased into thermal noise.</p>
+<p>This is also the mathematics of forgetting, of radioactive decay, of any process described by exponential decay. The circuit is not an analogy. It is the same mathematics, implemented in copper and glass.</p>
+<h2>Try It Yourself</h2>
+<p>The <a href="https://elysiatools.com/en/visualizations/rlc-circuit-oscillation">RLC Circuit Oscillation</a> interactive visualization lets you manipulate resistance, inductance, and capacitance with sliders, and switch between waveform view, phase portrait, frequency response, and energy tracking — all in real time.</p>
+<p>Set R to zero and watch the ellipse become a closed orbit. Crank R up past the critical value and watch the system become sluggish and overdamped. Drive the circuit at varying frequencies and watch the resonance peak emerge in the frequency response plot. It is the complete physics of damping, oscillation, and resonance in a single interactive page.</p>
+<h2>The Circuit as a Mirror</h2>
+<p>The RLC circuit is deceptively simple. Three components. One second-order differential equation. And yet it is a mirror held up to phenomena across science: population dynamics, economic adjustment, ecological succession, neutron stars, and laser cavities all share its essential structure.</p>
+<p>When you understand why the spiral always curls inward — why the energy always drains — you understand something about the direction of time itself. The RLC circuit is, at its core, a machine for watching entropy increase.</p>
+<p>That is remarkable for a handful of components you can hold in your hand.</p>
