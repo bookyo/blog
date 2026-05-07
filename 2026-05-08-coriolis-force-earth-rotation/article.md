@@ -1,0 +1,77 @@
+# The Day a Pendulum Proved Earth Spins — And Why the Discovery Took 2,000 Years
+
+In 1851, Léon Foucault hung a 28-kilogram brass bob from the dome of the Paris Panthéon. He pulled it to one side, lit a match beneath it to show the air wasn't moving, and let go. Over the next several minutes, the pendulum's swing plane rotated slowly but unmistakably — about 11 degrees every minute at that latitude. By the end of an hour, it had swept a complete pattern in the sand on the floor.
+
+Foucault hadn't built a machine to spin the Earth. He'd built a machine to show that the Earth was already spinning beneath it.
+
+This was the first direct, visible proof from the surface of the Earth that our planet rotates — not by looking at the stars, but by watching something on Earth stay still while the planet turns beneath it. It took until 1851 for anyone to think of this. The ancient Greeks suspected the Earth spun; they'd just never found a way to see it.
+
+The principle behind the Foucault pendulum is the same one that makes hurricanes spin, that forces artillery to aim off-target, and that makes long-range snipers do math before they pull the trigger. It even determines which direction your bathroom sink drains — though probably not in the way you think. It's called the Coriolis force, and it's one of the most pervasive influences on everyday physics that most people have never heard of.
+
+## What Actually Makes Things Curve
+
+The Coriolis force isn't a real force in the way that gravity or electromagnetism is. It's an artifact of observation — what you see when you watch something move from inside a rotating reference frame.
+
+Imagine you're on a carousel that's spinning clockwise. You throw a ball straight across to someone on the opposite side. From your perspective on the carousel, the ball curves to the left. From above — from a stationary viewpoint — the ball goes straight; it's the carousel floor that's moving, carrying you and the other person sideways as you throw. The ball's actual path never bends.
+
+Earth works the same way, except the carousel is a sphere spinning eastward at about 1,670 kilometers per hour at the equator. When an object moves north or south across the Earth's surface, it's crossing regions that are moving at different speeds. Air moving south from the Arctic is moving eastward more slowly than the ground below it, so the ground overtakes it and the air appears to curve. In the Northern Hemisphere, this curvature is always to the right of the motion.
+
+The formula is straightforward:
+
+**a = 2vΩsin(φ)**
+
+where v is your speed, Ω is Earth's angular velocity, and φ is your latitude. At the equator, sin(φ) = 0, so there's no Coriolis deflection at all. At 45° latitude, the deflection is at about 71% of its maximum. At the poles, it's full strength.
+
+The key insight is that the deflection is proportional to speed. A slow-moving breeze barely curves. A jet fighter crossing the Atlantic curves measurably. A hurricane — thousands of kilometers across and moving at hundreds of kilometers per hour — curves so dramatically that its entire structure is determined by it.
+
+## Why Hurricanes Always Spin the Same Way (Except When They Don't)
+
+Hurricanes are the most dramatic everyday expression of the Coriolis force. In the Northern Hemisphere, they always rotate counterclockwise. In the Southern Hemisphere, they always rotate clockwise.
+
+Here's why. A low-pressure system over the ocean has air flowing inward from all directions. As air moves toward the center, the Coriolis force deflects it to the right (Northern Hemisphere). This creates a rotating flow around the low — counterclockwise in the north, clockwise in the south. The Coriolis force doesn't start the rotation; it sustains and shapes it.
+
+Without the Coriolis effect, air would simply flow directly into the low-pressure center and the pressure would equalize. With it, the incoming air gets curved sideways, creating a vortex that can persist for days. This is why you can't have hurricanes at the equator — the Coriolis force there is too weak to organize the rotation. The minimum latitude for hurricane formation is about 5°–10° from the equator.
+
+The same principle applies to ocean currents, to the jet stream, and to the trade winds that sailors have used for centuries. The Coriolis force is the invisible hand shaping global weather patterns.
+
+## The Artillery Problem
+
+In World War I, the French army had a problem with its artillery. Shells were landing consistently off-target — not by much, but enough to miss enemy positions and hit civilians. Engineers were called in, and they found something unexpected: the shells were deflected by roughly half a degree over long ranges. That might sound tiny, but at 10 kilometers, half a degree is an 87-meter miss.
+
+The culprit was the Coriolis force. A shell fired eastward travels with Earth's rotation and effectively gains speed relative to the ground below — it falls behind the rotating Earth and lands to the east of where it would in a non-rotating frame. A shell fired northward deflects eastward in the Northern Hemisphere. The Coriolis correction for long-range artillery is small, but so is the target.
+
+The Paris Gun — the massive German artillery piece that shelled Paris from 120 kilometers away in 1918 — required such precise Coriolis calculations that the gunners had to aim not just off-target, but upward by a degree or more. The shell spent so much time in the air that the Earth's rotation carried Paris several hundred meters sideways from where it would have been if the Earth were stationary.
+
+Modern artillery doesn't even try to ignore it. GPS-guided munitions account for Coriolis deflection as part of their flight calculations. So do aircraft navigation systems, which is why your phone's GPS can tell you which exit to take even when you're traveling at 900 kilometers per hour in an airplane.
+
+## Why Your Toilet Doesn't Lie to You
+
+You've probably heard that the Coriolis force makes water drain counterclockwise in the Northern Hemisphere and clockwise in the South. This is one of the most persistent myths in physics, and it's essentially false.
+
+The Coriolis acceleration at the scale of a toilet bowl or a kitchen sink is about 100 million times too small to determine the direction of drain rotation. The direction of drain spin is determined by the geometry of the bowl, the initial state of the water, and tiny asymmetries in the plumbing. Pull the plug straight up and the water may not rotate noticeably in either direction. Give it a slight swirl and that initial perturbation dominates.
+
+There is a real Coriolis effect in draining water — it's just too small to matter at human scales. In a carefully controlled laboratory experiment with a perfectly flat, perfectly circular tank of water and a precisely centered drain, you can demonstrate the Coriolis drainage rotation. The effect reverses between hemispheres. But your toilet is not a laboratory.
+
+The real takeaway: the Coriolis force governs large-scale phenomena, not small ones. Storms, ocean currents, aircraft, artillery shells — these are where it matters. The sink in your bathroom is simply too small.
+
+## The Foucault Pendulum, Revisited
+
+Foucault's pendulum works because of a consequence of Earth's rotation that isn't immediately obvious. The pendulum's swing plane doesn't rotate relative to space — it maintains its orientation as Earth turns beneath it. From inside the rotating reference frame, that looks like the swing plane is rotating.
+
+The period of rotation depends on latitude. At the poles, the pendulum traces a full circle every 24 hours — the Earth rotates beneath it once per day. At Paris's latitude (about 49° N), it takes about 31 hours to complete a full rotation. At the equator, the pendulum doesn't rotate at all — it just swings back and forth, because the Coriolis force has no horizontal component at the equator to deflect the swing.
+
+This latitude dependence is itself a beautiful demonstration of the Coriolis formula. The sine of the latitude determines how much of Earth's rotation is "visible" to the pendulum's plane of swing.
+
+Today, Foucault pendulums hang in science museums worldwide. Most are kept swinging by electromagnetic drivers that compensate for energy loss — but the best ones are free-swinging, and if you watch long enough, you can watch the Earth prove its own rotation in the oldest, most elegant way possible.
+
+## Why This Matters Beyond the Classroom
+
+The Coriolis force isn't just a physics curiosity. It's embedded in every numerical weather prediction model, every long-range missile guidance system, every satellite navigation calculation. When meteorologists predict that a hurricane will make landfall on the Gulf Coast, they're running models that include Coriolis force calculations at every grid point. When SpaceX lands a rocket on a moving drone ship, the guidance computer accounts for the Coriolis deflection that the rocket experiences as it falls through different latitudes.
+
+The Foucault pendulum and the Coriolis force together tell a deeper story about reference frames in physics. There is no "true" rest frame on the Earth's surface — we're all spinning. What we call "straight" motion is only straight relative to a rotating coordinate system that we inherit without thinking about it. The universe doesn't have a preferred viewpoint, but if you're standing on the Earth, the Coriolis force is your constant reminder that you're not standing still.
+
+---
+
+*Try the interactive [Coriolis Force](https://elysiatools.com/en/visualizations/coriolis-force) visualization to launch projectiles from different latitudes, observe the Foucault pendulum precession at your chosen latitude, and watch how the Coriolis deflection changes as you vary velocity and direction — all in your browser.*
+
+**Tags:** coriolis-force, foucault-pendulum, earth-rotation, physics, meteorology, fluid-dynamics, coriolis-effect, rotating-reference-frames, hurricanes, ballistics
