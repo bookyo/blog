@@ -1,4 +1,43 @@
+
+## 2026-05-08 | Why Your Regex Patterns Are a Mystery to Everyone — Including You
+
+**URL:** https://blog.flowrust.com/2026/05/07/ai-regex-explainer-why-your-patterns-are-a-mystery/
+**WP Post ID:** 2411
+**Featured Image WP ID:** 2407 (poster)
+**Highlight Cards:** 3 (2408, 2409, 2410)
+**Tool Covered:** AI Regex Explainer
+**Slug:** ai-regex-explainer-why-your-patterns-are-a-mystery
+**ElysiaTools URL:** https://elysiatools.com/en/tools/ai-regex-explainer
+**Tags:** regex, regular-expressions, developer-tools, ai, javascript, python, pcre
+**Asset Dir:** ~/www/blog/2026-05-08-ai-regex-explainer-why-your-patterns-are-a-mystery
+
+
+## 2026-05-08 | The One Character That Can Break Every Scheduled Task in Your System
+
+**URL:** https://blog.flowrust.com/2026/05/08/cron-expression-validator/
+**WP Post ID:** 2402
+**Featured Image WP ID:** 2398 (poster)
+**Highlight Cards:** 3 (2399, 2400, 2401)
+**Tool Covered:** Cron Expression Validator
+**Slug:** cron-expression-validator
+**ElysiaTools URL:** https://elysiatools.com/en/tools/cron-expression-validator
+**Tags:** cron, scheduler, devops, cron-expression, system-administration, validation, linux, crontab
+**Asset Dir:** ~/www/blog/2026-05-08-cron-expression-validator
+
 ## 2026-05-08 | The Invisible Map Inside Every Atom: What Hydrogen Reveals About the Nature of Reality
+
+## 2026-05-08 | The Oscillator That Rules the Universe: Why Every Quantum System Eventually Becomes a Harmonic Pendulum
+
+**URL:** https://blog.flowrust.com/2026/05/08/quantum-harmonic-oscillator-most-important-pattern/
+**WP Post ID:** 2395
+**Featured Image WP ID:** 2391 (poster)
+**Highlight Cards:** 3 (2392, 2393, 2394)
+**Visualization Covered:** Quantum Harmonic Oscillator
+**Slug:** quantum-harmonic-oscillator-most-important-pattern
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/quantum-harmonic-oscillator
+**Tags:** quantum-mechanics, harmonic-oscillator, hermite-polynomials, zero-point-energy, schrodinger-equation, quantum-field-theory, molecular-vibration, phonons, infrared-spectroscopy
+
+
 ## 2026-05-07 09:00 UTC — The Day a Scientist Proved Earth Moves — By Watching Stars Do Something Strange
 - **WP Post ID**: 2360
 - **WP URL**: https://blog.flowrust.com/2026/05/06/stellar-aberration-earth-moves/
@@ -1217,3 +1256,27 @@
 - **Visualization**: [Coriolis Force](https://elysiatools.com/en/visualizations/coriolis-force)
 - **Category**: Physics / Earth's Rotation
 - **Tags**: coriolis-force, foucault-pendulum, earth-rotation, physics, meteorology
+## 2026-05-08 — Electromagnetic Spectrum: 15 Orders of Magnitude
+- **Topic**: electromagnetic-spectrum (visualization)
+- **Status**: PUBLISHED — WP ID 2366
+- **Asset Dir**: /Users/quyue/www/blog/2026-05-08-electromagnetic-spectrum
+- **Poster**: poster.png (WP media ID 2362)
+- **Cards**: 3 cards uploaded (IDs: [2363, 2364, 2365])
+- **URL**: https://blog.flowrust.com/2026/05/07/electromagnetic-spectrum-15-orders-of-magnitude/
+
+## 2026-05-08 — Young's Double Slit: Why Light Behaves Like a Wave
+- **Topic**: Young's Double Slit Experiment (youngs-double-slit)
+- **Status**: PUBLISHED
+- **WP ID**: 2374
+- **URL**: https://blog.flowrust.com/2026/05/08/youngs-double-slit/
+- **Article Dir**: /Users/quyue/www/blog/2026-05-08-youngs-double-slit
+
+| 2026-05-08 | RLC Circuit Oscillation | The Spiral That Appears Everywhere: What a Simple Circuit Reveals About the Nature of Decay | rlc-circuit-oscillation | https://blog.flowrust.com/2026/05/07/rlc-circuit-oscillation-nature-of-decay/ |
+- **ID**: 2389
+- **Title**: The Math Behind Atomic Habits: Why 1% Better Every Day Compounds Into 37x Growth
+- **Slug**: atomic-habits-compound-effect-math
+- **Date**: 2026-05-08
+- **URL**: https://blog.flowrust.com/2026/05/07/atomic-habits-compound-effect-math/
+- **Visualization**: [Atomic Habits Compound Effect](https://elysiatools.com/en/visualizations/atomic-habits)
+- **Category**: Psychology / Self-improvement / Compound Effects
+- **Asset Dir**: ~/www/blog/2026-05-08-atomic-habits-compound-effect
