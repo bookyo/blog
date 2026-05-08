@@ -1,4 +1,16 @@
 
+## 2026-05-09 | The Electronic Circuit That Proved Chaos Doesn't Need Complexity
+
+**URL:** https://blog.flowrust.com/2026/05/08/chuas-circuit-double-scroll-chaos/
+**WP Post ID:** 2418
+**Featured Image WP ID:** 2414 (poster)
+**Highlight Cards:** 3 (2415, 2416, 2417)
+**Visualization Covered:** Chua's Circuit
+**Slug:** chuas-circuit-double-scroll-chaos
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/chuas-circuit
+**Tags:** chaos-theory, chua-circuit, nonlinear-dynamics, electronics, bifurcation, lyapunov-exponent, leon-chua, double-scroll-attractor
+**Asset Dir:** ~/www/blog/2026-05-09-chuas-circuit-double-scroll
+
 ## 2026-05-08 | Why Your Regex Patterns Are a Mystery to Everyone — Including You
 
 **URL:** https://blog.flowrust.com/2026/05/07/ai-regex-explainer-why-your-patterns-are-a-mystery/
