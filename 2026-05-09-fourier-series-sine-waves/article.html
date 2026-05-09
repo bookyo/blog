@@ -1,0 +1,75 @@
+<h1>Why Square Waves, Sawtooth Waves, and Triangle Waves Are All Made of the Same Thing</h1>
+<h2>The Counterintuitive Truth About How Complex Waves Are Built</h2>
+<p>In 1807, Joseph Fourier made a claim that sounded like nonsense: any periodic wave — no matter how jagged, complex, or wild — could be broken down into nothing more than simple sine and cosine waves.</p>
+<p>Mathematicians called it preposterous. The Académie des Sciences rejected his paper. They were dead wrong.</p>
+<p>Today, that idea sits at the heart of everything from audio engineering to quantum mechanics. And the tool that makes it tangible — the <a href="https://elysiatools.com/en/tools/fourier-series">Fourier Series Calculator</a> — lets you see exactly how any wave is assembled from its building blocks.</p>
+<hr/>
+<h2>What Exactly Is a Fourier Series?</h2>
+<p>A Fourier series breaks a periodic function into a sum of sine and cosine waves at different frequencies. Each term in the sum is called a <strong>harmonic</strong>.</p>
+<p>The fundamental frequency is the base frequency of your wave. The second harmonic is twice that frequency, the third harmonic is three times, and so on.</p>
+<p>The remarkable part: the amplitude of each harmonic follows a specific mathematical pattern depending on the wave's shape. A square wave doesn't "accidentally" look like a square wave — it's built from a precise recipe of sine waves, mixed in exactly the right proportions.</p>
+<hr/>
+<h2>The Three Classic Waveforms and Their Recipes</h2>
+<h3>Square Wave: Only the Odd Harmonics</h3>
+<p>A square wave has a very specific Fourier signature: <strong>only odd harmonics survive</strong>. The third, fifth, seventh, and every odd-numbered harmonic contribute. Even harmonics are completely absent.</p>
+<br/><img src="https://blog.flowrust.com/wp-content/uploads/2026/05/card-01-36.png" alt="Only Odd Harmonics" style="width:100%;max-width:1080px;margin:2rem 0;display:block;"/><br/>
+<p>The formula reveals why:</p>
+<pre><code class="language-">f(t) = Σ[(4A/((2k-1)π)) × sin((2k-1)ωt)]</code></pre>
+<p>The amplitude of each harmonic decays as 1/n — the nth harmonic has 1/nth the strength of the fundamental. This 1/n decay is what gives square waves their sharp, snappy character despite being made entirely of smooth sine waves.</p>
+<p>The first harmonic (fundamental) carries the most energy. The third harmonic carries about 33% as much. By the time you reach the 19th harmonic, it's down to just 5%. The sum of all these sine waves, layered together, converges toward that crisp square shape.</p>
+<h3>Sawtooth Wave: All the Harmonics</h3>
+<p>The sawtooth wave takes the opposite approach: <strong>all harmonics are present</strong>, including both odd and even.</p>
+<pre><code class="language-">f(t) = Σ[(2A(-1)^(n+1)/(nπ)) × sin(nωt)]</code></pre>
+<p>The alternating sign factor (-1)^(n+1) means each successive harmonic flips phase — pushing and pulling the wave in a direction that builds toward that rising-then-abruptly-falling sawtooth shape.</p>
+<p>Because all harmonics are present and decay as 1/n, the sawtooth wave is "richer" in texture than a square wave. Its edges are less crisp because the higher harmonics (which square waves also have, just with even ones missing) are still present but with different proportions.</p>
+<h3>Triangle Wave: Odd Harmonics with Alternating Signs</h3>
+<p>The triangle wave looks somewhat like a smoothed square wave, but its Fourier signature is distinctly different. Like the square wave, <strong>only odd harmonics appear</strong>. But unlike the square wave, the amplitude decays as 1/n² — much faster.</p>
+<pre><code class="language-">f(t) = Σ[(8A(-1)^k/((2k-1)²π²)) × sin((2k-1)ωt)]</code></pre>
+<p>That 1/n² decay means the triangle wave is much smoother — it's dominated by low-frequency components, and the higher harmonics fade out much more aggressively than in a square wave. The alternating sign in the numerator creates the upward-and-downward pointing peaks characteristic of a triangle wave.</p>
+<br/><img src="https://blog.flowrust.com/wp-content/uploads/2026/05/card-02-37.png" alt="1/n² Decay" style="width:100%;max-width:1080px;margin:2rem 0;display:block;"/><br/>
+<hr/>
+<h2>Why the 1/n Decay Matters</h2>
+<p>The decay rate of harmonic amplitudes isn't just a mathematical detail — it determines the sonic and visual character of each wave.</p>
+<p><strong>Square wave (1/n decay):</strong> Fast enough to create sharp transitions, slow enough to maintain a hollow, organ-like tone. Audio synthesizers use square waves as the foundation for clarinet and organ sounds precisely because of this harmonic structure.</p>
+<p><strong>Sawtooth wave (1/n decay, all harmonics):</strong> The presence of all harmonics (not just odd) and the 1/n decay creates a bright, buzzy tone. It's the foundation for violin, saw, and brass-like synthesizer sounds.</p>
+<p><strong>Triangle wave (1/n² decay):</strong> The rapid decay makes it sound soft and flute-like. Only the lowest harmonics contribute meaningfully. It's often used as a foundation for soft synthesizer sounds like flute or choir.</p>
+<p>The faster decay of the triangle wave also explains why it visually appears smoother — there's less high-frequency content to create sharp corners.</p>
+<hr/>
+<h2>The Convergence Problem: Why We Need Infinite Harmonics</h2>
+<p>Here's the catch: in theory, you need <strong>infinitely many harmonics</strong> to perfectly represent a square, sawtooth, or triangle wave. With only a finite number of harmonics, the reconstruction has visible ripple — particularly near the sharp transitions.</p>
+<br/><img src="https://blog.flowrust.com/wp-content/uploads/2026/05/card-03-36.png" alt="Gibbs Phenomenon" style="width:100%;max-width:1080px;margin:2rem 0;display:block;"/><br/>
+<p>This ripple has a name: <strong>Gibbs phenomenon</strong>. It's not an error in the calculation — it's a fundamental property of Fourier series. As you add more harmonics, the ripple gets pushed closer to the edges but never completely disappears.</p>
+<p>The practical implication: when you use the Fourier Series Calculator with a low number of harmonics (say, 5 or 10), you'll see the ripple clearly. Push it to 30 or 50, and the wave looks much cleaner — but that Gibbs phenomenon ripple is still there, just compressed toward the edges.</p>
+<hr/>
+<h2>How to Use the Fourier Series Calculator</h2>
+<p>The <a href="https://elysiatools.com/en/tools/fourier-series">Fourier Series Calculator on ElysiaTools</a> handles all the math automatically:</p>
+<ol>
+<li><strong>Choose your waveform</strong> — square, sawtooth, triangle, half-wave rectified, or full-wave rectified</li>
+<li><strong>Set the amplitude</strong> — this scales all coefficients proportionally</li>
+<li><strong>Choose the number of harmonics</strong> — more harmonics means a closer approximation, but also more computation</li>
+<li><strong>Set decimal precision</strong> — how many decimal places to show in the coefficients</li>
+</ol>
+<p>The tool outputs the full list of coefficients (aₙ and bₙ for each harmonic), along with the general formula for that waveform type. This lets you see the exact recipe — which harmonics are present, and in what proportions.</p>
+<p>For example, a square wave with amplitude 1 and 10 harmonics will show you coefficients for the 1st, 3rd, 5th, 7th, 9th, 11th, 13th, 15th, 17th, and 19th harmonics — all with bₙ = 4A/(nπ) and aₙ = 0.</p>
+<hr/>
+<h2>The Deeper Pattern: All Waves Are Made of the Same Stuff</h2>
+<p>The profound implication of Fourier's insight isn't just that we can decompose waves — it's that the building blocks are universal. The same sine waves that describe light, sound, radio signals, and quantum wavefunctions are the same building blocks that compose square waves, sawtooth waves, and triangle waves.</p>
+<br/><img src="https://blog.flowrust.com/wp-content/uploads/2026/05/card-04-3.png" alt="All Waves Same Stuff" style="width:100%;max-width:1080px;margin:2rem 0;display:block;"/><br/>
+<p>What makes a square wave sound "buzzy" or a triangle wave sound "soft" is simply the recipe of harmonics — the same recipe you can explore with the Fourier Series Calculator in seconds.</p>
+<p>Understanding Fourier series isn't just passing a math exam. It's understanding why music sounds the way it does, why a Stradivarius violin produces different timbre than a trumpet, and why digital audio can represent any sound at all.</p>
+<hr/>
+<h2>Summary</h2>
+<table style="width:100%;border-collapse:collapse;margin:2rem 0;">
+<thead><tr>
+<th style="text-align:left;padding:8px;color:#00B4D8;font-weight:700;">Waveform</th>
+<th style="text-align:left;padding:8px;color:#00B4D8;font-weight:700;">Harmonics Present</th>
+<th style="text-align:left;padding:8px;color:#00B4D8;font-weight:700;">Amplitude Decay</th>
+<th style="text-align:left;padding:8px;color:#00B4D8;font-weight:700;">Sound Character</th>
+</tr></thead>
+<tbody>
+<tr style="border-bottom:1px solid #333;"><td style="padding:8px;">Square</td><td style="padding:8px;">Odd only (1, 3, 5, 7...)</td><td style="padding:8px;">1/n</td><td style="padding:8px;">Hollow, clarinet-like</td></tr>
+<tr style="border-bottom:1px solid #333;"><td style="padding:8px;">Sawtooth</td><td style="padding:8px;">All (1, 2, 3, 4...)</td><td style="padding:8px;">1/n</td><td style="padding:8px;">Bright, buzzy, violin-like</td></tr>
+<tr style="border-bottom:1px solid #333;"><td style="padding:8px;">Triangle</td><td style="padding:8px;">Odd only (1, 3, 5, 7...)</td><td style="padding:8px;">1/n²</td><td style="padding:8px;">Soft, flute-like</td></tr>
+</tbody>
+</table>
+<p>The Fourier Series Calculator makes this tangible: plug in your parameters, inspect the coefficients, and see exactly how each harmonic contributes to the final shape. It's a direct window into the mathematical machinery that underlies all periodic waves.</p>
