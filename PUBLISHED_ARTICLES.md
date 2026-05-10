@@ -1,4 +1,69 @@
 
+## 2026-05-10 | The Simple Oscillator That Proves Deterministic Physics Can Be Fundamentally Unpredictable
+
+**URL:** https://blog.flowrust.com/2026/05/07/duffing-oscillator-chaos-deterministic-unpredictable/
+**WP Post ID:** 2470
+**Featured Image WP ID:** 2466 (poster)
+**Highlight Cards:** 3 (2467, 2468, 2469)
+**Visualization Covered:** Duffing Oscillator
+**Slug:** duffing-oscillator-chaos-deterministic-unpredictable
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/duffing-oscillator
+**Tags:** duffing-oscillator, chaos-theory, nonlinear-dynamics, period-doubling, strange-attractor, double-well, poincare-section, phase-portrait, nonlinear-physics, dynamical-systems
+**Asset Dir:** ~/www/blog/2026-05-10-duffing-oscillator-chaos
+
+---
+
+## 2026-05-10 | The Algorithm That Proves Deterministic Systems Can Be Fundamentally Unpredictable
+
+**URL:** https://blog.flowrust.com/2026/05/07/double-pendulum-deterministic-chaos-unpredictable/
+**WP Post ID:** 2464
+**Featured Image WP ID:** 2460 (poster)
+**Highlight Cards:** 3 (2461, 2462, 2463)
+**Visualization Covered:** Double Pendulum Chaos
+**Slug:** double-pendulum-deterministic-chaos-unpredictable
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/double-pendulum
+**Tags:** double-pendulum, chaos-theory, deterministic-chaos, lagrangian-mechanics, phase-space, strange-attractor, butterfly-effect, nonlinear-dynamics, physics, classical-mechanics
+**Asset Dir:** ~/www/blog/2026-05-10-double-pendulum-chaos
+
+---
+
+## 2026-05-09 | The Hidden Standard That Decides How Loud Everything You Hear Actually Sounds
+
+**URL:** https://blog.flowrust.com/2026/05/07/audio-lufs-meter-hidden-standard-loudness/
+**WP Post ID:** 2437
+**Featured Image WP ID:** 2433 (poster)
+**Highlight Cards:** 3 (2434, 2435, 2436)
+**Tool Covered:** Audio LUFS Meter
+**Slug:** audio-lufs-meter-hidden-standard-loudness
+**ElysiaTools URL:** https://elysiatools.com/en/tools/audio-lufs-meter
+**Tags:** audio, lufs, loudness, ebur128, broadcast-standards, podcasting, audio-mastering, streaming, spotify, netflix, dynamics, audio-engineering, ebU-r128
+**Asset Dir:** ~/www/blog/2026-05-09-audio-lufs-meter
+
+## 2026-05-09 | The Hidden Dimension of Sound: What a Spectrogram Reveals That Your Ears Can't Catch
+
+
+## 2026-05-09 | The Algorithm That Separates Ariana Grande from the Orchestra — Without Access to the Original Stems
+
+**URL:** https://blog.flowrust.com/2026/05/07/audio-dialog-isolation-vocal-separation-ai/
+**WP Post ID:** 2431
+**Featured Image WP ID:** 2427 (poster)
+**Highlight Cards:** 3 (2428, 2429, 2430)
+**Tool Covered:** Audio Dialog Isolation
+**Slug:** audio-dialog-isolation-vocal-separation-ai
+**ElysiaTools URL:** https://elysiatools.com/en/tools/audio-dialog-isolation
+**Tags:** audio-separation, vocal-isolation, source-separation, spleeter, demucs, stem-separation, AI, audio-editing, music-production, cocktail-party-problem
+**Asset Dir:** ~/www/blog/2026-05-09-audio-dialog-isolation
+
+**URL:** https://blog.flowrust.com/2026/05/07/audio-spectrogram-generator-see-frequency/
+**WP Post ID:** 2425
+**Featured Image WP ID:** 2421 (poster)
+**Highlight Cards:** 3 (2422, 2423, 2424)
+**Tool Covered:** Audio Spectrogram Generator
+**Slug:** audio-spectrogram-generator-see-frequency
+**ElysiaTools URL:** https://elysiatools.com/en/tools/audio-spectrogram-generator
+**Tags:** audio, spectrogram, signal-processing, frequency-analysis, music-production, audio-visualization, fourier-transform, audio-editing
+**Asset Dir:** ~/www/blog/2026-05-09-audio-spectrogram-generator
+
 ## 2026-05-09 | The Electronic Circuit That Proved Chaos Doesn't Need Complexity
 
 **URL:** https://blog.flowrust.com/2026/05/08/chuas-circuit-double-scroll-chaos/
@@ -1292,3 +1357,34 @@
 - **Visualization**: [Atomic Habits Compound Effect](https://elysiatools.com/en/visualizations/atomic-habits)
 - **Category**: Psychology / Self-improvement / Compound Effects
 - **Asset Dir**: ~/www/blog/2026-05-08-atomic-habits-compound-effect
+
+## 2026-05-10 | The Single Number That Decides Whether Your Audio Clips or Cuts
+
+**URL:** https://blog.flowrust.com/2026/05/07/audio-normalize-peak-industry-standard/
+**WP Post ID:** 2452
+**Featured Image WP ID:** 2448 (poster)
+**Highlight Cards:** 3 (card-01-37, card-02-38, card-03-37)
+**Tool Covered:** Audio Normalize (Peak)
+**Slug:** audio-normalize-peak-industry-standard
+**ElysiaTools URL:** https://elysiatools.com/en/tools/audio-normalize
+**Tags:** audio, normalize, peak-level, dB, clipping, audio-mastering, streaming, ffmpeg, loudness, audio-engineering
+**Asset Dir:** ~/www/blog/2026-05-10-audio-normalize-peak
+
+## 2026-05-10: How to Validate 10,000 Emails Without Losing Your Mind
+
+- **Tool**: batch-email-validator
+- **Slug**: batch-email-validator-quality-check
+- **URL**: https://blog.flowrust.com/2026/05/07/batch-email-validator-quality-check/
+- **WP ID**: 2458
+- **Published**: 2026-05-10
+
+## 2026-05-10 — The Small Square That Connects the Physical World to the Digital One
+
+- **Topic**: QR Code Generator
+- **Status**: PUBLISHED - WP ID 2483
+- **Link**: https://blog.flowrust.com/2026/05/07/the-small-square-that-connects-the-physical-world-to-the-digital-one/
+- **Tools**: qr-code-generator
+- **Poster**: poster.png (WP media ID 2479)
+- **Cards**: 3 highlight cards (WP media IDs 2480, 2481, 2482)
+- **Asset Dir**: /Users/quyue/www/blog/2026-05-10-qr-code-generator
+

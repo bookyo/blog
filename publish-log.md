@@ -8,6 +8,16 @@
 - **Category**: Physics / Electromagnetism
 - **Asset Dir**: ~/www/blog/2026-05-04-electric-field-lines-invisible-forces
 
+## 2026-05-06 10:00 UTC — The Soviet Theory That Predicted Every Economic Crisis Since 1920
+- **WP Post ID**: 2316
+- **WP URL**: https://blog.flowrust.com/2026/05/05/kondratieff-wave-50-year-economic-cycles/
+- **Featured Image**: poster (WP ID 2312)
+- **Highlight Cards**: 3 (card-01: 2313, card-02: 2314, card-03: 2315)
+- **Slug**: kondratieff-wave-50-year-economic-cycles
+- **Visualization**: [Kondratieff Wave](https://elysiatools.com/en/visualizations/kondratieff-wave)
+- **Category**: Economics / Complexity / Historical Theory
+- **Asset Dir**: ~/www/blog/2026-05-06-kondratieff-wave
+
 ## 2026-05-05 10:00 UTC — Why Water Defies Gravity in Thin Tubes
 - **WP Post ID**: 2283
 - **WP URL**: https://blog.flowrust.com/2026/05/04/capillary-action-physics-beyond-footnote/
@@ -1159,3 +1169,13 @@
 - **Category**: Math / Fractals / History of Science
 - **Asset Dir**: ~/www/blog/2026-05-05-newton-fractal
 2026-05-06: arrhenius-equation article published (WP ID 2308)
+
+## 2026-05-07 00:49 UTC — The Day a Pendulum Proved Earth Spins — And Why the Discovery Took 2,000 Years
+- **WP Post ID**: 2348
+- **WP URL**: https://blog.flowrust.com/2026/05/06/coriolis-force-earth-rotation/
+- **Featured Image**: poster (WP ID 2344)
+- **Highlight Cards**: 3 (2345, 2346, 2347)
+- **Slug**: coriolis-force-earth-rotation
+- **Visualization**: [Coriolis Force](https://elysiatools.com/en/visualizations/coriolis-force)
+- **Category**: Physics / Earth's Rotation / Fluid Dynamics
+- **Asset Dir**: ~/www/blog/2026-05-08-coriolis-force-earth-rotation
