@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "core-density",
+    "eyebrow": "Core Principle",
+    "section_label": "Part 01",
+    "title": "A Teaspoon Weighs as Much as Mount Everest",
+    "dek": "Neutron stars achieve densities of 10¹⁸ kg/m³ — the same density as atomic nuclei — packing 1.4 solar masses into a 10km sphere.",
+    "quote": "10¹⁸ kg/m³ — density of a neutron star",
+    "bullets": [
+      "10 km radius (size of Manhattan)",
+      "1.4 solar masses typical",
+      "Degenerate neutron matter supported by neutron degeneracy pressure",
+      "Cross 2.17 M☉ and it collapses into a black hole"
+    ],
+    "theme": "ocean"
+  },
+  {
+    "slug": "pulsar-discovery",
+    "eyebrow": "Discovery",
+    "section_label": "Part 02",
+    "title": "Little Green Men Was a Dead Star",
+    "dek": "Jocelyn Bell Burnell's 1967 discovery of pulsars — initially labeled LGM-1 — revealed rotating neutron stars sweeping lighthouse beams across the galaxy.",
+    "quote": "1.33 seconds — the period of the first pulsar discovered",
+    "bullets": [
+      "Jocelyn Bell Burnell, 1967: regular radio pulses",
+      "Pulsar = rotating neutron star, magnetic axis misaligned",
+      "Hulse-Taylor binary pulsar confirmed gravitational waves (Nobel 1993)",
+      "Fastest known: PSR J1748-2446ad spins at 716 Hz"
+    ],
+    "theme": "ember"
+  },
+  {
+    "slug": "tov-limit",
+    "eyebrow": "The Limit",
+    "section_label": "Part 03",
+    "title": "The Line Between Star and Black Hole",
+    "dek": "The TOV limit (~2.17 solar masses) is the maximum mass a neutron star can support. What's beyond that threshold — and what's inside — remains one of physics' open questions.",
+    "quote": "TOV limit: ~2.17 M☉ — above this, collapse to black hole",
+    "bullets": [
+      "Most massive measured: PSR J0740+6620 at 2.08 M☉",
+      "Inner core may contain hyperons, quark matter, or exotic states",
+      "NICER mission constrains radius via X-ray pulse profiles",
+      "GW170817 merger event confirms kilonova r-process nucleosynthesis"
+    ],
+    "theme": "ocean"
+  }
+]
