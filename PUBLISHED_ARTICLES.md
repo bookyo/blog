@@ -1,4 +1,16 @@
 
+## 2026-05-11 | Why Your Perfume Bottle and an Airplane Use the Same Trick
+
+**URL:** https://blog.flowrust.com/2026/05/07/bernoulli-equation-perfume-airplane/
+**WP Post ID:** 2498
+**Featured Image WP ID:** 2494 (poster)
+**Highlight Cards:** 3 (2495, 2496, 2497)
+**Visualization Covered:** Bernoulli Equation
+**Slug:** bernoulli-equation-perfume-airplane
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/bernoulli-equation
+**Tags:** bernoulli-equation, fluid-dynamics, venturi-effect, pressure-velocity, aerodynamics, nozzle, perfume-atomizer, chimney-draft, nebulizer, continuity-equation
+**Asset Dir:** ~/www/blog/2026-05-11-bernoulli-equation
+
 ## 2026-05-10 | The Simple Oscillator That Proves Deterministic Physics Can Be Fundamentally Unpredictable
 
 **URL:** https://blog.flowrust.com/2026/05/07/duffing-oscillator-chaos-deterministic-unpredictable/
@@ -1391,3 +1403,35 @@
 
 - Scanning Tunneling Microscope (STM) - https://blog.flowrust.com/2026/05/11/scanning-tunneling-microscope/
 - scanning-tunneling-microscope (2026-05-11, WP ID 2491)
+
+## 2026-05-11 | The Interactive Visualization That Shows Why Quantum Mechanics Freaks Everyone Out
+
+**URL:** https://blog.flowrust.com/2026/05/07/quantum-wave-collapse-measurement-probability/
+**WP Post ID:** 2504
+**Featured Image WP ID:** 2500 (poster)
+**Highlight Cards:** 3 (2501, 2502, 2503)
+**Visualization Covered:** Quantum Wave Function Collapse
+**Slug:** quantum-wave-collapse-measurement-probability
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/quantum-wave-collapse
+**Tags:** quantum-mechanics, wave-function, superposition, schrodinger, measurement-problem, probability-amplitude, born-rule, tunneling, quantum-harmonic-oscillator, double-well
+**Asset Dir:** ~/www/blog/2026-05-11-quantum-wave-collapse
+
+
+## neutron-star
+
+- **Visualization URL**: https://elysiatools.com/en/visualizations/neutron-star
+- **WordPress Post**: https://blog.flowrust.com/2026/05/07/neutron-stars-pulsars-astrophysics/
+- **WP Post ID**: 2510
+- **Slug**: neutron-stars-pulsars-astrophysics
+- **Date**: 2026-05-07
+- **Type**: visualization
+- **Article Title**: The Dead Star That Spins 716 Times a Second
+- **Featured Image**: poster.png (media ID 2506)
+- **Cards**: card-01 (media ID 2507), card-02 (media ID 2508), card-03 (media ID 2509)
+## Lissajous Figures — Two Waves, One Shape (2026-05-07)
+
+**URL:** https://blog.flowrust.com/2026/05/07/lissajous-figures-two-waves-one-shape/
+**Tool:** lissajous-figures
+**WP ID:** 2516
+**Published:** 2026-05-07
+

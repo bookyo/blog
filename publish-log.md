@@ -1189,3 +1189,4 @@
 - **Visualization**: [STM Microscope](https://elysiatools.com/en/visualizations/stm-microscope)
 - **Category**: Physics / Quantum / Microscopy
 - **Asset Dir**: ~/www/blog/2026-05-11-scanning-tunneling-microscope
+2026-05-12 04:00 | Lissajous Figures | lissajous-figures | WP#2516 | https://blog.flowrust.com/2026/05/07/lissajous-figures-two-waves-one-shape/
