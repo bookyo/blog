@@ -1179,3 +1179,13 @@
 - **Visualization**: [Coriolis Force](https://elysiatools.com/en/visualizations/coriolis-force)
 - **Category**: Physics / Earth's Rotation / Fluid Dynamics
 - **Asset Dir**: ~/www/blog/2026-05-08-coriolis-force-earth-rotation
+
+## 2026-05-11 01:41 UTC — See Atoms with Your Own Eyes: The Scanning Tunneling Microscope
+- **WP Post ID**: 2491
+- **WP URL**: https://blog.flowrust.com/2026/05/11/scanning-tunneling-microscope/
+- **Featured Image**: poster (WP ID 2490)
+- **Highlight Cards**: 3 (2487, 2488, 2489)
+- **Slug**: scanning-tunneling-microscope
+- **Visualization**: [STM Microscope](https://elysiatools.com/en/visualizations/stm-microscope)
+- **Category**: Physics / Quantum / Microscopy
+- **Asset Dir**: ~/www/blog/2026-05-11-scanning-tunneling-microscope
