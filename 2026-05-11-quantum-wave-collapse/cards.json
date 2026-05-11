@@ -1,0 +1,44 @@
+[
+  {
+    "slug": "core-concept",
+    "eyebrow": "Core Principle",
+    "section_label": "Part 01",
+    "title": "Wave functions\nare not real",
+    "dek": "Ψ is a probability amplitude — a complex number whose square gives where you'll find the particle. Before measurement, the particle literally has no position.",
+    "quote": "An electron in superposition doesn't have a hidden answer — it's not in state 1 OR state 2, it's in a hybrid state that doesn't exist in classical physics at all.",
+    "bullets": [
+      "|Ψ|² is probability density, not physical wave amplitude",
+      "Superposition is not ignorance about a pre-existing state",
+      "Particle has no definite position until measurement forces one"
+    ],
+    "theme": "ocean"
+  },
+  {
+    "slug": "collapse-measurement",
+    "eyebrow": "The Measurement Problem",
+    "section_label": "Part 02",
+    "title": "Collapse is\ninstantaneous",
+    "dek": "When you press Measure, the smooth interference pattern snaps into a single eigenstate. All other components vanish at once — not gradually, not locally, everywhere.",
+    "quote": "The system was in a superposition a fraction of a second ago, and now it's in exactly one eigenstate. The other components don't gradually fade — they vanish instantaneously across all of space.",
+    "bullets": [
+      "Born rule: collapse probability = |cₙ|²",
+      "Individual events are random; aggregate statistics are exact",
+      "Whether collapse is physical or apparent is still debated"
+    ],
+    "theme": "ember"
+  },
+  {
+    "slug": "tunneling-double-well",
+    "eyebrow": "Double Well Potential",
+    "section_label": "Part 03",
+    "title": "Particles\ntunnel through\nbarriers",
+    "dek": "A particle localized in one well can spontaneously appear in the other — not by going around the barrier, but by existing in both wells simultaneously during the tunneling event.",
+    "quote": "A particle starting in one well oscillates between wells with frequency ΔE/ℏ. This is not a classical particle bouncing — it's quantum tunneling in the probability landscape.",
+    "bullets": [
+      "Symmetric and antisymmetric states split by ΔE",
+      "Models: ammonia molecule inversion, superconducting qubits",
+      "Tunneling rate set by barrier height and width"
+    ],
+    "theme": "forest"
+  }
+]
