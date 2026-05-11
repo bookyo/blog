@@ -1,3 +1,13 @@
+## 2026-05-12 06:59 UTC — The Beautiful Math Behind the Shapes That Appear When Two Waves Collide
+- **WP Post ID**: 2519
+- **WP URL**: https://blog.flowrust.com/2026/05/07/lissajous-figures-two-waves-collide/
+- **Featured Image**: poster (WP ID 2512)
+- **Highlight Cards**: 3 (2513, 2514, 2515)
+- **Slug**: lissajous-figures-two-waves-collide
+- **Visualization**: [Lissajous Figures](https://elysiatools.com/en/visualizations/lissajous-figures)
+- **Category**: Physics / Mathematics / Signal Processing
+- **Asset Dir**: ~/www/blog/2026-05-12-lissajous-figures
+
 ## 2026-05-04 14:00 UTC — Why You Can't Touch Anything
 - **WP Post ID**: 2251
 - **WP URL**: https://blog.flowrust.com/2026/05/03/electric-field-lines-invisible-forces/

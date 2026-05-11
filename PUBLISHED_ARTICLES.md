@@ -1,4 +1,16 @@
 
+## 2026-05-12 | The Beautiful Math Behind the Shapes That Appear When Two Waves Collide
+
+**URL:** https://blog.flowrust.com/2026/05/07/lissajous-figures-two-waves-collide/
+**WP Post ID:** 2519
+**Featured Image WP ID:** 2512 (poster)
+**Highlight Cards:** 3 (2513, 2514, 2515)
+**Visualization Covered:** Lissajous Figures
+**Slug:** lissajous-figures-two-waves-collide
+**ElysiaTools URL:** https://elysiatools.com/en/visualizations/lissajous-figures
+**Tags:** lissajous-figures, parametric-curves, wave-superposition, oscilloscope, phase-difference, frequency-ratio, nathaniel-bowditch, jules-lissajous, physics, mathematics
+**Asset Dir:** ~/www/blog/2026-05-12-lissajous-figures
+
 ## 2026-05-11 | Why Your Perfume Bottle and an Airplane Use the Same Trick
 
 **URL:** https://blog.flowrust.com/2026/05/07/bernoulli-equation-perfume-airplane/
