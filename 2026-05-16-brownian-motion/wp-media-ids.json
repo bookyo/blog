@@ -1,0 +1,15 @@
+{
+  "poster_id": 2669,
+  "card_ids": {
+    "card1": 2670,
+    "card2": 2671,
+    "card3": 2672
+  },
+  "card_urls": {
+    "card1": "https://blog.flowrust.com/wp-content/uploads/2026/05/card-01-61.png",
+    "card2": "https://blog.flowrust.com/wp-content/uploads/2026/05/card-02-62.png",
+    "card3": "https://blog.flowrust.com/wp-content/uploads/2026/05/card-03-60.png"
+  },
+  "post_id": 2673,
+  "post_url": "https://blog.flowrust.com/2026/05/17/brownian-motion-random-walk-einstein/"
+}
