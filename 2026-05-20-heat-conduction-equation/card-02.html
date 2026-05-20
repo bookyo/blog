@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #000D1A; font-family: 'Outfit', sans-serif; width: 1080px; min-height: 900px; padding: 80px; display: flex; align-items: center; justify-content: center; }
+.eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #00B4D8; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+.label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #555; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.title { font-size: 80px; font-weight: 900; color: #00B4D8; line-height: 0.9; letter-spacing: -1px; margin-bottom: 28px; }
+.bullets { display: flex; flex-direction: column; gap: 16px; }
+.bullet { display: flex; align-items: center; gap: 16px; font-size: 18px; color: #ddd; }
+.bullet-dot { width: 8px; height: 8px; border-radius: 50%; background: #00B4D8; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div>
+  <div class="eyebrow">Material Properties</div>
+  <div class="label">Part 02</div>
+  <h1 class="title">α = k / (ρ · c)</h1>
+  <div class="bullets">
+    <div class="bullet"><div class="bullet-dot"></div>k = thermal conductivity</div>
+    <div class="bullet"><div class="bullet-dot"></div>ρ = density</div>
+    <div class="bullet"><div class="bullet-dot"></div>c = specific heat capacity</div>
+    <div class="bullet"><div class="bullet-dot"></div>Copper: α ≈ 1.1 × 10⁻⁴ m²/s</div>
+    <div class="bullet"><div class="bullet-dot"></div>Air: α ≈ 2.2 × 10⁻⁵ m²/s</div>
+  </div>
+</div>
+</body>
+</html>
