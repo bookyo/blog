@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0D0D0D; font-family: 'Outfit', sans-serif; width: 1080px; min-height: 900px; padding: 80px; display: flex; align-items: center; justify-content: center; }
+.eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #FF6B35; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+.label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #555; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.title { font-size: 96px; font-weight: 900; color: #FF6B35; line-height: 0.9; letter-spacing: -2px; margin-bottom: 36px; }
+.quote { font-size: 18px; color: #ccc; line-height: 1.5; border-left: 3px solid #FF6B35; padding-left: 24px; margin-bottom: 36px; }
+.bullets { display: flex; flex-direction: column; gap: 12px; }
+.bullet { display: flex; align-items: center; gap: 14px; font-size: 17px; color: #ddd; }
+.bullet-dot { width: 8px; height: 8px; border-radius: 50%; background: #FF6B35; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div>
+  <div class="eyebrow">Mathematical Method</div>
+  <div class="label">Part 02</div>
+  <h1 class="title">Components
+Rx, Ry</h1>
+  <p class="quote">"Fx = F · cos(θ) and Fy = F · sin(θ). Addition becomes arithmetic."</p>
+  <div class="bullets">
+    <div class="bullet"><div class="bullet-dot"></div>F1x = F1 · cos(α), F1y = F1 · sin(α)</div>
+    <div class="bullet"><div class="bullet-dot"></div>F2x = F2 · cos(β), F2y = F2 · sin(β)</div>
+    <div class="bullet"><div class="bullet-dot"></div>Rx = F1x + F2x, Ry = F1y + F2y</div>
+    <div class="bullet"><div class="bullet-dot"></div>R = √(Rx² + Ry²)</div>
+  </div>
+</div>
+</body>
+</html>
