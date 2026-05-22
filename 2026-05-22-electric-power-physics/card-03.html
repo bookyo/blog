@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #001A0D; font-family: 'Outfit', sans-serif; width: 1080px; min-height: 900px; padding: 80px; display: flex; align-items: center; justify-content: center; }
+.eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #00FF94; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+.label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #555; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.title { font-size: 80px; font-weight: 900; color: #00FF94; line-height: 0.92; letter-spacing: -2px; margin-bottom: 36px; }
+.quote { font-size: 18px; color: #ccc; line-height: 1.5; border-left: 3px solid #00FF94; padding-left: 24px; margin-bottom: 36px; }
+.bullets { display: flex; flex-direction: column; gap: 12px; }
+.bullet { display: flex; align-items: center; gap: 14px; font-size: 17px; color: #ddd; }
+.bullet-dot { width: 8px; height: 8px; border-radius: 50%; background: #00FF94; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div>
+  <div class="eyebrow">Circuit Design</div>
+  <div class="label">Part 03</div>
+  <h1 class="title">Series: current
+sets the power.
+Parallel:
+voltage does.</h1>
+  <p class="quote">"Same physics. Opposite distribution."</p>
+  <div class="bullets">
+    <div class="bullet"><div class="bullet-dot"></div>Series: P = I²R — higher resistance draws more power</div>
+    <div class="bullet"><div class="bullet-dot"></div>Parallel: P = V²/R — lower resistance draws more power</div>
+    <div class="bullet"><div class="bullet-dot"></div>Every wiring decision changes how power divides</div>
+  </div>
+</div>
+</body>
+</html>
