@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Outfit', sans-serif;
+  width: 1080px;
+  min-height: 900px;
+  background: #000000;
+}
+</style>
+</head>
+<body class="bg-black flex items-center justify-center">
+  <div class="w-[1080px] text-center px-[108px] py-24">
+    <!-- Hysteresis loop SVG focal -->
+    <svg viewBox="0 0 400 300" class="mx-auto mb-8" width="520" height="390">
+      <!-- Axes -->
+      <line x1="50" y1="150" x2="350" y2="150" stroke="#333333" stroke-width="2"/>
+      <line x1="200" y1="20" x2="200" y2="280" stroke="#333333" stroke-width="2"/>
+      <!-- Hysteresis loop path -->
+      <path d="M 200 250 Q 280 250 330 200 Q 360 160 340 110 Q 310 50 200 50 Q 90 50 60 110 Q 40 160 70 200 Q 120 250 200 250" 
+            fill="none" stroke="#00B4D8" stroke-width="5" stroke-linecap="round"/>
+      <!-- Arrow indicators on curve -->
+      <polygon points="330,200 340,185 320,190" fill="#00B4D8"/>
+      <polygon points="70,200 60,215 80,210" fill="#00B4D8"/>
+      <!-- Axis labels -->
+      <text x="355" y="155" fill="#00B4D8" font-family="Outfit" font-size="16" font-weight="700">H</text>
+      <text x="205" y="15" fill="#00B4D8" font-family="Outfit" font-size="16" font-weight="700">B</text>
+      <!-- Hc marker on H axis -->
+      <line x1="155" y1="145" x2="155" y2="155" stroke="#00FF94" stroke-width="2"/>
+      <text x="155" y="170" fill="#00FF94" font-family="Outfit" font-size="14" text-anchor="middle">Hc</text>
+      <!-- Mr marker on B axis -->
+      <line x1="195" y1="150" x2="205" y2="150" stroke="#00FF94" stroke-width="2"/>
+      <text x="185" y="145" fill="#00FF94" font-family="Outfit" font-size="14" text-anchor="end">Mr</text>
+    </svg>
+    
+    <h1 class="text-[72px] font-black text-white tracking-tight leading-none mt-4">B–H Curve</h1>
+    <p class="text-[48px] font-bold text-[#00B4D8] mt-6 tracking-tight">Magnetic Hysteresis</p>
+    <p class="text-[18px] text-[#666666] mt-10 leading-relaxed">The Loop That Remembers Everything</p>
+  </div>
+</body>
+</html>
