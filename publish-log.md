@@ -1200,3 +1200,17 @@
 - **Category**: Physics / Quantum / Microscopy
 - **Asset Dir**: ~/www/blog/2026-05-11-scanning-tunneling-microscope
 2026-05-12 04:00 | Lissajous Figures | lissajous-figures | WP#2516 | https://blog.flowrust.com/2026/05/07/lissajous-figures-two-waves-one-shape/
+## 2026-05-13 | Electromagnetic Wave Propagation | em-wave-propagation | WP ID 2561 | https://blog.flowrust.com/2026/05/13/electromagnetic-wave-propagation/
+- **WP Post ID**: 2561
+- **WP URL**: https://blog.flowrust.com/2026/05/13/electromagnetic-wave-propagation/
+- **Featured Image**: poster (WP ID 2557)
+- **Highlight Cards**: 3 (2558, 2559, 2560)
+- **Slug**: electromagnetic-wave-propagation
+- **Visualization**: [Electromagnetic Wave Propagation](https://elysiatools.com/en/visualizations/em-wave-propagation)
+- **Category**: Physics / Electromagnetism / Wave Physics
+- **Asset Dir**: ~/www/blog/2026-05-13-em-wave-propagation
+
+
+## 2026-05-14 | Beat Frequency | beat-frequency | WP ID 2579 | https://blog.flowrust.com/2026/05/07/beat-frequency-phenomenon/
+
+## 2026-05-16 05:50 UTC | Wave Refraction | wave-refraction-physics-snells-law | WP ID 2655 | https://blog.flowrust.com/2026/05/16/wave-refraction-physics-snells-law/

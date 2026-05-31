@@ -1,0 +1,23 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "此仓库中放置的是博客的 Markdown 文件。",
+  "main": "ai-regex-screenshot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bookyo/blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bookyo/blog/issues"
+  },
+  "homepage": "https://github.com/bookyo/blog#readme",
+  "dependencies": {
+    "playwright": "^1.60.0"
+  }
+}

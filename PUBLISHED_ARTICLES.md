@@ -1,3 +1,4 @@
+- [2026-05-25] [Why Magnets Never Have Just One Pole: The Physics of Magnetic Fields](https://blog.flowrust.com/2026/05/25/magnetic-field-physics-2026-05-24/) - magnetic-field-physics-2026-05-24
 
 ## 2026-05-12 | The Beautiful Math Behind the Shapes That Appear When Two Waves Collide
 
@@ -797,6 +798,7 @@
 **Slug:** 8-free-finance-calculators-real-numbers
 
 | 2026-04-03 | 8 Data Validators Your Software Probably Gets Wrong | Validation | https://blog.flowrust.com/2026/04/03/8-data-validators-your-software-probably-gets-wrong/ | Credit Card, ISBN, SemVer, VIN, Passport, US EIN, IBAN & SWIFT, SWIFT Code |
+| 2026-05-22 | Concave Lens Imaging Physics | Why a Concave Lens Always Shows You What Isn't Really There | physics | [concave-lens-imaging](https://blog.flowrust.com/2026/05/22/concave-lens-imaging-physics/) |
 
 ## 2026-04-04: 8 Free Fractal & Chaos Visualizations That Reveal Why Simple Rules Create Infinite Complexity
 
@@ -1373,6 +1375,8 @@
 - **Article Dir**: /Users/quyue/www/blog/2026-05-08-youngs-double-slit
 
 | 2026-05-08 | RLC Circuit Oscillation | The Spiral That Appears Everywhere: What a Simple Circuit Reveals About the Nature of Decay | rlc-circuit-oscillation | https://blog.flowrust.com/2026/05/07/rlc-circuit-oscillation-nature-of-decay/ |
+| 2026-05-14 | [Why Binary Phase Diagrams Are the Most Powerful Tool in Materials Engineering](https://blog.flowrust.com/2026/05/07/binary-phase-diagram-materials-engineering/) | binary-phase-diagram | WP ID 2573 |
+
 - **ID**: 2389
 - **Title**: The Math Behind Atomic Habits: Why 1% Better Every Day Compounds Into 37x Growth
 - **Slug**: atomic-habits-compound-effect-math
@@ -1447,3 +1451,230 @@
 **WP ID:** 2516
 **Published:** 2026-05-07
 
+
+
+## 2531 - Why Soap Bubbles Paint the Sky: The Simple Formula Behind Every Rainbow You See
+
+- **Published**: 2026-05-13
+- **Tool**: thin-film-interference
+- **URL**: https://blog.flowrust.com/2026/05/07/why-soap-bubbles-paint-the-sky/
+- **Tags**: physics, optics, light
+- **WordPress ID**: 2531
+## 2026-05-13: Why Totality Is the Rarest Kind of Darkness
+- **Topic**: solar-lunar-eclipse
+- **Status**: PUBLISHED - WP ID 2537
+- **URL**: https://blog.flowrust.com/2026/05/07/solar-lunar-eclipse-totality/
+- **Tool**: https://elysiatools.com/en/visualizations/solar-lunar-eclipse
+
+
+## 2026-05-13 — The Heat Engine Limit: Why the Carnot Cycle Sets Physics' Efficiency Ceiling
+- **Topic**: Carnot cycle thermodynamics
+- **Status**: PUBLISHED - WP ID 2549
+- **Tool**: carnot-cycle
+- **URL**: https://blog.flowrust.com/2026/05/07/2026-05-13-carnot-cycle-thermodynamics-efficiency/
+- **Asset Dir**: /Users/quyue/www/blog/2026-05-13-carnot-cycle-thermodynamics-efficiency
+## 2026-05-13 — Huygens Principle: Wave Physics
+- **Topic**: Huygens principle wave physics visualization
+- **Status**: PUBLISHED - WP ID 2543
+- **URL**: https://blog.flowrust.com/2026/05/07/huygens-principle/
+
+## archimedes-principle-buoyancy
+- **Title**: Why Heavy Ships Float: The One Principle Behind Everything That Floats
+- **URL**: https://blog.flowrust.com/2026/05/07/archimedes-principle-buoyancy/
+- **WP ID**: 2555
+- **Visualization**: archimedes-principle
+- **Date**: 2026-05-14
+
+
+- **Title**: Why Figure Skaters Spin Faster When They Pull In Their Arms
+- **URL**: https://blog.flowrust.com/2026/05/07/angular-momentum-conservation-physics/
+- **WP ID**: 2567
+- **Visualization**: angular-momentum-conservation
+- **Date**: 2026-05-13
+
+## beat-frequency
+- **Title**: When Two Notes Become One: The Hidden Geometry of Beat Frequency
+- **URL**: https://blog.flowrust.com/2026/05/07/beat-frequency-phenomenon/
+- **WP ID**: 2579
+- **Visualization**: beat-frequency
+- **Date**: 2026-05-14
+
+## 2026-05-14 — Why Your Weather App Can't Tell You If It Will Rain Tomorrow
+- **Topic**: cloud-formation
+- **Status**: PUBLISHED - WP ID 2585
+- **URL**: https://blog.flowrust.com/2026/05/07/cloud-formation-lcl-weather-science/
+- **Cards**: 3 highlight cards (LCL concept, cloud types, cloud life cycle)
+- **Git**: eb9dd0a
+| 2026-05-17 | rainbow-formation-physics-dispersion | Why Rainbows Always Arch the Same Way: The Geometry of Light in a Water Droplet | Rainbow Formation | physics | https://blog.flowrust.com/2026/05/17/rainbow-formation-physics-dispersion/ |
+| color-mixing-additive | Color Mixing Additive | physics | 2026-05-20 | https://blog.flowrust.com/2026/05/20/color-mixing-additive-physics/ |
+| 2026-05-07 | Acid Rain Formation | acid-rain-formation | WP ID 2616 | https://blog.flowrust.com/2026/05/07/acid-rain-formation/ |
+
+## 2026-05-15 | Why an Ambulance Siren Sounds Different When It Passes You | doppler-effect-traffic | WP ID 2621 | https://blog.flowrust.com/2026/05/07/doppler-effect-traffic/
+
+## 2026-05-16 | Wave Refraction | wave-refraction-physics-snells-law | WP ID 2655 | https://blog.flowrust.com/2026/05/16/wave-refraction-physics-snells-law/
+- **WP Post ID**: 2655
+- **WP URL**: https://blog.flowrust.com/2026/05/16/wave-refraction-physics-snells-law/
+- **Featured Image**: poster (WP ID 2651)
+- **Highlight Cards**: 3 (2652, 2653, 2654)
+- **Slug**: wave-refraction-physics-snells-law
+- **Visualization**: [Wave Refraction](https://elysiatools.com/en/visualizations/wave-refraction)
+- **Category**: Physics / Wave Optics / Snell's Law
+- **Asset Dir**: ~/www/blog/2026-05-16-wave-refraction-physics-snells-law
+
+
+## 2026-05-16 | Wave Refraction | wave-refraction-physics-snells-law | WP ID 2655 | https://blog.flowrust.com/2026/05/16/wave-refraction-physics-snells-law/
+- **WP Post ID**: 2655
+- **WP URL**: https://blog.flowrust.com/2026/05/16/wave-refraction-physics-snells-law/
+- **Featured Image**: poster (WP ID 2651)
+- **Highlight Cards**: 3 (2652, 2653, 2654)
+- **Slug**: wave-refraction-physics-snells-law
+- **Visualization**: [Wave Refraction](https://elysiatools.com/en/visualizations/wave-refraction)
+- **Category**: Physics / Wave Optics / Snell's Law
+- **Asset Dir**: ~/www/blog/2026-05-16-wave-refraction-physics-snells-law
+
+
+## Mechanical Wave Generation (2026-05-16)
+
+- **URL**: https://blog.flowrust.com/2026/05/16/mechanical-wave-generation/
+- **Visualization**: [Mechanical Wave Generation](https://elysiatools.com/en/visualizations/mechanical-wave-generation)
+- **Article Dir**: /Users/quyue/www/blog/2026-05-16-mechanical-wave-generation
+- **WP ID**: 2661
+- **Tags**: mechanical waves, wave physics, energy transfer
+
+2026-05-16T14:08:55 | 2667 | planetary-retrograde-mars-motion | Why Mars Sometimes Moves Backward: The Illusion That Changed Astronomy
+
+- double-pendulum-done
+
+## Why the Wave That Swallows Everything Emerges Whole
+
+- **Slug**: kdv-soliton-waves
+- **Tool**: kdv-soliton
+- **Published**: 2026-05-17
+- **Post ID**: 2689
+- **URL**: https://blog.flowrust.com/2026/05/17/kdv-soliton-waves/
+- **Tags**: physics, mathematics, nonlinear waves
+## carnot-cycle-heat-engine (WP ID 2702)
+- URL: https://blog.flowrust.com/2026/05/17/carnot-cycle-heat-engine/
+- date_gmt: 2026-05-17T10:38:30
+- Tags: physics, thermodynamics
+
+
+- [Resonance Phenomenon](https://blog.flowrust.com/2026/05/18/2026-05-18-resonance-phenomenon/) (WP ID 2730, 2026-05-18)
+- [diffusion-phenomenon](https://blog.flowrust.com/2026/05/18/diffusion-phenomenon-physics/) - Why Smells Travel the Way They Do: The Mathematics of Diffusion
+## 2026-05-18: Why a Calm Stream Suddenly Sheds Chaos: The Karman Vortex Street
+- **Tool**: karman-vortex-street
+- **URL**: https://blog.flowrust.com/2026/05/18/karman-vortex-street-physics/
+- **WP ID**: 2742
+- **Date GMT**: 2026-05-18T11:26:27
+
+- [Collision Physics: Coefficient of Restitution](https://blog.flowrust.com/2026/05/19/collision-physics-coefficient-of-restitution/) (2026-05-19, ID 2759)
+## center-of-mass-motion (2026-05-19)
+- Why the Center of Mass Moves the Way It Does: The Invisible Point That Governs All Motion
+  URL: https://blog.flowrust.com/2026/05/19/center-of-mass-motion-physics/
+  WP ID: 2779
+- [coulomb-force-distance-physics](https://blog.flowrust.com/2026/05/20/coulomb-force-distance-physics/) (ID 2795)
+
+- [heat-conduction-equation](/2026/05/20/heat-conduction-equation-physics/) (WP ID 2809)
+## echo-reverberation
+- URL: https://blog.flowrust.com/2026/05/21/echo-reverberation-physics/
+- Date: 2026-05-21
+- Tool: echo-reverberation
+
+
+- [communicating-vessels](https://blog.flowrust.com/2026/05/21/communicating-vessels-physics-pressure-balance/) - WP ID 2839
+
+- **colloid-stability** (DLVO Theory) — [Why Colloidal Gold Stays Suspended: The DLVO Theory Behind Nanoparticle Stability](https://blog.flowrust.com/2026/05/21/colloid-stability-dlvo-theory/) — 2026-05-21| convex-lens-imaging | convex-lens-imaging-physics | 2026-05-21T13:22:00 | https://blog.flowrust.com/2026/05/21/convex-lens-imaging-physics/ |
+
+- [cooling-curve-physics](https://blog.flowrust.com/2026/05/22/cooling-curve-physics/) (ID 2875) — Why Your Coffee Cools Slower at the End: The Physics of Cooling Curves## lenz-law (2026-05-21)
+- https://blog.flowrust.com/2026/05/22/lenz-law-opposition-electromagnetic-induction/
+- [2026-05-22] [Why Your Laundry Dries at Room Temperature: The Physics of Evaporation and Boiling](https://blog.flowrust.com/2026/05/22/evaporation-vs-boiling-physics/) — evaporation-vs-boiling
+
+## 2026-05-22 | Why Two Forces Can Do What One Never Could: The Physics of Force Composition | force-composition-physics | WP ID 2900 | https://blog.flowrust.com/2026/05/22/force-composition-physics/
+## electric-power
+
+- **WP Post ID**: 2906
+- **WP URL**: https://blog.flowrust.com/2026/05/22/electric-power-physics/
+- **Featured Image**: poster (WP ID 2902)
+- **Highlight Cards**: 3 (2903, 2904, 2905)
+- **Slug**: electric-power-physics
+- **Visualization**: Electric Power
+- **Category**: Physics / Electricity / Power
+
+- force-resolution: Why One Force Can Do What Two Angles Could: The Physics of Force Resolution (WP ID 2919, 2026-05-22-force-resolution-physics)
+| color-mixing-subtractive | [Why Painters Mixed Colors Long Before Screens Existed: The Physics of Subtractive Color Mixing](https://blog.flowrust.com/2026/05/23/color-mixing-subtractive-physics/) | 2026-05-23 |
+- [2026-05-23] [Why Two Charges Decide Whether to Meet or Flee](https://blog.flowrust.com/2026/05/23/charge-interaction-physics-2/) — charge-interaction
+
+- [2026-05-23] [Why One Gas Law Explains What Others Miss: The P-V-T Triangle Behind Every Engine and Breath](https://blog.flowrust.com/2026/05/23/gas-laws-comparison-physics/) — gas-laws-comparison
+
+## 2026-05-23: Why Crystal Structures Determine Everything About the Materials You Use
+- Tool: crystal-structures
+- URL: https://blog.flowrust.com/2026/05/23/crystal-structures-physics-2026-05-23/
+- WP ID: 2939
+
+## 2026-05-24: Why the Same Force Deforms Steel, Rubber, and Concrete in Completely Different Ways
+- [infinite-square-well](https://blog.flowrust.com/2026/05/24/infinite-square-well-quantum-mechanics/) (WP ID 2957)
+| 2026-05-24 | hydropower | [Why a Dam Holds Back Enough Energy to Power a City: The Physics of Hydropower Generation](https://blog.flowrust.com/2026/05/24/hydropower-physics-2026-05-24/) | 2962 | hydropower-physics-2026-05-24 |
+
+- [impulse-momentum-theorem] Why the Same Hit Can Feel Gentle or Deadly: The Physics of Impulse and Momentum | [WP#2967](https://blog.flowrust.com/2026/05/24/impulse-momentum-physics-2026-05-24/) | Physics | 2026-05-24
+- Newton Law of Cooling — [Why Your Coffee Always Ends Up Room Temperature: The Exponential Law Behind Every Cooling Process](https://blog.flowrust.com/2026/05/24/newton-cooling-law-physics/) (WP ID 2973)
+
+## ideal-gas-law - [Why One Equation Connects Pressure, Volume, and Temperature Across Every Engine and Breath](https://blog.flowrust.com/2026/05/25/ideal-gas-law-physics-2026-05-24/) (WP ID 2979, 2026-05-25)- [2026-05-25] Why We See the Moon Change Shape Every Night | [Moon Phases](/tools/moon-phases) | Physics | [Post](https://blog.flowrust.com/2026/05/25/moon-phases-physics-2026-05-25/) | WP ID 2997
+- [lever-principle](/2026/05/25/lever-principle-physics-2026-05-25/) - Why a Simple Stick and Fulcrum Can Lift Anything
+
+| 2026-05-26 | Why Light Can't Escape an Optical Fiber: The Physics of Total Internal Reflection | optical-fiber-physics | 3026 | https://blog.flowrust.com/2026/05/26/optical-fiber-physics-2026-05-25/ |
+## pn-junction | 2026-05-26 | [Why Every Semiconductor Device...](https://blog.flowrust.com/2026/05/26/pn-junction-physics-semiconductor/) | WP ID 3033
+- [2026-05-27] evaporation-boiling: Why Evaporation and Boiling Are Not the Same Thing (WP ID 3060)
+
+- [Thermoelectric Effect](https://blog.flowrust.com/2026/05/27/thermoelectric-effect-physics-2026-05-26/) — WP ID 3067
+## kirchhoff-circuit-laws (2026-05-27)
+
+- **Title:** Why Every Circuit in the World Obeys Two Rules (And Your Phone Charger Is No Exception)
+- **URL:** https://blog.flowrust.com/2026/05/27/kirchhoff-circuit-laws-physics-2026-05-27/
+- **WP ID:** 3073
+- **Tool:** kirchhoff-circuit-laws
+- **Poster media ID:** 3069
+- **Cards:** card-01 (3070), card-02 (3071), card-03 (3072)
+- [magnetic hysteresis](https://blog.flowrust.com/2026/05/27/magnetic-hysteresis-physics-2026-05-27/) | 2026-05-27
+
+- [ideal-gas](/2026/05/27/ideal-gas-physics-2026-05-27/) - Posted 2026-05-27
+- [2026-05-28] [Why a Hole Smaller Than Your Fingernail Can Project a Perfect Image](https://blog.flowrust.com/2026/05/28/pinhole-imaging-physics-2026-05-27/) (WP ID 3114) - pinhole-imaging
+- [2026-05-28] [Why Diamond Wears Down Glass but Not Itself: The Physics of Material Hardness](https://blog.flowrust.com/2026/05/28/material-hardness-physics/) — material-hardness
+
+## multi-source-interference (WP ID 3127)
+
+## Why One Equation Explains the Force Multiplier Behind Every Hydraulic Jack (pascal-law-physics)
+- URL: https://blog.flowrust.com/2026/05/28/pascal-law-physics/
+- Tool: pascal-law
+- Posted: 2026-05-28T09:34:56
+
+- [2026-05-29] [Why One Equation Explains Why Water Flows Into Your Cells](https://blog.flowrust.com/2026/05/29/osmotic-pressure-physics/) — osmotic-pressure
+
+- [2026-05-29] [Why Your Reflection Always Appears at the Same Distance](https://blog.flowrust.com/2026/05/29/plane-mirror-imaging-physics/) — plane-mirror-imaging-physics
+- [2026-05-29] [Why a Swing Works Only When You Push at Exactly the Right Frequency](https://blog.flowrust.com/2026/05/29/parametric-oscillator-resonance-physics/) — parametric-oscillator-resonance-physics
+
+- [2026-05-29] [Why a Single Qubit Defies Everything Your Classical Intuition Tells You](https://blog.flowrust.com/2026/05/29/quantum-computing-basics-physics/) — quantum-computing-basics-physics
+
+- [2026-05-29] [Why 21 Stones Guarantees a Win — The Mathematics of Bachet's Game](https://blog.flowrust.com/2026/05/29/bachets-game-2026-05-29/) — bachets-game-2026-05-29
+
+- [2026-05-29] [Why a 48-Millimeter Gap Stops Bridges From Collapsing: The Thermal Expansion Equation](https://blog.flowrust.com/2026/05/29/thermal-expansion-physics/) — thermal-expansion-physics
+
+- [2026-05-29] [Why Light Never Goes Straight When You Actually Watch It](https://blog.flowrust.com/2026/05/30/single-slit-diffraction-physics/) — single-slit-diffraction-physics
+
+- [2026-05-30] [Why Radio Waves Split Into Two Paths Inside a Plasma](https://blog.flowrust.com/2026/05/30/plasma-wave-dispersion-physics/) — plasma-wave-dispersion-physics
+
+- [2026-05-30] [Why Friction Jumps the Moment Something Starts Sliding](https://blog.flowrust.com/2026/05/30/sliding-friction-physics/) — sliding-friction
+
+- [2026-05-30] [Why a Light Beam Split in Two Directions Detects Rotation When Nothing Else Can](https://blog.flowrust.com/2026/05/30/sagnac-interferometer-physics/) — sagnac-interferometer
+- [2026-05-30] [Why Summer and Winter Happen at the Same Time on the Same Planet](https://blog.flowrust.com/2026/05/30/seasons-formation-physics-2026-05-30/) — seasons-formation-physics-2026-05-30
+
+- [2026-05-30] [Why Summer and Winter Happen at the Same Time on the Same Planet](https://blog.flowrust.com/2026/05/30/seasons-formation-physics-2026-05-30/) — seasons-formation-physics-2026-05-30
+
+- [2026-05-30] [Why the Ground Beneath Your Feet Is Always Moving (And Why You Can't Feel It)](https://blog.flowrust.com/2026/05/30/plate-tectonics-physics-2026-05-30/) — plate-tectonics-physics-2026-05-30
+
+- [2026-05-31] [Why the Mean of Any Distribution Converges to a Bell Curve](https://blog.flowrust.com/2026/05/31/central-limit-theorem-physics-2026-05-31/) — central-limit-theorem-physics-2026-05-31
+
+- [2026-05-31] [Why a Piano Recital Costs More Every Year (and What That Actually Means)](https://blog.flowrust.com/2026/05/31/baumol-cost-disease-physics-2026-05-31/) — baumol-cost-disease
+
+- [2026-05-31] [Why Water Falls Where It Does: The Physics Behind Earth's Water Cycle](https://blog.flowrust.com/2026/05/31/water-cycle-physics-2026-05-31/) — water-cycle-physics-2026-05-31
+
+- [2026-05-31] [Why Light Curves Around Every Star (And Why You Can't See It Happen)](https://blog.flowrust.com/2026/05/31/gravitational-lensing-physics-2026-05-31/) — gravitational-lensing-physics (WP ID 3255)
