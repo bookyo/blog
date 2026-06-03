@@ -1678,3 +1678,21 @@
 - [2026-05-31] [Why Water Falls Where It Does: The Physics Behind Earth's Water Cycle](https://blog.flowrust.com/2026/05/31/water-cycle-physics-2026-05-31/) — water-cycle-physics-2026-05-31
 
 - [2026-05-31] [Why Light Curves Around Every Star (And Why You Can't See It Happen)](https://blog.flowrust.com/2026/05/31/gravitational-lensing-physics-2026-05-31/) — gravitational-lensing-physics (WP ID 3255)
+- [2026-05-31] [Why Every Shadow Is a Geometry Problem in Disguise](https://blog.flowrust.com/2026/06/01/shadow-formation-physics-2026-05-31/) — shadow-formation-physics-2026-05-31
+- [2026-05-31] [Why a Simple Spring Can Suddenly Become Unpredictable](https://blog.flowrust.com/2026/06/01/duffing-oscillator-physics-2026-05-31/) — duffing-oscillator-physics-2026-05-31
+
+- [2026-06-01] [Why the Aharonov-Bohm Effect Proves That "Empty" Space Has Structure](https://blog.flowrust.com/2026/06/01/aharonov-bohm-effect-physics-2026-06-01/) — aharonov-bohm
+
+- [2026-06-01] [Why Opposite Charges Attract and Like Charges Repel](https://blog.flowrust.com/2026/06/01/charge-interaction-physics-2026-06-01/) — charge-interaction- [2026-06-01] [Why Time Slows Down When You Move (And Why You Can't Feel It)](https://blog.flowrust.com/2026/06/01/time-dilation-physics-2026-06-01/) — time-dilation-physics-2026-06-01
+
+- [2026-06-02] [Why Every Periodic Function Hides Inside Circles](https://blog.flowrust.com/2026/06/02/why-every-periodic-function-hides-inside-circles/) — why-every-periodic-function-hides-inside-circles
+- [2026-06-02] [Why Every Magnet Has a Field That Spreads Like a Cubed Onion](https://blog.flowrust.com/2026/06/02/magnetic-dipole-field-physics-2026-06-02/) — magnetic-dipole-field-physics-2026-06-02
+
+- [2026-06-02] [Why Every Coil Fights the Current That Flows Through It](https://blog.flowrust.com/2026/06/02/self-induction-physics-2026-06-02/) — self-induction
+- [2026-06-02] [Why Every Pulley System Hides the Same Trade-Off](https://blog.flowrust.com/2026/06/02/pulley-systems-physics-2026-06-02/) — pulley-systems-physics-2026-06-02
+
+- [2026-06-02] [Why Light Bounces Back Instead of Passing Through](https://blog.flowrust.com/2026/06/02/total-internal-reflection-physics/) — total-internal-reflection-physics — WP ID 3335
+- [2026-06-03] [Why Every Tide on Earth Follows the Moon (And the Sun Joins In)](https://blog.flowrust.com/2026/06/03/tides-physics-2026-06-03/) — tides-physics-2026-06-03
+
+- [2026-06-03] [Why Every Submarine Uses Sound to "See" Through the Ocean](https://blog.flowrust.com/2026/06/03/sonar-principle-physics/) — sonar-principle-physics
+- [2026-06-03] [Why Light Always Takes the Fastest Path (And Why That Matters)](https://blog.flowrust.com/2026/06/03/fermat-principle-light-fastest-path/) — fermat-principle-light-fastest-path — WP ID 3359
