@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Outfit', sans-serif;
+  width: 1080px;
+  min-height: 900px;
+  background: #000;
+}
+.card-body {
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 48px;
+}
+</style>
+</head>
+<body class="bg-black flex items-center justify-center">
+  <div class="w-[1080px] text-center px-[108px] py-24">
+    <p class="text-[14px] font-bold text-[#00B4D8] tracking-widest uppercase mb-6">Visualization 1</p>
+    <h2 class="text-[96px] font-black text-white leading-none tracking-tight mb-6">Mandelbrot & Julia Sets</h2>
+    <p class="text-[28px] font-semibold text-white leading-relaxed">z<sub>n+1</sub> = z<sub>n</sub>&sup2; + c<br/>Every point on the boundary hides infinite structure</p>
+    <p class="text-[16px] text-[#888888] mt-8 leading-relaxed">Self-similarity at every scale &mdash; zoom in and the same complexity reappears</p>
+  </div>
+</body>
+</html>
