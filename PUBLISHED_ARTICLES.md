@@ -1696,3 +1696,9 @@
 
 - [2026-06-03] [Why Every Submarine Uses Sound to "See" Through the Ocean](https://blog.flowrust.com/2026/06/03/sonar-principle-physics/) — sonar-principle-physics
 - [2026-06-03] [Why Light Always Takes the Fastest Path (And Why That Matters)](https://blog.flowrust.com/2026/06/03/fermat-principle-light-fastest-path/) — fermat-principle-light-fastest-path — WP ID 3359
+
+- [2026-06-03] [Why Every Sharp Point Builds a Field It Cannot Contain](https://blog.flowrust.com/2026/06/03/point-discharge-physics-2026-06-03/) — point-discharge-physics-2026-06-03
+- [2026-06-03] [Why X-Rays Reveal the Secret Structure of Every Crystal](https://blog.flowrust.com/2026/06/04/bragg-diffraction-physics-2026-06-03/) — bragg-diffraction-physics-2026-06-03
+
+- [2026-06-04] [Why Fractals Appear in Every Corner of Nature](https://blog.flowrust.com/2026/06/04/fractal-chaos-systems/) — fractal-chaos
+- [2026-06-04] [Why Water Climbs Over a Hill on Its Way Down](https://blog.flowrust.com/2026/06/04/siphon-effect-physics-2026-06-04/) — siphon-effect-physics-2026-06-04 — WP ID 3393
