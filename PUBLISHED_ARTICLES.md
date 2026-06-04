@@ -1702,3 +1702,5 @@
 
 - [2026-06-04] [Why Fractals Appear in Every Corner of Nature](https://blog.flowrust.com/2026/06/04/fractal-chaos-systems/) — fractal-chaos
 - [2026-06-04] [Why Water Climbs Over a Hill on Its Way Down](https://blog.flowrust.com/2026/06/04/siphon-effect-physics-2026-06-04/) — siphon-effect-physics-2026-06-04 — WP ID 3393
+
+- [2026-06-04] [Why Two Numbers That Look Identical Always Pull Apart — The Lyapunov Exponent](https://blog.flowrust.com/2026/06/04/lyapunov-exponent-physics-2026-06-04/) — lyapunov-exponent-physics-2026-06-04 — WP ID 3399
