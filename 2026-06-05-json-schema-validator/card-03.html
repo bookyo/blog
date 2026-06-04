@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Outfit', sans-serif; width: 1280px; min-height: 720px; background: #000; margin: 0; }
+.code { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body class="bg-black flex items-center justify-center">
+<div class="w-[1280px] h-[720px] flex flex-col justify-center px-[100px] py-16">
+  <p class="text-[20px] font-bold text-[#00FF94] tracking-[0.3em] uppercase mb-6">THE OUTPUT</p>
+  <h2 class="text-[60px] font-black text-white leading-[1.05] mb-8">A 400 that reads<br/>like a checklist.</h2>
+  <div class="code bg-[#0a0a0a] border-l-4 border-[#00FF94] p-5 text-[20px] mb-4 max-w-[1000px]">
+    <p><span class="text-[#666]">❌</span> <span class="text-[#FF6B35]">/plan</span> <span class="text-white">must be one of:</span> <span class="text-[#00FF94]">free, pro, team</span></p>
+    <p class="mt-2"><span class="text-[#666]">❌</span> <span class="text-[#FF6B35]">/email</span> <span class="text-white">must match format</span> <span class="text-[#00FF94]">"email"</span></p>
+    <p class="mt-2"><span class="text-[#666]">❌</span> <span class="text-[#FF6B35]">/isAdmin</span> <span class="text-white">is not an allowed property</span></p>
+  </div>
+  <p class="text-[22px] text-[#aaa] leading-relaxed max-w-[900px]">instancePath tells you the line. The keyword tells you the rule. Together: a 400 the developer fixes without reading the docs.</p>
+</div>
+</body>
+</html>
