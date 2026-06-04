@@ -1706,3 +1706,4 @@
 - [2026-06-04] [Why Two Numbers That Look Identical Always Pull Apart — The Lyapunov Exponent](https://blog.flowrust.com/2026/06/04/lyapunov-exponent-physics-2026-06-04/) — lyapunov-exponent-physics-2026-06-04 — WP ID 3399
 
 - [2026-06-04] [Why Every Fence, Frame, and Border Hides the Same Old Math Problem](https://blog.flowrust.com/2026/06/04/perimeter-calculator/) — perimeter-calculator — WP ID 3406
+- [2026-06-04] [Why One Curve Hides Every Story About Inequality](https://blog.flowrust.com/2026/06/04/lorenz-curve-gini-coefficient/) — lorenz-curve-gini-coefficient — WP ID 3413
