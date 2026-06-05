@@ -1,0 +1,26 @@
+{
+  "post_id": 3451,
+  "post_url": "https://blog.flowrust.com/2026/06/05/cidr-calculator-network-fundamentals/",
+  "date_gmt": "2026-06-05T12:52:46",
+  "title": "Why Every Slash in an IP Address Hides a Tiny Network",
+  "status": "publish",
+  "media_ids": {
+    "poster": 3447,
+    "card1": 3448,
+    "card2": 3449,
+    "card3": 3450
+  },
+  "media_urls": {
+    "poster": "https://blog.flowrust.com/wp-content/uploads/2026/06/poster-29.png",
+    "card1": "https://blog.flowrust.com/wp-content/uploads/2026/06/card1-26.png",
+    "card2": "https://blog.flowrust.com/wp-content/uploads/2026/06/card2-26.png",
+    "card3": "https://blog.flowrust.com/wp-content/uploads/2026/06/card3-26.png"
+  },
+  "card_alts": {
+    "card1": "What a /24 CIDR actually means: 192.168.1.0/24 returns network, broadcast, subnet mask, and 254 usable hosts",
+    "card2": "Slash to address count cheat sheet: /30=2 hosts, /27=30, /24=254, /22=1022, /16=65534, /8=16M",
+    "card3": "IPv4 vs IPv6: /32 has 1 address, IPv6 /64 has 1.8\u00d710^19 addresses. No broadcast, no subtraction in IPv6"
+  },
+  "word_count": 1454,
+  "h2_count": 6
+}

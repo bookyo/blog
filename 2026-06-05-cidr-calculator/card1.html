@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Outfit', sans-serif;
+  width: 1080px;
+  min-height: 900px;
+  margin: 0;
+  background: #000;
+}
+.mono { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body class="flex items-center justify-center">
+  <div class="w-[1080px] px-[80px] py-20">
+    <p class="text-[24px] font-bold text-[#00B4D8] tracking-[0.3em] uppercase mb-4">The breakdown</p>
+    <p class="text-[68px] font-black text-white leading-[0.95] mb-12">What <span class="mono">/24</span> actually means</p>
+    <div class="space-y-5">
+      <div class="flex justify-between items-baseline border-b border-[#222] pb-3">
+        <span class="text-[22px] text-[#888]">Network address</span>
+        <span class="mono text-[32px] text-white font-semibold">192.168.1.0</span>
+      </div>
+      <div class="flex justify-between items-baseline border-b border-[#222] pb-3">
+        <span class="text-[22px] text-[#888]">Broadcast address</span>
+        <span class="mono text-[32px] text-white font-semibold">192.168.1.255</span>
+      </div>
+      <div class="flex justify-between items-baseline border-b border-[#222] pb-3">
+        <span class="text-[22px] text-[#888]">Subnet mask</span>
+        <span class="mono text-[32px] text-white font-semibold">255.255.255.0</span>
+      </div>
+      <div class="flex justify-between items-baseline border-b border-[#222] pb-3">
+        <span class="text-[22px] text-[#888]">First usable IP</span>
+        <span class="mono text-[32px] text-[#00B4D8] font-semibold">192.168.1.1</span>
+      </div>
+      <div class="flex justify-between items-baseline border-b border-[#222] pb-3">
+        <span class="text-[22px] text-[#888]">Last usable IP</span>
+        <span class="mono text-[32px] text-[#00B4D8] font-semibold">192.168.1.254</span>
+      </div>
+      <div class="flex justify-between items-baseline pt-3">
+        <span class="text-[22px] text-[#888]">Usable addresses</span>
+        <span class="mono text-[40px] text-[#00FF94] font-black">254</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
