@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Outfit', sans-serif; width: 1080px; min-height: 900px; background: #000000; margin: 0; padding: 0; }
+</style>
+</head>
+<body class="flex items-center justify-center">
+  <div class="w-[1080px] px-[80px] py-20">
+    <p class="text-[20px] font-semibold text-[#00B4D8] uppercase tracking-widest">Mod-97 algorithm</p>
+    <h2 class="text-[78px] font-black text-white leading-none mt-6">Remainder<br/>must equal 1</h2>
+    <p class="text-[24px] text-[#999999] mt-10 leading-relaxed">Move the first 4 characters to the end, convert letters to numbers (A=10, B=11, ..., Z=35), then divide by 97. The remainder is the check.</p>
+    <div class="mt-12 bg-[#111] border border-[#222] rounded p-8 font-mono text-[22px] text-[#00FF94]">
+      <p>rearranged = iban[4:] + iban[:4]</p>
+      <p class="mt-3">for c in rearranged:</p>
+      <p class="ml-6">remainder = (remainder*10 + c) % 97</p>
+      <p class="mt-3 text-white">return remainder == 1</p>
+    </div>
+  </div>
+</body>
+</html>

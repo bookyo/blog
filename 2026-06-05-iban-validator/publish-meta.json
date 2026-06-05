@@ -1,0 +1,24 @@
+{
+  "wp_id": 3457,
+  "url": "https://blog.flowrust.com/2026/06/06/iban-validator-mod-97-check-digit/",
+  "slug": "iban-validator-mod-97-check-digit",
+  "date_gmt": "2026-06-05T17:14:57",
+  "poster_id": 3453,
+  "card_ids": {
+    "card1": 3454,
+    "card2": 3455,
+    "card3": 3456
+  },
+  "card_urls": {
+    "card1": "https://blog.flowrust.com/wp-content/uploads/2026/06/card1-27.png",
+    "card2": "https://blog.flowrust.com/wp-content/uploads/2026/06/card2-27.png",
+    "card3": "https://blog.flowrust.com/wp-content/uploads/2026/06/card3-27.png"
+  },
+  "card_alts": {
+    "card1": "IBAN length by country: Norway 15 chars, Belgium 16, Germany 22, France 27, Malta 31 \u2014 the first sanity check",
+    "card2": "Mod-97 algorithm: rearranged string, letters as numbers A=10, divide by 97, remainder must equal 1",
+    "card3": "IBAN timeline: 1997 ECBS spec, 2008 SEPA mandate, 2024 ECB typo study, 2025 EBA validation requirement"
+  },
+  "poster_alt": "IBAN mod-97 check: two digits, 96 checks for cross-border bank account numbers",
+  "title": "Why Every IBAN Carries a Tiny Math Trick That Catches One Typo in 22 Characters"
+}
