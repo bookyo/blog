@@ -1712,4 +1712,5 @@
 - [2026-06-05] [Why Every Sankey Diagram Hides the Same Conservation Story](https://blog.flowrust.com/2026/06/05/sankey-diagram-generator/) — sankey-diagram-generator — WP ID 3432
 - [2026-06-05] [One Regex Pattern, 4 Days of Downtime](https://blog.flowrust.com/2026/06/05/redos-regex-scanner/) — redos-regex-scanner — WP ID 3439
 - [2026-06-05] [Why Every Slash in an IP Address Hides a Tiny Network](https://blog.flowrust.com/2026/06/05/cidr-calculator-network-fundamentals/) — cidr-calculator — WP ID 3451
-- [2026-06-06] [Why Every IBAN Carries a Tiny Math Trick That Catches One Typo in 22 Characters](https://blog.flowrust.com/2026/06/06/iban-validator-mod-97-check-digit/) — iban-validator — WP ID 3457
+- [2026-06-05] [Why Every IBAN Carries a Tiny Math Trick That Catches One Typo in 22 Characters](https://blog.flowrust.com/2026/06/06/iban-validator-mod-97-check-digit/) — iban-validator — WP ID 3457
+- [2026-06-05] [Why Every "X% of Voters" Headline Hides a Math Trick Most Reporters Don't Understand](https://blog.flowrust.com/2026/06/06/why-every-x-of-voters-headline-hides-a-math-trick-most-reporters-dont-understand/) — confidence-interval-calculator — WP ID 3472

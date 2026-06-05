@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Outfit', sans-serif;
+  width: 1080px;
+  min-height: 900px;
+  margin: 0;
+  padding: 0;
+}
+.glow { text-shadow: 0 0 30px rgba(0, 180, 216, 0.5); }
+.bar {
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #00B4D8 0%, transparent 100%);
+}
+.bar-yellow {
+  background: linear-gradient(90deg, #FF6B35 0%, transparent 100%);
+}
+</style>
+</head>
+<body class="bg-black flex items-center justify-center">
+  <div class="w-[1080px] px-[80px] py-20">
+    <p class="text-[24px] font-light text-[#00B4D8] tracking-[0.3em] uppercase mb-4 glow">The A/B test trap</p>
+    <h2 class="text-[68px] font-black text-white tracking-tight leading-none mb-10">5,000 vs 5,000 visitors.<br/><span class="text-[#00B4D8]">Still not a win.</span></h2>
+
+    <div class="bg-[#0a0a0a] border border-[#222] rounded-2xl p-8 mb-8">
+      <p class="text-[22px] text-[#888] mb-6">Green button: <span class="text-white font-bold">4.8% conversion</span></p>
+      <div class="bar w-[60%] mb-2"></div>
+      <p class="text-[18px] text-[#666] mb-6 font-mono">4.2% — 5.4%</p>
+
+      <p class="text-[22px] text-[#888] mb-6">Blue button: <span class="text-white font-bold">4.3% conversion</span></p>
+      <div class="bar bar-yellow w-[55%] mb-2"></div>
+      <p class="text-[18px] text-[#666] font-mono">3.7% — 4.9%</p>
+    </div>
+
+    <p class="text-[28px] text-white leading-tight">The intervals <span class="text-[#FF6B35] font-bold">overlap</span>. The 0.5% difference is consistent with random noise.</p>
+    <p class="text-[20px] text-[#888] mt-6 leading-tight">Rolling out green is a coin flip dressed up as a strategy.</p>
+  </div>
+</body>
+</html>

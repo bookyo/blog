@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Outfit', sans-serif;
+  width: 1080px;
+  min-height: 900px;
+  margin: 0;
+  padding: 0;
+}
+.glow { text-shadow: 0 0 30px rgba(0, 180, 216, 0.5); }
+.formula {
+  font-family: 'JetBrains Mono', monospace;
+  background: #0a0a0a;
+  border-left: 4px solid #00B4D8;
+  padding: 16px 24px;
+  border-radius: 4px;
+}
+</style>
+</head>
+<body class="bg-black flex items-center justify-center">
+  <div class="w-[1080px] px-[80px] py-20">
+    <p class="text-[24px] font-light text-[#00B4D8] tracking-[0.3em] uppercase mb-4 glow">The math (unchanged since 1908)</p>
+    <h2 class="text-[64px] font-black text-white tracking-tight leading-none mb-10">Two formulas.<br/><span class="text-[#00B4D8]">That's the whole thing.</span></h2>
+
+    <div class="mb-8">
+      <p class="text-[22px] text-[#888] mb-3 font-bold">For a MEAN — Student's t:</p>
+      <div class="formula text-[22px] text-white">
+        <span class="text-[#00B4D8]">SE</span> = s / √n<br/>
+        <span class="text-[#00B4D8]">MoE</span> = t · SE<br/>
+        <span class="text-[#00B4D8]">Interval</span> = mean ± MoE
+      </div>
+    </div>
+
+    <div class="mb-8">
+      <p class="text-[22px] text-[#888] mb-3 font-bold">For a PROPORTION — normal z:</p>
+      <div class="formula text-[22px] text-white">
+        <span class="text-[#00B4D8]">SE</span> = √(p·(1−p) / n)<br/>
+        <span class="text-[#00B4D8]">MoE</span> = z · SE<br/>
+        <span class="text-[#00B4D8]">Interval</span> = p ± MoE
+      </div>
+    </div>
+
+    <p class="text-[20px] text-[#888] leading-tight">z = 1.96 at 95% &nbsp;·&nbsp; z = 2.576 at 99% &nbsp;·&nbsp; t varies with sample size</p>
+  </div>
+</body>
+</html>
