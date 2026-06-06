@@ -1726,3 +1726,15 @@
 **ElysiaTools URL:** https://elysiatools.com/en/tools/jwt-decoder
 **Tags:** jwt, json-web-token, security, authentication, hs256, rs256, alg-none, exp-claim, base64url
 **Asset Dir:** ~/www/blog/2026-06-06-jwt-decoder-security
+
+## 2026-06-06 | The 30-Second Check That Catches API Changes Before They Break Production
+
+**URL:** https://blog.flowrust.com/2026/06/06/openapi-diff-breach-detector-api-changes/
+**WP Post ID:** 3489
+**Featured Image WP ID:** 3485 (poster)
+**Highlight Cards:** 3 (3486, 3487, 3488)
+**Tool Covered:** OpenAPI Diff Breach Detector
+**Slug:** openapi-diff-breach-detector-api-changes
+**ElysiaTools URL:** https://elysiatools.com/en/tools/openapi-diff-breach-detector
+**Tags:** openapi, graphql, schema-diff, breaking-changes, api-evolution, contract-testing, dangerous-changes, swagger, semantic-versioning
+**Asset Dir:** ~/www/blog/2026-06-06-openapi-diff-breach-detector
