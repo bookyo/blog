@@ -1714,3 +1714,15 @@
 - [2026-06-05] [Why Every Slash in an IP Address Hides a Tiny Network](https://blog.flowrust.com/2026/06/05/cidr-calculator-network-fundamentals/) — cidr-calculator — WP ID 3451
 - [2026-06-05] [Why Every IBAN Carries a Tiny Math Trick That Catches One Typo in 22 Characters](https://blog.flowrust.com/2026/06/06/iban-validator-mod-97-check-digit/) — iban-validator — WP ID 3457
 - [2026-06-05] [Why Every "X% of Voters" Headline Hides a Math Trick Most Reporters Don't Understand](https://blog.flowrust.com/2026/06/06/why-every-x-of-voters-headline-hides-a-math-trick-most-reporters-dont-understand/) — confidence-interval-calculator — WP ID 3472
+
+## 2026-06-06 | Why Every JWT Hides Three Tiny Stories Most Developers Never Read
+
+**URL:** https://blog.flowrust.com/2026/06/06/jwt-decoder-security/
+**WP Post ID:** 3480
+**Featured Image WP ID:** 3476 (poster)
+**Highlight Cards:** 3 (3477, 3478, 3479)
+**Tool Covered:** JWT Decoder
+**Slug:** jwt-decoder-security
+**ElysiaTools URL:** https://elysiatools.com/en/tools/jwt-decoder
+**Tags:** jwt, json-web-token, security, authentication, hs256, rs256, alg-none, exp-claim, base64url
+**Asset Dir:** ~/www/blog/2026-06-06-jwt-decoder-security

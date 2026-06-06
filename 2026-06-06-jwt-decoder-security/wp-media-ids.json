@@ -1,0 +1,15 @@
+{
+  "post_id": 3480,
+  "date_gmt": "2026-06-06T02:17:27",
+  "poster_id": 3476,
+  "card_ids": {
+    "card1": 3477,
+    "card2": 3478,
+    "card3": 3479
+  },
+  "card_urls": {
+    "card1": "https://blog.flowrust.com/wp-content/uploads/2026/06/card1-29.png",
+    "card2": "https://blog.flowrust.com/wp-content/uploads/2026/06/card2-29.png",
+    "card3": "https://blog.flowrust.com/wp-content/uploads/2026/06/card3-29.png"
+  }
+}
