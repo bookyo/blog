@@ -1738,3 +1738,15 @@
 **ElysiaTools URL:** https://elysiatools.com/en/tools/openapi-diff-breach-detector
 **Tags:** openapi, graphql, schema-diff, breaking-changes, api-evolution, contract-testing, dangerous-changes, swagger, semantic-versioning
 **Asset Dir:** ~/www/blog/2026-06-06-openapi-diff-breach-detector
+
+## 2026-06-06 | Why 1.3 Billion People Read the Web Differently Than You Do
+
+**URL:** https://blog.flowrust.com/2026/06/06/wcag-color-contrast-accessibility-design-systems/
+**WP Post ID:** 3499
+**Featured Image WP ID:** 3495 (poster)
+**Highlight Cards:** 3 (3496, 3497, 3498)
+**Tool Covered:** Accessible Color Palette Contrast Checker
+**Slug:** wcag-color-contrast-accessibility-design-systems
+**ElysiaTools URL:** https://elysiatools.com/en/tools/accessible-color-palette-contrast-checker
+**Tags:** accessibility, wcag, color-contrast, design-systems, a11y, color-theory
+**Asset Dir:** ~/www/blog/2026-06-06-wcag-color-contrast-accessibility
