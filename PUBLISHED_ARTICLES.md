@@ -1763,3 +1763,16 @@
 **Tags:** color-grading, teal-and-orange, cinema, photography, image-processing, design
 **Asset Dir:** ~/www/blog/2026-06-06-image-cinematic-color
 **Composite Score:** 0.7757 / B+
+
+## 2026-06-07 | Why Every Character on Your Screen Is Secretly a Number
+
+**URL:** https://blog.flowrust.com/2026/06/07/hex-unicode-converter-secret-number/
+**WP Post ID:** 3511
+**Featured Image WP ID:** 3507 (poster)
+**Highlight Cards:** 3 (3508, 3509, 3510)
+**Tool Covered:** Hex/Unicode Converter
+**Slug:** hex-unicode-converter
+**ElysiaTools URL:** https://elysiatools.com/en/tools/hex-unicode-converter
+**Tags:** hex, unicode, escaping, json, encoding, utf-8, character-encoding, regex, ascii
+**Asset Dir:** ~/www/blog/2026-06-07-hex-unicode-converter
+**Composite Score:** 0.7735 / B+
