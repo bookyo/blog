@@ -1750,3 +1750,16 @@
 **ElysiaTools URL:** https://elysiatools.com/en/tools/accessible-color-palette-contrast-checker
 **Tags:** accessibility, wcag, color-contrast, design-systems, a11y, color-theory
 **Asset Dir:** ~/www/blog/2026-06-06-wcag-color-contrast-accessibility
+
+## 2026-06-06 | Why Every Blockbuster Since 1999 Secretly Uses the Same Two Colors
+
+**URL:** https://blog.flowrust.com/2026/06/06/cinematic-color-grading-hollywood-palette/
+**WP Post ID:** 3505
+**Featured Image WP ID:** 3501 (poster)
+**Highlight Cards:** 3 (3502, 3503, 3504)
+**Tool Covered:** Cinematic Color Grading
+**Slug:** image-cinematic-color
+**ElysiaTools URL:** https://elysiatools.com/en/tools/image-cinematic-color
+**Tags:** color-grading, teal-and-orange, cinema, photography, image-processing, design
+**Asset Dir:** ~/www/blog/2026-06-06-image-cinematic-color
+**Composite Score:** 0.7757 / B+

@@ -1,0 +1,21 @@
+{
+  "poster_id": 3501,
+  "poster_url": "https://blog.flowrust.com/wp-content/uploads/2026/06/poster-35.png",
+  "cards": {
+    "card1": {
+      "id": 3502,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/06/card1-32.png",
+      "alt": "Your eye sees warm colors 3x better than cool ones. The L-M-S cone asymmetry is why teal-and-orange works."
+    },
+    "card2": {
+      "id": 3503,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/06/card2-32.png",
+      "alt": "Eight movie presets, one intensity slider. Hollywood Blockbuster, Indie, Vintage, Noir, Sci-Fi, Action, Romance, Horror."
+    },
+    "card3": {
+      "id": 3504,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/06/card3-32.png",
+      "alt": "Stacking presets is the fastest way to look like a filter. Pick one preset, commit, and adjust the sliders."
+    }
+  }
+}
