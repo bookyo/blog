@@ -1777,3 +1777,16 @@
 **Asset Dir:** ~/www/blog/2026-06-07-hex-unicode-converter
 **Composite Score:** 0.7735 / B+
 - [2026-06-07] [Why One Apostrophe Can Wipe Out Your Entire Database](https://blog.flowrust.com/2026/06/07/why-one-apostrophe-can-wipe-out-your-entire-database/) - sql-injection-detector (WP ID 3517)
+
+## 2026-06-07 | Why Every Postal Code in the World Is Quietly a Local Secret
+
+**URL:** https://blog.flowrust.com/2026/06/07/global-postal-code-validator-local-secret/
+**WP Post ID:** 3530
+**Featured Image WP ID:** 3526 (poster)
+**Highlight Cards:** 3 (3527, 3528, 3529)
+**Tool Covered:** Global Postal Code Validator
+**Slug:** global-postal-code-validator
+**ElysiaTools URL:** https://elysiatools.com/en/tools/global-postal-code-validator
+**Tags:** postal-codes, regex, international, addresses, validation, geography
+**Asset Dir:** ~/www/blog/2026-06-07-postal-codes-local-secret
+**Composite Score:** 0.7683 / B+
