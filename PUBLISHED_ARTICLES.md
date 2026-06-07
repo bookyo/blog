@@ -1776,3 +1776,4 @@
 **Tags:** hex, unicode, escaping, json, encoding, utf-8, character-encoding, regex, ascii
 **Asset Dir:** ~/www/blog/2026-06-07-hex-unicode-converter
 **Composite Score:** 0.7735 / B+
+- [2026-06-07] [Why One Apostrophe Can Wipe Out Your Entire Database](https://blog.flowrust.com/2026/06/07/why-one-apostrophe-can-wipe-out-your-entire-database/) - sql-injection-detector (WP ID 3517)

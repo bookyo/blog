@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Outfit', sans-serif; width: 1080px; min-height: 900px; margin: 0; background: #0a0a0a; }
+</style>
+</head>
+<body class="flex items-center justify-center p-16">
+  <div class="w-[960px]">
+    <p class="text-[24px] text-[#FF6B35] font-bold tracking-widest mb-8">THE 11-CHARACTER PAYLOAD</p>
+    <p class="text-[80px] font-black text-white leading-none tracking-tight">FROM LOGIN FORM</p>
+    <p class="text-[80px] font-black text-[#FF6B35] leading-none tracking-tight mt-4">TO FULL TABLE DUMP</p>
+    <div class="mt-12 bg-black p-8 border-l-4 border-[#FF6B35]">
+      <p class="font-mono text-[32px] text-[#00FF94]">' OR '1'='1</p>
+      <p class="text-[20px] text-[#888] mt-4">SELECT * FROM users WHERE username = <span class="text-[#FF6B35]">'' OR '1'='1'</span></p>
+      <p class="text-[18px] text-white mt-3">First row returned. Usually the admin.</p>
+    </div>
+  </div>
+</body>
+</html>
