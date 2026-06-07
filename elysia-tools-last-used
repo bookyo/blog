@@ -297,3 +297,5 @@ global-postal-code-validator-done
 log-parser-done
 
 isbn-validator-done
+xss-payload-detector-done
+
