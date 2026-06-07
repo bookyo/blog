@@ -1804,3 +1804,17 @@
 **Tags:** log-parser, apache, nginx, access-log, regex, devops, web-server, log-analysis
 **Asset Dir:** ~/www/blog/2026-06-07-log-parser-apache-nginx
 **Composite Score:** 0.8122 / B+
+
+## 2026-06-07 | Why Every Text Field on the Web Is Quietly Waiting for the Wrong Eight Characters
+
+**URL:** https://blog.flowrust.com/2026/06/08/xss-payload-detector-text-field-eight-characters/
+**WP Post ID:** 3554
+**Featured Image WP ID:** 3550 (poster)
+**Highlight Cards:** 3 (3551, 3552, 3553)
+**Tool Covered:** XSS Payload Detector
+**Slug:** xss-payload-detector
+**ElysiaTools URL:** https://elysiatools.com/en/tools/xss-payload-detector
+**Sample URL:** https://elysiatools.com/en/samples/xss-payloads
+**Tags:** xss, security, web, javascript, validation, attack-detection
+**Asset Dir:** ~/www/blog/2026-06-08-xss-payload-detector
+**Composite Score:** Pending (cron publish — scored post-fix)
