@@ -1,0 +1,25 @@
+{
+  "poster": {
+    "id": 3520,
+    "source_url": "https://blog.flowrust.com/wp-content/uploads/2026/06/poster-38.png",
+    "alt": "Time Series Anomaly Detector poster: Z-Score and IQR statistical detection methods for monitoring dashboards"
+  },
+  "card1": {
+    "id": 3521,
+    "source_url": "https://blog.flowrust.com/wp-content/uploads/2026/06/card1-35.png",
+    "alt": "Z-Score method card: distance in standard deviations from the rolling mean; Z=3 covers 0.3% of normal distribution"
+  },
+  "card2": {
+    "id": 3522,
+    "source_url": "https://blog.flowrust.com/wp-content/uploads/2026/06/card2-35.png",
+    "alt": "IQR method card: Interquartile Range flags points beyond 1.5 times the middle 50% spread; x > Q3+1.5*IQR or x < Q1-1.5*IQR"
+  },
+  "card3": {
+    "id": 3523,
+    "source_url": "https://blog.flowrust.com/wp-content/uploads/2026/06/card3-35.png",
+    "alt": "Why statistical beats static thresholds: a 500ms alert does not know that yesterday averaged 180ms; the Z-Score adapts to natural range and volatility"
+  },
+  "post_id": 3524,
+  "post_url": "https://blog.flowrust.com/2026/06/07/time-series-anomaly-detector-z-score-iqr/",
+  "date_gmt": "2026-06-07T04:49:49"
+}
