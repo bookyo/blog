@@ -1,3 +1,15 @@
+## 2026-06-08 | Why One Tiny Number Hides the Secret of How Machines Compare Anything
+
+**URL:** https://blog.flowrust.com/2026/06/08/dot-product-calculator/
+**WP Post ID:** 3575
+**Featured Image WP ID:** 3571 (poster)
+**Highlight Cards:** 3 (3572, 3573, 3574)
+**Tool Covered:** Dot Product Calculator
+**Slug:** dot-product-calculator
+**ElysiaTools URL:** https://elysiatools.com/en/tools/dot-product-calculator
+**Tags:** dot-product, vector, cosine-similarity, linear-algebra, machine-learning, recommendation-systems, math, mathematics, neural-networks, search
+**Asset Dir:** ~/www/blog/2026-06-08-dot-product-calculator
+
 
 ## 2026-06-08 | Why Every US Social Security Number Has Three Forbidden Numbers Hidden Inside
 
