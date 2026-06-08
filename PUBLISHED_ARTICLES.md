@@ -1857,3 +1857,16 @@
 **Tags:** id-card, validation, checksum, luhn, national-id, kyc, form-validation, china, india, japan
 **Asset Dir:** ~/www/blog/2026-06-08-id-card-validator-checksum-lurks
 **Composite Score:** 0.8142 / B+
+
+## 2026-06-08 | Why Every Excel Sheet Becomes a SQL Story at 3 AM
+
+**URL:** https://blog.flowrust.com/2026/06/09/xlsx-sql-insert-statement-3am-contract/
+**WP Post ID:** 3584
+**Featured Image WP ID:** 3580 (poster)
+**Highlight Cards:** 3 (3581, 3582, 3583)
+**Tool Covered:** XLSX SQL Insert Generator
+**Slug:** xlsx-sql-insert-generator
+**ElysiaTools URL:** https://elysiatools.com/en/tools/xlsx-sql-insert-generator
+**Tags:** xlsx, sql, insert, excel, format-conversion, data-loading, validation
+**Asset Dir:** ~/www/blog/2026-06-09-xlsx-sql-insert-statement
+**Composite Score:** 0.8546 / A-
