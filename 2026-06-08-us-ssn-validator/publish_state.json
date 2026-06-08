@@ -1,0 +1,18 @@
+{
+  "post_id": 3569,
+  "url": "https://blog.flowrust.com/2026/06/08/us-ssn-validator-three-forbidden-numbers/",
+  "slug": "us-ssn-validator-three-forbidden-numbers",
+  "title": "Why Every US Social Security Number Has Three Forbidden Numbers Hidden Inside",
+  "date_gmt": "2026-06-08T07:47:40",
+  "poster_media_id": 3565,
+  "card_media_ids": {
+    "card1": 3566,
+    "card2": 3567,
+    "card3": 3568
+  },
+  "card_alts": {
+    "card1": "US SSN format: AAA-GG-SSSS, with three exclusion rules on the area field (no 000, 666, or 900-999), group field (no 00), and serial field (no 0000)",
+    "card2": "The famous SSN placeholder 078-05-1120, printed on 40,000 wallet inserts in the 1940s. Structurally valid format but trusted by no real system",
+    "card3": "On June 25, 2011 the SSA switched to randomized SSN assignment, breaking the geographical mapping encoded in the area number for 75 years"
+  }
+}

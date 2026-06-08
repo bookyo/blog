@@ -1,3 +1,16 @@
+
+## 2026-06-08 | Why Every US Social Security Number Has Three Forbidden Numbers Hidden Inside
+
+**URL:** https://blog.flowrust.com/2026/06/08/us-ssn-validator-three-forbidden-numbers/
+**WP Post ID:** 3569
+**Featured Image WP ID:** 3565 (poster)
+**Highlight Cards:** 3 (3566, 3567, 3568)
+**Tool Covered:** US SSN Validator
+**Slug:** us-ssn-validator
+**ElysiaTools URL:** https://elysiatools.com/en/tools/us-ssn-validator
+**Tags:** ssn, validation, regex, kyc, format-check, government-id, us-government, identity
+**Asset Dir:** ~/www/blog/2026-06-08-us-ssn-validator
+**Composite Score:** 0.8123 / B+
 - [2026-05-25] [Why Magnets Never Have Just One Pole: The Physics of Magnetic Fields](https://blog.flowrust.com/2026/05/25/magnetic-field-physics-2026-05-24/) - magnetic-field-physics-2026-05-24
 
 ## 2026-05-12 | The Beautiful Math Behind the Shapes That Appear When Two Waves Collide
