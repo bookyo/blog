@@ -1870,3 +1870,16 @@
 **Tags:** xlsx, sql, insert, excel, format-conversion, data-loading, validation
 **Asset Dir:** ~/www/blog/2026-06-09-xlsx-sql-insert-statement
 **Composite Score:** 0.8546 / A-
+
+## 2026-06-09 | Why Your Best Sales Rep Is Quietly an Outlier in Your Spreadsheet
+
+**URL:** https://blog.flowrust.com/2026/06/09/outlier-detector-the-suspicious-number/
+**WP Post ID:** 3593
+**Featured Image WP ID:** 3589 (poster)
+**Highlight Cards:** 3 (3590, 3591, 3592)
+**Tool Covered:** Outlier Detector
+**Slug:** outlier-detector
+**ElysiaTools URL:** https://elysiatools.com/en/tools/outlier-detector
+**Tags:** outlier-detection, statistics, iqr, z-score, modified-z-score, data-analysis, anomaly-detection, descriptive-statistics, data-quality, robust-statistics
+**Asset Dir:** ~/www/blog/2026-06-09-outlier-detector-the-suspicious-number
+**Composite Score:** 0.9036 / A

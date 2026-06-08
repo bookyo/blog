@@ -1,0 +1,24 @@
+{
+  "date_gmt": "2026-06-08T21:19:50",
+  "post_id": 3593,
+  "post_url": "https://blog.flowrust.com/2026/06/09/outlier-detector-the-suspicious-number/",
+  "post_status": "publish",
+  "poster_id": 3589,
+  "poster_url": "https://blog.flowrust.com/wp-content/uploads/2026/06/poster-47.png",
+  "card_ids": {
+    "card1": 3590,
+    "card2": 3591,
+    "card3": 3592
+  },
+  "card_urls": {
+    "card1": "https://blog.flowrust.com/wp-content/uploads/2026/06/card1-44.png",
+    "card2": "https://blog.flowrust.com/wp-content/uploads/2026/06/card2-44.png",
+    "card3": "https://blog.flowrust.com/wp-content/uploads/2026/06/card3-44.png"
+  },
+  "h2_count": 9,
+  "word_count": 2027,
+  "title": "Why Your Best Sales Rep Is Quietly an Outlier in Your Spreadsheet",
+  "tool_slug": "outlier-detector",
+  "tool_url": "https://elysiatools.com/en/tools/outlier-detector",
+  "tools_index_url": "https://elysiatools.com/en/tools"
+}
