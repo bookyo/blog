@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Outfit', sans-serif;
+  width: 1080px;
+  min-height: 900px;
+  margin: 0;
+  padding: 0;
+  background: #1a0a0a;
+  color: #ffe0d0;
+}
+pre { font-family: 'JetBrains Mono', 'Courier New', monospace; }
+</style>
+</head>
+<body class="flex items-center justify-center">
+  <div class="w-[1080px] px-[80px] py-20">
+    <p class="text-[18px] font-semibold text-[#ff6b35] tracking-[0.3em] uppercase mb-6">WHAT IT RETURNS</p>
+    <h2 class="text-[64px] font-black text-white leading-none mb-8">Not just<br/>yes or no</h2>
+    <div class="bg-[#0d0505] border border-[#3a1a1a] rounded-lg p-6 mt-8">
+<pre class="text-[16px] text-[#ffb380] leading-relaxed">{
+  <span class="text-[#ff6b35]">"summary"</span>: {
+    <span class="text-[#ff6b35]">"idNumber"</span>: <span class="text-[#a8e0a0]">"11010519900307123X"</span>,
+    <span class="text-[#ff6b35]">"country"</span>: <span class="text-[#a8e0a0]">"China"</span>,
+    <span class="text-[#ff6b35]">"valid"</span>: <span class="text-[#a8e0a0]">true</span>
+  },
+  <span class="text-[#ff6b35]">"validation"</span>: {
+    <span class="text-[#ff6b35]">"details"</span>: {
+      <span class="text-[#ff6b35]">"region"</span>:     <span class="text-[#a8e0a0]">"110105"</span>,
+      <span class="text-[#ff6b35]">"birthDate"</span>:  <span class="text-[#a8e0a0]">"1990-03-07"</span>,
+      <span class="text-[#ff6b35]">"gender"</span>:     <span class="text-[#a8e0a0]">"Male"</span>,
+      <span class="text-[#ff6b35]">"checksum"</span>:   <span class="text-[#a8e0a0]">"✅ Valid (X)"</span>
+    }
+  }
+}</pre>
+    </div>
+    <p class="text-[20px] text-[#d0a890] mt-8 leading-relaxed">
+      Four pieces of information decoded in 0.1ms, no network call.
+    </p>
+  </div>
+</body>
+</html>

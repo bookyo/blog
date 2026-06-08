@@ -1818,3 +1818,16 @@
 **Tags:** xss, security, web, javascript, validation, attack-detection
 **Asset Dir:** ~/www/blog/2026-06-08-xss-payload-detector
 **Composite Score:** Pending (cron publish — scored post-fix)
+
+## 2026-06-08 | Why Every National ID Number Has a Hidden Self-Checking Code You Never See
+
+**URL:** https://blog.flowrust.com/2026/06/08/national-id-checksum-self-checking-code/
+**WP Post ID:** 3563
+**Featured Image WP ID:** 3559 (poster)
+**Highlight Cards:** 3 (3560, 3561, 3562)
+**Tool Covered:** ID Card Validator
+**Slug:** id-card-validator
+**ElysiaTools URL:** https://elysiatools.com/en/tools/id-card-validator
+**Tags:** id-card, validation, checksum, luhn, national-id, kyc, form-validation, china, india, japan
+**Asset Dir:** ~/www/blog/2026-06-08-id-card-validator-checksum-lurks
+**Composite Score:** 0.8142 / B+
