@@ -9,6 +9,7 @@
 **ElysiaTools URL:** https://elysiatools.com/en/tools/dot-product-calculator
 **Tags:** dot-product, vector, cosine-similarity, linear-algebra, machine-learning, recommendation-systems, math, mathematics, neural-networks, search
 **Asset Dir:** ~/www/blog/2026-06-08-dot-product-calculator
+**Composite Score:** 0.7304 / B
 
 
 ## 2026-06-08 | Why Every US Social Security Number Has Three Forbidden Numbers Hidden Inside
