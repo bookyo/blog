@@ -1,0 +1,15 @@
+{
+  "wp_post_id": 3612,
+  "wp_post_status": "publish",
+  "wp_post_link": "https://blog.flowrust.com/2026/06/10/markdown-table-generator/",
+  "wp_poster_media_id": 3608,
+  "wp_card_media_ids": {
+    "card1": 3609,
+    "card2": 3610,
+    "card3": 3611
+  },
+  "date_gmt": "2026-06-09T16:46:09",
+  "tool_slug": "markdown-table-generator",
+  "tool_name": "Markdown Table Generator",
+  "tool_url": "https://elysiatools.com/en/tools/markdown-table-generator"
+}

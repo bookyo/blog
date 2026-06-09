@@ -1896,3 +1896,16 @@
 **Tags:** geohash, latitude, longitude, coordinates, location, encoder, gis, base32, spatial-index
 **Asset Dir:** ~/www/blog/2026-06-09-geohash-12-characters-5-meters
 **Composite Score:** 0.8202 / A-
+
+## 2026-06-10 | The Boring Spreadsheet Problem That Every Markdown Writer Knows
+
+**URL:** https://blog.flowrust.com/2026/06/10/markdown-table-generator/
+**WP Post ID:** 3612
+**Featured Image WP ID:** 3608 (poster)
+**Highlight Cards:** 3 (3609, 3610, 3611)
+**Tool Covered:** Markdown Table Generator
+**Slug:** markdown-table-generator
+**ElysiaTools URL:** https://elysiatools.com/en/tools/markdown-table-generator
+**Tags:** markdown, table, csv, json, array, generator
+**Asset Dir:** ~/www/blog/2026-06-09-markdown-table-generator
+**Composite Score:** (not scored in cron mode)

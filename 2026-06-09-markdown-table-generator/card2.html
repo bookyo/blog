@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Outfit', sans-serif;
+  width: 1280px;
+  height: 720px;
+  background: #000000;
+  margin: 0;
+  padding: 60px 80px;
+}
+</style>
+</head>
+<body>
+  <p class="text-[#00B4D8] text-[24px] font-bold tracking-widest uppercase mb-4">Alignment</p>
+  <h2 class="text-white text-[68px] font-black leading-tight mb-10">Right if all numeric, else left</h2>
+  <div class="space-y-6">
+    <div class="bg-[#0a0a0a] border border-[#00B4D8] rounded-lg p-5">
+      <p class="text-[#888] text-[20px] mb-1">Numbers &mdash; right align</p>
+      <pre class="text-white text-[24px] font-mono">| ID    | Amount |
+| :---- | ------:|
+| A001  | 123.50 |
+| B042  |   7.25 |</pre>
+    </div>
+    <div class="bg-[#0a0a0a] border border-[#00B4D8] rounded-lg p-5">
+      <p class="text-[#888] text-[20px] mb-1">Mixed &mdash; left align (override per column)</p>
+      <pre class="text-white text-[24px] font-mono">| ID    | Status   |
+| :---- | :--------|
+| A001  | active   |</pre>
+    </div>
+  </div>
+</body>
+</html>
