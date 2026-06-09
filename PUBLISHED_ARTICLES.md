@@ -1883,3 +1883,16 @@
 **Tags:** outlier-detection, statistics, iqr, z-score, modified-z-score, data-analysis, anomaly-detection, descriptive-statistics, data-quality, robust-statistics
 **Asset Dir:** ~/www/blog/2026-06-09-outlier-detector-the-suspicious-number
 **Composite Score:** 0.9036 / A
+
+## 2026-06-09 | How 12 Characters Can Pinpoint Anywhere on Earth to Within 5 Meters
+
+**URL:** https://blog.flowrust.com/2026/06/09/geohash-12-characters-5-meters/
+**WP Post ID:** 3599
+**Featured Image WP ID:** 3595 (poster)
+**Highlight Cards:** 3 (3596, 3597, 3598)
+**Tool Covered:** Geohash Generator
+**Slug:** geohash-generator
+**ElysiaTools URL:** https://elysiatools.com/en/tools/geohash-generator
+**Tags:** geohash, latitude, longitude, coordinates, location, encoder, gis, base32, spatial-index
+**Asset Dir:** ~/www/blog/2026-06-09-geohash-12-characters-5-meters
+**Composite Score:** 0.8202 / A-
