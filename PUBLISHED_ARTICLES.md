@@ -1909,3 +1909,16 @@
 **Tags:** markdown, table, csv, json, array, generator
 **Asset Dir:** ~/www/blog/2026-06-09-markdown-table-generator
 **Composite Score:** (not scored in cron mode)
+
+## 2026-06-10 | Why Every Two-Dimensional Question Hides a Pivot Table Answer
+
+**URL:** https://blog.flowrust.com/2026/06/10/data-crosstab-pivot-table-two-dimensional/
+**WP Post ID:** 3620
+**Featured Image WP ID:** 3616 (poster)
+**Highlight Cards:** 3 (3617, 3618, 3619)
+**Tool Covered:** Data Crosstab Generator
+**Slug:** data-crosstab-generator
+**ElysiaTools URL:** https://elysiatools.com/en/tools/data-crosstab-generator
+**Tags:** crosstab, pivot, cross-tabulation, aggregation, data-analysis, business-intelligence, statistics, reporting
+**Asset Dir:** ~/www/blog/2026-06-10-data-crosstab-pivot-table-two-dimensional
+**Composite Score:** (not scored in cron mode)

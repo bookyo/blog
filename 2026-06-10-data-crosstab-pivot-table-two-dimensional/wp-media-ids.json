@@ -1,0 +1,16 @@
+{
+  "post_id": 3620,
+  "poster_id": 3616,
+  "card_ids": {
+    "card1": 3617,
+    "card2": 3618,
+    "card3": 3619
+  },
+  "title": "Why Every Two-Dimensional Question Hides a Pivot Table Answer",
+  "slug": "data-crosstab-pivot-table-two-dimensional",
+  "tool_slug": "data-crosstab-generator",
+  "tool_name": "Data Crosstab Generator",
+  "tool_url": "https://elysiatools.com/en/tools/data-crosstab-generator",
+  "date_gmt": "2026-06-09T21:19:50",
+  "url": "https://blog.flowrust.com/2026/06/10/data-crosstab-pivot-table-two-dimensional/"
+}

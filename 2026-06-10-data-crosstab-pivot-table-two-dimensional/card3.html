@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Outfit', sans-serif; width: 1080px; min-height: 900px; margin: 0; background: #0a0a0a; }
+</style>
+</head>
+<body class="flex items-center justify-center p-16">
+  <div class="w-[1080px] p-12" style="background:#111111;border:1px solid #222;border-radius:24px;">
+    <p class="text-[20px] uppercase tracking-widest mb-6" style="color:#FF6B35;">What the Cells Tell You</p>
+    <h2 class="text-[60px] font-bold text-white leading-tight mb-8">Read the off-diagonal cells, not the totals</h2>
+    <p class="text-[28px] text-[#cccccc] leading-relaxed mb-6">The interesting cells are the ones that don't match the trend. Hot spots, empty corners, and mix shifts live off the diagonal — totals hide exactly the patterns the crosstab was built to reveal.</p>
+    <div style="display:flex;gap:16px;">
+      <div style="background:#000000;padding:20px;border-radius:12px;border:1px solid #333;flex:1;">
+        <p class="text-[18px]" style="color:#FF6B35;">Hot spot</p>
+        <p class="text-[16px] text-[#888888];">one product, one region, one spike</p>
+      </div>
+      <div style="background:#000000;padding:20px;border-radius:12px;border:1px solid #333;flex:1;">
+        <p class="text-[18px]" style="color:#FF6B35;">Empty corner</p>
+        <p class="text-[16px] text-[#888888];">a missing product or feature</p>
+      </div>
+      <div style="background:#000000;padding:20px;border-radius:12px;border:1px solid #333;flex:1;">
+        <p class="text-[18px]" style="color:#FF6B35;">Margin shift</p>
+        <p class="text-[16px] text-[#888888];">mix changes despite stable totals</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
