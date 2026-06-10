@@ -310,3 +310,6 @@ vin-validator-done
 
 markdown-table-generator-done
 data-crosstab-generator-done
+barcode-batch-generator-done
+
+jwt-generator-done

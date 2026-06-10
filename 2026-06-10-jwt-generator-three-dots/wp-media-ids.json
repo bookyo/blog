@@ -1,0 +1,24 @@
+{
+  "post_id": 3634,
+  "date_gmt": "2026-06-10T07:32:12",
+  "poster": {
+    "id": 3630,
+    "source_url": "https://blog.flowrust.com/wp-content/uploads/2026/06/poster-53.png",
+    "alt": "Three dots, a JWT story: header, payload, and signature \u2014 the three parts of every JSON Web Token"
+  },
+  "card1": {
+    "id": 3631,
+    "source_url": "https://blog.flowrust.com/wp-content/uploads/2026/06/card1-50.png",
+    "alt": "JWT header in JSON: alg HS256 and typ JWT \u2014 public, readable, sets the algorithm"
+  },
+  "card2": {
+    "id": 3632,
+    "source_url": "https://blog.flowrust.com/wp-content/uploads/2026/06/card2-50.png",
+    "alt": "JWT payload showing sub, role, exp claims \u2014 plaintext, not encrypted, readable by anyone"
+  },
+  "card3": {
+    "id": 3633,
+    "source_url": "https://blog.flowrust.com/wp-content/uploads/2026/06/card3-50.png",
+    "alt": "JWT signature as HMAC SHA256 over header and payload with the secret \u2014 same input same output"
+  }
+}

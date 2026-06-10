@@ -1922,3 +1922,16 @@
 **Tags:** crosstab, pivot, cross-tabulation, aggregation, data-analysis, business-intelligence, statistics, reporting
 **Asset Dir:** ~/www/blog/2026-06-10-data-crosstab-pivot-table-two-dimensional
 **Composite Score:** (not scored in cron mode)
+
+## 2026-06-10 | Why Every Login Box on the Internet Eventually Becomes a JWT
+
+**URL:** https://blog.flowrust.com/2026/06/10/jwt-generator-three-dots/
+**WP Post ID:** 3634
+**Featured Image WP ID:** 3630 (poster)
+**Highlight Cards:** 3 (3631, 3632, 3633)
+**Tool Covered:** JWT Generator
+**Slug:** jwt-generator
+**ElysiaTools URL:** https://elysiatools.com/en/tools/jwt-generator
+**Tags:** jwt, json-web-token, authentication, security, oauth, bearer-token
+**Asset Dir:** ~/www/blog/2026-06-10-jwt-generator-three-dots
+**Composite Score:** 0.8469 / A-
