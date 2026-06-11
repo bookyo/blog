@@ -1987,3 +1987,16 @@
 **Tags:** url, slug, validation, seo, regex, web-development, frontend, clean-urls, search-engine-optimization, content-management
 **Asset Dir:** ~/www/blog/2026-06-11-slug-validator-the-rules-behind-every-clean-url
 **Composite Score:** 0.8771 / A-
+
+## 2026-06-11 | The Invisible Three Bytes That Quietly Break Your CSV Imports
+
+**URL:** https://blog.flowrust.com/2026/06/12/bom-character-remover-invisible-bytes-csv-encoding/
+**WP Post ID:** 3674
+**Featured Image WP ID:** 3670 (poster)
+**Highlight Cards:** 3 (3671, 3672, 3673)
+**Tool Covered:** BOM Character Remover
+**Slug:** data-bom-remover
+**ElysiaTools URL:** https://elysiatools.com/en/tools/data-bom-remover
+**Tags:** bom, byte-order-mark, encoding, utf-8, utf-16, utf-32, csv, json, character-encoding, data-processing
+**Asset Dir:** ~/www/blog/2026-06-11-bom-character-remover
+**Composite Score:** 0.8343 / A-

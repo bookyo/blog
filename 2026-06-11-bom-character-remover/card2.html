@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Outfit', sans-serif; width: 1080px; min-height: 900px; margin: 0; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body class="bg-black flex items-center justify-center">
+  <div class="w-[1080px] px-[80px] py-16">
+    <p class="mono text-[18px] text-[#00FF94] tracking-[0.3em] uppercase mb-6">CARD 02 — THE FIVE PATTERNS</p>
+    <h2 class="text-[72px] font-black text-white leading-[0.95] mb-10">Every BOM you will ever meet</h2>
+    <div class="space-y-3 mb-8">
+      <div class="flex items-center bg-[#0a0a0a] border-l-4 border-[#00FF94] p-4">
+        <p class="mono text-[28px] text-[#00FF94] w-[280px]">EF BB BF</p>
+        <p class="text-[24px] text-white w-[200px]">UTF-8</p>
+        <p class="text-[20px] text-[#888888]">3 bytes — the common one</p>
+      </div>
+      <div class="flex items-center bg-[#0a0a0a] border-l-4 border-[#00B4D8] p-4">
+        <p class="mono text-[28px] text-[#00B4D8] w-[280px]">FE FF</p>
+        <p class="text-[24px] text-white w-[200px]">UTF-16 BE</p>
+        <p class="text-[20px] text-[#888888]">2 bytes</p>
+      </div>
+      <div class="flex items-center bg-[#0a0a0a] border-l-4 border-[#00B4D8] p-4">
+        <p class="mono text-[28px] text-[#00B4D8] w-[280px]">FF FE</p>
+        <p class="text-[24px] text-white w-[200px]">UTF-16 LE</p>
+        <p class="text-[20px] text-[#888888]">2 bytes</p>
+      </div>
+      <div class="flex items-center bg-[#0a0a0a] border-l-4 border-[#FF6B35] p-4">
+        <p class="mono text-[28px] text-[#FF6B35] w-[280px]">00 00 FE FF</p>
+        <p class="text-[24px] text-white w-[200px]">UTF-32 BE</p>
+        <p class="text-[20px] text-[#888888]">4 bytes</p>
+      </div>
+      <div class="flex items-center bg-[#0a0a0a] border-l-4 border-[#FF6B35] p-4">
+        <p class="mono text-[28px] text-[#FF6B35] w-[280px]">FF FE 00 00</p>
+        <p class="text-[24px] text-white w-[200px]">UTF-32 LE</p>
+        <p class="text-[20px] text-[#888888]">4 bytes</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

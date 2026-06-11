@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Outfit', sans-serif; width: 1080px; min-height: 900px; margin: 0; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body class="bg-black flex items-center justify-center">
+  <div class="w-[1080px] px-[80px] py-16">
+    <p class="mono text-[18px] text-[#00FF94] tracking-[0.3em] uppercase mb-6">CARD 01 — THE DIAGNOSTIC</p>
+    <h2 class="text-[72px] font-black text-white leading-[0.95] mb-10">The hex view that ends the search</h2>
+    <div class="bg-[#0a0a0a] border-2 border-[#00FF94] rounded-2xl p-8 mb-8">
+      <p class="mono text-[36px] text-[#00FF94] mb-2">0000: EF BB BF 7B 22 6E 61 6D</p>
+      <p class="mono text-[24px] text-[#666666]">↑ UTF-8 BOM         ↑ actual data starts here</p>
+    </div>
+    <p class="text-[28px] text-white leading-snug">
+      A leading <span class="mono text-[#00FF94]">EF BB BF</span> means the file has a UTF-8 BOM. Three bytes. Invisible to every text editor you'll open. Fatal to <span class="mono">pandas.read_csv</span>, <span class="mono">JSON.parse</span>, and most strict parsers.
+    </p>
+  </div>
+</body>
+</html>

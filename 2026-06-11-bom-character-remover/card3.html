@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Outfit', sans-serif; width: 1080px; min-height: 900px; margin: 0; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body class="bg-black flex items-center justify-center">
+  <div class="w-[1080px] px-[80px] py-16">
+    <p class="mono text-[18px] text-[#00FF94] tracking-[0.3em] uppercase mb-6">CARD 03 — FOUR OUTPUT MODES</p>
+    <h2 class="text-[72px] font-black text-white leading-[0.95] mb-10">Same fix, four views</h2>
+    <div class="grid grid-cols-2 gap-4">
+      <div class="bg-[#0a0a0a] border-2 border-[#00FF94] p-6 rounded-xl">
+        <p class="mono text-[20px] text-[#00FF94] mb-2">CLEANED</p>
+        <p class="text-[22px] text-white">Just the data with the BOM stripped. Paste-and-copy.</p>
+      </div>
+      <div class="bg-[#0a0a0a] border-2 border-[#00B4D8] p-6 rounded-xl">
+        <p class="mono text-[20px] text-[#00B4D8] mb-2">DETAILED</p>
+        <p class="text-[22px] text-white">A report: detection mode, BOM type, hex bytes, byte count delta.</p>
+      </div>
+      <div class="bg-[#0a0a0a] border-2 border-[#FF6B35] p-6 rounded-xl">
+        <p class="mono text-[20px] text-[#FF6B35] mb-2">HEX VIEW</p>
+        <p class="text-[22px] text-white">First 64 bytes as a hex+ASCII dump. Catches more than just BOMs.</p>
+      </div>
+      <div class="bg-[#0a0a0a] border-2 border-[#A78BFA] p-6 rounded-xl">
+        <p class="mono text-[20px] text-[#A78BFA] mb-2">JSON ANALYSIS</p>
+        <p class="text-[22px] text-white">Structured output for scripts. Includes the next-step recommendation.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
