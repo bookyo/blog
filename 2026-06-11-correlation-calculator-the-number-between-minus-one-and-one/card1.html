@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Outfit', sans-serif; width: 1280px; min-height: 720px; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body class="bg-[#0a0a0a] flex items-center justify-center">
+  <div class="w-[1280px] px-[80px] py-20">
+    <p class="text-[24px] font-medium text-[#00FF94] tracking-[0.2em] uppercase">01 / Two Coefficients, One Question</p>
+    <h2 class="text-[80px] font-black text-white tracking-tight leading-none mt-4">Pearson ≠ Spearman</h2>
+    <div class="grid grid-cols-2 gap-12 mt-12">
+      <div class="border-l-4 border-[#00FF94] pl-6">
+        <p class="text-[28px] font-bold text-white">Pearson r</p>
+        <p class="text-[22px] text-[#aaaaaa] mt-3 leading-relaxed">Linear association only. Sits at 0 for a perfect parabola. Sits at 0 for X vs X² when X is centered.</p>
+      </div>
+      <div class="border-l-4 border-[#00B4D8] pl-6">
+        <p class="text-[28px] font-bold text-white">Spearman ρ</p>
+        <p class="text-[22px] text-[#aaaaaa] mt-3 leading-relaxed">Rank-based. Catches monotonic curves. Robust to outliers. Lives in the order, not the magnitude.</p>
+      </div>
+    </div>
+    <p class="mono text-[22px] text-[#00FF94] mt-12">r = 0.0 &nbsp;&nbsp;&nbsp; ρ = 1.0 &nbsp;&nbsp;&nbsp; same data, same answer, different question</p>
+  </div>
+</body>
+</html>

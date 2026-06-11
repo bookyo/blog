@@ -1961,3 +1961,16 @@
 **Tags:** pbkdf2, password-hashing, cryptography, security, key-derivation, hash, salt, owasp
 **Asset Dir:** ~/www/blog/2026-06-11-pbkdf2-the-million-iteration-stretch
 **Composite Score:** 0.7180 / B
+
+## 2026-06-11 | Why One Number Between -1 and 1 Quietly Settles Most Arguments About Data
+
+**URL:** https://blog.flowrust.com/2026/06/11/correlation-calculator-number-between-minus-one-and-one/
+**WP Post ID:** 3661
+**Featured Image WP ID:** 3657 (poster)
+**Highlight Cards:** 3 (3658, 3659, 3660)
+**Tool Covered:** Correlation Calculator
+**Slug:** correlation-calculator
+**ElysiaTools URL:** https://elysiatools.com/en/tools/correlation-calculator
+**Tags:** correlation, pearson, spearman, statistics, math, data-analysis, regression
+**Asset Dir:** ~/www/blog/2026-06-11-correlation-calculator-the-number-between-minus-one-and-one
+**Composite Score:** 0.8495 / A-
