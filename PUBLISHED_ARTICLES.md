@@ -1974,3 +1974,16 @@
 **Tags:** correlation, pearson, spearman, statistics, math, data-analysis, regression
 **Asset Dir:** ~/www/blog/2026-06-11-correlation-calculator-the-number-between-minus-one-and-one
 **Composite Score:** 0.8495 / A-
+
+## 2026-06-11 | The Slug Validator: Three Rules That Decide If Your URL Is Welcome
+
+**URL:** https://blog.flowrust.com/2026/06/11/slug-validator-three-rules-behind-every-clean-url/
+**WP Post ID:** 3667
+**Featured Image WP ID:** 3663 (poster)
+**Highlight Cards:** 3 (3664, 3665, 3666)
+**Tool Covered:** Slug Validator
+**Slug:** slug-validator
+**ElysiaTools URL:** https://elysiatools.com/en/tools/slug-validator
+**Tags:** url, slug, validation, seo, regex, web-development, frontend, clean-urls, search-engine-optimization, content-management
+**Asset Dir:** ~/www/blog/2026-06-11-slug-validator-the-rules-behind-every-clean-url
+**Composite Score:** 0.8771 / A-
