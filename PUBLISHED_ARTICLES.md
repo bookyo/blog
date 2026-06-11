@@ -1948,3 +1948,16 @@
 **Tags:** text-processing, naming-conventions, programming, developer-tools
 **Asset Dir:** ~/www/blog/2026-06-11-advanced-case-converter
 **Status:** PUBLISHED
+
+## 2026-06-11 | Why Every Password Hash Runs Itself a Million Times Before It Ever Stores You
+
+**URL:** https://blog.flowrust.com/2026/06/11/pbkdf2-million-iteration-stretch/
+**WP Post ID:** 3655
+**Featured Image WP ID:** 3651 (poster)
+**Highlight Cards:** 3 (3652, 3653, 3654)
+**Tool Covered:** PBKDF2 Generator
+**Slug:** pbkdf2-generator
+**ElysiaTools URL:** https://elysiatools.com/en/tools/pbkdf2-generator
+**Tags:** pbkdf2, password-hashing, cryptography, security, key-derivation, hash, salt, owasp
+**Asset Dir:** ~/www/blog/2026-06-11-pbkdf2-the-million-iteration-stretch
+**Composite Score:** 0.7180 / B
