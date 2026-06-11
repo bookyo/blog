@@ -1935,3 +1935,16 @@
 **Tags:** jwt, json-web-token, authentication, security, oauth, bearer-token
 **Asset Dir:** ~/www/blog/2026-06-10-jwt-generator-three-dots
 **Composite Score:** 0.8469 / A-
+
+## 2026-06-11 | Why Every Programming Language Secretly Has a Different Word for the Same Variable
+
+**URL:** https://blog.flowrust.com/2026/06/11/why-every-programming-language-secretly-has-a-different-word-for-the-same-variab/
+**WP Post ID:** 3648
+**Featured Image WP ID:** 3644 (poster)
+**Highlight Cards:** 3 (3645, 3646, 3647)
+**Tool Covered:** Advanced Case Converter
+**Slug:** advanced-case-converter
+**ElysiaTools URL:** https://elysiatools.com/en/tools/advanced-case-converter
+**Tags:** text-processing, naming-conventions, programming, developer-tools
+**Asset Dir:** ~/www/blog/2026-06-11-advanced-case-converter
+**Status:** PUBLISHED

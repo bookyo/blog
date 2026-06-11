@@ -1,0 +1,15 @@
+{
+  "post_id": 3648,
+  "link": "https://blog.flowrust.com/2026/06/11/why-every-programming-language-secretly-has-a-different-word-for-the-same-variab/",
+  "poster_id": 3644,
+  "card_ids": {
+    "card1": 3645,
+    "card2": 3646,
+    "card3": 3647
+  },
+  "card_urls": {
+    "card1": "https://blog.flowrust.com/wp-content/uploads/2026/06/card1-52.png",
+    "card2": "https://blog.flowrust.com/wp-content/uploads/2026/06/card2-52.png",
+    "card3": "https://blog.flowrust.com/wp-content/uploads/2026/06/card3-52.png"
+  }
+}
