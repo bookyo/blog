@@ -2013,3 +2013,17 @@
 **Tags:** luhn, credit-card, validation, algorithm, checksum, payment-processing, finance, javascript, mod-10, fraud-prevention
 **Asset Dir:** ~/www/blog/2026-06-12-credit-card-luhn-the-hidden-checksum
 **Composite Score:** TBD (cron-publish, no iteration loop)
+
+---
+
+## 2026-06-12 — Why a 10,000-Email List Always Hides 8% You Shouldn't Send To
+
+**WP ID:** 3688
+**URL:** https://blog.flowrust.com/2026/06/12/batch-email-validator-when-format-isnt-enough/
+**Tool:** Batch Email Validator
+**Slug:** batch-email-validator
+**ElysiaTools URL:** https://elysiatools.com/en/tools/batch-email-validator
+**Tags:** email-validation, regex, deliverability, spam-trap, role-based, disposable-email, validation, batch-processing
+**Asset Dir:** ~/www/blog/2026-06-12-batch-email-validator-when-format-isnt-enough
+**Composite Score:** TBD (cron-publish, no iteration loop)
+**Notes:** Validation topic. Format-vs-quality framing. Includes worked example table (6 rows), 4 quality rules enumerated, 1000-row summary block, domain-analysis view. HubSpot 2024 7-9% deliverability stat cited.
