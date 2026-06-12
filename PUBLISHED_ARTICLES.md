@@ -2042,3 +2042,17 @@
 **Asset Dir:** ~/www/blog/2026-06-12-key-pair-generator
 **Composite Score:** TBD (cron-publish, no iteration loop)
 **Notes:** Cryptography topic. The asymmetry framing (public mailbox / private key metaphor). Three algorithms compared (RSA/ECC/Ed25519), three encoding formats (PEM/Hex/Base64). RSA 2048-bit heat-death-of-universe stat. 7 H2s / 27 paragraphs / 3 cards with verified alts.
+
+
+---
+## 2026-06-12 — From File Globs to Regex Patterns in One Line
+
+**WP ID:** 3703
+**URL:** https://blog.flowrust.com/2026/06/12/glob-to-regex-from-file-globs-to-regex-patterns/
+**Tool:** Glob to Regex
+**Slug:** glob-to-regex
+**ElysiaTools URL:** https://elysiatools.com/en/tools/glob-to-regex
+**Tags:** developer-tools, file-matching, glob, regex, regex-conversion, dotfile, build-pipeline, linter, file-pattern
+**Asset Dir:** ~/www/blog/2026-06-12-glob-to-regex-from-file-globs-to-regex-patterns
+**Composite Score:** 0.8219 (A-)
+**Notes:** Development tool. Three-character glob intro (* ? **), ten-line Python implementation, dot-file guard `(?!\.)` as the line most converters forget, three production patterns (src/**/*.js, !node_modules/**, data-202[0-3]-??.csv). 4 H2s / 821 words. md_to_html bug found: bold/italic regex corrupted `*` and `**` inside inline `<code>` tags — fixed via post-publish PATCH. Card alt text verified via REST API.

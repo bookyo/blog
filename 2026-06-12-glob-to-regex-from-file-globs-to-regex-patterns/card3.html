@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Outfit', sans-serif;
+  width: 1080px;
+  min-height: 900px;
+}
+</style>
+</head>
+<body class="bg-black flex items-center justify-center">
+  <div class="w-[1080px] text-center px-[80px] py-20">
+    <p class="text-[18px] text-[#00FF94] tracking-[0.3em] font-semibold mb-6">CARD 03 — REAL-WORLD PATTERNS</p>
+    <h2 class="text-[70px] font-black text-white tracking-tight leading-none">Three Globs That</h2>
+    <h2 class="text-[70px] font-black text-[#00FF94] tracking-tight leading-none mt-4">Trip Production Code</h2>
+    <div class="mt-14 text-left inline-block space-y-6">
+      <p class="text-[28px] text-white font-mono"><code class="text-[#00FF94]">src/**/*.js</code> &nbsp;<span class="text-[#666666]">→</span> <code class="text-white">^src/.*\.js$</code></p>
+      <p class="text-[28px] text-white font-mono"><code class="text-[#00FF94]">!node_modules/**</code> &nbsp;<span class="text-[#666666]">→</span> post-filter, not regex</p>
+      <p class="text-[28px] text-white font-mono"><code class="text-[#00FF94]">data-202[0-3]-??.csv</code> → <code class="text-white">^data-202[0-3]-.{2}\.csv$</code></p>
+    </div>
+    <p class="text-[22px] text-[#999999] mt-12 leading-relaxed px-12">A mid-size JS project's <code class="text-white">node_modules</code> holds 200,000+ files. The <code class="text-white">**</code> in <code class="text-white">!**</code> is post-filter, not regex — mixing the two lints everything.</p>
+  </div>
+</body>
+</html>
