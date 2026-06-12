@@ -2069,3 +2069,17 @@
 **Asset Dir:** ~/www/blog/2026-06-12-date-overlap-checker
 **Composite Score:** 0.8320 (A-)
 **Notes:** Date & Time tool. Contrarian angle: scheduling failures are visibility failures wearing a scheduling costume. Single-inequality algorithm (A.start < B.end AND B.start < A.end), 435 pairwise comparisons for 30 ranges, three collision patterns (buffer-free handoff / double-booked resource / annual event vs. migration), conservative-default warning, benchmark stat (60% reduction in scheduling incidents). 5 H2s / 1146 words / 22 paragraphs / 1 code block (algorithm) / 3 cards. md_to_html performed cleanly. All alts verified via REST API. Elysia links returned 200.
+
+## 2026-06-13 — Why SemVer 2.0.0's 9 Rules Quietly Govern Every Dependency You'll Ever Install
+
+**URL:** https://blog.flowrust.com/2026/06/13/semver-validator-9-rules-version-string/
+**WP Post ID:** 3724
+**Featured Image WP ID:** 3720 (poster)
+**Highlight Cards:** 3 (3721, 3722, 3723)
+**Tool Covered:** SemVer Validator
+**Slug:** semver-validator
+**ElysiaTools URL:** https://elysiatools.com/en/tools/semver-validator
+**Tags:** semver, version-string, semver-2.0.0, package-management, npm, version-comparison, dev-tools, dependency-management, build-metadata, pre-release
+**Asset Dir:** ~/www/blog/2026-06-12-semver-validator
+**Composite Score:** 0.7923 (B+)
+**Notes:** Developer-tool topic (validation). Friday-afternoon story hook, 9 spec rules enumerated, pre-release ordering pitfall (beta.11 > beta.2), build-metadata-is-ignored rule, the contract-not-check framing, what 99% of validators miss. 7 H2s / 1364 words / 3 cards. md_to_html performed cleanly, all alts inline, no PATCH required. Elysia links returned 200 (all 3 to /en/tools/semver-validator). Spec author + publication date cited (Tom Preston-Werner, Aug 2013).

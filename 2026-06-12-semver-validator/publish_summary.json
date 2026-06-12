@@ -1,0 +1,17 @@
+{
+  "post_id": 3724,
+  "post_url": "https://blog.flowrust.com/2026/06/13/semver-validator-9-rules-version-string/",
+  "status": "publish",
+  "date_gmt": "2026-06-12T22:49:09",
+  "title": "Why SemVer 2.0.0's 9 Rules Quietly Govern Every Dependency You'll Ever Install",
+  "slug": "semver-validator",
+  "tool_name": "SemVer Validator",
+  "tool_url": "https://elysiatools.com/en/tools/semver-validator",
+  "poster_media_id": 3720,
+  "card_media_ids": {
+    "card1": 3721,
+    "card2": 3722,
+    "card3": 3723
+  },
+  "image_count_in_content": 3
+}
