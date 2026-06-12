@@ -2000,3 +2000,16 @@
 **Tags:** bom, byte-order-mark, encoding, utf-8, utf-16, utf-32, csv, json, character-encoding, data-processing
 **Asset Dir:** ~/www/blog/2026-06-11-bom-character-remover
 **Composite Score:** 0.8343 / A-
+
+## 2026-06-12 | The Hidden Checksum That Catches Every Credit Card Typo Before Your Bank Ever Sees It
+
+**URL:** https://blog.flowrust.com/2026/06/12/credit-card-luhn-the-hidden-checksum/
+**WP Post ID:** 3680
+**Featured Image WP ID:** 3676 (poster)
+**Highlight Cards:** 3 (3677, 3678, 3679)
+**Tool Covered:** Credit Card Validator
+**Slug:** credit-card-validator
+**ElysiaTools URL:** https://elysiatools.com/en/tools/credit-card-validator
+**Tags:** luhn, credit-card, validation, algorithm, checksum, payment-processing, finance, javascript, mod-10, fraud-prevention
+**Asset Dir:** ~/www/blog/2026-06-12-credit-card-luhn-the-hidden-checksum
+**Composite Score:** TBD (cron-publish, no iteration loop)

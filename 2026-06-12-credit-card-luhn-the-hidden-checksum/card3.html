@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Outfit', sans-serif;
+  width: 1280px;
+  min-height: 720px;
+  margin: 0;
+  background: #0A0A0A;
+}
+.mono { font-family: 'JetBrains Mono', monospace; }
+pre { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body class="flex items-center justify-center p-12">
+  <div class="w-[1216px] bg-[#0F0F0F] rounded-3xl p-16 border border-[#1F1F1F]">
+    <p class="text-[18px] text-[#FF6B35] uppercase tracking-widest font-bold">03 · The Code</p>
+    <h2 class="text-[56px] font-black text-white mt-3 leading-tight">Five lines, no dependencies, every checkout</h2>
+    <p class="text-[24px] text-[#888888] mt-6 leading-relaxed">This function has been pasted into more JavaScript files than any other arithmetic routine. The whole algorithm lives in <code class="text-[#FF6B35] mono">alt = !alt</code>.</p>
+
+    <div class="mt-12 bg-black rounded-2xl p-8 border border-[#1F1F1F]">
+<pre class="text-[22px] text-white leading-relaxed"><span class="text-[#FF6B35]">function</span> <span class="text-[#00FF94]">luhnValid</span>(num) {
+  <span class="text-[#FF6B35]">const</span> digits = num.<span class="text-[#00B4D8]">replace</span>(/\D/g, <span class="text-[#FF6B35]">''</span>).<span class="text-[#00B4D8]">split</span>(<span class="text-[#FF6B35]">''</span>).<span class="text-[#00B4D8]">map</span>(Number);
+  <span class="text-[#FF6B35]">if</span> (digits.length &lt; <span class="text-[#00FF94]">12</span>) <span class="text-[#FF6B35]">return false</span>;
+  <span class="text-[#FF6B35]">let</span> sum = <span class="text-[#00FF94]">0</span>, alt = <span class="text-[#FF6B35]">false</span>;
+  <span class="text-[#FF6B35]">for</span> (<span class="text-[#FF6B35]">let</span> i = digits.length - <span class="text-[#00FF94]">1</span>; i &gt;= <span class="text-[#00FF94]">0</span>; i--) {
+    <span class="text-[#FF6B35]">let</span> d = digits[i];
+    <span class="text-[#FF6B35]">if</span> (alt) { d *= <span class="text-[#00FF94]">2</span>; <span class="text-[#FF6B35]">if</span> (d &gt; <span class="text-[#00FF94]">9</span>) d -= <span class="text-[#00FF94]">9</span>; }
+    sum += d; alt = !alt;
+  }
+  <span class="text-[#FF6B35]">return</span> sum % <span class="text-[#00FF94]">10</span> === <span class="text-[#00FF94]">0</span>;
+}</pre>
+    </div>
+    <p class="text-[20px] text-[#888] mt-6">Filed in 1960. The same five lines, in the same order, in every language, on every checkout form on earth.</p>
+  </div>
+</body>
+</html>
