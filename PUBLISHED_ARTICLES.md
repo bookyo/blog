@@ -2056,3 +2056,16 @@
 **Asset Dir:** ~/www/blog/2026-06-12-glob-to-regex-from-file-globs-to-regex-patterns
 **Composite Score:** 0.8219 (A-)
 **Notes:** Development tool. Three-character glob intro (* ? **), ten-line Python implementation, dot-file guard `(?!\.)` as the line most converters forget, three production patterns (src/**/*.js, !node_modules/**, data-202[0-3]-??.csv). 4 H2s / 821 words. md_to_html bug found: bold/italic regex corrupted `*` and `**` inside inline `<code>` tags — fixed via post-publish PATCH. Card alt text verified via REST API.
+
+---
+## 2026-06-12 — Why Every Project Manager Eventually Discovers That Two Date Ranges Always Hide a Conflict
+
+**WP ID:** 3717
+**URL:** https://blog.flowrust.com/2026/06/13/date-overlap-checker-scheduling-conflicts/
+**Tool:** Date Overlap Checker
+**Slug:** date-overlap-checker
+**ElysiaTools URL:** https://elysiatools.com/en/tools/date-overlap-checker
+**Tags:** date-overlap-checker, scheduling, validation, productivity
+**Asset Dir:** ~/www/blog/2026-06-12-date-overlap-checker
+**Composite Score:** 0.8320 (A-)
+**Notes:** Date & Time tool. Contrarian angle: scheduling failures are visibility failures wearing a scheduling costume. Single-inequality algorithm (A.start < B.end AND B.start < A.end), 435 pairwise comparisons for 30 ranges, three collision patterns (buffer-free handoff / double-booked resource / annual event vs. migration), conservative-default warning, benchmark stat (60% reduction in scheduling incidents). 5 H2s / 1146 words / 22 paragraphs / 1 code block (algorithm) / 3 cards. md_to_html performed cleanly. All alts verified via REST API. Elysia links returned 200.
