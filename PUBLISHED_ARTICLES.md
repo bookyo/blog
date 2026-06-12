@@ -2027,3 +2027,18 @@
 **Asset Dir:** ~/www/blog/2026-06-12-batch-email-validator-when-format-isnt-enough
 **Composite Score:** TBD (cron-publish, no iteration loop)
 **Notes:** Validation topic. Format-vs-quality framing. Includes worked example table (6 rows), 4 quality rules enumerated, 1000-row summary block, domain-analysis view. HubSpot 2024 7-9% deliverability stat cited.
+
+
+---
+
+## 2026-06-12 — Why Every 'Generate Key' Button Hides a One-Way Math Problem
+
+**WP ID:** 3693
+**URL:** https://blog.flowrust.com/2026/06/12/key-pair-generator-one-way-math-problem/
+**Tool:** Key Pair Generator
+**Slug:** key-pair-generator
+**ElysiaTools URL:** https://elysiatools.com/en/tools/key-pair-generator
+**Tags:** cryptography, RSA, ECC, Ed25519, asymmetric, one-way-function, security, key-pair, public-key, SSH, TLS, JWT
+**Asset Dir:** ~/www/blog/2026-06-12-key-pair-generator
+**Composite Score:** TBD (cron-publish, no iteration loop)
+**Notes:** Cryptography topic. The asymmetry framing (public mailbox / private key metaphor). Three algorithms compared (RSA/ECC/Ed25519), three encoding formats (PEM/Hex/Base64). RSA 2048-bit heat-death-of-universe stat. 7 H2s / 27 paragraphs / 3 cards with verified alts.
