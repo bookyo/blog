@@ -1214,3 +1214,27 @@
 ## 2026-05-14 | Beat Frequency | beat-frequency | WP ID 2579 | https://blog.flowrust.com/2026/05/07/beat-frequency-phenomenon/
 
 ## 2026-05-16 05:50 UTC | Wave Refraction | wave-refraction-physics-snells-law | WP ID 2655 | https://blog.flowrust.com/2026/05/16/wave-refraction-physics-snells-law/
+---
+## 2026-06-13 12:00 UTC — Why a 10,000-URL List Always Hides 80 You Shouldn't Trust
+- **WP Post ID**: 3751
+- **WP URL**: https://blog.flowrust.com/2026/06/13/batch-url-validator-when-format-isnt-enough/
+- **Featured Image**: poster (WP ID 3747)
+- **Highlight Cards**: 3 (3748, 3749, 3750)
+- **Slug**: batch-url-validator-when-format-isnt-enough
+- **Tool**: [Batch URL Validator](https://elysiatools.com/en/tools/batch-url-validator)
+- **Category**: Development / URL Validation / Data Processing
+- **Asset Dir**: ~/www/blog/2026-06-13-batch-url-validator-when-format-isnt-enough
+- **date_gmt**: 2026-06-13T11:59:13
+- **Status**: publish (immediate, single-step)
+
+## 2026-06-13 07:48 UTC — The Webhook That Fires Once and Never Again
+- **WP Post ID**: 3743
+- **WP URL**: https://blog.flowrust.com/2026/06/13/webhook-debugger-the-request-that-fires-once/
+- **Featured Image**: poster (WP ID 3739)
+- **Highlight Cards**: 3 (3740, 3741, 3742)
+- **Slug**: webhook-debugger-the-request-that-fires-once
+- **Tool**: [Webhook Debugger & Relay](https://elysiatools.com/en/tools/webhook-debugger-relay)
+- **Category**: Network / Webhooks / API Development
+- **Asset Dir**: ~/www/blog/2026-06-13-webhook-debugger-the-request-that-fires-once
+- **date_gmt**: 2026-06-13T07:48:16
+- **Status**: publish

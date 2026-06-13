@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Outfit', sans-serif; width: 1080px; min-height: 900px; }
+.code { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body class="bg-black flex items-center justify-center">
+  <div class="w-[1080px] px-[72px] py-20">
+    <p class="text-[22px] font-bold text-[#3B82F6] tracking-widest uppercase mb-6">Card 3 / The Throughput Math</p>
+    <h2 class="text-[68px] font-black text-white leading-tight">Three rules for 10,000-row audits</h2>
+    <div class="mt-10 space-y-6">
+      <div class="border-l-4 border-[#3B82F6] pl-6">
+        <p class="text-[28px] font-bold text-white">1. Cap concurrent workers at 50</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2">Beyond that, local port exhaustion and DNS resolver rate limits on shared resolvers start dominating. 50 is the practical ceiling for a home connection.</p>
+      </div>
+      <div class="border-l-4 border-[#3B82F6] pl-6">
+        <p class="text-[28px] font-bold text-white">2. Use 5s connect, 10s read timeouts</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2">Anything slower is almost always a dead host. Waiting 30s per dead host is what turns a 3-minute audit into a 30-minute one. The slowest 5% of the list dominates total runtime.</p>
+      </div>
+      <div class="border-l-4 border-[#3B82F6] pl-6">
+        <p class="text-[28px] font-bold text-white">3. Separate the format check from the network check</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2">A list of 50,000 URLs can be format-validated in 2 seconds. The network check should run on the format-valid subset. Interleaving them means format-invalid rows still consume worker time waiting for timeouts.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

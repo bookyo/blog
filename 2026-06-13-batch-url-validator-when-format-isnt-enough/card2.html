@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Outfit', sans-serif; width: 1080px; min-height: 900px; }
+.code { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body class="bg-black flex items-center justify-center">
+  <div class="w-[1080px] px-[72px] py-20">
+    <p class="text-[22px] font-bold text-[#3B82F6] tracking-widest uppercase mb-6">Card 2 / The Security Tells</p>
+    <h2 class="text-[68px] font-black text-white leading-tight">Four patterns a format check cannot see</h2>
+    <div class="mt-10 space-y-6">
+      <div class="border-l-4 border-[#3B82F6] pl-6">
+        <p class="text-[28px] font-bold text-white">1. Open-redirect hosts</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2">A <span class="code text-[#3B82F6]">?redirect=https://attacker.com</span> on a trusted domain is the most common phishing pattern on the open web. The URL parses. The destination is not the attacker's domain.</p>
+      </div>
+      <div class="border-l-4 border-[#3B82F6] pl-6">
+        <p class="text-[28px] font-bold text-white">2. Punycode homograph domains</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2">A domain that begins with <span class="code text-[#3B82F6]">xn--</span> is a Punycode-encoded IDN. Some are legitimate (German umlauts). Some are not: <span class="code text-[#3B82F6]">аpple.com</span> (Cyrillic а) is registered attack infrastructure.</p>
+      </div>
+      <div class="border-l-4 border-[#3B82F6] pl-6">
+        <p class="text-[28px] font-bold text-white">3. Mixed-scheme redirectors</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2">A link that starts on <span class="code text-[#3B82F6]">https://</span> and follows a 302 to <span class="code text-[#3B82F6]">http://</span> has downgraded the transport. Format check passes. Security check flags the downgrade.</p>
+      </div>
+      <div class="border-l-4 border-[#3B82F6] pl-6">
+        <p class="text-[28px] font-bold text-white">4. IDN homograph + lookalike TLD combos</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2">A <span class="code text-[#3B82F6]">.com</span> that is actually a Cyrillic confusable in a <span class="code text-[#3B82F6]">.cn</span> IDN TLD. The string parses. The user sees <span class="code text-[#3B82F6]">apple.com</span> and clicks. The resolver sends them somewhere else.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

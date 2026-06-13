@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Outfit', sans-serif; width: 1080px; min-height: 900px; }
+.code { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body class="bg-black flex items-center justify-center">
+  <div class="w-[1080px] px-[72px] py-20">
+    <p class="text-[22px] font-bold text-[#3B82F6] tracking-widest uppercase mb-6">Card 1 / What "Format" Misses</p>
+    <h2 class="text-[68px] font-black text-white leading-tight">Five characters a regex won't catch</h2>
+    <div class="mt-10 space-y-6">
+      <div class="border-l-4 border-[#3B82F6] pl-6">
+        <p class="text-[28px] font-bold text-white">1. Spaces and tabs from misquoted CSV</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2">A field that lost its quotes preserves a trailing space: <span class="code text-[#3B82F6]">https://example.com/ </span>. The browser refuses the parse.</p>
+      </div>
+      <div class="border-l-4 border-[#3B82F6] pl-6">
+        <p class="text-[28px] font-bold text-white">2. Cyrillic homograph in the authority</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2">A Cyrillic <span class="code text-[#3B82F6]">а</span> in <span class="code text-[#3B82F6]">https://exаmple.com/</span> resolves to a different host than the user sees. Format parses. Visual layer lies.</p>
+      </div>
+      <div class="border-l-4 border-[#3B82F6] pl-6">
+        <p class="text-[28px] font-bold text-white">3. Bare domains without a scheme</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2"><span class="code text-[#3B82F6]">example.com/foo</span> is a relative path, not a URL. Browsers resolve it against the current page. A validator that accepts it is wrong.</p>
+      </div>
+      <div class="border-l-4 border-[#3B82F6] pl-6">
+        <p class="text-[28px] font-bold text-white">4. Userinfo carrying credentials</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2"><span class="code text-[#3B82F6]">https://user:pass@example.com/</span> -- Chromium and Firefox strip these before the request. Any audit that flags them is doing the reader a favor.</p>
+      </div>
+      <div class="border-l-4 border-[#3B82F6] pl-6">
+        <p class="text-[28px] font-bold text-white">5. Backslashes from Windows paths</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2"><span class="code text-[#3B82F6]">https://example.com\foo</span> parses as an authority with an invalid character. Copy-pasted through some terminals it renders as forward slashes and looks fine until inspection.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
