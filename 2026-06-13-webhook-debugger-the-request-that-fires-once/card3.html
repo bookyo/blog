@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Outfit', sans-serif; width: 1080px; min-height: 900px; }
+.code { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body class="bg-black flex items-center justify-center">
+  <div class="w-[1080px] px-[72px] py-20">
+    <p class="text-[22px] font-bold text-[#FF6B35] tracking-widest uppercase mb-6">Card 3 / Conditional Replay</p>
+    <h2 class="text-[68px] font-black text-white leading-tight">From passive logger to active proxy</h2>
+    <div class="mt-10 space-y-5 text-[26px] text-[#DDDDDD]">
+      <p><span class="text-[#FF6B35] font-bold">1.</span> Point upstream at the debugger's capture URL instead of your endpoint.</p>
+      <p><span class="text-[#FF6B35] font-bold">2.</span> Set <span class="code text-[#FF6B35]">bodyMustContain</span> to <span class="code">"type":"invoice.paid"</span>. Leave <span class="code text-[#FF6B35]">autoReplay</span> off.</p>
+      <p><span class="text-[#FF6B35] font-bold">3.</span> Trigger the upstream test event (Stripe CLI <span class="code text-[#FF6B35]">stripe trigger invoice.paid</span>).</p>
+      <p><span class="text-[#FF6B35] font-bold">4.</span> Inspect the captured request: headers, HMAC verdict, JSON shape.</p>
+      <p><span class="text-[#FF6B35] font-bold">5.</span> Flip <span class="code text-[#FF6B35]">autoReplay</span> on. Forward every matching request to your real endpoint.</p>
+      <p><span class="text-[#FF6B35] font-bold">6.</span> Watch your endpoint's logs. If it 500s, flip off, fix, replay manually from the buffer.</p>
+    </div>
+    <p class="text-[22px] text-[#888888] mt-10">You debug on your clock -- not on the upstream's retry policy.</p>
+  </div>
+</body>
+</html>
