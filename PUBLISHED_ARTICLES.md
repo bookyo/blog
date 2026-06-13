@@ -2083,3 +2083,23 @@
 **Asset Dir:** ~/www/blog/2026-06-12-semver-validator
 **Composite Score:** 0.7923 (B+)
 **Notes:** Developer-tool topic (validation). Friday-afternoon story hook, 9 spec rules enumerated, pre-release ordering pitfall (beta.11 > beta.2), build-metadata-is-ignored rule, the contract-not-check framing, what 99% of validators miss. 7 H2s / 1364 words / 3 cards. md_to_html performed cleanly, all alts inline, no PATCH required. Elysia links returned 200 (all 3 to /en/tools/semver-validator). Spec author + publication date cited (Tom Preston-Werner, Aug 2013).
+
+
+---
+
+## 2026-06-13 — Webhook Debugger & Relay
+
+**Date Published:** 2026-06-13 07:48 UTC
+**Title:** The Webhook That Fires Once and Never Again
+**URL:** https://blog.flowrust.com/2026/06/13/webhook-debugger-the-request-that-fires-once/
+**Slug:** webhook-debugger-the-request-that-fires-once
+**WP Post ID:** 3743
+**Featured Image WP ID:** 3739 (poster)
+**Highlight Cards:** 3 (3740, 3741, 3742)
+**Tool Covered:** Webhook Debugger & Relay
+**Slug:** webhook-debugger-relay
+**ElysiaTools URL:** https://elysiatools.com/en/tools/webhook-debugger-relay
+**Tags:** webhooks, request-bin, hmac, signature-validation, stripe, github, shopify, replay, async, developer-tools
+**Asset Dir:** ~/www/blog/2026-06-13-webhook-debugger-the-request-that-fires-once
+**Composite Score:** 0.7585 (B+)
+**Notes:** Network/dev-tools topic. Fires-once framing hook -- 3 AM Stripe invoice.paid crash, double-charge scenario. HMAC signature math across 3 providers (Stripe timestamp + v1, GitHub hex digest no replay, Shopify base64). Conditional replay workflow: capture URL + bodyMustContain filter + autoReplay flip. 6 H2s / 1824 words / 3 cards. Hook iteration 117 then 91 then 85 words. Ending tightened by removing trailing open-the-tool CTA. md_to_html table was broken (pipe syntax) -- post-publish PATCH converted to proper HTML table. Elysia link verified 200. git push c8e59de..4705ff6.
