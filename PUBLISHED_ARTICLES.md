@@ -2103,3 +2103,20 @@
 **Asset Dir:** ~/www/blog/2026-06-13-webhook-debugger-the-request-that-fires-once
 **Composite Score:** 0.7585 (B+)
 **Notes:** Network/dev-tools topic. Fires-once framing hook -- 3 AM Stripe invoice.paid crash, double-charge scenario. HMAC signature math across 3 providers (Stripe timestamp + v1, GitHub hex digest no replay, Shopify base64). Conditional replay workflow: capture URL + bodyMustContain filter + autoReplay flip. 6 H2s / 1824 words / 3 cards. Hook iteration 117 then 91 then 85 words. Ending tightened by removing trailing open-the-tool CTA. md_to_html table was broken (pipe syntax) -- post-publish PATCH converted to proper HTML table. Elysia link verified 200. git push c8e59de..4705ff6.
+
+
+## 2026-06-15 — PII Finder: The Quiet Data Leak
+
+**Date Published:** 2026-06-15 02:07 UTC
+**Title:** The Five Lines of PII Quietly Sitting in Your Application Logs
+**URL:** https://blog.flowrust.com/2026/06/15/pii-finder-the-quiet-data-leak/
+**Slug:** pii-finder-the-quiet-data-leak
+**WP Post ID:** 3813
+**Featured Image WP ID:** 3809 (poster)
+**Highlight Cards:** 3 (3810, 3811, 3812)
+**Tool Covered:** PII Finder
+**Slug:** pii-finder
+**ElysiaTools URL:** https://elysiatools.com/en/tools/pii-finder
+**Tags:** pii, privacy, gdpr, regex, redaction, security, logs, developer-tools
+**Asset Dir:** ~/www/blog/2026-06-15-pii-finder-the-quiet-data-leak
+**Notes:** Privacy/developer-tool topic. Hook = a 47-MB Apache access log story with 2184 emails, 612 phones, 38 government IDs, 1 credit card; 14-week GDPR notice cycle. 7 H2s covering: regex-floor (false positives/negatives on email + SSN patterns), the 10 PII categories (email, phone, SSN/ITIN/passport, credit card with Luhn, IP, API key, URL, bank account, ID card), output shape (offset + context + confidence fields), pipeline position (pre-commit / CI / log forwarder / post-storage audit), the 70% problem (international formats, encoded PII, split PII, domain-specific), scanner-as-floor. 1686 words / 7 H2s / 3 cards. md_to_html performed cleanly, callable re.sub form (backref pitfall avoided). 1 PATCH applied post-publish to fix a slug-only URL placeholder (CARD_regex-floor.png → real media URL). 4 Elysia links all return 200: /en/tools/pii-finder, /en/samples/log-with-sensitive-data, /en/samples/text-with-sensitive-data-samples, /en/tools (footer). Featured poster uses violet gradient (#0f0a1a → #1a0a2e) with #a855f7 accent. Cards: violet (regex-floor), ember (json-output-shape), ocean (pipeline-position). All 3 image URLs return 200 after PATCH fix.
