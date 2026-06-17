@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Outfit', sans-serif; width: 1080px; min-height: 900px; }
+.code { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body class="bg-black flex items-center justify-center">
+  <div class="w-[1080px] px-[72px] py-20">
+    <p class="text-[22px] font-bold text-[#10B981] tracking-widest uppercase mb-6">Card 1 / The Five Headers</p>
+    <h2 class="text-[68px] font-black text-white leading-tight">Five lines that decide whether you get breached</h2>
+    <div class="mt-10 space-y-6">
+      <div class="border-l-4 border-[#10B981] pl-6">
+        <p class="text-[28px] font-bold text-white">1. Content-Security-Policy (CSP)</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2">A whitelist of allowed script, style, image, font, and frame sources. The single most powerful header on the list. A misconfigured CSP is the most common reason a stored XSS escalates from annoying to catastrophic.</p>
+      </div>
+      <div class="border-l-4 border-[#10B981] pl-6">
+        <p class="text-[28px] font-bold text-white">2. Strict-Transport-Security (HSTS)</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2">Tells the browser to refuse plain HTTP for a specified period. Without it, the first request after a coffee-shop captive portal can be downgraded to HTTP by an attacker on the path.</p>
+      </div>
+      <div class="border-l-4 border-[#10B981] pl-6">
+        <p class="text-[28px] font-bold text-white">3. X-Frame-Options / frame-ancestors</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2">Prevents your page from being embedded in an iframe on another origin -- the foundation of clickjacking. Modern CSP supersedes it, but the legacy header is still the only one some scanners check.</p>
+      </div>
+      <div class="border-l-4 border-[#10B981] pl-6">
+        <p class="text-[28px] font-bold text-white">4. X-Content-Type-Options: nosniff</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2">Stops the browser from MIME-sniffing a response. Without it, a text/plain response containing HTML can be rendered as HTML -- the entire premise of certain stored-XSS chains against user uploads.</p>
+      </div>
+      <div class="border-l-4 border-[#10B981] pl-6">
+        <p class="text-[28px] font-bold text-white">5. Referrer-Policy</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2">Controls how much of the previous page's URL is leaked in the <span class="code text-[#10B981]">Referer</span> header. A token in the URL of a password-reset page is a real bug that has shipped in production more times than anyone wants to admit.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

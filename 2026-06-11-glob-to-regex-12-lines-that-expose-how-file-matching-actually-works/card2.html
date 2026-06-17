@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+body {
+ font-family: 'Outfit', sans-serif;
+ width:1080px;
+ min-height:900px;
+ margin:0;
+ padding:0;
+}
+</style>
+</head>
+<body class="bg-[#0A0A0A] flex items-center justify-center">
+ <div class="w-[1080px] px-[72px] py-20">
+ <p class="text-[26px] font-bold text-[#00FF94] tracking-widest uppercase mb-3">Three Traps</p>
+ <p class="text-[56px] font-black text-white leading-tight mb-12">Where simple globs bite</p>
+ <div class="space-y-7 text-[28px] text-white leading-snug">
+ <div class="border-l-4 border-[#00FF94] pl-6">
+ <p class="font-bold text-[#00FF94] text-[26px] uppercase tracking-wider mb-2">Dotfiles</p>
+ <p class="text-[#CCCCCC]"><span class="mono text-[#00FF94]">*</span> must become <span class="mono text-[#00FF94]">[^/]*</span>, not <span class="mono text-red-400">.*</span> — otherwise <span class="mono text-white">.env</span> matches.</p>
+ </div>
+ <div class="border-l-4 border-[#00FF94] pl-6">
+ <p class="font-bold text-[#00FF94] text-[26px] uppercase tracking-wider mb-2">Anchors</p>
+ <p class="text-[#CCCCCC]">Regex has no implicit <span class="mono text-[#00FF94]">^</span> / <span class="mono text-[#00FF94]">$</span>. Forget them and you over-match.</p>
+ </div>
+ <div class="border-l-4 border-[#00FF94] pl-6">
+ <p class="font-bold text-[#00FF94] text-[26px] uppercase tracking-wider mb-2">Double Star</p>
+ <p class="text-[#CCCCCC]"><span class="mono text-[#00FF94]">**</span> is <span class="mono text-[#00FF94]">.*</span>, but the trailing <span class="mono text-[#00FF94]">/</span> edge cases matter.</p>
+ </div>
+ </div>
+ </div>
+</body>
+</html>

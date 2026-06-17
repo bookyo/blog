@@ -348,3 +348,5 @@ terraform-plan-visualizer-done
 environment-config-diff-visualizer-done
 
 aws-arn-validator-done
+api-breaking-changes-detector-migration-planner-done
+accessibility-audit-report-generator-done

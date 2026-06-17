@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      width: 1080px;
+      min-height: 900px;
+      background: #1a0a0a;
+      color: #ffe0d0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px;
+    }
+    .card {
+      max-width: 900px;
+      border-left: 4px solid #ff6b35;
+      padding-left: 40px;
+    }
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: #ff6b35;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    .title {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .dek {
+      font-size: 16px;
+      color: #ffe0d0;
+      opacity: 0.7;
+      margin-bottom: 24px;
+    }
+    .quote {
+      font-size: 22px;
+      font-weight: 300;
+      line-height: 1.6;
+      font-style: italic;
+      border-left: 2px solid #ff6b35;
+      padding-left: 20px;
+      margin-bottom: 24px;
+    }
+    .bullets {
+      list-style: none;
+      padding: 0;
+    }
+    .bullets li {
+      font-size: 14px;
+      padding: 6px 0;
+      opacity: 0.85;
+    }
+    .bullets li::before {
+      content: "→ ";
+      color: #ff6b35;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="eyebrow">OUTPUT SHAPE</div>
+    <h2 class="title">Three fields you cannot skip</h2>
+    <p class="dek">Offsets, context, and confidence — the part most scanners forget</p>
+    <blockquote class="quote">A scanner that tells you 'I found an SSN at offset 4012' without showing you the 30 characters around it is useless — you cannot tell whether that 9-digit number is an SSN or an order ID.</blockquote>
+    <ul class="bullets">
+      <li>start/end offsets drive automatic redaction without breaking the surrounding text</li><li>Context window (16 chars each side) separates real PII from shape-look-alikes</li><li>Confidence scores turn 'maybe PII' into a triage decision, not a guess</li>
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Outfit', sans-serif; width: 1080px; min-height: 900px; }
+.code { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body class="bg-black flex items-center justify-center">
+  <div class="w-[1080px] px-[72px] py-20">
+    <p class="text-[22px] font-bold text-[#10B981] tracking-widest uppercase mb-6">Card 2 / The Three Debug Checks</p>
+    <h2 class="text-[68px] font-black text-white leading-tight">Three checks that catch the bugs no one schedules</h2>
+    <div class="mt-10 space-y-6">
+      <div class="border-l-4 border-[#10B981] pl-6">
+        <p class="text-[28px] font-bold text-white">1. The misconfigured cache</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2">A user sees a banner promoting a campaign that ended two weeks ago. The cause is almost always <span class="code text-[#10B981]">Cache-Control: max-age=86400</span> on a page that should be <span class="code text-[#10B981]">max-age=60</span>. The analyzer reports what the browser and CDN are actually allowed to do with the response.</p>
+      </div>
+      <div class="border-l-4 border-[#10B981] pl-6">
+        <p class="text-[28px] font-bold text-white">2. The CORS regression</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2">A frontend deploy immediately starts seeing <span class="code text-[#10B981]">No 'Access-Control-Allow-Origin' header is present</span>. The backend team swears they set the header. The analyzer shows the actual headers -- and the cause is usually a CDN stripping the header on cache miss, or auth middleware short-circuiting before CORS runs.</p>
+      </div>
+      <div class="border-l-4 border-[#10B981] pl-6">
+        <p class="text-[28px] font-bold text-white">3. The redirect loop</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2">A deployment moves a path and a typo in the redirect rule turns <span class="code text-[#10B981]">/old-page</span> into a 302 to itself. The browser shows "too many redirects". The analyzer follows the chain and reports the exact hop where the loop closes.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

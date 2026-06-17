@@ -1238,3 +1238,15 @@
 - **Asset Dir**: ~/www/blog/2026-06-13-webhook-debugger-the-request-that-fires-once
 - **date_gmt**: 2026-06-13T07:48:16
 - **Status**: publish
+
+## 2026-06-14 00:54 UTC — The Five HTTP Headers That Quietly Decide Whether Your Site Gets Hacked
+- **WP Post ID**: 3774
+- **WP URL**: https://blog.flowrust.com/2026/06/14/http-headers-analyzer-the-silent-bouncer/
+- **Featured Image**: poster (WP ID 3770)
+- **Highlight Cards**: 3 (card1: 3771, card2: 3772, card3: 3773)
+- **Slug**: http-headers-analyzer-the-silent-bouncer
+- **Tool**: [HTTP Headers Analyzer](https://elysiatools.com/en/tools/http-headers-analyzer)
+- **Category**: Development / Web Security / HTTP
+- **Asset Dir**: ~/www/blog/2026-06-14-http-headers-analyzer-the-silent-bouncer
+- **date_gmt**: 2026-06-14T00:54:33
+- **Status**: publish

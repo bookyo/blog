@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      width: 1080px;
+      min-height: 900px;
+      background: #0a1628;
+      color: #e0f4ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px;
+    }
+    .card {
+      max-width: 900px;
+      border-left: 4px solid #00d4ff;
+      padding-left: 40px;
+    }
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: #00d4ff;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    .title {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .dek {
+      font-size: 16px;
+      color: #e0f4ff;
+      opacity: 0.7;
+      margin-bottom: 24px;
+    }
+    .quote {
+      font-size: 22px;
+      font-weight: 300;
+      line-height: 1.6;
+      font-style: italic;
+      border-left: 2px solid #00d4ff;
+      padding-left: 20px;
+      margin-bottom: 24px;
+    }
+    .bullets {
+      list-style: none;
+      padding: 0;
+    }
+    .bullets li {
+      font-size: 14px;
+      padding: 6px 0;
+      opacity: 0.85;
+    }
+    .bullets li::before {
+      content: "→ ";
+      color: #00d4ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="eyebrow">ARCHITECTURE</div>
+    <h2 class="title">Four positions, four leak classes</h2>
+    <p class="dek">Where the scanner sits in the pipeline decides what it catches</p>
+    <blockquote class="quote">Pre-commit hook catches what developers remember. CI catches what's in the codebase. The log forwarder catches what's in production. The post-storage audit catches the regressions. The strongest pipelines use the last two together.</blockquote>
+    <ul class="bullets">
+      <li>Forwarder + post-storage audit catches the steady state and the regressions</li><li>Pre-commit and CI each catch 60-70% of leaks that eventually reach production</li><li>Cheapest starting point: run the scanner against an existing log bucket today</li>
+    </ul>
+  </div>
+</body>
+</html>

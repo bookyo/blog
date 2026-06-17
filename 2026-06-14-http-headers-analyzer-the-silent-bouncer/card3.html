@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Outfit', sans-serif; width: 1080px; min-height: 900px; }
+.code { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body class="bg-black flex items-center justify-center">
+  <div class="w-[1080px] px-[72px] py-20">
+    <p class="text-[22px] font-bold text-[#10B981] tracking-widest uppercase mb-6">Card 3 / The Triage Buckets</p>
+    <h2 class="text-[68px] font-black text-white leading-tight">Read the report without panicking</h2>
+    <div class="mt-10 space-y-6">
+      <div class="border-l-4 border-[#10B981] pl-6">
+        <p class="text-[28px] font-bold text-white">Fix today (15 minutes of work)</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2">Headers with a one-line config change and zero application impact: <span class="code text-[#10B981]">X-Content-Type-Options: nosniff</span>, <span class="code text-[#10B981]">Referrer-Policy: strict-origin-when-cross-origin</span>, <span class="code text-[#10B981]">X-Frame-Options: DENY</span>. These ship in a single PR.</p>
+      </div>
+      <div class="border-l-4 border-[#10B981] pl-6">
+        <p class="text-[28px] font-bold text-white">Fix this sprint (a few hours of work)</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2">A real CSP means an inventory of every inline script, every external CDN, every analytics pixel. The first time you do this, it will surface a script you forgot was there. That script is usually the bug.</p>
+      </div>
+      <div class="border-l-4 border-[#10B981] pl-6">
+        <p class="text-[28px] font-bold text-white">Schedule and track (a quarter of work)</p>
+        <p class="text-[22px] text-[#AAAAAA] mt-2"><span class="code text-[#10B981]">Strict-Transport-Security</span> with <span class="code text-[#10B981]">preload</span> requires submitting the domain to the HSTS preload list -- a deliberate process that touches every endpoint. Not a thing you turn on lightly.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

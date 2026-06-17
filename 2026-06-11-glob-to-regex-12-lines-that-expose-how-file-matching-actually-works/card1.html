@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+body {
+ font-family: 'Outfit', sans-serif;
+ width:1080px;
+ min-height:900px;
+ margin:0;
+ padding:0;
+}
+.mono { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body class="bg-[#0A0A0A] flex items-center justify-center">
+ <div class="w-[1080px] px-[72px] py-20">
+ <p class="text-[26px] font-bold text-[#00FF94] tracking-widest uppercase mb-3">The Translation</p>
+ <p class="text-[56px] font-black text-white leading-tight mb-12">Glob to regex, in one table</p>
+ <div class="space-y-5 text-[34px]">
+ <div class="flex items-center gap-8"><span class="mono text-[#00FF94] font-bold w-[200px]">*</span><span class="mono text-white">→ [^/]*</span></div>
+ <div class="flex items-center gap-8"><span class="mono text-[#00FF94] font-bold w-[200px]">**</span><span class="mono text-white">→ .*</span></div>
+ <div class="flex items-center gap-8"><span class="mono text-[#00FF94] font-bold w-[200px]">?</span><span class="mono text-white">→ [^/]</span></div>
+ <div class="flex items-center gap-8"><span class="mono text-[#00FF94] font-bold w-[200px]">{a,b}</span><span class="mono text-white">→ (a|b)</span></div>
+ <div class="flex items-center gap-8"><span class="mono text-[#00FF94] font-bold w-[200px]">.</span><span class="mono text-white">→ \.</span></div>
+ </div>
+ <p class="text-[22px] text-[#888888] mt-12 leading-relaxed">12 lines of judgment, hidden in plain sight.</p>
+ </div>
+</body>
+</html>

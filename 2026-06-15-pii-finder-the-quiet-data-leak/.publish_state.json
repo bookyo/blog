@@ -1,0 +1,30 @@
+{
+  "poster_id": 3809,
+  "card_ids": [
+    {
+      "id": 3810,
+      "slug": "pipeline-position",
+      "title": "Four positions, four leak classes"
+    },
+    {
+      "id": 3811,
+      "slug": "json-output-shape",
+      "title": "Three fields you cannot skip"
+    },
+    {
+      "id": 3812,
+      "slug": "regex-floor",
+      "title": "A regex is the floor, not the answer"
+    }
+  ],
+  "media_urls": {
+    "pipeline-position": "https://blog.flowrust.com/wp-content/uploads/2026/06/card_pipeline-position.png",
+    "json-output-shape": "https://blog.flowrust.com/wp-content/uploads/2026/06/card_json-output-shape.png",
+    "regex-floor": "https://blog.flowrust.com/wp-content/uploads/2026/06/card_regex-floor.png"
+  },
+  "post_id": 3813,
+  "post_url": "https://blog.flowrust.com/2026/06/15/pii-finder-the-quiet-data-leak/",
+  "date_gmt": "2026-06-15T02:07:37",
+  "title": "The Five Lines of PII Quietly Sitting in Your Application Logs",
+  "slug": "pii-finder-the-quiet-data-leak"
+}

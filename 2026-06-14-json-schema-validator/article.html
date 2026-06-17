@@ -1,0 +1,82 @@
+<!-- WordPress content for json-schema-validator post -->
+
+<p>Your API accepts a JSON body. The shape looks fine in Postman. It looks fine in staging. It looks fine in the integration tests. Then a user sends <code>{"email": null, "password": "abc12345"}</code> and your code happily writes a row with <code>email = NULL</code>. Six hours later the support queue is full. None of your tests failed because none of your tests sent malformed input — they all sent what you expected. That's the JSON drift problem, and it's the single biggest reason schema validation belongs at the edge, not deep in the stack.</p>
+
+<p>You can stop chasing these bugs in production with a 30-line JSON Schema. Try the <a href="https://elysiatools.com/en/tools/json-schema-validator">JSON Schema Validator</a> live, no install, paste your request body and your schema side-by-side.</p>
+
+<h2>What JSON Schema actually catches</h2>
+
+<p>JSON Schema isn't a type system. It's a contract. A schema says: <em>this endpoint accepts exactly this shape, with exactly these keys, of exactly these types, and any deviation is a 400 — not a 500.</em> Three failure modes are the ones that actually bite teams:</p>
+
+<p>&ndash; <strong>Required fields that arrive as <code>null</code>.</strong> Your TypeScript says <code>email: string</code> — but a JSON body of <code>{"email": null, "password": "abc12345"}</code> round-trips through <code>JSON.parse()</code> as JavaScript <code>null</code>, and most ORMs happily bind that into a nullable column. A schema with <code>"type": "string"</code> on <code>email</code> rejects it at the boundary.</p>
+
+<p>&ndash; <strong>Type coercion that hides a real bug.</strong> A microservice config arrives as <code>{"port": "8080"}</code> when the schema expects <code>"port": 8080</code>. The string <code>"8080"</code> passes a lot of loose validators. Then the database driver, the HTTP client, the health-check probe — they all explode at different layers in different environments. Schema validation says "type: integer" and you find the typo on the first deploy.</p>
+
+<p>&ndash; <strong>Nested objects that nobody inspects.</strong> The top-level shape matches. The user object matches. But the nested <code>address</code> object has <code>zip_code</code> as a string when it should be a number. The bug only shows up at rendering time, three weeks after the data lands.</p>
+
+<figure class="wp-block-image"><img src="__CARD1__" alt="Three silent ways JSON fails without throwing: required-as-null, type coercion, nested object drift." /></figure>
+
+<h2>The 30-line schema that does the work</h2>
+
+<p>You don't need a 300-line schema to catch 90% of these bugs. A focused schema hits the high-value cases in a few dozen lines. The five keywords that earn their keep on every endpoint:</p>
+
+<p>&ndash; <strong><code>"required"</code></strong> &mdash; an array of field names that MUST be present and non-null. Anything missing fails with a single, exact path. This one keyword eliminates an entire class of "we forgot to send X" bugs.</p>
+
+<p>&ndash; <strong><code>"type"</code></strong> &mdash; <code>string</code>, <code>number</code>, <code>integer</code>, <code>boolean</code>, <code>object</code>, <code>array</code>, <code>null</code>. Combine with <code>"type": ["string", "null"]</code> only when null is genuinely acceptable. Otherwise reject.</p>
+
+<p>&ndash; <strong><code>"format"</code></strong> &mdash; <code>email</code>, <code>uri</code>, <code>date-time</code>, <code>uuid</code>, <code>ipv4</code>, <code>hostname</code>. These are domain-correctness checks built into the spec. You stop writing regex in your application code and let the schema do it.</p>
+
+<p>&ndash; <strong><code>"enum"</code></strong> &mdash; five allowed <code>status</code> values, not <code>"status": "string"</code>. One fewer place where a typo like <code>"submittted"</code> gets stored forever.</p>
+
+<p>&ndash; <strong><code>"additionalProperties": false</code></strong> &mdash; refuse unknown keys. If the client sends a field the schema doesn't know about, reject it. This catches typos at the field-name level and stops third-party integrations from sneaking in undocumented fields.</p>
+
+<figure class="wp-block-image"><img src="__CARD2__" alt="Five keywords that earn their keep: required, type, format, enum, additionalProperties." /></figure>
+
+<h2>What a tight schema looks like in practice</h2>
+
+<p>Here's the pattern that handles a registration endpoint without becoming the schema itself:</p>
+
+<pre><code class="language-json">{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["email", "password"],
+  "additionalProperties": false,
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "minLength": 3,
+      "maxLength": 254
+    },
+    "password": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50
+    }
+  }
+}</code></pre>
+
+<p>Eighteen lines. Every field the endpoint accepts is declared. Every field the endpoint doesn't accept is rejected by <code>additionalProperties: false</code>. <code>format: email</code> means you never write an email regex in app code again. <code>minLength: 8</code> on the password kills the empty-string case before it reaches bcrypt. Run this against your registration endpoint and the malformed-body class of bug evaporates. See the worked example at <a href="https://elysiatools.com/en/samples/json-schema-validator">Elysia Tools Samples</a>.</p>
+
+<h2>Where validation belongs</h2>
+
+<p>The right place to run a schema check is the edge &mdash; before auth, before the database, before any business logic. The wrong place is three layers deep, after the data has been copied into a typed object that quietly coerces everything. Three places to wire it in:</p>
+
+<p>&ndash; <strong>At the API boundary.</strong> Every endpoint that accepts JSON should validate before any other work. Reject malformed input in 5ms, not after a 200ms database call. The endpoint either accepts and processes, or rejects with a 400 and a precise error path. There is no middle ground.</p>
+
+<p>&ndash; <strong>Before a microservice reads its config.</strong> Config files stored as JSON should fail to start if <code>port</code> isn't an integer or <code>database_url</code> isn't a URI. Run validation at boot, fail loud, fail fast. The alternative is the service starts, then half its requests 500 because the connection pool wasn't sized right.</p>
+
+<p>&ndash; <strong>In the test fixture generator.</strong> If your tests load fixtures, the fixtures must match the schema. Wire the validator into fixture generation and the contract is enforced before CI runs. Tests that violate the contract fail at the fixture layer, not in production.</p>
+
+<figure class="wp-block-image"><img src="__CARD3__" alt="Three places to wire schema validation: API boundary, config load, test fixtures." /></figure>
+
+<h2>The drift you didn't notice until now</h2>
+
+<p>Most teams reach for JSON Schema after a bug, not before. That's the wrong order. If you write the schema first, the endpoint is honest about what it accepts from day one. If you write the schema after the endpoint, you're reverse-engineering a contract you already shipped, and every gap is a bug waiting for the right input. The schema is cheaper to write than the postmortem.</p>
+
+<p>Validate the bodies your API accepts in your browser with the <a href="https://elysiatools.com/en/tools/json-schema-validator">JSON Schema Validator</a> &mdash; paste JSON on one side, schema on the other, see every violation with the exact path. Or check a real-world config-validation example at <a href="https://elysiatools.com/en/samples/json-schema-validator-1">the sample page</a>. For more schema-driven tools, browse the full set at <a href="https://elysiatools.com/en/tools">elysiatools.com</a>.</p>

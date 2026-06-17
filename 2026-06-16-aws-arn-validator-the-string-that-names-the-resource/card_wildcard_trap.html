@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Outfit', sans-serif;
+  width: 1080px;
+  min-height: 900px;
+  background: #1a0a0a;
+  color: #ffe0d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px;
+}
+.card {
+  max-width: 920px;
+  border-left: 6px solid #ff6b35;
+  padding-left: 48px;
+}
+.eyebrow {
+  font-size: 16px;
+  letter-spacing: 4px;
+  color: #ff6b35;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+.title {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 14px;
+  line-height: 1.15;
+}
+.dek {
+  font-size: 18px;
+  color: #ffe0d0;
+  opacity: 0.75;
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+.bullets {
+  list-style: none;
+  padding: 0;
+}
+.bullets li {
+  font-size: 17px;
+  padding: 9px 0;
+  opacity: 0.92;
+  line-height: 1.5;
+}
+.bullets li::before {
+  content: "→  ";
+  color: #ff6b35;
+  font-weight: 700;
+}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="eyebrow">PITFALL</div>
+    <h2 class="title">The Wildcard Trap</h2>
+    <p class="dek">The asterisk has rules the IAM policy engine does not enforce</p>
+    <ul class="bullets">
+      <li>Allowed only at the end of the resource path</li><li>Forbidden in partition, service, region, account ID</li><li>IAM treats misplaced asterisks as literal characters</li><li>Policy silently fails to match the resources you intended</li>
+    </ul>
+  </div>
+</body>
+</html>

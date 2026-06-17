@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      width: 1080px;
+      min-height: 900px;
+      background: #0a1628;
+      color: #e0f4ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .bg-shape {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: radial-gradient(circle at 80% 20%, #00d4ff22 0%, transparent 50%);
+      z-index: 0;
+    }
+    .card {
+      max-width: 900px;
+      border-left: 4px solid #00d4ff;
+      padding-left: 40px;
+      z-index: 2;
+    }
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: #00d4ff;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    .title {
+      font-size: 40px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.15;
+    }
+    .dek {
+      font-size: 18px;
+      color: #e0f4ff;
+      opacity: 0.7;
+      margin-bottom: 28px;
+    }
+    .quote {
+      font-size: 22px;
+      font-weight: 300;
+      line-height: 1.6;
+      font-style: italic;
+      border-left: 2px solid #00d4ff;
+      padding-left: 20px;
+      margin-bottom: 28px;
+    }
+    .bullets {
+      list-style: none;
+      padding: 0;
+    }
+    .bullets li {
+      font-size: 16px;
+      padding: 8px 0;
+      opacity: 0.9;
+      line-height: 1.4;
+    }
+    .bullets li::before {
+      content: "→ ";
+      color: #00d4ff;
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-shape"></div>
+  <div class="card">
+    <div class="eyebrow">WHERE TO PUT IT</div>
+    <h2 class="title">Three Places the Detector Belongs</h2>
+    <p class="dek">Pipeline placements ordered by leverage, not effort</p>
+    <blockquote class="quote">The detector is the record. It is small. It is offline.</blockquote>
+    <ul class="bullets">
+      <li>Pre-merge check on the spec repo (PR bot)</li><li>Post-merge job on main (alert on threshold)</li><li>Pre-release gate in the SDK regen pipeline</li>
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      width: 1080px;
+      min-height: 900px;
+      background: #0f0a1a;
+      color: #f0e0ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px;
+    }
+    .card {
+      max-width: 900px;
+      border-left: 4px solid #a855f7;
+      padding-left: 40px;
+    }
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: #a855f7;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    .title {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .dek {
+      font-size: 16px;
+      color: #f0e0ff;
+      opacity: 0.7;
+      margin-bottom: 24px;
+    }
+    .quote {
+      font-size: 22px;
+      font-weight: 300;
+      line-height: 1.6;
+      font-style: italic;
+      border-left: 2px solid #a855f7;
+      padding-left: 20px;
+      margin-bottom: 24px;
+    }
+    .bullets {
+      list-style: none;
+      padding: 0;
+    }
+    .bullets li {
+      font-size: 14px;
+      padding: 6px 0;
+      opacity: 0.85;
+    }
+    .bullets li::before {
+      content: "→ ";
+      color: #a855f7;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="eyebrow">THE FLOOR</div>
+    <h2 class="title">A regex is the floor, not the answer</h2>
+    <p class="dek">What 70% recall against real application logs actually looks like</p>
+    <blockquote class="quote">A 70% recall rate is not 'good enough for compliance.' It is 'good enough that you will pass your first audit and fail your second.'</blockquote>
+    <ul class="bullets">
+      <li>International formats the scanner doesn't know: Korean RRN, Brazilian CPF, Indian Aadhaar</li><li>Encoded PII: Base64, URL-encoded, JSON-stringified — none of them match the email regex</li><li>PII split across fields: first name + last name + phone — no single field matches alone</li>
+    </ul>
+  </div>
+</body>
+</html>

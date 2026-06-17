@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Outfit', sans-serif; width:1080px; min-height:900px; }
+</style>
+</head>
+<body class="bg-black flex items-center justify-center">
+<div class="w-[1080px] px-[80px] py-20">
+<p class="text-[24px] font-medium text-[#00FF94] tracking-[0.3em] mb-6">OPTIMIZATION LEVELS</p>
+<h2 class="text-[90px] font-black text-white tracking-tight leading-none">Level1 <span class="text-[#666]">vs</span> Level2</h2>
+<p class="text-[28px] font-semibold text-white mt-8">The difference between whitespace removal and CSS rewriting</p>
+<div class="grid grid-cols-2 gap-8 mt-12">
+<div class="border border-[#222] rounded-2xl p-8">
+<p class="text-[20px] font-bold text-[#00FF94] tracking-wider">LEVEL1 (BASIC)</p>
+<ul class="mt-6 space-y-3 text-[24px] text-white">
+<li>Strips comments</li>
+<li>Collapses whitespace</li>
+<li>Removes trailing semicolons</li>
+<li>Shortens color values</li>
+</ul>
+<p class="text-[18px] text-[#666] mt-6">Lossless — no rendering difference.</p>
+</div>
+<div class="border-2 border-[#00FF94] rounded-2xl p-8">
+<p class="text-[20px] font-bold text-[#00FF94] tracking-wider">LEVEL2 (ADVANCED)</p>
+<ul class="mt-6 space-y-3 text-[24px] text-white">
+<li>Rewrites long-form values</li>
+<li>Merges same-selector rules</li>
+<li>Deduplicates declarations</li>
+<li>Folds media queries</li>
+</ul>
+<p class="text-[18px] text-[#00FF94] mt-6">Saves another8–12%.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

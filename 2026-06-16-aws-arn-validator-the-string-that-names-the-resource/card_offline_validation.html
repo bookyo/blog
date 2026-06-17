@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Outfit', sans-serif;
+  width: 1080px;
+  min-height: 900px;
+  background: #0f0a1a;
+  color: #f0e0ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px;
+}
+.card {
+  max-width: 920px;
+  border-left: 6px solid #a855f7;
+  padding-left: 48px;
+}
+.eyebrow {
+  font-size: 16px;
+  letter-spacing: 4px;
+  color: #a855f7;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+.title {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 14px;
+  line-height: 1.15;
+}
+.dek {
+  font-size: 18px;
+  color: #f0e0ff;
+  opacity: 0.75;
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+.bullets {
+  list-style: none;
+  padding: 0;
+}
+.bullets li {
+  font-size: 17px;
+  padding: 9px 0;
+  opacity: 0.92;
+  line-height: 1.5;
+}
+.bullets li::before {
+  content: "→  ";
+  color: #a855f7;
+  font-weight: 700;
+}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="eyebrow">WHY IT WORKS</div>
+    <h2 class="title">Offline Validation Beats Networked Validation</h2>
+    <p class="dek">A structural validator without AWS credentials still catches the failures that matter</p>
+    <ul class="bullets">
+      <li>No rate limits, no API timeouts, no credential rotation</li><li>Catches paste errors and LLM hallucinations at PR time</li><li>Fits cleanly into a CI step or pre-commit hook</li><li>Builds the engineer's mental model of the ARN format</li>
+    </ul>
+  </div>
+</body>
+</html>
