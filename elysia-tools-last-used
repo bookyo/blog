@@ -351,3 +351,14 @@ aws-arn-validator-done
 api-breaking-changes-detector-migration-planner-done
 accessibility-audit-report-generator-done
 percentile-calculator-done
+
+[2026-06-19 06:22 UTC] jwt-decoder-security-auditor article published
+- WP ID: 3990
+- Title: "The Four Checks Most JWT Decoders Skip: Why Your Token Inspector Says Valid While Your IdP Knows It Isn't"
+- Slug: jwt-decoder-security-auditor-the-four-checks-most-decoders-skip
+- URL: https://blog.flowrust.com/2026/06/19/jwt-decoder-security-auditor-the-four-checks-most-decoders-skip/
+- date_gmt: 2026-06-19T06:22:38 (single-step publish, status=publish directly)
+- Audit: 0 issues
+- Image URLs: 3/3 HTTP 200
+- Elysia links: 5 anchors / 3 unique URLs all HTTP 200
+- Cards: 4-tile variants (checks), code-vs-result (alg confusion), numbered-items (claims)
