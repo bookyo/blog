@@ -2120,3 +2120,21 @@
 **Tags:** pii, privacy, gdpr, regex, redaction, security, logs, developer-tools
 **Asset Dir:** ~/www/blog/2026-06-15-pii-finder-the-quiet-data-leak
 **Notes:** Privacy/developer-tool topic. Hook = a 47-MB Apache access log story with 2184 emails, 612 phones, 38 government IDs, 1 credit card; 14-week GDPR notice cycle. 7 H2s covering: regex-floor (false positives/negatives on email + SSN patterns), the 10 PII categories (email, phone, SSN/ITIN/passport, credit card with Luhn, IP, API key, URL, bank account, ID card), output shape (offset + context + confidence fields), pipeline position (pre-commit / CI / log forwarder / post-storage audit), the 70% problem (international formats, encoded PII, split PII, domain-specific), scanner-as-floor. 1686 words / 7 H2s / 3 cards. md_to_html performed cleanly, callable re.sub form (backref pitfall avoided). 1 PATCH applied post-publish to fix a slug-only URL placeholder (CARD_regex-floor.png → real media URL). 4 Elysia links all return 200: /en/tools/pii-finder, /en/samples/log-with-sensitive-data, /en/samples/text-with-sensitive-data-samples, /en/tools (footer). Featured poster uses violet gradient (#0f0a1a → #1a0a2e) with #a855f7 accent. Cards: violet (regex-floor), ember (json-output-shape), ocean (pipeline-position). All 3 image URLs return 200 after PATCH fix.
+
+
+## 2026-06-21 — ICS Calendar Recurrence Rule Expander: The RRULE String Your Calendar App Quietly Misreads
+
+**Date Published:** 2026-06-20 16:42 UTC (post displays 2026-06-21 in CST view)
+**Title:** The RRULE String Your Calendar App Quietly Misreads
+**URL:** https://blog.flowrust.com/2026/06/21/ics-calendar-recurrence-rule-expander-the-rrule-string-your-calendar-app-quietly-misreads/
+**Slug:** ics-calendar-recurrence-rule-expander-the-rrule-string-your-calendar-app-quietly-misreads
+**WP Post ID:** 4040
+**Featured Image WP ID:** 4036 (poster, sky-blue accent)
+**Highlight Cards:** 3 (4037 = paste/result, 4038 = where expansion catches bugs, 4039 = watch-outs)
+**Tool Covered:** ICS Calendar Recurrence Rule Expander
+**Slug:** ics-calendar-recurrence-rule-expander
+**ElysiaTools URL:** https://elysiatools.com/en/tools/ics-calendar-recurrence-rule-expander
+**Tags:** ics, rrule, icalendar, rfc-5545, recurrence, calendar, vevent, exdate, time-zone
+**Asset Dir:** N/A (PIL direct-draw assets in /tmp/, per-job slug prefix icsrr)
+**Date & Time category** — first post in this category in last 15 posts (category rotation in action).
+**Notes:** Date & Time / developer-tool topic. Hook = a team meeting that shows up on three Tuesdays in a row with a FREQ=WEEKLY;INTERVAL=2;BYDAY=TU;COUNT=24 RRULE that looks correct but is not always. 7 H2s covering: what RRULE is and is not, the 4 cases where expansion catches bugs, the 3 usage rules, the 4 things the expander does NOT do, the diff-against-app workflow, the broader calendar toolkit, and the 5 cases that justify reaching for it. 1830 words / 7 H2s / 3 cards / 21 P-tags balanced. PIL direct-draw (no Playwright/Chrome — skill-loader false-positive on the nested umbrella skills confirmed again). 6 outbound elysiatools anchors / 4 unique URLs all HTTP 200 (primary tool x3, time-zone-workflow-scheduler, timezone-duration-calculator, /en/tools footer) + 1 RFC 5545 link. 0 audit issues, 0 PATCH round-trips, single-step publish (status=publish directly). md_to_html was bypassed — built HTML directly because article uses many lists and inline anchors. Pre-publish sanity trio (markdown-link / <name> placeholder / backslash-in-code) all 0 matches. &#92; entity count check: source=0, stored=0 (no regex character classes in article — no-op branch confirmed). PIL card layouts: card1 = code-vs-result (Layout 1, font=30 code lines), card2 = 4-tile variants (Layout 2 with red/amber/green/violet top stripes), card3 = numbered 2x2 (Layout 3 violet). All 4 PNGs vision-checked clean. Featured poster uses slate-900 bg with sky-400 accent.
