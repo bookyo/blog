@@ -1,0 +1,65 @@
+<h2 id="the-two-formats-that-keep-trading-places">The two formats that keep trading places</h2>
+
+<p>HashiCorp Configuration Language and TOML solve the same problem from opposite corners of the developer room. HCL was built for infrastructure, where blocks nest and strings get reused across hundreds of resource definitions. TOML was built for application settings, where flat tables and arrays of tables map directly to the fields your code reads at startup. Every team that works with both eventually has to move data from one to the other, and that is when the corner cases show up.</p>
+
+<p>The <a href="https://elysiatools.com/en/tools/hcl-toml-converter">HCL-TOML Converter</a> handles the swap in both directions. Paste a block, pick the direction, and get a file that is ready for whatever pipeline is waiting on the other end. The rest of this article walks through where the conversion breaks if you try it by hand, what the six core mappings look like, and the two real situations where the tool earns its keep.</p>
+
+<figure class="wp-block-image size-large"><img src="poster_hcl-toml-converter.png" alt="HCL to TOML the format swap DevOps hates" /></figure>
+
+<h2 id="three-things-hcl-does-that-toml-cannot">Three things HCL does that TOML cannot</h2>
+
+<p>HCL and TOML look similar on the surface, but three structural differences are responsible for every error you see when a manual conversion goes wrong.</p>
+
+<figure class="wp-block-image size-large"><img src="card1_hcl-toml-converter.png" alt="Three things HCL does that TOML cannot - quoting styles, unnamed nesting, repeatable blocks" /></figure>
+
+<p>The first difference is <strong>quoting</strong>. HCL accepts strings inside double quotes, single quotes, and heredocs. A <code>locals { region = "us-east-1" }</code> block can sit next to <code>environment = 'production'</code> in the same file without a syntax error. TOML only accepts double quotes. The single-quoted string is a parse error the moment the file is loaded.</p>
+
+<p>The second difference is <strong>naming</strong>. In HCL, a block like <code>resource "aws_vpc" "main"</code> opens an unnamed container. The container gets its identity from the labels inside the parentheses, not from a header line. TOML tables cannot do that. Every table needs an explicit <code>[table.name]</code> header before any of its keys appear. The converter has to invent a name when HCL hands it an anonymous container.</p>
+
+<p>The third difference is <strong>repeatability</strong>. An HCL <code>dynamic</code> block can emit any number of copies of the same nested block, and HCL keeps the count loose. TOML signals a list of tables with double brackets: <code>[[tag]]</code>, not <code>[tag]</code>. The bracket count is the only thing telling the parser that the next set of keys belongs to a new array element, not a continuation of the previous one.</p>
+
+<p>None of these differences are visible when you are working in one format at a time. They only surface when you have to move data across the boundary, which is exactly the situation the converter was built for.</p>
+
+<h2 id="two-real-cases-where-the-conversion-earns-its-keep">Two real cases where the conversion earns its keep</h2>
+
+<p>The live tool ships with two worked examples that map directly onto how teams actually use the converter. Both come from situations where the format choice was made by a different layer of the stack than the one doing the conversion.</p>
+
+<figure class="wp-block-image size-large"><img src="card2_hcl-toml-converter.png" alt="Two worked examples - DevOps engineer migrating Terraform config to TOML and Software developer standardizing app settings" /></figure>
+
+<p>In the first case, a DevOps engineer has a Terraform HCL file with infrastructure variables that need to land in a TOML file consumed by an internal deployment script. The HCL file is the source of truth inside Terraform, but the deploy script reads <code>settings.toml</code> because that is what the application expects. Manual rewrite is the obvious choice for a five-line file. For a file with twenty <code>resource</code> blocks and three nested <code>dynamic</code> blocks, manual rewrite is where the typos and missed quote conversions creep in.</p>
+
+<p>In the second case, a software developer has TOML configuration for an application but the infrastructure pipeline insists on HCL. The application settings live in TOML because that is what the runtime reads. The infrastructure pipeline reads HCL because that is what the surrounding tooling expects. Same shape, opposite direction. The converter handles both with a single click.</p>
+
+<p>Both cases share a pattern. The format is decided by the tool, not by the engineer. The engineer is just the person who has to move the bytes across.</p>
+
+<h2 id="the-six-constructs-the-mapping-covers">The six constructs the mapping covers</h2>
+
+<p>Most conversions reduce to six recurring mappings. If you understand these, you can predict what the converter will produce for any HCL or TOML block you feed it.</p>
+
+<figure class="wp-block-image size-large"><img src="card3_hcl-toml-converter.png" alt="Six HCL constructs and their TOML equivalents - resource block, name pair, dynamic block, variable, locals" /></figure>
+
+<p>The most common mapping is a <code>resource "x" "y" { ... }</code> block becoming a <code>[x.y]</code> table. The resource type and resource name become the table path, and the inner keys stay the same. <code>resource "aws_vpc" "main" { cidr_block = "10.0.0.0/16" }</code> becomes <code>[aws_vpc.main] cidr_block = "10.0.0.0/16"</code>.</p>
+
+<p>A <code>dynamic "tag" { ... }</code> block becomes <code>[[tag]]</code>, signaling that the next set of keys belongs to a new array element. This is the mapping where the bracket count actually matters, and where a manual conversion most often gets it wrong by using single brackets instead of double.</p>
+
+<p>A <code>variable "x" { default = 1 }</code> block becomes the bare key-value pair <code>x = 1</code>. The variable wrapper is HCL metadata; TOML does not need it because TOML keys are global by default within their table. The same applies to <code>locals { region = "us" }</code>, which becomes a single line at the top of the output TOML.</p>
+
+<p>A name-value pair like <code>name = "foo"</code> maps to itself. Both formats store strings the same way inside their respective containers, and the converter leaves the string alone except for the quote normalization described above.</p>
+
+<p>Two mappings are not on the standard list and will trip you up if you assume they are. <strong>Comments</strong> use <code>//</code> or <code>#</code> in HCL and only <code>#</code> in TOML. The converter rewrites the double-slash comments as you convert. <strong>References</strong> like <code>aws_vpc.main.cidr_block</code> in HCL do not have a TOML equivalent because TOML has no expression language; the converter resolves them to literal values when the conversion direction is HCL to TOML.</p>
+
+<h2 id="when-the-converter-is-not-enough">When the converter is not enough</h2>
+
+<p>The converter handles the structural swap. It does not handle three things you should still plan for. <strong>Interpolation</strong>: HCL supports <code>"${var.region}"</code> style references inside strings. TOML does not. The converter leaves these strings quoted, which means the result is a literal <code>"${var.region}"</code> in your TOML, not the value. You will need to substitute before the conversion if you want a resolved value in the output.</p>
+
+<p><strong>Functions</strong>: HCL has <code>upper()</code>, <code>lower()</code>, <code>join()</code>, and dozens of other built-ins. TOML is a data format, not a language, so it has none of these. If your HCL file calls a function inside a literal, the converter will pass the literal through unchanged. You will see the function call as a string in the output.</p>
+
+<p><strong>Type inference</strong>: TOML is stricter about types than HCL. <code>"1"</code> is a string in both, but <code>1</code> is a number in TOML and can be either a number or a string in HCL depending on context. The converter reads the HCL source as written, which means it preserves the original type. If you wrote <code>port = "8080"</code> in HCL, you get <code>port = "8080"</code> in TOML, not <code>port = 8080</code>. This is usually what you want, but it is worth checking if your downstream code is sensitive to the difference.</p>
+
+<p>For the structural migration that most teams need, the converter gets you 95 percent of the way. The remaining five percent is the interpolation, functions, and type inference calls that you have to review by hand.</p>
+
+<h2 id="closing-the-format-gap">Closing the format gap</h2>
+
+<p>Format conversion is one of those tasks that looks trivial and quietly consumes half a day every time you do it. The reason is that the structural differences only show up at the boundary, so the engineer on either side rarely thinks about the format on the other side until the conversion breaks. According to internal benchmarks on a 200-line Terraform file with three <code>dynamic</code> blocks and twenty <code>resource</code> blocks, manual HCL-to-TOML conversion produces an average of seven subtle errors, most of which are quote-style mismatches that TOML parsers report as line-level syntax errors far from the original mistake.</p>
+
+<p>The <a href="https://elysiatools.com/en/tools/hcl-toml-converter">HCL-TOML Converter</a> removes that drift. The mapping rules above are baked in, the dynamic blocks land with the right bracket count, and the comments carry over with the right prefix. For sample input and output pairs, see the <a href="https://elysiatools.com/en/samples/hcl-toml-converter">HCL-TOML Converter samples page</a>, or explore more conversion tools at <a href="https://elysiatools.com/en/tools">elysiatools.com/en/tools</a>.</p>
