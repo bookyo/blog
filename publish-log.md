@@ -1250,3 +1250,30 @@
 - **Asset Dir**: ~/www/blog/2026-06-14-http-headers-analyzer-the-silent-bouncer
 - **date_gmt**: 2026-06-14T00:54:33
 - **Status**: publish
+
+## 2026-07-01 18:36 UTC — 8 Patterns That Make an XSS String
+- **WP Post ID**: 4461
+- **WP URL**: https://blog.flowrust.com/2026/07/02/xss-payload-detector-the-eight-patterns/
+- **Featured Image**: poster (WP ID 4457)
+- **Highlight Cards**: 3 (card1: 4458, card2: 4459, card3: 4460)
+- **Slug**: xss-payload-detector-the-eight-patterns
+- **Tool**: [XSS Payload Detector](https://elysiatools.com/en/tools/xss-payload-detector)
+- **Category**: Security / XSS Detection
+- **Asset Dir**: ~/www/blog/2026-07-02-xss-payload-detector-eight-patterns
+- **date_gmt**: 2026-07-01T18:36:53
+- **Status**: publish (immediate, single-step)
+- **Audit**: 0 findings, 4/4 elysiatools links return 200, no markdown links, all 4 imgs have alt text
+
+## 2026-08-04 19:41 UTC — When the Label Sheet Has to Do Three Jobs at Once: A Field Guide to PDF QR Barcode Labels
+- **WP Post ID**: 5628
+- **WP URL**: https://blog.flowrust.com/2026/08/05/pdf-qr-barcode-labels-three-jobs-one-sheet-field-guide-2026-08-04/
+- **Featured Image**: poster (WP ID 5624, but featured_media=0 to avoid theme hero duplication)
+- **Highlight Cards**: 3 (card1: 5625, card2: 5626, card3: 5627)
+- **Slug**: pdf-qr-barcode-labels-three-jobs-one-sheet-field-guide-2026-08-04
+- **Tool**: [PDF QR Barcode Labels](https://elysiatools.com/en/tools/pdf-qr-barcode-labels)
+- **Category**: Document Tools / Print / Barcode
+- **Asset Dir**: ~/www/blog/2026-08-04-pdf-qr-barcode-labels-three-jobs
+- **date_gmt**: 2026-08-04T19:41:29
+- **Status**: publish (immediate, single-step)
+- **Audit**: 0 findings, 8/8 elysiatools links return 200, all 4 imgs have alt text, all 3 cards lazy-load from data-src (1080x900), poster at 1280x900
+- **Fix round-trip**: 1 PATCH (set featured_media=0 to avoid COSESAI theme hero duplicating inline poster figure)
