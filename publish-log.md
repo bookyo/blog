@@ -1277,3 +1277,15 @@
 - **Status**: publish (immediate, single-step)
 - **Audit**: 0 findings, 8/8 elysiatools links return 200, all 4 imgs have alt text, all 3 cards lazy-load from data-src (1080x900), poster at 1280x900
 - **Fix round-trip**: 1 PATCH (set featured_media=0 to avoid COSESAI theme hero duplicating inline poster figure)
+
+## 2026-08-04T23:51:31 — PDF Clean Field Guide (WP 5634)
+- **Tool:** PDF Clean (PDF清理工具) — thematic cluster: PDF sanitization / metadata hygiene
+- **Slug:** pdf-clean-metadata-stripping-field-guide-2026-08-04
+- **URL:** https://blog.flowrust.com/2026/08/05/pdf-clean-metadata-stripping-field-guide-2026-08-04/
+- **Title:** Before You Hand That PDF Over: A Field Guide to PDF Clean
+- **Stats:** ~1691 words, 8 H2 sections (3 with highlight-card anchors), 1 poster + 3 cards
+- **Links:** 8 ElysiaTools links (5 unique: pdf-clean, pdf-anonymizer-report, pdf-compress-optimize, pdf-denoise, /en/tools root)
+- **Audit:** clean, all HEAD checks pass
+- **Net round-trips:** 1 POST (single-step, immediate publish)
+- **Pitfalls hit:** none — PIL theme fallback used (article-poster-creator / article-highlight-cards skills missing)
+- **Assets:** ~/www/blog/2026-08-04-pdf-clean-metadata-stripping-field-guide-2026-08-04/
