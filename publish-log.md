@@ -1309,3 +1309,20 @@
 ## 2026-08-05T08:11:59 — punnett-trihybrid-dihybrid-cross-field-guide-2026-08-05 (WP 5650)
 - Title: Before the 8x8 Grid: A Field Guide to Punnett Trihybrid and Dihybrid Crosses
 - URL: https://blog.flowrust.com/2026/08/05/punnett-trihybrid-dihybrid-cross-field-guide-2026-08-05/
+## 2026-08-05T12:26:17 — Two Numbers In, Two Numbers Out: A Field Guide to Ohm's Law and the Power Triangle
+- **WP Post ID**: 5656
+- **WP URL**: https://blog.flowrust.com/2026/08/05/ohms-law-calculator-field-guide-2026-08-05/
+- **Featured Image**: poster (WP ID 5652, but featured_media=0 to avoid theme hero duplication)
+- **Highlight Cards**: 3 (card1: 5653, card2: 5654, card3: 5655)
+- **Slug**: ohms-law-calculator-field-guide-2026-08-05
+- **Tool**: [Ohm's Law and Power Triangle Calculator](https://elysiatools.com/en/tools/ohms-law-calculator)
+- **Category**: Math & Numbers / Circuit Fundamentals
+- **Asset Dir**: ~/www/blog/2026-08-05-ohms-law-calculator-field-guide
+- **date_gmt**: 2026-08-05T12:26:17
+- **Status**: publish (immediate, single-step)
+- **Stats**: ~1287 words, 8 H2 sections (3 with highlight-card anchors), 1 poster + 3 cards, 6 elysiatools anchors
+- **Audit**: clean (0 findings after 1 PATCH for italic conversion)
+- **Round-trips**: 1 POST + 1 PATCH (italic *text* -> <em>text</em> via RAW_ITALIC audit fix)
+- **Pitfalls hit**: 2 stray italics in source markdown (survived POST because md->html converter only handled **bold** and `code` and [text](url), not *italic*)
+- **Fix**: targeted PATCH converted 2 *italic* spans to <em>italic</em> using code-block-protected regex
+- **DOM check**: 1 H1 (entry-title, no body H1 -- clean), 8 body H2 + 1 theme "Post navigation" H2, 3 highlight cards, 1 poster, 12 paragraphs, 0 missing alt
