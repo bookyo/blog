@@ -1293,3 +1293,15 @@
 ## 2026-08-05T04:02:52 — ai-prompt-ab-variant-generator-field-guide-2026-08-05 (WP 5643)
 - Title: Before You Ship That Prompt: A Field Guide to AI Prompt A/B Variant Generation
 - URL: https://blog.flowrust.com/2026/08/05/ai-prompt-ab-variant-generator-field-guide-2026-08-05/
+
+## 2026-08-05 04:02 UTC — Before You Ship That Prompt: A Field Guide to AI Prompt A/B Variant Generation
+- **WP Post ID**: 5643
+- **WP URL**: https://blog.flowrust.com/2026/08/05/ai-prompt-ab-variant-generator-field-guide-2026-08-05/
+- **Featured Image**: poster (WP ID 5639)
+- **Highlight Cards**: 3 (5640, 5641, 5642)
+- **Slug**: ai-prompt-ab-variant-generator-field-guide-2026-08-05
+- **Tool**: [AI Prompt A/B Variant Generator](https://elysiatools.com/en/tools/ai-prompt-ab-variant-generator)
+- **Category**: AI Tools / Prompt Engineering
+- **Score**: 0.7752 (B+)
+- **Round-trips**: 1 POST + 1 PATCH (body-H1 strip — COSESAI theme duplicate-H1 recipe)
+- **Asset Dir**: ~/www/blog/2026-08-05-ai-prompt-ab-variant-generator-field-guide-2026-08-05
