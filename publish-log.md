@@ -1326,3 +1326,6 @@
 - **Pitfalls hit**: 2 stray italics in source markdown (survived POST because md->html converter only handled **bold** and `code` and [text](url), not *italic*)
 - **Fix**: targeted PATCH converted 2 *italic* spans to <em>italic</em> using code-block-protected regex
 - **DOM check**: 1 H1 (entry-title, no body H1 -- clean), 8 body H2 + 1 theme "Post navigation" H2, 3 highlight cards, 1 poster, 12 paragraphs, 0 missing alt
+## 2026-08-05T16:51:49 — morse-code-translator-silence-is-part-of-the-message-2026-08-06 (WP 5663)
+- Title: When Dots and Dashes Become Timing: A Field Guide to Morse Code Translation
+- URL: https://blog.flowrust.com/2026/08/06/morse-code-translator-silence-is-part-of-the-message-2026-08-06/
