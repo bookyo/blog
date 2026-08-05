@@ -1329,3 +1329,7 @@
 ## 2026-08-05T16:51:49 — morse-code-translator-silence-is-part-of-the-message-2026-08-06 (WP 5663)
 - Title: When Dots and Dashes Become Timing: A Field Guide to Morse Code Translation
 - URL: https://blog.flowrust.com/2026/08/06/morse-code-translator-silence-is-part-of-the-message-2026-08-06/
+
+## 2026-08-05T21:05:33 — tailwind-arbitrary-value-playground-field-guide-2026-08-06 (WP 5669)
+- Title: A Bracket Is a Variable That Argues: A Field Guide to Tailwind Arbitrary Values
+- URL: https://blog.flowrust.com/2026/08/06/tailwind-arbitrary-value-playground-field-guide-2026-08-06/
