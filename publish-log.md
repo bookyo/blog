@@ -1289,3 +1289,7 @@
 - **Net round-trips:** 1 POST (single-step, immediate publish)
 - **Pitfalls hit:** none — PIL theme fallback used (article-poster-creator / article-highlight-cards skills missing)
 - **Assets:** ~/www/blog/2026-08-04-pdf-clean-metadata-stripping-field-guide-2026-08-04/
+
+## 2026-08-05T04:02:52 — ai-prompt-ab-variant-generator-field-guide-2026-08-05 (WP 5643)
+- Title: Before You Ship That Prompt: A Field Guide to AI Prompt A/B Variant Generation
+- URL: https://blog.flowrust.com/2026/08/05/ai-prompt-ab-variant-generator-field-guide-2026-08-05/
