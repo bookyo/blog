@@ -1305,3 +1305,7 @@
 - **Score**: 0.7752 (B+)
 - **Round-trips**: 1 POST + 1 PATCH (body-H1 strip — COSESAI theme duplicate-H1 recipe)
 - **Asset Dir**: ~/www/blog/2026-08-05-ai-prompt-ab-variant-generator-field-guide-2026-08-05
+
+## 2026-08-05T08:11:59 — punnett-trihybrid-dihybrid-cross-field-guide-2026-08-05 (WP 5650)
+- Title: Before the 8x8 Grid: A Field Guide to Punnett Trihybrid and Dihybrid Crosses
+- URL: https://blog.flowrust.com/2026/08/05/punnett-trihybrid-dihybrid-cross-field-guide-2026-08-05/
