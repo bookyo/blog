@@ -1333,3 +1333,17 @@
 ## 2026-08-05T21:05:33 — tailwind-arbitrary-value-playground-field-guide-2026-08-06 (WP 5669)
 - Title: A Bracket Is a Variable That Argues: A Field Guide to Tailwind Arbitrary Values
 - URL: https://blog.flowrust.com/2026/08/06/tailwind-arbitrary-value-playground-field-guide-2026-08-06/
+
+## 2026-08-05T21:05:23 — tailwind-arbitrary-value-playground-field-guide-2026-08-06 (WP 5669)
+
+- **Title**: A Bracket Is a Variable That Argues: A Field Guide to Tailwind Arbitrary Values
+- **URL**: https://blog.flowrust.com/2026/08/06/tailwind-arbitrary-value-playground-field-guide-2026-08-06/
+- **date_gmt**: 2026-08-05T21:05:23
+- **Tool**: Tailwind Arbitrary Value Playground (Design / Frontend)
+- **Stats**: ~1720 words, 8 H2 sections (3 with highlight-card anchors), 1 poster + 3 cards
+- **Links**: 5 ElysiaTools anchors (3 unique URLs: tailwind-arbitrary-value-playground, /en/tools/design, figma-tokens-export)
+- **Audit**: 0 findings (after 1 PATCH for `&#91;`/`&#93;` encoding on `[scroll-snap-type:y_mandatory]` CSS property — audit false-positive trigger)
+- **Net round-trips**: 1 POST + 1 PATCH
+- **Pitfalls hit**: 1 false-positive audit — `POSSIBLE_BACKSLASH_STRIPPED` triggered on inline CSS property code-span
+- **Defense layer**: featured_media=0 maintained; 0 body H1; 0 fabricated slugs (3 unique tool URLs all 200); PIL visual QA caught card 1 value overflow + card 3 takeaway overlap (both fixed in pre-POST pass)
+- **Assets**: ~/www/blog/2026-08-05-tailwind-arbitrary-value-playground-field-guide-2026-08-06/
