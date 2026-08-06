@@ -1387,3 +1387,12 @@
 ## 2026-08-06T18:14:52 — http3-quic-handshake-anatomy-field-guide-2026-08-06 (WP 5705)
 - Title: One Round Trip, Five Bytes: An HTTP/3 QUIC Handshake Anatomy Field Guide
 - URL: https://blog.flowrust.com/2026/08/07/http3-quic-handshake-anatomy-field-guide-2026-08-06/
+- **date_gmt**: 2026-08-06T18:14:52
+- **Tool**: HTTP/3 QUIC Handshake Anatomy (Network)
+- **Stats**: ~1900 words, 8 H2 sections (3 with highlight-card anchors), 1 poster + 3 cards
+- **Links**: 8 ElysiaTools anchors (4 unique URLs: http-3-quic-handshake-anatomy x5, tls-handshake-anatomy, tcp-anatomy, network)
+- **Audit**: 0 findings (audit_post_content clean); DOM check shows H1=1 (theme entry-title), H2=9 (8 body + 1 theme), 4 figures (1 article-poster + 3 highlight-card), 4/4 image URLs HTTP 200, 4/4 elysia anchor URLs HTTP 200
+- **Net round-trips**: 1 POST + 0 PATCH (clean run!)
+- **Pitfalls hit**: Initial card 3 render had body+note text overlapping inside each tile (fixed by capping body to 2 lines + adding a divider rule + note placed below rule). After fix, vision_analyze confirmed clean layout.
+- **Defense layer**: featured_media=0 maintained; 0 body H1 (theme's entry-title is the only H1); 0 fabricated slugs (all 4 unique tool URLs HTTP 200); PIL visual QA caught and corrected the card 3 overlap pre-POST
+- **Assets**: ~/www/blog/2026-08-06-http3-quic-handshake-anatomy-field-guide-2026-08-06/
