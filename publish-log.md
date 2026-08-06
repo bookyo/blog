@@ -1351,3 +1351,9 @@
 ## 2026-08-06T01:14:11 — fertilizer-blend-calculator-field-guide-2026-08-06 (WP 5676)
 - Title: Fertilizer N-P-K Blend Calculator Field Guide: Hit Any Target Analysis From Three Bags
 - URL: https://blog.flowrust.com/2026/08/06/fertilizer-blend-calculator-field-guide-2026-08-06/
+
+## 2026-08-06T05:24:41 — secure-random-generator-field-guide-2026-08-06 (WP 5683)
+- Title: Secure Random Generator Field Guide: Entropy, Three Encodings, and Why Math.random() Fails
+- URL: https://blog.flowrust.com/2026/08/06/secure-random-generator-field-guide-2026-08-06/
+- 1 POST + 3 PATCH (fix merged bullet + strip asterisks + dedup lead-in)
+- 4 assets, 6 elysia links, 8 body H2s, 3 highlight cards
