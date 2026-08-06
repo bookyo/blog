@@ -1396,3 +1396,7 @@
 - **Pitfalls hit**: Initial card 3 render had body+note text overlapping inside each tile (fixed by capping body to 2 lines + adding a divider rule + note placed below rule). After fix, vision_analyze confirmed clean layout.
 - **Defense layer**: featured_media=0 maintained; 0 body H1 (theme's entry-title is the only H1); 0 fabricated slugs (all 4 unique tool URLs HTTP 200); PIL visual QA caught and corrected the card 3 overlap pre-POST
 - **Assets**: ~/www/blog/2026-08-06-http3-quic-handshake-anatomy-field-guide-2026-08-06/
+
+## 2026-08-06T22:23:29 — 7z-preview-field-guide-2026-08-07 (WP 5711)
+- Title: 7Z Archive Preview: Inspect Contents Before You Extract
+- URL: https://blog.flowrust.com/2026/08/07/7z-preview-field-guide-2026-08-07/
