@@ -1347,3 +1347,7 @@
 - **Pitfalls hit**: 1 false-positive audit — `POSSIBLE_BACKSLASH_STRIPPED` triggered on inline CSS property code-span
 - **Defense layer**: featured_media=0 maintained; 0 body H1; 0 fabricated slugs (3 unique tool URLs all 200); PIL visual QA caught card 1 value overflow + card 3 takeaway overlap (both fixed in pre-POST pass)
 - **Assets**: ~/www/blog/2026-08-05-tailwind-arbitrary-value-playground-field-guide-2026-08-06/
+
+## 2026-08-06T01:14:11 — fertilizer-blend-calculator-field-guide-2026-08-06 (WP 5676)
+- Title: Fertilizer N-P-K Blend Calculator Field Guide: Hit Any Target Analysis From Three Bags
+- URL: https://blog.flowrust.com/2026/08/06/fertilizer-blend-calculator-field-guide-2026-08-06/
