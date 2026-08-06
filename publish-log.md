@@ -1383,3 +1383,7 @@
 - **Pitfalls hit**: PIL tofu on card 2 ("\ufeffName") and card 3 ("\copy") — both caught by `vision_analyze` in single pre-POST pass; rewrote with ASCII-safe alternatives ("hidden BOM character", "psql COPY") before re-rendering
 - **Defense layer**: featured_media=0 maintained; 0 body H1 (theme's entry-title is the only H1); 0 fabricated slugs (all 4 unique tool URLs HTTP 200); PIL visual QA caught both glyph defects pre-POST
 - **Assets**: ~/www/blog/2026-08-06-header-remover-field-guide-2026-08-06/
+
+## 2026-08-06T18:14:52 — http3-quic-handshake-anatomy-field-guide-2026-08-06 (WP 5705)
+- Title: One Round Trip, Five Bytes: An HTTP/3 QUIC Handshake Anatomy Field Guide
+- URL: https://blog.flowrust.com/2026/08/07/http3-quic-handshake-anatomy-field-guide-2026-08-06/
