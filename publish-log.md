@@ -1370,3 +1370,16 @@
 - **Audit**: `audit_post_content` returned 0 findings
 - **Outcome**: 1-POST + 1-PATCH run. PATCH defused a `P_TAG_MISMATCH` from a nested `<p><p>` in the lead paragraph (the inline `<p>` wrapper from the markdown source collided with md_to_html's automatic `<p>` wrapping). Fix: stripped the inline `<p>...</p>` from the lead paragraph and the H2 #1 sub-lead so md_to_html could wrap them once cleanly. Final HTML has 29 `<p>` opens / 29 `</p>` closes. All 4 image URLs HTTP 200; all 5 unique elysia anchor URLs HTTP 200; visual QA caught no defects.
 - **Asset Dir**: ~/www/blog/2026-08-06-otp-generator/
+
+## 2026-08-06T14:00:50 — header-remover-field-guide-2026-08-06 (WP 5699)
+- **Title**: Before the Columns: A Header Remover Field Guide for Database Importers
+- **URL**: https://blog.flowrust.com/2026/08/06/header-remover-field-guide-2026-08-06/
+- **date_gmt**: 2026-08-06T14:00:50
+- **Tool**: Header Remover (Data Processing)
+- **Stats**: ~1814 words, 8 H2 sections (3 with highlight-card anchors), 1 poster + 3 cards
+- **Links**: 5 ElysiaTools anchors (4 unique URLs: header-remover, json-formatter, csv-cleaner, csv-splitter, elysiatools.com/en/tools)
+- **Audit**: 0 findings (audit_post_content clean); DOM check shows H1=1 (theme entry-title), H2=9 (8 body + 1 theme), 4 figures (1 article-poster + 3 highlight-card), opens/closes=34/34
+- **Net round-trips**: 1 POST + 0 PATCH (clean run!)
+- **Pitfalls hit**: PIL tofu on card 2 ("\ufeffName") and card 3 ("\copy") — both caught by `vision_analyze` in single pre-POST pass; rewrote with ASCII-safe alternatives ("hidden BOM character", "psql COPY") before re-rendering
+- **Defense layer**: featured_media=0 maintained; 0 body H1 (theme's entry-title is the only H1); 0 fabricated slugs (all 4 unique tool URLs HTTP 200); PIL visual QA caught both glyph defects pre-POST
+- **Assets**: ~/www/blog/2026-08-06-header-remover-field-guide-2026-08-06/
