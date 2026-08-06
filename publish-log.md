@@ -1357,3 +1357,16 @@
 - URL: https://blog.flowrust.com/2026/08/06/secure-random-generator-field-guide-2026-08-06/
 - 1 POST + 3 PATCH (fix merged bullet + strip asterisks + dedup lead-in)
 - 4 assets, 6 elysia links, 8 body H2s, 3 highlight cards
+
+## 2026-08-06 09:39 UTC — OTP Generator Field Guide: How to Generate Codes That Survive Contact With Users
+- **WP Post ID**: 5692
+- **WP URL**: https://blog.flowrust.com/2026/08/06/otp-generator-field-guide-2026-08-06/
+- **Featured Image**: otp-generator-poster.png (WP media 5688)
+- **Highlight Cards**: 3 (otp-generator-card1: 5689, otp-generator-card2: 5690, otp-generator-card3: 5691)
+- **Slug**: otp-generator-field-guide-2026-08-06
+- **Tool**: [Numeric OTP Generator](https://elysiatools.com/en/tools/otp-generator) — Security category
+- **Elysia Anchors (8 total)**: otp-generator (×3), random-string-generator, hex-to-string, hmac-generator-verifier (×2), totp-hotp-offline-generator, elysiatools.com/en/tools
+- **Defense Layer**: featured_media=0, 0 body H1, 8 body H2, 3 highlight-card figures, 1 article-poster figure, 0 raw markdown links, 0 fabricated slugs
+- **Audit**: `audit_post_content` returned 0 findings
+- **Outcome**: 1-POST + 1-PATCH run. PATCH defused a `P_TAG_MISMATCH` from a nested `<p><p>` in the lead paragraph (the inline `<p>` wrapper from the markdown source collided with md_to_html's automatic `<p>` wrapping). Fix: stripped the inline `<p>...</p>` from the lead paragraph and the H2 #1 sub-lead so md_to_html could wrap them once cleanly. Final HTML has 29 `<p>` opens / 29 `</p>` closes. All 4 image URLs HTTP 200; all 5 unique elysia anchor URLs HTTP 200; visual QA caught no defects.
+- **Asset Dir**: ~/www/blog/2026-08-06-otp-generator/
