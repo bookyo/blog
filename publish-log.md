@@ -1440,3 +1440,14 @@
   - First render of cards used 3 tiles — `render_card_4tile` is 2x2 and breaks with 3 tiles; switched to custom `render_card_4tile_1row` (WP 5676 variant, tile_w=360, tile_h=540, gap_x=30, single row)
 - **Defense layer**: featured_media=0 (no COSESAI hero duplication); 0 body H1; 8 body H2; 4/4 image URLs HTTP 200; 3/3 unique elysia anchor URLs HTTP 200 (all in tool-manifest.json — no fabricated slugs); PIL visual QA via vision_analyze caught no defects (all 4 assets clean — no tofu, no overflow, no clipping, no overlap, takeaways clear tile borders); 0 raw markdown links
 - **Assets**: ~/www/blog/2026-08-07-rsa-key-pair-generator-field-guide-2026-08-07/ (poster.png + card1.png + card2.png + card3.png + article.md + article_final.html + render_rsa_assets.py)
+
+## 2026-08-07T23:12:52 — image-to-design-tokens-field-guide-2026-08-07 (WP 5738)
+- Title: Image Palette to Design Tokens Field Guide: k-means, Shade Ramps, and Five Token Formats
+- URL: https://blog.flowrust.com/2026/08/08/image-to-design-tokens-field-guide-2026-08-07/
+- Tool: image-to-design-tokens (Design)
+- 1 POST + 1 PATCH (split MERGED_BULLET_LIST in "Wiring the output into the codebase" H2 — 4 em-dash bullets in one <p> → real <ul><li>)
+- 4/4 image URLs HTTP 200, 3/3 unique elysia anchor URLs HTTP 200
+- featured_media=0, 0 body H1, 8 body H2, 1 article-poster + 3 highlight-card figures
+- Patched via: regex split on &#8211; + <strong>... pattern with code-tag-tolerant matcher (per WP 5676/5683 lesson)
+- All PIL assets passed vision_analyze visual QA (poster + cards 1-3)
+- State covered_slugs now 291
