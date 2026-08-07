@@ -1419,3 +1419,24 @@
   - wp_fix_merged_bullet_and_numbered.py's strict `validate_post_html` reports 3 spurious "stray close" errors against the local fix (false-positive from the stricter stack-based validator); manually applied the fix using curl POST after content_loss_check passed and local audit returned 0/0.
 - **Defense layer**: featured_media=0 maintained; 0 body H1 (theme's entry-title is the only H1); 0 fabricated slugs (all unique elysiatools URLs HTTP 200); PIL visual QA via vision_analyze caught no defects (all 4 assets clean — no tofu boxes, no overflow, no clipping); 4/4 image URLs HTTP 200; 2/2 unique elysia anchor URLs HTTP 200
 - **Assets**: ~/www/blog/2026-08-07-ssh-key-pair-generator-field-guide-2026-08-07/ (poster.png + card1.png + card2.png + card3.png + article.md + article_final.html + render_assets.py)
+
+## 2026-08-07T10:58:42 — rsa-key-pair-generator-field-guide-2026-08-07 (WP 5729)
+- **Title**: RSA Key Pair Generator Field Guide: Five Decisions That Matter
+- **URL**: https://blog.flowrust.com/2026/08/07/rsa-key-pair-generator-field-guide-2026-08-07/
+- **date_gmt**: 2026-08-07T10:58:42
+- **Tool**: RSA Key Pair Generator (Security)
+- **Tool real name from manifest**: "RSA Key Pair Generator"
+- **Stats**: ~1100 words, 8 H2 sections (3 with highlight-card anchors), 1 poster + 3 cards (all 4-tile single-row WP 5676 variant)
+- **Links**: 3 ElysiaTools anchors — all `/en/tools/<slug>` (rsa-key-generator, secure-random-generator, strong-password-validator); anchor article is tool-focused, no wrong-type contamination
+- **Audit pre-POST**: 0 findings from `audit_post_content`; inline pre-publish checks: 0 markdown links surviving, 0 placeholders in code, 0 literal backslashes in code, 0 nested p-in-p, 3 unique elysia anchor URLs all in tool-manifest.json, no fabricated slugs
+- **Audit post-POST**: DOM check: H1=1 (theme entry-title only — no body H1 duplicate), H2=9 (8 body + 1 theme Post navigation), 4 figures (1 article-poster + 3 highlight-card), p_opens=27 / p_closes=27 balanced, 0 nested p-in-p, 0 p-in-h2, 4 images with proper alt text, 3 elysia anchors HTTP 200, 4 image URLs HTTP 200
+- **Net round-trips**: 1 POST + 0 PATCH (clean run)
+- **Pitfalls hit (and defensed before POST)**:
+  - Initial markdown had `- **2048 bits** is...` bullet list — converted to inline `<ul><li><strong>...</strong> ...</li></ul>` to avoid MERGED_BULLET_LIST on the WP 5676 lesson
+  - Initial `<p><strong>Lead phrase.</strong>...</p>` close-first template — used raw markdown `<strong>` wrapper (no `<p>`) to avoid nested `<p><p>` (WP 5692 lesson)
+  - Initial `## Closing (read this first)` marker H2 — renamed to `## Putting it together` to keep H2 count at exactly 8 (umbrella §"Article structure")
+  - First-pass anchor `[Password Strength Estimator](https://elysiatools.com/en/tools/password-strength-estimator)` — slug NOT in tool-manifest.json (real one is `strong-password-validator`). Caught by inline pre-publish check; replaced with real slug
+  - Python 3.11 f-string backslash error on `'attachment; filename=' + name` in upload script — fixed by hoisting to local variable before f-string (umbrella §"cron_publish_driver.py f-string backslash SyntaxError")
+  - First render of cards used 3 tiles — `render_card_4tile` is 2x2 and breaks with 3 tiles; switched to custom `render_card_4tile_1row` (WP 5676 variant, tile_w=360, tile_h=540, gap_x=30, single row)
+- **Defense layer**: featured_media=0 (no COSESAI hero duplication); 0 body H1; 8 body H2; 4/4 image URLs HTTP 200; 3/3 unique elysia anchor URLs HTTP 200 (all in tool-manifest.json — no fabricated slugs); PIL visual QA via vision_analyze caught no defects (all 4 assets clean — no tofu, no overflow, no clipping, no overlap, takeaways clear tile borders); 0 raw markdown links
+- **Assets**: ~/www/blog/2026-08-07-rsa-key-pair-generator-field-guide-2026-08-07/ (poster.png + card1.png + card2.png + card3.png + article.md + article_final.html + render_rsa_assets.py)
