@@ -1400,3 +1400,22 @@
 ## 2026-08-06T22:23:29 — 7z-preview-field-guide-2026-08-07 (WP 5711)
 - Title: 7Z Archive Preview: Inspect Contents Before You Extract
 - URL: https://blog.flowrust.com/2026/08/07/7z-preview-field-guide-2026-08-07/
+
+## 2026-08-07T02:38:28 — ssh-key-pair-generator-field-guide-2026-08-07 (WP 5717)
+- **Title**: SSH Key Pair Generator: A Field Guide to Modern SSH Authentication
+- **URL**: https://blog.flowrust.com/2026/08/07/ssh-key-pair-generator-field-guide-2026-08-07/
+- **date_gmt**: 2026-08-07T02:38:28
+- **Tool**: SSH Key Pair Generator (Security / Identity)
+- **Tool real name from manifest**: "SSH Key Pair Generator"
+- **Stats**: ~1928 words, 8 H2 sections (3 with highlight-card anchors), 1 poster + 3 cards
+- **Links**: 7 ElysiaTools anchors (6 to /en/tools/ssh-key-generator, 1 to /en/tools?category=security)
+- **Audit pre-PATCH**: 2 findings (MERGED_BULLET_LIST=4 blocks, MERGED_NUMBERED_LIST=1 block) — caused by source using `– **bold lead**` and `1. **bold lead**` joined-paragraph patterns
+- **Audit post-PATCH**: 0 findings (audit_post_content clean); DOM check: H1=1 (theme entry-title only), H2=9 (8 body + 1 theme Post navigation), 4 figures (1 article-poster + 3 highlight-card), p_opens=50 / p_closes=50 balanced, 0 nested p-in-p, 0 p-in-h2
+- **Net round-trips**: 1 POST + 1 PATCH (defused MERGED_BULLET_LIST + MERGED_NUMBERED_LIST via wp_fix_merged_bullet_and_numbered.py combined fix — split into 5 bullet blocks + 3 numbered items)
+- **Pitfalls hit**:
+  - Initial source had `<code>\n</code>` (literal `\n` in code block) — KSES would strip the backslash, leaving a bare `n` in rendered code. Caught in pre-publish sanity check (script regex); rewrote as "actual newline character" in prose (WP 5699 lesson: avoid Python-style Unicode escape sequences in PIL/markdown-bound text where appropriate).
+  - MERGED_BULLET_LIST was a real positive (not false positive) for 4 source-en-dash itemized lists (used legitimately for "four fields", "four artifacts", "exception list", "habits that pay off").
+  - MERGED_NUMBERED_LIST was a real positive for "1. / 2. / 3." SSH-handshake three-step list.
+  - wp_fix_merged_bullet_and_numbered.py's strict `validate_post_html` reports 3 spurious "stray close" errors against the local fix (false-positive from the stricter stack-based validator); manually applied the fix using curl POST after content_loss_check passed and local audit returned 0/0.
+- **Defense layer**: featured_media=0 maintained; 0 body H1 (theme's entry-title is the only H1); 0 fabricated slugs (all unique elysiatools URLs HTTP 200); PIL visual QA via vision_analyze caught no defects (all 4 assets clean — no tofu boxes, no overflow, no clipping); 4/4 image URLs HTTP 200; 2/2 unique elysia anchor URLs HTTP 200
+- **Assets**: ~/www/blog/2026-08-07-ssh-key-pair-generator-field-guide-2026-08-07/ (poster.png + card1.png + card2.png + card3.png + article.md + article_final.html + render_assets.py)
