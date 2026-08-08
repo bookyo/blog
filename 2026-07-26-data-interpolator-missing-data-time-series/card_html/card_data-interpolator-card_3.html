@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Outfit',sans-serif;
+  width:1280px; min-height:900px;
+  background:#0f0a1a;
+  color:#f0e0ff;
+  padding:60px 60px 50px 60px;
+  display:flex; flex-direction:column;
+}
+.top-accent{height:5px;background:#a855f7;margin:-60px -60px 30px -60px;}
+.eyebrow{font-size:16px;letter-spacing:3px;color:#a855f7;font-weight:600;margin-bottom:10px;}
+.title{font-size:44px;font-weight:800;line-height:1.1;margin-bottom:14px;}
+.dek{font-size:19px;color:#f0e0ff;opacity:0.78;margin-bottom:36px;line-height:1.4;max-width:1100px;}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;flex:1;}
+.col{
+  border:2px solid #a855f7;
+  padding:32px 28px;
+  display:flex; flex-direction:column;
+  background:#0f0a1a;
+}
+.col-label{font-size:14px;letter-spacing:3px;font-weight:700;margin-bottom:24px;}
+.col-body{font-size:22px;font-weight:500;line-height:1.4;}
+</style></head>
+<body>
+<div class="top-accent"></div>
+<div class="eyebrow">HIGHLIGHT &middot; AUDIT TRAIL</div>
+<h2 class="title">Make every estimate visible</h2>
+<p class="dek">Preserve originals, mark changes, and bound the gaps you are willing to repair.</p>
+<div class="grid">
+<div class="col" style="border-color:#a855f7"><div class="col-label" style="color:#a855f7">1. CHECK</div><div class="col-body">Keep original columns</div></div><div class="col" style="border-color:#a855f7"><div class="col-label" style="color:#a855f7">2. CHECK</div><div class="col-body">Set a maximum gap</div></div><div class="col" style="border-color:#a855f7"><div class="col-label" style="color:#a855f7">3. CHECK</div><div class="col-body">Generate interpolation stats</div></div>
+</div>
+</body></html>

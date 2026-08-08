@@ -1506,3 +1506,19 @@
 - **PATCH trip**: 1. wp_fix_merged_bullets.py defused `MERGED_BULLET_LIST: 4 blocks` (real positives — 4 sections of `– **bold lead** — body` markdown lists in "How the Ion Converter processes a payload", "When Ion beats JSON", "Type gotchas", "Workflow" subsections were joined into one `<p>` by md_to_html, then WP autop converted leading `-` to `&#8211;` triggering the audit). Split into 13 separate `<p>` blocks in single PATCH; re-audit clean.
 - **Defense held end-to-end**: featured_media=0, 0 body H1 (theme only, 1 H1 in DOM), 8 body H2 (theme +1 nav = 9), 1 article-poster + 3 highlight-card, p_opens/closes balanced 36/36, audit_post_content clean post-PATCH, all 4 PIL assets passed vision_analyze before POST
 - **State**: covered_slugs now 293 entries
+
+
+## 2026-08-08 ~16:11 UTC — Post 5768 — ASCII Tree from Indented List Field Guide (clean 1-POST + 1-PATCH run)
+
+- **Title**: ASCII Tree from Indented List Field Guide
+- **URL**: https://blog.flowrust.com/2026/08/09/ascii-tree-from-indented-list/
+- **date_gmt**: 2026-08-08T16:11:07
+- **Tool**: Indented List to ASCII Tree (Text Processing; not previously covered; valid manifest ID)
+- **Asset archive**: `~/www/blog/2026-08-08-ascii-tree-from-indented-list-field-guide/` (poster.png + card1.png + card2.png + card3.png + article.md + article_final.html + post_rendered.html)
+- **Embeds**: 5 elysia links to 2 unique URLs (ascii-tree-from-indented-list x4, /en/tools category root x1) — both returned HTTP 200
+- **Image HEAD-checks**: 4/4 HTTP 200
+- **Elysia anchor HEAD-checks**: 2/2 unique URLs HTTP 200
+- **PIL visual QA**: vision_analyze on all 4 PNGs; card3 first-pass used canonical `render_card_4tile` 2x2 grid which had 150pt "BOX/PIPE/DETECT/LEAF" count text overlapping body description (extends WP 5676/5683/5755 lesson to multi-word short count strings); refactored to `render_card_4tile_compact` 1-row variant; re-render passed clean
+- **PATCH trip**: 1. WP autop converted leading `-` markdown bullets into `&#8211;` and merged 4 bullet lists (3 sub-bullets + 5 sub-bullets + 3 sub-bullets + 5 sub-bullets across H2s "What indented means", "A close-first look at the tool surface", "What the output is and is not", "Patterns worth memorizing") into single `<p>` blocks. `wp_fix_merged_bullets.py`-style recipe (regex with `.*?` DOTALL between strong boundaries, split on `&#8211;\s*<strong>` boundary) split them into 16 separate `<p>` blocks in single round-trip. Re-audit clean post-PATCH. Defense (preferred over PATCH) — write bullet lists as inline `<ul><li>` HTML; WP autop did still merge them on this run, so PATCH is required regardless.
+- **Defense held end-to-end**: featured_media=0, 0 body H1 (theme only, 1 H1 in DOM), 8 body H2 (theme +1 nav = 9), 1 article-poster + 3 highlight-card figures, p_opens/closes balanced (38/38 in DOM), 4/4 image URLs HTTP 200, 2/2 elysia anchor URLs HTTP 200, `audit_post_content` clean post-PATCH, DOM check clean
+- **State**: covered_slugs now 295 entries

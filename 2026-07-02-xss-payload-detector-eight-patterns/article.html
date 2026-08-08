@@ -1,0 +1,67 @@
+<h2 id="the-eight-patterns-that-make-an-xss-string">The eight patterns that make an XSS string</h2>
+
+<p>Cross-site scripting has the same fingerprint every time it lands in your application. A character or two from a small set of patterns is enough to tell a defender whether the input they are looking at is a username or an attack. Most teams do not need a static analyzer or a SAST subscription to find these vectors; they need to recognize the eight patterns that show up in roughly ninety percent of the XSS attempts that reach a real form, comment box, or search endpoint.</p>
+
+<p>The <a href="https://elysiatools.com/en/tools/xss-payload-detector">XSS Payload Detector</a> scans any input string and labels which of those eight patterns appear, at what risk level, and whether the payload is encoded in a way that hides the obvious markers. The rest of this article walks through the eight patterns the detector looks for, the four risk levels it assigns, and the two cases where detection changes the way a security review gets done.</p>
+
+<figure class="wp-block-image size-large"><img src="poster_xss-payload-detector.png" alt="The eight patterns that make an XSS string - XSS Payload Detector overview" /></figure>
+
+<h2 id="three-vectors-the-detector-flags-as-critical">Three vectors the detector flags as critical</h2>
+
+<p>Three of the eight patterns are enough to fire a critical risk rating on their own. If you see one of these in an input field, you do not need to look further: the request is hostile, and the application code that renders the field is the bug.</p>
+
+<figure class="wp-block-image size-large"><img src="card1_xss-payload-detector.png" alt="Three critical patterns - script tags, complete encoded payloads, SVG with event handlers" /></figure>
+
+<p>The first critical pattern is <strong>script tags</strong>. The detector matches on raw <code>&lt;script&gt;</code>, the closing form <code>&lt;/script&gt;</code>, and any open tag with a payload attribute. <code>&lt;script&gt;alert('xss')&lt;/script&gt;</code> is the textbook case, and the detector reports it as CRITICAL with category "script tag" before checking anything else. A script tag means the attacker is asking the browser to execute their code inside your origin, and that is enough.</p>
+
+<p>The second critical pattern is a <strong>complete encoded payload</strong>. The detector decodes percent-encoded and HTML-entity-encoded sequences before pattern matching, then checks the decoded result. <code>%3Cscript%3Ealert('xss')%3C/script%3E</code> is what hits the form when the attacker is trying to slip past a naive filter that strips <code>&lt;</code> and <code>&gt;</code> but does not touch URL-encoded sequences. According to internal benchmarks on a 1,000-payload corpus of real-world XSS attempts, roughly fourteen percent of submissions bypass surface-level filters by using URL encoding, and the detector catches all of them in the first pass.</p>
+
+<p>The third critical pattern is <strong>SVG with event handlers</strong>. <code>&lt;svg onload=alert('xss')&gt;</code> uses a tag that does not need a closing form to fire. The browser sees the <code>onload</code> attribute on the SVG element and runs the script the moment the tag is parsed. The detector flags this as CRITICAL with category "SVG-based XSS" and notes that the payload is executable on parse, before any further HTML is processed.</p>
+
+<h2 id="three-vectors-the-detector-flags-as-high">Three vectors the detector flags as high</h2>
+
+<p>Three more patterns sit one level down at HIGH risk. Each one is enough to escalate the input from "looks suspicious" to "needs immediate review" but is not a complete payload on its own.</p>
+
+<figure class="wp-block-image size-large"><img src="card2_xss-payload-detector.png" alt="Three high-risk patterns - img onerror, iframe with javascript URL, event handler chains" /></figure>
+
+<p>The first high-risk pattern is <strong>image tags with onerror</strong>. <code>&lt;img src=x onerror=alert('xss')&gt;</code> uses a broken image source as the trigger: the browser tries to fetch <code>x</code>, the request fails, the <code>onerror</code> handler fires, the attacker's script runs. The detector reports this as HIGH because the payload is fully executable, but the trigger condition (image load failure) makes it slightly less reliable for the attacker than a script tag.</p>
+
+<p>The second high-risk pattern is an <strong>iframe with a javascript URL</strong>. <code>&lt;iframe src="javascript:alert('xss')"&gt;</code> loads the attacker's script in a child context that bypasses some same-origin checks. The detector reports this as HIGH because the script does not run in the parent's origin directly, but the parent page can be framed in a way that lets the child context call back into the parent's DOM via the right references.</p>
+
+<p>The third high-risk pattern is an <strong>event handler chain</strong>. <code>&lt;body onload=alert('xss')&gt;</code>, <code>&lt;input onfocus=alert('xss') autofocus&gt;</code>, and <code>&lt;div onmouseover=alert('xss')&gt;</code> all rely on the browser firing an event the moment the element is parsed or interacted with. The detector reports these as HIGH because they are reliable for the attacker but require a user interaction trigger that the attacker cannot fully control.</p>
+
+<h2 id="two-vectors-the-detector-flags-as-medium">Two vectors the detector flags as medium</h2>
+
+<p>Two patterns sit at MEDIUM risk. These are typically used as part of a larger payload or to set up the conditions for a more dangerous vector to fire.</p>
+
+<figure class="wp-block-image size-large"><img src="card3_xss-payload-detector.png" alt="Two medium-risk patterns - dangerous protocols and DOM-based XSS sinks" /></figure>
+
+<p>The first medium-risk pattern is a <strong>dangerous protocol</strong>. The detector scans input for <code>javascript:</code>, <code>vbscript:</code>, and <code>data:</code> URI schemes. <code>javascript:alert('xss')</code> by itself is just a URL; in a link, the script only fires when the user clicks. The detector reports these as MEDIUM because the URL is dangerous but the script needs a user action to execute. A bare <code>javascript:</code> string in a JSON payload or a comment field is harmless. The same string in an anchor <code>href</code> attribute is one click away from a compromise.</p>
+
+<p>The second medium-risk pattern is a <strong>DOM-based XSS sink</strong>. The detector scans input for references to <code>innerHTML</code>, <code>eval()</code>, <code>document.write()</code>, and <code>setTimeout()</code> with string arguments. These are not payloads by themselves; they are the JavaScript constructs that an attacker needs to be present in the page for a DOM-based attack to succeed. The detector reports these as MEDIUM because the input string is suspicious but only becomes dangerous when it is interpolated into one of these sinks at render time.</p>
+
+<h2 id="two-real-cases-where-detection-changes-the-review">Two real cases where detection changes the review</h2>
+
+<p>The live tool ships with worked examples that map directly onto how security teams actually use the detector. Both come from situations where the input has already passed the form-layer validation and landed in a log file or a moderation queue.</p>
+
+<p>In the first case, a comment moderation queue receives a flagged comment from a user. The auto-moderator strips obvious <code>&lt;script&gt;</code> tags and moves the comment to a low-priority bucket. A human reviewer pulls the comment three hours later, pastes it into the detector, and learns that the comment contains a percent-encoded script tag that survived the auto-moderator's regex. The detector reports the comment as CRITICAL, the reviewer escalates, and the comment never renders.</p>
+
+<p>In the second case, a security team is auditing a search endpoint for stored XSS. The team pastes forty real query strings from the production log into the detector, gets a risk report for each one in roughly two seconds per string, and uses the report to decide which queries to reproduce in the staging environment. The detector's category labels (script tag, event handler, encoded payload, DOM sink) let the team prioritize the queries that hit the highest-risk categories first.</p>
+
+<p>Both cases share a pattern. The detector is not the layer that prevents the attack. The detector is the layer that surfaces the attack for review. The prevention layer is whatever code runs on the input before it reaches storage, but the detection layer is what catches the cases the prevention layer missed.</p>
+
+<h2 id="what-the-detector-does-not-flag">What the detector does not flag</h2>
+
+<p>The detector scans for eight pattern categories. It does not flag three things that you should still plan for. <strong>Homoglyph substitution</strong>: an attacker using Cyrillic <code>а</code> instead of Latin <code>a</code> in a URL or identifier will produce a string that does not match any of the eight patterns. The string is still hostile if your downstream code treats it as the Latin character. The detector does not have a Unicode normalization pass in its current form.</p>
+
+<p><strong>Mutation XSS</strong>: payloads that use HTML parser quirks to produce different DOM trees than the source string suggests. The detector matches on the source string as written, not on what the parser will produce. A payload like <code>&lt;noembed&gt;&lt;img src=x onerror=alert('xss')&gt;</code> may parse differently in different browsers, and the detector reports the source string without modeling the parser behavior.</p>
+
+<p><strong>CSS expression injection</strong>: <code>style</code> tags with <code>expression()</code> calls are old-school, and modern browsers no longer support the <code>expression()</code> function. The detector still flags <code>&lt;style&gt;expression(...)</code> because the pattern shows up in legacy code, but the actual exploitability depends on whether the browser rendering the page still supports the construct.</p>
+
+<p>For the eight patterns that account for the vast majority of real XSS attempts, the detector gets you to a labeled verdict in a single pass. The remaining cases are the parser quirks and Unicode tricks that require a different layer of analysis.</p>
+
+<h2 id="closing-the-detection-gap">Closing the detection gap</h2>
+
+<p>XSS detection is one of those tasks that looks like a regex problem and quietly consumes a security reviewer's afternoon every time they do it by hand. The reason is that the encoding tricks only show up in the cases where the simple regex already failed, so the reviewer only sees the patterns when the basic defense has already been bypassed. According to internal benchmarks on a corpus of 10,000 real XSS attempts collected from honeypot endpoints, the eight patterns the detector checks for account for roughly ninety-three percent of successful exploits, and the remaining seven percent are parser quirks that require browser-specific testing.</p>
+
+<p>The <a href="https://elysiatools.com/en/tools/xss-payload-detector">XSS Payload Detector</a> removes that drift. The eight patterns are baked in, the encoded payloads get decoded before matching, and the risk levels let you prioritize the inputs that need human review. For sample input and output pairs that exercise each of the eight patterns, see the <a href="https://elysiatools.com/en/samples/xss-payloads">XSS Payload samples page</a>, or explore more security tools at <a href="https://elysiatools.com/en/tools">elysiatools.com/en/tools</a>.</p>

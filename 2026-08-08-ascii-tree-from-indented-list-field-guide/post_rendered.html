@@ -1,0 +1,75 @@
+<p><strong>A great ASCII tree starts in the markdown you already wrote, not the drawing tool you wish you had open.</strong> Paste a copyable directory tree from any indented list and ship the result in a README, ticket, or chat reply without rebuilding it by hand.</p>
+<figure class="article-poster"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/jarvis-poster-ascii-tree-from-indented-list.png" alt="ASCII Tree from Indented List poster — Turn indentation into a real tree"></figure>
+<p>Anyone who maintains a project, writes <a href="https://blog.flowrust.com/tag/documentation/" class="wpai-auto-tags-link">documentation</a>, or answers a teammate&#8217;s &#8220;where do I put this file?&#8221; question eventually needs a tree. Most of the time that tree is hiding inside something they already have: a bullet list in a design doc, an outline in a meeting note, or a <code>README</code> where someone wrote <code>src</code> followed by an indented run of children. The <a href="https://elysiatools.com/en/tools/ascii-tree-from-indented-list">Indented List to ASCII Tree</a> tool turns that run into a real, copyable, indentation-faithful tree, in either Unicode box-drawing or classic ASCII. The rest of this guide is the field notes on how to feed it well, what to do when the input is messier than a textbook, and how to read the output so the tree matches the project on disk.</p>
+<h2>What &#8220;indented&#8221; actually means to a parser</h2>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/jarvis-card1-ascii-tree-from-indented-list.png" alt="Five details worth preserving when generating a tree" loading="lazy"></figure>
+<p>A list is indented when a child line starts further to the left than the first non-space character on its parent. The depth comes from the <em>change</em> in leading whitespace, not from a magic column. The parser therefore has to do three things before it can draw anything:</p>
+<p>&#8211; <strong>Detect the indent unit</strong> — 2 spaces, 4 spaces, a tab, or auto. Auto means the first non-empty nested line teaches the converter; the rest of the file is read in that rhythm. &#8211; <strong>Recognise optional markers</strong> — <code>-</code>, <code>*</code>, or <code>1.</code> prefixes can be stripped or kept. <a href="https://blog.flowrust.com/tag/markdown/" class="wpai-auto-tags-link">Markdown</a>-style bullets usually want to disappear; meeting notes sometimes want to keep <code>1.</code> so the outline reads as a list. &#8211; <strong>Find the root</strong> — the first line with no leading whitespace sets the root, and every other line is relative to it.</p>
+<p>The output style — Unicode (<code>├──</code>, <code>└──</code>, <code>│</code>) or ASCII (<code>|--</code>, <code>--</code>, <code>|</code>) — is just a font choice. The structure does not change, so you can switch styles to match where the tree will live without rebuilding the input.</p>
+<h2>A close-first look at the tool surface</h2>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/jarvis-card2-ascii-tree-from-indented-list.png" alt="Pre-commit audit checklist for any indented list" loading="lazy"></figure>
+<p>Before getting into patterns, it helps to see what the <a href="https://elysiatools.com/en/tools/ascii-tree-from-indented-list">Indented List to ASCII Tree</a> input area actually offers. There are six toggles in the form, and the defaults get most projects right:</p>
+<p>&#8211; <strong>Style</strong> — Unicode Box Drawing for README and docs, Classic ASCII for terminal and email output. &#8211; <strong>Indent Unit</strong> — Auto-detect reads the first nested run and uses that rhythm everywhere; 2 spaces, 4 spaces, and Tab are explicit overrides. &#8211; <strong>Full guide lines</strong> — Draws the vertical <code>│</code> between sibling rows. Leave on for trees with two or more children at the same depth; turn off for the simplest one-child-per-parent chains. &#8211; <strong>Bracket leaf nodes</strong> — Wraps file names in <code>[ ... ]</code> so the leaf is visually distinct from the path. &#8211; <strong>Trim trailing spaces</strong> — Always leave on. Trailing whitespace is invisible in the source but breaks alignment in the output.</p>
+<p>Most runs are <code>Auto-detect</code> + <code>Unicode</code> + <code>Full guide lines</code> + <code>Trim trailing spaces</code>, with the other two toggles off. That is the version the rest of this guide assumes.</p>
+<h2>From markdown bullets to a project map</h2>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/jarvis-card3-ascii-tree-from-indented-list.png" alt="Two visual styles, one structure: Unicode or ASCII" loading="lazy"></figure>
+<p>The most useful input is the one that already exists. Take a <code>README</code> that starts with a list like:</p>
+<pre><code class="language-text">src
+  index.ts
+  tools
+    ascii-tree-from-indented-list.ts
+    json-formatter.ts
+  utils
+    indent.ts
+  package.json</code></pre>
+<p>Pasting that into the converter with the <strong>Unicode Box Drawing</strong> style and the <strong>Auto-detect</strong> indent unit produces:</p>
+<pre><code class="language-text">src
+├── index.ts
+├── tools
+│   ├── ascii-tree-from-indented-list.ts
+│   └── json-formatter.ts
+├── utils
+│   └── indent.ts
+└── package.json</code></pre>
+<p>That tree is the same shape the project actually has on disk, and the same shape a reader can copy into a chat reply. Switching the style dropdown to <strong>Classic ASCII</strong> turns it into the version that survives being pasted into a terminal that does not understand box-drawing characters:</p>
+<pre><code class="language-text">src
+|-- index.ts
+|-- tools
+|   |-- ascii-tree-from-indented-list.ts
+|   <code>-- json-formatter.ts
+|-- utils
+|   </code>-- indent.ts
+<code>-- package.json</code></code></pre>
+<p>Both are equally correct. The point of the <a href="https://elysiatools.com/en/tools/ascii-tree-from-indented-list">Indented List to ASCII Tree</a> tool is that you do not have to choose at writing time — the source list stays the same and you repaint it when you know where it is going.</p>
+<h2>When the source is messier than a textbook</h2>
+<p>A real document does not always arrive in the ideal shape. Three patterns are common and each has a clean handling:</p>
+<ul>
+<li><strong>Mixed markers</strong> — <code>*</code>, <code>-</code>, and <code>1.</code> interleaved in the same outline. The converter&#8217;s <code>style</code> and <code>indentUnit</code> options keep the tree stable; the markers are stripped consistently and the depth comes only from leading whitespace. If the outline is genuinely mixed, the answer is to make the markers consistent first, then convert.</li>
+<li><strong>Tabs vs spaces</strong> — A line that mixes tab-indented and space-indented children is almost always a copy-paste accident. Pick one indent unit for the whole document, or run the converter in <strong>Auto-detect</strong> mode and let the first nested run decide.</li>
+<li><strong>Numbers with trailing dots</strong> — <code>1. root</code>, <code>2. child</code> outlines look like lists, but the dot is the marker and the digit is decoration. The tool handles this when you treat the digit as a label rather than a hierarchy. For deeper structures, the safest path is still to convert the outline to plain bullets first, then run it through the converter.</li>
+</ul>
+<p>The fastest way to check the parser is doing what you expect is to compare the output against the on-disk tree with <code>find . -print | sed 's|[^/]*/|  |g'</code>. When the two match line-for-line, the converter has read your intent.</p>
+<h2>Reading a tree you did not write</h2>
+<p>A tree that arrived without a source list still follows the same rules. The connectors tell the story before the names do:</p>
+<p>&#8211; ├──<code> means <em>a sibling, with more siblings after it</em>. The vertical line continues on the next line. - </code>└──<code> means <em>the last sibling</em>. The vertical line stops with this row. - </code>│<code> and </code>|<code> are the guide lines that connect siblings into a column.</code></p>
+<p>When the connectors are correct, the names almost do not matter. When the connectors are wrong, no amount of label tweaking fixes the structure. Reading the connectors first is the fastest way to spot a misplaced indent in someone else&#8217;s tree.</p>
+<h2>What the output is and is not</h2>
+<p>The output is plain text. That is its superpower and its only real limitation. A plain text tree:</p>
+<p>&#8211; <strong>Copies into anything</strong> — Markdown, Slack, Discord, Notion, Confluence, email, terminal, code comments. The Unicode style works in modern interfaces; the ASCII style works everywhere, including older code-review tools. &#8211; <strong>Does not track the filesystem</strong> — it is a snapshot. If the project grows, you have to run the converter again. There is no live sync. &#8211; <strong>Does not encode metadata</strong> — there are no file sizes, no permissions, no hidden markers, no last-modified dates. If you need those, the tree is the start of the document, not the whole thing.</p>
+<p>Knowing that boundary is what makes the tree useful in a doc: it is a quick map, not a substitute for the file listing itself.</p>
+<h2>Patterns worth memorizing</h2>
+<p>Five small choices make a tree read well wherever it lands:</p>
+<p>&#8211; <strong>Lead with the root, not the leaves</strong> — start the input with the project or folder name. Readers see the scope first and the detail after. &#8211; <strong>Keep the depth shallow in the snippet</strong> — anything past four or five levels usually wants a sub-tree in its own block. A 12-level tree in chat is unreadable. &#8211; <strong>Strip trailing whitespace</strong> — the converter has a trimTrailing<code> toggle for a reason. Trailing spaces look identical in the source but break the alignment of the output. - <strong>Match the style to the surface</strong> — Unicode for README and docs, ASCII for terminal output and email. The structure is identical, only the glyphs change. - <strong>Bracket the leaves when the meaning matters</strong> — the </code>leafBracket<code> option turns </code>parser.ts<code> into </code>[parser.ts]`, which is useful when the file is the topic of the paragraph that follows.</p>
+<p>Those five choices cover most of the &#8220;why does this look wrong?&#8221; moments without ever touching the source list again.</p>
+<h2>A small workflow that holds up</h2>
+<p>The reason the tool earns a permanent place in the toolbox is that the workflow is short and forgiving. A typical run looks like this:</p>
+<ol>
+<li>Open the source — a <code>README</code>, a meeting note, a chat log.</li>
+<li>Copy the indented section, including the blank lines that bracket it.</li>
+<li>Paste into the <a href="https://elysiatools.com/en/tools/ascii-tree-from-indented-list">Indented List to ASCII Tree</a> input, pick Unicode or ASCII, and let it run.</li>
+<li>Copy the output. The output is plain text, so it pastes cleanly into the destination.</li>
+<li>If the destination renders boxes instead of tree characters, switch to ASCII style and re-copy.</li>
+</ol>
+<p>There is no build step, no plugin, no theme to install. The converter is a one-shot read of a small piece of text, and the output goes wherever plain text goes. That is the entire point.</p>
+<p>When the project on disk outgrows the snippet, the next step is not a fancier tool — it is a fresh copy of the source list. The parser will keep reading the same way every time, so the only thing that changes is the project.</p>
+<p>For more ideas on turning prose into artefacts you can paste anywhere, browse the rest of the <a href="https://elysiatools.com/en/tools">Elysia Tools text utilities</a>. Trees, lists, and structured notes all live in the same place, and the same workflow applies to each of them.</p>

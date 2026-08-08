@@ -1,0 +1,20 @@
+{
+  "post_id": 4461,
+  "status": "publish",
+  "link": "https://blog.flowrust.com/2026/07/02/xss-payload-detector-the-eight-patterns/",
+  "date_gmt": "2026-07-01T18:36:53",
+  "title": "8 Patterns That Make an XSS String",
+  "slug": "xss-payload-detector-the-eight-patterns",
+  "media_ids": {
+    "poster.png": 4457,
+    "card1.png": 4458,
+    "card2.png": 4459,
+    "card3.png": 4460
+  },
+  "media_urls": {
+    "poster.png": "https://blog.flowrust.com/wp-content/uploads/2026/07/poster.png",
+    "card1.png": "https://blog.flowrust.com/wp-content/uploads/2026/07/card1.png",
+    "card2.png": "https://blog.flowrust.com/wp-content/uploads/2026/07/card2.png",
+    "card3.png": "https://blog.flowrust.com/wp-content/uploads/2026/07/card3.png"
+  }
+}
