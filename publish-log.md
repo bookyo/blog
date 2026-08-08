@@ -1,3 +1,22 @@
+## 2026-08-08 11:46 UTC — Data Deduplicator Field Guide: One Canonical Row Per Real Identity
+- **WP Post ID**: 5762
+- **WP URL**: https://blog.flowrust.com/2026/08/08/data-deduplicator-field-guide-2026-08-08/
+- **Tool ID**: data-deduplicator (manifest member; category: Data Processing)
+- **Date GMT**: 2026-08-08T11:46:59
+- **Featured Image**: poster (WP ID 5758) — `featured_media: 0` in payload (COSESAI theme hero-duplication defense)
+- **Highlight Cards**: 3 (5759 card1, 5760 card2, 5761 card3)
+- **Word count**: 1140 (close-first structure: lead phrase `<strong>Two real lists, one canonical row.</strong>`)
+- **8 body H2 + 1 theme nav = 9 total H2**
+- **Elysia anchors** (4 unique, all HTTP 200): data-deduplicator (×2 — lead + body), array-analyzer, column-remover, /en/tools root
+- **Image URLs**: 4/4 HTTP 200 (poster, card1, card2, card3 — all uploaded via REST media API with SSL EOF retry loop; first-try success this run)
+- **Audit findings**: 0 (clean 1-POST 0-PATCH run)
+- **PIL visual QA**: vision_analyze on all 4 PNGs before POST
+  - poster: subtitle pre-measured (1040 cap), no overflow
+  - card1 (`render_card_5tile`): 5 workflow inputs, all tiles clean
+  - card2 (`render_card_4tile_compact` 1-row): 4 survivor strategies with OLDEST/NEWEST/DENSEST/LONGEST multi-word short counts — extends the WP 5755 / WP 5676 single-row fix
+  - card3 (`render_card_audit` 2-column): 4 numbered metric checks + run output `1200 → 1108` verdict table + HIDDEN cluster warning
+- **Defense held end-to-end**: featured_media=0, 0 body H1 (theme only), 8 body H2, 1 article-poster + 3 highlight-card, p_opens/closes balanced 14/14 → 15/15 post-WP-autop, audit_post_content clean, 0 RAW_ITALIC (all 6 italic patterns rewritten as **bold** before md_to_html: *post-hoc*, *keep longest*, *exact equality*, *keep last*, *intra-key collisions*, *normalizer → deduplicator → sorter*), 0 MERGED_BULLET, 0 raw markdown links, 0 backslash in `<code>`, 0 nested `<p>` inside `<h2>`, all 3 elysia slugs manifest members (no phantom URLs)
+- **State**: covered_slugs now 294 entries
 ## 2026-05-12 06:59 UTC — The Beautiful Math Behind the Shapes That Appear When Two Waves Collide
 - **WP Post ID**: 2519
 - **WP URL**: https://blog.flowrust.com/2026/05/07/lissajous-figures-two-waves-collide/
