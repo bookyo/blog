@@ -1472,3 +1472,18 @@
 - **Defense held end-to-end**: featured_media=0, 0 body H1, 8 body H2, no fabricated slugs, no MERGED_BULLET_LIST after PATCH, all PIL assets passed vision_analyze, all elysiatools anchors HTTP 200
 - **State**: covered_slugs now 292 entries
 
+
+## 2026-08-08 ~07:40 UTC — Post 5755 — Ion Converter Field Guide (clean 1-POST + 1-PATCH run)
+
+- **Title**: Ion Converter Field Guide: Amazon Ion Encoding and Decoding in the Browser
+- **URL**: https://blog.flowrust.com/2026/08/08/ion-converter-field-guide-2026-08-08/
+- **date_gmt**: 2026-08-08T07:39:40
+- **Tool**: Ion Converter (Format Conversion; not previously covered; valid manifest ID)
+- **Asset archive**: `~/www/blog/2026-08-08-ion-converter/` (poster.png + card1.png + card2.png + card3.png + article.md + article_with_placeholders.html + article_final.html)
+- **Embeds**: 10 elysia links to 5 unique URLs (ion-converter x6, json-formatter, base64-converter, hex-to-string, /en/tools category root) — all 5 returned HTTP 200
+- **Image HEAD-checks**: 4/4 HTTP 200
+- **Elysia anchor HEAD-checks**: 5/5 unique URLs HTTP 200
+- **PIL visual QA**: vision_analyze on all 4 PNGs; card3 initial 2x2 grid had HIGH/MEDIUM/LOW count text overlapping body description text — fixed via single-row `render_card_4tile_compact` variant (per WP 5676/5683 lesson); re-render passed clean
+- **PATCH trip**: 1. wp_fix_merged_bullets.py defused `MERGED_BULLET_LIST: 4 blocks` (real positives — 4 sections of `– **bold lead** — body` markdown lists in "How the Ion Converter processes a payload", "When Ion beats JSON", "Type gotchas", "Workflow" subsections were joined into one `<p>` by md_to_html, then WP autop converted leading `-` to `&#8211;` triggering the audit). Split into 13 separate `<p>` blocks in single PATCH; re-audit clean.
+- **Defense held end-to-end**: featured_media=0, 0 body H1 (theme only, 1 H1 in DOM), 8 body H2 (theme +1 nav = 9), 1 article-poster + 3 highlight-card, p_opens/closes balanced 36/36, audit_post_content clean post-PATCH, all 4 PIL assets passed vision_analyze before POST
+- **State**: covered_slugs now 293 entries
