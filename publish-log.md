@@ -1451,3 +1451,24 @@
 - Patched via: regex split on &#8211; + <strong>... pattern with code-tag-tolerant matcher (per WP 5676/5683 lesson)
 - All PIL assets passed vision_analyze visual QA (poster + cards 1-3)
 - State covered_slugs now 291
+
+## 2026-08-08 ~03:23 UTC — WP 5746 — Regex Cheat Sheet Field Guide
+
+- **Title**: Regex Cheat Sheet Field Guide: The Five Symbols Between You and a Working Pattern
+- **Slug**: regex-cheat-sheet-field-guide-2026-08-08
+- **URL**: https://blog.flowrust.com/2026/08/08/regex-cheat-sheet-field-guide-2026-08-08/
+- **date_gmt**: 2026-08-08T03:23:15 (current UTC at POST)
+- **Tool**: regex-cheat-sheet (Development category, picker v4 score 531)
+- **Anchors** (5): 1 tool + 3 samples (regex-named-groups, regex-samples, regex-alternatives) + tool again
+- **Image assets**: 1 poster (1080x800) + 3 cards (1600x900), all vision_analyze QA passed
+- **Defense layer**: featured_media=0 ✓, 0 body H1 ✓, 8 body H2 ✓, 3 highlight-card figures ✓, 1 article-poster figure ✓, 1 `<ul>` with 5 `<li>` ✓, 85 `&#92;` entities preserved ✓
+- **PATCHES**: 2
+  - PATCH 1: restored 69 `&#92;` entities stripped by KSES on POST (`post-4002-strip-on-post-preserve-on-patch-2026-06-19.md` lesson)
+  - PATCH 2: replaced merged-bullet "Patterns worth memorizing" `<p>` block with proper `<ul><li>...</li></ul>` structure (initial split-PATCH attempt corrupted regex content; rebuilt cleanly from inline HTML)
+- **Pitfalls encountered**: SSL EOF on first media upload (retry script `retry_uploads.py` saved the run); KSES strip-on-POST for backslash entities (PATCH restores); MERGED_BULLET_LIST real positive on `wp_fix_merged_bullet_and_numbered.py` split (wrote custom inline `<ul>` instead to avoid content corruption)
+- **Audit final**: 0 findings
+- **Image HEAD-checks**: 4/4 HTTP 200
+- **Elysia anchor HEAD-checks**: 4/4 unique URLs HTTP 200
+- **Defense held end-to-end**: featured_media=0, 0 body H1, 8 body H2, no fabricated slugs, no MERGED_BULLET_LIST after PATCH, all PIL assets passed vision_analyze, all elysiatools anchors HTTP 200
+- **State**: covered_slugs now 292 entries
+
