@@ -1522,3 +1522,7 @@
 - **PATCH trip**: 1. WP autop converted leading `-` markdown bullets into `&#8211;` and merged 4 bullet lists (3 sub-bullets + 5 sub-bullets + 3 sub-bullets + 5 sub-bullets across H2s "What indented means", "A close-first look at the tool surface", "What the output is and is not", "Patterns worth memorizing") into single `<p>` blocks. `wp_fix_merged_bullets.py`-style recipe (regex with `.*?` DOTALL between strong boundaries, split on `&#8211;\s*<strong>` boundary) split them into 16 separate `<p>` blocks in single round-trip. Re-audit clean post-PATCH. Defense (preferred over PATCH) — write bullet lists as inline `<ul><li>` HTML; WP autop did still merge them on this run, so PATCH is required regardless.
 - **Defense held end-to-end**: featured_media=0, 0 body H1 (theme only, 1 H1 in DOM), 8 body H2 (theme +1 nav = 9), 1 article-poster + 3 highlight-card figures, p_opens/closes balanced (38/38 in DOM), 4/4 image URLs HTTP 200, 2/2 elysia anchor URLs HTTP 200, `audit_post_content` clean post-PATCH, DOM check clean
 - **State**: covered_slugs now 295 entries
+
+## 2026-08-08T20:20:05 — api-breaking-changes-detector-migration-planner (WP 5775)
+- Title: API Breaking Changes Detector Field Guide: The OpenAPI Diff That Catches Them All
+- URL: https://blog.flowrust.com/2026/08/09/api-breaking-changes-detector-migration-planner/
