@@ -1570,3 +1570,7 @@
   - PIL `render_card_4tile` (canonical 2x2) silently breaks with multi-word short count strings at 150pt → re-render via `render_card_4tile_compact` 1-row variant (WP 5755 lesson, 2nd confirmation)
 - PATCHES: 1 (defused `POSSIBLE_BACKSLASH_STRIPPED: 2` false-positive on `<code>type: [string, "null"]</code>` — pre-encoded `[` and `]` as `&#91;`/`&#93;` inside the offending <code> spans; WP 5669 lesson)
 - State: covered_slugs now 298 entries
+
+## 2026-08-09T13:10:50 — crontab-converter-field-guide-2026-08-09 (WP 5805)
+- Title: Crontab Converter Field Guide: Five Targets, One Cron Expression
+- URL: https://blog.flowrust.com/2026/08/09/crontab-converter-field-guide-2026-08-09/
