@@ -1549,3 +1549,24 @@
   - PIL `render_card_4tile` canonical 2x2 grid would have broken with `2 -> 22` count strings (extends WP 5755 lesson) → used custom 1-row variant (tile_w=360, tile_h=540, gap_x=30, auto-shrink for `2 -> 22` count string, body capped to 2 lines, divider rule at y0+tile_h-100, sub-label at y0+tile_h-80 capped to 2 lines)
 - PATCHES: 0 (clean 1-POST run; cron_publish_driver had SSL EOF on response read after media upload but POST went through, retry detected duplicate at id=5792 and trashed it)
 - State: covered_slugs now 297 entries
+
+## 2026-08-09T08:52:03 — api-response-contract-validator-field-guide-2026-08-09 (WP 5798)
+- Title: API Response Contract Validator Field Guide
+- URL: https://blog.flowrust.com/2026/08/09/api-response-contract-validator-field-guide-2026-08-09/
+- date_gmt: 2026-08-09T08:52:03 (current UTC at POST)
+- Tool: api-response-contract-validator (Development category, picker v4 top fresh pick)
+- Word count: 1726, 8 body H2, 0 body H1, 4 inline <ul> + 2 inline <ol>, 1 article-poster + 3 highlight-card figures
+- Asset archive: `~/www/blog/2026-08-09-api-response-contract-validator-field-guide/` (poster.png + card1.png + card2.png + card3.png + article.md + article_final.html)
+- Image HEAD-checks: 4/4 HTTP 200 (poster-2, card1-2, card2-2, card3-2)
+- Elysia anchor HEAD-checks: 5/5 unique URLs HTTP 200 (api-response-contract-validator, openapi samples, json-schema-generator, openapi-diff-breach-detector, /en/tools root)
+- PIL visual QA: vision_analyze on all 4 PNGs — all clean (no tofu, no overflow, no clipping)
+  - Card 3 first pass: canonical `render_card_4tile` 2x2 grid with multi-word short count strings (`string, "null"`, `required: [a]`, `nullable: true`) overflowed horizontally at 150pt — vision_analyze caught it in single pre-POST pass; re-render via `render_card_4tile_compact` 1-row variant (auto-shrink 150pt→84pt→64pt, body 2-line cap, divider rule at y0+tile_h-100, sub-label 2-line cap) passed clean (extends WP 5755 lesson — 2nd confirmation)
+- Defense layer held: featured_media=0 ✓, 0 body H1 ✓, 8 body H2 ✓, 1 article-poster + 3 highlight-card figures ✓, p_opens/closes balanced 24/24 pre-fetch ✓, audit_post_content clean post-PATCH ✓
+- Pitfalls defended before POST:
+  - Initial `1. **Missing field** — ... 2. **Type mismatch** — ...` numbered list with bold leads → converted to inline `<ol><li><strong>...</strong> ...</li></ol>` to defuse MERGED_NUMBERED_LIST (WP 5717 lesson)
+  - Initial four `- **bold lead**` ASCII hyphen markdown lists (4-options, 3-toggle-when, 3-rules, 4-CI-steps, 5-patterns) → converted to inline `<ul><li><strong>...</strong> ...</li></ul>` to defuse MERGED_BULLET_LIST (WP 5676/5683/5717/5746/5755/5768 lesson)
+  - Initial 7 H2s (only) → added "Why contract validation belongs in CI" H2 to reach exactly 8 (umbrella §"Article structure")
+  - md_to_html auto-wrapped inline figures in `<p>...</p>` → strip_p_around_figure regex to keep `<figure>` outside `<p>` (per umbrella §"md→html trailing-block dedup")
+  - PIL `render_card_4tile` (canonical 2x2) silently breaks with multi-word short count strings at 150pt → re-render via `render_card_4tile_compact` 1-row variant (WP 5755 lesson, 2nd confirmation)
+- PATCHES: 1 (defused `POSSIBLE_BACKSLASH_STRIPPED: 2` false-positive on `<code>type: [string, "null"]</code>` — pre-encoded `[` and `]` as `&#91;`/`&#93;` inside the offending <code> spans; WP 5669 lesson)
+- State: covered_slugs now 298 entries

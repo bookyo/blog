@@ -1,0 +1,104 @@
+---
+title: "API Response Contract Validator Field Guide"
+tool: api-response-contract-validator
+---
+
+<figure class="article-poster"><img decoding="async" src="POSTER_URL" alt="API Response Contract Validator field guide poster" /></figure>
+
+<strong>Most "the API is broken" bugs are not bugs in the API.</strong> They are bugs in the contract — the OpenAPI 3.x schema says the field is `id: integer`, the backend returns `id: "42"` as a string, and every consumer downstream has to special-case it. The fastest way to surface that mismatch is to validate a real response against the declared schema, in the browser, on a single payload. The [API Response Contract Validator](https://elysiatools.com/en/tools/api-response-contract-validator) does exactly that: paste the spec, paste the response, point it at the path/method/status, and the tool resolves the matching response schema, then highlights missing fields, type mismatches, enum violations, and undocumented extras. This field guide walks through the seven most common contract-drift patterns, the exact validator inputs that surface them, and the workflow that turns a 30-minute spec-vs-payload reconciliation into a 30-second paste.
+
+## How the validator resolves a schema
+
+The contract validator is not a generic JSON Schema engine. It accepts an OpenAPI 3.0 or 3.1 document, walks the `paths` tree to the operation you name, then resolves the response schema for the status code you specify. If the status code is missing, the validator walks the `default` response next, then the closest 2xx/4xx branch. Once the schema is in hand, the response payload is parsed and compared field-by-field.
+
+The four options that matter for every paste:
+
+<ul>
+<li><strong>OpenAPI Spec</strong> — paste YAML or JSON. The validator auto-detects the format.</li>
+<li><strong>Response JSON</strong> — paste one runtime payload. Trailing commas and unquoted keys fail parse before validation starts.</li>
+<li><strong>Path / Method / Status Code</strong> — the operation pointer. <code>Path</code> is the templated form (<code>/users/{id}</code>), not the rendered URL.</li>
+<li><strong>Disallow Additional Properties</strong> — toggles whether undocumented fields are reported as warnings or silently ignored.</li>
+</ul>
+
+The [OpenAPI/Swagger samples](https://elysiatools.com/en/samples/openapi) page provides a Pet Store spec and a User Management spec that resolve cleanly against the validator. For a first run, paste `openapi-basic-petstore` from the samples page, then paste the matching runtime response from the Pet Store demo. You should see zero findings — a clean baseline.
+
+## Why contract validation belongs in CI
+
+A type system is only as strong as the inputs it sees. An OpenAPI document is a promise; the runtime response is the truth. The two diverge the moment a migration lands, a default value changes, or a new field is added without a spec update. A contract validator pinned to CI turns that drift into a build failure, before the consumer is updated and before the spec is forgotten.
+
+The cost of the integration is small: the spec and the response are both strings, the validator runs in milliseconds, and the output is a structured findings array. The cost of skipping it is larger: a field rename in production, three days of "works on staging" debugging, and a postmortem about a missing CI check.
+
+## The seven contract-drift patterns
+
+Every contract-drift bug I have shipped or inherited falls into one of seven buckets. The validator flags each with a distinct label, so once you know the pattern you can read the report in seconds.
+
+<figure class="highlight-card"><img decoding="async" src="CARD1_URL" alt="API contract drift taxonomy — the seven patterns the validator catches" loading="lazy" /></figure>
+
+<ol>
+<li><strong>Missing field</strong> — the schema requires <code>email</code> and the payload omits it. Common when a server is rolled out before the consumer is updated. Reported as <code>MISSING_REQUIRED</code>.</li>
+<li><strong>Type mismatch</strong> — <code>id</code> is declared <code>integer</code> but the server emits <code>id: "42"</code>. Reported as <code>TYPE_MISMATCH</code>. This is the dominant class of bug in any JSON-over-HTTP API older than six months.</li>
+<li><strong>Enum violation</strong> — the schema enumerates <code>[pending, active, closed]</code> and the payload says <code>"in_progress"</code>. Reported as <code>ENUM_VIOLATION</code>. Almost always a sign of an unmerged migration.</li>
+<li><strong>Format violation</strong> — <code>format: email</code> against <code>"not-an-email"</code>, <code>format: date-time</code> against <code>"2026-13-99"</code>. Reported as <code>FORMAT_VIOLATION</code>. These pass syntactic JSON parsing but fail semantic validation.</li>
+<li><strong>Additional property</strong> — the payload includes a <code>legacy_user_id</code> field that the schema does not declare. By default the validator ignores it; with <code>Disallow Additional Properties</code> toggled on, it is reported as <code>ADDITIONAL_PROPERTY</code>.</li>
+<li><strong>Null on a non-nullable</strong> — <code>nullable: false</code> (or the OpenAPI 3.1 absence of a <code>null</code> type) but the payload has <code>"deleted_at": null</code>. Reported as <code>TYPE_MISMATCH</code> with a <code>null</code> expected type. Common after a soft-delete column lands in the database.</li>
+<li><strong>Array item shape</strong> — the schema declares <code>items: &#123;type: object, required: [id]&#125;</code> and one array element is missing <code>id</code>. Reported as <code>MISSING_REQUIRED</code> but at the items path, not the root.</li>
+</ol>
+
+Run those seven checks against any production response and you will catch every regression the type system can express.
+
+## The OpenAPI 3.1 type union gotcha
+
+OpenAPI 3.1 (released July 2021, increasingly the default) aligned the spec with JSON Schema 2020-12. The biggest user-visible change is `type` is now a single string or a **list of types**, and `nullable: true` is gone. The new pattern is to write `type: [string, "null"]` for a nullable string. The validator honors both forms, so a 3.0 spec with `nullable: true` and a 3.1 spec with `type: [string, "null"]` validate the same way.
+
+The gotcha is in the consumer's expectation. If the OpenAPI document is 3.1 but the consumer's generated client library is older, the library may serialize `null` as the empty string and the validator will report `TYPE_MISMATCH` for every nullable field. The fix is either to regenerate the client with a 3.1-aware codegen, or to downgrade the spec to 3.0 with explicit `nullable: true` flags and re-validate. The validator does not care which you choose; it just needs the spec and the payload to be self-consistent.
+
+## Disallow Additional Properties: when to turn it on
+
+The toggle only affects the report. It does not change the validator's parse of the spec or the payload. So you can iterate with it off, then re-run with it on once the report is clean against the documented fields.
+
+<ul>
+<li><strong>Turn it on for greenfield APIs</strong> where the schema is the source of truth and the server is the only producer. Any field the schema does not declare is a bug.</li>
+<li><strong>Turn it on for third-party integrations</strong> where you are testing how a vendor responds versus the contract you agreed to. Unexpected fields often signal undocumented behavior you will be forced to support forever.</li>
+<li><strong>Turn it off for legacy internal APIs</strong> with hand-maintained JSON. You will drown in <code>ADDITIONAL_PROPERTY</code> warnings for fields nobody can remove, and the report will become useless.</li>
+</ul>
+
+## Pointing at the right operation
+
+The most common reason a validation comes back empty is the path/method/status pointer does not match. Three rules resolve 90% of mis-pointing:
+
+<ul>
+<li><strong>Path is templated.</strong> Write <code>/users/{id}</code>, not <code>/users/123</code>. The validator uses the spec's key, not the rendered URL.</li>
+<li><strong>Method is uppercase.</strong> <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>PATCH</code>, <code>DELETE</code>. Anything else returns zero operations.</li>
+<li><strong>Status is the exact declared code.</strong> If the spec declares <code>200</code> and <code>201</code> for a POST, validate against each. If the spec only declares a <code>default</code> response, the validator falls back to that branch automatically.</li>
+</ul>
+
+A second, more subtle mis-pointing happens with `oneOf` and `anyOf` at the operation level. The validator walks the response schema as a single branch; if the spec uses `oneOf` to express content-negotiation, the validator may flag a `TYPE_MISMATCH` on a perfectly valid response because it picked the wrong branch. The workaround is to validate against the specific sub-schema the consumer uses, not the operation's top-level response.
+
+<figure class="highlight-card"><img decoding="async" src="CARD3_URL" alt="OpenAPI 3.1 type union and nullability cheat sheet" loading="lazy" /></figure>
+
+## Workflow: from spec change to green build
+
+<figure class="highlight-card"><img decoding="async" src="CARD2_URL" alt="API contract validation workflow diagram" loading="lazy" /></figure>
+
+The workflow that keeps contract drift out of production has four steps, all of which fit inside a CI job that runs in under ten seconds:
+
+<ol>
+<li><strong>Snapshot the spec</strong> at build time. The validator accepts the spec as a string, so a <code>cat openapi.yaml</code> piped to a fixture file is enough.</li>
+<li><strong>Snapshot a known-good response</strong> from staging. The validator accepts JSON, so a <code>curl -s $STAGING/users/42 &gt; response.json</code> is enough.</li>
+<li><strong>Run the validator headless.</strong> With the spec, the response, the path, the method, and the status in hand, the validator returns a structured findings array. CI fails on any non-empty findings array.</li>
+<li><strong>Block on <code>ADDITIONAL_PROPERTY</code> for production.</strong> Same workflow, with the toggle on, deployed to prod. Any field the server emits that the spec does not document is a deploy-blocker.</li>
+</ol>
+
+This is the same workflow the [JSON Schema Generator](https://elysiatools.com/en/tools/json-schema-generator) tool covers for the inverse case — generating a schema from a sample payload — and the [OpenAPI Diff & Breach Detector](https://elysiatools.com/en/tools/openapi-diff-breach-detector) covers for the diff case (spec changed, what broke). The three tools together form a round-trip: generate a schema from samples, validate live responses against the schema, diff a candidate spec against the published one.
+
+## Patterns worth memorizing
+
+<ul>
+<li><strong>A clean validator run on staging is the cheapest contract regression test you can write.</strong> It runs in seconds, requires no test framework, and catches every type the type system can express. Run it on every PR.</li>
+<li><strong><code>Disallow Additional Properties</code> is a policy decision, not a technical one.</strong> The toggle does not change parsing; it changes the report. Decide per-API whether undocumented fields are a bug or a feature.</li>
+<li><strong>Type unions and <code>null</code> gotchas are the first thing to check</strong> when a validator run flags a field the consumer treats as nullable. The mismatch is almost always on the consumer's end, not the spec's.</li>
+<li><strong>Path is templated, status is exact, method is uppercase.</strong> Memorize these three rules and you will never have to debug a "validator says zero findings but the response is clearly wrong" report again.</li>
+<li><strong>Snapshot the spec and the response in CI, not just the test fixtures.</strong> Contract drift is a runtime property. Testing against hand-written fixtures is testing the spec against itself.</li>
+</ul>
+
+The contract validator is one of those tools that looks trivial on the first run and becomes load-bearing on the second. Once you have it wired into CI, you stop arguing about what the API is supposed to do and start shipping the answer. Browse the [full Elysia Tools catalog](https://elysiatools.com/en/tools) for the rest of the pipeline — schema generation, OpenAPI diffing, and the rest of the response-payload tooling that turns an OpenAPI document into a working contract.
