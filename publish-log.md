@@ -1526,3 +1526,7 @@
 ## 2026-08-08T20:20:05 — api-breaking-changes-detector-migration-planner (WP 5775)
 - Title: API Breaking Changes Detector Field Guide: The OpenAPI Diff That Catches Them All
 - URL: https://blog.flowrust.com/2026/08/09/api-breaking-changes-detector-migration-planner/
+
+## 2026-08-09T00:28:48 — 7z-to-gz-converter-field-guide-2026-08-09 (WP 5784)
+- Title: From Multi-File Archive to Gzip Stream: A Field Guide to 7Z to GZ Conversion
+- URL: https://blog.flowrust.com/2026/08/09/7z-to-gz-converter-field-guide-2026-08-09/
