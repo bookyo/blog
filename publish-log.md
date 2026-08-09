@@ -1574,3 +1574,25 @@
 ## 2026-08-09T13:10:50 — crontab-converter-field-guide-2026-08-09 (WP 5805)
 - Title: Crontab Converter Field Guide: Five Targets, One Cron Expression
 - URL: https://blog.flowrust.com/2026/08/09/crontab-converter-field-guide-2026-08-09/
+
+## 2026-08-09T21:28:22 — quoted-printable-encoder-field-guide-2026-08-10 (WP 5822)
+- Title: Quoted-Printable Encoder Field Guide
+- URL: https://blog.flowrust.com/2026/08/10/quoted-printable-encoder-field-guide-2026-08-10/
+- Tool: quoted-printable-encoder (Format Conversion category, picker v4 — thematic clustering: MIME email encoding, RFC 2045)
+- Word count: 2111, 0 body H1, 8 body H2, 7 inline `<ul>` + 3 inline `<ol>`, 1 article-poster + 3 highlight-card figures, 5 elysia anchors (3 unique to /en/tools/), 75 `<code>` spans
+- Asset archive: `~/www/blog/2026-08-10-quoted-printable-encoder-field-guide/` (poster.png + card1.png + card2.png + card3.png + article.md + article_final.html)
+- Image HEAD-checks: 4/4 HTTP 200 (poster-2, card1-2, card2-2, card3-2)
+- Elysia anchor HEAD-checks: 3/3 unique URLs HTTP 200 (quoted-printable-encoder, quoted-printable-decoder, /en/tools root)
+- PIL visual QA: vision_analyze on all 4 PNGs — initial render had 2 defects, both fixed before POST:
+  - **Card 1 first pass**: tiles 4 and 5 had `→` Unicode arrow rendering as tofu (Helvetica lacks U+2192) → replaced with ASCII `:` separator
+  - **Card 2 first pass**: verdict row 3 (`UTF-8 round-trip` / `é`) overflowed into the OK badge column at F_MONO → shortened label to `UTF-8` and value to `round-trip` (eliminated multi-byte rendering issue + gave clearance)
+- Defense layer held: featured_media=0 ✓, 0 body H1 ✓, 8 body H2 ✓, 1 article-poster + 3 highlight-card figures ✓, p_opens/closes balanced 27/27 ✓, all tag pairs balanced (h2:8/8, ul:7/7, ol:3/3, li:32/32, strong:35/35, figure:4/4) ✓, audit_post_content clean (0 findings) ✓, browser DOM check: H1=1 (theme only), H2=9 (8 body + 1 theme Post nav), highlight-card=3, article-poster=1, p=28, ul=8, ol=3, li=36, code=75 ✓
+- Pitfalls defended before POST:
+  - Source had `# Quoted-Printable Encoder Field Guide` H1 (would duplicate theme's entry-title) → stripped before md_to_html (umbrella §"Body content MUST NOT contain its own `<h1>`")
+  - Source had 6 `- **bold lead**` ASCII hyphen markdown lists + 2 numbered lists → converted to inline `<ul><li><strong>...</strong> ...</li></ul>` and `<ol><li>` to defuse MERGED_BULLET_LIST + MERGED_NUMBERED_LIST (WP 5676/5683/5717/5746/5755/5768/5813 lesson — `md_to_html` joins `–`/`*`/`-` bullets into one `<p>` and WP autop rewrites leading `-` to `&#8211;`)
+  - Source had only 7 H2s → added "Putting it together" closer H2 to reach exactly 8 (umbrella §"Article structure: exactly 8 body H2s — no `## Closing (read this first)` marker H2")
+  - Source had inline `<p><strong>Lead phrase.</strong> ...</p>` wrappers → stripped to raw markdown `<strong>` (WP 5692 lesson — `md_to_html` wraps everything non-block in `<p>`, producing nested `<p><p>` that autop then mis-balances)
+  - Pre-measured poster subtitle (1010px on 1080 canvas) — within margin so no shortening needed (WP 5683 lesson)
+  - Card 3 used `render_card_4tile_compact` 1-row variant from the start (count = "STEP 1..4" multi-word strings; WP 5813 rule — 3rd confirmation that the compact variant is mandatory for any multi-word count string)
+- PATCHES: 0 (1-POST clean run)
+- State: covered_slugs now 301 entries
