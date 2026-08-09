@@ -1530,3 +1530,22 @@
 ## 2026-08-09T00:28:48 — 7z-to-gz-converter-field-guide-2026-08-09 (WP 5784)
 - Title: From Multi-File Archive to Gzip Stream: A Field Guide to 7Z to GZ Conversion
 - URL: https://blog.flowrust.com/2026/08/09/7z-to-gz-converter-field-guide-2026-08-09/
+
+## 2026-08-09T04:37:49 — resume-bullet-star-rewriter-field-guide-2026-08-09 (WP 5790)
+- Title: Resume Bullet STAR Rewriter Field Guide: Five Verbs That Turn "Responsible For" Into a Promotion
+- URL: https://blog.flowrust.com/2026/08/09/resume-bullet-star-rewriter-field-guide-2026-08-09/
+- date_gmt: 2026-08-09T04:37:49 (current UTC at POST)
+- Tool: resume-bullet-star-rewriter (AI Tools category, picker v4 top pick)
+- Word count: 1680, 8 body H2, 0 body H1, 3 inline <ul> + 1 inline <ol>, 22 strong
+- Asset archive: `~/www/blog/2026-08-09-resume-bullet-star-rewriter/` (poster.png + card1.png + card2.png + card3.png + article.md + article_initial.html + article_with_placeholders.html + article_with_placeholders_urls_substituted.html + render_assets.py)
+- Image HEAD-checks: 4/4 HTTP 200
+- Elysia anchor HEAD-checks: 2/2 unique URLs HTTP 200 (resume-bullet-star-rewriter + /en/tools category root)
+- PIL visual QA: vision_analyze on all 4 PNGs — all clean (no tofu, no overflow, no clipping)
+- Defense layer held: featured_media=0 ✓, 0 body H1 ✓, 8 body H2 ✓, 1 article-poster + 3 highlight-card figures ✓, p_opens/closes balanced 28/28 pre-fetch 29/29 in DOM ✓, audit_post_content clean (0 findings) ✓
+- Pitfalls defended before POST:
+  - Initial `1. **The rewrite** — ... 2. **The STAR breakdown** — ...` numbered list with bold leads → converted to inline `<ol><li><strong>...</strong> ...</li></ol>` to defuse MERGED_NUMBERED_LIST (WP 5717 lesson)
+  - Initial `- **Situation** — ...` and `- **Weak opener** — ...` ASCII hyphen markdown lists with bold leads → converted to inline `<ul><li><strong>...</strong> ...</li></ul>` to defuse MERGED_BULLET_LIST (WP 5676/5683/5717/5746/5755/5768 lesson)
+  - Initial 9 H2s (had separate "Pairing" + "Putting it together" H2s) → merged into single "Putting it together" H2 to keep H2 count at exactly 8 (umbrella §"Article structure")
+  - PIL `render_card_4tile` canonical 2x2 grid would have broken with `2 -> 22` count strings (extends WP 5755 lesson) → used custom 1-row variant (tile_w=360, tile_h=540, gap_x=30, auto-shrink for `2 -> 22` count string, body capped to 2 lines, divider rule at y0+tile_h-100, sub-label at y0+tile_h-80 capped to 2 lines)
+- PATCHES: 0 (clean 1-POST run; cron_publish_driver had SSL EOF on response read after media upload but POST went through, retry detected duplicate at id=5792 and trashed it)
+- State: covered_slugs now 297 entries
