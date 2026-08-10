@@ -1613,3 +1613,13 @@
 ## 2026-08-10T05:45:45 — image-color-palette-extractor-field-guide-2026-08-10 (WP 5835)
 - Title: Image Color Palette Extractor: A Field Guide to Code-Ready Palettes
 - URL: https://blog.flowrust.com/2026/08/10/image-color-palette-extractor-field-guide-2026-08-10/
+
+## 2026-08-10 10:33 UTC — WP 5842 (Convert ICO to PNG field guide)
+- post_id: 5842
+- slug: convert-ico-to-png-field-guide-2026-08-10
+- url: https://blog.flowrust.com/2026/08/10/convert-ico-to-png-field-guide-2026-08-10/
+- date_gmt: 2026-08-10T10:33:58
+- featured_media: 0
+- tool: ico-to-png (Convert ICO to PNG, Media)
+- assets: 1 poster + 3 cards (5-tile / audit / 4-tile-compact)
+- audit: clean (0 H1, 8 H2, 3 highlight-cards, 1 article-poster, 29/29 p balance)
