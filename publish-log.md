@@ -1609,3 +1609,7 @@
 - **PIL visual QA**: poster OK, card 1 (5-tile) OK, card 2 (audit) — verdict value "PLAYFAIR" overflowed into OK badge → re-rendered with F_MONO_SM (22pt) per WP 5822 pitfall; card 3 (4-tile 2x2) — count text overlapped body description → re-rendered with `render_card_4tile_compact` 1-row variant per WP 5755/5798 pitfall
 - **State**: covered_slugs=303
 - **Archive**: ~/www/blog/2026-08-10-webfont-pairing-lab/
+
+## 2026-08-10T05:45:45 — image-color-palette-extractor-field-guide-2026-08-10 (WP 5835)
+- Title: Image Color Palette Extractor: A Field Guide to Code-Ready Palettes
+- URL: https://blog.flowrust.com/2026/08/10/image-color-palette-extractor-field-guide-2026-08-10/
