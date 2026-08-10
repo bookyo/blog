@@ -1639,3 +1639,7 @@
 - image urls (4/4 HTTP 200): poster-3.png, card1-3.png, card2-3.png, card3-3.png
 - PIL visual QA: all 4 assets passed pre-POST vision_analyze (card 2 label-truncation caught + fixed in single pass)
 - markdown source: 5 inline <code> spans converted to backticks so safe_md_to_html.py could stash them from italic regex (lesson reinforces WP 5805)
+
+## 2026-08-10T18:52:07 — cinematic-color-grading-field-guide-2026-08-11 (WP 5856)
+- Title: Cinematic Color Grading: A Practical Field Guide to Film-Inspired Images
+- URL: https://blog.flowrust.com/2026/08/11/cinematic-color-grading-field-guide-2026-08-11/
