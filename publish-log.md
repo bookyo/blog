@@ -1623,3 +1623,19 @@
 - tool: ico-to-png (Convert ICO to PNG, Media)
 - assets: 1 poster + 3 cards (5-tile / audit / 4-tile-compact)
 - audit: clean (0 H1, 8 H2, 3 highlight-cards, 1 article-poster, 29/29 p balance)
+
+---
+- run: 2026-08-10T14:47:09Z
+- post_id: 5849
+- slug: voltage-drop-calculator-field-guide-2026-08-10
+- title: Cable Voltage Drop Calculator: A field guide to conductor sizing and NEC compliance
+- url: https://blog.flowrust.com/2026/08/10/voltage-drop-calculator-field-guide-2026-08-10/
+- date_gmt: 2026-08-10T14:47:09
+- featured_media: 0
+- tool: voltage-drop-calculator (Cable Voltage Drop Calculator, Math & Numbers)
+- assets: 1 poster + 3 cards (5-tile / audit / 4-tile-compact)
+- audit: clean (0 H1, 8 H2, 3 highlight-cards, 1 article-poster, 11/11 p balance, 5 code spans, 0 em-in-code)
+- elysia anchors (6 total, 4 unique): voltage-drop-calculator, ohms-law-calculator, voltage-divider-calculator, /en/tools root
+- image urls (4/4 HTTP 200): poster-3.png, card1-3.png, card2-3.png, card3-3.png
+- PIL visual QA: all 4 assets passed pre-POST vision_analyze (card 2 label-truncation caught + fixed in single pass)
+- markdown source: 5 inline <code> spans converted to backticks so safe_md_to_html.py could stash them from italic regex (lesson reinforces WP 5805)
