@@ -1596,3 +1596,16 @@
   - Card 3 used `render_card_4tile_compact` 1-row variant from the start (count = "STEP 1..4" multi-word strings; WP 5813 rule — 3rd confirmation that the compact variant is mandatory for any multi-word count string)
 - PATCHES: 0 (1-POST clean run)
 - State: covered_slugs now 301 entries
+
+## 2026-08-10 01:42:25 UTC — Post 5828 — Web Font Pairing Lab Field Guide
+
+- **Tool**: Web Font Pairing Lab (id=webfont-pairing-lab, category=Design)
+- **Slug**: webfont-pairing-lab-field-guide-2026-08-10
+- **URL**: https://blog.flowrust.com/2026/08/10/webfont-pairing-lab-field-guide-2026-08-10/
+- **date_gmt**: 2026-08-10T01:38:45
+- **Body**: 0 H1, 8 H2, 1 article-poster, 3 highlight-card figures, 4 elysia anchors
+- **Defense layer**: featured_media=0, 0 body H1, 8 body H2, all 8 URLs HTTP 200
+- **Defects found and fixed**: 1 PATCH round-trip — literal `<h1>`, `<h6>`, `<p>` inside `<code>` blocks were converted to actual headings by WP autop; PATCH replaced them with HTML-encoded `&lt;h1&gt;`, `&lt;h6&gt;`, `&lt;p&gt;` (extends WP 5699 Unicode-tofu family to HTML markup)
+- **PIL visual QA**: poster OK, card 1 (5-tile) OK, card 2 (audit) — verdict value "PLAYFAIR" overflowed into OK badge → re-rendered with F_MONO_SM (22pt) per WP 5822 pitfall; card 3 (4-tile 2x2) — count text overlapped body description → re-rendered with `render_card_4tile_compact` 1-row variant per WP 5755/5798 pitfall
+- **State**: covered_slugs=303
+- **Archive**: ~/www/blog/2026-08-10-webfont-pairing-lab/
