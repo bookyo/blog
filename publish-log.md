@@ -1643,3 +1643,7 @@
 ## 2026-08-10T18:52:07 — cinematic-color-grading-field-guide-2026-08-11 (WP 5856)
 - Title: Cinematic Color Grading: A Practical Field Guide to Film-Inspired Images
 - URL: https://blog.flowrust.com/2026/08/11/cinematic-color-grading-field-guide-2026-08-11/
+
+## 2026-08-10T22:57:56 — 7z-selective-extract-field-guide-2026-08-11 (WP 5862)
+- Title: 7Z File Extractor: A field guide to single-file pulls from compressed archives
+- URL: https://blog.flowrust.com/2026/08/11/7z-selective-extract-field-guide-2026-08-11/
