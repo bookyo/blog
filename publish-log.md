@@ -1700,3 +1700,7 @@
 - Defense layer held end-to-end (no MERGED_BULLET, no body H1, no fabricated slugs, no RAW_ITALIC, no P_TAG_MISMATCH)
 - Note: PIL card 3 first-pass had leftover WP 5755 takeaway default ("Ion wins..."); caught by vision_analyze in single pass; re-rendered with explicit takeaway param
 - SSL EOF retry: standalone retry_uploads.py for media, retry wrapper in post_article.py for POST (succeeded on attempt 3)
+
+## 2026-08-11T19:57:03 — markdown-table-generator-field-guide-2026-08-11 (WP 5898)
+- Title: Markdown Table Generator Field Guide: Clean Tables Without Hand-Tuning Pipes
+- URL: https://blog.flowrust.com/2026/08/12/markdown-table-generator-field-guide-2026-08-11/
