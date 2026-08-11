@@ -1663,3 +1663,22 @@
 - Audit clean post-PATCH: 0 findings, 4/4 images HTTP 200, 0 broken elysiatools links
 - DOM check clean: H1=1 (theme only), H2=9 (8 body + 1 theme Post navigation), H3=0, article-poster=1, highlight-card=3, no article imgs missing alt
 - State covered_slugs now 309 entries; covered_tool_ids += ['sql-query-formatter']
+
+## 2026-08-11 ~07:13 UTC — OpenAPI / Swagger Validator Field Guide (WP 5879)
+- Asset archive: ~/www/blog/2026-08-11-openapi-validator-field-guide/
+- 1-POST + 1-PATCH run
+- POST: date_gmt=2026-08-11T07:13:43, slug=openapi-validator-field-guide-2026-08-11, featured_media=0, all 4 media uploaded (poster 5875, card1 5876, card2 5877, card3 5878)
+- PATCH 1 (WP REST POST update-verb): stripped body H1 that matched post title (the markdown `# Title` had been converted to `<h1>` by md_to_html, causing duplicate H1 in rendered DOM — theme entry-title + body H1). Used regex `<h1>OpenAPI / Swagger Validator Field Guide: Catch Spec Drift Before Your Clients Do</h1>` to surgically remove. Final h1_count=1 (theme only).
+- PIL visual QA: all 4 assets passed pre-POST vision_analyze. Card 2 first-pass had bottom takeaway box clipping (80px box with 2 lines of text). Fixed by raising box height to 110px and tweaking y positions.
+- markdown source: 8 H2 sections, 1 body H1 (stripped in PATCH), 94 inline <code> spans, 31 <p>, 6 unique elysia anchors (openapi-validator + 4 related tool IDs + validation category root)
+- Pre-publish audit: 7/7 PASS (Markdown residue, Relative img, Tag balance, Elysia distribution, Wrong-type, Image URL format, URL-as-heading)
+- Audit clean post-PATCH: 0 findings, 4/4 images HTTP 200, 6/6 elysia anchors HTTP 200
+- DOM check clean: H1=1 (theme only), H2=9 (8 body + 1 theme Post navigation), H3=0, article-poster=1, highlight-card=3, ul=1 (3 li), p_open=31/p_close=31 balanced
+- Tool category: Validation (openapi-validator / OpenAPI / Swagger Validator)
+- State covered_slugs now 310 entries; covered_tool_ids += ['openapi-validator']
+- All 7 elysia anchors validated: openapi-validator (manifest), api-response-contract-validator (manifest), api-breaking-changes-detector-migration-planner (manifest), json-schema-generator (manifest), api-mock-server (manifest), validation (category root whitelist), /en/tools root
+- No new lessons learned (defense layer held end-to-end)
+
+## 2026-08-11T11:40:16 — ph-buffer-calculator-field-guide-2026-08-11 (WP 5886)
+- Title: pH & Buffer Calculator Field Guide: Henderson-Hasselbalch, pKa, and 8 Common Buffer Systems
+- URL: https://blog.flowrust.com/2026/08/11/ph-buffer-calculator-field-guide-2026-08-11/
