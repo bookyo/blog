@@ -1647,3 +1647,19 @@
 ## 2026-08-10T22:57:56 — 7z-selective-extract-field-guide-2026-08-11 (WP 5862)
 - Title: 7Z File Extractor: A field guide to single-file pulls from compressed archives
 - URL: https://blog.flowrust.com/2026/08/11/7z-selective-extract-field-guide-2026-08-11/
+
+
+## 2026-08-11T03:09:34 — sql-query-formatter-field-guide-2026-08-11 (WP 5869)
+- Title: SQL Query Formatter & Minifier Field Guide
+- URL: https://blog.flowrust.com/2026/08/11/sql-query-formatter-field-guide-2026-08-11/
+- Tool: SQL Query Formatter & Minifier (Development category, sub-thematic: format/minify dialect control)
+- Asset archive: ~/www/blog/2026-08-11-sql-query-formatter-field-guide-2026-08-11/
+- 1-POST + 1-PATCH run
+- POST: date_gmt=2026-08-11T03:09:34, slug=sql-query-formatter-field-guide-2026-08-11, featured_media=0, all 4 media uploaded (poster 5865, card1 5866, card2 5867, card3 5868)
+- Media upload caught WP 5683/5731/5738/5746 SSL EOF pattern (1 retry on poster attempt 1 -> attempt 2 succeeded); card1-3 uploaded clean on attempt 1
+- PATCH 1 (WP REST POST update-verb): replaced ASCII-hyphen bullet list "* Keywords / * Identifiers / * Functions" with inline <ul><li> after audit flagged RAW_ITALIC: 1 candidate. The bullet pattern was caught by canonical *italic* regex after <code> stripping (audit reports raw italic when `* word *` appears in body prose). Defense: write all `* word *` bullet lists as inline `<ul><li>` HTML.
+- PIL visual QA: all 4 assets passed pre-POST vision_analyze (card 3 caught long-value overflow on first pass — fixed via custom render_card_4tile_overshoot() with auto-shrink chain 110pt -> 64pt -> 44pt; extends WP 5755/5798/5805/5813 single-row variants)
+- markdown source: 8 H2 sections, 0 body H1, 30 inline <code> spans, 31 <p>, 8 elysiatools anchors (all /en/tools/sql-query-formatter or /en/tools root)
+- Audit clean post-PATCH: 0 findings, 4/4 images HTTP 200, 0 broken elysiatools links
+- DOM check clean: H1=1 (theme only), H2=9 (8 body + 1 theme Post navigation), H3=0, article-poster=1, highlight-card=3, no article imgs missing alt
+- State covered_slugs now 309 entries; covered_tool_ids += ['sql-query-formatter']
