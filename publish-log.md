@@ -1682,3 +1682,21 @@
 ## 2026-08-11T11:40:16 — ph-buffer-calculator-field-guide-2026-08-11 (WP 5886)
 - Title: pH & Buffer Calculator Field Guide: Henderson-Hasselbalch, pKa, and 8 Common Buffer Systems
 - URL: https://blog.flowrust.com/2026/08/11/ph-buffer-calculator-field-guide-2026-08-11/
+
+## 2026-08-11T15:48:03 — fancy-text-generator-field-guide-2026-08-11 (WP 5892)
+- Title: Fancy Text Generator Field Guide: A Side-by-Side Grid for Unicode Styles That Survive the Copy-Paste
+- URL: https://blog.flowrust.com/2026/08/11/fancy-text-generator-field-guide-2026-08-11/
+- Tool: Fancy Text Generator (Text Processing)
+- date_gmt: 2026-08-11T15:48:03
+- featured_media: 0 (COSESAI defense)
+- 1640 words, 8 H2 sections, 1 poster + 3 highlight-card figures
+- 4 elysiatools anchors: 3× /en/tools/fancy-text-generator (manifest valid) + 1× /en/tools root
+- All PIL assets pre-validated via vision_analyze before POST
+- Audit clean: 0 audit_post_content findings
+- DOM check: H1=1 (theme only), H2=9 (8 body + 1 theme Post nav), article-poster=1, highlight-card=3, p=15/15 balanced
+- All 4 image URLs HTTP 200, 2/2 unique elysia anchor URLs HTTP 200
+- Article images alt text clean (2 empty-alt images are theme author avatars, excluded per WP 5828)
+- Patches: 0
+- Defense layer held end-to-end (no MERGED_BULLET, no body H1, no fabricated slugs, no RAW_ITALIC, no P_TAG_MISMATCH)
+- Note: PIL card 3 first-pass had leftover WP 5755 takeaway default ("Ion wins..."); caught by vision_analyze in single pass; re-rendered with explicit takeaway param
+- SSL EOF retry: standalone retry_uploads.py for media, retry wrapper in post_article.py for POST (succeeded on attempt 3)
