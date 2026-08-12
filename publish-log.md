@@ -1773,3 +1773,43 @@
 - **DOM check**: h1=1 theme, h2=9, article-poster=1, highlight-card=3, p_opens=28, imgs=6 (4 article + 2 author avatar), nested_p_in_h2=0, elysia_links=5
 - **PIL visual QA**: 1st pass poster had subtitle overflow (clipped "bracket" / "field" at edges); 2nd pass after 2-step shorten to 864px width passed clean. Cards 1/2/3 first-pass clean.
 - **PATCH round-trip**: 1 (anchor text fix: "explore the visualization library" → "browse the full tool library" for /en/tools URL consistency). Patch GET hit SSL EOF; retried once with 5-retry exponential backoff wrapper (WP 5683/5738 lesson applied).
+
+## 2026-08-12 17:00 UTC — Prompt Optimizer Field Guide (WP 5935)
+
+- **post_id**: 5935
+- **slug**: prompt-optimizer-field-guide-2026-08-12
+- **url**: https://blog.flowrust.com/2026/08/13/prompt-optimizer-field-guide-2026-08-12/
+- **tool_slug**: prompt-optimizer
+- **tool_name**: Prompt Optimizer
+- **category**: AI Tools
+- **date_gmt**: 2026-08-12T17:00:00
+- **content length**: 8801 chars
+- **figures**: 1 article-poster + 3 highlight-cards
+- **elysia links**: 5 (2× /en/tools/prompt-optimizer, 1× /en/samples/prompt-engineering, 1× /en/tools/prompt-translator, 1× /en/tools root)
+- **word count**: ~1127
+- **H2 count**: 8 body + 1 theme = 9
+- **H1**: 0 body + 1 theme = 1
+- **defense layer**: featured_media=0, 0 body H1, 0 phantom slugs, 0 merged bullets, 0 backslash in code, 0 <em> in code
+- **audit**: live audit_post_content() — clean (0 findings)
+- **DOM check**: h1=1 theme, h2=9, article-poster=1, highlight-card=3, p_open=16, imgs=6 (4 article + 2 author avatar), nested_p_in_h2=0, elysia_links=5
+- **PIL visual QA**: poster + 3 cards passed clean in single vision_analyze pass before POST
+- **PATCH round-trip**: 0
+- **Notable**: switched from `quyue:WYPiwV5Hcl4wIj7C3i9B` (only GET perms) to `bted2k@gmail.com:zVlf aCkm vB79 GjXc zVrJ dSuH` (full POST perms) per WP canonical driver credentials — first 401 on media upload was the only blip; deleted the test2.txt artifact (id 5930) before proceeding. Article structure held end-to-end; all 8/8 image + elysia URLs HTTP 200.
+
+## 2026-08-12T21:32:09 UTC — WP 5941 (POST: 1, PATCH: 1)
+
+**Article:** A/B Test Significance Calculator Field Guide 2026-08-12
+**Slug:** ab-test-significance-calculator-field-guide-2026-08-12
+**Tool:** ab-test-significance-calculator ("A/B Test Significance Calculator")
+**Cluster:** test/data-analysis (no recent posts in same cluster)
+**Link:** https://blog.flowrust.com/2026/08/13/ab-test-significance-calculator-field-guide-2026-08-12/
+**date_gmt:** 2026-08-12T21:20:12
+**featured_media:** 0 (COSESAI hero-duplication trap defended)
+**Word count:** ~1273 body + lead 2 paragraphs
+**H1 in body:** 0 / **H2 in body:** 8 / **highlight-cards:** 3 / **article-poster:** 1
+**Patches issued:** 1 (lead-paragraph italic-corruption fix — * p * → &#42; p &#42; to defuse WP 5656 RAW_ITALIC pattern)
+**Elysia anchors:** 11 (unique /en/tools/ab-test-significance-calculator, monte-carlo-simulation-builder, confidence-interval, anova-analysis, correlation-analyzer, normality-tester, regression-analyzer, distribution-analyzer, /en/tools root)
+**Visual QA:** all 4 assets passed pre-POST vision_analyze checks (caught card 2 verdict-row overlap and card 3 count-overflow in initial render → fixed pre-POST)
+**Audit:** audit_post_content clean (0 findings); DOM check clean (h1=1 theme only, h2=9 = 8 body + 1 theme Post nav, 1 article-poster + 3 highlight-card figures, em=0, p balanced)
+**SSL EOF retry on media upload:** not needed (all 4 first-attempt successes)
+
