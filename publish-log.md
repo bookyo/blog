@@ -1704,3 +1704,24 @@
 ## 2026-08-11T19:57:03 — markdown-table-generator-field-guide-2026-08-11 (WP 5898)
 - Title: Markdown Table Generator Field Guide: Clean Tables Without Hand-Tuning Pipes
 - URL: https://blog.flowrust.com/2026/08/12/markdown-table-generator-field-guide-2026-08-11/
+
+## 2026-08-12T00:06:41 — anova-calculator-field-guide-2026-08-12 (WP 5905)
+- Title: ANOVA Calculator Field Guide: One-Way ANOVA Without the Spreadsheet
+- URL: https://blog.flowrust.com/2026/08/12/anova-calculator-field-guide-2026-08-12/
+- Tool: ANOVA Calculator (Math & Numbers, one-way ANOVA across multiple groups, SSB/SSW, F statistic, p-value)
+- Slug: anova-calculator-field-guide-2026-08-12
+- date_gmt: 2026-08-12T00:06:41
+- featured_media: 0 (COSESAI hero duplication defense)
+- Body: 1943 words, 0 H1, 8 H2, 18 p opens / 18 p closes (balanced)
+- Assets: 1 poster (1080x800) + 3 cards (1600x900 each)
+  - Card 1: 5-tile ANOVA table (SSB/SSW/SST/MSB/F)
+  - Card 2: 2-col audit (assumptions checklist + F=10.96 verdict)
+  - Card 3: 4-tile compact 1-row (post-hoc tests: Tukey/Bonferroni/Scheffe/Holm)
+- Elysia anchors: 9 (8 /en/tools/anova-calculator + 1 /en/tools root)
+- All 4 image URLs HTTP 200, 6/6 unique elysia + image URLs HTTP 200
+- Article images alt text clean (2 empty-alt images are theme author avatars, not article content)
+- Patches: 0
+- Defense layer held end-to-end (no MERGED_BULLET, no body H1, no fabricated slugs, no RAW_ITALIC, no P_TAG_MISMATCH, no nested p-in-h2, no <br/> in <p>, no <code> with backslash)
+- PIL visual QA: card 3 first-pass with canonical 2x2 render_card_4tile had multi-word count text (BEST/OK/HIGH/GOOD) overlap with body text — WP 5755/5798 rule caught it pre-POST via vision_analyze; re-rendered with render_card_4tile_compact 1-row variant — clean.
+- safe_md_to_html.py used (article contained `*` inside <code> spans like `(4*8.2 + 6*10.4 + 6*11.1 + 6*12.6) / 24 = 10.7 cm` and `1 - (1 - 0.05)^3` — wrapper defends against the canonical italic misparse)
+- State: 314 covered_slugs (.+1)
