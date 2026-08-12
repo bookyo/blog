@@ -1752,3 +1752,24 @@
 - Defense layer: featured_media=0, 0 body H1, 8 body H2, 1 article-poster + 3 highlight-card, p balanced 22/22, 4/4 image URLs HTTP 200, 4/4 elysia anchor URLs HTTP 200
 - Notable: canonical `cron_publish_driver.py` hit SSL EOF on POST (Top-3 umbrella pitfall — Top3 SSL EOF on upload_media / POST, no retry built in). Media uploads (ids 5917-5920) succeeded on attempt 1. POST retried via standalone 3-retry exponential backoff (per WP 5683/5731/5738/5746/5805 recipe); succeeded on attempt 1 after the driver call had already cleared the SSL blip. All four images passed `vision_analyze` visual QA (posters + cards) before POST. No PATCH round-trip needed.
 - State: covered_slugs += [glitch-text-field-guide-2026-08-12], covered_tool_ids += [glitch-text], runs=13
+
+## 2026-08-12 12:59 UTC — Tournament Bracket Generator (WP 5927)
+
+- **post_id**: 5927
+- **slug**: tournament-bracket-generator-field-guide-2026-08-12
+- **url**: https://blog.flowrust.com/2026/08/12/tournament-bracket-generator-field-guide-2026-08-12/
+- **tool_slug**: bracket-generator
+- **tool_name**: Tournament Bracket Generator
+- **category**: Generator
+- **date_gmt**: 2026-08-12T12:59:28
+- **content length**: 12911 chars
+- **figures**: 1 article-poster + 3 highlight-cards
+- **elysia links**: 5 (3× /en/tools/bracket-generator + 2× /en/tools)
+- **word count**: ~1565
+- **H2 count**: 8 body + 1 theme = 9
+- **H1**: 0 body + 1 theme = 1
+- **defense layer**: featured_media=0, 0 body H1, 0 phantom slugs, 0 merged bullets, 0 backslash in code, 0 <em> in code
+- **audit**: `wp_post_audit.py tournament-bracket-generator-field-guide-2026-08-12` — clean (0 findings)
+- **DOM check**: h1=1 theme, h2=9, article-poster=1, highlight-card=3, p_opens=28, imgs=6 (4 article + 2 author avatar), nested_p_in_h2=0, elysia_links=5
+- **PIL visual QA**: 1st pass poster had subtitle overflow (clipped "bracket" / "field" at edges); 2nd pass after 2-step shorten to 864px width passed clean. Cards 1/2/3 first-pass clean.
+- **PATCH round-trip**: 1 (anchor text fix: "explore the visualization library" → "browse the full tool library" for /en/tools URL consistency). Patch GET hit SSL EOF; retried once with 5-retry exponential backoff wrapper (WP 5683/5738 lesson applied).
