@@ -1725,3 +1725,14 @@
 - PIL visual QA: card 3 first-pass with canonical 2x2 render_card_4tile had multi-word count text (BEST/OK/HIGH/GOOD) overlap with body text — WP 5755/5798 rule caught it pre-POST via vision_analyze; re-rendered with render_card_4tile_compact 1-row variant — clean.
 - safe_md_to_html.py used (article contained `*` inside <code> spans like `(4*8.2 + 6*10.4 + 6*11.1 + 6*12.6) / 24 = 10.7 cm` and `1 - (1 - 0.05)^3` — wrapper defends against the canonical italic misparse)
 - State: 314 covered_slugs (.+1)
+
+## 2026-08-12 12:23 UTC — XLSX Freeze Pane Manager Field Guide
+
+- **Post:** WP 5915 | slug: `xlsx-freeze-pane-manager-field-guide-2026-08-12-v2` | date_gmt: `2026-08-12T04:23:42`
+- **Tool:** `xlsx-freeze-pane-manager` (XLSX Freeze Pane Manager, Format Conversion)
+- **Defense layer:** featured_media=0, 0 body H1, 8 body H2, 1 article-poster + 3 highlight-cards, 3 ul/8 li, p balanced 24/24
+- **Elysia anchors (5):** `/en/tools/xlsx-freeze-pane-manager` (1), `/en/samples/xlsx-samples` (1), `/en/samples/xlsx-basic-sheet` (1), `/en/tools` root (2)
+- **Images:** 4/4 HTTP 200 after retry (transient SSL EOF class); all visual-QA passed via `vision_analyze` pre-POST
+- **Cards:** card1 = `render_card_5tile` (5 settings); card2 = `render_card_audit` (5 pre-freeze checks); card3 = `render_card_4tile_compact` 1-row (single-row variant for single-digit counts)
+- **Notable:** First run published as WP 5911 with two defects (MERGED_BULLET_LIST 3 blocks from en-dash bullets + triple-fence JSON block corruption via WP 5828). Rebuilt with inline `<ul><li>` lists and `<code>` spans instead of triple fence, published as WP 5915, deleted WP 5911 with higher-privilege auth. WP 5915 audit_post_content: 0 findings.
+- **State:** covered_slugs += ['xlsx-freeze-pane-manager-field-guide-2026-08-12-v2']
