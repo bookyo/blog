@@ -1736,3 +1736,19 @@
 - **Cards:** card1 = `render_card_5tile` (5 settings); card2 = `render_card_audit` (5 pre-freeze checks); card3 = `render_card_4tile_compact` 1-row (single-row variant for single-digit counts)
 - **Notable:** First run published as WP 5911 with two defects (MERGED_BULLET_LIST 3 blocks from en-dash bullets + triple-fence JSON block corruption via WP 5828). Rebuilt with inline `<ul><li>` lists and `<code>` spans instead of triple fence, published as WP 5915, deleted WP 5911 with higher-privilege auth. WP 5915 audit_post_content: 0 findings.
 - **State:** covered_slugs += ['xlsx-freeze-pane-manager-field-guide-2026-08-12-v2']
+
+## 2026-08-12T08:50:23 — glitch-text-field-guide-2026-08-12 (WP 5921)
+- Title: Glitch Text Field Guide: Flat Corrupted Letters That Survive the Copy-Paste
+- URL: https://blog.flowrust.com/2026/08/12/glitch-text-field-guide-2026-08-12/
+- Tool: Glitch Text (Text Processing, real-Unicode glitch / corruption generator with intensity slider and reproducible seed)
+- Slug: glitch-text-field-guide-2026-08-12
+- date_gmt: 2026-08-12T08:50:23
+- featured_media: 0 (COSESAI hero duplication defense)
+- Body: 8 H2 sections, 0 body H1, 22 p opens / 22 p closes (balanced)
+- Elysia anchors (4 unique): glitch-text + zalgo-text + mirror-text (3 tool) + /en/tools (root)
+- Image asset count: 4 (1 article-poster + 3 highlight-card), all HTTP 200
+- audit_post_content: 0 findings (clean 1-POST 0-PATCH run)
+- PIL visual QA: 4/4 clean (no overflow, no tofu, no clipping)
+- Defense layer: featured_media=0, 0 body H1, 8 body H2, 1 article-poster + 3 highlight-card, p balanced 22/22, 4/4 image URLs HTTP 200, 4/4 elysia anchor URLs HTTP 200
+- Notable: canonical `cron_publish_driver.py` hit SSL EOF on POST (Top-3 umbrella pitfall — Top3 SSL EOF on upload_media / POST, no retry built in). Media uploads (ids 5917-5920) succeeded on attempt 1. POST retried via standalone 3-retry exponential backoff (per WP 5683/5731/5738/5746/5805 recipe); succeeded on attempt 1 after the driver call had already cleared the SSL blip. All four images passed `vision_analyze` visual QA (posters + cards) before POST. No PATCH round-trip needed.
+- State: covered_slugs += [glitch-text-field-guide-2026-08-12], covered_tool_ids += [glitch-text], runs=13
