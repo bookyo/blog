@@ -1856,3 +1856,11 @@
 - **Picker:** sparse-category relaxed picker (per WP 5955 recipe); state augmented with bare tool IDs from last 100 posts
 - **Asset IDs:** poster=5957, card1=5958, card2=5959, card3=5960
 - **State:** `covered_slugs` now 478 entries (added `mod11-checksum`, `mod11-checksum-field-guide-2026-08-13`)
+
+## 2026-08-13 14:21 UTC — WP 5967 — remove-duplicate-lines field guide
+- Tool: [Remove Duplicate Lines](https://elysiatools.com/en/tools/remove-duplicate-lines) (Text Processing)
+- Date GMT: 2026-08-13T14:21:15
+- Result: 1-POST + 1-PATCH clean. PATCH defused 1 MERGED_NUMBERED_LIST + 2 MERGED_BULLET_LIST (canonical `scripts/wp_fix_merged_bullet_and_numbered.py` combined-split regex).
+- Defenses held end-to-end: featured_media=0, 0 body H1, 8 body H2 + 1 theme = 9 in DOM, 1 article-poster + 3 highlight-cards (5-tile / audit / 4-tile compact), all 5 unique elysiatools anchors HTTP 200 (4 tool + 1 root), 4/4 image URLs HTTP 200, 11 `<code>` spans balanced, p_opens/closes balanced (42/42). PIL visual-QA caught 1 defect on card3 (canonical 4-tile 2x2 with multi-word count "2 records"/"10 events" overlapped body description) — switched to `render_card_4tile_compact` 1-row variant per WP 5755/5798 lesson; second pass clean.
+- Elysia anchors (7 total): /remove-duplicate-lines (×3), /email-validator, /text-diff, /array-sorter, /en/tools root.
+- State `covered_slugs` now 480 entries.
