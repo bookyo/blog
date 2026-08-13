@@ -1,0 +1,69 @@
+<p><strong>Molar mass is just a number — until you ask where it came from.</strong> A sortable comparison table of atomic weights looks trivial, but the value you read off the table decides whether a stoichiometry problem balances, a buffer recipe scales, or a teaching slide embarrasses you in front of a class. This field guide walks through the Molar Mass Lookup tool end-to-end: input modes, output schema, sort options, decimal precision, integration with downstream calculators, and the edge cases where periodic-table conventions actually disagree.</p>
+<figure class="article-poster"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/jarvis-poster-molar-mass-lookup-field-guide-2026-08-13.png" alt="Molar Mass Lookup field guide cover poster" /></figure>
+<p>A clean lookup should leave you with the number, the source convention, and a way to verify both against another tool. Anything less and you are doing chemistry by reputation.</p>
+<h2>What the tool actually does</h2>
+<p>The Molar Mass Lookup at <a href="https://elysiatools.com/en/tools/molar-mass-lookup">Elysia Tools</a> is a single-input, single-output utility. You hand it a list of element tokens — symbols, atomic numbers, or English names — and it returns a JSON object containing each element's symbol, full name, atomic number, and atomic weight in g/mol. The default behavior is non-destructive: it does not compute molecular weights, it does not balance reactions, and it does not guess which isotope you mean. It is a reference companion to the <a href="https://elysiatools.com/en/tools/molecular-weight-calculator">Molecular Weight Calculator</a>, which combines these atomic weights into per-compound totals.</p>
+<p>Three input modes are accepted in any single submission:</p>
+<ul>
+<li><strong>Element symbols</strong> &mdash; standard 1- or 2-letter codes like <code>Fe</code>, <code>Cu</code>, <code>Zn</code>. Case-insensitive on input.</li>
+<li><strong>Atomic numbers</strong> &mdash; integers from 1 to 118, comma- or whitespace-separated.</li>
+<li><strong>English names</strong> &mdash; <code>iron</code>, <code>gold</code>, <code>oxygen</code>. Hyphenated names like <code>roentgenium</code> are accepted as single tokens.</li>
+<p></ul></p>
+<p>Mixing modes in one input is allowed. The parser scans each token and resolves it independently, so <code>Fe, 79, oxygen</code> is a valid three-row query.</p>
+<h2>Inputs, options, and what they mean</h2>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/jarvis-card1-molar-mass-lookup-field-guide-2026-08-13.png" alt="Five input modes, one reference table" loading="lazy" /></figure>
+<p>The single primary input is a textarea named <code>elements</code>. Its placeholder previews the flexibility well: one element per token, separators can be comma, space, semicolon, or newline, and the order you type is preserved unless you change the sort option.</p>
+<p>Beyond the primary input there are three secondary options:</p>
+<ul>
+<li><strong>sortBy</strong> &mdash; controls the row order in the output. Four choices: <code>input-order</code> (default), <code>atomic-number</code>, <code>atomic-weight</code> (ascending), and <code>alphabetical</code> (by symbol).</li>
+<li><strong>includeDetails</strong> &mdash; when true, adds a <code>category</code> field to each row (alkali metal, transition metal, halogen, etc.). Useful when grouping for slides or quizzes.</li>
+<li><strong>decimalPlaces</strong> &mdash; an integer that caps each atomic weight's precision. Default is 4, which matches the IUPAC 2021 standard abridged values.</li>
+<p></ul></p>
+<p>Validation is intentionally permissive. The textarea accepts 1 to 2000 characters, which is enough for batch lookups like all 118 elements in one call.</p>
+<h2>Reading the output schema</h2>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/jarvis-card2-molar-mass-lookup-field-guide-2026-08-13.png" alt="Five checks before you trust the weight" loading="lazy" /></figure>
+<p>A typical response for <code>Fe, Cu, Zn</code> with the default options looks like this in JSON shape:</p>
+<pre><code class="language-">{
+  "count": 3,
+  "rows": [
+    {"symbol":"Fe","name":"Iron","atomicNumber":26,"atomicWeight":55.84},
+    {"symbol":"Cu","name":"Copper","atomicNumber":29,"atomicWeight":63.55},
+    {"symbol":"Zn","name":"Zinc","atomicNumber":30,"atomicWeight":65.4}
+  ]
+}</code></pre>
+<p>The <code>count</code> field is redundant with <code>rows.length</code> but useful when piping into a downstream calculator that keys off the count rather than the array. The <code>rows</code> array is the canonical payload — every other calculator on the site that consumes atomic weights reads this array.</p>
+<p>When <code>includeDetails</code> is true, each row gains a <code>category</code> string. Categories follow IUPAC block notation: <code>alkali metal</code>, <code>alkaline earth metal</code>, <code>transition metal</code>, <code>post-transition metal</code>, <code>metalloid</code>, <code>nonmetal</code>, <code>halogen</code>, <code>noble gas</code>, <code>lanthanide</code>, <code>actinide</code>.</p>
+<h2>Why the decimal precision matters</h2>
+<p>Default precision is 4 decimal places, which tracks the IUPAC abridged values. For teaching and most stoichiometry, that is more than enough — <code>55.845</code> rounded to <code>55.84</code> is a 0.005% deviation, well below the noise floor of any analytical balance you will meet in an undergraduate lab.</p>
+<p>Where precision matters is isotopic work. Several elements have standard atomic weights that are technically ranges because their natural isotopic composition varies by source. Hydrogen, for example, has a standard atomic weight of <code>[1.00784, 1.00811]</code> depending on whether your sample is freshwater or seawater. Lithium is similar. The tool returns the conventional single value for these elements because the use case is batch lookup, not isotopic bookkeeping — for that, you want a tool that exposes isotopic mass numbers directly.</p>
+<p>If you need higher precision, raising <code>decimalPlaces</code> to 6 gives you the full CIAAW values where available, though the underlying reference table itself is only given to 4 significant figures for many elements.</p>
+<h2>Sorting and comparison workflows</h2>
+<p>The <code>sortBy</code> option is more useful than it looks. Three concrete workflows worth memorizing:</p>
+<ul>
+<li><strong>Quiz generation</strong> &mdash; feed a shuffled list of 20 elements with <code>sortBy=atomic-number</code>. The output is the canonical ordering for an answer key.</li>
+<li><strong>Density calculations</strong> &mdash; sort by <code>atomic-weight</code> to identify the heaviest and lightest entries in a mixed list before computing molar ratios.</li>
+<li><strong>Alphabetical scan</strong> &mdash; <code>sortBy=alphabetical</code> is the right choice when you are validating that the parser accepted every token from a long pasted list — gaps in the alphabet reveal typos.</li>
+<p></ul></p>
+<p>The input order is preserved as a hidden tiebreaker in the other three sort modes, so two elements with the same atomic weight keep their original relative order. This avoids non-deterministic output across runs.</p>
+<h2>Where it sits in a larger chemistry pipeline</h2>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/jarvis-card3-molar-mass-lookup-field-guide-2026-08-13.png" alt="Four tools that sit on top of this lookup" loading="lazy" /></figure>
+<p>Molar Mass Lookup is the lookup primitive, not the calculator. Several other tools on the site consume its output or run adjacent computations:</p>
+<ul>
+<li><strong>Molecular Weight Calculator</strong> &mdash; takes chemical formulas like <code>H2SO4</code> and returns per-element totals. Internally it looks up each unique element's atomic weight using the same reference table as Molar Mass Lookup.</li>
+<li><strong>Chemical Equation Balancer</strong> &mdash; consumes formula-level totals from the molecular weight tool, not atomic weights directly, but the lookup table underpins both.</li>
+<li><strong>Molarity Dilution C1V1 Calculator</strong> &mdash; relies on per-compound molar masses when scaling working solutions from stock concentrations.</li>
+<li><strong>Periodic Table Studio</strong> &mdash; the visual sibling of this lookup, useful when you want the whole table rather than a filtered subset.</li>
+<p></ul></p>
+<p>For a complete stoichiometry workflow, the typical pipeline is: lookup atoms by symbol here, sum their weights into a formula with the molecular weight tool, balance the reaction, then compute solution concentrations with C1V1 or the <a href="https://elysiatools.com/en/tools/reaction-stoichiometry-calculator">Reaction Stoichiometry Calculator</a>.</p>
+<h2>Edge cases worth handling up front</h2>
+<p>Three input patterns trip up the parser less than you might expect but are worth flagging:</p>
+<ul>
+<li><strong>Mixed case</strong> &mdash; <code>FE</code>, <code>fe</code>, and <code>Fe</code> all resolve to iron. The output always normalizes to the canonical capitalization.</li>
+<li><strong>Trailing punctuation</strong> &mdash; <code>Fe,</code> and <code>Fe.</code> are both accepted. The parser strips non-alphanumeric trailing characters before lookup.</li>
+<li><strong>Unknown tokens</strong> &mdash; an unrecognized symbol or out-of-range atomic number produces a row with <code>symbol:null</code> and a non-fatal warning in a sibling <code>warnings</code> array. The remaining valid rows still parse, so partial batches degrade gracefully rather than failing the whole call.</li>
+<p></ul></p>
+<h2>Putting it together</h2>
+<p>The Molar Mass Lookup is intentionally minimal. It does one thing — resolve element identifiers to atomic weights — and it does it on a stable reference table that other calculators downstream can lean on without re-validating the source. Treat it as the read path: every other operation in a chemistry pipeline eventually wants an atomic weight, and this is the canonical place to fetch it.</p>
+<p>When the lookup is the bottleneck (large batch queries, programmatic stoichiometry generators, teaching dashboards), the relevant question is not whether to use it but how to batch inputs to keep each call under the 2000-character textarea ceiling. Three consecutive lookups of 40 elements each will outperform one call that overflows.</p>
+<p>For visual exploration alongside the numeric output, the <a href="https://elysiatools.com/en/tools/periodic-table-studio">Periodic Table Studio</a> gives you the whole chart in one view. For chemistry workflows that start from formulas rather than individual atoms, jump straight to the molecular weight and equation balancer tools. The lookup table is the floor; the rest of the chemistry stack sits on top of it.</p>
+<p>Explore more reference and calculator tools at <a href="https://elysiatools.com/en/tools">elysiatools.com</a>.</p>

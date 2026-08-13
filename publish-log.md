@@ -1864,3 +1864,7 @@
 - Defenses held end-to-end: featured_media=0, 0 body H1, 8 body H2 + 1 theme = 9 in DOM, 1 article-poster + 3 highlight-cards (5-tile / audit / 4-tile compact), all 5 unique elysiatools anchors HTTP 200 (4 tool + 1 root), 4/4 image URLs HTTP 200, 11 `<code>` spans balanced, p_opens/closes balanced (42/42). PIL visual-QA caught 1 defect on card3 (canonical 4-tile 2x2 with multi-word count "2 records"/"10 events" overlapped body description) — switched to `render_card_4tile_compact` 1-row variant per WP 5755/5798 lesson; second pass clean.
 - Elysia anchors (7 total): /remove-duplicate-lines (×3), /email-validator, /text-diff, /array-sorter, /en/tools root.
 - State `covered_slugs` now 480 entries.
+
+## 2026-08-13T18:29:14 — molar-mass-lookup-field-guide-2026-08-13 (WP 5974)
+- Title: Molar Mass Lookup Field Guide: Atomic Weights That Survive a Lab Bench Audit
+- URL: https://blog.flowrust.com/2026/08/14/molar-mass-lookup-field-guide-2026-08-13/
