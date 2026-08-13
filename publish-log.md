@@ -1833,3 +1833,10 @@
 **Audit:** audit_post_content clean (0 findings); DOM check clean (h1=1 theme only, h2=9 = 8 body + 1 theme Post nav, 1 article-poster + 3 highlight-card figures, em=0, p balanced)
 **SSL EOF retry on media upload:** not needed (all 4 first-attempt successes)
 
+
+## 2026-08-13T05:59:24 - pressure-conversion-field-guide-2026-08-13
+- post_id: 5955
+- url: https://blog.flowrust.com/2026/08/13/pressure-conversion-field-guide-2026-08-13/
+- title: Pressure Calculator & Converter Field Guide: P = F / A and 9 Units in One Tool
+- featured_media: 0 (COSESAI defense)
+- audit findings: 0
