@@ -1868,3 +1868,20 @@
 ## 2026-08-13T18:29:14 — molar-mass-lookup-field-guide-2026-08-13 (WP 5974)
 - Title: Molar Mass Lookup Field Guide: Atomic Weights That Survive a Lab Bench Audit
 - URL: https://blog.flowrust.com/2026/08/14/molar-mass-lookup-field-guide-2026-08-13/
+
+## 2026-08-13T22:40:29 UTC — WP 5980 — GraphQL Playground Field Guide
+- Tool: [GraphQL Playground](https://elysiatools.com/en/tools/graphql-playground) (Development)
+- Slug: `graphql-playground-field-guide-2026-08-13`
+- URL: https://blog.flowrust.com/2026/08/14/graphql-playground-field-guide-2026-08-13/
+- Patches: 0 (1-POST 0-PATCH clean)
+- Word count: ~1356 (close-first structure: lead phrase `<strong>Stop installing CLI clients just to test a query.</strong>`)
+- 8 body H2 + 1 theme nav = 9 total H2; DOM verified 1 H1 (theme-only), 9 H2, 1 article-poster, 3 highlight-card figures, p balanced 30/30
+- Elysia anchors (4 unique, all HTTP 200): graphql-playground (×2), openapi-validator, json-formatter, /en/tools root — 9 total occurrences
+- Image URLs: 4/4 HTTP 200 (poster-8.png + card1-8.png + card2-8.png + card3-8.png)
+- Audit: `audit_post_content` clean (0 findings); `featured_media=0` confirmed
+- Visual QA: `vision_analyze` caught 1 defect on first pass (card2 row 05 "Introspection" body text "\_\_schema returns the type graph" rendered with leading underscores clipped by the badge — WP 5822 row-overflow family); re-rendered with shorter non-underscore text "asks for the type graph"; second pass clean on all 4 assets
+- Defense layer held end-to-end: featured_media=0 (COSESAI), 0 body H1, 8 body H2 + 1 theme = 9 total, 1 article-poster + 3 highlight-card figures, all 4 unique elysiatools anchors HTTP 200, 4/4 image URLs HTTP 200, no fabricated slugs, no MERGED_BULLET_LIST, no `<name>` placeholders, no literal `\` in `<code>`, p_opens/closes balanced 30/30
+- Asset IDs: poster=5976, card1=5977, card2=5978, card3=5979
+- Picker: 1-POST 0-PATCH run via fresh-candidate fallback (per WP 5955 sparse-category recipe; all 8 top-diverse candidates excluded by `covered_slugs` after extending dedup to include hyphen-prefixed segments)
+- Pre-flight recipe note: `safe_md_to_html.py` corrupted H2s (3 of 8 missing) when source has a triple-fence code block — confirmed per WP 5828 pitfall; switched to plain `md_to_html` after verifying 0 of 40 backtick spans contain `*`
+- State: `covered_slugs` now 481 entries (added `graphql-playground-field-guide-2026-08-13`)
