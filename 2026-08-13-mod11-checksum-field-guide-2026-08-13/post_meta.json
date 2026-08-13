@@ -1,0 +1,35 @@
+{
+  "post_id": 5961,
+  "post_url": "https://blog.flowrust.com/2026/08/13/mod11-checksum-field-guide-2026-08-13/",
+  "title": "Mod-11 Checksum Calculator Field Guide: ISBN-10, fodselsnummer, and the X check digit",
+  "slug": "mod11-checksum-field-guide-2026-08-13",
+  "date_gmt": "2026-08-13T10:03:47",
+  "featured_media": 0,
+  "audit_issues": [],
+  "h2_count": 8,
+  "article_poster": 1,
+  "highlight_card": 3,
+  "assets": {
+    "poster": {
+      "id": 5957,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/08/mod11-checksum-poster.png"
+    },
+    "card1": {
+      "id": 5958,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/08/mod11-checksum-card1.png"
+    },
+    "card2": {
+      "id": 5959,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/08/mod11-checksum-card2.png"
+    },
+    "card3": {
+      "id": 5960,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/08/mod11-checksum-card3.png"
+    }
+  },
+  "elysia_anchors": [
+    "https://elysiatools.com/en/tools",
+    "https://elysiatools.com/en/tools/luhn-checksum",
+    "https://elysiatools.com/en/tools/mod11-checksum"
+  ]
+}

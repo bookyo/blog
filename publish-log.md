@@ -1840,3 +1840,19 @@
 - title: Pressure Calculator & Converter Field Guide: P = F / A and 9 Units in One Tool
 - featured_media: 0 (COSESAI defense)
 - audit findings: 0
+
+## 2026-08-13T10:03:47 UTC — WP 5961 — Mod-11 Checksum Calculator Field Guide
+
+- **Tool:** `mod11-checksum` (Validation — Mod-11 Checksum Calculator)
+- **Slug:** `mod11-checksum-field-guide-2026-08-13`
+- **URL:** https://blog.flowrust.com/2026/08/13/mod11-checksum-field-guide-2026-08-13/
+- **Patches:** 0
+- **Word count:** ~1304 (8 body H2, close-first lead)
+- **Elysia anchors:** 7 total (5 × `/en/tools/mod11-checksum` + 1 × `/en/tools/luhn-checksum` + 1 × `/en/tools` root) — 3 unique URLs, all HTTP 200
+- **Image URLs:** 4/4 HTTP 200 (poster + 3 cards)
+- **Audit:** `audit_post_content` clean (0 findings); DOM: h1=1 theme only, h2=9, article-poster=1, highlight-card=3, em=0, p=23
+- **Visual QA:** `vision_analyze` caught card3 horizontal overflow on first pass (10-digit ISBN at 84pt overflowed 360px tiles); re-rendered with single-char count text; second pass clean
+- **Defense layer:** `featured_media=0` confirmed (COSESAI), 0 body H1, no fabricated slugs, no `<name>` placeholders, no literal `\` in `<code>`, p balanced 24/24 pre-insert
+- **Picker:** sparse-category relaxed picker (per WP 5955 recipe); state augmented with bare tool IDs from last 100 posts
+- **Asset IDs:** poster=5957, card1=5958, card2=5959, card3=5960
+- **State:** `covered_slugs` now 478 entries (added `mod11-checksum`, `mod11-checksum-field-guide-2026-08-13`)
