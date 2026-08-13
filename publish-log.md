@@ -1,3 +1,23 @@
+## 2026-08-13 01:34 UTC — Heading Hierarchy Auditor: A Field Guide to Heading Semantics
+- **WP Post ID**: 5948
+- **WP URL**: https://blog.flowrust.com/2026/08/13/heading-hierarchy-auditor-field-guide-2026-08-13/
+- **Tool ID**: heading-hierarchy-auditor (manifest member; category: Validation)
+- **Date GMT**: 2026-08-13T01:34:47
+- **Featured Image**: poster (WP ID 5944) — `featured_media: 0` in payload (COSESAI theme hero-duplication defense)
+- **Highlight Cards**: 3 (5945 card1, 5946 card2, 5947 card3)
+- **Word count**: 1145 (close-first structure: lead phrase `<strong>The right way to think about heading hierarchy is that visual weight is a side effect, not the goal.</strong>`)
+- **8 body H2 + 1 theme nav = 9 total H2**; DOM verified 1 H1 (theme-only), 9 H2, 3 highlight-card figures, 1 article-poster figure
+- **Elysia anchors** (3 unique, all HTTP 200): heading-hierarchy-auditor (×4), accessibility-checker (×3), /en/tools root (×2) — 8 total occurrences
+- **Image URLs**: 4/4 HTTP 200 (poster, card1, card2, card3 — uploaded via REST media API with SSL EOF retry loop; first-try success)
+- **Audit findings**: 0 (clean 1-POST 0-PATCH run)
+- **PIL visual QA**: vision_analyze on all 4 PNGs before POST
+  - poster: clean (CONTENT STRUCTURE eyebrow, 2-line title, callout box at correct y, URL bar at bottom)
+  - card1 (render_card_5tile): Five Checks The Auditor Runs — 5 tiles, all clean
+  - card2 (render_card_audit): How To Read The Tree Output — 5 severity-chip checks + 4-row verdict table + WRONG: h1->h3->h6 bottom note
+  - card3 (render_card_4tile_compact): Four Patterns Behind Most Findings — first pass with render_card_4tile 2x2 grid failed vision_analyze (count text overflow + body+count collision on decorative/no body tiles); refactor to render_card_4tile_compact 1-row variant per WP 5755/5798 lesson passed clean
+- **Defense held end-to-end**: featured_media=0, 0 body H1 (theme only), 8 body H2, 1 article-poster + 3 highlight-card, p_opens/closes balanced 22/22, audit_post_content clean (0 findings), 0 RAW_ITALIC, 0 MERGED_BULLET (all bullet lists converted to explicit <ul><li> HTML to avoid MD-bullet merge on * **bold** patterns), 0 raw markdown links, 0 backslash in <code>, 0 nested <p> inside <h2>, all 3 elysia slugs manifest members (no phantom URLs), all literal HTML tags inside <code> pre-encoded as &lt;tag&gt; to defuse WP 5828 autop-converts-code-to-actual-heading bug
+- **State**: covered_slugs now 321 entries
+
 ## 2026-08-08 11:46 UTC — Data Deduplicator Field Guide: One Canonical Row Per Real Identity
 - **WP Post ID**: 5762
 - **WP URL**: https://blog.flowrust.com/2026/08/08/data-deduplicator-field-guide-2026-08-08/
