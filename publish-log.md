@@ -1933,3 +1933,16 @@
 - DOM: H1=1 (theme), H2=9 (8 body + 1 nav), 1 article-poster + 3 highlight-card, p_opens=32/closes=32
 - Image URLs: 4/4 HTTP 200
 - Elysia anchors: 5/5 HTTP 200 (3× tool page, 1× category root, 1× /en/tools root)
+
+## 2026-08-14T19:56:00 — http-request-tester (id=6014)
+
+- **Title:** HTTP Request Tester: a mini Postman that lives in your browser
+- **URL:** https://blog.flowrust.com/2026/08/15/http-request-tester-field-guide-2026-08-14/
+- **Tool:** http-request-tester (Development)
+- **Run:** 1-POST + 1-PATCH
+- **PATCH reason:** MERGED_NUMBERED_LIST: 1 block — the 7-step numbered list in the source markdown joined into one <p>; PATCH split into <ol><li>...</ol>
+- **Pre-POST visual QA:** card 3 first-pass had multi-word count strings ("GET, HEAD, DELETE" / "XML, text" / etc.) overflowing horizontally into adjacent tiles at 150pt (extends WP 5755/5798 multi-word count pitfall). Re-rendered with shorter count strings ("No body" / "XML" / "REST" / "Legacy") — passed visual QA.
+- **DOM check:** h1=1 (theme), h2=9 (8 body + 1 theme nav), article-poster=1, highlight-card=3, ol=1, li=11, p=22, imgs=6 (4 content with alt, 2 author-box-avatar theme widgets), elysia_anchors=4
+- **URLs HTTP 200:** 4/4 image URLs, 2/2 unique elysia anchors (http-request-tester → 200 after 308, /en/tools → 200 after 308)
+- **State:** covered_slugs now 486 entries
+- **Asset archive:** /Users/quyue/www/blog/2026-08-14-http-request-tester/
