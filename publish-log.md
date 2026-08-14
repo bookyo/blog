@@ -1896,3 +1896,18 @@
 - Round-trips: 1 POST + 1 PATCH (MERGED_NUMBERED_LIST fix)
 - Featured media: 0
 - Audit clean: yes
+
+## 2026-08-14 06:56 UTC — projectile-motion-field-guide-2026-08-14
+- Post ID: 5994
+- Slug: `projectile-motion-field-guide-five-numbers-your-calculator-2026-08-14`
+- Tool: Projectile Motion Calculator (Range, Height, Time) — `projectile-motion-calculator`
+- Title: Projectile Motion Field Guide: Five Numbers Your Calculator Already Gives You
+- date_gmt: `2026-08-14T07:10:45` UTC
+- URL: https://blog.flowrust.com/2026/08/14/projectile-motion-field-guide-five-numbers-your-calculator-2026-08-14/
+- Status: HTTP 201 first POST, 0 PATCH
+- featured_media: 0 (COSESAI hero-duplication defense)
+- Article: 8 H2, 0 body H1, 26 P (19 after autop), 40 code spans, 7 UL
+- Assets: 1 poster (1080x800) + 3 cards (1600x900); all 4 passed vision_analyze visual QA
+- Elysia links: 3 (2 tool pages + 1 root) — all HTTP 200
+- Audit: 0 findings; DOM check clean (H1=1 theme, H2=9, article-poster=1, highlight-card=3)
+
