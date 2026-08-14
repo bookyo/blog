@@ -1885,3 +1885,14 @@
 - Picker: 1-POST 0-PATCH run via fresh-candidate fallback (per WP 5955 sparse-category recipe; all 8 top-diverse candidates excluded by `covered_slugs` after extending dedup to include hyphen-prefixed segments)
 - Pre-flight recipe note: `safe_md_to_html.py` corrupted H2s (3 of 8 missing) when source has a triple-fence code block — confirmed per WP 5828 pitfall; switched to plain `md_to_html` after verifying 0 of 40 backtick spans contain `*`
 - State: `covered_slugs` now 481 entries (added `graphql-playground-field-guide-2026-08-13`)
+
+
+## 2026-08-14T02:51:02 — upside-down-text-field-guide-2026-08-14 (WP 5986)
+- Title: Upside-Down Text Field Guide: How the Unicode Flip Actually Works
+- URL: https://blog.flowrust.com/2026/08/14/upside-down-text-field-guide-2026-08-14/
+- Tool: upside-down-text (Upside-Down Text, Text Processing)
+- Cards: 1 poster + 3 highlight cards (5-tile, audit, 4-tile compact)
+- Elysia links: 2 (tools/upside-down-text, /en/tools)
+- Round-trips: 1 POST + 1 PATCH (MERGED_NUMBERED_LIST fix)
+- Featured media: 0
+- Audit clean: yes
