@@ -1911,3 +1911,25 @@
 - Elysia links: 3 (2 tool pages + 1 root) — all HTTP 200
 - Audit: 0 findings; DOM check clean (H1=1 theme, H2=9, article-poster=1, highlight-card=3)
 
+
+## WP 6007 — Superscript & Subscript Converter (2026-08-14 ~15:39 UTC)
+- date_gmt: `2026-08-14T15:39:20`
+- URL: https://blog.flowrust.com/2026/08/14/superscript-subscript-converter-field-guide-2026-08-14/
+- Tool: `superscript-subscript-converter` (Text Processing)
+- Title: *Superscript & Subscript Converter Field Guide: Unicode That Survives the Copy-Paste*
+- Result: 1 POST + 1 PATCH (defused MERGED_BULLET_LIST: 2 real positives)
+- Audit: clean (0 findings post-PATCH)
+- DOM: H1=1 (theme), H2=9 (8 body + 1 nav), 1 article-poster + 3 highlight-card, p_opens=32/closes=32
+- Image URLs: 4/4 HTTP 200
+- Elysia anchors: 5/5 HTTP 200 (3× tool page, 1× category root, 1× /en/tools root)
+
+## WP 6007 — Superscript & Subscript Converter (2026-08-14 ~15:39 UTC)
+- date_gmt: `2026-08-14T15:39:20`
+- URL: https://blog.flowrust.com/2026/08/14/superscript-subscript-converter-field-guide-2026-08-14/
+- Tool: `superscript-subscript-converter` (Text Processing)
+- Title: *Superscript & Subscript Converter Field Guide: Unicode That Survives the Copy-Paste*
+- Result: 1 POST + 1 PATCH (defused MERGED_BULLET_LIST: 2 real positives)
+- Audit: clean (0 findings post-PATCH)
+- DOM: H1=1 (theme), H2=9 (8 body + 1 nav), 1 article-poster + 3 highlight-card, p_opens=32/closes=32
+- Image URLs: 4/4 HTTP 200
+- Elysia anchors: 5/5 HTTP 200 (3× tool page, 1× category root, 1× /en/tools root)
