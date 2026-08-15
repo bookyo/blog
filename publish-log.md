@@ -1960,3 +1960,7 @@
 - Elysia anchors: 6/6 HTTP 200 (5× tool page: ipv4-to-integer, cidr-calculator, ipv4-to-ipv6, integer-to-ipv4, ip-info; 1× /en/tools root)
 - **Marked skill lists:** article-writer / article-poster-creator / article-highlight-cards (all 3 missing); used canonical `templates/pil_poster_and_cards_network_theme.py` + `templates/safe_md_to_html.py` + `templates/render_card_4tile_compact.py` from the umbrella.
 - **Asset archive:** /Users/quyue/www/blog/2026-08-15-ipv4-to-integer-field-guide-2026-08-15/
+
+## 2026-08-15T04:42:05 — websocket-tester-field-guide-2026-08-15 (WP 6028)
+- Title: WebSocket Tester Field Guide: Four Opcodes, Seven Events, Three Bugs
+- URL: https://blog.flowrust.com/2026/08/15/websocket-tester-field-guide-2026-08-15/
