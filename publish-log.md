@@ -1964,3 +1964,16 @@
 ## 2026-08-15T04:42:05 — websocket-tester-field-guide-2026-08-15 (WP 6028)
 - Title: WebSocket Tester Field Guide: Four Opcodes, Seven Events, Three Bugs
 - URL: https://blog.flowrust.com/2026/08/15/websocket-tester-field-guide-2026-08-15/
+
+## 2026-08-15 08:53 UTC — WP 6034 (1-POST 0-PATCH)
+
+- **Tool:** Capitalize Sentences (`capitalize-sentences`, Text Processing)
+- **Title:** Capitalize Sentences: A Surgical One-Letter-Per-Sentence Fix
+- **URL:** https://blog.flowrust.com/2026/08/15/capitalize-sentences-field-guide-when-only-the-first-letter-2026-08-15/
+- **date_gmt:** 2026-08-15T08:53:24
+- **Assets:** 1 poster + 3 highlight cards (5-tile / 2-col audit / 4-tile 2x2 custom), all `vision_analyze` pre-validated
+- **Anchors:** 12 elysia (9× tools/capitalize-sentences + 1× samples + 1× tools/text-processing + 1× /en/tools root), all HTTP 200
+- **Audit:** `audit_post_content` clean (0 findings); pre-publish fixes: MERGED_NUMBERED_LIST split, MERGED_BULLET_LIST pre-empted with `<ul><li>` source block, `</ul>` wrapper stripped
+- **Defense layer:** `featured_media=0`, 0 body H1, 8 body H2, 1 article-poster + 3 highlight-card figures, all image alts set
+- **Patches:** 0
+- **State:** covered_slugs → 491 entries
