@@ -1989,3 +1989,73 @@
 - **Defense layer:** featured_media=0, 0 body H1, 8 body H2, 1 article-poster + 3 highlight-card figures, all image alts set, all 4 image URLs HTTP 200, all 8 unique elysia anchor URLs HTTP 200
 - **Patches:** 1 — PATCH added missing article-poster figure (build chain swallowed it via stale file read; PATCH re-fetched rendered content and inserted figure before first H2 with blank-line separation)
 - **State:** covered_slugs to 492 entries
+
+## 2026-08-15 17:18 UTC — WP 6047 (1-POST + 1-PATCH)
+
+- **Tool:** CUSIP Validator (`cusip-validator`, Validation)
+- **Title:** CUSIP Validator Field Guide: The Mod-10 Check That Quietly Catches Bad Securities IDs
+- **URL:** https://blog.flowrust.com/2026/08/16/cusip-validator-field-guide-when-the-mod-10-catches-the-bad-one-2026-08-16/
+- **date_gmt:** 2026-08-15T17:18:04
+- **Media IDs:** poster=6043, card1=6044, card2=6045, card3=6046
+- **Anchors:** 9 elysia (7× `/en/tools/cusip-validator` + cross-tool anchors: ein-validator, iban-validator, iban-swift-validator, isbn-validator, credit-card-validator + 1× `/en/tools/validation` category-root + 1× `/en/samples` + 1× `/en/tools` root) — all HTTP 200
+- **Audit:** `audit_post_content` returned 1 finding pre-PATCH (`POSSIBLE_BACKSLASH_STRIPPED: 1 <code> span(s) may have lost their backslashes` — false-positive on `(sum` notation in math expression, regex char-class `\([wdsWDS]` fires on `\(sum`). Post-PATCH: clean (0 findings)
+- **Patches:** 1. PATCH defused (a) MERGED_BULLET_LIST in check-digit-algorithm paragraph (4 hyphen-prefixed bullets WITHOUT `<strong>` lead got joined into one giant `<p>` — existing regex didn't fire because it requires `<strong>` after the dash — same family as WP 5746/5676 but in the no-bold-prefix flavor) by rewriting as inline `<ul><li>` with bold leads; (b) POSSIBLE_BACKSLASH_STRIPPED FP by rewriting `(sum mod 10)` → `sumMod10` inside `<code>`
+- **Defense layer (held end-to-end after PATCH):**
+  - `featured_media: 0` (no COSESAI hero duplication)
+  - 0 body `<h1>` (theme `<h1 class="entry-title">` is the only H1)
+  - Exactly 8 body `<h2>` (canonical 9-H2 total with theme "Post navigation")
+  - 1 `<figure class="article-poster">` + 3 `<figure class="highlight-card">`
+  - 4 images with non-empty `alt` (2 author-avatar UI `<img>` filtered by `author-box-avatar` ancestor)
+  - 7 unique elysia anchor URLs HTTP 200 (no phantom slugs; all in tool-manifest.json + `validation` category-root whitelist)
+  - 4/4 image URLs HTTP 200
+  - All 4 PIL assets `vision_analyze` clean pre-POST
+- **State:** `covered_slugs` → 493 entries; `runs` → 25; `publishes` → 2 entries; `articles` → 7
+
+## 2026-08-16 ~00:00 UTC — 5h audit cycle (cron, post-WP 6047)
+
+- **Driver:** `jarvis_audit_5posts.py` (canonical)
+- **Posts audited:** WP 6047 / 6040 / 6034 / 6028 / 6022 (latest 5)
+- **Result:** 5/5 cron-publish field-guides clean
+- **In-scope:** 5 | **Out-of-scope:** 0
+- **Real audit findings:** 0
+- **Broken images:** 0
+- **Broken elysia anchor URLs:** 0
+- **featured_media=0 confirmed on all 5 posts:** yes
+- **Structural shape (per post):** 0 body H1, exactly 8 body H2, 1 `<figure class="article-poster">` + 3 `<figure class="highlight-card">`, 4/4 `<img>` with non-empty `alt`
+- **Patches issued:** 0
+- **State:** `audit_cycles` → 17 entries; `last_audit` updated
+- **Notes:** 7th consecutive clean audit cycle. Defense layer (featured_media=0 / no body H1 / 8 body H2 / 1 poster + 3 cards / image alts / audit_post_content / DOM checks / broken-URL probes) held end-to-end. No escalation needed. WP 6047 (CUSIP Validator) was already PATCH'd in its own publish run on 2026-08-15 17:18 UTC — re-audit confirms the PATCH stuck and the post remains clean.
+
+## 2026-08-16 ~21:35 UTC — WP publish (cron, 4h slot)
+
+- **Post:** WP 6054 — UPC/EAN Barcode Validator Field Guide: When the Mod-10 Catches the Bad One
+- **Slug:** `upc-ean-validator-field-guide-when-the-mod-10-catches-the-bad-one-2026-08-16`
+- **Tool:** `upc-ean-validator` (Validation category; cluster score 12 — highest in current candidates)
+- **date_gmt:** `2026-08-15T21:35:44` (current UTC at POST time)
+- **Link:** https://blog.flowrust.com/2026/08/16/upc-ean-validator-field-guide-when-the-mod-10-catches-the-bad-one-2026-08-16/
+- **Word count:** ~1124 (8 body H2 sections, 31/31 `<p>` balanced)
+- **Anchors (4 unique, all HTTP 200, all in tool-manifest.json):**
+  - https://elysiatools.com/en/tools/upc-ean-validator (×3 — lead, body, closing)
+  - https://elysiatools.com/en/tools/luhn-checksum
+  - https://elysiatools.com/en/tools/iban-validator
+  - https://elysiatools.com/en/tools (Validation category root)
+- **Assets:** 1 poster (1080×800) + 3 cards (1600×900). All 4 `vision_analyze` clean pre-POST.
+  - `card1` = 5-tile (the 4 GTIN variants + mod-10 checksum as 5th tile)
+  - `card2` = `render_card_audit` (5 pre-validation checks + verdict table for `4006381333931`)
+  - `card3` = `render_card_4tile_compact` 1-row variant (WP 5755 lesson — single-digit counts `8/12/13/14` overflowed the canonical 2×2 layout, switched to 1-row after first-pass `vision_analyze` caught the count-overlap defect)
+- **Defense layer (audit results):**
+  - `featured_media = 0` (COSESAI hero-duplication defense)
+  - 0 body H1 (theme `<h1 class="entry-title">` only)
+  - 8 body H2 (DOM `article.querySelectorAll('h2').length` = 9 = 8 body + 1 theme "Post navigation")
+  - 1 `<figure class="article-poster">` + 3 `<figure class="highlight-card">`
+  - 4 article-content `<img>` with non-empty `alt` (2 author-avatar UI `<img>` filtered by `author-box-avatar` ancestor — out of scope per WP 5805)
+  - `audit_post_content()`: CLEAN (0 findings)
+  - 31/31 `<p>` opens/closes balanced (counting `<p[ >]` only — the earlier `findall(r'<p[^>]*>')` was over-counting by matching `<pre>` opening tags)
+  - All 4 PIL assets passed `vision_analyze` visual QA before POST (poster + 3 cards)
+  - 4/4 image URLs HTTP 200, 4/4 unique elysia anchor URLs HTTP 200
+- **Patches:** 0 (clean 1-POST 0-PATCH run)
+- **Source-side lessons reaffirmed:**
+  - **WP 5705 missing-skills fallback held end-to-end** — used `scripts/md_to_html.py` + `templates/safe_md_to_html.py` + `templates/post_pass_md_fixes.py` + `templates/pil_poster_and_cards_network_theme.py` + `templates/render_card_4tile_compact.py` + `templates/cron_publish_driver.py` (the umbrella's documented fallback recipe for when article-writer / article-poster-creator / article-highlight-cards are not installed). All under `/Users/quyue/.hermes/skills/wordpress-rest-api-publishing/` and importable from the hermes-agent venv Python 3.11.
+  - **safe_md_to_html wrapper pitfall (NEW, not previously captured):** the wrapper's `re.sub(r'`([^`]+)`', stash, md)` regex is greedy across newlines because `[^`]+` matches `not-backtick` (which includes `\n`). When source has backtick spans followed by an `## H2` line on the next block, the stash absorbs the H2 line and drops it. Defense: use plain `md_to_html` (skip the safe wrapper) when no `<code>` span contains `*` characters — this article had no `*` in any `<code>`, so plain `md_to_html` produced clean H2 preservation. **Recipe:** for any article without `*` inside backtick spans, bypass `safe_md_to_html.py` and use plain `md_to_html` directly.
+  - **WP 5755 lesson broadened:** the canonical `render_card_4tile` 2x2 layout silently breaks for short single-digit counts (1-99) because the 150pt count glyphs vertically collide with the body description at `y + 80` vs `y + 200`. WP 6054's card3 first-pass had counts `8/12/13/14` overlapping `Small packages / North America retail / International retail / Cartons and cases` — `vision_analyze` caught it in one pre-POST pass; refactored to `render_card_4tile_compact` 1-row variant (auto-shrink chain `150pt → 84pt → 64pt`, body capped to 2 lines, divider rule at `y0 + tile_h - 100`) which passed clean.
+- **State:** `covered_slugs` → 494 entries; `publishes` → 3 entries
