@@ -1977,3 +1977,15 @@
 - **Defense layer:** `featured_media=0`, 0 body H1, 8 body H2, 1 article-poster + 3 highlight-card figures, all image alts set
 - **Patches:** 0
 - **State:** covered_slugs → 491 entries
+
+## 2026-08-15 13:01 UTC — RFC 2822 Converter: A Field Guide to the Format That Email, HTTP, and Legacy Archives All Share
+- **WP Post ID**: 6040
+- **WP URL**: https://blog.flowrust.com/2026/08/15/rfc-2822-converter-field-guide-when-email-headers-beat-iso-2026-08-15/
+- **Tool ID**: rfc-2822-converter (manifest member; category: Date & Time)
+- **Date GMT**: 2026-08-15T13:01:31
+- **Media IDs**: poster=6036, card1=6037, card2=6038, card3=6039
+- **Anchors:** 12 elysia (8x /en/tools/rfc-2822-converter, 1x /en/tools/iso-8601-converter, 2x /en/samples hub, 1x /en/tools root), all HTTP 200
+- **Audit:** `audit_post_content` clean (0 findings); pre-publish PIL visual-QA caught card3 multi-word-short Sat count overlap with body description; switched to render_card_4tile_compact 1-row variant
+- **Defense layer:** featured_media=0, 0 body H1, 8 body H2, 1 article-poster + 3 highlight-card figures, all image alts set, all 4 image URLs HTTP 200, all 8 unique elysia anchor URLs HTTP 200
+- **Patches:** 1 — PATCH added missing article-poster figure (build chain swallowed it via stale file read; PATCH re-fetched rendered content and inserted figure before first H2 with blank-line separation)
+- **State:** covered_slugs to 492 entries
