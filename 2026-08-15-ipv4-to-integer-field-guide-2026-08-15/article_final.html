@@ -1,0 +1,59 @@
+<figure class="article-poster"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/poster-ipv4-to-integer-2026-08-15.png" alt="Convert any IPv4 into a single integer — field guide" /></figure>
+<p>An IPv4 address is a 32-bit number dressed up in dotted-decimal clothing. The <a href="https://elysiatools.com/en/tools/ipv4-to-integer">IPv4 to Integer</a> tool strips that costume off and gives you the underlying unsigned integer — the same value that fits in a database column, a Redis sorted set, or a firewall rule. Once you see an address as a single number, the arithmetic of subnets, ACLs, and range checks stops feeling like a string manipulation problem and starts feeling like the integer range problem it always was.</p>
+<p>This field guide walks through how the conversion works, the three formats that show up in the wild (decimal, hex, binary), the four checks that catch bad input before it hits your code, and the cases where the integer form is genuinely the right key to pick. Skip to any section from the table of contents below.</p>
+<h2>How the conversion actually works</h2>
+<p>Each dotted-decimal octet is a base-256 digit. To go from <code>192.168.1.42</code> to its integer form, compute:</p>
+<pre><code class="language-">192 × 256^3 + 168 × 256^2 + 1 × 256^1 + 42 × 256^0
+= 192 × 16777216 + 168 × 65536 + 1 × 256 + 42
+= 3221225472 + 11010048 + 256 + 42
+= 3232235818</code></pre>
+<p>That <code>3232235818</code> is the canonical integer. Every other representation — <code>0xC0A8012A</code>, <code>11000000.10101000.00000001.00101010</code>, network-byte-order bytes — is one of three ways to view the same 32 bits. The dotted-decimal form is just a position-weighted sum, evaluated left-to-right.</p>
+<p>The forward conversion is deterministic. The reverse is too: split the 32-bit integer into four bytes, treat each byte as an unsigned 8-bit value, and join with dots. The PHP <code>ip2long()</code> and <code>long2ip()</code> functions, Python's <code>socket.inet_aton</code> and <code>inet_ntoa</code>, Go's <code>net.ParseIP</code>, and Java's <code>InetAddress.getByName</code> all do this; they differ only in whether they return a signed or unsigned 32-bit value. JavaScript's <code>Number</code> is a 64-bit float, so it can hold the unsigned 32-bit value exactly (<code>3232235818</code> rounds cleanly) — but as soon as you bit-shift, you need to mask with <code>>>> 0</code> to keep the result unsigned.</p>
+<h2>Three formats you will see in the wild</h2>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/card1-ipv4-to-integer-views-2026-08-15.png" alt="Five views of 192.168.1.42 shown as decimal, hex, binary, bytes, and CIDR count" loading="lazy" /></figure>
+
+<p>The same <code>192.168.1.42</code> shows up in three different integer dialects:</p>
+<ul>
+<li><strong>Decimal</strong> — <code>3232235818</code>. The most common form. What PHP's <code>ip2long()</code> returns on 64-bit builds, what CSV exports from network scanners use, what the <code>ipv4-to-integer</code> tool defaults to.</li>
+<li><strong>Hexadecimal</strong> — <code>0xC0A8012A</code>. The format you'll see in packet captures, in <code>/proc/net/arp</code>, and in any C code that uses <code>inet_pton(AF_INET, ...)</code>. Hex is shorter than decimal for the same value and aligns with the byte boundaries.</li>
+<li><strong>Network-byte-order bytes</strong> — the big-endian byte sequence <code>C0 A8 01 2A</code>. What you get when you call <code>socket.inet_aton('192.168.1.42')</code> in Python. Four bytes, in the order they'd appear on the wire.</li>
+<p></ul> A 32-bit unsigned integer has exactly 4,294,967,296 possible values (<code>2^32</code>). The conversion cannot produce a number outside that range — any input that does is malformed and should be rejected before the conversion runs.</p>
+<h2>Why the integer form is shorter than the string</h2>
+<p>The dotted-decimal form has a variable-length encoding: <code>0.0.0.0</code> is 7 characters, <code>255.255.255.255</code> is 15. The integer form is always up to 10 decimal digits (or 8 hex digits), regardless of the address. That uniformity is exactly what B-tree indexes want. A <code>BIGINT UNSIGNED</code> column with 1.4 billion rows fits in roughly 5 GB of clustered index space; the same column as <code>VARCHAR(15)</code> is closer to 22 GB once you account for the per-row overhead and the length-byte prefix. The integer form is also faster to compare: a single CPU cycle for an integer subtraction vs. a character-by-character loop for a string compare.</p>
+<h2>The four pre-flight checks</h2>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/card2-ipv4-to-integer-preflight-2026-08-15.png" alt="The four pre-flight checks for IPv4 to integer conversion" loading="lazy" /></figure>
+
+<p>Before you feed an address into the integer conversion, run these four checks. They catch the failure modes that surface in production:</p>
+<ul>
+<li><strong>Octet range</strong> — every octet must be <code>0..255</code>. If any octet is <code>256</code>, <code>999</code>, or negative, the input is malformed. The <code>ip-address-validator</code> does this check.</li>
+<li><strong>Octet count</strong> — exactly four octets, separated by dots. Three or five octets is a parse error. Leading or trailing dots is a parse error.</li>
+<li><strong>Leading zeros</strong> — <code>192.168.001.042</code> is technically ambiguous. Some parsers (notably <code>inet_aton</code> in glibc) treat <code>010</code> as octal, producing 8 instead of 10. Strip leading zeros or reject them. The safe move is to reject.</li>
+<li><strong>IPv4-mapped IPv6</strong> — <code>::ffff:192.168.1.42</code> is the IPv4-mapped form. If your pipeline only handles IPv4, reject anything that contains a colon. If your pipeline handles both, pass the IPv6 string to <code>inet_pton</code> directly and skip the integer-in-32-bits step.</li>
+<p></ul> Run these four checks in order. The <code>ip-address-validator</code> tool reports each as a separate line, with the failing octet highlighted. Once all four pass, the conversion is safe.</p>
+<h2>Where the integer form is the right key</h2>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/card3-ipv4-to-integer-storage-2026-08-15.png" alt="Integer form vs string form for IP address storage" loading="lazy" /></figure>
+
+<p>Strings are the wrong key for most IP operations. Three cases where the integer form wins:</p>
+<ul>
+<li><strong>Subnet range checks</strong> — "is <code>10.0.0.42</code> inside <code>10.0.0.0/24</code>?" is <code>(low <= ip) && (ip <= high)</code> once both endpoints are integers. A string comparison would have to lex-sort dotted-decimal, which mostly works but breaks at <code>10.0.0.99</code> vs <code>10.0.1.0</code>. Use the <a href="https://elysiatools.com/en/tools/cidr-calculator">CIDR Calculator</a> to derive the low and high endpoints, then compare as integers.</li>
+<li><strong>Database joins</strong> — <code>SELECT &#42; FROM logins WHERE ip_int BETWEEN ? AND ?</code> is a single B-tree lookup. The same query on a <code>VARCHAR</code> column becomes a string scan. If you log IPs to a database, store them as 32-bit unsigned integers (<code>BIGINT UNSIGNED</code> in MySQL, <code>INTEGER</code> in SQLite, <code>uint32</code> in Postgres) and keep the dotted-decimal form only for display.</li>
+<li><strong>Rate-limit sorted sets</strong> — Redis <code>ZADD</code> with the integer form gives you O(log N) range queries, which is exactly what you want for "how many requests from this /24 in the last hour?".</li>
+<p></ul> The integer form is also the canonical form for IPv6 — <code>2001:db8::1</code> becomes the 128-bit integer <code>42540766411282592856903984951653826561</code> — but for IPv6 the integer is almost always stored as two 64-bit halves or as a 16-byte binary blob rather than as a single scalar. The <code>ipv6-to-integer</code> and <code>integer-to-ipv6</code> tools handle the scalar form when you need it.</p>
+<h2>Common pitfalls at the conversion boundary</h2>
+<p>Three patterns bite teams that haven't standardized on the integer form:</p>
+<ul>
+<li><strong>Signed-vs-unsigned</strong> — PHP's <code>ip2long()</code> returns a signed 32-bit value on 32-bit builds, so <code>ip2long('128.0.0.0')</code> returns <code>-2147483648</code>. MySQL stores <code>INT</code> as signed too. Always promote to <code>BIGINT UNSIGNED</code> before storing, or use <code>sprintf('%u', $ip2long_result)</code> to coerce.</li>
+<li><strong>JavaScript bit-shift overflow</strong> — <code>(ip >>> 0)</code> to convert a signed 32-bit result to unsigned. Without it, every address above <code>127.255.255.255</code> becomes negative.</li>
+<li><strong>SQL injection via IP string</strong> — IPs come from request headers and <code>X-Forwarded-For</code> chains. They're not safe to interpolate. Convert to integer first, then validate the integer is in <code>0..2^32 - 1</code>.</li>
+<p></ul> The <a href="https://elysiatools.com/en/tools/ipv4-to-ipv6">IPv4 to IPv6</a> tool handles the cross-family mapping (<code>::ffff:192.168.1.42</code>) for the cases where your pipeline needs both. The <a href="https://elysiatools.com/en/tools/integer-to-ipv4">Integer to IPv4</a> tool is the reverse direction for when you have the integer and need the dotted-decimal form.</p>
+<h2>Batch conversion in practice</h2>
+<p>Most production pipelines get a list of addresses, not one at a time. The <code>ipv4-to-integer</code> tool accepts one address per line and emits one integer per line, in the same order. This is the format you want for:</p>
+<ul>
+<li><strong>Log file analysis</strong> — convert a column of IPs from a CSV, then aggregate by integer range to find hot subnets.</li>
+<li><strong>Diffing two access lists</strong> — convert both lists, sort by integer, then use <code>comm</code> to find the symmetric difference. The output is "address X is in list A but not B".</li>
+<li><strong>Range compression</strong> — <code>iptables -m iprange --src-range 10.0.0.0-10.0.0.255</code> requires the start and end addresses. The integer form lets you compute <code>start = network_int</code>, <code>end = broadcast_int</code> once and emit the rule.</li>
+<p></ul> The <code>showSourceData</code> checkbox in the tool emits the original dotted-decimal form alongside the integer, which is the format you want for human-readable audit logs. The <code>sortByInteger</code> checkbox sorts the output by numeric value, which is the format you want for any kind of range-based analysis.</p>
+<h2>Putting it together</h2>
+<p>The integer form is the right key for any operation that needs to compare, sort, range, or join IP addresses. The dotted-decimal form is the right display format. The conversion between them is stable, deterministic, and reversible — there is exactly one integer per address and exactly one address per integer.</p>
+<p>If you're building a logging pipeline, a rate limiter, or a network ACL, store the integer. If you're building a UI, show the dotted-decimal. If you're debugging a packet capture, show all three: decimal for the integer you computed, hex for what <code>tcpdump</code> shows, and the four bytes for what the kernel stored.</p>
+<p>Run the four pre-flight checks before any conversion. Reject anything that fails. Use the <a href="https://elysiatools.com/en/tools/ip-info">IP Info</a> tool when you need to map an integer back to a hostname or ASN. Explore more IP and network tools at <a href="https://elysiatools.com/en/tools">elysiatools.com</a>.</p>

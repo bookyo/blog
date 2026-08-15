@@ -1946,3 +1946,17 @@
 - **URLs HTTP 200:** 4/4 image URLs, 2/2 unique elysia anchors (http-request-tester → 200 after 308, /en/tools → 200 after 308)
 - **State:** covered_slugs now 486 entries
 - **Asset archive:** /Users/quyue/www/blog/2026-08-14-http-request-tester/
+
+## WP 6022 — IPv4 to Integer (2026-08-15 ~00:29 UTC)
+- date_gmt: `2026-08-15T00:29:46`
+- URL: https://blog.flowrust.com/2026/08/15/ipv4-to-integer-field-guide-2026-08-15/
+- Tool: `ipv4-to-integer` (Network)
+- Title: *IPv4 to Integer: A Field Guide to the Canonical Form of an IP Address*
+- Result: 1 POST + 0 PATCH (clean)
+- Pre-POST visual QA: card1 first-pass had 5-tile values `0xC0A8012A` and `11000000.10101000.00000001.00101010` overflowing into adjacent tiles at 36pt mono (extends WP 5669/5683 long-value clip pitfall). Re-rendered with auto-shrink chain (36pt → 28pt → 22pt) plus dot-splitting for binary. Card3 first-pass had 150pt count overlapping body description (extends WP 5755/5798 multi-word count pitfall). Re-rendered with `render_card_4tile_compact` 1-row variant. All 4 PIL assets passed visual QA on the second pass.
+- Audit: clean (0 findings; `&#42;` pre-encoding for `*` inside `<code>` and triple-fence blocks)
+- DOM: H1=1 (theme), H2=9 (8 body + 1 nav), 1 article-poster + 3 highlight-card, p_opens=20/closes=20, ul=6, li=20, imgs=6 (4 content with alt, 2 author-avatar theme widgets)
+- Image URLs: 4/4 HTTP 200
+- Elysia anchors: 6/6 HTTP 200 (5× tool page: ipv4-to-integer, cidr-calculator, ipv4-to-ipv6, integer-to-ipv4, ip-info; 1× /en/tools root)
+- **Marked skill lists:** article-writer / article-poster-creator / article-highlight-cards (all 3 missing); used canonical `templates/pil_poster_and_cards_network_theme.py` + `templates/safe_md_to_html.py` + `templates/render_card_4tile_compact.py` from the umbrella.
+- **Asset archive:** /Users/quyue/www/blog/2026-08-15-ipv4-to-integer-field-guide-2026-08-15/
