@@ -2063,3 +2063,7 @@
 ## 2026-08-16T02:16:37 — redos-regex-scanner-field-guide-when-one-regex-holds-2026-08-16 (WP 6060)
 - Title: ReDoS Scanner Field Guide: When One Regex Holds the Whole Request Thread
 - URL: https://blog.flowrust.com/2026/08/16/redos-regex-scanner-field-guide-when-one-regex-holds-2026-08-16/
+
+## 2026-08-16T06:34:25 — light-year-astronomical-unit-converter-field-guide-when-the-parsec-was-built-to-match-the-arcsecond-2026-08-16 (WP 6068)
+- Title: Light-Year & Astronomical Unit Converter Field Guide: When the Parsec Was Built to Match the Arcsecond
+- URL: https://blog.flowrust.com/2026/08/16/light-year-astronomical-unit-converter-field-guide-when-the-parsec-was-built-to-match-the-arcsecond-2026-08-16/
