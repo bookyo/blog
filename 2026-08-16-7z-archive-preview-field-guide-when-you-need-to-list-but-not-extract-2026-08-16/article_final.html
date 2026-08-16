@@ -1,0 +1,76 @@
+<p><strong>7Z Archive Preview is the difference between asking "is the right file in here?" and waiting three minutes for a 4 GB extraction to finish.</strong> When the archive weighs more than your patience, the preview tool reads its table of contents and hands you the file list, sizes, and a quick sanity check — without ever pulling a single byte off disk into a real extraction path. That is why the tool exists: not to replace <a href="https://www.7-zip.org/">7-Zip</a>, but to make its directory-listing mode ergonomic and scriptable.</p>
+<figure class="article-poster"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/jarvis-poster-7z-archive-preview-field-guide-when-you-need-to-list-but-not-extract-2026-08-16.png" alt="7Z Archive Preview field guide poster" /></figure>
+<p>The 7Z format sits at the high end of the compression spectrum. LZMA2 with a tuned dictionary will routinely hit 30–60% better ratios than zip on text, source code, and binary logs. That compression power is exactly why you cannot peek inside casually — opening the archive to "just check" usually means extracting, then deleting, then promising yourself you will clean up the temp dir later. The 7Z archive preview at <a href="https://elysiatools.com/en/tools/7z-preview">Elysia Tools</a> skips all of that. You hand it a <code>.7z</code> file, and within a second you get a JSON object listing every file, its uncompressed size, its compressed size on disk, plus an archive-level summary: total files, total directories, total uncompressed bytes, compression ratio.</p>
+<p>This field guide is a working tour through that preview flow: how the parser handles the standard <code>7z l -ba</code> output, why the encoding switch on Windows exists, what the JSON shape actually tells you, and three places the preview saves you from the worst-case "extract then delete" workflow.</p>
+<h2>Why the 100 MB file limit is intentional</h2>
+<p>The tool's file input caps at 100 MB (<code>fileLimit: 100 <em> 1024 </em> 1024</code>), which looks arbitrary until you think about the actual workload. The preview is a metadata reader: it spawns <code>7z l -ba</code> against the file and parses stdout. The CLI does not read the entire archive into memory — it reads the header and central directory, which is bounded by the file count, not the payload size. Even a 4 GB archive has a header that fits comfortably in a few MB.</p>
+<p>The 100 MB cap exists for a different reason: browser-based file upload reliability. Most browsers can stream larger files in chunks, but anything beyond a few hundred MB risks a dropped chunk mid-upload that aborts the whole transfer. 100 MB is the sweet spot where a single-shot upload succeeds in the vast majority of network conditions. For genuinely massive archives, the recommended workflow is to preview the archive locally with the <a href="https://www.7-zip.org/">7-Zip CLI</a> and only upload to <a href="https://elysiatools.com/en/tools/7z-preview">Elysia Tools</a> when you need a scriptable JSON output rather than the raw CLI listing.</p>
+<h2>How the parser handles the 7z l output</h2>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/jarvis-card3-7z-archive-preview-field-guide-when-you-need-to-list-but-not-extract-2026-08-16.png" alt="Highlight card 3" loading="lazy" /></figure>
+
+<p>The 7Z CLI's <code>7z l -ba <archive></code> listing is line-oriented and friendly to scripted parsing — once you know its column layout. Every file row starts with a 19-character timestamp (<code>YYYY-MM-DD HH:MM:SS</code>), followed by a 5-character attribute block (<code>....A</code> for a normal file, <code>....D</code> for a directory), then the size and compressed size columns separated by whitespace, then the path. The parser in <a href="https://elysiatools.com/en/tools/7z-preview">7Z Archive Preview</a> uses a position-based parse: it strips the first 19 characters for the timestamp, takes the next 5 for the attribute block, then matches the first digit run as the size and the second digit run as the compressed size. Anything left over is the file path, including spaces and Unicode.</p>
+<p>A real archive row looks like this:</p>
+<pre><code class="language-">2025-10-19 11:11:07 ....A          319         2330  src/index.ts
+2025-10-19 11:11:07 ....A       884213       412005  data/large-dataset.csv
+2025-10-19 11:11:07 ....D                      0    vendor/</code></pre>
+<p>The parser tracks two running counters as it walks the rows: <code>totalFiles</code> increments only on non-directory entries, and <code>totalUncompressedSize</code> accumulates every file's size column. The final <code>archiveInfo</code> object summarizes those into <code>{fileName, archiveSize, totalFiles, totalDirectories, totalUncompressedSize, compressionRatio}</code> so a downstream script can decide whether to extract, skip, or request more context.</p>
+<p>The compression ratio field is the most useful single number: it is <code>(totalUncompressedSize - totalCompressedSize) / totalUncompressedSize * 100</code>, formatted as a percentage string. If your archive is at 92% compression, the format is doing its job and the preview is just confirming it. If the ratio is closer to 5%, something has gone wrong (the file was already compressed — jpegs, mp4s, pre-zipped logs — and 7Z has nothing to do).</p>
+<h2>The Windows encoding switch is not optional</h2>
+<p>On Linux and macOS, the 7z CLI speaks UTF-8 natively. On Windows, the same binary defaults to the system code page — which for Chinese, Japanese, and Korean systems means GBK / Shift-JIS / CP949 output. The parser handles this with a platform() check at the top of the process function:</p>
+<pre><code class="language-ts">const isWindows = platform() === 'win32'
+let output: string
+if (isWindows) {
+    const cmd = '7z l -ba "' + archiveFile + '"'
+    const { stdout } = await execAsync(cmd, {
+        encoding: 'buffer',
+        shell: true,
+    })
+    output = iconv.decode(stdout as unknown as Buffer, 'cp936')
+} else {
+    const cmd = '7z l -ba "' + archiveFile + '"'
+    const { stdout } = await execAsync(cmd, {
+        encoding: 'utf8',
+    })
+    output = stdout
+}</code></pre>
+<p>The buffer + <code>iconv-lite</code> decode via <code>cp936</code> is what lets a preview against a Windows-extracted archive preserve Chinese filename characters instead of dropping them into <code>???</code> blocks. If you have ever wondered why a 7Z archive created on a Chinese Windows machine shows gibberish when listed on Linux, this is the seam where it usually breaks — and the <a href="https://elysiatools.com/en/tools/7z-preview">7Z Archive Preview tool</a> bakes the fix in.</p>
+<p>The error path is also handled: if the <code>7z</code> command is not on <code>PATH</code>, the shell returns an ENOENT-style message that the tool detects and converts to a friendly install reminder pointing at the <a href="https://www.7-zip.org/">7-Zip homepage</a>. That turns a cryptic <code>command not found: 7z</code> into a one-line actionable error, which is the difference between a working CI pipeline and a 30-minute yak-shaving session.</p>
+<h2>What the JSON output tells you at a glance</h2>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/jarvis-card2-7z-archive-preview-field-guide-when-you-need-to-list-but-not-extract-2026-08-16.png" alt="Highlight card 2" loading="lazy" /></figure>
+
+<p>A typical preview against a small archive produces output that has this shape:</p>
+<pre><code class="language-json">{
+  "archiveInfo": {
+    "fileName": "release-2025-10-19.7z",
+    "archiveSize": 1843921,
+    "totalFiles": 47,
+    "totalDirectories": 6,
+    "totalUncompressedSize": 9103452,
+    "compressionRatio": "79.75%"
+  },
+  "files": [
+    {"name": "index.ts", "size": 319, "compressedSize": 2330, "isDirectory": false, "path": "src/index.ts"},
+    {"name": "large-dataset.csv", "size": 884213, "compressedSize": 412005, "isDirectory": false, "path": "data/large-dataset.csv"}
+  ],
+  "message": "Found 47 files and 6 directories in 7Z archive"
+}</code></pre>
+<p>Three numbers tell you almost everything you need to decide whether to extract:</p>
+<p>* <strong><code>totalFiles</code> / <code>totalDirectories</code></strong> — the structural shape. A 47-file archive with 6 directories is a normal source release; a 1-file archive labeled <code>.7z</code> is almost always a mistake (someone double-compressed or renamed a file). * <strong><code>totalUncompressedSize</code></strong> — how big the data is in raw form. If this is 9 MB and the archive on disk is 1.8 MB, the compression is real and the preview cost was worth it. * <strong><code>compressionRatio</code></strong> — the percentage above. Anything below 10% on text-heavy content is a red flag that the archive contains pre-compressed blobs.</p>
+<p>The <code>files</code> array is sorted alphabetically by <code>path</code>, which means the preview output is stable across runs against the same archive. That stability matters when you compare two preview outputs as a sanity check — for example, confirming that a CI-built artifact contains the same files as the locally-built one before shipping it.</p>
+<h2>Three places the preview saves the extraction round-trip</h2>
+<p>The practical wins are concentrated in three workflows where extracting-to-check is the wrong default.</p>
+<p><strong>Build artifact verification.</strong> CI pipelines often produce 7Z artifacts for download links. Before publishing the link, you want to confirm the artifact contains what you think it contains — not just trust the build script. The preview returns the file list in under a second for archives up to several GB, which fits inside any reasonable build verification step. The same approach works for the <a href="https://elysiatools.com/en/tools/7z-to-zip-converter">7Z to ZIP converter</a> output check: preview the source 7Z, run the conversion, preview the resulting ZIP, and diff the file lists to confirm the conversion preserved everything.</p>
+<p><strong>Backup integrity spot-checks.</strong> A 7Z backup file sitting on a slow drive should not be opened just to confirm it is still readable. The preview's read of the central directory does not require extracting any file content, so it is safe to run against terabyte-scale archives on a schedule. If the preview returns a <code>totalFiles</code> of 0 or fails to parse, you have a corruption signal — investigate before trusting the backup.</p>
+<p><strong>Pre-flight for selective extraction.</strong> When you only want one file out of a 10,000-file archive, the preview is the lookup step. Confirm the file is present, note its size, then pass it to <code>7z e <archive> -o<dest> <path></code> for targeted extraction. The preview cost is bounded (it reads metadata, not payload), and you avoid discovering mid-extraction that the file you wanted is not actually there.</p>
+<h2>When the preview is not the right tool</h2>
+<p>There are three cases where the preview deliberately does not help, and a different tool is the right answer:</p>
+<p>* <strong>You need the actual file contents.</strong> The preview reads the table of contents; it never decompresses payload data. For that, you want a real extraction tool or the <a href="https://elysiatools.com/en/tools/7z-to-tar-converter">7Z to TAR converter</a> when the next stage is a tar pipeline. * <strong>You are checking archive integrity with a CRC test.</strong> The preview does not verify per-file CRCs. For that, use <code>7z t <archive></code> directly — that command walks every entry's checksum and is the canonical way to confirm an archive is not corrupted. * <strong>The archive is encrypted with a passphrase.</strong> 7Z's header encryption means the file list itself is opaque without the passphrase. The preview will fail with a parse error or return an empty list, which is the correct behavior — encryption hides the structure, not just the content.</p>
+<h2>Four decisions the preview maps onto</h2>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/jarvis-card1-7z-archive-preview-field-guide-when-you-need-to-list-but-not-extract-2026-08-16.png" alt="Highlight card 1" loading="lazy" /></figure>
+
+<p>Four small decisions the preview output maps onto:</p>
+<p>* <strong>Build.</strong> The artifact uploaded by CI matches the expected file count and the top-N file list. If the count drifts, fail the release before publishing the download link. * <strong>Verify.</strong> The backup on the slow drive is still parseable. A periodic cron job runs the preview; non-zero <code>totalFiles</code> plus successful parse means the header is intact. * <strong>Extract.</strong> The user wants one specific file out of an archive. Preview confirms presence and size, then targeted extraction pulls just that file. * <strong>Skip.</strong> The compression ratio is below 10% and the content is already a known pre-compressed format. The preview's job is done; the file is going through a different pipeline.</p>
+<p>Each of these is a one-second decision instead of a three-minute extraction cycle.</p>
+<h2>Putting it together</h2>
+<p>The preview tool is one of those small utilities that earns its place every time the alternative is "extract, scroll, delete, and hope you cleaned up." The implementation is a thin layer over <code>7z l -ba</code> with two real engineering decisions baked in: position-based parsing instead of regex, and an explicit Windows encoding switch. Both decisions are the kind of thing you only appreciate after you have debugged the failure once — and the <a href="https://elysiatools.com/en/tools/7z-preview">7Z archive preview at Elysia Tools</a> bakes them in so you do not have to.</p>
+<p>For a working archive-inspection workflow, the preview pairs naturally with the conversion tools at Elysia Tools: the <a href="https://elysiatools.com/en/tools/7z-to-zip-converter">7Z to ZIP</a>, <a href="https://elysiatools.com/en/tools/7z-to-tar-converter">7Z to TAR</a>, and <a href="https://elysiatools.com/en/tools/7z-to-gz-converter">7Z to GZ</a> converters handle the format-change step, while the preview confirms the source is what you think it is before you commit to a conversion. Browse the full archive-tool family at <a href="https://elysiatools.com/en/tools">elysiatools.com/en/tools</a> — the preview is the cheap, fast first move in any archive-handling pipeline.</p>

@@ -2105,3 +2105,7 @@
 ## 2026-08-16T10:43:23 — csv-data-grouper-field-guide-when-the-group-by-finally-talks-back-2026-08-16 (WP 6074)
 - Title: CSV Data Grouper Field Guide: When the Group By Finally Talks Back
 - URL: https://blog.flowrust.com/2026/08/16/csv-data-grouper-field-guide-when-the-group-by-finally-talks-back-2026-08-16/
+
+## 2026-08-16T14:53:40 — 7z-archive-preview-field-guide-when-you-need-to-list-but-not-extract-2026-08-16 (WP 6080)
+- Title: 7Z Archive Preview Field Guide: When You Need to List, Not Extract
+- URL: https://blog.flowrust.com/2026/08/16/7z-archive-preview-field-guide-when-you-need-to-list-but-not-extract-2026-08-16/
