@@ -2109,3 +2109,34 @@
 ## 2026-08-16T14:53:40 — 7z-archive-preview-field-guide-when-you-need-to-list-but-not-extract-2026-08-16 (WP 6080)
 - Title: 7Z Archive Preview Field Guide: When You Need to List, Not Extract
 - URL: https://blog.flowrust.com/2026/08/16/7z-archive-preview-field-guide-when-you-need-to-list-but-not-extract-2026-08-16/
+
+## 2026-08-16T19:08:11 — text-repeater-field-guide-when-hi-x-100-is-the-whole-job-2026-08-16 (WP 6087)
+- Title: Text Repeater Field Guide: When "Hi x 100" Is the Whole Job
+- URL: https://blog.flowrust.com/2026/08/17/text-repeater-field-guide-when-hi-x-100-is-the-whole-job-2026-08-16/
+- Tool: text-repeater (Text Processing)
+- Defense layer: featured_media=0, 0 body H1, 8 body H2, 1 article-poster + 3 highlight-card figures, 0 MERGED_BULLET_LIST (used inline `<ul>`/`<ol>` HTML to avoid merge), 4/4 image URLs HTTP 200, 3/3 unique elysia anchor URLs HTTP 200, audit_post_content clean pre-POST, DOM check clean (h1=1 theme only, h2=9 = 8 body + 1 theme Post navigation, 1 article-poster + 3 highlight-card figures, ul=5, ol=1, p_opens/p_closes balanced 32/32)
+- **Patches:** 1 (POST-then-PATCH for `&#92;` strip-on-POST recovery — 8 backslash entities in `<code>` spans restored)
+- **Source-side lessons reaffirmed:**
+  - **WP 5717 / 5746 `&#92;` strip-on-POST**: 8 literal backslashes inside `<code>` spans (Hi\nHi\nHi, 3. Hi\n2. Hi\n1. Hi, 3. Wait\n2. Wait\n1. Wait, plus the JS code block's `.join('\\n')` calls) were stripped on POST. PATCH-round restored them to `&#92;` (8 entities). Confirmed: visual rendering shows `Hi\nHi\nHi` correctly.
+  - **WP 5805 filler-plus-md_to_html**: source had zero `*` inside `<code>` spans (used literal `\n` not Python escape sequences in code; the markdown converter didn't trigger fake italics). `safe_md_to_html` wrapper was NOT needed this run.
+  - **WP 5692 inline `<p>` wrapper pitfall avoided**: close-first lead was written as raw markdown text with `<strong>` emphasis — no `<p>...</p>` wrapper.
+  - **MERGED_BULLET_LIST defense (WP 5676/5683/5717/5746)**: the article contained 4 distinct list patterns (`- **Bold** — body` × 3 sections, `1. **Bold** — body` × 1 section). Source was written as inline `<ul><li>` and `<ol><li>` HTML from the start — `md_to_html` honors these as block tags and produces clean output. `audit_post_content` reports 0 MERGED_BULLET_LIST findings.
+  - **PIL visual QA caught 2 pre-POST defects**: (1) Card 1 tile 02 (NEW LINE) and tile 03 (COUNTDOWN) had `\n` characters rendered as whitespace (single-line) instead of newlines — value text appeared as `Hi Hi Hi` and `3. Hi 2. Hi 1. Hi`. Fix: patched `render_card_5tile` in `templates/pil_poster_and_cards_network_theme.py` to split on literal `\n` in the value string and draw each line separately (font drops to 28pt for multi-line values). (2) Card 2 row 05 body text "Builtin ZWJ sequences may split in countdown mode" wrapped to 2 lines and the second line (`mode`) overflowed the panel bottom. Fix: shortened all 5 check bodies to ~25 chars each; body text now fits in 1 line per row.
+- **State:** `covered_slugs` → 497 entries
+## WP 6095 — 2026-08-16 ~23:17 UTC — Tiny Text Field Guide
+- **tool:** tiny-text (Tiny Text)
+- **date_gmt:** 2026-08-16T23:17:11
+- **slug:** tiny-text-field-guide-when-unicode-superscript-saves-the-bio-2026-08-16
+- **URL:** https://blog.flowrust.com/2026/08/17/tiny-text-field-guide-when-unicode-superscript-saves-the-bio-2026-08-16/
+- **title:** Tiny Text Field Guide: When Unicode Superscript Saves the Bio
+- **featured_media:** 0
+- **assets:** poster.png (49KB) + card1.png/card2.png/card3.png (77/78/74KB) — all 4 visual-QA clean via vision_analyze
+- **elysia anchors:** 5 (4 unique tool slugs: tiny-text, small-caps-converter, strikethrough-text, /en/tools root)
+- **images:** 4 unique, all HTTP 200
+- **audit_pre_publish:** 6/7 (fail #6 = placeholder image URL, expected before media upload)
+- **audit_post_content:** 1 finding pre-PATCH (MERGED_BULLET_LIST: 1 block — worked examples H2)
+- **PATCH #1:** split merged block into real HTML list (WP 5676/5683/5717/5738 canonical fix)
+- **post-PATCH audit:** clean
+- **DOM check:** h1=1 (theme only), h2=9 (8 body + 1 "Post navigation"), h3=0, article-poster=1, highlight-card=3, p opens/closes=35/35 balanced, all 4 article imgs have alt (the 2 missing-alt detected by the audit heuristic are theme avatar images, not article content)
+- **state covered_slugs:** now 498 entries
+- **state:** tiny-text-field-guide-when-unicode-superscript-saves-the-bio-2026-08-16
