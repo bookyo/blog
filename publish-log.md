@@ -2101,3 +2101,7 @@
 ## 2026-08-16T06:34:25 — light-year-astronomical-unit-converter-field-guide-when-the-parsec-was-built-to-match-the-arcsecond-2026-08-16 (WP 6068)
 - Title: Light-Year & Astronomical Unit Converter Field Guide: When the Parsec Was Built to Match the Arcsecond
 - URL: https://blog.flowrust.com/2026/08/16/light-year-astronomical-unit-converter-field-guide-when-the-parsec-was-built-to-match-the-arcsecond-2026-08-16/
+
+## 2026-08-16T10:43:23 — csv-data-grouper-field-guide-when-the-group-by-finally-talks-back-2026-08-16 (WP 6074)
+- Title: CSV Data Grouper Field Guide: When the Group By Finally Talks Back
+- URL: https://blog.flowrust.com/2026/08/16/csv-data-grouper-field-guide-when-the-group-by-finally-talks-back-2026-08-16/
