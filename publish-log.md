@@ -2060,6 +2060,40 @@
   - **WP 5755 lesson broadened:** the canonical `render_card_4tile` 2x2 layout silently breaks for short single-digit counts (1-99) because the 150pt count glyphs vertically collide with the body description at `y + 80` vs `y + 200`. WP 6054's card3 first-pass had counts `8/12/13/14` overlapping `Small packages / North America retail / International retail / Cartons and cases` — `vision_analyze` caught it in one pre-POST pass; refactored to `render_card_4tile_compact` 1-row variant (auto-shrink chain `150pt → 84pt → 64pt`, body capped to 2 lines, divider rule at `y0 + tile_h - 100`) which passed clean.
 - **State:** `covered_slugs` → 494 entries; `publishes` → 3 entries
 
+## 2026-08-16T06:34:25 — light-year-astronomical-unit-converter-field-guide-when-the-parsec-was-built-to-match-the-arcsecond-2026-08-16 (WP 6068)
+- Title: Light-Year & Astronomical Unit Converter Field Guide: When the Parsec Was Built to Match the Arcsecond
+- URL: https://blog.flowrust.com/2026/08/16/light-year-astronomical-unit-converter-field-guide-when-the-parsec-was-built-to-match-the-arcsecond-2026-08-16/
+- **Word count:** ~2447 (8 body H2 sections, 36 `<p>` DOM-counted, 35 `<code>` spans, 6 unique elysia anchors all HTTP 200)
+- **Tool:** Light-Year & Astronomical Unit Converter (category: Astronomy; thematic cluster: 16 Astronomy tools, 0 covered → strong pick)
+- **Anchors (6 unique, all HTTP 200, all in tool-manifest.json):**
+  - https://elysiatools.com/en/tools/light-year-and-astronomical-unit-converter (×3 — lead, body, closing)
+  - https://elysiatools.com/en/tools/galactic-coordinate-converter (×2)
+  - https://elysiatools.com/en/tools/kepler-orbit-solver (×2)
+  - https://elysiatools.com/en/tools/scientific-notation-converter (×2)
+  - https://elysiatools.com/en/tools/angle-converter
+  - https://elysiatools.com/en/tools (category root)
+- **Assets:** 1 poster (1080×800) + 3 cards (1600×900). All 4 `vision_analyze` clean pre-POST.
+  - `card1` = 5-tile (IAU 2012 constants: 1 AU, c, 1 ly, 1 pc, 1 Julian year)
+  - `card2` = 5-tile, last-tile-highlighted (real cosmic distances: Proxima Centauri, Sirius, Andromeda, Milky Way disk, observable universe)
+  - `card3` = `render_card_4tile_compact` 1-row variant (parsec vs light-year in practice: PARALLAX, CATALOGS, GALAXY, POPULAR) — 2nd re-render needed: first pass had count strings `1 / pi`, `mas`, `kpc`, `ly` which fit horizontally but stayed at 150pt and vertically overlapped the body description text (extends the WP 5755 single-digit/short-count lesson). Refactored to longer count strings `1 / pi arcsec` / `Gaia in mas` / `M31 in kpc` / `Sagan in ly` which triggered the auto-shrink chain to 84pt and resolved the vertical-overlap defect. `vision_analyze` caught both passes.
+- **Defense layer (audit results):**
+  - `featured_media = 0` (COSESAI hero-duplication defense)
+  - 0 body H1 (theme `<h1 class="entry-title">` only — `browser_console h1_count = 1`)
+  - 8 body H2 (DOM `article.querySelectorAll('h2').length` = 9 = 8 body + 1 theme "Post navigation")
+  - 1 `<figure class="article-poster">` + 3 `<figure class="highlight-card">`
+  - 4 article-content `<img>` with non-empty `alt` (2 author-avatar UI `<img>` filtered by `author-box-avatar` ancestor — out of scope per WP 5805)
+  - `audit_post_content()`: CLEAN (0 findings)
+  - DOM `p_count = 36`, `ul_count = 16` (theme sidebar contributes 9), `li_count = 62`, `code_count = 35` — all balanced
+  - All 4 PIL assets passed `vision_analyze` visual QA before POST (poster + 3 cards)
+  - 4/4 image URLs HTTP 200 (poster + 3 cards), 6/6 unique elysia anchor URLs HTTP 200
+- **Patches:** 0 (clean 1-POST 0-PATCH run)
+- **Source-side lessons reaffirmed:**
+  - **WP 5755 lesson extended to very-short counts**: `render_card_4tile_compact`'s auto-shrink chain (`150pt → 84pt → 64pt`) only triggers when count text overflows TILE WIDTH. Very-short count strings like `mas` (3 chars), `kpc` (3 chars), `ly` (2 chars) easily fit in the 360px tile width — so they stay at 150pt and vertically overlap the body description text rendered at `y0 + 250`. **Recipe:** when count is very short (≤ 6 chars), use longer count strings (12-15 chars) that trigger the auto-shrink to 84pt OR 64pt. The auto-shrink then frees up vertical space for the body description.
+  - **Phantom-slug defense held** (WP 5729 lesson): the article references 5 tool URLs (`light-year-and-astronomical-unit-converter`, `galactic-coordinate-converter`, `kepler-orbit-solver`, `scientific-notation-converter`, `angle-converter`) and 1 category-root (`/en/tools`); all 5 tool slugs are in `tool-manifest.json` (verified via `python3 -c "import json; ids={t['id'] for t in json.load(open('tool-manifest.json'))['tools']}; print(ids >= {slugs})"`). No fabricated slugs.
+  - **md→html inline `<p>` wrapping pitfall avoided** (WP 5692 lesson): all close-first leads and sub-leads were written as raw markdown text with `<strong>` emphasis (no `<p>...</p>` wrappers) — let `md_to_html` wrap them once. The pre-publish tag balance showed `p: open=25 close=25 OK` balanced.
+  - **`&#92;` strip-on-POST lesson irrelevant for this article**: no backslash characters in `<code>` blocks (the article uses `×` for multiplication, not `\times` or `\u`); pre-encoded check passes (`assert not backslash_in_code`).
+- **State:** `covered_slugs` → 496 entries; `publishes` → 4 entries
+
 ## 2026-08-16T02:16:37 — redos-regex-scanner-field-guide-when-one-regex-holds-2026-08-16 (WP 6060)
 - Title: ReDoS Scanner Field Guide: When One Regex Holds the Whole Request Thread
 - URL: https://blog.flowrust.com/2026/08/16/redos-regex-scanner-field-guide-when-one-regex-holds-2026-08-16/
