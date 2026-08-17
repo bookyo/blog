@@ -2140,3 +2140,7 @@
 - **DOM check:** h1=1 (theme only), h2=9 (8 body + 1 "Post navigation"), h3=0, article-poster=1, highlight-card=3, p opens/closes=35/35 balanced, all 4 article imgs have alt (the 2 missing-alt detected by the audit heuristic are theme avatar images, not article content)
 - **state covered_slugs:** now 498 entries
 - **state:** tiny-text-field-guide-when-unicode-superscript-saves-the-bio-2026-08-16
+
+## 2026-08-17T03:33:38 — color-code-validator-field-guide-when-the-comma-finally-matters-2026-08-17 (WP 6102)
+- Title: Color Code Validator Field Guide: When the Comma Finally Matters
+- URL: https://blog.flowrust.com/2026/08/17/color-code-validator-field-guide-when-the-comma-finally-matters-2026-08-17/
