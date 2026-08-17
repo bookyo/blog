@@ -2162,3 +2162,17 @@
 - **state covered_slugs:** now 500 entries (n=499)
 - **state covered_tool_ids:** 20 entries
 - **state:** color-code-validator-field-guide-when-the-comma-finally-matters-2026-08-17
+## 2026-08-17T07:57:54 — echarts-theme-token-extractor-field-guide-when-the-theme-object-finally-meets-the-design-system-2026-08-17 (WP 6109)
+- Title: ECharts Theme Token Extractor Field Guide: When the Theme Object Finally Meets the Design System
+- URL: https://blog.flowrust.com/2026/08/17/echarts-theme-token-extractor-field-guide-when-the-theme-object-finally-meets-the-design-system-2026-08-17/
+- tool: echarts-theme-token-extractor (ECharts Theme Token Extractor) — category Design (1 post in last 30)
+- date_gmt: 2026-08-17T07:57:54
+- featured_media: 0
+- assets: poster.png (51KB) + card1.png/card2.png/card3.png (62/132/76KB) — all 4 visual-QA clean via vision_analyze (poster subtitle first-pass clipped at left/right edges, 1080 canvas → shortened; card1 first-pass 5-tile values like `:root { --brand: #5b8ff9; }` overflowed 290px tiles → split on \n into 2 lines each)
+- elysia anchors: 3 unique tool slugs (echarts-theme-token-extractor x4, figma-tokens-export x3, image-to-design-tokens x3, /en/tools root x1)
+- images: 4 unique, all HTTP 200
+- audit_post_content (pre-POST): 1 finding (ORPHANED_CODE: 3 code tags with invalid parent) — caused by `<button>` and `<BarSeries.itemStyle.color>` literal HTML tags inside backtick spans being parsed by md_to_html as real tags
+- PATCH #1: rewrote 4 paragraphs containing literal `<code>...</code>` as text (the WP 5828 nested-code strip pattern from the umbrella) into inline `` `code` `` spans; also pre-encoded `<button>` and `<BarSeries.itemStyle.color>` as `&lt;...&gt;` HTML entities in their backtick spans
+- post-PATCH audit_post_content: clean (0 findings)
+- DOM check: h1=1 (theme only), h2=9 (8 body + 1 theme "Post navigation"), article-poster=1, highlight-card=3, code=90 spans, 0 paragraphs with literal `<code>` text, all 4 article imgs have alt (LiteSpeed lazy-load SVG placeholder detected via naturalWidth), 11 elysia anchors all 200 OK (3 unique tools + 1 root)
+- state covered_slugs: now 501 entries (n=500)
