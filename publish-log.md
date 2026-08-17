@@ -2144,3 +2144,21 @@
 ## 2026-08-17T03:33:38 — color-code-validator-field-guide-when-the-comma-finally-matters-2026-08-17 (WP 6102)
 - Title: Color Code Validator Field Guide: When the Comma Finally Matters
 - URL: https://blog.flowrust.com/2026/08/17/color-code-validator-field-guide-when-the-comma-finally-matters-2026-08-17/
+## WP 6102 PATCH — 2026-08-17T03:33 UTC
+
+- **tool:** color-code-validator (Color Code Validator)
+- **date_gmt:** 2026-08-17T03:19:23
+- **slug:** color-code-validator-field-guide-when-the-comma-finally-matters-2026-08-17
+- **URL:** https://blog.flowrust.com/2026/08/17/color-code-validator-field-guide-when-the-comma-finally-matters-2026-08-17/
+- **title:** Color Code Validator Field Guide: When the Comma Finally Matters
+- **featured_media:** 0
+- **assets:** poster.png (56KB) + card1.png/card2.png/card3.png (71/124/65KB) — all 4 visual-QA clean via vision_analyze (card1 first-pass had 6 tiles overflow on 5-tile template; refactored to 5 formats with per-tile font auto-shrink)
+- **elysia anchors:** 2 unique tool slugs (color-code-validator x2, /en/tools root x1)
+- **images:** 4 unique, all HTTP 200
+- **audit_post_content:** 2 findings pre-PATCH (RAW_ITALIC: 3 candidates from merged `*` markdown lists; IMG_MISSING_ALT: 4/4)
+- **PATCH #1:** rewrote 4 bullet sections as inline `<ul><li>` HTML (WP 6087/6095 canonical defense for multi-list articles) + added alt text to all 4 figures
+- **post-PATCH audit:** clean (0 findings)
+- **DOM check:** h1=1 (theme only), h2=9 (8 body + 1 "Post navigation"), article-poster=1, highlight-card=3, ul=5/li=15 (4 mine + 1 site nav), p opens/closes=28/28 balanced, all 4 article imgs have alt (the 2 missing-alt detected by audit are theme avatar images, not article content)
+- **state covered_slugs:** now 500 entries (n=499)
+- **state covered_tool_ids:** 20 entries
+- **state:** color-code-validator-field-guide-when-the-comma-finally-matters-2026-08-17
