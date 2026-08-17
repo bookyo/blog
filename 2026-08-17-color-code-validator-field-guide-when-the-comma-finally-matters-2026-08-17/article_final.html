@@ -1,30 +1,41 @@
-<figure class="article-poster"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/jarvis-poster-color-code-validator-field-guide-when-the-comma-finally-matters-2026-08-17.png" alt="" /></figure>
+<figure class="article-poster"><img decoding="async" src="POSTER_URL" alt="Color Code Validator field guide cover - six CSS color formats" /></figure>
 <p><strong>Every CSS color token starts as a string the parser must recognise.</strong> One stray space, a missing alpha comma, or a wrong bracket style turns a clean stylesheet into an unresolved identifier that breaks an entire component. A reliable color-code validator catches the typo before it reaches the browser.</p>
 <p>The <a href="https://elysiatools.com/en/tools/color-code-validator">Color Code Validator</a> on Elysia Tools checks the six formats that show up in modern CSS — Hex, RGB, RGBA, HSL, HSLA, plus the named-color shortcut — and reports whether each string parses cleanly, and if not, exactly which rule it failed. This guide walks through what the validator actually checks, why each rule matters, and where the parser silently accepts garbage that will still break your build.</p>
 <h2>What "valid" means for a CSS color</h2>
 <p>A color string is only valid when a browser's CSS parser can turn it into a concrete color value without throwing. CSS Color Module Level 4 defines the grammar, and the rule is strict: a single misplaced character makes the entire declaration invalid. The browser does not "fall back" — it discards the property. So <code>#fff</code> and <code>#FFF</code> and <code>#ffffff</code> all work, but <code>#ffff</code> (4-digit hex) is rejected, and <code>rgb(255, 0, 0,)</code> with a trailing comma is rejected even though it looks almost right.</p>
 <p>The Color Code Validator checks every documented syntactic form against a deterministic grammar and tells you which form matched (or why none did). You can paste any candidate token and immediately know whether the browser will accept it.</p>
 <h2>The six formats the validator recognises</h2>
-<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/jarvis-card1-color-code-validator-field-guide-when-the-comma-finally-matters-2026-08-17.png" alt="" loading="lazy" /></figure>
+<figure class="highlight-card"><img decoding="async" src="CARD1_URL" alt="Color Code Validator highlight card 1" loading="lazy" /></figure>
 <p>| Format | Example | Where it shows up | |--------|---------|-------------------| | Hex (3-digit) | <code>#0f8</code> | Legacy shorthand, design tokens | | Hex (6-digit) | <code>#00ffcc</code> | Standard web color literal | | RGB | <code>rgb(0, 255, 128)</code> | Programmatic color generation | | RGBA | <code>rgba(255, 0, 0, 0.5)</code> | Transparency overlays | | HSL | <code>hsl(120, 100%, 50%)</code> | Design-system palettes | | HSLA | <code>hsla(240, 100%, 50%, 0.75)</code> | Theming with alpha |</p>
 <p>Each format has a slightly different grammar. Hex tokens are tightest — exactly 3 or 6 hex digits after the <code>#</code>, nothing else. RGB and HSL allow whitespace variations (commits or no commits between values, depending on syntax level). RGBA and HSLA add an alpha channel that can be expressed as a number, a percentage, or omitted in the modern <code>rgb(255 0 0 / 50%)</code> slash form.</p>
 <p>The validator parses all six families and reports which matched.</p>
 <h2>Hex: the most common trap</h2>
-<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/jarvis-card2-color-code-validator-field-guide-when-the-comma-finally-matters-2026-08-17.png" alt="" loading="lazy" /></figure>
+<figure class="highlight-card"><img decoding="async" src="CARD2_URL" alt="Color Code Validator highlight card 2" loading="lazy" /></figure>
 <p>Hex looks forgiving because every digit is a number, but the rule is exact:</p>
-<p>* <code>#</code> followed by exactly 3 or 6 characters from <code>[0-9a-fA-F]</code> * No spaces, no comments, no alpha unless using the 4/8-digit extension * Shorthand <code>#0f8</code> expands to <code>#00ff88</code>, not <code>#000ff8</code></p>
+<ul>
+<li><code>#</code> followed by exactly 3 or 6 characters from <code>[0-9a-fA-F]</code></li>
+<li>No spaces, no comments, no alpha unless using the 4/8-digit extension</li>
+<li>Shorthand <code>#0f8</code> expands to <code>#00ff88</code>, not <code>#000ff8</code></li>
+</ul>
 <p><code>#GGG</code> fails because <code>G</code> is not hex. <code>#1234567</code> fails because it has 7 digits. <code>#1234567F</code> works only if your parser accepts 8-digit hex (CSS Color Module Level 4). The validator flags each violation with a position pointer so you can spot the typo immediately. Try <code>#00FFCC</code> and <code>#00ffcc</code> — both should pass; <code>00ffcc</code> without the <code>#</code> should fail. Try <code>#GG0000</code> to see how the parser rejects invalid characters rather than silently substituting.</p>
 <p>When you're designing tokens, the validator doubles as a linter for the <code>.scss</code> or <code>.css</code> source — paste each token before commit to catch the kind of typo that survives every linter until runtime.</p>
 <h2>RGB and RGBA: the whitespace grammar</h2>
 <p>RGB functional notation accepts two syntax levels:</p>
-<p>* Legacy: <code>rgb(255, 0, 0)</code> with commas * Modern: <code>rgb(255 0 0)</code> with single spaces, slash for alpha <code>rgb(255 0 0 / 0.5)</code></p>
+<ul>
+<li><strong>Legacy</strong>: <code>rgb(255, 0, 0)</code> with commas</li>
+<li><strong>Modern</strong>: <code>rgb(255 0 0)</code> with single spaces, slash for alpha <code>rgb(255 0 0 / 0.5)</code></li>
+</ul>
 <p>The comma form is forgiving about whitespace but strict about the commas themselves. <code>rgb(255,0,0)</code> (no space) is accepted; <code>rgb(255 0 0,)</code> (commas in modern syntax) is rejected; <code>rgb(255, 0, 0,)</code> (trailing comma) is rejected.</p>
 <p>RGBA adds the alpha channel — either a fourth comma-separated value in legacy syntax (<code>rgba(255, 0, 0, 0.5)</code>) or a slash-separated value in modern syntax (<code>rgb(255 0 0 / 0.5)</code>). The validator accepts both forms and treats them as equivalent.</p>
 <p>A common trap is mixing the two: <code>rgb(255 0 0, 0.5)</code> is rejected. The validator reports the exact position of the unexpected comma.</p>
 <h2>HSL and HSLA: the design-system sweet spot</h2>
-<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/jarvis-card3-color-code-validator-field-guide-when-the-comma-finally-matters-2026-08-17.png" alt="" loading="lazy" /></figure>
+<figure class="highlight-card"><img decoding="async" src="CARD3_URL" alt="Color Code Validator highlight card 3" loading="lazy" /></figure>
 <p>HSL is popular in design systems because it makes hue rotation and lightness adjustment trivial. The grammar is the same shape as RGB:</p>
-<p>* Legacy: <code>hsl(120, 100%, 50%)</code> with commas * Modern: <code>hsl(120 100% 50%)</code> with single spaces * Alpha: <code>hsla(120, 100%, 50%, 0.5)</code> or <code>hsl(120 100% 50% / 0.5)</code></p>
+<ul>
+<li><strong>Legacy</strong>: <code>hsl(120, 100%, 50%)</code> with commas</li>
+<li><strong>Modern</strong>: <code>hsl(120 100% 50%)</code> with single spaces</li>
+<li><strong>Alpha</strong>: <code>hsla(120, 100%, 50%, 0.5)</code> or <code>hsl(120 100% 50% / 0.5)</code></li>
+</ul>
 <p>Hue is <code>0–360</code> (with wrapping allowed — <code>hsl(720, ...)</code> is equivalent to <code>hsl(360, ...)</code>). Saturation and lightness are percentages <code>0%–100%</code>. The validator clamps hue to its canonical range and reports wraparound if you used a value outside it.</p>
 <p>A subtle trap: <code>hsl(120, 100%, 50)</code> without the <code>%</code> on lightness fails. <code>hsl(120, 100, 50%)</code> without <code>%</code> on saturation fails. The validator catches both.</p>
 <p>Try <code>hsl(0, 100%, 50%)</code> (red), <code>hsl(120, 100%, 50%)</code> (green), <code>hsl(240, 100%, 50%)</code> (blue) — all valid. Try <code>hsl(120, 100, 50%)</code> — invalid. Try <code>hsl(370, 100%, 50%)</code> — wraps to 10.</p>
@@ -34,7 +45,11 @@
 <p>For new code, prefer hex or <code>hsl()</code> — they're easier to copy precisely and the validator can check them programmatically. Named colors are best reserved for human-readable design tokens where readability matters more than bulk generation.</p>
 <h2>Where validation matters most</h2>
 <p>Three places where bad color strings hurt the most:</p>
-<p>* <strong>Design tokens</strong> — a single malformed token breaks every component that uses the variable. Validate at token-write time, not at component-render time. * <strong>User-generated content</strong> — a theme builder that lets users input color strings needs server-side validation. Without it, malicious or accidental input injects malformed CSS that browsers silently discard. * <strong>Email templates</strong> — many email clients are stricter than browsers and reject some forms that browsers accept. Validate twice: once for browser CSS, once for email clients.</p>
+<ul>
+<li><strong>Design tokens</strong> — a single malformed token breaks every component that uses the variable. Validate at token-write time, not at component-render time.</li>
+<li><strong>User-generated content</strong> — a theme builder that lets users input color strings needs server-side validation. Without it, malicious or accidental input injects malformed CSS that browsers silently discard.</li>
+<li><strong>Email templates</strong> — many email clients are stricter than browsers and reject some forms that browsers accept. Validate twice: once for browser CSS, once for email clients.</li>
+</ul>
 <p>For the first case, run the validator over your token file at build time. For the second, gate user input through the validator before persisting. For the third, the validator's structured output lets you branch on the matched format family and apply email-specific transforms.</p>
 <p>The validator returns a structured verdict for each input. For a valid color, you get the original string, the matched format family, and the normalised form (the value the browser will actually compute). For an invalid color, you get the character offset of the first violation and the rule that failed. That structure makes the validator usable in unit tests: snapshot every color token in your design system and assert each one parses. If a designer adds a token that doesn't validate, the test fails at CI time, not in the user's browser.</p>
 <p>The validator is a syntactic checker, not a perceptual one. A token that parses correctly might still produce a color invisible against the surrounding design (e.g. <code>#ffffff</code> text on a <code>#fefefe</code> background). Visual contrast is a separate problem with its own validators. The validator also does not check semantic meaning. <code>hsl(120, 100%, 50%)</code> is valid green; the validator reports success whether you intended green or not. For design-system work, pair the validator with a contrast checker and a palette generator.</p>
