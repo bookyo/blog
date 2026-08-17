@@ -2176,3 +2176,21 @@
 - post-PATCH audit_post_content: clean (0 findings)
 - DOM check: h1=1 (theme only), h2=9 (8 body + 1 theme "Post navigation"), article-poster=1, highlight-card=3, code=90 spans, 0 paragraphs with literal `<code>` text, all 4 article imgs have alt (LiteSpeed lazy-load SVG placeholder detected via naturalWidth), 11 elysia anchors all 200 OK (3 unique tools + 1 root)
 - state covered_slugs: now 501 entries (n=500)
+
+## WP 6116 — ICS Calendar Recurrence Rule Expander (2026-08-17)
+
+- **Post ID**: 6116
+- **date_gmt**: 2026-08-17T12:36:35
+- **Title**: ICS Recurrence Rule Expander Field Guide: When COUNT=6 Is Three Weeks, Not Six
+- **URL**: https://blog.flowrust.com/2026/08/17/ics-recurrence-rule-expander-field-guide-when-count-6-is-three-weeks-not-six-2026-08-17/
+- **Tool**: ICS Calendar Recurrence Rule Expander (`ics-calendar-recurrence-rule-expander`, Date & Time)
+- **Assets**: poster 6112, card1 6113, card2 6114, card3 6115 (all uploaded first attempt, no SSL EOF)
+- **Structure**: 0 body H1, 8 body H2, 1 article-poster, 3 highlight-card, 0 pre, 36 code spans, 1416 words
+- **Anchors**: 7 elysiatools (4 tools + 2 samples + 1 tools root), all HTTP 200 AND manifest-verified
+- **Result**: 1-POST 0-PATCH clean. audit_post_content 0 findings pre- and post-POST. featured_media=0.
+- **Pre-POST defects caught by vision_analyze (2)**: card3 count strings overflowed tile width even after
+  the 84pt/64pt auto-shrink chain bottomed out (fix: shorten counts to land in the 84/64pt band);
+  card1 title said "Six" while rendering 5 tiles (fix: title + article copy aligned to five parts).
+- **Pre-POST defect caught by width pre-measure (1)**: card_audit stamp
+  `FREQ=WEEKLY;BYDAY=MO,WE;COUNT=6` measured 732px vs 660px col budget -> shortened to `BYDAY=MO,WE;COUNT=6` (451px).
+- **Picker**: v4 content-based triggered SPARSE-CATEGORY FALLBACK (1 diverse pick); one-off wider driver used.
