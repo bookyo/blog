@@ -2223,3 +2223,21 @@
 - **Audit**: 0 findings via `wp_post_audit.audit_post_content`; 1 `<code>` span; all 4 image URLs HTTP 200; all 4 elysiatools anchors HTTP 200
 - **Pre-POST defect caught by `vision_analyze` (1)**: poster subtitle first-pass overflowed left edge of 1080-wide canvas (text rendered as `ld guide to long-tail keyword generation...`) — confirmed WP 5683/6109 lesson. Pre-measured `A field guide to long-tail keyword generation that actually triages 100 variants in one pass` at 1194px (154px over); shortened to `Field guide to triaging 100 long-tail keyword variants in one pass` (864px, fits).
 - **Picker**: v4 content-based triggered SPARSE-CATEGORY FALLBACK (only 1 diverse pick — cursive-text); one-off wider picker used with `len(desc)>=60` threshold and category-rep-bonus scoring; top pick `ai-long-tail-keyword-generator` chosen (under-represented AI Tools category, 522 covered slug IDs).
+
+---
+
+## 2026-08-18 ~10:55 UTC — WordPress Post 6135 (cursive-text)
+
+- **Tool ID**: cursive-text (manifest member; category: Text Processing)
+- **Date GMT**: 2026-08-18T10:55:37
+- **Featured Image**: poster (WP ID 6131) — `featured_media: 0` in payload (COSESAI theme hero-duplication defense)
+- **Highlight Cards**: 3 (6132 card1, 6133 card2, 6134 card3)
+- **Word count**: ~1340 (close-first structure: lead phrase `<strong>Cursive Unicode glyphs render the elegant hand-written look without a font file</strong>`)
+- **8 body H2 + 1 theme nav = 9 total H2**; DOM verified 1 H1 (theme-only), 9 H2, 3 highlight-card figures, 1 article-poster figure
+- **Elysia anchors** (11 elysia links, all HTTP 200): /en/tools/cursive-text (×2), /en/tools/fancy-text-generator (×3), /en/tools/bubble-text (×2), /en/tools/bold-italic-text (×2), /en/tools/underline-text (×1), /en/tools (×1)
+- **Audit**: 0 findings via `wp_post_audit.audit_post_content` after fixes
+- **Pre-POST defects caught by `vision_analyze` (2)**: 
+  1. Card 2 bottom takeaway clipped at canvas bottom edge — `col_y + col_h + 40` placed text at y=880 with F_MED=30pt extending past y=900. Reduced `col_h` 640→600, `row_h` 100→88.
+  2. Card 3 tile 1 body description contained U+210B (ℋ) glyph rendered as tofu box — Helvetica lacks Script-Capital range. Rewrote prose to "leading char is the script H" (no Unicode).
+- **POST PATCH round-trip**: 1 PATCH — converted "1. 2. 3." merged numbered paragraph to `<ol><li>...</li></ol>`, and converted 3-item "* `*` * bullet" pattern (which md_to_html's italic regex chewed up) to explicit `<ul><li>...</li></ul>` with backtick `<code>` spans.
+- **Picker**: v4 content-based triggered SPARSE-CATEGORY FALLBACK (only 1 diverse pick — cursive-text); no wider picker needed — cursive-text was the natural choice with len(desc) 200 and clean Text Processing slot.
