@@ -2245,3 +2245,18 @@
 ## 2026-08-18T15:05:21 — us-drivers-license-validator-field-guide-when-state-grammars-do-the-work-that-regex-cannot-2026-08-18 (WP 6149)
 - Title: US Driver's License Validator Field Guide: When State Grammars Do the Work That Regex Cannot
 - URL: https://blog.flowrust.com/2026/08/18/us-drivers-license-validator-field-guide-when-state-grammars-do-the-work-that-regex-cannot-2026-08-18/
+## 2026-08-19 ~19:14 UTC — WP 6156 (org-chart-maker)
+
+- **Title**: Org Chart Maker Field Guide: When a JSON Hierarchy Beats a Hand-Drawn Box
+- **Slug**: org-chart-maker-field-guide-when-json-hierarchy-beats-hand-drawn-box-2026-08-19
+- **URL**: https://blog.flowrust.com/2026/08/19/org-chart-maker-field-guide-when-json-hierarchy-beats-hand-drawn-box-2026-08-19/
+- **Tool**: org-chart-maker (Org Chart Maker) — Render hierarchical JSON into a vertical organizational chart
+- **Category**: Data Visualization
+- **date_gmt**: 2026-08-18T19:14:43 (Wed Aug 19 03:14:43 CST)
+- **featured_media**: 0 (COSESAI hero duplication avoidance)
+- **Assets**: poster.png (1080x800) + card1-3.png (1600x900 each)
+- **Elysia links**: 6 (5 unique) — all /en/tools/ paths; data-visualization is a real category root
+- **Audit**: 0 findings on audit_post_content; 0 issues from browser_console DOM check (1 H1, 9 H2 = 8 body + 1 theme, 3 highlight cards, 1 article poster, 0 empty code, 0 nested p-in-h2)
+- **Visual QA**: All 4 PNGs passed vision_analyze (no overflow, no overlap, no tofu)
+- **Outcome**: 1-POST 0-PATCH clean run
+
