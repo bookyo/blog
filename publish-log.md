@@ -2241,3 +2241,7 @@
   2. Card 3 tile 1 body description contained U+210B (ℋ) glyph rendered as tofu box — Helvetica lacks Script-Capital range. Rewrote prose to "leading char is the script H" (no Unicode).
 - **POST PATCH round-trip**: 1 PATCH — converted "1. 2. 3." merged numbered paragraph to `<ol><li>...</li></ol>`, and converted 3-item "* `*` * bullet" pattern (which md_to_html's italic regex chewed up) to explicit `<ul><li>...</li></ul>` with backtick `<code>` spans.
 - **Picker**: v4 content-based triggered SPARSE-CATEGORY FALLBACK (only 1 diverse pick — cursive-text); no wider picker needed — cursive-text was the natural choice with len(desc) 200 and clean Text Processing slot.
+
+## 2026-08-18T15:05:21 — us-drivers-license-validator-field-guide-when-state-grammars-do-the-work-that-regex-cannot-2026-08-18 (WP 6149)
+- Title: US Driver's License Validator Field Guide: When State Grammars Do the Work That Regex Cannot
+- URL: https://blog.flowrust.com/2026/08/18/us-drivers-license-validator-field-guide-when-state-grammars-do-the-work-that-regex-cannot-2026-08-18/
