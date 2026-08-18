@@ -2194,3 +2194,18 @@
 - **Pre-POST defect caught by width pre-measure (1)**: card_audit stamp
   `FREQ=WEEKLY;BYDAY=MO,WE;COUNT=6` measured 732px vs 660px col budget -> shortened to `BYDAY=MO,WE;COUNT=6` (451px).
 - **Picker**: v4 content-based triggered SPARSE-CATEGORY FALLBACK (1 diverse pick); one-off wider driver used.
+
+## 2026-08-18 02:37 UTC — Unicode Escape Converter: A Field Guide to Code Point Escapes
+- **WP Post ID**: 6122
+- **WP URL**: https://blog.flowrust.com/2026/08/18/unicode-escape-converter-field-guide/
+- **Tool ID**: unicode-escape-converter (manifest member; category: Format Conversion)
+- **Date GMT**: 2026-08-18T02:37:19
+- **Featured Image**: poster (WP ID 6118) — `featured_media: 0` in payload (COSESAI theme hero-duplication defense)
+- **Highlight Cards**: 3 (6119 card1, 6120 card2, 6121 card3)
+- **Word count**: ~1240 (close-first structure: lead phrase `<strong>A Unicode escape sequence isn't a string; it's a code point with a backslash costume.</strong>`)
+- **8 body H2 + 1 theme nav = 9 total H2**; DOM verified 1 H1 (theme-only), 9 H2, 3 highlight-card figures, 1 article-poster figure
+- **Elysia anchors** (5 elysia links, all HTTP 200): /en/tools/unicode-escape-converter (×4), /en/tools root (×1)
+- **Audit**: 0 findings via `wp_post_audit.audit_post_content`; 86 `<code>` spans with all 34 literal backslashes pre-encoded as `&#92;` (KSES-strip defense from WP 5717)
+- **Pre-POST defect caught by `vision_analyze` (1)**: card3 first-pass with `render_card_4tile` 2x2 had "65,536" / "1,048,576" count text overflowing horizontally and overlapping body description text — refactored to `render_card_4tile_compact` 1-row variant with multi-word counts ("65,536 slots", "1M slots", "composed", "decomposed") which triggered the auto-shrink chain and cleared all overflow.
+- **Issue encountered during publish (1)**: first POST missed the 3 highlight-card figures — initial regex `(<h2>...</h2>\s*</p>.*?</p>)` expected a closed `</p>` immediately after the H2, but the article's first paragraph was actually `<h2>...</h2>\n<p>...</p>`. PATCH via `POST /wp/v2/posts/<id>` with corrected regex `(<h2>...</h2>\s*\n?\s*<p>.*?</p>)` inserted all 3 cards successfully. No defect visible in published post.
+- **Picker**: v3 thematic-keyword scorer (3 keywords hit: `escape`, `unicode`, `converter`); no SPARSE-CATEGORY FALLBACK needed.
