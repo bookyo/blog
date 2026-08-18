@@ -2209,3 +2209,17 @@
 - **Pre-POST defect caught by `vision_analyze` (1)**: card3 first-pass with `render_card_4tile` 2x2 had "65,536" / "1,048,576" count text overflowing horizontally and overlapping body description text — refactored to `render_card_4tile_compact` 1-row variant with multi-word counts ("65,536 slots", "1M slots", "composed", "decomposed") which triggered the auto-shrink chain and cleared all overflow.
 - **Issue encountered during publish (1)**: first POST missed the 3 highlight-card figures — initial regex `(<h2>...</h2>\s*</p>.*?</p>)` expected a closed `</p>` immediately after the H2, but the article's first paragraph was actually `<h2>...</h2>\n<p>...</p>`. PATCH via `POST /wp/v2/posts/<id>` with corrected regex `(<h2>...</h2>\s*\n?\s*<p>.*?</p>)` inserted all 3 cards successfully. No defect visible in published post.
 - **Picker**: v3 thematic-keyword scorer (3 keywords hit: `escape`, `unicode`, `converter`); no SPARSE-CATEGORY FALLBACK needed.
+
+## 2026-08-18 06:42 UTC — AI Long-tail Keyword Generator: When the Head Term Is Already Owned
+- **WP Post ID**: 6129
+- **WP URL**: https://blog.flowrust.com/2026/08/18/ai-long-tail-keyword-generator-field-guide-when-the-head-term-is-already-owned-2026-08-18/
+- **Tool ID**: ai-long-tail-keyword-generator (manifest member; category: AI Tools)
+- **Date GMT**: 2026-08-18T06:42:03
+- **Featured Image**: poster (WP ID 6125) — `featured_media: 0` in payload (COSESAI theme hero-duplication defense)
+- **Highlight Cards**: 3 (6126 card1, 6127 card2, 6128 card3)
+- **Word count**: ~1722 (close-first structure: lead phrase `<strong>Long-tail keywords are the only ones worth chasing when the head terms are already owned.</strong>`)
+- **8 body H2 + 1 theme nav = 9 total H2**; DOM verified 1 H1 (theme-only), 9 H2, 3 highlight-card figures, 1 article-poster figure
+- **Elysia anchors** (4 elysia links, all HTTP 200): /en/tools/ai-long-tail-keyword-generator (×2), /en/samples (×1), /en/tools (×1)
+- **Audit**: 0 findings via `wp_post_audit.audit_post_content`; 1 `<code>` span; all 4 image URLs HTTP 200; all 4 elysiatools anchors HTTP 200
+- **Pre-POST defect caught by `vision_analyze` (1)**: poster subtitle first-pass overflowed left edge of 1080-wide canvas (text rendered as `ld guide to long-tail keyword generation...`) — confirmed WP 5683/6109 lesson. Pre-measured `A field guide to long-tail keyword generation that actually triages 100 variants in one pass` at 1194px (154px over); shortened to `Field guide to triaging 100 long-tail keyword variants in one pass` (864px, fits).
+- **Picker**: v4 content-based triggered SPARSE-CATEGORY FALLBACK (only 1 diverse pick — cursive-text); one-off wider picker used with `len(desc)>=60` threshold and category-rep-bonus scoring; top pick `ai-long-tail-keyword-generator` chosen (under-represented AI Tools category, 522 covered slug IDs).
