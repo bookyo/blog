@@ -2260,3 +2260,38 @@
 - **Visual QA**: All 4 PNGs passed vision_analyze (no overflow, no overlap, no tofu)
 - **Outcome**: 1-POST 0-PATCH clean run
 
+
+## 2026-08-19 — WP 6163 (Capacitor Series / Parallel / Reactance Calculator)
+
+- **Tool**: capacitor-calculator (Capacitor Series / Parallel / Reactance Calculator) — Math & Numbers
+- **date_gmt**: 2026-08-19T03:24:16 (Wed Aug 19 11:24:16 CST)
+- **featured_media**: 0 (COSESAI hero duplication avoidance)
+- **Assets**: poster.png (1080x800) + card1-3.png (1600x900 each)
+- **Elysia links**: 5 — all /en/tools/ paths (capacitor-calculator x3, math-numbers cat-root, /en/tools root)
+- **Audit**: 0 findings on audit_post_content
+- **DOM check**: 1 H1 (theme), 9 H2 (8 body + 1 theme "Post navigation"), 3 highlight cards, 1 article poster, 0 empty code, 0 nested p-in-h2
+- **Visual QA**: All 4 PNGs passed vision_analyze (no clipping, no overlap, no tofu, takeaway band clears tile borders)
+- **Picker**: Manual sparse-category fallback (v4 returned 1 diverse pick pangram-checker); picked capacitor-calculator from Math & Numbers
+- **Outcome**: 1-POST + 2-PATCH (inline star bullets triggered WP wpautop nested-p strip; duplicate p removed on second PATCH)
+- **Note**: 3 skills missing (article-writer, article-poster-creator, article-highlight-cards) — fell back to umbrella templates per WP 6135/6156 fallback recipe
+- **Post**: WP 6171 — `csv-malformed-row-surgeon-field-guide-when-per-row-diff-beats-a-global-clean-2026-08-19`
+- **Title**: CSV Malformed Row Surgeon Field Guide: When Per-Row Diff Beats A Global Clean
+- **date_gmt**: 2026-08-19T07:42:00 (Wed Aug 19 15:42:00 CST)
+- **featured_media**: 0 (COSESAI hero duplication avoidance)
+- **Tool name**: CSV Malformed Row Surgeon (Development category)
+- **Link**: https://blog.flowrust.com/2026/08/19/csv-malformed-row-surgeon-field-guide-when-per-row-diff-beats-a-global-clean-2026-08-19/
+- **Assets**: poster.png (1080x800) + card1-3.png (1600x900 each) — IDs 6167/6168/6169/6170
+- **Elysia links (9 total)**: 7 tool-links + 1 sample-link + 1 category-root; all HTTP 200 + tool-manifest membership verified:
+  - /en/tools/csv-malformed-row-surgeon (target tool, 3 occurrences)
+  - /en/tools/csv-validator (2 occurrences)
+  - /en/samples/csv-samples (2 occurrences)
+  - /en/tools/csv-deduplicate-rows
+  - /en/tools (cat-root)
+- **Audit**: 0 findings on audit_post_content
+- **DOM check** (live): 1 H1 (theme), 9 H2 (8 body + 1 theme "Post navigation"), 3 highlight cards, 1 article poster, 0 empty code, 0 nested p-in-h2, 6 code spans contain literal backslash
+- **Visual QA**: All 4 PNGs passed vision_analyze
+  - poster subtitle pre-measure caught 1069px overflow → shrank to 932px (WP 5683/6109/6129/6149 4th confirmation)
+  - card3 first-pass used render_card_4tile (canonical 2x2) but `Surgeon`/`Validator`/`Deduplicator`/`Consumer` multi-word count overlapped body → swapped to render_card_4tile_compact 1-row (WP 5755/6054/6068/6122/6149/6156 decision tree 7th confirmation)
+- **Picker**: Picked csv-malformed-row-surgeon (theme-score=24, top of scoring — strong csv-repair clustering)
+- **Outcome**: 1-POST + 1-PATCH (KSES `\` strip on POST restored via canonical PATCH-round helper per WP 5717/5822/6060/6149 5th confirmation)
+- **Note**: 3 skills missing (article-writer, article-poster-creator, article-highlight-cards) — fell back to umbrella templates per WP 6135/6156 fallback recipe
