@@ -2295,3 +2295,28 @@
 - **Picker**: Picked csv-malformed-row-surgeon (theme-score=24, top of scoring — strong csv-repair clustering)
 - **Outcome**: 1-POST + 1-PATCH (KSES `\` strip on POST restored via canonical PATCH-round helper per WP 5717/5822/6060/6149 5th confirmation)
 - **Note**: 3 skills missing (article-writer, article-poster-creator, article-highlight-cards) — fell back to umbrella templates per WP 6135/6156 fallback recipe
+
+## WP 6178 — Small Caps Converter Field Guide (2026-08-19 ~11:46 UTC)
+
+- **Tool**: small-caps-converter (Text Processing / Unicode typography)
+- **Title**: Small Caps Converter: A Field Guide to Unicode Phonetic Extensions
+- **Slug**: small-caps-converter-field-guide-when-unicode-replaces-bold-2026-08-19
+- **URL**: https://blog.flowrust.com/2026/08/19/small-caps-converter-field-guide-when-unicode-replaces-bold-2026-08-19/
+- **date_gmt**: 2026-08-19T11:46:00
+- **Words**: 1635, **8 H2**, 0 body H1
+- **Elysia anchors** (6, all tools/):
+  - /en/tools/small-caps-converter (3 occurrences)
+  - /en/tools/bold-italic-text
+  - /en/tools/underline-text
+  - /en/tools/unicode-escape-converter
+  - /en/tools (cat-root)
+- **Audit**: 0 findings on audit_post_content (post-PATCH)
+- **DOM check** (live): 1 H1 (theme), 9 H2 (8 body + 1 theme "Post navigation"), 3 highlight cards, 1 article poster, 0 empty code, 0 nested p-in-h2, 1 code span contains literal backslash (after PATCH restore)
+- **Visual QA** (vision_analyze): All 4 PNGs caught defects on first pass
+  - poster subtitle clipped at left edge — rewrote to 33-char "Field guide to Unicode small caps" (WP 5683/6109/6129/6149 5th confirmation)
+  - card1 26 small-cap glyphs (ᴀʙᴄᴅ...) rendered as tofu in Helvetica — replaced with descriptive text + codepoint labels (WP 6135 tofu-family)
+  - poster callout `ʜᴇʟʟᴏ` rendered with tofu ʜ/ᴡ/ʀ — replaced with ASCII HELLO WORLD -> HELLO WORLD
+  - card2 + card3: clean first pass
+- **Picker**: Sparse-category fallback (1 diverse pick from canonical v4); one-off driver with theme-word scoring per WP 6060/6149/6156/6163 recipe; picked small-caps-converter (Text Processing, desc=256, theme_score=2)
+- **Outcome**: 1-POST + 1-PATCH (KSES `\` strip on POST — 6th confirmation WP 5717/5822/6060/6149/6171 -> 6178)
+- **Note**: 3 skills missing (article-writer, article-poster-creator, article-highlight-cards) — fell back to umbrella templates per WP 6135/6156/6171 fallback recipe
