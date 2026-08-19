@@ -2320,3 +2320,17 @@
 - **Picker**: Sparse-category fallback (1 diverse pick from canonical v4); one-off driver with theme-word scoring per WP 6060/6149/6156/6163 recipe; picked small-caps-converter (Text Processing, desc=256, theme_score=2)
 - **Outcome**: 1-POST + 1-PATCH (KSES `\` strip on POST — 6th confirmation WP 5717/5822/6060/6149/6171 -> 6178)
 - **Note**: 3 skills missing (article-writer, article-poster-creator, article-highlight-cards) — fell back to umbrella templates per WP 6135/6156/6171 fallback recipe
+
+- **Post**: WP 6185 — PDF to Image Converter Field Guide: When the Output Folder Becomes the Source of Truth
+- **Date GMT**: 2026-08-19T16:06:12
+- **URL**: https://blog.flowrust.com/2026/08/20/pdf-to-image-converter-field-guide-when-the-output-folder-becomes-the-source-of-truth-2026-08-19/
+- **Tool**: pdf-to-image (id="pdf-to-image", name="PDF to Image Converter", category="Document Tools")
+- **Tool URL**: https://elysiatools.com/en/tools/pdf-to-image
+- **Picker**: Sparse-category fallback (WP 6060/6149/6156/6163/6178/6185 6th consecutive recurring pattern); one-off driver with theme-word scoring; 1375 eligible candidates; picked pdf-to-image (theme=3, score=130.0)
+- **Audit**: 0 findings on audit_post_content
+- **DOM check** (live): 1 H1 (theme "entry-title"), 9 H2 (8 body + 1 theme "Post navigation"), 3 highlight cards, 1 article poster, 4 elysia anchors (3 tool page + 1 root), 0 empty code spans, 0 nested p-in-h2, 2 inline `<code>` spans
+- **Visual QA** (vision_analyze): Card 3 first-pass had 150pt counts (100/90/80/100) overlapping body description text — switched to render_card_4tile_compact 1-row variant (WP 5755/6068/6122/6149/6156/6171 8th confirmation). Poster / Card 1 / Card 2 clean first-pass.
+- **Elysia link audit**: 4 anchors, all HTTP 200 (3× /en/tools/pdf-to-image, 1× /en/tools root)
+- **Image audit**: 4 PNGs, all HTTP 200; poster immediate load (naturalWidth=1080), cards lazy-loaded via LiteSpeed (naturalWidth=1600 after scroll, data-lazy-src intact)
+- **Outcome**: 1-POST 0-PATCH clean (no KSES backslash strip on this article — no regex backslashes in `<code>`)
+- **Note**: 3 skills missing again — fell back to umbrella templates per WP 6135/6156/6171 fallback recipe. PIL poster subtitle pre-measure pass (WP 5683/6109/6129/6149/6171 6th confirmation pattern; subtitle 693px ≤ W-40=1040).
