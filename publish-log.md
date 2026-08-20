@@ -2359,3 +2359,18 @@
 - **Pitfalls avoided:** PIL poster subtitle pre-measure (768 ≤ 1040), KSES backslash strip (pre-encoded `&#92;` for `^profile&#92;d*&#92;.`), inline `<code>` kept inside backticks only (WP 6135 trap avoided), all UL/LI as explicit HTML (WP 6135/6185), featured_media=0 (WP 5628), sparse-category fallback (WP 6060/6149/6156/6163/6178/6185).
 - **Skill drift notice:** `article-writer` umbrella present; `article-poster-creator`, `article-highlight-cards` missing — used umbrella's PIL templates per WP 6135/6156/6163/6171/6178/6185 7-of-7 fallback pattern.
 - **Author:** jarvis <jarvis@flowrust.com>
+## WP 6197 2026-08-20 — Data Crosstab Generator Field Guide
+
+- **Post ID:** 6197
+- **Slug:** data-crosstab-generator-field-guide-when-the-pivot-table-is-doing-six-things-2026-08-20
+- **URL:** https://blog.flowrust.com/2026/08/21/data-crosstab-generator-field-guide-when-the-pivot-table-is-doing-six-things-2026-08-20/
+- **Date GMT:** 2026-08-20T17:07:32
+- **Tool:** data-crosstab-generator (Data Crosstab Generator)
+- **Category:** Data Processing
+- **Cards:** 4 (1 poster + 3 highlight cards)
+- **Elysia links:** 3 (data-crosstab-generator × 2, tools root × 1)
+- **Patches:** 1 (image URL fix — `https://blog.flowrust.com/wp-content/uploads/{poster,card1,card2,card3}-23.png` → `…/uploads/2026/08/{poster,card1,card2,card3}-23.png`)
+- **Audit:** clean (5/5, 0 findings)
+- **Sparse-category picker fallback:** 9th consecutive occurrence — `pick_tool_v4_content_based.py` returned only 1 diverse pick; one-off driver with theme-word scoring picked `data-crosstab-generator` (score=1215, theme=22, Data Processing)
+- **Skill availability:** 3 asset-generation skills missing (`article-writer`, `article-poster-creator`, `article-highlight-cards`); fell back to bundled umbrella templates
+- **New pitfall:** WordPress published URLs strip the `/uploads/2026/08/` date folder prefix when constructing img src from media id — PATCH required to add the prefix. Defense: read `source_url` from the upload response and use the full URL (not just filename) when building the published HTML.
