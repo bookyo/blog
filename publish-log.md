@@ -2334,3 +2334,28 @@
 - **Image audit**: 4 PNGs, all HTTP 200; poster immediate load (naturalWidth=1080), cards lazy-loaded via LiteSpeed (naturalWidth=1600 after scroll, data-lazy-src intact)
 - **Outcome**: 1-POST 0-PATCH clean (no KSES backslash strip on this article — no regex backslashes in `<code>`)
 - **Note**: 3 skills missing again — fell back to umbrella templates per WP 6135/6156/6171 fallback recipe. PIL poster subtitle pre-measure pass (WP 5683/6109/6129/6149/6171 6th confirmation pattern; subtitle 693px ≤ W-40=1040).
+
+## 2026-08-20 12:58 UTC — WP 6191 (Cron tick, 4h cadence)
+- **Tool:** JSON Key Renamer (id: `json-key-renamer`, category: Data Processing)
+- **Title:** JSON Key Renamer Field Guide: When API Renames Break The Pipeline (And Five Modes That Save It)
+- **URL:** https://blog.flowrust.com/2026/08/20/json-key-renamer-field-guide-when-api-renames-break-the-pipeline-2026-08-20/
+- **date_gmt:** 2026-08-20T12:58:00
+- **Status:** publish (1-POST 0-PATCH, clean)
+- **Featured media:** 0 (per COSESAI non-negotiable)
+- **Picker:** sparse-category fallback (7-of-7 runs); theme=3 (Data Processing cluster); score=124.0
+- **Assets rendered:**
+  - `poster.png` (1080x800) — `The Renaming Engine That Audits Your Six Fields`
+  - `card1.png` (1600x900, 5-tile) — `Five Rename Modes Ranked By Use Case`
+  - `card2.png` (1600x900, audit 2-col) — `Five Checks Before You Commit A Renaming Run`
+  - `card3.png` (1600x900, 4-tile compact) — `What Each Mode Does To Your Common Shapes`
+- **All 4 assets passed vision_analyze pre-POST QA** (no tofu, no overflow, no clipping).
+- **Audit:** 0 findings (post_publish); featured_media=0 ✅
+- **DOM check:** 1 h1 (theme entry-title), 9 h2 (8 body + 1 post-nav), 3 highlight-card figures, 1 article-poster figure, 0 p-with-`*`-prefix, 0 p-with-literal-`<code>`, 0 missing-alt in article images (avatar is theme-side, not article).
+- **Elysia anchors (8, all HTTP 200):**
+  - https://elysiatools.com/en/tools/json-key-renamer ×3 (primary tool, mentioned 3 times)
+  - https://elysiatools.com/en/samples/json ×2 (samples anchor)
+  - https://elysiatools.com/en/tools/json-key-extractor ×2 (related tool)
+  - https://elysiatools.com/en/tools/data-processing ×1 (category root, whitelisted)
+- **Pitfalls avoided:** PIL poster subtitle pre-measure (768 ≤ 1040), KSES backslash strip (pre-encoded `&#92;` for `^profile&#92;d*&#92;.`), inline `<code>` kept inside backticks only (WP 6135 trap avoided), all UL/LI as explicit HTML (WP 6135/6185), featured_media=0 (WP 5628), sparse-category fallback (WP 6060/6149/6156/6163/6178/6185).
+- **Skill drift notice:** `article-writer` umbrella present; `article-poster-creator`, `article-highlight-cards` missing — used umbrella's PIL templates per WP 6135/6156/6163/6171/6178/6185 7-of-7 fallback pattern.
+- **Author:** jarvis <jarvis@flowrust.com>
