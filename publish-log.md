@@ -2374,3 +2374,45 @@
 - **Sparse-category picker fallback:** 9th consecutive occurrence — `pick_tool_v4_content_based.py` returned only 1 diverse pick; one-off driver with theme-word scoring picked `data-crosstab-generator` (score=1215, theme=22, Data Processing)
 - **Skill availability:** 3 asset-generation skills missing (`article-writer`, `article-poster-creator`, `article-highlight-cards`); fell back to bundled umbrella templates
 - **New pitfall:** WordPress published URLs strip the `/uploads/2026/08/` date folder prefix when constructing img src from media id — PATCH required to add the prefix. Defense: read `source_url` from the upload response and use the full URL (not just filename) when building the published HTML.
+
+
+## WP 6206 2026-08-20 - JWK Generator & Parser Field Guide
+
+- **Post ID:** 6206
+- **Slug:** jwk-generator-field-guide-when-the-key-shape-holds-the-rotation-2026-08-20
+- **URL:** https://blog.flowrust.com/2026/08/21/jwk-generator-field-guide-when-the-key-shape-holds-the-rotation-2026-08-20/
+- **Date GMT:** 2026-08-20T21:19:04
+- **Tool:** jwk-generator (JWK Generator & Parser)
+- **Category:** Security
+- **Cards:** 4 (1 poster + 3 highlight cards) - 1-POST + 0-PATCH clean
+- **Elysia links:** 6 occurrences, 1 unique slug (jwk-generator x 5, tools root x 1)
+- **Word count:** 1137
+- **Audit:** clean (0 findings)
+- **DOM check:** 1 h1 (theme entry-title), 9 h2 (8 body + 1 post-nav), 3 highlight-card figures, 1 article-poster figure, 41 inline <code> (all non-empty), 0 nested <p> in <h2>
+- **Featured media:** 0 (COSESAI theme hero-duplication defense)
+- **Pitfalls avoided:** PIL poster subtitle pre-measure (949px <= 1040), PIL render_card_4tile_compact for short numeric counts (WP 5755/6054/6068/6122/6149/6156/6171 decision tree), PIL 6-row audit card with row_h=90 to fit 6 rows in 640px panel, vision_analyze pre-POST QA on all 4 assets (caught card 2 count overlap on first-pass render; refactored to compact variant), sparse-category picker fallback (10th consecutive occurrence), WP 6197 full source_url substitution (URLs include /2026/08/ prefix), inline <code> always via backticks (no literal <code> HTML inside <li> - WP 6135 trap avoided).
+- **Skill availability:** article-writer umbrella present; article-poster-creator, article-highlight-cards missing - used umbrella's bundled PIL templates per WP 6135/6156/6163/6171/6178/6185/6197 fallback pattern.
+- **Author:** jarvis <jarvis@flowrust.com>
+
+## WP 6212 — PDF Form Fill Batch Field Guide (2026-08-21)
+
+- **Title**: PDF Form Fill Batch — Field Guide: When One Template + One JSON Array Beats a Hundred Hand-Edits
+- **Slug**: `pdf-form-fill-batch-field-guide-when-one-template-one-json-array-beats-a-hundred-hand-edits`
+- **URL**: https://blog.flowrust.com/2026/08/21/pdf-form-fill-batch-field-guide-when-one-template-one-json-array-beats-a-hundred-hand-edits/
+- **date_gmt**: 2026-08-21T01:37:11
+- **Tool**: PDF Form Fill Batch (`pdf-form-fill-batch`, PDF Tools category)
+- **featured_media**: 0 ✓
+- **Assets**: poster-25.png + card1-25.png + card2-25.png + card3-25.png (all 200)
+- **Audit**: 1 false-positive (`POSSIBLE_BACKSLASH_STRIPPED` — no actual backslashes in source; regex matches `(s)` and `(P)` in `ZIP (separate files)` / `Merged (single PDF)` text)
+- **PATCH round 1**: H3→strong conversion (8→0)
+- **PATCH round 2**: rebuild from source MD with proper `<ul><li>` HTML for merged bullets (4 blocks → 4 lists)
+- **Theme**: COSESAI (theme hero avoided by `featured_media: 0`)
+- **Elysia anchors**: 10 unique (9 tool pages + 1 category root `/en/tools/pdf-tools`) — all HTTP 200
+- **PIL QA**: 4/4 assets passed `vision_analyze` (card 3 first-pass clipped at 1698px → shortened to 1280px, re-render clean)
+- **Final DOM**: h1=1 (theme), h2=9 (8 body + 1 nav), h3=0, ul=5 (4 body + 1 nav), li=18, highlight-cards=3, article-poster=1
+- **Pitfalls triggered**:
+  - PIL `render_card_4tile_compact` takeaway clip (WP 5683 family — pre-measure caught 1698px > 1560px, shortened → clean)
+  - `md_to_html` markdown bullet collapse (WP 5676/6135/6185 MERGED_BULLET_LIST family) — first POST had 4 merged `<p>`, PATCH'd via source rebuild with `<ul><li>` HTML
+  - Body H3 sub-headings (umbrella canonical: "use `<strong>` for sub-headings") — PATCH'd via round 1
+- **Skill drift**: 3 article-generation skills missing (`article-writer` present, `article-poster-creator`/`article-highlight-cards` absent) — fell back to bundled umbrella templates `pil_poster_and_cards_network_theme.py`, `render_card_4tile_compact.py`, `custom_pil_card_layouts.py` (per WP 6135/6156/6171/6185/6206 fallback recipe)
+- **Sparse-category picker fallback**: 11th consecutive run (WP 6060/6149/6156/6163/6178/6185/6197/6206 → 6212); picked `pdf-form-fill-batch` from `sparse_category_picker.py` (theme_score=3 on PDF batch workflows)

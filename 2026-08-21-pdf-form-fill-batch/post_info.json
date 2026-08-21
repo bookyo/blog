@@ -1,0 +1,26 @@
+{
+  "id": 6212,
+  "link": "https://blog.flowrust.com/2026/08/21/pdf-form-fill-batch-field-guide-when-one-template-one-json-array-beats-a-hundred-hand-edits/",
+  "slug": "pdf-form-fill-batch-field-guide-when-one-template-one-json-array-beats-a-hundred-hand-edits",
+  "title": "PDF Form Fill Batch \u2014 Field Guide: When One Template + One JSON Array Beats a Hundred Hand-Edits",
+  "date_gmt": "2026-08-21T01:37:11",
+  "assets": {
+    "poster": {
+      "id": 6208,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/08/poster-25.png"
+    },
+    "card1": {
+      "id": 6209,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/08/card1-25.png"
+    },
+    "card2": {
+      "id": 6210,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/08/card2-25.png"
+    },
+    "card3": {
+      "id": 6211,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/08/card3-25.png"
+    }
+  },
+  "covered_slug": "pdf-form-fill-batch"
+}
