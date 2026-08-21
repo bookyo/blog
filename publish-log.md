@@ -2416,3 +2416,28 @@
   - Body H3 sub-headings (umbrella canonical: "use `<strong>` for sub-headings") — PATCH'd via round 1
 - **Skill drift**: 3 article-generation skills missing (`article-writer` present, `article-poster-creator`/`article-highlight-cards` absent) — fell back to bundled umbrella templates `pil_poster_and_cards_network_theme.py`, `render_card_4tile_compact.py`, `custom_pil_card_layouts.py` (per WP 6135/6156/6171/6185/6206 fallback recipe)
 - **Sparse-category picker fallback**: 11th consecutive run (WP 6060/6149/6156/6163/6178/6185/6197/6206 → 6212); picked `pdf-form-fill-batch` from `sparse_category_picker.py` (theme_score=3 on PDF batch workflows)
+
+## 2026-08-21 — WP 6220 Batch Image Convert Field Guide
+
+**Status:** 1-POST + 3-PATCH (clean publish)
+**Tool:** Batch Image Convert (Media category, id=image-batch-convert)
+**Title:** "Batch Image Convert Field Guide: When 80 Hero JPGs Need to Ship as WebP by Friday"
+**date_gmt:** 2026-08-21T05:49:55
+**URL:** https://blog.flowrust.com/2026/08/21/batch-image-convert-field-guide-when-80-hero-jpgs-need-to-ship-as-webp-2026-08-21/
+**Cards:** 3 (5-tile x 2 + audit x 1)
+**Elysia anchors:** 6 (1 tool: image-batch-convert, 3 samples: jpg/avif/webp-samples, 1 root /en/tools, 1 tool repeat)
+**Patches:** 3 (entity-encode `<ext>` and `<picture>` inside `<code>` spans to defuse WP 5828 wpautop nested-tag strip)
+
+### Patches detail
+1. PATCH v2: encoded `<ext>` literal in 2 code spans as `&lt;ext&gt;` (line 9 source)
+2. PATCH v3: encoded `<ext>` literal in 1 more code span (line 35 source) — caught by visual QA via browser_console `code_spans_empty` count
+3. PATCH v4: encoded `<picture>` literal in 2 code spans (lines 35+55 source) — WP 5828 nested-tag strip pattern
+
+### Final audit
+- 0 audit findings (canonical audit_post_content)
+- 0 empty code spans (browser_console)
+- 0 H1 in body (only theme entry-title H1)
+- 8 body H2 + 1 theme Post navigation H2 = 9 total (canonical pattern)
+- 3 highlight-card figures + 1 article-poster figure
+- All 5 elysia anchors return HTTP 200
+- All 3 cards naturalWidth=1600 after LiteSpeed lazy-load triggers
