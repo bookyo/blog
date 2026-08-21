@@ -1,0 +1,88 @@
+<p><strong>You do not need a terminal to read a certificate anymore.</strong> Paste a PEM block from a server, a CSR your customer emailed, or a <code>.crt</code> file your CA portal just delivered, and the <a href="https://elysiatools.com/en/tools/certificate-decoder">X.509 Certificate Decoder</a> hands back a structured, navigable breakdown: subject, issuer, validity window with an explicit expired-or-valid verdict, public-key algorithm and bit length, signature algorithm, serial, Subject Alternative Names, Key Usage / Extended Key Usage extensions, and the SHA-1, SHA-256 and SHA-512 fingerprints, all without a single shell command, all without uploading the cert to a third-party scanner. If you have ever wished <code>openssl x509 -text -noout</code> were a web page that updates as you paste, this is the tool.</p>
+
+<figure class="article-poster"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/x509-cert-poster-v2.png" alt="X.509 Certificate Decoder field guide poster" /></figure>
+<p>The reason it earns its place in a security toolbox is that it solves the readability gap between raw PEM and <code>openssl</code>. The text dump is exhaustive, technically complete, and visually impenetrable for the 90% of questions you actually have: is this expired, who signed it, what hostnames does it bind to, and what fingerprints do I whitelist in my CDN or <code>known_hosts</code>-style blocklist. The decoder answers those four questions in the first scroll, then layers the full extension tree below.</p>
+<h2>Why a Browser-Based Decoder Is a Real Productivity Win</h2>
+<p>The first time you work a certificate incident from a coffee shop, you discover the second-floor limitation of <code>openssl</code>: the command is everywhere, but the human hours are at your laptop, and pulling a cert out of an S3 bucket to paste into a terminal often costs more than reading it. The decoder closes that loop. Copy the PEM from your CA's download page, paste, read.</p>
+<p>The second reason is reproducibility. When you share a finding with a teammate, you can paste a link to the decoded view with the cert already loaded. When you file a ticket with your CA support, the decoded view tells you exactly which field they need to see. When you audit a fleet of hundred-of-certs Let’s Encrypt output, the decoder's fingerprint field is the only piece you actually need to diff, and it is at the top.</p>
+<p>If you operate a staging pipeline that generates throwaway certs, the decoder also doubles as a teaching artifact for new engineers who have never seen a CSR. They paste the example, see the public-key modulus line, and learn what those bytes actually mean.</p>
+<h2>The Five-Field Reality Check</h2>
+<p>When a certificate fails validation somewhere downstream — your CDN returns 403 on a webhook, your reverse proxy refuses a mutual-TLS handshake, your monitoring tool flags a cert for rotation — start the investigation with five fields:</p>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/x509-cert-card1-v2.png" alt="Five-Field Reality Check" loading="lazy" /></figure>
+<ul>
+<li><strong>Subject Common Name + SAN list</strong> — confirm the cert is actually for the hostname you are testing. A perfectly valid cert for <code>api.example.com</code> is a perfectly invalid cert for <code>webhook.example.com</code>.</li>
+<li><strong>Validity period (Not Before, Not After)</strong> — paired with the current timestamp, the tool highlights expired certs in red and certs expiring within 14 days in amber. This is the most common failure mode for production incidents.</li>
+<li><strong>Issuer DN</strong> — confirms the cert chains to a CA your trust store accepts. Self-signed certs in production are the second most common failure mode.</li>
+<li><strong>Public-key algorithm and bit length</strong> — RSA 2048 is the 2026 floor; RSA 1024 is rejected by every modern TLS 1.3 client. ECDSA P-256 is the modern preferred choice for new certs.</li>
+<li><strong>Signature algorithm</strong> — <code>sha256WithRSAEncryption</code> and <code>ecdsa-with-SHA256</code> are the modern minimums. <code>sha1WithRSAEncryption</code> is rejected by browsers and CDNs since 2017.</li>
+<p></ul></p>
+<p>If all five look right, the issue is downstream: middleware, header validation, SNI mismatch, or trust-store pinning.</p>
+<h2>How to Read the Output, Field by Field</h2>
+<p>The decoder breaks the certificate into five sections, each one answering a different question about the cert's identity and trust path.</p>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/x509-cert-card2-v2.png" alt="Five Sections Inside Every Decoded Cert" loading="lazy" /></figure>
+<p><strong>Subject and Issuer</strong></p>
+<p>The first two blocks are the Distinguished Name (DN) of the cert owner and the DN of the signing CA. Both render as a tree of relative distinguished names: <code>CN</code>, <code>O</code>, <code>OU</code>, <code>L</code>, <code>ST</code>, <code>C</code>. Read top to bottom to get the full hierarchical name.</p>
+<p>For the issuer, the deepest signal is whether it matches a public CA you trust (Let’s Encrypt R3, DigiCert, Sectigo) or an internal CA from your own PKI. Internal CA certs require the CA chain to be installed in every client's trust store, which is why staging certs often fail when promoted to production.</p>
+<p><strong>Validity Window with Expiry Verdict</strong></p>
+<p>The validity window is the cert's Not Before and Not After timestamps, displayed in UTC and your local timezone. The tool renders a green check if the cert is currently valid, an amber warning if it expires within 30 days, and a red cross if it has already expired. The expiry verdict is computed at decode time, not at cert-issuance time, so it always reflects the current moment.</p>
+<p>This is the field that catches 80% of incident root causes. Production certs should be rotated before the amber threshold, ideally with a 60-day buffer so you have time to handle revocation, CA-side delays, and CDN propagation.</p>
+<p><strong>Public Key, Signature Algorithm, and Fingerprints</strong></p>
+<p>The cryptographic identity of the cert. The public-key block shows the algorithm (<code>RSA</code>, <code>ECDSA</code>, <code>Ed25519</code>), the bit length (2048, 3072, 4096 for RSA; 256, 384, 521 for ECDSA), and the modulus or curve point. For RSA, the modulus is rendered as a colon-separated hex string with the standard 4-character grouping.</p>
+<p>The fingerprint block shows SHA-1, SHA-256, and SHA-512 fingerprints, all as colon-separated uppercase hex. The SHA-256 fingerprint is what goes into your CDN's cert pinning config, your <code>.well-known</code>-based <code>caa-policy</code> records, and your <code>known_hosts</code>-style SSH-equivalent trust files.</p>
+<p><strong>Extensions: SAN List, Key Usage, Extended Key Usage</strong></p>
+<p>The extensions block is the longest section and contains the cert's actual capabilities:</p>
+<ul>
+<li><strong>Subject Alternative Name (SAN)</strong> — every hostname and IP the cert is valid for. Modern certs ignore the Subject CN entirely; only the SAN list matters.</li>
+<li><strong>Key Usage</strong> — <code>digitalSignature</code>, <code>keyEncipherment</code>, <code>keyAgreement</code>. Certs with <code>keyCertSign</code> are CA certs; certs without <code>keyEncipherment</code> cannot do RSA key exchange (TLS 1.2 and earlier).</li>
+<li><strong>Extended Key Usage</strong> — <code>serverAuth</code>, <code>clientAuth</code>, <code>codeSigning</code>, <code>emailProtection</code>. Web server certs need <code>serverAuth</code>. Mutual-TLS certs need both <code>serverAuth</code> and <code>clientAuth</code>.</li>
+<p></ul></p>
+<p><strong>Reading PEM vs. DER vs. CSR</strong></p>
+<p>The decoder accepts three input formats:</p>
+<ul>
+<li><strong>PEM</strong> — the base64-encoded ASCII block with <code>-----BEGIN CERTIFICATE-----</code> and <code>-----END CERTIFICATE-----</code> markers. The most common format for cert delivery via email or download portals.</li>
+<li><strong>DER</strong> — the binary form. Paste it as a base64 blob without the BEGIN/END markers; the decoder auto-detects and decodes.</li>
+<li><strong>CSR</strong> — Certificate Signing Request, the format you send to a CA to request a new cert. Same PEM wrapper, but <code>-----BEGIN CERTIFICATE REQUEST-----</code> instead of <code>-----BEGIN CERTIFICATE-----</code>. The decoder shows the public key and requested Subject, but no validity period (CSRs are not yet signed).</li>
+<p></ul></p>
+<p>If you have a <code>.crt</code> file from your CA portal, it is almost always PEM. If you have a <code>.cer</code> file from Windows, it is either PEM or DER depending on the export wizard. If you have a <code>.pfx</code> or <code>.p12</code> file, that is a PKCS#12 archive containing the cert plus the private key — extract the cert first with <code>openssl pkcs12 -in your.pfx -clcerts -nokeys -out extracted.crt</code> before pasting.</p>
+<h2>Common Use Cases</h2>
+<p><strong>Validating a Let's Encrypt Renewal</strong></p>
+<p>After <code>certbot renew</code> runs, copy the new <code>fullchain.pem</code> from <code>/etc/letsencrypt/live/your-domain/</code>, paste it into the decoder, and confirm:</p>
+<ol>
+<li>The new Not After is ~90 days out.</li>
+<li>The SAN list includes every hostname you expected.</li>
+<li>The Issuer is still <code>Let's Encrypt R3</code> (or your staging CA).</li>
+<li>The SHA-256 fingerprint matches the one in your CDN pinning config.</li>
+<p></ol></p>
+<p>If any of those four are wrong, your CDN will start returning 403 within minutes, and you want to know before your monitoring catches it.</p>
+<p><strong>Reading a CSR from a Customer</strong></p>
+<p>When a customer emails a CSR for a cert you are about to sign with your internal CA, paste the CSR into the decoder and confirm the Subject DN matches what they requested, the public-key algorithm is at least RSA 2048 or ECDSA P-256, and the SAN list contains every hostname they will serve the cert on. Signing a CSR with typos is recoverable; rotating a deployed cert after you discover the typo is not.</p>
+<p><strong>Auditing a Fleet of Staging Certs</strong></p>
+<p>For internal PKI, paste each staging cert into the decoder in batch. The five-field reality check above catches expired certs, missing SAN entries, and self-signed-in-production mistakes. Most staging environments have a 5-10% cert-expiry failure rate that nobody notices until the staging env goes down on a Friday afternoon.</p>
+<h2>What This Tool Does Not Do</h2>
+<p>Honest scope notes, because the decoder's edges matter:</p>
+<ul>
+<li><strong>It does not validate trust chains.</strong> The decoder tells you the Issuer DN; it does not walk the chain to a root CA. Use <code>openssl verify</code> or your language's TLS library for chain validation.</li>
+<li><strong>It does not check revocation (CRL or OCSP).</strong> Use your TLS client's OCSP stapling config or a dedicated revocation checker.</li>
+<li><strong>It does not decrypt PKCS#12 archives.</strong> You need <code>openssl pkcs12</code> for that step.</li>
+<li><strong>It runs locally in your browser.</strong> The cert never leaves your machine; this is a feature for high-sensitivity certs (production roots, internal CAs) where uploading to a third-party decoder is not acceptable.</li>
+<p></ul></p>
+<h2>The Fingerprint Diff That Catches a Rogue Cert</h2>
+<p>The single highest-value operation in any cert workflow is comparing two fingerprints to confirm they match. When <code>certbot renew</code> succeeds, you want to know the new cert's SHA-256 matches the one your CDN config references. When a vendor emails you a new cert, you want to confirm the SHA-256 you received matches the one in their public CT logs. When a security incident flags a possible rogue cert, the only safe response is to compare the fingerprint against your CA's published set.</p>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/x509-cert-card3-v2.png" alt="The Fingerprint Diff That Catches a Rogue Cert" loading="lazy" /></figure>
+<p>The decoder's fingerprint block is positioned for this exact comparison: copy the SHA-256 from the decoder, paste into your CDN config or <code>known_hosts</code>-style trust file, and the diff is one command away. The colon-separated uppercase format matches what every tool on the receiving end expects, including <code>openssl x509 -fingerprint -sha256 -noout</code>, every CDN pinning UI, and every Java <code>KeyStore</code> import flow.</p>
+<p>For high-trust certs, the SHA-512 fingerprint is a defense-in-depth option: SHA-256 collisions are not yet practical, but having the SHA-512 in your audit log means a future collision event still leaves you with a hash to cross-check.</p>
+<h2>Why Local Decoding Matters for High-Sensitivity Certs</h2>
+<p>Production root CAs, internal CA hierarchies, code-signing certs, and partner-shared mutual-TLS certs are exactly the ones where uploading to a third-party decoder is unacceptable. The cert content reveals hostname patterns, infrastructure topology, and CA trust relationships that you do not want in a third party's logs.</p>
+<p>The decoder runs entirely client-side: the cert is parsed in your browser, the output is rendered in your browser, and no network request leaves your machine with the cert content. This is the workflow you want for production root CA inspection, internal CA debugging, and partner mutual-TLS troubleshooting. The URL-shareable output is for read-only views of cert content you have already decided is safe to share, not for certs that have not yet been reviewed.</p>
+<p>For the broader cryptography and TLS workflow, browse the related samples at <a href="https://elysiatools.com/en/samples/cryptography">Cryptography and Encryption Samples</a> and the <a href="https://elysiatools.com/en/samples/git-branch-names">Git Branch Name Samples</a> for adjacent validation patterns.</p>
+<h2>Quick Reference Workflow</h2>
+<ol>
+<li>Copy the PEM block from your CA's download portal, your <code>certbot</code> output, or your customer's CSR email.</li>
+<li>Paste into the <a href="https://elysiatools.com/en/tools/certificate-decoder">X.509 Certificate Decoder</a>.</li>
+<li>Scan the five-field reality check: Subject CN, Validity verdict, Issuer DN, Public-key algorithm, Signature algorithm.</li>
+<li>Confirm the SAN list includes every hostname you expect.</li>
+<li>Copy the SHA-256 fingerprint into your CDN pinning config or trust store.</li>
+<li>For fleet audits, repeat across all staging certs and flag any expired or expiring-soon entries.</li>
+<p></ol></p>
+<p>The whole investigation takes 30 seconds per cert, and the URL is shareable so your teammate can see exactly what you saw.</p>
+<p>Explore more security and validation tools at <a href="https://elysiatools.com/en/tools">elysiatools.com</a>.</p>

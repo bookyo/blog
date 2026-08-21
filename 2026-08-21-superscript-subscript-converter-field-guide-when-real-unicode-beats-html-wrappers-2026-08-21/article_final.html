@@ -1,0 +1,59 @@
+<figure class="article-poster"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/poster-27.png" alt="Superscript and Subscript Converter field guide cover" /></figure>
+<p><strong>A chemistry formula that survives Slack, a footnote marker that pastes clean into any text field, and a math expression that doesn't need a renderer.</strong> When the input is plain text and the destination is plain text — chat, social, code comments, filenames, exported CSV — superscripts and subscripts have to ride on real Unicode, not HTML tags. The <a href="https://elysiatools.com/en/tools/superscript-subscript-converter">Superscript & Subscript Converter</a> on Elysia Tools maps each ASCII character to its Unicode glyph counterpart without leaning on <code><sup></code>/<code><sub></code> tags, so the output is a single string the receiving system will display correctly even when it has zero formatting support.</p>
+<h2>What the tool actually does</h2>
+<p>The converter accepts a chunk of text and produces the same characters, mapped character-by-character, into one of three Unicode transformations:</p>
+<ul>
+<li><strong>Superscript</strong> — every letter, digit, and operator is replaced by its Unicode superscript counterpart (e.g. <code>x</code> becomes <code>ˣ</code>, <code>2</code> becomes <code>²</code>, <code>+</code> becomes <code>⁺</code>).</li>
+<li><strong>Subscript</strong> — every character is replaced by its Unicode subscript counterpart (e.g. <code>2</code> becomes <code>₂</code>, <code>o</code> becomes <code>ₒ</code>, <code>+</code> becomes <code>₊</code>).</li>
+<li><strong>Mixed</strong> — odd-position characters become superscript, even-position characters become subscript, producing an interleaved demo mode useful for mixed math/chemistry notation.</li>
+<p></ul></p>
+<p>The output is plain text. There is no wrapper element, no <code><span></code> tag, no <code>font-feature-settings</code> magic. The string is just a sequence of Unicode code points from U+00B2 through U+2094 — which means it round-trips through anything that accepts UTF-8 and renders anything past ASCII.</p>
+<p>The most useful complement in the same Text Processing cluster is the <a href="https://elysiatools.com/en/tools/bold-italic-text">Bold & Italic Text</a> tool, which applies the same Unicode-only principle using the Mathematical Alphanumeric Symbols block for when you need emphasis without a renderer.</p>
+<h2>Where the Unicode coverage actually breaks</h2>
+<p>Unicode does not assign a superscript or subscript glyph to every letter. The converter does not invent characters — it uses the published Unicode tables — and unmapped characters fall back to themselves with no warning. That fallback is the right design choice, but it means you have to know the coverage map before you trust the output.</p>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/card1-27.png" alt="Unicode superscript and subscript coverage map at a glance" loading="lazy" /></figure>
+
+<p><strong>Superscript, fully covered:</strong> digits 0-9, the operators <code>+</code> <code>-</code> <code>=</code> <code>(</code> <code>)</code>, and lowercase <code>h i j k m n o p r s t u v w x y</code> plus a small set of additional letters. Parentheses and punctuation all map.</p>
+<p><strong>Superscript, missing:</strong> most uppercase letters (<code>A</code>-<code>Z</code> have no superscript glyphs in Unicode at all), and a handful of lowercase (<code>b c d e f g l q</code>).</p>
+<p><strong>Subscript, fully covered:</strong> digits 0-9, the operators <code>+</code> <code>-</code> <code>=</code> <code>(</code> <code>)</code>, and lowercase <code>a e h i j k l m n o p r s t u v x</code>.</p>
+<p><strong>Subscript, missing:</strong> the entire uppercase range, plus lowercase <code>b c d f g q w y z</code>.</p>
+<p>This is why <code>H₂O</code> works perfectly — H has no subscript glyph and stays as H, while ₂ and O both exist in the subscript block — but a fully-subscripted sentence like <code>the quick brown fox</code> ends up with <code>tₕₑ qᵤᵢcₖ bᵣₒwₙ fₒₓ</code> where the unmapped letters (<code>q</code>, <code>k</code>, <code>b</code>, <code>r</code>, <code>w</code>, <code>n</code>, <code>f</code>) fall back to plain ASCII. This is a fundamental Unicode limitation, not a bug in the converter.</p>
+<h2>The four rules of converting without surprises</h2>
+<p>After running a few hundred inputs through real chat and CMS systems, four rules turn out to do most of the work of avoiding escape-sequence ugliness:</p>
+<ul>
+<li><strong>Strip the wrapper expectation.</strong> If you paste <code>x&lt;sup&gt;2&lt;/sup&gt;+y&lt;sup&gt;2&lt;/sup&gt;</code> into a chat window the tags render literally because chat windows have no CSS. The whole point of Unicode conversion is to skip that step — write <code>x²+y²</code> once and paste it anywhere.</li>
+<li><strong>Use superscript for chemistry and math literals.</strong> Formulas like <code>CO₂</code>, <code>H₂SO₄</code>, <code>E=mc²</code>, <code>xⁿ</code>, <code>10²³</code> map cleanly because the letter sets overlap with the covered Unicode ranges. This is the tool's sweet spot.</li>
+<li><strong>Use subscript only for chemistry and well-known series.</strong> <code>H₂O</code>, <code>C₆H₁₂O₆</code>, <code>log₁₀</code>, <code>a₁ + a₂ + ... + aₙ</code> all map cleanly. Pure-uppercase subscripts (writing the digits of a compound with uppercase elements) will not survive, so avoid spelling letters that don't exist in the subscript block.</li>
+<li><strong>Use Mixed as a demo, not a final form.</strong> The interleaved odd/even split is great for showcasing how the two ranges feel side-by-side, but mixed text rarely appears in real prose — your downstream reader will assume you typoed.</li>
+<p></ul></p>
+<p>A <code><strong>[Superscript & Subscript Converter]</strong></code> run that obeys these rules produces output that is visually compact, font-portable, and copy-paste-safe across Slack, Discord, GitHub, Notion, Google Docs, and markdown source files.</p>
+<h2>The Math Tools cluster for related work</h2>
+<p>If you find yourself reaching for the converter often, the <a href="https://elysiatools.com/en/tools/education">Elysia Tools Math & Numbers cluster</a> holds a small set of related primitives worth bookmarking together: percentage change, exponent-by-hand, scientific-notation normalization. These all produce plain-text output designed for the same destinations — chat, comments, social — without requiring a renderer.</p>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/card2-27.png" alt="Round-trip correctness tests for Unicode superscript and subscript output" loading="lazy" /></figure>
+
+<p>For the specific case of writing math in any context where you might otherwise reach for LaTeX (like a long forum post or an exported document), the Unicode-only approach has one big advantage: the math stays diffable, searchable with <code>grep</code>, and copy-paste-able as a single line.</p>
+<h2>Side-by-side: Unicode text vs HTML</h2>
+<p>Take the input <code>x2 + y2 = z2</code>:</p>
+<ul>
+<li>Unicode form: <code>x² + y² = z²</code>. One string, 14 characters, and that 14-character string is what arrives on the other side of any pipe.</li>
+<li>HTML form: <code>x&lt;sup&gt;2&lt;/sup&gt; + y&lt;sup&gt;2&lt;/sup&gt; = z&lt;sup&gt;2&lt;/sup&gt;</code>. Pasted into a markdown-aware renderer it looks right; pasted into Slack it shows the tags; pasted into a YAML file it breaks the structure.</li>
+<p></ul></p>
+<p>For a chemistry formula like <code>C6H12O6</code>:</p>
+<ul>
+<li>Unicode form: <code>C₆H₁₂O₆</code>. All three numbers and the four most common subscript letters are covered, so it round-trips intact.</li>
+<li>HTML form: <code>C&lt;sub&gt;6&lt;/sub&gt;H&lt;sub&gt;12&lt;/sub&gt;O&lt;sub&gt;6&lt;/sub&gt;</code>. Breaks anywhere HTML is not parsed.</li>
+<p></ul></p>
+<p>The same comparison holds for any tagging wrapper — Markdown's <code><sub></code>, reST's <code>:sub:</code>, AsciiDoc's <code>~...~</code>. Unicode conversion is the only form that survives the chat-to-CMS trip without manual reformatting.</p>
+<h2>Two correctness tests you can run in 30 seconds</h2>
+<p><strong>Test 1 — coverage probe.</strong> Type a single string <code>abcABC123</code> into the converter with Style set to <code>superscript</code>. Output should be <code>ᵃᵇᶜABC¹²³</code> (lowercase mapped, uppercase passed through unchanged, digits fully mapped). If you see literal <code>A B C</code> in the output, the converter fell back and you have your answer about which letters to avoid.</p>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/card3-27.png" alt="Where Unicode superscript and subscript live in the BMP" loading="lazy" /></figure>
+
+<p><strong>Test 2 — round-trip through grep.</strong> Convert <code>H2SO4</code> to <code>H₂SO₄</code>, then a fixed-string grep for <code>H₂SO₄</code> against any UTF-8 text file. If the grep matches, the Unicode form is treated as plain text everywhere downstream — it is, but the test confirms your specific pipeline handles it. If grep treats ₂ as a multi-byte sequence and misaligned, that's actually correct UTF-8 behavior and not a converter problem.</p>
+<p>For tools in the <a href="https://elysiatools.com/en/tools/validation">Elysia Tools Validation cluster</a> — credit-card Luhn checks, ISBN validators, regex sniffers — the round-trip-and-grep test is the same recipe: convert, paste into a shell pipeline, confirm the bytes match.</p>
+<h2>Edge cases worth knowing</h2>
+<p>A few Unicode superscript and subscript characters live outside the BMP (Basic Multilingual Plane) for some niche letterforms. The converter uses only the BMP range (U+00B2 through U+2094 plus the operator/digit subset), so the output stays in single-codepoint territory and won't trigger surrogate-pair issues in JavaScript string operations or older JSON parsers. If you've ever seen a low-surrogate fragment appear in a JSON log and traced it back to a math symbol, the converter's BMP-only policy is the cure.</p>
+<p>Two characters genuinely have no Unicode form at all: the asterisk <code>*</code> and the percent sign <code>%</code>. They fall back to themselves in every style. If you need to call out a footnote with an asterisk you'll still type the asterisk as-is — Unicode picked the asterisk for footnote markers before the working group added the superscript glyphs, so they overlap only at the base form.</p>
+<h2>Putting it together</h2>
+<p>The converter is small on purpose. The whole job is mapping roughly 60 code points into their transformed variants, then letting Unicode do the rest. Add it to your plain-text toolkit next to <a href="https://elysiatools.com/en/tools/bold-italic-text">Bold & Italic Text</a> and a calculator in the same <a href="https://elysiatools.com/en/tools/education">Elysia Tools Text Processing hub</a> and you have a self-sufficient writing surface for any context where the output is plain text and the read is plain text.</p>
+<p>The plain-text discipline — write the chemistry formula as Unicode, not as HTML; write the footnote marker as Unicode, not as Markdown syntax; write the math expression as Unicode, not as LaTeX — saves you every time the destination system strips the tags.</p>
+<p>Explore more text tools at <a href="https://elysiatools.com/en/tools">elysiatools.com</a>.</p>
