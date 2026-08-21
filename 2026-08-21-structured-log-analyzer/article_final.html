@@ -1,0 +1,69 @@
+<p>If you have ever tried to load a folder of <code>application.log</code> files into a spreadsheet and gotten back a wall of timestamp prefixes, varying severity keys, and <code>Apache combined log format</code> lines creeping in alongside <code>{"level":"info"}</code> JSON lines, you already know why a log analyzer that does format detection, field inference, and structured export belongs in every backend &amp; ops pipeline. The <a href="https://elysiatools.com/en/tools/structured-log-analyzer">Structured Log Analyzer</a> turns a pasted log blob into a typed table that exports to JSON, CSV, or SQL inserts without you writing a parser per format. This guide walks through how to use it on the shapes you actually see in production &mdash; mixed JSON lines, Apache access logs, syslog fragments, custom regex patterns, and the multi-line stack traces that hide between single-line records.</p>
+<figure class="article-poster"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/structured-log-analyzer-poster.png" alt="Structured Log Analyzer poster image" /></figure>
+<h2>Why A Mixed-Log Detector Earns Its Slot</h2>
+<p>Production logs are never one shape. A single tenant typically runs an application that emits JSON lines, a reverse proxy that writes Apache combined-log format, an OS that writes syslog, and a hand-rolled service whose only contract is "follow this regex." The naive fix is to write one parser per format and merge the rows downstream &mdash; which is fine until the third format lands and the merge logic eats a Friday. The analyzer's auto-detect path inspects each line, classifies it into a known shape, extracts the core fields, infers column types from the values, and emits a single unified table. The whole loop runs in the browser, so nothing leaves the tab.</p>
+<p>The gain is bigger than it looks. Field inference means a column of timestamps becomes a real <code>datetime</code> instead of a string column, a column of HTTP status codes becomes an integer you can <code>GROUP BY</code> on, and a column of durations becomes a number you can plot. Export to JSON keeps the type fidelity, export to CSV flattens to a spreadsheet-friendly form, and SQL inserts get a typed <code>CREATE TABLE</code> that mirrors the inferred schema. The <a href="https://elysiatools.com/en/tools/data-processing">Data Processing</a> hub on Elysia Tools lists other field-detection utilities worth pairing with this one when you have JSONL or CSV inputs that are already clean but need a quick shape check.</p>
+<h2>Five Output Bands The Analyzer Tags On Every Row</h2>
+<p>When the analyzer finishes a parse, it tags each row with one of five output bands that describe where the row came from and what type fidelity it carries. Knowing the bands lets you pick the export target deliberately instead of letting the auto-export guess for you.</p>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/structured-log-analyzer-card1.png" alt="highlight card" loading="lazy" /></figure>
+
+<ul>
+<li><code>01 PARSED</code> &mdash; the line matched a known format, every named field extracted, type inferred.</li>
+<li><code>02 INFERRED</code> &mdash; the line did not match a known format but a custom regex caught it; field names come from your <code>(?<name>...)</code> group labels.</li>
+<li><code>03 PARTIAL</code> &mdash; only some fields matched; missing columns filled with <code>null</code> and flagged in the report.</li>
+<li><code>04 SKIPPED</code> &mdash; the line was a comment, blank, or pure-noise (e.g. a <code>---</code> separator); recorded for audit but excluded from exports.</li>
+<li><code>05 RAW</code> &mdash; the line could not be parsed at all; surfaced verbatim in the report with the auto-detect verdict attached.</li>
+<p></ul></p>
+<p>The bands travel with the row into every export target, so a CSV export keeps a <code>band</code> column you can filter on, and a SQL export gets a <code>band</code> enum you can <code>WHERE</code> against. This is what makes the tool useful as the first step of an audit pass &mdash; you always know which rows were confidently parsed and which ones need a human.</p>
+<h2>Four Log Format Families The Detector Auto-Classifies</h2>
+<p>The auto-classifier knows four format families out of the box, and it picks the family per line rather than per file. A pasted blob with one line of each format gets four correct parses, not one guess.</p>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/structured-log-analyzer-card2.png" alt="highlight card" loading="lazy" /></figure>
+
+<ul>
+<li><code>JSONL</code> &mdash; JSON-per-line. Detected by leading <code>{</code> and parseable JSON. Fields are the keys, types inferred from the values.</li>
+<li><code>Apache CLF</code> &mdash; Apache "combined" access log format. Detected by the <code>host - - [timestamp] "METHOD path HTTP/x" status size</code> shape. Fields: <code>remote_host</code>, <code>timestamp</code>, <code>method</code>, <code>path</code>, <code>status</code>, <code>size</code>, <code>referer</code>, <code>user_agent</code>.</li>
+<li><code>Syslog</code> &mdash; <code>Mar 10 14:03:02 host app[pid]: message</code> shape (RFC 3164 ish, lenient on the year). Fields: <code>timestamp</code>, <code>host</code>, <code>process</code>, <code>pid</code>, <code>message</code>.</li>
+<li><code>Custom Regex</code> &mdash; any line that matches the user-supplied <code>customRegex</code> field with <code>(?<name>...)</code> named groups.</li>
+<p></ul></p>
+<p>If you want to see what the <a href="https://elysiatools.com/en/tools/json-to-go">JSON to Go Struct Converter</a> does with a JSONL line you parsed out, paste the inferred schema in and let it spit out a typed struct. For diff workflows (which line format shifted last Tuesday), the <a href="https://elysiatools.com/en/tools/csv-excel-diff-tool">CSV/Excel Diff Tool</a> reads the exported CSV and surfaces the drift between two days of the same log source.</p>
+<h2>Five Reasons A Custom Regex Beats Auto-Detection</h2>
+<p>Auto-detection is good enough for the common four formats and brittle for anything custom. Reach for the custom-regex path when any of these five conditions hold.</p>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/08/structured-log-analyzer-card3.png" alt="highlight card" loading="lazy" /></figure>
+
+<ul>
+<li><code>01 NAMING</code> &mdash; your service writes structured logs but with field names like <code>evt</code> and <code>src</code> instead of <code>event</code> and <code>service</code>; a regex with <code>(?<event>...) (?<service>...)</code> renames them.</li>
+<li><code>02 TYPES</code> &mdash; the default inference sees <code>1234</code> as a number when you want it as a string; a custom <code>(?<code>&#92;d+)</code> group captures it as text.</li>
+<li><code>03 SHAPE</code> &mdash; your lines have variable-tail fields (a JSON blob embedded in a syslog message); regex with <code>(?<ctx>&#92;{.*&#92;})</code> peels off the blob for a nested parse pass.</li>
+<li><code>04 MIXING</code> &mdash; one file contains four services with different layouts; a per-service regex dispatch (set the <code>source</code> field first, then dispatch) maps them correctly.</li>
+<li><code>05 STABILITY</code> &mdash; the format is unlikely to change but the auto-detect heuristics occasionally misfire on edge cases; locking the format with a regex removes the guessing.</li>
+<p></ul></p>
+<p>The custom regex field takes any standard JS-flavored regex with named groups. Use single-line mode by default; flip the <code>aggregateMultiline</code> flag on when your lines wrap across newlines (Java stack traces, multi-line JSON values).</p>
+<h2>The Pre-Publish Sanity Loop &mdash; Three Audit Checks That Catch Most Mistakes</h2>
+<p>Before you click export, run three audit checks on the inferred table. These are the same checks the <a href="https://elysiatools.com/en/tools/data-processing">Data Processing</a> tools apply to their outputs, distilled to the log-analyser case.</p>
+<ul>
+<li><strong>Row-count delta</strong> &mdash; the parsed row count plus the skipped row count plus the raw row count should equal the input line count. Off-by-one usually means a multi-line block collided with a single-line parse.</li>
+<li><strong>Type sanity</strong> &mdash; every numeric column should have at least 95% values that parse to a number in the chosen export format; below that, the column is a string masquerading as a number.</li>
+<li><strong>Null density</strong> &mdash; any column with more than 50% null values is a signal the regex or the format detection is misaligned with your real shape.</li>
+<p></ul></p>
+<p>If a row lands in the <code>RAW</code> band after this loop, you have two options: tighten the custom regex or accept the verbatim row in the report and exclude it from the SQL export.</p>
+<h2>How The Export Bands Map To Real Downstream Pipelines</h2>
+<p>Export target choice is not cosmetic &mdash; each one carries type fidelity differently.</p>
+<ul>
+<li><code>JSON</code> keeps the inferred types. Use this when the next stage is a JSON-aware pipeline (a Node service, a Python <code>json.loads</code> call, a Logstash <code>json</code> filter).</li>
+<li><code>CSV</code> flattens every value to a string. Use this when the next stage is a spreadsheet, a <code>pandas.read_csv</code> call, or a SQL <code>COPY FROM</code> against a <code>TEXT</code> column.</li>
+<li><code>SQL</code> emits typed <code>CREATE TABLE</code> plus <code>INSERT</code> statements. Use this when you want the inferred schema to become a real table in Postgres or MySQL.</li>
+<li><code>HTML</code> is the report view &mdash; the same data rendered for a human, with band tags, format verdicts, and the original line side-by-side.</li>
+<p></ul></p>
+<p>If your downstream is a Postgres-and-dbt stack, the SQL export saves you the <code>dbt seed</code> step entirely &mdash; paste the <code>CREATE TABLE</code> into a migration, run the inserts, and the rows are typed columns.</p>
+<h2>Pairing The Analyzer With The Rest Of The Elysia Tools Stack</h2>
+<p>The analyzer sits at the front of a log-handling pipeline. The middle (validation, normalization, diff) and the back (presentation, archival) have their own Elysia Tools that wire up cleanly.</p>
+<ul>
+<li>For input cleanup before parsing, the <a href="https://elysiatools.com/en/tools/json-key-extractor">JSON Key Extractor</a> lifts a subset of fields out of JSONL blobs &mdash; useful when you only care about five of twenty keys.</li>
+<li>For trace reconstruction across services, the <a href="https://elysiatools.com/en/tools/distributed-trace-decoder-waterfall-visualizer">Distributed Trace Decoder &amp; Waterfall Visualizer</a> reads JSONL spans and renders the timing chart.</li>
+<li>For pattern matching against arbitrary log shapes (no parser required), the <a href="https://elysiatools.com/en/tools/regex-cheat-sheet">Regex Cheat Sheet</a> is the reference table for the named-group syntax used in the custom regex field.</li>
+<li>For data-URI inline embedding (handy when you want to share a parsed report in a chat message), the <a href="https://elysiatools.com/en/tools/data-uri-generator">Data URI Generator</a> base64-encodes the report HTML.</li>
+<p></ul></p>
+<p>Browse the full tool catalog at <a href="https://elysiatools.com/en/tools">elysiatools.com</a>. The analyzer is one of about thirty log-and-data utilities in the Data Processing hub, and it pairs well with the Format Conversion category when the next step is "ship the parsed CSV into a customer-facing XLSX."</p>
+<h2>The One-Sentence Mental Model</h2>
+<p>> Paste a mixed log blob, get back a typed table whose rows are tagged by parse band and whose columns are inferred from the values, with an export target that preserves the types you actually need.</p>
+<p>That sentence is the entire workflow. The seven sections above are the audit and pairing notes that turn "works on one log file" into "trust it across an SRE rotation." Browse the full tool catalog at <a href="https://elysiatools.com/en/tools">elysiatools.com</a>, or jump straight back to the <a href="https://elysiatools.com/en/tools/structured-log-analyzer">Structured Log Analyzer</a> to run this guide against your own log blob.</p>

@@ -2441,3 +2441,19 @@
 - 3 highlight-card figures + 1 article-poster figure
 - All 5 elysia anchors return HTTP 200
 - All 3 cards naturalWidth=1600 after LiteSpeed lazy-load triggers
+
+## 2026-08-21 10:05 UTC — WP 6229 Structured Log Analyzer
+
+- **Title:** Structured Log Analyzer Field Guide – When Mixed Application Logs Need A Single Normalized Table
+- **URL:** https://blog.flowrust.com/2026/08/21/structured-log-analyzer-field-guide-when-mixed-application-logs-need-a-single-normalized-table-2026-08-21/
+- **Tool:** Structured Log Analyzer (`structured-log-analyzer`)
+- **Category:** Data Processing
+- **date_gmt:** 2026-08-21T10:03:01
+- **post_id:** 6229
+- **Patches:** 1 (POSSIBLE_BACKSLASH_STRIPPED on `(?<code>\d+)` → restored via PATCH-round)
+- **Audit final:** 0 findings, 64 code blocks (0 empty), 12 elysia links (9 unique), featured_media=0
+- **Elysia anchors:** structured-log-analyzer, data-processing (×2), json-to-go, csv-excel-diff-tool, json-key-extractor, distributed-trace-decoder-waterfall-visualizer, regex-cheat-sheet, data-uri-generator, elysiatools.com/en/tools (×2)
+- **Assets:** poster.png (1080×800) + 3 cards (1600×900): Five Output Bands / Four Log Format Families / Five Reasons Custom Regex
+- **visual_analyze passes:** 4/4 caught real defects on card 1 + card 2 first-pass (card 2 count string overlap); 2 re-renders fixed
+- **Skill note:** parent `article-writer` SKILL.md present, but `article-poster-creator` and `article-highlight-cards` missing (14th consecutive missing-skills-streak run); fell back to umbrella's bundled `templates/pil_poster_and_cards_network_theme.py` + `templates/render_card_4tile_compact.py` + `scripts/md_to_html.py`
+- **Sparse-category picker:** 11th consecutive single-diverse-pick → one-off `sparse_category_picker.py` produced 1392 eligible candidates; picked Structured Log Analyzer (theme=2, desc=118, kw=3)
