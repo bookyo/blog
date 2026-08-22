@@ -2524,3 +2524,23 @@
 - **DOM checks**: h1=1, h2=9, h3=0, poster=1, cards=3 ✓; nested_p_in_h2=0; elysia_links all 6 URL+text intact
 
 ---
+
+## 2026-08-22 — WP 6292 — JSON to Go Struct Converter Field Guide
+- **Tool**: `json-to-go` (JSON to Go Struct Converter, category=Development, theme_score=3)
+- **Picker**: sparse-category fallback triggered (canonical v4 returned only 1 diverse pick — confirmed 11th consecutive run)
+- **Post**: https://blog.flowrust.com/2026/08/23/json-to-go-struct-converter-field-guide-when-pascal-case-tags-and-nested-types-finally-stop-being-hand-typed-2026-08-22/
+- **date_gmt**: 2026-08-22T19:54:20
+- **Result**: 1-POST + 1-PATCH clean
+- **Defs held**: canonical creds (bted2k:…), featured_media=0, sparse-category picker fallback, safe_md_to_html protects `*int`/`*bool` from italic regex, 3-article-skill fallback (umbrella templates)
+- **Pitfalls hit**:
+  1. Lead had inline `<code>` → ORPHANED_CODE → stripped 2 code spans from lead (WP 6171 recipe)
+  2. `map[string]interface{}` triggered POSSIBLE_BACKSLASH_STRIPPED false-positive → entity-encoded `[` as `&#91;` (WP 5669 recipe)
+  3. `- ` markdown bullets under "What the tool actually produces" + "A worked example" merged into one `<p>` post-POST → 2 PATCH rebuilds with `<ul><li>` HTML
+  4. PIL card3 takeaway was too long → horizontally clipped → shortened to "Compile-time safety, auto-generated clients, schema-as-docs, drift detection."
+- **DOM checks**: h1=1 (theme entry-title), h2=9 (8 body + Post nav), h3=0, poster=1, cards=3, ul=7, p=22, code=63, pre=2, img_missing_alt=2 (theme elements only)
+- **elysia links**: 6 total, all 200
+  - tools root: `/en/tools`
+  - tools: `/en/tools/json-to-go`
+  - samples: `/en/samples/json`, `/en/samples/go`, `/en/samples/chat-transcript-json`, `/en/samples/go-viewer-samples`
+- **vision_analyze**: poster ✓, card1 ✓, card2 ✓, card3 ✓ (after takeaway shorten)
+- **Audit**: 0 findings (final), featured_media=0
