@@ -2506,3 +2506,21 @@
   - Mid-paragraph `<ul>` followed by `<p>` would trigger WP 6191/6163 wpautop nested-p strip; rewritten range list to plain prose sentences to avoid
   - 13 `### ` sub-heads converted to `<strong>` per WP 6212 H3 trap (skipped the 8-required-H2 limit)
   - PIL poster subtitle reused "Markdown stars disappear, but Unicode styled glyphs ship everywhere" (68 chars, 951px width < 1040 max)
+## WP 6285 — 2026-08-22 15:42 UTC — Watermark Every Shared CSV/JSON — Field Guide When The Recipient Column Tells The Leak Story
+
+- **Tool**: csv-json-data-watermarker (Security) — sparse-category fallback 11th consecutive (WP 6060/6149/6156/6163/6178/6185/6197/6206/6273 + 2 prior)
+- **Slug**: watermark-every-shared-csv-json-field-guide-when-the-recipient-column-tells-the-leak-story-2026-08-22
+- **date_gmt**: 2026-08-22T15:42:02
+- **Status**: publish (1-POST)
+- **Audit findings (pre-PATCH)**: 1 — MERGED_BULLET_LIST: 4 blocks (4 en-dash bullet lists in body)
+- **PATCH (1 round)**: 4 merged blocks split into 17 separate <p> blocks via wp_fix_merged_bullets.py
+- **Audit findings (post-PATCH)**: 0 — clean
+- **featured_media**: 0 ✓
+- **Links**: 6 elysiatools anchors verified (3 tools + 2 samples + 1 cross; all HTTP 200)
+- **Assets**: 4 PIL PNGs (1080×800 poster + 3× 1600×900 cards), all 4 returned 200 from CDN
+- **Skills used**: umbrella templates only (article-poster-creator + article-highlight-cards missing — WP 6135/6156/6171/6185/6197/6206/6212 12th consecutive fallback)
+- **Defs held**: canonical creds (bted2k:…), featured_media=0, 1-POST-then-PATCH, vision_analyze 4/4 clean
+- **Pitfalls confirmed**: sparse-category picker (theme=3 csv-json data lineage angle), MERGED_BULLET_LIST auto-fixe, /uploads/2026/08/ prefix preserved in source_url, lack-of-LiteSpeed-SVG-confusion (cards nw=0 until scrolled = known lazy-load, actual fetched URLs 200)
+- **DOM checks**: h1=1, h2=9, h3=0, poster=1, cards=3 ✓; nested_p_in_h2=0; elysia_links all 6 URL+text intact
+
+---
