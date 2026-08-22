@@ -2480,3 +2480,29 @@
 - **Skills skipped (umbrella fallback)**: article-writer, article-poster-creator, article-highlight-cards
 - **Notes**: 11th consecutive sparse-category fallback (manual one-off driver per WP 6206); manual merge of source MD to use `<ol><li>` for the "five pre-flight checks" list per WP 5717 / 6135 MERGED_NUMBERED_LIST lesson; canonical creds used (WP 6135 trap avoided)
 - **2026-08-22 07:17 UTC** | WP 6273 | pdf-deskew | PDF Deskew Field Guide: When Scanned Pages Tilt and OCR Refuses to Cooperate | https://blog.flowrust.com/2026/08/22/pdf-deskew-field-guide-when-scanned-pages-tilt-and-ocr-refuses-to-cooperate/ | 1-POST 0-PATCH clean | 8 H2 + 0 H1 + 1 article-poster + 3 highlight-cards + 4 anchors (3× tool + 1× root) | Pre-POST audit 0 findings; sparse-category picker fallback (1 diverse → 1396 candidates → picked pdf-deskew from PDF Tools); poster subtitle pre-measurement (WP 5683/6109/6129/6149/6171 5th occurrence — 1st-pass 97-char subtitle overflowed, trimmed to 70 chars); card1 1st-pass had body/notes vertical overlap (WP 5665 family), shortened 5 tile bodies to 4-6 words each → re-render clean; ORPHANED_CODE fix at source (rewrote `<input>-deskewed.pdf` to prose — WP 6109 variant); vision_analyze caught 2 of 2 PIL defects pre-POST; canonical creds used
+## WP 6279 — Bold & Italic Text Without the Stars (2026-08-22 ~11:33 UTC)
+
+- **Tool**: `bold-italic-text` (Text Processing, desc_len=223)
+- **Theme-word score**: 2 (bold, italic in tool id/desc; unicode-themed)
+- **Date_gmt**: `2026-08-22T11:33:00` (current UTC)
+- **Slug**: `bold-italic-text-field-guide-when-unicode-alphanumeric-beats-markdown-stars`
+- **Title**: "Bold and Italic Text Without the Stars: When Unicode Alphanumeric Blocks Beat Markdown"
+- **URL**: https://blog.flowrust.com/2026/08/22/bold-italic-text-field-guide-when-unicode-alphanumeric-beats-markdown-stars/
+- **Assets**: 1 poster (1080×800) + 3 cards (1600×900) — uploaded IDs 6275/6276/6277/6278 (filename suffix `-30`)
+- **PIL theme**: deep navy `#081024` BG + cyan-teal `#00DCC8` ACCENT
+- **Audit pre-POST**: 0 findings (after rewrites — see Notes)
+- **Audit post-POST DOM**: H1=1 (theme entry-title only) / H2=9 (8 body + 1 theme "Post navigation") / H3=0 / 3 highlight-card figures + 1 article-poster / 5 elysia anchors / featured_media=0
+- **Word count**: ~1500 across 8 body H2s (Bold & Italic Without the Stars / Unicode Block Contains / Three Situations / How the Converter Renders / Common Pitfalls / Wiring the Pipeline / Picking the Right Style / Where Unicode Falls Short)
+- **Elysia link validation**: all 4 anchors return HTTP 200; 4× `/en/tools/bold-italic-text` + 1× `elysiatools.com/en/tools` (correct tool type per WP 5650/5729/6171)
+- **Image URLs**: all 4 return HTTP 200 via `curl -sI`; LiteSpeed lazy-load SVG-placeholder in browser `naturalWidth=0` is the WP 6273 confirmed artifact (not real defect)
+- **Visual QA**: `vision_analyze` on all 4 PNGs — poster subtitle trimmed from 1393px → 951px (6th occurrence of WP 5683/6109/6129/6149/6171/6273 family — pre-measure at F_MED against W-40=1040 caught the overflow); cards 1/2/3 use canonical `render_card_5tile`, all 5 tiles render cleanly with no tofu or value-clipping
+- **Skill note**: 3 article-generation skills still missing from disk (15th consecutive missing-streak run since WP 6135) — fell back to umbrella's bundled `templates/pil_poster_and_cards_network_theme.py` + `scripts/md_to_html.py` + `scripts/safe_md_to_html.py` per WP 6135/6156/6171/6185/6197/6206/6212/6236/6261/6273 canonical fallback recipe
+- **Sparse-category picker**: 13th consecutive fallback to `sparse_category_picker.py` one-off driver (canonical v4 returned only 1 diverse pick — `pangram-checker`); manual theme-word scoring on 1391 candidates picked `bold-italic-text` (theme_score=2)
+- **Patches required**: 0 — clean 1-POST 0-PATCH run
+- **Notes**:
+  - ORPHANED_CODE false-positive fix: stripped inline `<code>**asterisks**</code>` and `<code>*slashes*</code>` from close-first lead (WP 6171 lesson) — rewrote lead to "asterisks and slashes" (no inline code in unwrapped `<strong>` lead)
+  - POSSIBLE_BACKSLASH_STRIPPED false-positive: javascript helper originally used `(str)` parameter — auditor fires `\b\w+\([wdsWDS]` false-positive trip on `(s` (function-call pattern filter doesn't recognize leading space); renamed parameter to `(input)` to use a letter outside `[wdsWDS]` → clean
+  - UL trap: source originally used `<ul><li>` HTML for range list (8 items); canonical `md_to_html` wraps each explicit `<ul>` in `<p></ul></p>` artifact when followed by paragraph text — replaced with blank-line-separated prose paragraphs, no list wrapper
+  - Mid-paragraph `<ul>` followed by `<p>` would trigger WP 6191/6163 wpautop nested-p strip; rewritten range list to plain prose sentences to avoid
+  - 13 `### ` sub-heads converted to `<strong>` per WP 6212 H3 trap (skipped the 8-required-H2 limit)
+  - PIL poster subtitle reused "Markdown stars disappear, but Unicode styled glyphs ship everywhere" (68 chars, 951px width < 1040 max)
