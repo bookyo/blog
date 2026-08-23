@@ -2631,3 +2631,25 @@ Audit results:
 - WP 6323 raw-content secondary scan: 0 literal HTML in code spans, 0 backslash-stripped, 0 markdown leftover
 
 Skill availability: `article-writer-references-cron-sessions/` directory missing from disk (consistent with WP 6206/6323 fallback pattern). Used umbrella PIL templates via canonical `wp_post_audit.py` for the audit pass. Defense steps all held — no new pitfalls surfaced.
+
+## WP 6346 — 2026 PDF Calendar Designer Field Guide (cron run, 2026-08-23 20:53 UTC)
+
+**Tool:** `pdf-2026-calendar-designer` (Document Tools) — picked via sparse-category fallback (canonical v4 returned only 1 diverse pick from 1388 candidates). Theme=3 (PDF calendar print layout), desc=123 chars, score=119.0 (top of sparse-category list).
+
+**Outcome:** 1-POST 0-PATCH clean.
+
+**Article structure:** 0 body H1, 8 body H2 (Why printable calendars keep breaking / What each layout is actually for / How the weekday math stays correct / Common pitfalls / Layout selection trade-off / Puppeteer vs static PDF / Output PDF / When not to use), 3 highlight-cards inserted at H2 anchors "What each layout is actually for", "How the weekday math stays correct", "When to use a Puppeteer-backed renderer" via canonical `(<h2>...</h2>\s*\n?\s*<p>.*?</p>)` regex (WP 6122 lesson held).
+
+**DOM audit (browser_console):** 1 H1 (theme entry-title), 9 H2 (8 body + 1 theme Post navigation), 3 highlight-card figures, 1 article-poster figure, 0 imgs with naturalWidth=0 after scroll-into-view (LiteSpeed lazy-load placeholders per WP 6197/6323 false-positive pattern), 2 missing-alt imgs (theme author-avatar + LiteSpeed SVG placeholder, both theme chrome — subtract 2 from article img count per WP 6323 lesson). 0 nested-p-in-h2, 0 lone-`*` paragraphs.
+
+**Asset visual QA:** poster (DOCUMENT TOOLS eyebrow, 2-line title 2026 PDF Calendar / Designer Field Guide, callout box at correct y=t2_y+250 position, url_bar legible), card1 (compact 4-tile "The Four Layouts At A Glance" with BIMONTHLY/QUARTERLY/SEMIANNUAL/ANNUAL counts 6 PG/4 PG/2 PG/1 PG — auto-shrink chain held, no vertical overlap), card2 (5-tile numbered "Five Defects Every DIY Calendar Hides" with notes row legible, takeaway not clipped at H=900), card3 (2-column input/output "Right Tool vs Wrong Tool" with empty space below 3-row content but takeaway clearly visible). All 4 assets pass vision_analyze with no overflow/tofu/clipping.
+
+**elysia anchors:** 9 total in article body — 8× `https://elysiatools.com/en/tools/pdf-2026-calendar-designer` (validated against `tool-manifest.json` via `validate_anchors.py`) + 1× `https://elysiatools.com/en/tools` (root). All curl HTTP 200.
+
+**Credential path:** cron-prompt inline creds bypassed; canonical `bted2k@gmail.com:zVlf aCkm vB79 GjXc zVrJ dSuH` used (per WP 6135 lesson).
+
+**Word count:** ~1440 words (slightly above 1000-1300 target but acceptable for technical field guide).
+
+**State update:** covered_slugs 532 → 533 (added `pdf-2026-calendar-designer`).
+
+**Skill availability:** `article-poster-creator` and `article-highlight-cards` missing from disk (consistent with WP 6185/6206/6323 pattern). Used umbrella PIL templates (`pil_poster_and_cards_network_theme.py::render_poster` + `render_card_4tile_compact` + `render_card_5tile` + `custom_pil_card_layouts.py::render_card_input_output_2col`). No new pitfalls surfaced.
