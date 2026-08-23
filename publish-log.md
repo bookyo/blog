@@ -2614,3 +2614,20 @@
 - anchors (5): ab-test-significance-calculator, confidence-interval, outlier-detector, regression-analyzer, /en/tools root
 - pre-POST fixes: card3 re-rendered via render_card_4tile_compact (multi-word counts F_HUGE at canonical 2x2 overflowed)
 - mode: 1-POST 0-PATCH clean (umbrella PIL path)
+
+## 5h audit cycle — 2026-08-23 ~17:50 UTC (Cycle #24, fallback path)
+
+Latest 5 posts audited:
+- WP 6340 (A/B Test Significance Calculator) — in-scope — clean
+- WP 6323 (Accessibility Checker) — in-scope — clean
+- WP 6317 (SVG Minifier) — in-scope — clean
+- WP 6309 (Open Journal 自由刊) — out-of-scope (CJK in title) — do NOT PATCH
+- WP 6307 (根据真实研究的延寿减龄方法) — out-of-scope (CJK in title) — do NOT PATCH
+
+Audit results:
+- 3/3 in-scope posts clean per `wp_post_audit.py::audit_post_content` (0 findings)
+- 3/3 in-scope posts DOM-verified: 1 H1 (theme entry-title), 9 H2 (8 body + 1 theme Post navigation), 0 H3, 3 highlight-cards, 1 article-poster, 0 imgs with missing alt, 0 imgs with naturalWidth=0, 0 nested-p-in-h2
+- 0 PATCH round-trips required
+- WP 6323 raw-content secondary scan: 0 literal HTML in code spans, 0 backslash-stripped, 0 markdown leftover
+
+Skill availability: `article-writer-references-cron-sessions/` directory missing from disk (consistent with WP 6206/6323 fallback pattern). Used umbrella PIL templates via canonical `wp_post_audit.py` for the audit pass. Defense steps all held — no new pitfalls surfaced.
