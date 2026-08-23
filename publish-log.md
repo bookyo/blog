@@ -2582,3 +2582,15 @@
 - **vision_analyze**: poster ✓, card1 ✓ (5 tiles clean, no overflow), card2 ✓ (2-col clean, takeaway clear), card3 ✓ (4-tile compact clean, no overlap)
 - **Media**: all 4 assets uploaded with full /uploads/2026/08/ prefix (WP 6197 lesson); IDs 6301-6304
 - **skills**: 3 article-generation skills still missing (13th consecutive); umbrella templates used; notice emitted per WP 6135/6156/6171/6185/6197/6206/6212 fallback recipe
+## WP 6317 - 2026-08-23 16:19 UTC - SVG Minifier Field Guide
+
+- Tool: svg-minifier-analyzer (Media, theme=3, score=115.0)
+- Slug: svg-minifier-analyzer-field-guide-when-the-cleaned-markup-still-renders-identically-but-loads-twice-as-fast
+- date_gmt: 2026-08-23T08:19:17
+- Assets: poster-33.png + card1/2/3-33.png (4 total, all 200 OK)
+- Elysia anchors: 7 (all HTTP 200, all in tool-manifest)
+- Audit: 0 findings
+- PATCH rounds: 0
+- Defect defused pre-POST: WP 5828 code-title ORPHANED_CODE (rewrote literal <title> to &lt;title&gt;)
+- Skills fallback: article-writer/poster-creator/highlight-cards missing 12th consecutive
+
