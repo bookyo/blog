@@ -2544,3 +2544,22 @@
   - samples: `/en/samples/json`, `/en/samples/go`, `/en/samples/chat-transcript-json`, `/en/samples/go-viewer-samples`
 - **vision_analyze**: poster ✓, card1 ✓, card2 ✓, card3 ✓ (after takeaway shorten)
 - **Audit**: 0 findings (final), featured_media=0
+
+## WP 6299 — Bulk Email Extractor Field Guide (2026-08-23, current UTC 00:03:56)
+- **date_gmt**: 2026-08-23T00:03:56
+- **tool_id**: bulk-email-extractor (Text Processing)
+- **sparse-category fallback**: triggered (1 diverse pick from canonical v4 → 1388 candidates from sparse_category_picker.py; theme_score=3, desc=132)
+- **slug**: bulk-email-extractor-field-guide-when-your-regex-returns-the-wrong-47-of-53-addresses-2026-08-23
+- **URL**: https://blog.flowrust.com/2026/08/23/bulk-email-extractor-field-guide-when-your-regex-returns-the-wrong-47-of-53-addresses-2026-08-23/
+- **post_id**: 6299
+- **status**: publish, featured_media=0
+- **assets**: poster.png + card1.png (5-tile: 5 validation rules) + card2.png (4-tile compact: 4 input shapes) + card3.png (5-tile: 5 failure modes)
+- **defenses applied pre-POST**: (1) lead rewritten as `<p><strong>...</strong>...</p>` no inline `<code>` (WP 6171 lesson); (2) 0 body H3, exactly 8 H2 (one extra "Putting It Together" H2 merged into prose); (3) all bullets as `<ul><li>` HTML (WP 6135/6163/6212 lesson); (4) regex `\.` pre-encoded as `&#92;.` in 2 `<code>` spans (WP 5717/5822/6060/6149/6171 lesson — `-` escapes in `\-` left intact, no strip risk); (5) PIL poster subtitle pre-measured at 791px < W-40=1040 (WP 5683/6109/6129/6149/6171 lesson); (6) PIL card3 first-pass tile 01 clipped horizontally ("&#64; decodes sales@example.com...") → shortened to "Decode &#64; to @ before regex"; vision_analyze caught the defect
+- **audit_post_content**: 0 findings (final)
+- **DOM checks**: h1=1 (theme entry-title), h2=9 (8 body + Post nav theme), h3=0, poster=1, cards=3, p=35, code=30, empty_code=0, img=6 (4 article + 2 theme)
+- **elysia links**: 7 total, all 200
+  - tools: `/en/tools/bulk-email-extractor` (x6)
+  - tools root: `/en/tools` (x1)
+- **vision_analyze**: poster ✓, card1 ✓, card2 ✓, card3 ✓ (after 01-tile shorten)
+- **Media**: all 4 assets uploaded with full /uploads/2026/08/ prefix (WP 6197 lesson); card naturalWidth=1600 after LiteSpeed lazy-load fires on scroll
+- **skills**: 3 article-generation skills still missing (12th consecutive); umbrella templates used; notice emitted per WP 6135/6156/6171/6185/6197/6206/6212 fallback recipe
