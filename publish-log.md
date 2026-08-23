@@ -2594,3 +2594,13 @@
 - Defect defused pre-POST: WP 5828 code-title ORPHANED_CODE (rewrote literal <title> to &lt;title&gt;)
 - Skills fallback: article-writer/poster-creator/highlight-cards missing 12th consecutive
 
+## 2026-08-23 12:30 UTC — WP 6323
+- Title: Accessibility Checker Field Guide: When WCAG 2.1 Compliance Should Not Be a Friday Night Audit
+- Tool: accessibility-checker (Accessibility Checker)
+- Category: Validation
+- date_gmt: 2026-08-23T12:27:38
+- Status: publish
+- PATCH rounds: 3 (wpautop-stripped literal HTML in <code>, then anchor slug corrections)
+- Final: 0 audit findings
+- URL: https://blog.flowrust.com/2026/08/23/accessibility-checker-field-guide-when-wcag-2-1-compliance-should-not-be-a-friday-night-audit-2026-08-23/
+
