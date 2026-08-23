@@ -2563,3 +2563,22 @@
 - **vision_analyze**: poster ✓, card1 ✓, card2 ✓, card3 ✓ (after 01-tile shorten)
 - **Media**: all 4 assets uploaded with full /uploads/2026/08/ prefix (WP 6197 lesson); card naturalWidth=1600 after LiteSpeed lazy-load fires on scroll
 - **skills**: 3 article-generation skills still missing (12th consecutive); umbrella templates used; notice emitted per WP 6135/6156/6171/6185/6197/6206/6212 fallback recipe
+## WP 6305 — Image to Spectrogram Audio Field Guide (2026-08-23, current UTC 04:11:08)
+- **date_gmt**: 2026-08-23T04:11:08
+- **tool_id**: image-to-spectrogram-audio (Media)
+- **sparse-category fallback**: triggered (1 diverse pick from canonical v4 → 1388 candidates from sparse_category_picker.py; theme_score=2, desc=164); picked `image-to-spectrogram-audio` over `svg-minifier-analyzer` for thematic spectrogram clustering
+- **slug**: image-to-spectrogram-audio-field-guide-when-the-reconstruction-has-to-match-the-bitmap-2026-08-23
+- **URL**: https://blog.flowrust.com/2026/08/23/image-to-spectrogram-audio-field-guide-when-the-reconstruction-has-to-match-the-bitmap-2026-08-23/
+- **post_id**: 6305
+- **status**: publish, featured_media=0
+- **assets**: poster.png + card1.png (5-tile: 5 mapping rules) + card2.png (2-col input/output worked example) + card3.png (4-tile compact: 3 checks + verified round-trip)
+- **defenses applied pre-POST**: (1) lead rewritten as raw `<strong>The fastest path...</strong>` text, no `<p>` wrapper, no inline `<code>` (WP 6171 lesson); (2) 0 body H3, exactly 8 H2 with new "Putting It Together" section added during build; (3) PIL poster subtitle pre-measured — first attempt 1222px, shortened to 982px < W-40=1040 (WP 5683/6109/6129/6149/6171 lesson — third-shortening attempt); (4) all elysia anchors validated against tool-manifest before POST (5 unique anchors all HTTP 200 + manifest membership); (5) PIL render_card_input_output_2col signature verified — uses `left_header`/`left_rows` strings not tuples
+- **audit_post_content**: 0 findings (final)
+- **DOM checks**: h1=1 (theme entry-title), h2=9 (8 body + Post nav theme), h3=0, poster=1, cards=3, missing_alt=2 (theme author-avatar widgets only, not article)
+- **elysia links**: 7 total, all 200, all manifest-validated:
+  - tools: `/en/tools/image-to-spectrogram-audio` (x3), `/en/tools/audio-spectrogram-generator`, `/en/tools/audio-to-spectrogram-video`
+  - category root: `/en/tools/media`
+  - tools root: `/en/tools`
+- **vision_analyze**: poster ✓, card1 ✓ (5 tiles clean, no overflow), card2 ✓ (2-col clean, takeaway clear), card3 ✓ (4-tile compact clean, no overlap)
+- **Media**: all 4 assets uploaded with full /uploads/2026/08/ prefix (WP 6197 lesson); IDs 6301-6304
+- **skills**: 3 article-generation skills still missing (13th consecutive); umbrella templates used; notice emitted per WP 6135/6156/6171/6185/6197/6206/6212 fallback recipe
