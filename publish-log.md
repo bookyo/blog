@@ -2604,3 +2604,13 @@
 - Final: 0 audit findings
 - URL: https://blog.flowrust.com/2026/08/23/accessibility-checker-field-guide-when-wcag-2-1-compliance-should-not-be-a-friday-night-audit-2026-08-23/
 
+
+## WP 6340 - ab-test-significance-calculator-field-guide (2026-08-23 16:47 UTC)
+- Tool: A/B Test Significance Calculator (Data Analysis)
+- date_gmt: 2026-08-23T16:47:00
+- link: https://blog.flowrust.com/2026/08/24/ab-test-significance-calculator-field-guide-when-the-p-value-tells-half-the-story-2026-08-23/
+- status: publish | featured_media: 0
+- audit: clean (0 H1, 8 H2, 3 highlight-cards, 1 article-poster)
+- anchors (5): ab-test-significance-calculator, confidence-interval, outlier-detector, regression-analyzer, /en/tools root
+- pre-POST fixes: card3 re-rendered via render_card_4tile_compact (multi-word counts F_HUGE at canonical 2x2 overflowed)
+- mode: 1-POST 0-PATCH clean (umbrella PIL path)
