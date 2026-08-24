@@ -2698,3 +2698,20 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - **Cron-prompt skip-notice handling**: per WP 6352 recipe, `article-writer/SKILL.md` exists on disk (100KB) while `article-poster-creator` and `article-highlight-cards` are absent; treated as umbrella fallback for PIL/audit scripts (template `pil_poster_and_cards_network_theme.py::render_poster` + `render_card_5tile` + `custom_pil_card_layouts::render_card_input_output_2col`)
 - **Cron mode quirks honored**: `execute_code` BLOCKED (used `terminal` + `write_file` for all scripts); heredoc `<<PYEOF` BLOCKED (used `write_file /tmp/*.py` then `python3 <file>`); canonical creds from `scripts/wp_post_audit.py` used (cron-prompt inline creds would have returned 401 per WP 6135); `featured_media: 0` enforced; pre-POST card count assertion `assert n_cards == 3` (per WP 6122) held
 - **State update**: covered_slugs 534 -> 535 (added `data-bom-remover`).
+
+## WP 6364 — Base64URL Encoder Field Guide (2026-08-24 09:15:50 UTC)
+
+- **Post**: [Base64URL Encoder Field Guide: When Three Characters Flip and Your JWT Survives URL Parsing](https://blog.flowrust.com/2026/08/24/base64url-encoder-field-guide-when-three-characters-flip-and-your-jwt-survives-url-parsing/)
+- **ID**: 6364 | **slug**: base64url-encoder-field-guide-when-three-characters-flip-and-your-jwt-survives-url-parsing | **date_gmt**: 2026-08-24T09:15:50
+- **Status**: publish (1-POST clean, 0 PATCH)
+- **Tool chosen**: base64url-encoder (Format Conversion, score 611) — sparse-category picker fallback (per WP 6206), 2173 candidates after dedup of 778 covered IDs
+- **CARD LAYOUTS**:
+  - card1 (render_card_5tile, 5 numbered ops): The Four Operations in One Textarea
+  - card2 (render_card_4tile_compact, 4 edge cases with body-fix): Four Edge Cases That Catch First-Time Auditors
+  - card3 (render_card_5tile_3plus2, 5-tool pipeline): The JWT Debugging Pipeline at Elysia Tools
+- **PIL QA cycle**: 2 passes (first-pass defects caught: poster subtitle overflow, card2 body text clipped). All 4 assets re-rendered clean.
+- **Anchors**: 7 unique tool IDs (5 tools + 1 cross-link root + 1 bare domain) — all valid in tool-manifest.json (no phantom slugs). Fixed `bom-character-remover` -> `data-bom-remover` during pre-POST audit.
+- **Audit**: 0 `audit_post_content` findings; DOM probe 9 H2 = 8 body + 1 nav chrome, 3 cards, 1 poster, h3=0, inH2=0, 2 noAlt = theme chrome (avatar + LiteSpeed placeholder), 3 nw0 = lazy-load pending (dataset.src valid), 1 H1 = theme entry-title only
+- **Cron-prompt skip notice**: article-writer/SKILL.md exists (100KB); article-poster-creator and article-highlight-cards NOT on disk — fell back to umbrella PIL templates (per WP 6352 lesson)
+- **Cron mode quirks honored**: execute_code BLOCKED (used terminal + write_file); heredoc BLOCKED; canonical creds used; featured_media=0; pre-POST card-count assertion held (n==3 captured no PATCH round-trip)
+- **State update**: covered_slugs 535 -> 536 (added base64url-encoder)
