@@ -2653,3 +2653,27 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 **State update:** covered_slugs 532 → 533 (added `pdf-2026-calendar-designer`).
 
 **Skill availability:** `article-poster-creator` and `article-highlight-cards` missing from disk (consistent with WP 6185/6206/6323 pattern). Used umbrella PIL templates (`pil_poster_and_cards_network_theme.py::render_poster` + `render_card_4tile_compact` + `render_card_5tile` + `custom_pil_card_layouts.py::render_card_input_output_2col`). No new pitfalls surfaced.
+
+---
+
+## WP 6352 — Bubble Text Field Guide — 2026-08-24 01:02:54 UTC
+
+**Tool:** bubble-text (Bubble Text) — Text Processing category.
+**URL:** https://blog.flowrust.com/2026/08/24/bubble-text-field-guide-when-four-variants-of-enclosed-unicode-letters-beat-a-single-style-2026-08-24/
+**Title:** "Bubble Text Field Guide: When Four Variants of Enclosed Unicode Letters Beat a Single Style"
+**Date GMT:** 2026-08-24T01:02:54
+**Status:** publish
+**Featured media:** 0 (COSESAI hero duplicate avoided)
+**Patch round-trips:** 0
+
+**Article structure:**
+- 0 body `<h1>`, exactly 8 body `<h2>`, 0 body `<h3>`
+- 1 `<figure class="article-poster">` + 3 `<figure class="highlight-card">`
+- 7 elysiatools anchors (5× bubble-text tool, 1× fancy-text-generator sibling, 1× tools root)
+- ~1440 words
+
+**Pre-render pitfalls avoided:**
+- PIL Helvetica tofu on Enclosed Alphanumerics (U+2460), Dingbats (U+2776), Enclosed Alphanumeric Supplement (U+1F150): WP 5699/6135/6178/6323 family. First-pass render had tofu glyphs (ⒶⒷⒸ ⓐⓑⓒ ❶❷❸ 🅐🅑🅒 ⒜⒝⒞) — re-rendered with ASCII labels + U+ codepoint text. **Article body keeps the real Unicode glyphs** — browsers have fallback fonts; PIL Helvetica does not.
+- Poster subtitle clip (WP 5683/6109/6129/6149 family): first-pass subtitle was too long; shortened to "Field guide to enclosed Unicode letters" to fit W-40 measure.
+
+**State update:** covered_slugs 533 → 534 (added `bubble-text`).
