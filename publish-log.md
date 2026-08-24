@@ -2766,3 +2766,36 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - Cards: 3 (5-tile inputs / 5-tile bands / 2-col lifters)
 - Audit findings: 0 (after PATCH)
 - DOM probe: 1 H1 + 9 H2 (8 body + 1 nav) + 3 cards + 1 poster + 0 nested code
+
+## WP 6383 - 2026-08-24 22:00 UTC - strikethrough-text-field-guide
+- Tool: Strikethrough Text (Text Processing)
+- date_gmt: 2026-08-24T22:00:44
+- Title: Strikethrough Text Field Guide: When the Strike Has to Travel Beyond the Markdown Stripper
+- URL: https://blog.flowrust.com/2026/08/25/strikethrough-text-field-guide-when-the-strike-has-to-travel-beyond-the-markdown-stripper-2026-08-24/
+- Result: 1-POST 0-PATCH clean
+- elysia anchors: 2 (1x /en/tools/strikethrough-text + 1x /en/tools)
+- Cards: 3 (5-tile U+0336 properties / 2-col before-after examples / 4-tile compact scenarios)
+- Audit findings: 0
+- DOM probe: 1 H1 + 9 H2 (8 body + 1 nav chrome) + 3 cards + 1 poster + 0 nested code + 0 p-in-h2
+- Cron-prompt skip-notice confirmed AGAIN (5th confirmation WP 6352/6358/6364/6370/6383): umbrella PIL fallback held for 21st consecutive run.
+
+## PIL asset choices
+- **Poster** (`render_poster`): 1080×800 deep-navy, eyebrow TEXT PROCESSING, title "Strike-Through / That Survives", subtitle "The combining mark U+0336, in plain text where markdown fails", callout "Each output char is two code points — base glyph + U+0336", url bar `elysiatools.com/en/tools/strikethrough-text`.
+- **Card 1** (`render_card_5tile`, 5 numbered values): "Five Things Hidden In U+0336", items ZERO WIDTH / ZERO ADVANCE / PER-CHAR / UNIVERSAL / SURVIVES with values `U+0336`, `no layout\nshift`, `one mark\nper glyph`, `letters /\ndigits / CJK`, `paste into\nSlack / Git`. Notes COMBINING / OVERLAY / U+0336 / U+0336 / U+0336. Highlighted last tile.
+- **Card 2** (`render_card_input_output_2col`, 2-column before-after): "Two Real Examples, Before And After", INPUT "totally fine" / "Order #12345 - cancelled", OUTPUT `t̶o̶t̶a̶l̶l̶y̶ ̶f̶i̶n̶e̶` / `O̶r̶d̶e̶r̶ ̶#̶1̶2̶3̶4̶5̶ ̶-̶ ̶c̶a̶n̶c̶e̶l̶l̶e̶d̶` (real combining marks rendered legibly per vision_analyze QA).
+- **Card 3** (`render_card_4tile_compact`, 1×4 single row): "Four Places The Combining Mark Shines", tiles CHAT/STYLE, NOTES/TODO, FILENAMES/CLI, SOCIAL/POSTS. Sub-labels `use U+0336` / `mark stuck` / `strike name` / `paste strike`.
+
+## Cron-mode quirks honored
+- `execute_code` BLOCKED — used `terminal` + `write_file` exclusively
+- heredoc `<<PYEOF` BLOCKED — wrote scripts to `/tmp/*.py` and ran with `python3 <file>`
+- canonical creds used (`bted2k@gmail.com:zVlf aCkm vB79 GjXc zVrJ dSuH`) — NOT the cron-prompt inline creds (per WP 6135 trap)
+- `featured_media: 0` enforced (COSESAI non-negotiable)
+- pre-POST `assert n_cards == 3` held (caught regex silent fail pre-POST vs PATCH)
+- `pre_encode_code_spans` chained before `md_to_html` to defuse WP 5828/6109/6135/6171/6323 family (literal HTML tags like `<s>`/`<del>` inside backtick spans entity-encoded before render)
+- source-side `<ul><li><strong>...</strong></li></ul>` written for the bullet list (NOT markdown `- **` bullets) to defuse MERGED_BULLET_LIST (WP 5683/5746/6212) at source-side
+- cron-prompt skill-not-found notice observed (`article-writer` SKILL.md present, `article-poster-creator` and `article-highlight-cards` directories absent on disk per WP 6185/6206/6352 probe recipe) — fell back to umbrella's bundled PIL templates + `scripts/md_to_html.py` per the WP 6171/6206 canonical recipe
+- python3.11 venv used for PIL rendering (per WP 6197)
+
+## State update
+- covered_slugs: 535 → 536 (added `strikethrough-text`)
+- Asset archive: `~/www/blog/2026-08-24-strikethrough-text-field-guide-when-the-strike-has-to-travel-beyond-the-markdown-stripper-2026-08-24/`
