@@ -2756,3 +2756,13 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - covered_slugs: 536 → 537 (added `number-converter`)
 - Asset archive: `~/www/blog/2026-08-24-number-converter-field-guide-when-your-number-has-to-be-in-three-different-bases-by-lunch/`
 - Cron-prompt skip-notice confirmed AGAIN (4th confirmation WP 6352/6358/6364/6370): umbrella PIL fallback held for 20th consecutive run.
+## WP 6376 - 2026-08-24 17:41 UTC - wilks-score-field-guide
+- Tool: Wilks Score Calculator (Health)
+- date_gmt: 2026-08-24T17:41:36
+- Title: Wilks Score Field Guide: When a 60-Kilo Squat and a 200-Kilo Squat Sit on the Same Scoreboard
+- URL: https://blog.flowrust.com/2026/08/25/wilks-score-field-guide-when-a-60-kilo-squat-and-a-200-kilo-squat-sit-on-the-same-scoreboard/
+- Result: 1-POST + 1-PATCH (nested <code><code> defused)
+- elysia anchors: 4 (3x /en/tools/wilks-score + 1x /en/tools)
+- Cards: 3 (5-tile inputs / 5-tile bands / 2-col lifters)
+- Audit findings: 0 (after PATCH)
+- DOM probe: 1 H1 + 9 H2 (8 body + 1 nav) + 3 cards + 1 poster + 0 nested code
