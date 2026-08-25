@@ -2884,3 +2884,15 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 ## State update
 - covered_slugs: 536 → 537 (added `vin-validator`)
 - Asset archive: `~/www/blog/2026-08-25-vin-validator-field-guide-when-seventeen-characters-decide-whether-your-database-trusts-the-vehicle/`
+## 2026-08-25T06:27:46Z — WP 6396 — XLSX CSV Batch Converter
+
+- date_gmt: 2026-08-25T06:26:35
+- slug: xlsx-csv-batch-converter-field-guide-when-delimiter-and-encoding-flags-beat-naive-converts-2026-08-25
+- url: https://blog.flowrust.com/2026/08/25/xlsx-csv-batch-converter-field-guide-when-delimiter-and-encoding-flags-beat-naive-converts-2026-08-25/
+- tool: XLSX CSV Batch Converter (id=xlsx-csv-batch-converter, Format Conversion)
+- cards: 3 (5tile + 4tile-compact + 5tile-3plus2)
+- anchors: xlsx-csv-batch-converter, csv-excel-diff-tool, xlsx-csv-detect-normalize, /en/tools
+- audit: 0 content findings; DOM 1 H1, 9 H2 (8 body + 1 nav), 1 poster, 3 cards, 0 missing-alt in body, 0 naturalWidth=0
+- visual-QA: all 4 assets passed vision_analyze (no tofu, no overflow, no panel border overlap)
+- artifacts: ~/www/blog/2026-08-25-xlsx-csv-batch-converter/
+
