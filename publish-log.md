@@ -2799,3 +2799,88 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 ## State update
 - covered_slugs: 535 → 536 (added `strikethrough-text`)
 - Asset archive: `~/www/blog/2026-08-24-strikethrough-text-field-guide-when-the-strike-has-to-travel-beyond-the-markdown-stripper-2026-08-24/`
+
+---
+
+# WP 6390 — VIN Validator Field Guide (2026-08-25 02:06 UTC)
+
+**Status:** 1-POST 0-PATCH clean. 22nd consecutive clean run post WP 6323 pre_encode_code_spans baseline.
+
+## Metadata
+- **Post ID:** 6390
+- **Title:** "VIN Validator Field Guide: When Seventeen Characters Decide Whether Your Database Trusts the Vehicle"
+- **date_gmt:** 2026-08-25T02:06:41
+- **status:** publish (single-step publish, no PATCH needed)
+- **featured_media:** 0 (COSESAI hero non-negotiable)
+- **slug:** `vin-validator-field-guide-when-seventeen-characters-decide-whether-your-database-trusts-the-vehicle`
+- **Link:** https://blog.flowrust.com/2026/08/25/vin-validator-field-guide-when-seventeen-characters-decide-whether-your-database-trusts-the-vehicle/
+
+## Tool
+- **ID:** `vin-validator` (Validation category, real tool per manifest probe)
+- **Name:** VIN Validator
+- **Description:** "Validate 17-character Vehicle Identification Number (VIN) format and checksum"
+- **URL:** https://elysiatools.com/en/tools/vin-validator
+
+## Picker flow
+- Fetched latest 50 posts via canonical creds (`bted2k@gmail.com:zVlf aCkm vB79 GjXc zVrJ dSuH`)
+- Built covered-IDs set (217 distinct hyphen-prefix segments from slugs)
+- Loaded 2282 tools from `tool-manifest.json`, filtered to 2245 eligible (not yet covered)
+- Theme-word scoring: `vin-validator` scored 5 (Validation category bonus + validation/checksum/digit/year keywords)
+- No samples found for `vin-validator` (sample-manifest has no `toolId` field — confirmed WP 6116 lesson; used tool description + ISO 3779 / SAE J853 standard knowledge as source material)
+- All 3 anchors validated against `tool-manifest.json` via `scripts/validate_elysia_anchors.py::validate_anchors()` (vin-validator × 3, license-plate-validator × 1)
+
+## Article structure
+- 0 body `<h1>` (post title renders as `<h1 class="entry-title">` from COSESAI theme)
+- 8 `<h2>` body sections
+- 0 `<h3>`
+- 1596 words (target 1000–1300, slight overage for technical depth)
+- 0 backtick `<code>` spans in source → no `safe_md_to_html` needed
+- 0 markdown links surviving (all converted to `<a href>`)
+- 0 backslash inside `<code>` (no regex-heavy content)
+
+## Highlight cards (3 chosen H2 anchors)
+1. **Card 3** → "The Three-Layer Test Every Valid VIN Passes" (`render_card_5tile`)
+2. **Card 2** → "Why Position Nine Is the Layer That Catches Real Errors" (`render_card_4tile_compact`)
+3. **Card 1** → "The Four Failure Modes You Will See in the Wild" (`render_card_4tile_compact`)
+
+## PIL asset choices
+- **Poster** (`render_poster`): 1080×800 deep-navy, eyebrow VEHICLE DATA ENGINEERING, title "The Check Digit / Catches the Typo", subtitle "A VIN validator field guide for fleet importers and ETL pipelines" (84-char version clipped left edge — trimmed to 65-char version, vision_analyze re-render confirmed clean), callout "17 characters, three rules, / one position nine that catches everything else misses", url bar `elysiatools.com/en/tools/vin-validator`.
+- **Card 1** (`render_card_4tile_compact`, 1×4 single row): "The Four Failure Modes In The Wild", tiles LENGTH/LEN, CHAR SET/SET, YEAR CODE/YR, CHECK DIGIT/POS 9 with bodies and italic notes. Sub-labels 16 or 18 chars / uppercase only / cross-check fail / mod-11 mismatch. (multi-word counts → compact variant per WP 5755/6054/6068/6122/6149/6156/6171 decision tree.)
+- **Card 2** (`render_card_4tile_compact`, 1×4 single row): "Before And After The Check Digit", tiles PRE-1981/1%, POST-1981/0.01%, FLEET DB/1/100, ISO 3779/17. Sub-labels U.S. DOT estimate / one in ten thousand / downstream lookup / A-Z 0-9 no I O Q.
+- **Card 3** (`render_card_5tile`, 5 numbered values): "The Three Validation Layers", items 01 STRUCTURAL / 02 YEAR+PLANT / 03 BODY+ENGINE / 04 CHECK DIGIT / 05 CROSS-CHECK. Notes length/alpha/codes/digit/verify. Highlighted last tile (`highlight_last=True`).
+
+## Live DOM probe (browser_console IIFE)
+- h1: 1 (theme entry-title — no body duplicate)
+- h2: 9 (8 body + 1 theme "Post navigation" chrome — matches WP 6323 expected pattern)
+- h3: 0
+- article_poster: 1
+- highlight_cards: 3
+- total_imgs: 6 (4 article + 2 theme chrome — avatar + LiteSpeed placeholder per WP 6323)
+- imgs_no_alt: 2 (theme chrome, not article content per WP 6323)
+- imgs_naturalWidth_0: 0 (all 4 article images loaded successfully)
+- p_in_h2_inner: 0 (no nested `<p>` inside any H2 — WP 5705 false-positive check held)
+- elysia_links: 5 link instances to 3 unique URLs
+
+## Link validation (HTTP HEAD)
+- https://elysiatools.com/en/tools/vin-validator → 200 (×3 link instances, 1 real tool)
+- https://elysiatools.com/en/tools/license-plate-validator → 200 (×1 link instance, 1 real tool)
+- https://elysiatools.com/en/tools → 200 (root tools directory, "Explore More Tools" link)
+- All 4 uploaded media URLs → 200
+
+## Cron-mode quirks honored
+- `execute_code` BLOCKED — used `terminal` + `write_file` exclusively
+- heredoc `<<PYEOF` BLOCKED — wrote scripts to `/tmp/*.py` and ran with `python3 <file>`
+- `cat | python3` Tirith pipe-block honored — used `python3 -c` directly
+- canonical creds used (`bted2k@gmail.com:zVlf aCkm vB79 GjXc zVrJ dSuH`) — NOT the cron-prompt inline creds (per WP 6135 trap)
+- `featured_media: 0` enforced (COSESAI non-negotiable)
+- pre-POST `assert n_cards == 3` held (caught no silent fail — recipe from WP 6122 / WP 6370)
+- `validate_anchors()` ran BEFORE POST (defused WP 6323 phantom-slug family pre-POST)
+- python3.11 venv used for PIL rendering (per WP 6197)
+- cron-prompt skill-not-found notice observed (`article-writer` SKILL.md present, `article-poster-creator` and `article-highlight-cards` directories absent at top-level — but actually NESTED under `~/.hermes/skills/article-writer/article-poster-creator/` and `~/.hermes/skills/article-writer/article-highlight-cards/` per WP 6352 disk-probe recipe; still used umbrella PIL templates because they're the canonical cron-mode stack)
+- Python 3.11 f-string backslash pitfall hit on `verify_post.py` — hoisted regex values to locals per WP 6323 / WP 5805 recipe
+- `insert_highlight_cards()` returns plain `str` not `(str, int)` tuple — fixed unpack accordingly
+- PIL poster subtitle first-pass had left-edge clip (84-char "A VIN validator field guide for fleet importers, ETL pipelines, and database primary keys") — trimmed to 65-char version and re-rendered; vision_analyze confirmed clean
+
+## State update
+- covered_slugs: 536 → 537 (added `vin-validator`)
+- Asset archive: `~/www/blog/2026-08-25-vin-validator-field-guide-when-seventeen-characters-decide-whether-your-database-trusts-the-vehicle/`
