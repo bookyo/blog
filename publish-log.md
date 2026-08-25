@@ -2921,3 +2921,16 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - Audit final: 0 issues
 - DOM check: h1=1 theme, h2=9 (8 body + 1 nav), 0 h3, 1 poster, 3 cards, 4 uls (3 body + 1 theme chrome), 17 lis
 - Visual QA: poster + 3 cards passed vision_analyze (no clip, no tofu, no overflow)
+
+## 2026-08-25T19:07:24 — dns-query-field-guide-when-seven-record-types-reveal-what-your-domain-is-actually-doing-2026-08-25 (WP 6417)
+- Title: DNS Query Tool Field Guide: When Seven Record Types Reveal What Your Domain Is Actually Doing
+- URL: https://blog.flowrust.com/2026/08/26/dns-query-field-guide-when-seven-record-types-reveal-what-your-domain-is-actually-doing-2026-08-25/
+- Tool: DNS Query Tool (dns-query) — category: Network
+- Description: Query DNS records and domain resolution information including A, AAAA, MX, TXT, NS, and CNAME records
+- Anchor count: 8 elysiatools links (6 tool + 1 root catalog; tool-IDs: dns-query x4, cidr-calculator x2, ip-geolocation x1)
+- Cards: poster (1080x800) + card1 5-tile + card2 audit-style 2-col + card3 4-tile compact 1-row
+- Audit pre-POST: 0 findings (H1=0 H2=8 H3=0, poster=1 card=3, 9 code spans, 0 backslash, all anchors real)
+- Audit post-POST: 0 findings via audit_post_content
+- DOM check: h1=1 theme, h2=9 (8 body + 1 nav), 0 h3, 1 poster, 3 cards, all 4 asset URLs HTTP 200, all 8 elysia anchors HTTP 200
+- Visual QA: all 4 PNGs passed vision_analyze (caught card3 first-pass count-vs-note overlap defect; regenerated with render_card_4tile_compact)
+- Run: 1-POST 0-PATCH (clean)
