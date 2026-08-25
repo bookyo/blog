@@ -2905,3 +2905,7 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - Assets: poster + 3 cards (5tile each)
 - Anchors: 1 tool, 2 samples, 1 root
 - Run: 1-POST 0-PATCH (clean)
+
+## 2026-08-25T14:48:40 — ascii-table-reference-field-guide-when-the-byte-you-typed-is-not-the-byte-the-compiler-saw-2026-08-25 (WP 6408)
+- Title: ASCII Table Reference Field Guide: When the Byte You Typed Is Not the Byte the Compiler Saw
+- URL: https://blog.flowrust.com/2026/08/25/ascii-table-reference-field-guide-when-the-byte-you-typed-is-not-the-byte-the-compiler-saw-2026-08-25/
