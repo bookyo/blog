@@ -2909,3 +2909,15 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 ## 2026-08-25T14:48:40 — ascii-table-reference-field-guide-when-the-byte-you-typed-is-not-the-byte-the-compiler-saw-2026-08-25 (WP 6408)
 - Title: ASCII Table Reference Field Guide: When the Byte You Typed Is Not the Byte the Compiler Saw
 - URL: https://blog.flowrust.com/2026/08/25/ascii-table-reference-field-guide-when-the-byte-you-typed-is-not-the-byte-the-compiler-saw-2026-08-25/
+
+## 2026-08-25T14:36:08 — ascii-table-reference-field-guide-when-the-byte-you-typed-is-not-the-byte-the-compiler-saw-2026-08-25 (WP 6408)
+- Title: ASCII Table Reference Field Guide: When the Byte You Typed Is Not the Byte the Compiler Saw
+- URL: https://blog.flowrust.com/2026/08/25/ascii-table-reference-field-guide-when-the-byte-you-typed-is-not-the-byte-the-compiler-saw-2026-08-25/
+- Tool: ASCII Table Reference (ascii-table) — category: Development
+- Description: 4-option lookup table for 0-127 byte codes
+- Anchor count: 8 elysiatools links (7 tool + 1 root catalog)
+- Cards: 5-tile x3 (Lookup Filters, Output Columns, Hex Dump Decoder)
+- PATCHes: 2 (MERGED_BULLET_LIST x2 — H2#2 Four filters; H2#3 Control block; H2#4 Output columns)
+- Audit final: 0 issues
+- DOM check: h1=1 theme, h2=9 (8 body + 1 nav), 0 h3, 1 poster, 3 cards, 4 uls (3 body + 1 theme chrome), 17 lis
+- Visual QA: poster + 3 cards passed vision_analyze (no clip, no tofu, no overflow)
