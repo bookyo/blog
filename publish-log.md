@@ -2896,3 +2896,12 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - visual-QA: all 4 assets passed vision_analyze (no tofu, no overflow, no panel border overlap)
 - artifacts: ~/www/blog/2026-08-25-xlsx-csv-batch-converter/
 
+
+## 2026-08-25 10:34 UTC — WP 6402 — Distributed Trace Decoder & Waterfall Visualizer
+
+- Tool: distributed-trace-decoder-waterfall-visualizer (Development)
+- date_gmt: 2026-08-25T10:33:39
+- URL: https://blog.flowrust.com/2026/08/25/distributed-trace-decoder-field-guide-when-one-waterfall-beats-three-backend-uis-2026-08-25/
+- Assets: poster + 3 cards (5tile each)
+- Anchors: 1 tool, 2 samples, 1 root
+- Run: 1-POST 0-PATCH (clean)
