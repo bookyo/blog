@@ -2934,3 +2934,31 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - DOM check: h1=1 theme, h2=9 (8 body + 1 nav), 0 h3, 1 poster, 3 cards, all 4 asset URLs HTTP 200, all 8 elysia anchors HTTP 200
 - Visual QA: all 4 PNGs passed vision_analyze (caught card3 first-pass count-vs-note overlap defect; regenerated with render_card_4tile_compact)
 - Run: 1-POST 0-PATCH (clean)
+
+## WP 6423 — BSON Converter Field Guide — 2026-08-25 23:10 UTC
+
+**Tool**: bson-converter (Format Conversion, real manifest ID)
+**Title**: BSON Converter Field Guide: When Your JSON Has to Cross the MongoDB Wire Without Falling Apart
+**Link**: https://blog.flowrust.com/2026/08/26/bson-converter-field-guide-when-your-json-has-to-cross-the-mongodb-wire-without-falling-apart/
+**Slug**: bson-converter-field-guide-when-your-json-has-to-cross-the-mongodb-wire-without-falling-apart
+**date_gmt**: 2026-08-25T23:10:00
+**Status**: 1-POST 0-PATCH clean run
+**Assets**: poster (1080×800), card1 (5-tile, 3 failure modes), card2 (2-col hex vs base64), card3 (3+2 shifts)
+**Elysia anchors (4 total)**: bson-converter (×3), /en/tools (×1) — all real tool IDs, all HTTP 200
+**Pre-POST audits**: 0 audit findings; 8 H2; 1 poster + 3 cards; 0 markdown links; 0 <p> in <h2>; 0 nested <code>; 0 backslash in <code>; 0 phantom slugs
+**DOM checks**: 1 H1 (theme), 9 H2 (8 body + 1 nav chrome), 0 H3, 1 poster fig, 3 highlight-card figs, 4 elysia links correct types
+**vision_analyze**: all 4 assets visually clean (no tofu, no overflow, no clipping)
+**Image URLs**: all 4 HEAD-checked 200 (LiteSpeed lazy-load placeholder visible in cards — dataset.src present, expected)
+**Asset archive**: ~/www/blog/2026-08-25-bson-converter-field-guide-when-your-json-has-to-cross-the-mongodb-wire-without-falling-apart/
+
+### Notable choices
+- Picked `bson-converter` (theme score 16, Format Conversion cluster — fits the binary-format validation/encoding family)
+- 0 samples for bson-converter in sample-manifest — skipped sample-link recipe per WP 6116/6390 lesson
+- Used `<ul><li>` HTML for the 6-item type list (avoided `- ` markdown bullets per WP 6135 + avoided trailing-colon-then-bullets wpautop duplicate-p risk per WP 6163)
+- Card 1 used `render_card_5tile` with 3 items + 2 ghost tiles (clean visual, no overlap)
+- Card 2 used `render_card_input_output_2col` (hex column vs base64 column) — clean both columns
+- Card 3 used `render_card_5tile_3plus2` (3 shifts + 2 callouts) — clean takeaway
+- All `<code>` spans pre-checked for `*` (none present) — used plain `md_to_html` not `safe_md_to_html`
+- Featured media = 0 per WP 5628 (COSESAI non-negotiable)
+- Used canonical credentials (not cron-prompt inline) per WP 6135 lesson
+- PIL rendered under /Users/quyue/.hermes/hermes-agent/venv/bin/python3.11 (system python3.9 fails PIL import per WP 6323 lesson)
