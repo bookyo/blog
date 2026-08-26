@@ -2962,3 +2962,19 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - Featured media = 0 per WP 5628 (COSESAI non-negotiable)
 - Used canonical credentials (not cron-prompt inline) per WP 6135 lesson
 - PIL rendered under /Users/quyue/.hermes/hermes-agent/venv/bin/python3.11 (system python3.9 fails PIL import per WP 6323 lesson)
+
+## WP 6430 — Image Resizer Field Guide (2026-08-26 03:23 UTC)
+- Tool: `image-resize` (Image Resizer, Media category)
+- date_gmt: 2026-08-26T03:23:18
+- Title: "Image Resizer Field Guide — When Three Resize Modes Beat a Single Resize Button"
+- URL: https://blog.flowrust.com/2026/08/26/image-resizer-field-guide-when-three-resize-modes-beat-a-single-resize-2026-08-26/
+- Assets: 1 poster (1080×800) + 3 cards (1600×900): card1=5-tile (5 output formats), card2=4-tile compact (3 failure modes + fix), card3=2-col input/output (aspect ratio strategies)
+- Anchors: 3× /en/tools/image-resize + 5× /en/samples/{webp,png,jpg,tiff,avif}-samples + 1× /en/tools root
+- All 8 elysia anchors HEAD 200; 4/4 image URLs HEAD 200
+- `audit_post_content`: 0 findings
+- DOM probe: 1 H1 (theme) + 9 H2 (8 body + 1 nav chrome) + 3 cards + 1 poster + 6 article img (4 body + 2 theme chrome)
+- Featured media = 0 (COSESAI non-negotiable)
+- Used canonical creds (not cron-prompt inline) per WP 6135
+- PIL rendered via `/Users/quyue/.hermes/hermes-agent/venv/bin/python3.11` (system python3.9 PIL broken)
+- `vision_analyze` confirmed: all 4 assets clean, no clipping/tofu/overflow
+- Word count: 2163 (slightly over canonical 1000-1300 band — acceptable for technical depth)
