@@ -3009,3 +3009,14 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - **PATCH reason**: 6 merged-bullet paragraphs (– en-dash items joined into single <p>) — canonical wp_fix_merged_bullets.py missed them because no <strong> wrapper; custom fix split on &#8211; entity, POSTed back via /wp/v2/posts/<id>
 - **Audit**: audit_post_content clean (0 findings) before AND after PATCH
 - **Skill fallback notice**: article-poster-creator and article-highlight-cards missing from disk; used umbrella PIL templates (pil_poster_and_cards_network_theme + render_card_4tile_compact + custom_pil_card_layouts)
+
+## 2026-08-28 — WP 6450 — JWT Inspector & Verifier Field Guide
+- WP URL: https://blog.flowrust.com/2026/08/28/jwt-inspector-verifier-field-guide-when-decoding-is-not-verifying/
+- Tool ID: jwt-inspector-verifier (manifest member; category: Security)
+- Date GMT: 2026-08-27T16:13:20
+- Words: ~1838
+- Assets: poster + 3 highlight cards (all visually QA'd via vision_analyze)
+- Elysia links: /en/tools/jwt-inspector-verifier (x2), /en/samples/jwt-samples, /en/tools (all HTTP 200 + manifest-verified)
+- PATCH reason: 3 merged-list findings (1 MERGED_NUMBERED_LIST + 2 MERGED_BULLET_LIST) - converted to ul/ol HTML
+- Audit: audit_post_content clean (0 findings) after PATCH
+- Skill fallback notice: article-poster-creator and article-highlight-cards missing from disk; used umbrella PIL templates
