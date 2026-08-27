@@ -2992,3 +2992,20 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - **Elysia anchors**: 7× /en/tools/leet-speak-converter + 1× /en/tools (catalog)
 - **Audit**: audit_post_content clean (0 findings); pre_encode_code_spans N/A (no literal HTML tags in code spans)
 - **Skill fallback notice**: article-poster-creator and article-highlight-cards missing from disk; used umbrella PIL templates (pil_poster_and_cards_network_theme + render_card_4tile_compact)
+
+## 2026-08-27 ~11:52 UTC — WP 6443 — PDF/A Validate
+
+- **Tool**: `pdf-a-validate` (Document Tools, id=pdf-a-validate)
+- **Title**: PDF/A Validate Field Guide: When Four Pre-Flight Checks Beat a Single Conformance Run
+- **date_gmt**: 2026-08-27T11:52:27
+- **URL**: https://blog.flowrust.com/2026/08/27/pdf-a-validate-field-guide-when-four-pre-flight-checks-beat-a-single-conformance/
+- **Status**: 1-POST + 1-PATCH (merged-bullet-list fix)
+- **Picked via**: sparse-category fallback (theme-word scoring, WP 6060+ pattern)
+- **Assets**: 1 poster (1080x800) + 3 cards (5-tile pre-flight checks, 4-tile compact forbidden features, 2-col quick reference)
+- **Visual QA**: vision_analyze on all 4 PNGs — no tofu glyphs, no overflow, no collision defects
+- **DOM check**: 1 H1 (theme), 9 H2 (8 body + 1 nav), 0 H3, 4 figures (1 poster + 3 cards), 0 `<em>` in `<code>`, 0 `<p>` in `<h2>`
+- **Image lazy-load**: cards 1/2/3 naturalWidth=0 initially (LiteSpeed lazy-load pending per WP 6197/6323); all naturalWidth=1600 after scroll — confirmed clean
+- **Elysia anchors**: 3× /en/tools/pdf-a-validate + 1× /en/tools (catalog) — all HEAD 200, all valid catalog IDs (validate_anchors pre-POST)
+- **PATCH reason**: 6 merged-bullet paragraphs (– en-dash items joined into single <p>) — canonical wp_fix_merged_bullets.py missed them because no <strong> wrapper; custom fix split on &#8211; entity, POSTed back via /wp/v2/posts/<id>
+- **Audit**: audit_post_content clean (0 findings) before AND after PATCH
+- **Skill fallback notice**: article-poster-creator and article-highlight-cards missing from disk; used umbrella PIL templates (pil_poster_and_cards_network_theme + render_card_4tile_compact + custom_pil_card_layouts)
