@@ -2978,3 +2978,17 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - PIL rendered via `/Users/quyue/.hermes/hermes-agent/venv/bin/python3.11` (system python3.9 PIL broken)
 - `vision_analyze` confirmed: all 4 assets clean, no clipping/tofu/overflow
 - Word count: 2163 (slightly over canonical 1000-1300 band — acceptable for technical depth)
+
+## 2026-08-27 07:46 UTC — WP 6436 — Leet Speak Converter Field Guide
+
+- **Tool**: `leet-speak-converter` (Leet Speak Converter, Text Processing)
+- **date_gmt**: 2026-08-27T07:46:30
+- **URL**: https://blog.flowrust.com/2026/08/27/leet-speak-converter-field-guide-when-1337-spelling-survives-the-decade-when-the-substitution-tables-were/
+- **Status**: 1-POST 0-PATCH clean
+- **Picked via**: sparse-category fallback (theme-word scoring, WP 6060+ pattern)
+- **Assets**: 1 poster + 3 cards (5-tile basic, 4-tile compact use cases, 5-tile full table)
+- **Visual QA**: vision_analyze caught initial 7-tile/8-tile overflow on card1/card3; re-rendered with 5-tile layouts (passes)
+- **DOM check**: 1 H1 (theme), 9 H2 (8 body + 1 nav), 0 H3, 4 figures (1 poster + 3 cards), 0 `<em>` in `<code>`, 0 `<p>` in `<h2>`, 8 elysia anchors (all 200 OK, all valid catalog IDs)
+- **Elysia anchors**: 7× /en/tools/leet-speak-converter + 1× /en/tools (catalog)
+- **Audit**: audit_post_content clean (0 findings); pre_encode_code_spans N/A (no literal HTML tags in code spans)
+- **Skill fallback notice**: article-poster-creator and article-highlight-cards missing from disk; used umbrella PIL templates (pil_poster_and_cards_network_theme + render_card_4tile_compact)
