@@ -3020,3 +3020,20 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - PATCH reason: 3 merged-list findings (1 MERGED_NUMBERED_LIST + 2 MERGED_BULLET_LIST) - converted to ul/ol HTML
 - Audit: audit_post_content clean (0 findings) after PATCH
 - Skill fallback notice: article-poster-creator and article-highlight-cards missing from disk; used umbrella PIL templates
+
+## 2026-08-28 — Pangram Checker Field Guide (WP 6457)
+
+- **Post ID**: 6457 (URL: https://blog.flowrust.com/2026/08/28/pangram-checker-field-guide-when-the-26-letter-set-sits-inside-one-sentence/)
+- **Tool**: pangram-checker (Text Processing, theme_score=3, desc=220 chars, sparse_picker top pick)
+- **Date_gmt**: 2026-08-27T20:27:41 (current UTC at publish)
+- **Featured_media**: 0 (COSESAI hero-dup avoidance)
+- **Status**: publish (1-POST, 0-PATCH)
+- **Article shape**: 0 body H1 + 8 body H2 + 1 theme nav H2 (9 total in DOM); 1 article-poster; 3 highlight-card; 0 H3; 0 md-link survivors; 0 p-in-h2; 0 <pre>; 49 <code>; 37 <strong>; 6 <ul>; 2 <ol>
+- **Elysia anchors (8 total)**: 7 → https://elysiatools.com/en/tools/pangram-checker ; 1 → https://elysiatools.com/en/tools (root)
+- **Assets**: poster.png (1080×800) + card1.png, card2.png, card3.png (1600×900 each); uploaded as media IDs 6453/6454/6455/6456
+- **Card anchors**: H2[1] "Why a pangram check is more than a curiosity" (5-tile), H2[3] "How the missing-letter list guides your edits" (5-tile 3+2), H2[6] "What the tool ignores — and why that is a feature" (4-tile compact)
+- **Visual QA**: All 4 PNGs confirmed clean via vision_analyze; card3 first-pass had Latin-1 accented tofu (é, ñ, ü, ç) per WP 6135/6352/6178 PIL tofu family — re-rendered with ASCII counts (LATIN-1, GREEK+), confirmed clean.
+- **Pre-flight pipeline**: 0 md-link survivors, 0 name placeholders, 0 literal backslash in code, 0 br-in-p, 0 worked-example merge, 5 inline lists converted to real <ul>/<ol> HTML (per MERGED_BULLET_LIST pitfall WP 5676/5683/5746/6135)
+- **Anchor validator**: 7/7 pangram-checker anchors confirmed real tools in tool-manifest.json (not phantom)
+- **Audit**: audit_post_content clean, browser DOM probe clean (1 H1, 9 H2, 1 poster, 3 cards, all images naturalWidth > 0, 0 p-in-h2)
+
