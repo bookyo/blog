@@ -3052,3 +3052,23 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - **Anchor validator**: 7 anchors confirmed — 4× underline-text tool + 2× real samples (text-hex-unicode-formats, text-special-characters-samples verified in sample-manifest.json) + 1× root
 - **Audit**: audit_post_content clean, browser DOM probe clean (1 H1, 9 H2, 1 poster, 3 cards, all images naturalWidth > 0 after lazy-load fires, 0 p-in-h2)
 - **Patches**: 0 (clean 1-POST run)
+
+## 2026-08-28 ~04:55 UTC — WP 6469: Unicode Escape Converter Field Guide
+
+- **Tool**: unicode-escape-converter (Format Conversion) — picked via jarvis_pick.py sparse-category fallback (WP 6060 family, 11th run). NSFW tools + thematic-clustered tools (tiny-text overlapping superscript-subscript-converter) excluded.
+- **Title**: Unicode Escape Converter Field Guide: When Four Escape Styles Beat One Universal Form
+- **Slug**: unicode-escape-converter-field-guide-when-four-escape-styles-beat-one-universal-form-2026-08-28
+- **URL**: https://blog.flowrust.com/2026/08/28/unicode-escape-converter-field-guide-when-four-escape-styles-beat-one-universal-form-2026-08-28/
+- **date_gmt**: 2026-08-28T04:57:31 UTC
+- **Article structure**: 0 body H1 + 8 body H2 + 1 article-poster figure + 3 highlight-card figures
+- **Markdown pipeline**: pre_encode_backslash → pre_encode_code_spans → safe_md_to_html (decision: no triple-fence + `*` in backticks + `\\` in backticks = safe wrapper per WP 5805/6390 recipe)
+- **Pre-flight checks**: 0 fake italic in `<code>`, 0 md-link leak, balanced `<code>` tags (52/52), H2 count matches source (8/8)
+- **Card count assertion**: `n_cards == 3` PASS (per WP 6122 mandatory recipe)
+- **PIL assets**: 4-tile compact (escape styles) + 5-tile (operations) + 2-col input/output (real examples) + poster
+- **Vision QA**: All 4 PNGs reviewed — no clipping, no overlap, no tofu, takeaway lines readable. Card1's first two tile labels both render `\uXXXX` because both BMP-only and Surrogate-pair styles use the same notation — body text disambiguates (faithful representation).
+- **Anchor validator**: validate_elysia_anchors confirms unicode-escape-converter in tool-manifest. samples/ routes reported as "alternate route not validated" — confirmed real via direct membership check in sample-manifest.json + HEAD 200.
+- **Elysiatools links**: 6 outbound (2× tool, 2× hex-unicode samples, 1× special-chars samples, 1× /en/tools root). All HEAD 200.
+- **Audit findings**: 2 (MERGED_NUMBERED_LIST × 1, MERGED_BULLET_LIST × 3) — en-dash-separated prose + numbered prose flattened by md_to_html.
+- **Patches**: 2 (defused all merged-list findings: 1× MERGED_BULLET_LIST in PATCH 1 + 1× remaining MERGED_BULLET_LIST in PATCH 2 + 1× MERGED_NUMBERED_LIST in PATCH 3). Final audit_post_content: 0 findings.
+- **Image naturalWidth**: All 4 PNGs serve 200; verified via curl HEAD on each URL.
+- **Out of scope**: notice per WP 6171 — article-writer present, article-poster-creator + article-highlight-cards absent per cron-prompt; umbrella PIL templates used.
