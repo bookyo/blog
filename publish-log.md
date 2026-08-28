@@ -3086,3 +3086,18 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - **DOM**: 1 H1 (theme entry-title only) / 9 H2 (8 body + 1 nav) / 3 highlight-cards / 1 article-poster / 9 elysia anchors
 - **Anchors**: 8x `iso-8601-duration-builder` (real tool) + 1x `/en/tools` (root)
 - **Note**: Skill-skips (`article-poster-creator`, `article-highlight-cards`) — used umbrella PIL templates.
+
+## 2026-08-28 — WP 6502 — Environment Config Diff Visualizer (cron WP 6466)
+
+- **date_gmt**: 2026-08-28T21:36:04
+- **Tool**: Environment Config Diff Visualizer (`environment-config-diff-visualizer`, Development)
+- **Slug**: `environment-config-diff-visualizer-field-guide-when-dev-staging-and-prod-yaml-drift-apart-by-lunch-2026-08-28`
+- **URL**: https://blog.flowrust.com/2026/08/29/environment-config-diff-visualizer-field-guide-when-dev-staging-and-prod-yaml-drift-apart-by-lunch-2026-08-28/
+- **Asset media IDs**: poster 6498, card1 6499, card2 6500, card3 6501
+- **Article shape**: 0 body `<h1>` + 8 body `<h2>` + 1 theme nav = 9; 1 article-poster; 3 highlight-cards; 42 `<code>`, 18 `<strong>`, 4 `<ul>`, 0 `<ol>`
+- **Elysia anchors (5)**: 1x `environment-config-diff-visualizer` (main) + 1x `yaml-json-converter` + 1x `env-file-validator` + 1x `/en/samples` + 1x `/en/tools` root
+- **Pre-flight**: pre_encode_code_spans chain; explicit `<ul><li>` HTML in 3 spots (post-WP-6443 lesson); H2 count pre-strip = 8 exactly; anchors validate via `validate_anchors` (all 3 unique tool anchors real; 2 phantom slugs `json-diff-viewer`/`yaml-diff-checker` swapped pre-POST to `yaml-json-converter`/`env-file-validator`)
+- **PIL render**: poster (with subtitle shortened from 80+ chars to 54 to dodge WP 6390 left-edge clip), 5-tile card1, 4-tile-compact card2 + card3 — all `vision_analyze` clean
+- **DOM probe**: `{h1:1, h2:9, poster:1, cards:3, codes:42, strongs:18, uls:4, ols:0, p_in_h2:0}` — clean
+- **All 10 URLs HEAD-checked** = 200 (4 assets + 5 anchors + 1 post URL)
+- **Result**: clean 1-POST 0-PATCH
