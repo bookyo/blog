@@ -3037,3 +3037,18 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - **Anchor validator**: 7/7 pangram-checker anchors confirmed real tools in tool-manifest.json (not phantom)
 - **Audit**: audit_post_content clean, browser DOM probe clean (1 H1, 9 H2, 1 poster, 3 cards, all images naturalWidth > 0, 0 p-in-h2)
 
+
+### WP 6463 — Underline Text (2026-08-28)
+- **Status**: publish (1-POST, 0-PATCH)
+- **date_gmt**: 2026-08-28T00:38:00
+- **Tool**: Underline Text (`underline-text`)
+- **URL**: https://blog.flowrust.com/2026/08/28/underline-text-field-guide-when-u0332-replaces-the-html-u-tag-2026-08-28/
+- **Article shape**: 0 body H1 + 8 body H2 + 1 theme nav H2 (9 total in DOM); 1 article-poster; 3 highlight-card; 0 H3; 0 md-link survivors; 0 p-in-h2; 0 <pre>; 28 <code>; 25 <strong>; 7 <ul>
+- **Elysia anchors (7 total)**: 4 → https://elysiatools.com/en/tools/underline-text ; 2 → samples/text-hex-unicode-formats + samples/text-special-characters-samples ; 1 → https://elysiatools.com/en/tools (root)
+- **Assets**: poster.png (1080×800) + card1.png, card2.png, card3.png (1600×900 each); uploaded as media IDs 6459/6460/6461/6462
+- **Card anchors**: H2[1] "The exact mechanism: one codepoint after every base character" (5-tile), H2[3] "Removing the underline: strip the invisible codepoints" (5-tile numbered), H2[6] "The font caveat: when U+0332 renders as nothing" (4-tile compact)
+- **Visual QA**: All 4 PNGs confirmed clean via vision_analyze; card2 first-pass had 5-tile body text overflow past tile borders (per WP 6358 family) — re-rendered with shorter 2-line body text (`text\n.replace`, `sed\n's///g'`, etc.), confirmed clean.
+- **Pre-flight pipeline**: 0 md-link survivors, 0 name placeholders, 0 literal backslash in code, 0 br-in-p, 0 worked-example merge, 6 inline lists converted to real <ul>/<ol> HTML (per MERGED_BULLET_LIST pitfall WP 5676/5683/5746/6135), pre_encode_code_spans chain applied before md_to_html (per WP 6323 family)
+- **Anchor validator**: 7 anchors confirmed — 4× underline-text tool + 2× real samples (text-hex-unicode-formats, text-special-characters-samples verified in sample-manifest.json) + 1× root
+- **Audit**: audit_post_content clean, browser DOM probe clean (1 H1, 9 H2, 1 poster, 3 cards, all images naturalWidth > 0 after lazy-load fires, 0 p-in-h2)
+- **Patches**: 0 (clean 1-POST run)
