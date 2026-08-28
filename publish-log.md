@@ -3072,3 +3072,17 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - **Patches**: 2 (defused all merged-list findings: 1× MERGED_BULLET_LIST in PATCH 1 + 1× remaining MERGED_BULLET_LIST in PATCH 2 + 1× MERGED_NUMBERED_LIST in PATCH 3). Final audit_post_content: 0 findings.
 - **Image naturalWidth**: All 4 PNGs serve 200; verified via curl HEAD on each URL.
 - **Out of scope**: notice per WP 6171 — article-writer present, article-poster-creator + article-highlight-cards absent per cron-prompt; umbrella PIL templates used.
+
+---
+## 2026-08-28 17:29 UTC — WP 6492 — ISO 8601 Duration Builder
+
+- **Slug**: iso-8601-duration-builder-field-guide-when-pnynmndtnhmns-rules-the-time-interval-grammar-2026-08-28
+- **Title**: ISO 8601 Duration Builder Field Guide: When PnYnMnDTnHnMnS Rules The Time Interval Grammar
+- **Tool**: ISO 8601 Duration Builder (Development)
+- **Date GMT**: 2026-08-28T17:29:17
+- **Patches**: 2 (MERGED_NUMBERED_LIST -> <ol><li> rewrite; body H1 dup stripped — WP 6417-extended class)
+- **Final URL**: https://blog.flowrust.com/2026/08/29/iso-8601-duration-builder-field-guide-when-pnynmndtnhmns-rules-the-time-interval-grammar-2026-08-28/
+- **Audit final**: 0 findings
+- **DOM**: 1 H1 (theme entry-title only) / 9 H2 (8 body + 1 nav) / 3 highlight-cards / 1 article-poster / 9 elysia anchors
+- **Anchors**: 8x `iso-8601-duration-builder` (real tool) + 1x `/en/tools` (root)
+- **Note**: Skill-skips (`article-poster-creator`, `article-highlight-cards`) — used umbrella PIL templates.
