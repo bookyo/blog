@@ -1,3 +1,25 @@
+## 2026-08-29 14:14 UTC — Text Pad & Align Field Guide: When Four Alignment Modes Beat Custom Padding Logic
+- **WP Post ID**: 6532
+- **WP URL**: https://blog.flowrust.com/2026/08/29/text-pad-field-guide-when-four-alignment-modes-beat-custom-padding-logic-2026-08-29/
+- **Tool ID**: text-pad (manifest member; category: Text Processing)
+- **Date GMT**: 2026-08-29T14:14:27
+- **Featured Image**: poster (WP ID 6528, `/wp-content/uploads/2026/08/poster-51.png`) — `featured_media: 0` in payload (COSESAI theme hero-duplication defense)
+- **Highlight Cards**: 3 (6529 card1, 6530 card2, 6531 card3)
+- **Word count**: ~1950 (close-first structure: lead phrase `<strong>Most teams reach for a regex or a stack of String#padStart calls the moment a console report needs a tidy column.</strong>`)
+- **8 body H2 + 1 theme nav = 9 total H2**; DOM verified 1 H1 (theme-only), 9 H2, 0 H3 in body (theme H3s in `comments-area` only), 3 highlight-card figures, 1 article-poster figure
+- **Elysia anchors** (4 unique, all manifest-validated): text-pad (×4), /en/tools root (×1), /en/samples root (×1), / (×1 root) — 7 total occurrences
+- **Anchor validator (`validate_anchors`)**: ok=True (post-PATCH; data-processing link removed as defense vs validator whitelist mismatch)
+- **Image URLs**: 4/4 HTTP 200 (poster-51.png, card1-50.png, card2-50.png, card3-50.png — uploaded via REST media API with cron-canonical credentials; 0 SSL EOF this run)
+- **Audit findings**: 0 (clean post-PATCH; required 2 PATCH round-trips: one to convert en-dash-bullet lists to real `<ul><li>` per WP 5676/6135 MERGED_BULLET_LIST family; one to drop the `data-processing` phantom-flags anchor)
+- **PIL visual QA**: vision_analyze on all 4 PNGs before POST
+  - poster (1080×800): clean — title `Four Alignment Modes,` / `One Configurable Pad`, eyebrow, divider, callout, URL bar all readable
+  - card1 (render_card_4tile_compact): `Four Alignment Modes` — first pass with all-`STD` values failed visual QA (count-strings were all identical); re-rendered with `COL 1`/`COL N`/`MID`/`FILL` distinct values per tile, second pass clean
+  - card2 (render_card_4tile_compact): `Three Width Decisions Most Teams Skip` — WIDTH/VISUAL, PAD CHAR/COSMETIC?, BOUNDARY/> < INPUT, PAD STR/1-5 CHARS — clean, no overflow, no tofu
+  - card3 (render_card_4tile_compact): `Three Production Patterns` — LOG LINES/key:value, BANNERS/centered, TOC LEADERS/justify, HEADERS/centered — clean
+- **Defense held end-to-end**: featured_media=0, 0 body H1 (theme only), 8 body H2 (exactly per WP 6346 pre-flight), 2 explicit `<ul><li>` lists (defused 2 en-dash bullet sections via MERGED_BULLET_LIST pitfall), 1 article-poster + 3 highlight-card, 0 RAW_ITALIC, 0 raw markdown links, 0 backslash in `<code>`, 0 nested `<p>` inside `<h2>`, all elysia tool slugs manifest members (dropped phantom `data-processing` link rather than trust docstring/comment that the validator's `_classify_anchor` ignores), 0 `<code><code>` double-wrap (no math/code-with-`*` block), 0 literal HTML inside `<code>`
+- **State**: covered_slugs now ≥549 entries (text-pad added)
+- **Sandbox hygiene**: `/tmp/wp_assets/` cleared at start (no leaked stale assets); no `/tmp/inspect.py` shadow present at run start
+
 ## 2026-08-13 01:34 UTC — Heading Hierarchy Auditor: A Field Guide to Heading Semantics
 - **WP Post ID**: 5948
 - **WP URL**: https://blog.flowrust.com/2026/08/13/heading-hierarchy-auditor-field-guide-2026-08-13/
