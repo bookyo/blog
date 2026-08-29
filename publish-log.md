@@ -3122,3 +3122,34 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - **DOM probe**: `{h1:1, h2:9, cards:3, poster:1, codes:18, uls:5, lis:15}`. 9 H2s = 8 body + 1 theme "Post navigation" (per WP 6323 expected count for 8-H2 cron article). 1 H1 = theme `entry-title`, NOT body content. Cards loaded at 1600×900 after forced `loading=eager` (LiteSpeed lazy-load pending matches WP 6197).
 - **elysia anchors** (4 unique, 2 patterns): `https://elysiatools.com/en/tools/csv-excel-diff-tool` × 2, `https://elysiatools.com/en/tools` × 2. All type-correct (`/en/tools/`, not visualization/sample). All HEAD 200.
 - **Result**: clean **1-POST 0-PATCH** cron publish — featured_media=0 hero dup avoided, all anchor types correct, all images load, audit clean, PATCH round-trip budget unused.
+
+## 2026-08-29T05:53:12 — WP 6514 — url-safety-checker-field-guide-when-punycode-idn-homographs-and-embedded-credentials-hide-behind-a-safe-looking-domain-2026-08-29
+
+- **Tool**: url-safety-checker (URL Safety Checker)
+- **Category**: Security
+- **Title**: URL Safety Checker Field Guide: When Punycode, IDN Homographs, and Embedded Credentials Hide Behind a "Safe-Looking" Domain
+- **Elysia anchors**: 6 (4× url-safety-checker, 1× url-validator, 1× /en/tools root)
+- **Image assets**: 1 poster + 3 highlight cards (1080×800 + 3× 1600×900)
+- **POST result**: 201
+- **PATCH round-trips**: 5 (H2 #2 ol-conversion, H2 #5 ul-conversion, H2 #6 dash-to-ul, H2 #8 merged paragraph split, PATCH 5 = wpai-auto-tags-link H1 strip + lead duplicate removal)
+- **Audit**: 0 findings (post-PATCH)
+- **Visual QA**: vision_analyze caught 2 pre-POST defects (5-tile horizontal overflow + URL string format); pre-POST re-render fixed
+- **Notes**: url-safety-checker scored 93.0 (top of sparse-picker). Article covers 6-signal category detection pipeline, JSON output shape, 3 deployment positions, 5 common phishing shapes.
+
+## 2026-08-29 10:03:27 UTC — http-headers-analyzer-field-guide-2026-08-29
+- **Tool ID**: http-headers-analyzer
+- **Name**: HTTP Headers Analyzer (Development)
+- **Post ID**: 6525
+- **URL**: https://blog.flowrust.com/2026/08/29/http-headers-analyzer-field-guide-when-five-signals-hide-above-the-200-ok-2026-08-29/
+- **Slug**: http-headers-analyzer-field-guide-when-five-signals-hide-above-the-200-ok-2026-08-29
+- **Status**: publish (no PATCH needed)
+- **Body H2 count**: 8 ✓
+- **Body H3**: 0 ✓
+- **highlight-card count**: 3 ✓
+- **article-poster count**: 1 ✓
+- **featured_media**: 0 ✓
+- **anchors (elysia)**: 6 (5 tool + 1 root), all validated against tool-manifest.json
+- **Audit**: 0 findings (audit_post_content CLEAN)
+- **Visual QA**: vision_analyze caught 1 pre-POST defect (poster subtitle clip WP 6390); pre-POST re-render fixed; cards clean
+- **Coverage**: 547 → 548 covered_slugs
+- **Notes**: Picked from sparse-category picker with theme_score 168 (top of Development category). Article walks through 5 header classes (cache, security, redirect, server fingerprint, content negotiation). 1-POST 0-PATCH.
