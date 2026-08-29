@@ -3101,3 +3101,24 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - **DOM probe**: `{h1:1, h2:9, poster:1, cards:3, codes:42, strongs:18, uls:4, ols:0, p_in_h2:0}` — clean
 - **All 10 URLs HEAD-checked** = 200 (4 assets + 5 anchors + 1 post URL)
 - **Result**: clean 1-POST 0-PATCH
+
+---
+
+## WP 6508 (2026-08-29 09:46:17 UTC) — CSV / Excel Diff Tool Field Guide
+
+- **Tool**: `csv-excel-diff-tool` (CSV / Excel Diff Tool — Data Processing category)
+- **Cron-prompted skill advisory** flagged `article-writer`, `article-poster-creator`, `article-highlight-cards` as not-found — disk probe confirmed `~/.hermes/skills/article-writer/article-poster-creator/SKILL.md` and `article-highlight-cards/SKILL.md` exist on disk (skill prompt notice is stale per WP 6352 family). **Used umbrella PIL/audit stack** (`~/.hermes/skills/wordpress-rest-api-publishing/templates/pil_poster_and_cards_network_theme.py` + `custom_pil_card_layouts.py` + `scripts/wp_post_audit.py` + `scripts/insert_highlight_cards.py`) which produces the canonical theme output. Notice emitted at top of cron response.
+- **Picker**: sparse-category fallback (recurring WP 6185/6206 pattern) — canonical `pick_tool_v4_content_based.py` returned 0 diverse picks; `sparse_category_picker.py` returned `csv-excel-diff-tool` as #6 (theme_score=3, score=105.7). Confirmed clean: 0 in `covered_slugs`, no slug overlap with recent 15 posts (WP 6402-6502).
+- **Sample-manifest caveat**: 0 sample-manifest entries have `toolId=csv-excel-diff-tool` (re-confirming WP 6116/6390 — sample-manifest has no `toolId` field at any nesting level). Article sourced from `tool.metadata.description` + domain knowledge of spreadsheet-diff conventions. No phantom sample anchors possible.
+- **Pre-encode chain**: md source has 0 literal HTML tags inside backtick spans AND 0 backslashes in code spans — used plain `md_to_html` (no safe-wrapper needed; not a math/regex article).
+- **MERGED_BULLET_LIST prevention**: source MD uses explicit `<ul><li>` HTML for 3 bullet lists (per WP 5746+6185 — plain `- ` ASCII-hyphen markdown with adjacent code blocks caused false-positive 1-PATCH in prior runs). `<p></ul></p>` orphan strips via dedicated cleanup pass (4 → 0).
+- **Pre-publish sanity**: 10/10 PASS (no markdown links surviving, no placeholders in code, no backslashes in code, 8 H2 + 0 H1 + 0 H3, no `<p>` in `<h2>`, no `<p></ul></p>` orphans, no worked-example merges). `validate_anchors` PASS for all 2 unique tool anchors (`csv-excel-diff-tool`, category root `/en/tools`).
+- **PIL render**: 1080×800 poster + 1600×900 card1 (5-tile, retitled after first-pass WP 6390 left-edge clip on the long title) + 1600×900 card2 (5-tile-3plus2 cheatsheet) + 1600×900 card3 (2-column input/output). `vision_analyze` confirmed clean for all 4.
+- **Card insertion**: `insert_highlight_cards.py` with WP 6370 extended regex (matches `<p>` OR `<ul>` after H2) — 3/3 cards inserted, n_cards assertion PASS.
+- **Upload**: 4 media uploaded with 0 SSL EOF retries needed (WP 6191 auto-rename confirmed: `poster-48.png`, `card1-47.png`, `card2-47.png`, `card3-47.png`). All 4 source_urls preserved through substitution.
+- **POST** date_gmt=2026-08-29T01:46:17, status=publish, featured_media=0 (WP 5628 hero-dup avoided), slug=`csv-excel-diff-tool-field-guide-...-2026-08-29`, WP ID 6508.
+- **Audit** `audit_post_content()`: 0 findings. `<h1>`=0, `<h2>`=8, `<h3>`=0, `figure.highlight-card`=3, `figure.article-poster`=1.
+- **HEAD-check** all 6 outbound URLs = 200 (4 WP image uploads + 2 elysiatools anchors).
+- **DOM probe**: `{h1:1, h2:9, cards:3, poster:1, codes:18, uls:5, lis:15}`. 9 H2s = 8 body + 1 theme "Post navigation" (per WP 6323 expected count for 8-H2 cron article). 1 H1 = theme `entry-title`, NOT body content. Cards loaded at 1600×900 after forced `loading=eager` (LiteSpeed lazy-load pending matches WP 6197).
+- **elysia anchors** (4 unique, 2 patterns): `https://elysiatools.com/en/tools/csv-excel-diff-tool` × 2, `https://elysiatools.com/en/tools` × 2. All type-correct (`/en/tools/`, not visualization/sample). All HEAD 200.
+- **Result**: clean **1-POST 0-PATCH** cron publish — featured_media=0 hero dup avoided, all anchor types correct, all images load, audit clean, PATCH round-trip budget unused.

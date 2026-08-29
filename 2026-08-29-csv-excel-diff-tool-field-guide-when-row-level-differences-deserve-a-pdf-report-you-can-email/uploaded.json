@@ -1,0 +1,26 @@
+[
+  {
+    "slot": "POSTER",
+    "id": 6504,
+    "source_url": "https://blog.flowrust.com/wp-content/uploads/2026/08/poster-48.png",
+    "filename": "2026/08/poster-48.png"
+  },
+  {
+    "slot": "CARD1",
+    "id": 6505,
+    "source_url": "https://blog.flowrust.com/wp-content/uploads/2026/08/card1-47.png",
+    "filename": "2026/08/card1-47.png"
+  },
+  {
+    "slot": "CARD2",
+    "id": 6506,
+    "source_url": "https://blog.flowrust.com/wp-content/uploads/2026/08/card2-47.png",
+    "filename": "2026/08/card2-47.png"
+  },
+  {
+    "slot": "CARD3",
+    "id": 6507,
+    "source_url": "https://blog.flowrust.com/wp-content/uploads/2026/08/card3-47.png",
+    "filename": "2026/08/card3-47.png"
+  }
+]
