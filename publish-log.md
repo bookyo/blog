@@ -1,3 +1,21 @@
+## 2026-08-30T19:22:05 UTC — SQL Query Formatter Field Guide
+
+- **WP ID**: 6588
+- **Slug**: `sql-query-formatter-field-guide-when-the-four-controls-dialect-casing-indent-and-spacing-replace-a-default-formatter-2026-08-30`
+- **URL**: https://blog.flowrust.com/2026/08/31/sql-query-formatter-field-guide-when-the-four-controls-dialect-casing-indent-and-spacing-replace-a-default-formatter-2026-08-30/
+- **Tool**: SQL Query Formatter & Minifier (`sql-query-formatter`)
+- **Tool manifest**: Development category, theme_score=6, 16 keywords
+- **Description source**: `~/www/elysia-tools/src/generated/runtime/tool-manifest.json`
+- **Article word count**: ~1960 words
+- **Structure**: 0 H1 / 8 H2 / 0 H3 / 1 article-poster / 3 highlight-card
+- **Elysia anchors**: 7× /en/tools/sql-query-formatter + 1× /en/tools (root)
+- **Pre-publish audit findings**: 0
+- **Featured media**: 0 (COSESAI non-negotiable)
+- **Assets rendered**: PIL via `templates/pil_poster_and_cards_network_theme.py` (umbrella path — article-poster-creator skill missing)
+- **Visual QA**: 1 pre-POST re-render of card1+card2 for 290px-tile body overflow (WP 6358 family)
+- **Status**: 1-POST 0-PATCH clean
+- **Notes**: Disk-probe confirmed only `article-writer` skill present (umbrella fallback for PIL). Picked `sql-query-formatter` from picker v4 (sparse-category fallback triggered → manual theme_score ranking chose Development category). All 4 assets vision-analyzed clean after the card-body-length re-render.
+
 ## 2026-08-29 14:14 UTC — Text Pad & Align Field Guide: When Four Alignment Modes Beat Custom Padding Logic
 - **WP Post ID**: 6532
 - **WP URL**: https://blog.flowrust.com/2026/08/29/text-pad-field-guide-when-four-alignment-modes-beat-custom-padding-logic-2026-08-29/
@@ -3194,3 +3212,35 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 ## 2026-08-30T02:49:06 — csv-validator-field-guide-when-four-structural-checks-beat-a-parser-pass-2026-08-30 (WP 6557)
 - Title: CSV Validator Field Guide: When Four Structural Checks Beat A Parser Pass
 - URL: https://blog.flowrust.com/2026/08/30/csv-validator-field-guide-when-four-structural-checks-beat-a-parser-pass-2026-08-30/
+
+## 2026-08-30T06:58:17 — tiny-text-field-guide-when-two-unicode-blocks-carry-footnotes-and-chemical-formulas (WP 6565)
+- Title: Tiny Text Field Guide: When Two Unicode Blocks Carry Footnotes And Chemical Formulas
+- URL: https://blog.flowrust.com/2026/08/30/2026-08-30-tiny-text-field-guide-when-two-unicode-blocks-carry-footnotes-and-chemical-formulas/
+- Tool: tiny-text (Text Processing)
+- date_gmt: 2026-08-30T06:58:17
+- **Final audit:** 0 findings; 8 H2 / 0 H3 / 3 highlight-cards / 1 article-poster; featured_media=0
+- **Assets:** poster.png (1080×800), card1-3.png (1600×900 each, all PIL clean — no tofu per WP 6178 family)
+- **Anchors (5):** 2× /en/tools/tiny-text + /en/tools/small-caps-converter + /en/tools/cursive-text + /en/tools?category=text-processing (all validated against tool-manifest.json)
+- **Sample count:** 0 (sample-manifest has no toolId — confirmed WP 6116/6390 family)
+- **Coverage update:** wp_cron_state.json covered_slugs: 549→550 (added 'tiny-text')
+- **PIL safety:** Cards use ASCII + U+ codepoint labels only — article body uses raw U+02B0/U+1D49/U+2080 glyphs (browsers render fine; PIL Helvetica would tofu per WP 6178)
+- **Skills drift:** article-poster-creator and article-highlight-cards missing; used umbrella templates per WP 6352 protocol
+- **Pitfall applied:** phantom-slug validation caught `tools/small-caps` → replaced with `tools/small-caps-converter` (real catalog ID) pre-POST
+
+## 2026-08-30 11:11 UTC — WebSocket Tester Field Guide (WP 6576)
+- date_gmt: 2026-08-30T11:11:39
+- Tool: WebSocket Tester (Development) — id=websocket-tester
+- Slug: websocket-tester-field-guide-when-five-close-codes-and-the-upgrade-handshake-tell-you-why-your-real-time-channel-drops-2026-08-30
+- Link: https://blog.flowrust.com/2026/08/30/websocket-tester-field-guide-when-five-close-codes-and-the-upgrade-handshake-tell-you-why-your-real-time-channel-drops-2026-08-30/
+- Status: 1-POST 0-PATCH clean
+- Audit: 0 findings; 8 H2; 3 cards; 1 poster
+- Assets: poster (1080x800), card1 (1600x900, 5-tile close codes), card2 (1600x900, 5-tile upgrade headers), card3 (1600x900, 4-tile compact debug workflow)
+- Visual QA: all 4 images clean via vision_analyze
+- Elysia anchors: 2 valid (/en/tools/websocket-tester, /en/tools)
+- Skill fallback: article-poster-creator + article-highlight-cards missing from disk; used umbrella PIL templates
+- 2026-08-30 15:19 UTC — WP 6582 svg-minifier-analyzer (SVG Minifier & Analyzer Field Guide)
+- Title: SVG Minifier & Analyzer Field Guide: When Shaving 60% Off the File Beats a Squeeze Pass on the CDN
+- 0 body H1, 8 H2 (3 card anchors), 1 poster + 3 highlight-card figures, 4 imgs, ~2044 words
+- All 4 asset URLs HEAD 200; 5 elysia anchors (svg-minifier-analyzer, /en/tools root)
+- Audit clean (pre and post); 1-POST 0-PATCH
+- Skill fallback: article-poster-creator + article-highlight-cards missing from disk; used umbrella PIL templates
