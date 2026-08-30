@@ -3175,3 +3175,22 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - **Visual QA**: vision_analyze caught 1 pre-POST defect (poster subtitle clip WP 6390); pre-POST re-render fixed; cards clean
 - **Coverage**: 547 → 548 covered_slugs
 - **Notes**: Picked from sparse-category picker with theme_score 168 (top of Development category). Article walks through 5 header classes (cache, security, redirect, server fingerprint, content negotiation). 1-POST 0-PATCH.
+
+## 2026-08-29T22:37:36 — WP 6549 — PDF/A Convert Field Guide
+
+- **Tool:** pdf-a-convert (Document Tools)
+- **date_gmt:** 2026-08-29T22:37:36
+- **URL:** https://blog.flowrust.com/2026/08/30/pdfa-convert-field-guide-when-self-declared-archival-pdf-is-the-difference-between-a-five-year-submission-and-a-five-day-re-scan/
+- **Status:** published
+- **Audit findings (1st pass):** 2 (1 MERGED_NUMBERED_LIST + 3 MERGED_BULLET_LIST blocks)
+- **PATCH applied:** converted 1 numbered + 3 bullet merged blocks to <ul><li> HTML
+- **Final audit:** 0 findings; 8 H2 / 3 cards / 1 poster; featured_media=0
+- **Assets:** poster.png (1080×800), card1-3.png (1600×900 each)
+- **Anchors:** 5× /en/tools/pdf-a-convert (all validated against tool-manifest.json)
+- **Sample count:** 0 (sample-manifest has no toolId — confirmed WP 6116 family)
+- **PIL defects caught:** subtitle left/right edge clip (110→52 chars), card1 body overflow (5 lines trimmed, 3-line tiles)
+- **Skills drift:** article-poster-creator and article-highlight-cards missing; used umbrella templates per WP 6352 protocol
+
+## 2026-08-30T02:49:06 — csv-validator-field-guide-when-four-structural-checks-beat-a-parser-pass-2026-08-30 (WP 6557)
+- Title: CSV Validator Field Guide: When Four Structural Checks Beat A Parser Pass
+- URL: https://blog.flowrust.com/2026/08/30/csv-validator-field-guide-when-four-structural-checks-beat-a-parser-pass-2026-08-30/
