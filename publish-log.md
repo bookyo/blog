@@ -3322,3 +3322,17 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - **Pattern**: 1-POST + 1-PATCH (H1 → stripped from MD before re-POST)
 - **Defects fixed**: body had H1 (top of MD) → stripped to plain heading; theme entry-title renders as canonical H1
 - **Audit**: 0 findings (8 body H2 + 1 nav, 0 H3, 3 cards, 5 anchors, 4 imgs)
+
+## 2026-08-31 ~18:51 UTC — 5h Audit Cycle (audit-only, 5/5 clean)
+
+- **Type**: audit-only cron (5h cadence), no publish step.
+- **Posts audited** (latest-5, in-scope 5/5):
+  - WP 6618 — Depth Map Generator Field Guide — slug-marker + cron-shape (8 H2, 1 poster, 3 cards)
+  - WP 6612 — Sentence Case Converter Field Guide — slug-marker + cron-shape (8 H2, 1 poster, 3 cards)
+  - WP 6606 — Diff Formatter Field Guide — slug-marker + cron-shape (8 H2, 1 poster, 3 cards)
+  - WP 6600 — Distributed Trace Decoder Field Guide — slug-marker + cron-shape (8 H2, 1 poster, 3 cards)
+  - WP 6594 — Cron Expression Visualizer Field Guide — slug-marker + cron-shape (8 H2, 1 poster, 3 cards)
+- **Audit results**: 0 audit findings, 0 broken images, 0 broken elysiatools links across all 5 posts.
+- **OoS heuristic**: all 5 in-scope (slug-marker + cron-shape match; no foreign-script titles; no URL-encoded slugs; content length 10-18k each).
+- **PATCH round-trips**: 0 (no defects found).
+- **Notes**: Browser-based DOM probe skipped — Chrome debugging permission blocked (cron-mode, no user to approve). Per Cycle #29 lesson, content-audit + REST-API HEAD-checks are sufficient evidence when browser probe is unavailable.
