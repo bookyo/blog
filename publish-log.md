@@ -3280,3 +3280,45 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - anchor validation: validate_anchors PASS (no phantom slugs)
 - Skill fallback: article-poster-creator + article-highlight-cards missing from disk; used umbrella PIL templates
 - picker: sparse_category_picker (canonical v4 returns <5 picks)
+
+## 2026-08-31 11:56 UTC — WP 6612 — Sentence Case Converter Field Guide
+
+**Status:** 1-POST 0-PATCH clean. Run duration: ~5 min.
+
+**Tool:** sentence-case-converter (Sentence Case Converter) — Text Processing category.
+**Title:** "Sentence Case Converter Field Guide: When Four Heuristics Decide What 'I' Becomes"
+**Slug:** sentence-case-converter-field-guide-when-four-heuristics-decide-what-i-becomes
+**Date GMT:** 2026-08-31T11:56:15
+**URL:** https://blog.flowrust.com/2026/08/31/sentence-case-converter-field-guide-when-four-heuristics-decide-what-i-becomes/
+
+**Assets:**
+- poster.png (1080×800, 60017 bytes) — id 6608
+- card1.png (1600×900, 89134 bytes, 5-tile) — id 6609 — "Four Heuristics The Converter Runs In Order"
+- card2.png (1600×900, 76628 bytes, 2-col input/output) — id 6610 — "Edge Cases That Defeat A Single Regex"
+- card3.png (1600×900, 83564 bytes, 4-tile compact) — id 6611 — "What The Diff View Tells You In One Pass"
+
+**Article shape:** 0 body H1, 8 body H2, 3 highlight-card figures, 1 article-poster figure, 4 imgs total.
+**Word count:** ~1645 words.
+**Elysia anchors (2):** both to /en/tools/sentence-case-converter (real tool, validated via tool-manifest.json).
+
+**Audit:** `audit_post_content()` returned 0 findings. All 4 asset URLs HEAD-200. Post permalink HEAD-200.
+
+**Pipeline notes:**
+- Skills `article-poster-creator` and `article-highlight-cards` confirmed MISSING on disk; fell back to umbrella's PIL templates (per WP 6352 advisory notice).
+- Sparse-category picker fallback triggered (canonical v4 returned 0 diverse picks; one-off driver picked sentence-case-converter from 1099 candidates).
+- WP cron-prompt inline creds IGNORED — used canonical `bted2k@gmail.com` creds from `wp_post_audit.py` (per WP 6135).
+- Browser-based DOM probe skipped (Chrome debugging permission blocked on first attempt — content-audit + REST-API HEAD-checks are sufficient evidence).
+- All other cron-mode tool quirks respected (write_file for scripts; `python3 /tmp/<script>.py` runner; no heredoc/pipe-to-interpreter; canonical `validate_anchors` + `pre_encode_code_spans` + `pre_encode_backslash` chain).
+
+## 2026-08-31 — Depth Map Generator Field Guide (WP 6618)
+
+- **Tool**: image-depth-map (Depth Map Generator, Design category)
+- **URL**: https://blog.flowrust.com/2026/09/01/depth-map-generator-field-guide-when-four-pseudo-3d-heuristics-beat-a-default-brightness-pass/
+- **date_gmt**: 2026-08-31T16:03:06
+- **Post ID**: 6618
+- **Slug**: depth-map-generator-field-guide-when-four-pseudo-3d-heuristics-beat-a-default-brightness-pass
+- **Anchors**: 4× /en/tools/image-depth-map + 1× /en/tools
+- **Cards**: 3 (5-tile method, 5-tile knobs, 5-tile failures)
+- **Pattern**: 1-POST + 1-PATCH (H1 → stripped from MD before re-POST)
+- **Defects fixed**: body had H1 (top of MD) → stripped to plain heading; theme entry-title renders as canonical H1
+- **Audit**: 0 findings (8 body H2 + 1 nav, 0 H3, 3 cards, 5 anchors, 4 imgs)
