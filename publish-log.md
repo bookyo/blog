@@ -3244,3 +3244,28 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - All 4 asset URLs HEAD 200; 5 elysia anchors (svg-minifier-analyzer, /en/tools root)
 - Audit clean (pre and post); 1-POST 0-PATCH
 - Skill fallback: article-poster-creator + article-highlight-cards missing from disk; used umbrella PIL templates
+
+## 2026-08-30T23:32:24 — WP ID 6594 — cron-expression-visualizer-field-guide-when-the-six-field-grammar-beats-reading-a-crontab-line-twice-2026-08-30
+- title: Cron Expression Visualizer Field Guide
+- tool: cron-expression-visualizer (Development)
+- url: https://blog.flowrust.com/2026/08/31/cron-expression-visualizer-field-guide-when-the-six-field-grammar-beats-reading-a-crontab-line-twice-2026-08-30/
+- date_gmt: 2026-08-30T23:32:24
+- status: publish
+- featured_media: 0 (COSESAI hero-dup compliance)
+- assets: 4 (1 poster + 3 cards)
+- audit: 0 findings; all URLs HEAD-200
+
+## 2026-08-31T03:38:22 — WP ID 6600 — distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31
+- title: Distributed Trace Decoder Field Guide: When Three Trace Formats Hide Behind One Waterfall View
+- tool: distributed-trace-decoder-waterfall-visualizer (Development)
+- url: https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/
+- date_gmt: 2026-08-31T03:38:22
+- status: publish (1-POST 0-PATCH clean)
+- featured_media: 0
+- assets: 4 (1 poster 1080x800 + 3 cards 1600x900)
+- visual QA: 4/4 clean via vision_analyze (no overflow, no tofu, no clipping)
+- elysia anchors: 4 (main tool x2, json-path-extractor related, /en/tools?category=development)
+- audit: 0 findings from audit_post_content; 1 H1, 8 H2, 1 poster figure, 3 highlight-card figures, all imgs HEAD-200
+- anchor validation: validate_anchors PASS (no phantom slugs)
+- Skill fallback: article-poster-creator + article-highlight-cards missing from disk; used umbrella PIL templates
+- picker: sparse_category_picker (canonical v4 returns <5 picks)

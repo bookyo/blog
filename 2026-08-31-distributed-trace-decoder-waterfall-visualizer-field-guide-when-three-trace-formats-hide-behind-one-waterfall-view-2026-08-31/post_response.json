@@ -1,0 +1,368 @@
+{
+  "id": 6600,
+  "date": "2026-08-31T11:38:22",
+  "date_gmt": "2026-08-31T03:38:22",
+  "guid": {
+    "rendered": "https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/",
+    "raw": "https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/"
+  },
+  "modified": "2026-08-31T11:38:25",
+  "modified_gmt": "2026-08-31T03:38:25",
+  "password": "",
+  "slug": "distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31",
+  "status": "publish",
+  "type": "post",
+  "link": "https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/",
+  "title": {
+    "raw": "Distributed Trace Decoder Field Guide: When Three Trace Formats Hide Behind One Waterfall View",
+    "rendered": "Distributed Trace Decoder Field Guide: When Three Trace Formats Hide Behind One Waterfall View"
+  },
+  "content": {
+    "raw": "<h1>When Three Trace Formats Hide Behind One Waterfall View \u2014 And Why Auto-Detect Saves Your Debugging Hour</h1>\n<p><strong>Paste the JSON, see the spans, follow the parent-child chain down to the bottleneck.</strong> Distributed tracing is one of those areas where the difference between \"five minutes to find the slow service\" and \"an hour of grepping logs\" comes down to whether your inspector can read the format you already have. The Distributed Trace Decoder &amp; Waterfall Visualizer at Elysia Tools takes Jaeger, Zipkin, or OpenTelemetry JSON exports and renders the same interactive waterfall for all three \u2014 no exporter plugin, no agent sidecar, no SDK swap. The trick is that all three exporters already speak a near-identical span model underneath their slightly different top-level wrappers, so a small adapter layer can normalize them on the fly.</p>\n<figure class=\"article-poster\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/08/distributed-trace-waterfall-poster.png\" alt=\"When Three Trace Formats Hide One Waterfall - field guide cover\"></figure>\n\n<h2>What The Decoder Actually Does</h2>\n<p>The tool at <a href=\"https://elysiatools.com/en/tools/distributed-trace-decoder-waterfall-visualizer\">Elysia Tools</a> accepts a raw trace JSON payload, detects its source format, and renders span timing, depth, parent-child relationships, and error flags as a horizontally-laid-out waterfall chart in the browser. You paste the export from your Jaeger UI, your Zipkin collector, or your OpenTelemetry collector \u2014 whichever you happen to have \u2014 and the same visualization comes out the other side. The output is HTML; the input is whatever your tracing stack already produced.</p>\n<p>There is no SDK to integrate, no agent to install, no exporter to reconfigure. The tool does not call back to your services or replay the trace. It reads the JSON you already exported, normalizes it into a uniform span list, and lays the spans out in time order with depth encoded as the y-axis and duration encoded as the x-axis width. Error spans are colored differently. Parent links are drawn as connecting lines.</p>\n<h2>Why Three Formats Need One Viewer</h2>\n<p>Jaeger, Zipkin, and OpenTelemetry each define their own JSON schema, but they all model the same conceptual object: a span with a start time, a duration, a service name, an operation name, and a parent reference. Jaeger's format wraps each span as <code>{traceID, spanID, operationName, startTime, duration, tags, logs, processID, warnings}</code> inside a <code>{data: [...]}</code> envelope. Zipkin v2 wraps spans as <code>[{\"traceId\":..., \"id\":..., \"name\":..., \"timestamp\":..., \"duration\":..., \"localEndpoint\":..., \"tags\":...}]</code> at the array root. OpenTelemetry's JSON exporter wraps each span as <code>{traceId, spanId, parentSpanId, name, kind, startTimeUnixNano, endTimeUnixNano, attributes, events, status}</code> inside an OTLP <code>{resourceSpans: [...]}</code> envelope.</p>\n<p>The field names are different (<code>traceID</code> vs <code>traceId</code> vs <code>traceId</code>, <code>operationName</code> vs <code>name</code>, <code>startTime</code> in microseconds vs <code>timestamp</code> in microseconds vs <code>startTimeUnixNano</code> in nanoseconds). The wrapper shapes are different. But once you flatten any of them into <code>{span_id, parent_id, name, service, start_us, duration_us, status, attributes}</code>, you have the same waterfall data. The decoder's adapter layer does exactly this normalization, and the rest of the rendering pipeline is format-agnostic. That is why one viewer can serve all three ecosystems \u2014 and why the format-detect dropdown defaults to \"Auto Detect\" rather than making you pick the right tab.</p>\n<h2>What The Waterfall Tells You At A Glance</h2>\n<p>The waterfall chart has three layers of information, and reading it efficiently means using all three in sequence.</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/08/distributed-trace-waterfall-card1.png\" alt=\"Three axes of the waterfall chart: time, depth, status\" loading=\"lazy\"></figure>\n<p>The <strong>x-axis is wall-clock time</strong> (in your chosen display unit \u2014 microseconds, milliseconds, or seconds). Spans are drawn as horizontal bars whose left edge is the span's start time and whose width is its duration. Long-running spans visually dominate the chart, which is the first thing to look at: a 4-second parent with 80% of its width consumed by one child is almost always the latency source.</p>\n<p>The <strong>y-axis is span depth</strong>. The root span sits at the top. Each child span sits below its parent. Sibling spans (children of the same parent, like parallel service calls) share the same depth row. The visual indent makes the call tree immediately readable \u2014 you can trace a request's path through your service graph just by following the vertical columns downward.</p>\n<p>The <strong>color and badge layer encodes errors</strong>. Spans whose status code is not OK are rendered in red (or with a red badge), and any span whose children include an error gets a visual marker so you can find the failing leaf without scanning every row. Error attributes (exception type, message, stack-trace snippet) are surfaced in a popover when you hover.</p>\n<h2>Common Patterns The Waterfall Surfaces</h2>\n<p>Once you can read the chart, four patterns show up over and over \u2014 and each one points at a different class of fix.</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/08/distributed-trace-waterfall-card2.png\" alt=\"Four common patterns the waterfall surfaces\" loading=\"lazy\"></figure>\n<p><strong>Serial span chain with one long bar.</strong> A request that crosses four services in a chain (gateway \u2192 auth \u2192 business \u2192 DB) where the third span is 20x the duration of the others is almost always waiting on a downstream call \u2014 usually a synchronous HTTP call to an internal service that itself is making a blocking call. The waterfall shows it as a single fat bar with no children. The fix is usually to add async, batching, or caching at the long bar.</p>\n<p><strong>Fan-out with one slow child.</strong> A request that fans out to five parallel calls (search, profile, recommendations, inventory, pricing) where four finish in 50ms and one takes 1200ms. The slow child is the bottleneck \u2014 the parent span's duration is dictated by the slowest child. Reading the chart in this case means finding the longest bar in the bottom half and starting your investigation there.</p>\n<p><strong>Many shallow spans, all short.</strong> A trace with 200 spans, all under 10ms, with deep fan-out (depth 8 or 10) is usually a sign of an over-eager instrumentation library that is recording every database query, every cache hit, every internal method call. The waterfall is not telling you anything useful in this case because the real cost is the sheer volume of spans. The fix is at the instrumentation layer: add span filtering or sampling rules.</p>\n<p><strong>Error span deep in the tree with a healthy parent.</strong> The root span says OK, the gateway says OK, the auth service says OK, but the database span has a red error badge and a short duration. This is the classic \"fast failure\" pattern \u2014 the database rejected the query immediately, the failure propagated up, and the upper services returned their error response. The waterfall tells you the failure happened at the bottom and the duration tells you it was instant (not a timeout).</p>\n<h2>What The Display Unit Setting And Span Attributes Tell You</h2>\n<p>The display-unit dropdown (microseconds, milliseconds, seconds) does not change the underlying trace data \u2014 it changes how the waterfall labels the x-axis and how the duration values render in tooltips and side panels. Microseconds is the right choice for traces with sub-millisecond spans (database calls, cache hits, in-process queues) where a 200\u00b5s span and a 2ms span should look visibly different. Milliseconds is the right choice for typical web request traces where spans live in the 1ms-5000ms range. Seconds is right only for long batch jobs and background workers where everything is at least 100ms. The choice matters because a span that takes 50ms will appear as one bar width in milliseconds mode and as a barely-visible sliver in microseconds mode (since the chart auto-scales to fit the longest span). If you find yourself wondering why all your spans look the same size, switch the display unit \u2014 you are probably using seconds for a millisecond-scale trace, or milliseconds for a microsecond-scale trace.</p>\n<p>Every span carries a dictionary of key-value attributes that the rendering layer surfaces in the side panel. HTTP spans carry <code>http.method</code>, <code>http.url</code>, <code>http.status_code</code>. Database spans carry <code>db.system</code>, <code>db.statement</code>, <code>db.rows</code>. RPC spans carry <code>rpc.service</code>, <code>rpc.method</code>. Custom attributes vary by service. The right way to read attributes is the same way you would read a stack trace from the bottom up. Start with the failing span's attributes (statement that was run, URL that was requested, payload that was sent). Then walk up to the parent span's attributes (which user, which request ID, which feature flag). The combination of \"what the failing layer tried to do\" and \"what context triggered it\" is almost always enough to reproduce the bug locally. A common mistake is to read only the root span's attributes and treat the chain of child spans as opaque. The root span typically carries high-level metadata (<code>http.route</code>, <code>user.id</code>, <code>request.id</code>) but not the failure detail. You need to follow the chain down to the leaf error span to find the failing operation.</p>\n<h2>Where Auto-Detect Beats Manual Selection</h2>\n<p>The decoder's format-detect dropdown defaults to \"Auto Detect\" \u2014 the right choice in 95% of cases. The detection logic reads the top-level wrapper shape (<code>{data: [...]}</code> for Jaeger, <code>[...]</code> for Zipkin v2, <code>{resourceSpans: [...]}</code> for OpenTelemetry) and picks the adapter accordingly.</p>\n<p>Manual selection is the right choice when (a) your trace JSON is wrapped in a non-standard envelope (your collector wraps everything in <code>{traces: ...}</code> before exporting), (b) the auto-detect mis-classifies because your spans happen to match a pattern from two formats, or (c) you are debugging a malformed export and want to force the parser to attempt one format and surface a clean error. In normal operation, auto-detect just works and you do not need to think about which format you have.</p>\n<p>A subtle benefit of auto-detect: you can use the same tool across multiple projects that use different tracing stacks. A team migrating from Zipkin to OTel does not need to swap inspector tools mid-migration \u2014 paste both formats into the same box, get the same waterfall view, compare traces side-by-side without learning a new UI.</p>\n<h2>Edge Cases And Gotchas</h2>\n<p><strong>Clock skew across services.</strong> A trace whose spans disagree on wall-clock time by hundreds of milliseconds will render with gaps and overlaps that do not actually exist. The waterfall shows you a parent ending before a child starts, or two siblings with disjoint time ranges that should be parallel. The fix is at the collector layer \u2014 sync clocks with NTP or chrony \u2014 not at the viewer.</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/08/distributed-trace-waterfall-card3.png\" alt=\"Five edge cases that confuse first-time trace users\" loading=\"lazy\"></figure>\n<p><strong>Truncated spans.</strong> If your collector has a max-span-count limit and the trace was longer, the waterfall will show the visible spans but stop mid-tree. The leaf nodes will look like the end of the request, but they are actually just the cut-off point. The right fix is to raise the collector's span limit; the workaround is to look for \"truncated\" markers in the side panel.</p>\n<p><strong>Missing parent references.</strong> A span whose <code>parentSpanId</code> does not match any other span in the trace will render as a root-level orphan \u2014 at the top of the waterfall with no connecting line above it. Orphans usually mean a parent span was filtered out at the collector (sampling dropped it, or a service crashed before emitting its span). The waterfall still renders correctly; the orphan is just a visual flag that you are missing context.</p>\n<p><strong>Sampling.</strong> If only 1 in 100 requests is being sampled, you can never see the specific failing request's trace. The waterfall tool cannot help here \u2014 the trace does not exist. The fix is at the tail-based sampling layer to ensure errored requests are always retained.</p>\n<h2>When To Reach For The Decoder \u2014 And When Not To</h2>\n<p>Reach for it when you have a JSON trace in hand and want to read it without setting up a Jaeger or Zipkin backend. It is also the right tool when you are comparing traces across formats (a team migrating from one collector to another, or a developer who bounces between stacks).</p>\n<p>Do not reach for it when you need real-time visibility into a live system (a proper backend with search and filtering across all traces is the right tool for that), when your traces are in a format that is not Jaeger / Zipkin / OTel (the decoder handles those three, no others), or when the trace is so large that pasting the JSON exceeds the input limit (split into smaller traces first). For everything else \u2014 one-shot trace debugging, exporter comparison, post-mortem trace inspection \u2014 paste the JSON and read the waterfall. Try it at <a href=\"https://elysiatools.com/en/tools/distributed-trace-decoder-waterfall-visualizer\">Elysia Tools</a>. For a side-by-side JSON inspection workflow, see the <a href=\"https://elysiatools.com/en/tools/json-path-extractor\">JSON Path Extractor</a> \u2014 useful for digging out specific span attributes without opening a full IDE. More developer-focused utilities live in the <a href=\"https://elysiatools.com/en/tools?category=development\">Development category</a>.</p>",
+    "rendered": "<h1>When Three Trace Formats Hide Behind One Waterfall View \u2014 And Why Auto-Detect Saves Your Debugging Hour</h1>\n<p><strong>Paste the JSON, see the spans, follow the parent-child chain down to the bottleneck.</strong> Distributed tracing is one of those areas where the difference between &#8220;five minutes to find the slow service&#8221; and &#8220;an hour of grepping logs&#8221; comes down to whether your inspector can read the format you already have. The Distributed Trace Decoder &amp; Waterfall Visualizer at Elysia Tools takes Jaeger, Zipkin, or OpenTelemetry JSON exports and renders the same interactive waterfall for all three \u2014 no exporter plugin, no agent sidecar, no SDK swap. The trick is that all three exporters already speak a near-identical span model underneath their slightly different top-level wrappers, so a small adapter layer can normalize them on the fly.</p>\n<figure class=\"article-poster\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/08/distributed-trace-waterfall-poster.png\" alt=\"When Three Trace Formats Hide One Waterfall - field guide cover\"></figure>\n<h2>What The Decoder Actually Does</h2>\n<p>The tool at <a href=\"https://elysiatools.com/en/tools/distributed-trace-decoder-waterfall-visualizer\">Elysia Tools</a> accepts a raw trace JSON payload, detects its source format, and renders span timing, depth, parent-child relationships, and error flags as a horizontally-laid-out waterfall chart in the browser. You paste the export from your Jaeger UI, your Zipkin collector, or your OpenTelemetry collector \u2014 whichever you happen to have \u2014 and the same visualization comes out the other side. The output is HTML; the input is whatever your tracing stack already produced.</p>\n<p>There is no SDK to integrate, no agent to install, no exporter to reconfigure. The tool does not call back to your services or replay the trace. It reads the JSON you already exported, normalizes it into a uniform span list, and lays the spans out in time order with depth encoded as the y-axis and duration encoded as the x-axis width. Error spans are colored differently. Parent links are drawn as connecting lines.</p>\n<h2>Why Three Formats Need One Viewer</h2>\n<p>Jaeger, Zipkin, and OpenTelemetry each define their own JSON schema, but they all model the same conceptual object: a span with a start time, a duration, a service name, an operation name, and a parent reference. Jaeger&#8217;s format wraps each span as <code>{traceID, spanID, operationName, startTime, duration, tags, logs, processID, warnings}</code> inside a <code>{data: [...]}</code> envelope. Zipkin v2 wraps spans as <code>[{\"traceId\":..., \"id\":..., \"name\":..., \"timestamp\":..., \"duration\":..., \"localEndpoint\":..., \"tags\":...}]</code> at the array root. OpenTelemetry&#8217;s JSON exporter wraps each span as <code>{traceId, spanId, parentSpanId, name, kind, startTimeUnixNano, endTimeUnixNano, attributes, events, status}</code> inside an OTLP <code>{resourceSpans: [...]}</code> envelope.</p>\n<p>The field names are different (<code>traceID</code> vs <code>traceId</code> vs <code>traceId</code>, <code>operationName</code> vs <code>name</code>, <code>startTime</code> in microseconds vs <code>timestamp</code> in microseconds vs <code>startTimeUnixNano</code> in nanoseconds). The wrapper shapes are different. But once you flatten any of them into <code>{span_id, parent_id, name, service, start_us, duration_us, status, attributes}</code>, you have the same waterfall data. The decoder&#8217;s adapter layer does exactly this normalization, and the rest of the rendering pipeline is format-agnostic. That is why one viewer can serve all three ecosystems \u2014 and why the format-detect dropdown defaults to &#8220;Auto Detect&#8221; rather than making you pick the right tab.</p>\n<h2>What The Waterfall Tells You At A Glance</h2>\n<p>The waterfall chart has three layers of information, and reading it efficiently means using all three in sequence.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/08/distributed-trace-waterfall-card1.png\" alt=\"Three axes of the waterfall chart: time, depth, status\" loading=\"lazy\"></figure>\n<p>The <strong>x-axis is wall-clock time</strong> (in your chosen display unit \u2014 microseconds, milliseconds, or seconds). Spans are drawn as horizontal bars whose left edge is the span&#8217;s start time and whose width is its duration. Long-running spans visually dominate the chart, which is the first thing to look at: a 4-second parent with 80% of its width consumed by one child is almost always the latency source.</p>\n<p>The <strong>y-axis is span depth</strong>. The root span sits at the top. Each child span sits below its parent. Sibling spans (children of the same parent, like parallel service calls) share the same depth row. The visual indent makes the call tree immediately readable \u2014 you can trace a request&#8217;s path through your service graph just by following the vertical columns downward.</p>\n<p>The <strong>color and badge layer encodes errors</strong>. Spans whose status code is not OK are rendered in red (or with a red badge), and any span whose children include an error gets a visual marker so you can find the failing leaf without scanning every row. Error attributes (exception type, message, stack-trace snippet) are surfaced in a popover when you hover.</p>\n<h2>Common Patterns The Waterfall Surfaces</h2>\n<p>Once you can read the chart, four patterns show up over and over \u2014 and each one points at a different class of fix.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/08/distributed-trace-waterfall-card2.png\" alt=\"Four common patterns the waterfall surfaces\" loading=\"lazy\"></figure>\n<p><strong>Serial span chain with one long bar.</strong> A request that crosses four services in a chain (gateway \u2192 auth \u2192 business \u2192 DB) where the third span is 20x the duration of the others is almost always waiting on a downstream call \u2014 usually a synchronous HTTP call to an internal service that itself is making a blocking call. The waterfall shows it as a single fat bar with no children. The fix is usually to add async, batching, or caching at the long bar.</p>\n<p><strong>Fan-out with one slow child.</strong> A request that fans out to five parallel calls (search, profile, recommendations, inventory, pricing) where four finish in 50ms and one takes 1200ms. The slow child is the bottleneck \u2014 the parent span&#8217;s duration is dictated by the slowest child. Reading the chart in this case means finding the longest bar in the bottom half and starting your investigation there.</p>\n<p><strong>Many shallow spans, all short.</strong> A trace with 200 spans, all under 10ms, with deep fan-out (depth 8 or 10) is usually a sign of an over-eager instrumentation library that is recording every database query, every cache hit, every internal method call. The waterfall is not telling you anything useful in this case because the real cost is the sheer volume of spans. The fix is at the instrumentation layer: add span filtering or sampling rules.</p>\n<p><strong>Error span deep in the tree with a healthy parent.</strong> The root span says OK, the gateway says OK, the auth service says OK, but the database span has a red error badge and a short duration. This is the classic &#8220;fast failure&#8221; pattern \u2014 the database rejected the query immediately, the failure propagated up, and the upper services returned their error response. The waterfall tells you the failure happened at the bottom and the duration tells you it was instant (not a timeout).</p>\n<h2>What The Display Unit Setting And Span Attributes Tell You</h2>\n<p>The display-unit dropdown (microseconds, milliseconds, seconds) does not change the underlying trace data \u2014 it changes how the waterfall labels the x-axis and how the duration values render in tooltips and side panels. Microseconds is the right choice for traces with sub-millisecond spans (database calls, cache hits, in-process queues) where a 200\u00b5s span and a 2ms span should look visibly different. Milliseconds is the right choice for typical web request traces where spans live in the 1ms-5000ms range. Seconds is right only for long batch jobs and background workers where everything is at least 100ms. The choice matters because a span that takes 50ms will appear as one bar width in milliseconds mode and as a barely-visible sliver in microseconds mode (since the chart auto-scales to fit the longest span). If you find yourself wondering why all your spans look the same size, switch the display unit \u2014 you are probably using seconds for a millisecond-scale trace, or milliseconds for a microsecond-scale trace.</p>\n<p>Every span carries a dictionary of key-value attributes that the rendering layer surfaces in the side panel. HTTP spans carry <code>http.method</code>, <code>http.url</code>, <code>http.status_code</code>. Database spans carry <code>db.system</code>, <code>db.statement</code>, <code>db.rows</code>. RPC spans carry <code>rpc.service</code>, <code>rpc.method</code>. Custom attributes vary by service. The right way to read attributes is the same way you would read a stack trace from the bottom up. Start with the failing span&#8217;s attributes (statement that was run, URL that was requested, payload that was sent). Then walk up to the parent span&#8217;s attributes (which user, which request ID, which feature flag). The combination of &#8220;what the failing layer tried to do&#8221; and &#8220;what context triggered it&#8221; is almost always enough to reproduce the bug locally. A common mistake is to read only the root span&#8217;s attributes and treat the chain of child spans as opaque. The root span typically carries high-level metadata (<code>http.route</code>, <code>user.id</code>, <code>request.id</code>) but not the failure detail. You need to follow the chain down to the leaf error span to find the failing operation.</p>\n<h2>Where Auto-Detect Beats Manual Selection</h2>\n<p>The decoder&#8217;s format-detect dropdown defaults to &#8220;Auto Detect&#8221; \u2014 the right choice in 95% of cases. The detection logic reads the top-level wrapper shape (<code>{data: [...]}</code> for Jaeger, <code>[...]</code> for Zipkin v2, <code>{resourceSpans: [...]}</code> for OpenTelemetry) and picks the adapter accordingly.</p>\n<p>Manual selection is the right choice when (a) your trace JSON is wrapped in a non-standard envelope (your collector wraps everything in <code>{traces: ...}</code> before exporting), (b) the auto-detect mis-classifies because your spans happen to match a pattern from two formats, or (c) you are debugging a malformed export and want to force the parser to attempt one format and surface a clean error. In normal operation, auto-detect just works and you do not need to think about which format you have.</p>\n<p>A subtle benefit of auto-detect: you can use the same tool across multiple projects that use different tracing stacks. A team migrating from Zipkin to OTel does not need to swap inspector tools mid-migration \u2014 paste both formats into the same box, get the same waterfall view, compare traces side-by-side without learning a new UI.</p>\n<h2>Edge Cases And Gotchas</h2>\n<p><strong>Clock skew across services.</strong> A trace whose spans disagree on wall-clock time by hundreds of milliseconds will render with gaps and overlaps that do not actually exist. The waterfall shows you a parent ending before a child starts, or two siblings with disjoint time ranges that should be parallel. The fix is at the collector layer \u2014 sync clocks with NTP or chrony \u2014 not at the viewer.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/08/distributed-trace-waterfall-card3.png\" alt=\"Five edge cases that confuse first-time trace users\" loading=\"lazy\"></figure>\n<p><strong>Truncated spans.</strong> If your collector has a max-span-count limit and the trace was longer, the waterfall will show the visible spans but stop mid-tree. The leaf nodes will look like the end of the request, but they are actually just the cut-off point. The right fix is to raise the collector&#8217;s span limit; the workaround is to look for &#8220;truncated&#8221; markers in the side panel.</p>\n<p><strong>Missing parent references.</strong> A span whose <code>parentSpanId</code> does not match any other span in the trace will render as a root-level orphan \u2014 at the top of the waterfall with no connecting line above it. Orphans usually mean a parent span was filtered out at the collector (sampling dropped it, or a service crashed before emitting its span). The waterfall still renders correctly; the orphan is just a visual flag that you are missing context.</p>\n<p><strong>Sampling.</strong> If only 1 in 100 requests is being sampled, you can never see the specific failing request&#8217;s trace. The waterfall tool cannot help here \u2014 the trace does not exist. The fix is at the tail-based sampling layer to ensure errored requests are always retained.</p>\n<h2>When To Reach For The Decoder \u2014 And When Not To</h2>\n<p>Reach for it when you have a JSON trace in hand and want to read it without setting up a Jaeger or Zipkin backend. It is also the right tool when you are comparing traces across formats (a team migrating from one collector to another, or a developer who bounces between stacks).</p>\n<p>Do not reach for it when you need real-time visibility into a live system (a proper backend with search and filtering across all traces is the right tool for that), when your traces are in a format that is not Jaeger / Zipkin / OTel (the decoder handles those three, no others), or when the trace is so large that pasting the JSON exceeds the input limit (split into smaller traces first). For everything else \u2014 one-shot trace debugging, exporter comparison, post-mortem trace inspection \u2014 paste the JSON and read the waterfall. Try it at <a href=\"https://elysiatools.com/en/tools/distributed-trace-decoder-waterfall-visualizer\">Elysia Tools</a>. For a side-by-side JSON inspection workflow, see the <a href=\"https://elysiatools.com/en/tools/json-path-extractor\">JSON Path Extractor</a> \u2014 useful for digging out specific span attributes without opening a full IDE. More developer-focused utilities live in the <a href=\"https://elysiatools.com/en/tools?category=development\">Development category</a>.</p>\n",
+    "protected": false,
+    "block_version": 0
+  },
+  "excerpt": {
+    "raw": "Decode Jaeger, Zipkin, and OpenTelemetry trace JSON in one waterfall view. Auto-detect reads the JSON wrapper, normalizes spans, and draws the same chart.",
+    "rendered": "<p>Decode Jaeger, Zipkin, and OpenTelemetry trace JSON in one waterfall view. Auto-detect reads the JSON wrapper, normalizes spans, and draws the same chart.</p>\n",
+    "protected": false
+  },
+  "author": 1,
+  "featured_media": 0,
+  "comment_status": "open",
+  "ping_status": "open",
+  "sticky": false,
+  "template": "",
+  "format": "standard",
+  "meta": {
+    "om_disable_all_campaigns": false,
+    "_monsterinsights_skip_tracking": false,
+    "footnotes": ""
+  },
+  "categories": [
+    1
+  ],
+  "tags": [
+    1323,
+    1324,
+    1297,
+    1325,
+    1986
+  ],
+  "permalink_template": "https://blog.flowrust.com/2026/08/31/%postname%/",
+  "generated_slug": "distributed-trace-decoder-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view",
+  "class_list": [
+    "post-6600",
+    "post",
+    "type-post",
+    "status-publish",
+    "format-standard",
+    "hentry",
+    "category-uncategorized",
+    "tag-distributed-tracing",
+    "tag-jaeger",
+    "tag-observability",
+    "tag-opentelemetry",
+    "tag-zipkin"
+  ],
+  "aioseo_notices": [],
+  "aioseo_head": "\n\t\t<!-- All in One SEO 4.9.10 - aioseo.com -->\n\t<meta name=\"description\" content=\"Decode Jaeger, Zipkin, and OpenTelemetry trace JSON in one waterfall view. Auto-detect reads the JSON wrapper, normalizes spans, and draws the same chart.\" />\n\t<meta name=\"robots\" content=\"max-image-preview:large\" />\n\t<meta name=\"author\" content=\"xiezixing\"/>\n\t<meta name=\"google-site-verification\" content=\"xcSlplMgocNnrNwmxi7j46JcdU6F-L2jrlAnpUB5Lxg\" />\n\t<link rel=\"canonical\" href=\"https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/\" />\n\t<meta name=\"generator\" content=\"All in One SEO (AIOSEO) 4.9.10\" />\n\t\t<meta property=\"og:locale\" content=\"en_US\" />\n\t\t<meta property=\"og:site_name\" content=\"COSESAI - Sharing my AI experiences\" />\n\t\t<meta property=\"og:type\" content=\"article\" />\n\t\t<meta property=\"og:title\" content=\"Distributed Trace Decoder Field Guide: When Three Trace Formats Hide Behind One Waterfall View - COSESAI\" />\n\t\t<meta property=\"og:description\" content=\"Decode Jaeger, Zipkin, and OpenTelemetry trace JSON in one waterfall view. Auto-detect reads the JSON wrapper, normalizes spans, and draws the same chart.\" />\n\t\t<meta property=\"og:url\" content=\"https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/\" />\n\t\t<meta property=\"og:image\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<meta property=\"og:image:secure_url\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<meta property=\"og:image:width\" content=\"512\" />\n\t\t<meta property=\"og:image:height\" content=\"512\" />\n\t\t<meta property=\"article:published_time\" content=\"2026-08-31T03:38:22+00:00\" />\n\t\t<meta property=\"article:modified_time\" content=\"2026-08-31T03:38:25+00:00\" />\n\t\t<meta name=\"twitter:card\" content=\"summary_large_image\" />\n\t\t<meta name=\"twitter:title\" content=\"Distributed Trace Decoder Field Guide: When Three Trace Formats Hide Behind One Waterfall View - COSESAI\" />\n\t\t<meta name=\"twitter:description\" content=\"Decode Jaeger, Zipkin, and OpenTelemetry trace JSON in one waterfall view. Auto-detect reads the JSON wrapper, normalizes spans, and draws the same chart.\" />\n\t\t<meta name=\"twitter:image\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<script type=\"application/ld+json\" class=\"aioseo-schema\">\n\t\t\t{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/08\\/31\\/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31\\/#blogposting\",\"name\":\"Distributed Trace Decoder Field Guide: When Three Trace Formats Hide Behind One Waterfall View - COSESAI\",\"headline\":\"Distributed Trace Decoder Field Guide: When Three Trace Formats Hide Behind One Waterfall View\",\"author\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"publisher\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\"},\"image\":{\"@type\":\"ImageObject\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/uploads\\/2026\\/08\\/distributed-trace-waterfall-poster.png\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/08\\/31\\/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31\\/#articleImage\",\"width\":1080,\"height\":800},\"datePublished\":\"2026-08-31T11:38:22+08:00\",\"dateModified\":\"2026-08-31T11:38:25+08:00\",\"inLanguage\":\"en-US\",\"mainEntityOfPage\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/08\\/31\\/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31\\/#webpage\"},\"isPartOf\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/08\\/31\\/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31\\/#webpage\"},\"articleSection\":\"\\u672a\\u5206\\u7c7b, distributed-tracing, jaeger, observability, opentelemetry, zipkin\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/08\\/31\\/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31\\/#breadcrumblist\",\"itemListElement\":[{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com#listItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/blog.flowrust.com\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"name\":\"\\u672a\\u5206\\u7c7b\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"position\":2,\"name\":\"\\u672a\\u5206\\u7c7b\",\"item\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/08\\/31\\/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31\\/#listItem\",\"name\":\"Distributed Trace Decoder Field Guide: When Three Trace Formats Hide Behind One Waterfall View\"},\"previousItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com#listItem\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/08\\/31\\/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31\\/#listItem\",\"position\":3,\"name\":\"Distributed Trace Decoder Field Guide: When Three Trace Formats Hide Behind One Waterfall View\",\"previousItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"name\":\"\\u672a\\u5206\\u7c7b\"}}]},{\"@type\":\"Person\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\",\"name\":\"xiezixing\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/08\\/31\\/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31\\/#personImage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/litespeed\\/avatar\\/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1787576278\",\"width\":96,\"height\":96,\"caption\":\"xiezixing\"}},{\"@type\":\"Person\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\",\"url\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/\",\"name\":\"xiezixing\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/08\\/31\\/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31\\/#authorImage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/litespeed\\/avatar\\/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1787576278\",\"width\":96,\"height\":96,\"caption\":\"xiezixing\"}},{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/08\\/31\\/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31\\/#webpage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/2026\\/08\\/31\\/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31\\/\",\"name\":\"Distributed Trace Decoder Field Guide: When Three Trace Formats Hide Behind One Waterfall View - COSESAI\",\"description\":\"Decode Jaeger, Zipkin, and OpenTelemetry trace JSON in one waterfall view. Auto-detect reads the JSON wrapper, normalizes spans, and draws the same chart.\",\"inLanguage\":\"en-US\",\"isPartOf\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/08\\/31\\/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31\\/#breadcrumblist\"},\"author\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"creator\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"datePublished\":\"2026-08-31T11:38:22+08:00\",\"dateModified\":\"2026-08-31T11:38:25+08:00\"},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/#website\",\"url\":\"https:\\/\\/blog.flowrust.com\\/\",\"name\":\"COSESAI\",\"description\":\"Sharing my AI experiences\",\"inLanguage\":\"en-US\",\"publisher\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\"}}]}\n\t\t</script>\n\t\t<!-- All in One SEO -->\n\n",
+  "aioseo_head_json": {
+    "title": "Distributed Trace Decoder Field Guide: When Three Trace Formats Hide Behind One Waterfall View - COSESAI",
+    "description": "Decode Jaeger, Zipkin, and OpenTelemetry trace JSON in one waterfall view. Auto-detect reads the JSON wrapper, normalizes spans, and draws the same chart.",
+    "canonical_url": "https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/",
+    "robots": "max-image-preview:large",
+    "keywords": "",
+    "webmasterTools": {
+      "google-site-verification": "xcSlplMgocNnrNwmxi7j46JcdU6F-L2jrlAnpUB5Lxg",
+      "miscellaneous": ""
+    },
+    "schema": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "@id": "https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/#blogposting",
+          "name": "Distributed Trace Decoder Field Guide: When Three Trace Formats Hide Behind One Waterfall View - COSESAI",
+          "headline": "Distributed Trace Decoder Field Guide: When Three Trace Formats Hide Behind One Waterfall View",
+          "author": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "publisher": {
+            "@id": "https://blog.flowrust.com/#person"
+          },
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://blog.flowrust.com/wp-content/uploads/2026/08/distributed-trace-waterfall-poster.png",
+            "@id": "https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/#articleImage",
+            "width": 1080,
+            "height": 800
+          },
+          "datePublished": "2026-08-31T11:38:22+08:00",
+          "dateModified": "2026-08-31T11:38:25+08:00",
+          "inLanguage": "en-US",
+          "mainEntityOfPage": {
+            "@id": "https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/#webpage"
+          },
+          "isPartOf": {
+            "@id": "https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/#webpage"
+          },
+          "articleSection": "\u672a\u5206\u7c7b, distributed-tracing, jaeger, observability, opentelemetry, zipkin"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/#breadcrumblist",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com#listItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://blog.flowrust.com",
+              "nextItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+                "name": "\u672a\u5206\u7c7b"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+              "position": 2,
+              "name": "\u672a\u5206\u7c7b",
+              "item": "https://blog.flowrust.com/category/uncategorized/",
+              "nextItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/#listItem",
+                "name": "Distributed Trace Decoder Field Guide: When Three Trace Formats Hide Behind One Waterfall View"
+              },
+              "previousItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com#listItem",
+                "name": "Home"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/#listItem",
+              "position": 3,
+              "name": "Distributed Trace Decoder Field Guide: When Three Trace Formats Hide Behind One Waterfall View",
+              "previousItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+                "name": "\u672a\u5206\u7c7b"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://blog.flowrust.com/#person",
+          "name": "xiezixing",
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/#personImage",
+            "url": "https://blog.flowrust.com/wp-content/litespeed/avatar/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1787576278",
+            "width": 96,
+            "height": 96,
+            "caption": "xiezixing"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://blog.flowrust.com/author/xiezixing/#author",
+          "url": "https://blog.flowrust.com/author/xiezixing/",
+          "name": "xiezixing",
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/#authorImage",
+            "url": "https://blog.flowrust.com/wp-content/litespeed/avatar/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1787576278",
+            "width": 96,
+            "height": 96,
+            "caption": "xiezixing"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/#webpage",
+          "url": "https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/",
+          "name": "Distributed Trace Decoder Field Guide: When Three Trace Formats Hide Behind One Waterfall View - COSESAI",
+          "description": "Decode Jaeger, Zipkin, and OpenTelemetry trace JSON in one waterfall view. Auto-detect reads the JSON wrapper, normalizes spans, and draws the same chart.",
+          "inLanguage": "en-US",
+          "isPartOf": {
+            "@id": "https://blog.flowrust.com/#website"
+          },
+          "breadcrumb": {
+            "@id": "https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/#breadcrumblist"
+          },
+          "author": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "creator": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "datePublished": "2026-08-31T11:38:22+08:00",
+          "dateModified": "2026-08-31T11:38:25+08:00"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://blog.flowrust.com/#website",
+          "url": "https://blog.flowrust.com/",
+          "name": "COSESAI",
+          "description": "Sharing my AI experiences",
+          "inLanguage": "en-US",
+          "publisher": {
+            "@id": "https://blog.flowrust.com/#person"
+          }
+        }
+      ]
+    },
+    "og:locale": "en_US",
+    "og:site_name": "COSESAI - Sharing my AI experiences",
+    "og:type": "article",
+    "og:title": "Distributed Trace Decoder Field Guide: When Three Trace Formats Hide Behind One Waterfall View - COSESAI",
+    "og:description": "Decode Jaeger, Zipkin, and OpenTelemetry trace JSON in one waterfall view. Auto-detect reads the JSON wrapper, normalizes spans, and draws the same chart.",
+    "og:url": "https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/",
+    "og:image": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp",
+    "og:image:secure_url": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp",
+    "og:image:width": 512,
+    "og:image:height": 512,
+    "article:published_time": "2026-08-31T03:38:22+00:00",
+    "article:modified_time": "2026-08-31T03:38:25+00:00",
+    "twitter:card": "summary_large_image",
+    "twitter:title": "Distributed Trace Decoder Field Guide: When Three Trace Formats Hide Behind One Waterfall View - COSESAI",
+    "twitter:description": "Decode Jaeger, Zipkin, and OpenTelemetry trace JSON in one waterfall view. Auto-detect reads the JSON wrapper, normalizes spans, and draws the same chart.",
+    "twitter:image": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp"
+  },
+  "aioseo_meta_data": [],
+  "aioseo_breadcrumb": "<div class=\"aioseo-breadcrumbs\"><span class=\"aioseo-breadcrumb\">\n\t\t\t<a href=\"https://blog.flowrust.com\" title=\"Home\">Home</a>\n\t\t</span><span class=\"aioseo-breadcrumb-separator\">&raquo;</span><span class=\"aioseo-breadcrumb\">\n\t\t\t<a href=\"https://blog.flowrust.com/category/uncategorized/\" title=\"\u672a\u5206\u7c7b\">\u672a\u5206\u7c7b</a>\n\t\t</span><span class=\"aioseo-breadcrumb-separator\">&raquo;</span><span class=\"aioseo-breadcrumb\">\n\t\t\tDistributed Trace Decoder Field Guide: When Three Trace Formats Hide Behind One Waterfall View\n\t\t</span></div>",
+  "aioseo_breadcrumb_json": [
+    {
+      "label": "Home",
+      "link": "https://blog.flowrust.com"
+    },
+    {
+      "label": "\u672a\u5206\u7c7b",
+      "link": "https://blog.flowrust.com/category/uncategorized/"
+    },
+    {
+      "label": "Distributed Trace Decoder Field Guide: When Three Trace Formats Hide Behind One Waterfall View",
+      "link": "https://blog.flowrust.com/2026/08/31/distributed-trace-decoder-waterfall-visualizer-field-guide-when-three-trace-formats-hide-behind-one-waterfall-view-2026-08-31/"
+    }
+  ],
+  "_links": {
+    "self": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6600",
+        "targetHints": {
+          "allow": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE"
+          ]
+        }
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts"
+      }
+    ],
+    "about": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/types/post"
+      }
+    ],
+    "author": [
+      {
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/users/1"
+      }
+    ],
+    "replies": [
+      {
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/comments?post=6600"
+      }
+    ],
+    "version-history": [
+      {
+        "count": 1,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6600/revisions"
+      }
+    ],
+    "predecessor-version": [
+      {
+        "id": 6601,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6600/revisions/6601"
+      }
+    ],
+    "wp:attachment": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/media?parent=6600"
+      }
+    ],
+    "wp:term": [
+      {
+        "taxonomy": "category",
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/categories?post=6600"
+      },
+      {
+        "taxonomy": "post_tag",
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/tags?post=6600"
+      }
+    ],
+    "wp:action-publish": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6600"
+      }
+    ],
+    "wp:action-unfiltered-html": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6600"
+      }
+    ],
+    "wp:action-sticky": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6600"
+      }
+    ],
+    "wp:action-assign-author": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6600"
+      }
+    ],
+    "wp:action-create-categories": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6600"
+      }
+    ],
+    "wp:action-assign-categories": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6600"
+      }
+    ],
+    "wp:action-create-tags": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6600"
+      }
+    ],
+    "wp:action-assign-tags": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6600"
+      }
+    ],
+    "curies": [
+      {
+        "name": "wp",
+        "href": "https://api.w.org/{rel}",
+        "templated": true
+      }
+    ]
+  }
+}
