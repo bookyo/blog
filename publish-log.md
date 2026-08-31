@@ -3336,3 +3336,10 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - **OoS heuristic**: all 5 in-scope (slug-marker + cron-shape match; no foreign-script titles; no URL-encoded slugs; content length 10-18k each).
 - **PATCH round-trips**: 0 (no defects found).
 - **Notes**: Browser-based DOM probe skipped — Chrome debugging permission blocked (cron-mode, no user to approve). Per Cycle #29 lesson, content-audit + REST-API HEAD-checks are sufficient evidence when browser probe is unavailable.
+
+## 2026-08-31T20:12:39Z — Post 6625 — color-token-cascade-generator-field-guide-when-three-controls-decide-forty-three-tones-2026-08-31
+- Title: Color Token Cascade Generator Field Guide: When Three Controls Decide Forty-Three Tones
+- Link: https://blog.flowrust.com/2026/09/01/color-token-cascade-generator-field-guide-when-three-controls-decide-forty-three-tones-2026-08-31/
+- Date GMT: 2026-08-31T20:10:50
+- Audit: 0 findings (clean)
+- Anchors: elysiatools.com/en/tools/color-token-cascade-generator (x2), elysiatools.com/en/tools (x1)
