@@ -1,3 +1,14 @@
+## 2026-08-31: diff-formatter-field-guide-when-four-output-styles-beat-one-default-diff
+
+- Tool: Diff Formatter (slug: diff-formatter)
+- Post ID: 6606
+- URL: https://blog.flowrust.com/2026/08/31/diff-formatter-field-guide-when-four-output-styles-beat-one-default-diff-2026-08-31/
+- date_gmt: 2026-08-31T07:49:17Z
+- Cards: 3 (5-tile variants)
+- Elysia anchors: 4 (all to /en/tools/diff-formatter)
+- Audit: 0 findings
+- Asset IDs: poster=6602, card1=6603, card2=6604, card3=6605
+
 ## 2026-08-30T19:22:05 UTC — SQL Query Formatter Field Guide
 
 - **WP ID**: 6588
