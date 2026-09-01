@@ -3373,3 +3373,58 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - **Skill notice**: article-writer umbrella present on disk; article-poster-creator and article-highlight-cards NOT present on disk → used umbrella PIL templates directly per WP 6323/6352 skill-availability note
 - **Picks used**: sparse_category_picker.py — pdf-batch-split was rank 6 of 1366 candidates (theme_score=3, PDF Tools category); chosen for clean thematic clustering (PDF + batch + split + ZIP) and zero sample-manifest dependencies
 - **Cron-mode note**: browser DOM probe skipped — Chrome remote-debugging permission popup blocked (cron has no user). All content-audit + REST + URL HEAD checks passed; defect-free post confirmed via raw content audit
+
+---
+
+## Post 6649 — 2026-09-01 12:55 UTC — Wiggle Stereoscope Generator
+
+- **date_gmt**: 2026-09-01T12:55:09
+- **status**: publish (featured_media=0)
+- **URL**: https://blog.flowrust.com/2026/09/01/wiggle-stereoscope-generator-field-guide-when-eight-alternating-frames-beat-a-stereo-pair/
+- **Audit**: 0 findings; 3 highlight-card + 1 article-poster; 8 body H2; 0 body H3; 0 H1; 0 wpautop-strip artifacts; 0 PATCH round-trips
+- **Elysia anchors** (3 total, all real tool IDs): image-wiggle-stereoscopy (x2), /en/tools (root)
+- **Assets**: poster.png (1080x800) + card1.png/card2.png/card3.png (1600x900 each) — WP media IDs 6645/6646/6647/6648
+- **Card layouts**: card1=render_card_5tile (5 offset values), card2=render_card_audit (3 depth methods), card3=render_card_4tile_compact (4 image types)
+- **Skill notice**: article-writer umbrella present on disk; article-poster-creator and article-highlight-cards NOT present on disk → used umbrella PIL templates directly per WP 6323/6352 skill-availability note
+- **Picks used**: sparse_category_picker.py — image-wiggle-stereoscopy was a top candidate from 1365 eligible (theme_score=2, Design category); chosen for clean thematic clustering (image + 3D + animation + GIF) and zero sample-manifest dependencies
+- **Cron-mode note**: browser DOM probe skipped — Chrome remote-debugging permission popup blocked (cron has no user). All content-audit + REST + URL HEAD checks passed; defect-free post confirmed via raw content audit
+
+## WP 6655 — Test Data Faker Builder Field Guide (2026-09-01 17:07 UTC)
+
+- **Post**: 6655 — "Test Data Faker Builder Field Guide: When Five Hand-Typed Fixture Rows Are A False Green"
+- **URL**: https://blog.flowrust.com/2026/09/02/test-data-faker-builder-field-guide-when-five-hand-typed-fixture-rows-are-a-false-green-2026-09-01/
+- **Tool**: Test Data Faker Builder (`test-data-faker-builder`, Generator) — real name/description from tool-manifest.json
+- **date_gmt**: 2026-09-01T17:07:29 (current UTC at publish)
+- **Outcome**: 1-POST + 1-PATCH. Audit clean (0 findings) on raw AND rendered content post-PATCH.
+- **Shape**: 0 body H1, 8 body H2 (9 in DOM incl. theme "Post navigation"), 0 H3, 0 `<pre>`, 1 article-poster figure, 3 highlight-card figures, 1285 words, `featured_media: 0`.
+- **Links (7)**: 4 tool (`test-data-faker-builder`, `uuid-generator`, `random-string-generator`, `api-mock-server`) + 2 samples (`test-pyramid-examples`, `pytest-testing`) + 1 root (`/en/tools`). All manifest-verified AND HTTP 200.
+- **Card layouts**: card1=render_card_5tile (5 generator families, 2-line bodies per WP 6358), card2=render_card_4tile_compact (3 export formats + count dial; multi-word counts per WP 6122 decision tree), card3=render_card_input_output_2col (config in / NDJSON row out, rows <=30 chars per WP 6358).
+- **Visual QA**: `vision_analyze` on all 4 assets pre-POST — all clean first pass, 0 re-renders.
+
+### NEW PITFALL — `<p><ul>` artifact cleanup leaves orphan `<p>` → P_TAG_MISMATCH (WP 6655)
+
+Extends the WP 6370 orphan-`</p>` family with the mirror-image case. `md_to_html` wraps source `<ul>...</ul>` blocks as `<p><ul>...</ul></p>`. The obvious cleanup regex
+
+```python
+re.sub(r'<p>\s*(<ul>.*?</ul>)\s*</p>', r'\1', html, flags=re.DOTALL)
+```
+
+**silently fails when a `<ul>` block contains blank lines**, because `md_to_html` has already inserted intermediate `</p>\n<p>` pairs inside the block — so the `<p>` ... `</p>` bookends are not adjacent to the `<ul>`/`</ul>` and the DOTALL match spans the wrong region. The follow-up `.replace('<p><ul>','<ul>')` also misses because the actual text is `<p>\n<ul>` (newline between). Result: 22 `<p>` opens vs 19 closes → `audit_post_content` reports `P_TAG_MISMATCH: 22 opens, 19 closes`.
+
+**Canonical fix (whitespace-tolerant, lookahead-based, no DOTALL):**
+
+```python
+html = re.sub(r'<p>\s*(?=</?ul>)', '', html)   # orphan open before <ul> or </ul>
+html = re.sub(r'</ul>\s*</p>', '</ul>', html)  # orphan close after </ul>
+```
+
+Same recipe applies to `<ol>`. **Pre-POST assertion (add to the sanity trio):** walk `re.finditer(r'</?p>', html)` maintaining a depth counter — `final_depth` MUST be 0 and no `<p>` may open at depth != 0. `audit_post_content` catches this too, but only if you actually read its output before POSTing. WP 6655 cost 1 PATCH round-trip because the audit was run and its finding was noted, but the POST proceeded in the same script run.
+
+**Better defense:** write source list blocks as `<ul><li>` HTML with NO blank lines inside the block, which keeps the artifact in the simple adjacent form the DOTALL regex does handle.
+
+### Other observations
+
+- **SSL EOF on `POST /wp/v2/posts` (not just media)** — the WP 5683/5731/5738 media-upload SSL EOF family extends to the post-create call. First POST attempt raised `SSLEOFError`; the 3-retry backoff wrapper recovered on attempt 2. **Verified no duplicate post was created** by the failed attempt (latest-6 fetch showed exactly one 6655). Always wrap `POST /wp/v2/posts` in the same retry loop as media, and always verify for duplicates after a retry-recovered POST.
+- **Browser DOM probe unavailable in cron** — Chrome asked "Allow remote debugging?" and cron has no user to click Allow. Substituted a pure-HTTP verification: fetch the rendered page with `urllib`, scope to `<article>`, and run the same DOM assertions by regex (H1/H2 counts, figure counts, nested-p, empty-artifact, title-dup-H2, pipe-table leak, literal-star paragraphs). This caught everything the JS probe would have and is the recommended cron fallback.
+- **Skill availability** — probed per WP 6352 recipe: `article-writer/SKILL.md` present (100KB); `article-poster-creator/` and `article-highlight-cards/` NOT present on disk. Cron prompt's skip notice was accurate this run. Used umbrella PIL templates.
+- **`validate_elysia_anchors.py` cannot validate `/en/samples/` routes** — returns FAIL with "alternate route not validated by this script". Sample IDs must be checked manually against `sample-manifest.json` (`{x['id'] for x in samples}`). Not a defect; validate manually and treat tool-route PASS as the gate.
