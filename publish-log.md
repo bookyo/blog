@@ -3428,3 +3428,10 @@ Same recipe applies to `<ol>`. **Pre-POST assertion (add to the sanity trio):** 
 - **Browser DOM probe unavailable in cron** — Chrome asked "Allow remote debugging?" and cron has no user to click Allow. Substituted a pure-HTTP verification: fetch the rendered page with `urllib`, scope to `<article>`, and run the same DOM assertions by regex (H1/H2 counts, figure counts, nested-p, empty-artifact, title-dup-H2, pipe-table leak, literal-star paragraphs). This caught everything the JS probe would have and is the recommended cron fallback.
 - **Skill availability** — probed per WP 6352 recipe: `article-writer/SKILL.md` present (100KB); `article-poster-creator/` and `article-highlight-cards/` NOT present on disk. Cron prompt's skip notice was accurate this run. Used umbrella PIL templates.
 - **`validate_elysia_anchors.py` cannot validate `/en/samples/` routes** — returns FAIL with "alternate route not validated by this script". Sample IDs must be checked manually against `sample-manifest.json` (`{x['id'] for x in samples}`). Not a defect; validate manually and treat tool-route PASS as the gate.
+
+## 2026-09-01 21:22 UTC — WP 6663 — UUID Validator Field Guide
+- Tool: UUID Validator (uuid-validator, Development)
+- URL: https://blog.flowrust.com/2026/09/02/uuid-validator-field-guide-when-a-well-formed-string-still-fails-the-version-and-variant-check-2026-09-01/
+- 1-POST 0-PATCH clean. 8 H2, 0 H1, 3 cards, 1 poster, featured_media 0, audit 0 findings.
+- Pre-POST validator caught 2 phantom slugs (text-cleaner, tools/development) -> data-cleaner, timestamp-converter.
+- Assets: umbrella PIL path (poster-creator/highlight-cards skills absent from disk).
