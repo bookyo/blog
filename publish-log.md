@@ -3357,3 +3357,19 @@ Skill availability: `article-writer-references-cron-sessions/` directory missing
 - **Assets**: poster-1.png + card1-1.png + card2-1.png + card3-1.png (WP media IDs 6627/6628/6629/6630)
 - **Cron-mode bypass**: execute_code blocked; wrote 6 /tmp/*.py scripts and ran sequentially (per WP 5746/6135/6323)
 - **Picks used**: One-off picker (sparse-category fallback) — pdf-a-convert rejected (covered by WP 6549 slug variant pdfa-convert); routing-number-validator chosen from top-20 (theme_score=2, Validation category sparse)
+
+## 2026-09-01 04:31:25 UTC — WP 6637 — PDF Batch Split Field Guide
+
+- **Slug**: pdf-batch-split-field-guide-when-five-page-range-patterns-beat-one-default-split-mode
+- **Title**: PDF Batch Split Field Guide: When Five Page-Range Patterns Beat One Default Split Mode
+- **Tool**: pdf-batch-split (PDF Tools category)
+- **date_gmt**: 2026-09-01T04:31:25
+- **status**: publish (featured_media=0)
+- **URL**: https://blog.flowrust.com/2026/09/01/pdf-batch-split-field-guide-when-five-page-range-patterns-beat-one-default-split-mode/
+- **Audit**: 0 findings; 3 highlight-card + 1 article-poster; 8 body H2; 0 body H3; 0 H1; 0 wpautop-strip artifacts; 0 PATCH round-trips
+- **Elysia anchors** (4 total, all real tool IDs): pdf-batch-split (x2), pdf-batch-compress, pdf-merge-documents
+- **Assets**: poster.png (1080x800) + card1.png/card2.png/card3.png (1600x900 each) — WP media IDs 6633/6634/6635/6636
+- **Card layouts**: card1=render_card_5tile (5 range patterns), card2=render_card_5tile_3plus2 (single-page mode trade-offs), card3=render_card_4tile_compact (4 edge cases)
+- **Skill notice**: article-writer umbrella present on disk; article-poster-creator and article-highlight-cards NOT present on disk → used umbrella PIL templates directly per WP 6323/6352 skill-availability note
+- **Picks used**: sparse_category_picker.py — pdf-batch-split was rank 6 of 1366 candidates (theme_score=3, PDF Tools category); chosen for clean thematic clustering (PDF + batch + split + ZIP) and zero sample-manifest dependencies
+- **Cron-mode note**: browser DOM probe skipped — Chrome remote-debugging permission popup blocked (cron has no user). All content-audit + REST + URL HEAD checks passed; defect-free post confirmed via raw content audit
