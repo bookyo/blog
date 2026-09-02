@@ -3492,3 +3492,30 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 **Audit findings:** 0 phantom anchors (validated against tool-manifest + sample-manifest). All 4 image URLs return 200. All 5 elysia anchors return 200. Permalink returns 200. `featured_media: 0` confirmed. 8 H2 / 0 H3 / 1 poster fig / 3 card figs / 0 missing-alt / 0 H2 with embedded `<p>`. `vision_analyze` confirmed clean rendering on poster + 3 cards.
 
 **Notes:** Used `~/.hermes/skills/article-writer/article-poster-creator/` for poster (custom Playwright + Chrome.app recipe) and `article-highlight-cards/scripts/render_editorial_dense_cron.py` for the 3 cards. Skill umbrella's PIL fallback NOT used this run since the dedicated skills were present and matched the cron cadence's expected output (1280×900). Sub-target-anchor swap `markdown-viewer` → `markdown-link-checker` done pre-POST (markdown-viewer is not in tool-manifest).
+
+---
+
+## WP 6691 (2026-09-02T14:17:18 UTC) — XLSX CSV Batch Converter Field Guide
+
+**Title:** XLSX CSV Batch Converter Field Guide: When Five Mode Choices Decide What Your Spreadsheet Actually Becomes
+**Slug:** `xlsx-csv-batch-converter-field-guide-when-five-mode-choices-decide-what-your-spreadsheet-actually-becomes-2026-09-02`
+**URL:** https://blog.flowrust.com/2026/09/02/xlsx-csv-batch-converter-field-guide-when-five-mode-choices-decide-what-your-spreadsheet-actually-becomes-2026-09-02/
+**Status:** publish (1-POST 0-PATCH)
+**Tool:** xlsx-csv-batch-converter (Format Conversion; 9 options including mode/encoding/delimiter/sheet-name/header/zip)
+**Word count:** ~1752 words
+
+**Card anchors (3):**
+- Card 1 (9 controls 5-tile) → after H2 "Why the mode field is the first decision, not the fourth"
+- Card 2 (5 preflight checks 2-col audit) → after H2 "Encoding mismatches: the silent column merge"
+- Card 3 (4 common failure modes 4-tile compact) → after H2 "Batch behavior when files have different schemas"
+- Poster → before first `<p>` (left-rail style)
+
+**Elysia anchors (4):**
+- `elysiatools.com/en/tools/xlsx-csv-batch-converter` ×2 (intro + closing)
+- `elysiatools.com/en/samples/csv-samples` (encoding section)
+- `elysiatools.com/en/samples/xlsx-samples` (batch behavior section)
+- `elysiatools.com/en/tools` (closing)
+
+**Audit findings:** 0 phantom anchors (validated against tool-manifest + sample-manifest via `validate_anchors()`). All 4 image URLs return 200. All 4 elysia anchors return 200. `featured_media: 0` confirmed. 8 H2 / 0 H3 / 1 poster fig / 3 card figs / 0 missing-alt / 0 H2 with embedded `<p>` / 0 orphan `</p>` after figures. `vision_analyze` caught poster title clipping (line 2 + subtitle overflow) — refactored to shorter title; caught card3 count-vs-body collision — switched from `render_card_4tile` to `render_card_4tile_compact`; caught card2 body-text-2-line collision in audit item 04 — shortened bodies.
+
+**Notes:** Skills actually present at `~/.hermes/skills/article-writer/article-poster-creator/` and `article-highlight-cards/` (cron-prompt's skip-notice was stale; umbrella already documents this). All 3 image assets rendered via PIL templates under `~/.hermes/skills/wordpress-rest-api-publishing/templates/` per WP 6663 lesson (cron-mode audit-probe via regex on `content.raw` + `content.rendered` + `urllib.request` HEAD, not browser_navigate — Chrome debugger-popup hard-block avoided).
