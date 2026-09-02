@@ -1,0 +1,368 @@
+{
+  "id": 6669,
+  "date": "2026-09-02T09:38:28",
+  "date_gmt": "2026-09-02T01:38:28",
+  "guid": {
+    "rendered": "https://blog.flowrust.com/2026/09/02/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02/",
+    "raw": "https://blog.flowrust.com/2026/09/02/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02/"
+  },
+  "modified": "2026-09-02T09:41:16",
+  "modified_gmt": "2026-09-02T01:41:16",
+  "password": "",
+  "slug": "iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02",
+  "status": "publish",
+  "type": "post",
+  "link": "https://blog.flowrust.com/2026/09/02/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02/",
+  "title": {
+    "raw": "IBAN & SWIFT Code Validator Field Guide: When Two Bank Identifiers Share One Input Box But Use Different Checksums",
+    "rendered": "IBAN &#038; SWIFT Code Validator Field Guide: When Two Bank Identifiers Share One Input Box But Use Different Checksums"
+  },
+  "content": {
+    "raw": "<figure class=\"article-poster\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/poster-3.png\" alt=\"IBAN &amp; SWIFT Validator poster showing two bank identifiers sharing one input box\"></figure>\n<p>The cross-border payment hits your invoice queue at 4:47 AM on a Tuesday. The customer swears the <a href=\"https://blog.flowrust.com/tag/iban/\" class=\"wpai-auto-tags-link\">IBAN</a> is correct, your bank says the <a href=\"https://blog.flowrust.com/tag/swift/\" class=\"wpai-auto-tags-link\">SWIFT</a> is misrouted, and your finance team is going to spend the next ninety minutes pasting fragments into three different bank portals before anyone figures out whether the failure was a checksum, a country code, or a stray space. A single browser-side validator that runs both checks against the same input collapses that ninety-minute detective story into a four-second verdict.</p>\n<h2>The Two Codes Look Similar and Behave Nothing Alike</h2>\n<p><code>IBAN</code> and <code>SWIFT/BIC</code> are both bank identifiers, both look like uppercase alphanumeric strings, and both sit in the same invoice field on most ERP templates. That is where the similarity ends. An IBAN identifies an individual account; the SWIFT identifies the bank that holds that account. They are validated by entirely different algorithms, they have different length rules per country, and they are stored in different columns of every banking database that exists. A tool that only checks one of them will silently return \"valid\" on a string that cannot actually be sent anywhere.</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/card1-3.png\" alt=\"Five validation rules the IBAN &amp; SWIFT Validator runs\" loading=\"lazy\"></figure>\n<p>This is the gap the <a href=\"https://elysiatools.com/en/tools/iban-swift-validator\">IBAN &amp; SWIFT Validator</a> closes. The same input box accepts either format, the auto-detect path picks the right algorithm, and the output tells you which one you actually have. You can run a string through, copy the verdict, and move on.</p>\n<h2>IBAN Validation Is mod-97, Not Length and Not Regex</h2>\n<p>The IBAN checksum is ISO 13616 mod-97. You move the first four characters to the end, convert each letter to a two-digit number (<code>A=10</code>, <code>B=11</code>, ... <code>Z=35</code>), treat the whole string as a big integer, and check that the remainder mod 97 equals 1. The country code, the two check digits, the BBAN, the total length \u2014 none of those are validated by the checksum alone. The checksum is what catches a single transposed digit. The length and country structure are what catch the deeper mistakes: an extra digit, a missing digit, or an Irish IBAN that was mangled into a German one.</p>\n<p>A real validator has to enforce both layers, and the layers don't always agree. <code>GB82WEST12345698765432</code> passes mod-97 with a remainder of 1 and has the correct 22-character UK length; <code>GB82WEST12345698765433</code> fails mod-97 by exactly one digit; <code>GB82WEST1234569876543</code> has the right checksum but is one character short for a UK IBAN and would be rejected by any clearing system. A regex that only checks <code></code> accepts all three.</p>\n<p>The validator's IBAN path runs the full check, including per-country length rules, so the third case above is caught at the length gate, not at the checksum gate. That distinction matters because it tells you <em>what to fix</em>: a checksum failure means a transcription error, a length failure means you are looking at a partial string.</p>\n<h2>SWIFT Validation Is Eight or Eleven, Never Nine or Ten</h2>\n<p>The SWIFT/BIC code is structurally simpler than the IBAN but has its own quirks. The eight-character form is <code>BBBBCCLL</code> \u2014 four-letter bank code, two-letter country code, two-character location code. The eleven-character form appends a three-character branch code. Nine, ten, and twelve characters are all invalid. So is a SWIFT whose country code disagrees with the IBAN's country code, which the validator flags as a separate warning rather than a hard failure.</p>\n<p>The common failure mode here is a SWIFT that passes the length check but encodes a defunct bank. SWIFT assigns and retires bank codes constantly; an eight-character code that was live in 2014 may have been re-issued to a different institution by 2026. A validator that only checks structure cannot catch this \u2014 you need an active-code directory. The validator returns a confidence flag and a recommendation to verify against your bank's published list whenever the structure passes but the code is not in any well-known directory.</p>\n<h2>Country Codes Disagree and That Is the Bug You Are Hunting</h2>\n<p>The most expensive mistake in cross-border invoicing is a valid IBAN paired with a SWIFT whose country code does not match. The transfer will be accepted by your local bank, routed into the SWIFT network, and bounced by the receiving correspondent with a <code>BIC-COUNTRY-MISMATCH</code> error \u2014 usually three to five business days after submission, with the intermediary fees already deducted and non-refundable.</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/card2-3.png\" alt=\"Five failure modes the audit distinguishes\" loading=\"lazy\"></figure>\n<p>The validator surfaces this mismatch as a top-line warning before you hit submit. You see <code>IBAN country: DE</code>, <code>SWIFT country: FR</code>, and the red <code>country mismatch</code> flag at the top of the result panel. Paste the IBAN alone, you get a green check. Paste the SWIFT alone, you get a green check. Paste both, you get a red flag. This is the case the auto-detect path is designed for: a finance team that pastes whatever is in front of them and expects the tool to figure out what they actually meant.</p>\n<h2>A Real Audit Pass Catches What Five Individual Validators Miss</h2>\n<p>A typical back-office audit runs every IBAN in your AR ledger through one checker, every SWIFT through another, every cross-reference through a third, and reconciles by hand. The <a href=\"https://elysiatools.com/en/tools/iban-swift-validator\">IBAN &amp; SWIFT Validator</a> collapses that to one input box with both algorithms active, so a single paste performs the cross-check the audit was doing manually. For batch work you can run the tool inside a loop and pipe each row through the validator, then filter on the verdict column.</p>\n<p>The <a href=\"https://elysiatools.com/en/samples/iban-swift\">IBAN &amp; SWIFT Codes by Country</a> sample bundle gives you a known-good test set: real IBANs and SWIFTs from a dozen major jurisdictions, each one with a passing checksum and a known bank code. Run that bundle through your internal check first to confirm your downstream system agrees with the validator, then run your real AR ledger.</p>\n<h2>Five Checksum and Format Rules That Catch Ninety Percent of Failures</h2>\n<p>Five rules, applied in order, catch the bulk of real-world IBAN and SWIFT failures. The validator runs all five as a single pipeline, but knowing the order helps you read the result.</p>\n<ol><li>1. <strong>Strip spaces and hyphens first.</strong> <code>GB82 WEST 1234 5698 7654 32</code> and <code>GB82WEST12345698765432</code> are the same IBAN. A validator that fails on whitespace is broken; a validator that silently strips it is correct.</li><li>2. <strong>Uppercase everything.</strong> Lowercase letters are valid inside an IBAN per the spec, but every clearing system uppercases before processing. Normalize at the input gate.</li><li>3. <strong>Run mod-97 after the four-character rotation.</strong> This is the only authoritative checksum for IBAN. If it fails, the IBAN is wrong; do not try to \"fix\" it by adjusting digits.</li><li>4. <strong>Enforce per-country length.</strong> UK is 22, Germany is 22, France is 27, Saudi Arabia is 24. There is no universal length.</li><li>5. <strong>Cross-check country codes between IBAN and SWIFT.</strong> A passing IBAN and a passing SWIFT can still be incompatible if their country codes disagree.</li></ol>\n<h2>Where Auto-Detect Breaks Down and You Have to Pick</h2>\n<p>The validator's auto-detect works on three signals in order: leading two characters are letters (likely IBAN country code), total length above 14 (likely IBAN), any character outside <code>[A-Z0-9]</code> (likely IBAN with formatting). If the input is exactly 8 or 11 uppercase characters with no leading letters that look like a country code, auto-detect picks SWIFT. If the input fails all three signals, you get a \"could not auto-detect\" verdict and the type selector becomes mandatory.</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/card3-3.png\" alt=\"What a country-mismatch costs in real money\" loading=\"lazy\"></figure>\n<p>The two cases where auto-detect consistently picks wrong are: a SWIFT code whose first four letters happen to be a valid ISO country prefix (rare but real), and a German IBAN that was pasted without the leading <code>DE</code> because someone stripped the country code by mistake. Both cases are visible in the result panel as a low-confidence auto-detect and an explicit <code>please verify type</code> warning. Pick the type manually when you see that warning.</p>\n<h2>Beyond Pass/Fail: What the Result Tells You to Do Next</h2>\n<p>A binary valid/invalid verdict is the minimum useful output. The validator returns five pieces of structured information on success: the detected type, the parsed country, the formatted canonical form (with spaces in the right places), the bank code or BBAN prefix for IBAN, and a confidence flag for SWIFT. On failure it returns the same five plus a <code>failure_stage</code> field that says whether the failure was at the format gate, the checksum gate, the length gate, or the country gate. That stage is what tells you what to fix \u2014 a format failure means a typo, a checksum failure means a transcription error, a length failure means a truncated string.</p>\n<p>The structured output is the part that makes the tool scriptable. Pull the verdict, the country, and the failure_stage into your AR pipeline and you can route the failure into the right queue automatically. A format failure routes to data entry; a checksum failure routes to customer confirmation; a country mismatch routes to a human review queue.</p>\n<p>The <a href=\"https://elysiatools.com/en/tools/iban-swift-validator\">IBAN &amp; SWIFT Validator</a> is the difference between catching a routing error before submission and discovering it three business days later in a correspondent bank's bounce notice. Run every cross-border payment string through it once before you hit submit, and the 4:47 AM detective story stops happening. Explore more bank-code and routing tools at <a href=\"https://elysiatools.com/en/tools\">elysiatools.com</a>.</p>",
+    "rendered": "<figure class=\"article-poster\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/poster-3.png\" alt=\"IBAN &amp; SWIFT Validator poster showing two bank identifiers sharing one input box\"></figure>\n<p>The cross-border payment hits your invoice queue at 4:47 AM on a Tuesday. The customer swears the <a href=\"https://blog.flowrust.com/tag/iban/\" class=\"wpai-auto-tags-link\">IBAN</a> is correct, your bank says the <a href=\"https://blog.flowrust.com/tag/swift/\" class=\"wpai-auto-tags-link\">SWIFT</a> is misrouted, and your finance team is going to spend the next ninety minutes pasting fragments into three different bank portals before anyone figures out whether the failure was a checksum, a country code, or a stray space. A single browser-side validator that runs both checks against the same input collapses that ninety-minute detective story into a four-second verdict.</p>\n<h2>The Two Codes Look Similar and Behave Nothing Alike</h2>\n<p><code>IBAN</code> and <code>SWIFT/BIC</code> are both bank identifiers, both look like uppercase alphanumeric strings, and both sit in the same invoice field on most ERP templates. That is where the similarity ends. An IBAN identifies an individual account; the SWIFT identifies the bank that holds that account. They are validated by entirely different algorithms, they have different length rules per country, and they are stored in different columns of every banking database that exists. A tool that only checks one of them will silently return &#8220;valid&#8221; on a string that cannot actually be sent anywhere.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/card1-3.png\" alt=\"Five validation rules the IBAN &amp; SWIFT Validator runs\" loading=\"lazy\"></figure>\n<p>This is the gap the <a href=\"https://elysiatools.com/en/tools/iban-swift-validator\">IBAN &amp; SWIFT Validator</a> closes. The same input box accepts either format, the auto-detect path picks the right algorithm, and the output tells you which one you actually have. You can run a string through, copy the verdict, and move on.</p>\n<h2>IBAN Validation Is mod-97, Not Length and Not Regex</h2>\n<p>The IBAN checksum is ISO 13616 mod-97. You move the first four characters to the end, convert each letter to a two-digit number (<code>A=10</code>, <code>B=11</code>, &#8230; <code>Z=35</code>), treat the whole string as a big integer, and check that the remainder mod 97 equals 1. The country code, the two check digits, the BBAN, the total length \u2014 none of those are validated by the checksum alone. The checksum is what catches a single transposed digit. The length and country structure are what catch the deeper mistakes: an extra digit, a missing digit, or an Irish IBAN that was mangled into a German one.</p>\n<p>A real validator has to enforce both layers, and the layers don&#8217;t always agree. <code>GB82WEST12345698765432</code> passes mod-97 with a remainder of 1 and has the correct 22-character UK length; <code>GB82WEST12345698765433</code> fails mod-97 by exactly one digit; <code>GB82WEST1234569876543</code> has the right checksum but is one character short for a UK IBAN and would be rejected by any clearing system. A regex that only checks <code></code> accepts all three.</p>\n<p>The validator&#8217;s IBAN path runs the full check, including per-country length rules, so the third case above is caught at the length gate, not at the checksum gate. That distinction matters because it tells you <em>what to fix</em>: a checksum failure means a transcription error, a length failure means you are looking at a partial string.</p>\n<h2>SWIFT Validation Is Eight or Eleven, Never Nine or Ten</h2>\n<p>The SWIFT/BIC code is structurally simpler than the IBAN but has its own quirks. The eight-character form is <code>BBBBCCLL</code> \u2014 four-letter bank code, two-letter country code, two-character location code. The eleven-character form appends a three-character branch code. Nine, ten, and twelve characters are all invalid. So is a SWIFT whose country code disagrees with the IBAN&#8217;s country code, which the validator flags as a separate warning rather than a hard failure.</p>\n<p>The common failure mode here is a SWIFT that passes the length check but encodes a defunct bank. SWIFT assigns and retires bank codes constantly; an eight-character code that was live in 2014 may have been re-issued to a different institution by 2026. A validator that only checks structure cannot catch this \u2014 you need an active-code directory. The validator returns a confidence flag and a recommendation to verify against your bank&#8217;s published list whenever the structure passes but the code is not in any well-known directory.</p>\n<h2>Country Codes Disagree and That Is the Bug You Are Hunting</h2>\n<p>The most expensive mistake in cross-border invoicing is a valid IBAN paired with a SWIFT whose country code does not match. The transfer will be accepted by your local bank, routed into the SWIFT network, and bounced by the receiving correspondent with a <code>BIC-COUNTRY-MISMATCH</code> error \u2014 usually three to five business days after submission, with the intermediary fees already deducted and non-refundable.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/card2-3.png\" alt=\"Five failure modes the audit distinguishes\" loading=\"lazy\"></figure>\n<p>The validator surfaces this mismatch as a top-line warning before you hit submit. You see <code>IBAN country: DE</code>, <code>SWIFT country: FR</code>, and the red <code>country mismatch</code> flag at the top of the result panel. Paste the IBAN alone, you get a green check. Paste the SWIFT alone, you get a green check. Paste both, you get a red flag. This is the case the auto-detect path is designed for: a finance team that pastes whatever is in front of them and expects the tool to figure out what they actually meant.</p>\n<h2>A Real Audit Pass Catches What Five Individual Validators Miss</h2>\n<p>A typical back-office audit runs every IBAN in your AR ledger through one checker, every SWIFT through another, every cross-reference through a third, and reconciles by hand. The <a href=\"https://elysiatools.com/en/tools/iban-swift-validator\">IBAN &amp; SWIFT Validator</a> collapses that to one input box with both algorithms active, so a single paste performs the cross-check the audit was doing manually. For batch work you can run the tool inside a loop and pipe each row through the validator, then filter on the verdict column.</p>\n<p>The <a href=\"https://elysiatools.com/en/samples/iban-swift\">IBAN &amp; SWIFT Codes by Country</a> sample bundle gives you a known-good test set: real IBANs and SWIFTs from a dozen major jurisdictions, each one with a passing checksum and a known bank code. Run that bundle through your internal check first to confirm your downstream system agrees with the validator, then run your real AR ledger.</p>\n<h2>Five Checksum and Format Rules That Catch Ninety Percent of Failures</h2>\n<p>Five rules, applied in order, catch the bulk of real-world IBAN and SWIFT failures. The validator runs all five as a single pipeline, but knowing the order helps you read the result.</p>\n<ol>\n<li>1. <strong>Strip spaces and hyphens first.</strong> <code>GB82 WEST 1234 5698 7654 32</code> and <code>GB82WEST12345698765432</code> are the same IBAN. A validator that fails on whitespace is broken; a validator that silently strips it is correct.</li>\n<li>2. <strong>Uppercase everything.</strong> Lowercase letters are valid inside an IBAN per the spec, but every clearing system uppercases before processing. Normalize at the input gate.</li>\n<li>3. <strong>Run mod-97 after the four-character rotation.</strong> This is the only authoritative checksum for IBAN. If it fails, the IBAN is wrong; do not try to &#8220;fix&#8221; it by adjusting digits.</li>\n<li>4. <strong>Enforce per-country length.</strong> UK is 22, Germany is 22, France is 27, Saudi Arabia is 24. There is no universal length.</li>\n<li>5. <strong>Cross-check country codes between IBAN and SWIFT.</strong> A passing IBAN and a passing SWIFT can still be incompatible if their country codes disagree.</li>\n</ol>\n<h2>Where Auto-Detect Breaks Down and You Have to Pick</h2>\n<p>The validator&#8217;s auto-detect works on three signals in order: leading two characters are letters (likely IBAN country code), total length above 14 (likely IBAN), any character outside <code>[A-Z0-9]</code> (likely IBAN with formatting). If the input is exactly 8 or 11 uppercase characters with no leading letters that look like a country code, auto-detect picks SWIFT. If the input fails all three signals, you get a &#8220;could not auto-detect&#8221; verdict and the type selector becomes mandatory.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/card3-3.png\" alt=\"What a country-mismatch costs in real money\" loading=\"lazy\"></figure>\n<p>The two cases where auto-detect consistently picks wrong are: a SWIFT code whose first four letters happen to be a valid ISO country prefix (rare but real), and a German IBAN that was pasted without the leading <code>DE</code> because someone stripped the country code by mistake. Both cases are visible in the result panel as a low-confidence auto-detect and an explicit <code>please verify type</code> warning. Pick the type manually when you see that warning.</p>\n<h2>Beyond Pass/Fail: What the Result Tells You to Do Next</h2>\n<p>A binary valid/invalid verdict is the minimum useful output. The validator returns five pieces of structured information on success: the detected type, the parsed country, the formatted canonical form (with spaces in the right places), the bank code or BBAN prefix for IBAN, and a confidence flag for SWIFT. On failure it returns the same five plus a <code>failure_stage</code> field that says whether the failure was at the format gate, the checksum gate, the length gate, or the country gate. That stage is what tells you what to fix \u2014 a format failure means a typo, a checksum failure means a transcription error, a length failure means a truncated string.</p>\n<p>The structured output is the part that makes the tool scriptable. Pull the verdict, the country, and the failure_stage into your AR pipeline and you can route the failure into the right queue automatically. A format failure routes to data entry; a checksum failure routes to customer confirmation; a country mismatch routes to a human review queue.</p>\n<p>The <a href=\"https://elysiatools.com/en/tools/iban-swift-validator\">IBAN &amp; SWIFT Validator</a> is the difference between catching a routing error before submission and discovering it three business days later in a correspondent bank&#8217;s bounce notice. Run every cross-border payment string through it once before you hit submit, and the 4:47 AM detective story stops happening. Explore more bank-code and routing tools at <a href=\"https://elysiatools.com/en/tools\">elysiatools.com</a>.</p>\n",
+    "protected": false,
+    "block_version": 0
+  },
+  "excerpt": {
+    "raw": "The cross-border payment hits your invoice queue at 4:47 AM on a Tuesday. The customer swears the IBAN is correct, your bank says the SWIFT is misrouted, and your finance team is going to spend the...",
+    "rendered": "<p>The cross-border payment hits your invoice queue at 4:47 AM on a Tuesday. The customer swears the IBAN is correct, your bank says the SWIFT is misrouted, and your finance team is going to spend the&#8230;</p>\n",
+    "protected": false
+  },
+  "author": 1,
+  "featured_media": 0,
+  "comment_status": "open",
+  "ping_status": "open",
+  "sticky": false,
+  "template": "",
+  "format": "standard",
+  "meta": {
+    "om_disable_all_campaigns": false,
+    "_monsterinsights_skip_tracking": false,
+    "footnotes": ""
+  },
+  "categories": [
+    1
+  ],
+  "tags": [
+    117,
+    76,
+    1147,
+    2003,
+    1589
+  ],
+  "permalink_template": "https://blog.flowrust.com/2026/09/02/%postname%/",
+  "generated_slug": "iban-swift-code-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums",
+  "class_list": [
+    "post-6669",
+    "post",
+    "type-post",
+    "status-publish",
+    "format-standard",
+    "hentry",
+    "category-uncategorized",
+    "tag-data-validation",
+    "tag-fintech",
+    "tag-iban",
+    "tag-payments",
+    "tag-swift"
+  ],
+  "aioseo_notices": [],
+  "aioseo_head": "\n\t\t<!-- All in One SEO 4.9.10 - aioseo.com -->\n\t<meta name=\"description\" content=\"The cross-border payment hits your invoice queue at 4:47 AM on a Tuesday. The customer swears the IBAN is correct, your bank says the SWIFT is misrouted, and your finance team is going to spend the...\" />\n\t<meta name=\"robots\" content=\"max-image-preview:large\" />\n\t<meta name=\"author\" content=\"xiezixing\"/>\n\t<meta name=\"google-site-verification\" content=\"xcSlplMgocNnrNwmxi7j46JcdU6F-L2jrlAnpUB5Lxg\" />\n\t<link rel=\"canonical\" href=\"https://blog.flowrust.com/2026/09/02/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02/\" />\n\t<meta name=\"generator\" content=\"All in One SEO (AIOSEO) 4.9.10\" />\n\t\t<meta property=\"og:locale\" content=\"en_US\" />\n\t\t<meta property=\"og:site_name\" content=\"COSESAI - Sharing my AI experiences\" />\n\t\t<meta property=\"og:type\" content=\"article\" />\n\t\t<meta property=\"og:title\" content=\"IBAN &amp; SWIFT Code Validator Field Guide: When Two Bank Identifiers Share One Input Box But Use Different Checksums - COSESAI\" />\n\t\t<meta property=\"og:description\" content=\"The cross-border payment hits your invoice queue at 4:47 AM on a Tuesday. The customer swears the IBAN is correct, your bank says the SWIFT is misrouted, and your finance team is going to spend the...\" />\n\t\t<meta property=\"og:url\" content=\"https://blog.flowrust.com/2026/09/02/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02/\" />\n\t\t<meta property=\"og:image\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<meta property=\"og:image:secure_url\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<meta property=\"og:image:width\" content=\"512\" />\n\t\t<meta property=\"og:image:height\" content=\"512\" />\n\t\t<meta property=\"article:published_time\" content=\"2026-09-02T01:38:28+00:00\" />\n\t\t<meta property=\"article:modified_time\" content=\"2026-09-02T01:41:16+00:00\" />\n\t\t<meta name=\"twitter:card\" content=\"summary_large_image\" />\n\t\t<meta name=\"twitter:title\" content=\"IBAN &amp; SWIFT Code Validator Field Guide: When Two Bank Identifiers Share One Input Box But Use Different Checksums - COSESAI\" />\n\t\t<meta name=\"twitter:description\" content=\"The cross-border payment hits your invoice queue at 4:47 AM on a Tuesday. The customer swears the IBAN is correct, your bank says the SWIFT is misrouted, and your finance team is going to spend the...\" />\n\t\t<meta name=\"twitter:image\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<script type=\"application/ld+json\" class=\"aioseo-schema\">\n\t\t\t{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/02\\/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02\\/#blogposting\",\"name\":\"IBAN & SWIFT Code Validator Field Guide: When Two Bank Identifiers Share One Input Box But Use Different Checksums - COSESAI\",\"headline\":\"IBAN &#038; SWIFT Code Validator Field Guide: When Two Bank Identifiers Share One Input Box But Use Different Checksums\",\"author\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"publisher\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\"},\"image\":{\"@type\":\"ImageObject\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/uploads\\/2026\\/09\\/poster-3.png\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/02\\/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02\\/#articleImage\",\"width\":1080,\"height\":800},\"datePublished\":\"2026-09-02T09:38:28+08:00\",\"dateModified\":\"2026-09-02T09:41:16+08:00\",\"inLanguage\":\"en-US\",\"mainEntityOfPage\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/02\\/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02\\/#webpage\"},\"isPartOf\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/02\\/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02\\/#webpage\"},\"articleSection\":\"\\u672a\\u5206\\u7c7b, Data Validation, Fintech, IBAN, Payments, SWIFT\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/02\\/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02\\/#breadcrumblist\",\"itemListElement\":[{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com#listItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/blog.flowrust.com\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"name\":\"\\u672a\\u5206\\u7c7b\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"position\":2,\"name\":\"\\u672a\\u5206\\u7c7b\",\"item\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/02\\/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02\\/#listItem\",\"name\":\"IBAN &#038; SWIFT Code Validator Field Guide: When Two Bank Identifiers Share One Input Box But Use Different Checksums\"},\"previousItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com#listItem\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/02\\/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02\\/#listItem\",\"position\":3,\"name\":\"IBAN &#038; SWIFT Code Validator Field Guide: When Two Bank Identifiers Share One Input Box But Use Different Checksums\",\"previousItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"name\":\"\\u672a\\u5206\\u7c7b\"}}]},{\"@type\":\"Person\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\",\"name\":\"xiezixing\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/02\\/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02\\/#personImage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/litespeed\\/avatar\\/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1788181117\",\"width\":96,\"height\":96,\"caption\":\"xiezixing\"}},{\"@type\":\"Person\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\",\"url\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/\",\"name\":\"xiezixing\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/02\\/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02\\/#authorImage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/litespeed\\/avatar\\/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1788181117\",\"width\":96,\"height\":96,\"caption\":\"xiezixing\"}},{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/02\\/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02\\/#webpage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/02\\/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02\\/\",\"name\":\"IBAN & SWIFT Code Validator Field Guide: When Two Bank Identifiers Share One Input Box But Use Different Checksums - COSESAI\",\"description\":\"The cross-border payment hits your invoice queue at 4:47 AM on a Tuesday. The customer swears the IBAN is correct, your bank says the SWIFT is misrouted, and your finance team is going to spend the...\",\"inLanguage\":\"en-US\",\"isPartOf\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/02\\/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02\\/#breadcrumblist\"},\"author\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"creator\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"datePublished\":\"2026-09-02T09:38:28+08:00\",\"dateModified\":\"2026-09-02T09:41:16+08:00\"},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/#website\",\"url\":\"https:\\/\\/blog.flowrust.com\\/\",\"name\":\"COSESAI\",\"description\":\"Sharing my AI experiences\",\"inLanguage\":\"en-US\",\"publisher\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\"}}]}\n\t\t</script>\n\t\t<!-- All in One SEO -->\n\n",
+  "aioseo_head_json": {
+    "title": "IBAN & SWIFT Code Validator Field Guide: When Two Bank Identifiers Share One Input Box But Use Different Checksums - COSESAI",
+    "description": "The cross-border payment hits your invoice queue at 4:47 AM on a Tuesday. The customer swears the IBAN is correct, your bank says the SWIFT is misrouted, and your finance team is going to spend the...",
+    "canonical_url": "https://blog.flowrust.com/2026/09/02/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02/",
+    "robots": "max-image-preview:large",
+    "keywords": "",
+    "webmasterTools": {
+      "google-site-verification": "xcSlplMgocNnrNwmxi7j46JcdU6F-L2jrlAnpUB5Lxg",
+      "miscellaneous": ""
+    },
+    "schema": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "@id": "https://blog.flowrust.com/2026/09/02/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02/#blogposting",
+          "name": "IBAN & SWIFT Code Validator Field Guide: When Two Bank Identifiers Share One Input Box But Use Different Checksums - COSESAI",
+          "headline": "IBAN &#038; SWIFT Code Validator Field Guide: When Two Bank Identifiers Share One Input Box But Use Different Checksums",
+          "author": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "publisher": {
+            "@id": "https://blog.flowrust.com/#person"
+          },
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://blog.flowrust.com/wp-content/uploads/2026/09/poster-3.png",
+            "@id": "https://blog.flowrust.com/2026/09/02/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02/#articleImage",
+            "width": 1080,
+            "height": 800
+          },
+          "datePublished": "2026-09-02T09:38:28+08:00",
+          "dateModified": "2026-09-02T09:41:16+08:00",
+          "inLanguage": "en-US",
+          "mainEntityOfPage": {
+            "@id": "https://blog.flowrust.com/2026/09/02/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02/#webpage"
+          },
+          "isPartOf": {
+            "@id": "https://blog.flowrust.com/2026/09/02/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02/#webpage"
+          },
+          "articleSection": "\u672a\u5206\u7c7b, Data Validation, Fintech, IBAN, Payments, SWIFT"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://blog.flowrust.com/2026/09/02/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02/#breadcrumblist",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com#listItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://blog.flowrust.com",
+              "nextItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+                "name": "\u672a\u5206\u7c7b"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+              "position": 2,
+              "name": "\u672a\u5206\u7c7b",
+              "item": "https://blog.flowrust.com/category/uncategorized/",
+              "nextItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/2026/09/02/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02/#listItem",
+                "name": "IBAN &#038; SWIFT Code Validator Field Guide: When Two Bank Identifiers Share One Input Box But Use Different Checksums"
+              },
+              "previousItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com#listItem",
+                "name": "Home"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com/2026/09/02/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02/#listItem",
+              "position": 3,
+              "name": "IBAN &#038; SWIFT Code Validator Field Guide: When Two Bank Identifiers Share One Input Box But Use Different Checksums",
+              "previousItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+                "name": "\u672a\u5206\u7c7b"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://blog.flowrust.com/#person",
+          "name": "xiezixing",
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://blog.flowrust.com/2026/09/02/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02/#personImage",
+            "url": "https://blog.flowrust.com/wp-content/litespeed/avatar/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1788181117",
+            "width": 96,
+            "height": 96,
+            "caption": "xiezixing"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://blog.flowrust.com/author/xiezixing/#author",
+          "url": "https://blog.flowrust.com/author/xiezixing/",
+          "name": "xiezixing",
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://blog.flowrust.com/2026/09/02/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02/#authorImage",
+            "url": "https://blog.flowrust.com/wp-content/litespeed/avatar/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1788181117",
+            "width": 96,
+            "height": 96,
+            "caption": "xiezixing"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://blog.flowrust.com/2026/09/02/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02/#webpage",
+          "url": "https://blog.flowrust.com/2026/09/02/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02/",
+          "name": "IBAN & SWIFT Code Validator Field Guide: When Two Bank Identifiers Share One Input Box But Use Different Checksums - COSESAI",
+          "description": "The cross-border payment hits your invoice queue at 4:47 AM on a Tuesday. The customer swears the IBAN is correct, your bank says the SWIFT is misrouted, and your finance team is going to spend the...",
+          "inLanguage": "en-US",
+          "isPartOf": {
+            "@id": "https://blog.flowrust.com/#website"
+          },
+          "breadcrumb": {
+            "@id": "https://blog.flowrust.com/2026/09/02/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02/#breadcrumblist"
+          },
+          "author": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "creator": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "datePublished": "2026-09-02T09:38:28+08:00",
+          "dateModified": "2026-09-02T09:41:16+08:00"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://blog.flowrust.com/#website",
+          "url": "https://blog.flowrust.com/",
+          "name": "COSESAI",
+          "description": "Sharing my AI experiences",
+          "inLanguage": "en-US",
+          "publisher": {
+            "@id": "https://blog.flowrust.com/#person"
+          }
+        }
+      ]
+    },
+    "og:locale": "en_US",
+    "og:site_name": "COSESAI - Sharing my AI experiences",
+    "og:type": "article",
+    "og:title": "IBAN &amp; SWIFT Code Validator Field Guide: When Two Bank Identifiers Share One Input Box But Use Different Checksums - COSESAI",
+    "og:description": "The cross-border payment hits your invoice queue at 4:47 AM on a Tuesday. The customer swears the IBAN is correct, your bank says the SWIFT is misrouted, and your finance team is going to spend the...",
+    "og:url": "https://blog.flowrust.com/2026/09/02/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02/",
+    "og:image": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp",
+    "og:image:secure_url": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp",
+    "og:image:width": 512,
+    "og:image:height": 512,
+    "article:published_time": "2026-09-02T01:38:28+00:00",
+    "article:modified_time": "2026-09-02T01:41:16+00:00",
+    "twitter:card": "summary_large_image",
+    "twitter:title": "IBAN &amp; SWIFT Code Validator Field Guide: When Two Bank Identifiers Share One Input Box But Use Different Checksums - COSESAI",
+    "twitter:description": "The cross-border payment hits your invoice queue at 4:47 AM on a Tuesday. The customer swears the IBAN is correct, your bank says the SWIFT is misrouted, and your finance team is going to spend the...",
+    "twitter:image": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp"
+  },
+  "aioseo_meta_data": [],
+  "aioseo_breadcrumb": "<div class=\"aioseo-breadcrumbs\"><span class=\"aioseo-breadcrumb\">\n\t\t\t<a href=\"https://blog.flowrust.com\" title=\"Home\">Home</a>\n\t\t</span><span class=\"aioseo-breadcrumb-separator\">&raquo;</span><span class=\"aioseo-breadcrumb\">\n\t\t\t<a href=\"https://blog.flowrust.com/category/uncategorized/\" title=\"\u672a\u5206\u7c7b\">\u672a\u5206\u7c7b</a>\n\t\t</span><span class=\"aioseo-breadcrumb-separator\">&raquo;</span><span class=\"aioseo-breadcrumb\">\n\t\t\tIBAN &amp; SWIFT Code Validator Field Guide: When Two Bank Identifiers Share One Input Box But Use Different Checksums\n\t\t</span></div>",
+  "aioseo_breadcrumb_json": [
+    {
+      "label": "Home",
+      "link": "https://blog.flowrust.com"
+    },
+    {
+      "label": "\u672a\u5206\u7c7b",
+      "link": "https://blog.flowrust.com/category/uncategorized/"
+    },
+    {
+      "label": "IBAN &#038; SWIFT Code Validator Field Guide: When Two Bank Identifiers Share One Input Box But Use Different Checksums",
+      "link": "https://blog.flowrust.com/2026/09/02/iban-swift-validator-field-guide-when-two-bank-identifiers-share-one-input-box-but-use-different-checksums-2026-09-02/"
+    }
+  ],
+  "_links": {
+    "self": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6669",
+        "targetHints": {
+          "allow": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE"
+          ]
+        }
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts"
+      }
+    ],
+    "about": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/types/post"
+      }
+    ],
+    "author": [
+      {
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/users/1"
+      }
+    ],
+    "replies": [
+      {
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/comments?post=6669"
+      }
+    ],
+    "version-history": [
+      {
+        "count": 3,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6669/revisions"
+      }
+    ],
+    "predecessor-version": [
+      {
+        "id": 6672,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6669/revisions/6672"
+      }
+    ],
+    "wp:attachment": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/media?parent=6669"
+      }
+    ],
+    "wp:term": [
+      {
+        "taxonomy": "category",
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/categories?post=6669"
+      },
+      {
+        "taxonomy": "post_tag",
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/tags?post=6669"
+      }
+    ],
+    "wp:action-publish": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6669"
+      }
+    ],
+    "wp:action-unfiltered-html": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6669"
+      }
+    ],
+    "wp:action-sticky": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6669"
+      }
+    ],
+    "wp:action-assign-author": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6669"
+      }
+    ],
+    "wp:action-create-categories": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6669"
+      }
+    ],
+    "wp:action-assign-categories": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6669"
+      }
+    ],
+    "wp:action-create-tags": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6669"
+      }
+    ],
+    "wp:action-assign-tags": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6669"
+      }
+    ],
+    "curies": [
+      {
+        "name": "wp",
+        "href": "https://api.w.org/{rel}",
+        "templated": true
+      }
+    ]
+  }
+}
