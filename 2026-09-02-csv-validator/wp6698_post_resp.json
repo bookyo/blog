@@ -1,0 +1,368 @@
+{
+  "id": 6698,
+  "date": "2026-09-03T02:23:26",
+  "date_gmt": "2026-09-02T18:23:26",
+  "guid": {
+    "rendered": "https://blog.flowrust.com/2026/09/03/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02/",
+    "raw": "https://blog.flowrust.com/2026/09/03/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02/"
+  },
+  "modified": "2026-09-03T05:48:05",
+  "modified_gmt": "2026-09-02T21:48:05",
+  "password": "",
+  "slug": "csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02",
+  "status": "publish",
+  "type": "post",
+  "link": "https://blog.flowrust.com/2026/09/03/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02/",
+  "title": {
+    "raw": "CSV Validator Field Guide: When Row 873 Crashes But The Fault Is On Row 12",
+    "rendered": "CSV Validator Field Guide: When Row 873 Crashes But The Fault Is On Row 12"
+  },
+  "content": {
+    "raw": "<figure class=\"article-poster\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/poster-5.png\" alt=\"CSV Validator field guide cover\"></figure>\n<p>When a thousand-row CSV refuses to load and the only error message is &#8220;Parse error on line 873,&#8221; the problem is almost never line 873. The real fault is structural \u2014 a quoted field with an embedded newline, a header whose column count does not match its data, or a delimiter that quietly changed mid-file. The <a href=\"https://elysiatools.com/en/tools/csv-validator\">CSV Validator</a> catches these problems before your pipeline does.</p>\n<p><strong>CSV validation lives upstream of every analysis, dashboard, and import job that touches the file.</strong> Catch the malformed row once and you skip forty minutes of blaming pandas, blaming Excel, blaming the third-party exporter, and blaming the FTP server.</p>\n<h2>What &#8220;Validate CSV&#8221; Actually Means</h2>\n<p>Most validators stop at &#8220;is this a valid table of rows and columns?&#8221; That answer is necessary but far from sufficient. A real CSV validator inspects:</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/card1-5.png\" alt=\"Five CSV import errors\" loading=\"lazy\"></figure>\n<ul><li><strong>Row-to-header consistency.</strong> Every data row must carry the same number of fields as the header. Off-by-one rows are the single most common cause of silent truncation in downstream tooling.</li><li><strong>Quote balance.</strong> <a href=\"https://blog.flowrust.com/tag/rfc-4180/\" class=\"wpai-auto-tags-link\">RFC 4180</a> quotes wrap any field that contains the delimiter, a newline, or the quote character itself. Every opening quote must be paired with a closing quote, and quotes inside quoted fields must be escaped as <code>\"\"</code>.</li><li><strong>Delimiter consistency.</strong> If the header is comma-separated, every row must be comma-separated. A single tab in the middle of an otherwise comma-separated file is a parser killer.</li><li><strong>Encoding.</strong> UTF-8 with or without BOM is the modern default. Latin-1 / Windows-1252 files pass <code>decode('utf-8')</code> only when the validator is willing to fall back and report.</li><li><strong>Header hygiene.</strong> Duplicate header names, blank headers, and trailing commas in the header row all break column-keyed lookups downstream.</li></ul>\n<p>The <a href=\"https://elysiatools.com/en/tools/csv-validator\">Elysia Tools CSV Validator</a> surfaces every one of those failure modes in a single pass, with row numbers and a structural verdict.</p>\n<h2>The Five Errors That Block 90 Percent of CSV Imports</h2>\n<p>These are the patterns the validator finds in roughly nine out of ten malformed production exports.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/card2-5.png\" alt=\"Three CSV validation modes\" loading=\"lazy\"></figure>\n<p><strong>1. Off-by-one row.</strong> A row has 8 columns when the header has 9. Usually the cause is a comma inside an unquoted address field or a quoted newline that was never closed. The validator reports the row number and the actual vs. expected field count.</p>\n<p><strong>2. Unbalanced quotes.</strong> A field opens with <code>\"</code> and never closes \u2014 usually because the original exporter forgot to escape an embedded quote. The validator flags every row that touches the runaway quote, which is often many more rows than the developer expects.</p>\n<p><strong>3. Header\u2013data column count mismatch.</strong> The header advertises 12 columns; the rows carry 11. Often a sign that someone added a column to the data generator but not to the schema document.</p>\n<p><strong>4. Mixed delimiters.</strong> A few rows use <code>,</code>, others use <code>;</code>, others use <code>t</code>. The validator pins down which delimiter is dominant and reports the row numbers of the outliers.</p>\n<p><strong>5. Trailing delimiter on the header row.</strong> The header ends with <code>,</code> \u2014 a comma that no data row contains. This breaks every header-counting parser and is invisible without structural validation.</p>\n<h2>The Three Modes Worth Running</h2>\n<p>A CSV validator earns its keep when it offers more than a single pass/fail verdict. The three modes that pay back immediately are:</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/card3-5.png\" alt=\"Spreadsheets hide four CSV bugs\" loading=\"lazy\"></figure>\n<ul><li><strong>Structural mode.</strong> Counts fields per row, checks quote balance, verifies delimiter consistency. The default for &#8220;is this file even parseable.&#8221;</li><li><strong>Schema mode.</strong> Pins the header as the source of truth and reports every row whose column count, type signature, or required-field presence deviates. Run this before any column-keyed import.</li><li><strong>Encoding mode.</strong> Sniffs BOM, validates UTF-8 byte sequence, falls back to Latin-1 with a warning. The single best defense against the silent <code>\u00e2\u20ac\u2122</code> that ruins downstream text processing.</li></ul>\n<p>Most teams should default to running structural + schema in the same pass; encoding mode belongs on the file-receipt side of any pipeline that ingests external CSV uploads.</p>\n<h2>What the Output Looks Like</h2>\n<p>The validator returns a structured verdict: total rows, total columns, header row, delimiter detected, encoding, and an error list with row indices, column indices, and human-readable descriptions. The error list is the actionable artifact \u2014 paste a row index back into the source generator and the exporter can usually self-correct.</p>\n<p>A clean output looks like:</p>\n<pre><code class=\"language-\">rows: 1000\ncolumns: 9\ndelimiter: \",\"\nencoding: utf-8\nerrors: 0</code></pre>\n<p>A failing output includes the row index, the field index, and a one-line reason. That three-field tuple is enough to triage 95 percent of CSV ingestion bugs without opening the file in a spreadsheet.</p>\n<h2>Why Pre-Validation Beats Post-Processing</h2>\n<p>The pattern that wastes hours is this: the CSV loads, the import script crashes, an engineer opens the file in Excel, scrolls until something looks wrong, fixes one row, re-runs the import, and hits the next failure. Pre-validation collapses that loop into a single pass.</p>\n<p>A second pattern that wastes days is silent corruption: the CSV loads, the import script logs a warning, downstream tooling quietly drops the malformed rows, and the report misses 12 percent of its data. Pre-validation with a hard fail turns silent corruption into loud rejection at the only point in the pipeline where rejection is cheap.</p>\n<p>The <a href=\"https://elysiatools.com/en/tools/csv-validator\">CSV Validator</a> exists for exactly this moment \u2014 the boundary between an external file and an internal pipeline. Run it before every import, not after the failure.</p>\n<h2>Common Pitfalls the Validator Catches That Spreadsheets Miss</h2>\n<p>Spreadsheets hide CSV bugs. They auto-close quotes, auto-detect delimiters, auto-trim whitespace, and silently coerce types. The same CSV that opens cleanly in Excel may break a parser that does none of those things.</p>\n<p>&#8211; A trailing newline after the last data row is harmless in Excel and an extra empty row in pandas. &#8211; A column named <code>SKU</code> followed by <code>sku</code> is two distinct keys in code and one repeated column in Excel. &#8211; A row with <code>,,,</code> in the middle is four empty fields to a parser and &#8220;blank cells&#8221; to a spreadsheet. &#8211; A header that uses spaces (<code>First Name</code>) and a code path that uses snake_case (<code>first_name</code>) silently mismatches at lookup time.</p>\n<p>Pre-validation reports these in canonical terms the code understands. Post-validation in Excel hides them.</p>\n<h2>When to Skip Validation</h2>\n<p>There are exactly two cases where skipping validation is defensible: tiny one-shot CSVs from a trusted source that the developer just authored, and CSVs that are already known-good because they passed validation on a previous run. For everything else \u2014 production data, third-party exports, FTP uploads, scheduled imports \u2014 pre-validation is a one-second cost that prevents a one-hour debugging session.</p>\n<p>The validator&#8217;s verdict is not optional metadata. It is the gate between the file and the pipeline.</p>\n<h2>Closing Note</h2>\n<p><strong>The cleanest CSV import you will ever run is the one that failed pre-validation and never reached the import.</strong> Treat the validator as a contract: every file that crosses the boundary must satisfy it, every failure must reject, and every rejection must include enough context to fix. That contract is what turns CSV ingestion from a recurring fire drill into a single auditable step.</p>\n<p>Explore the <a href=\"https://elysiatools.com/en/tools/csv-validator\">CSV Validator</a> and the wider <a href=\"https://elysiatools.com/en/tools\">Elysia Tools</a> catalog when the upstream of your data pipeline needs the same kind of structural gate.</p>\n",
+    "rendered": "<figure class=\"article-poster\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/poster-5.png\" alt=\"CSV Validator field guide cover\"></figure>\n<p>When a thousand-row CSV refuses to load and the only error message is &#8220;Parse error on line 873,&#8221; the problem is almost never line 873. The real fault is structural \u2014 a quoted field with an embedded newline, a header whose column count does not match its data, or a delimiter that quietly changed mid-file. The <a href=\"https://elysiatools.com/en/tools/csv-validator\">CSV Validator</a> catches these problems before your pipeline does.</p>\n<p><strong>CSV validation lives upstream of every analysis, dashboard, and import job that touches the file.</strong> Catch the malformed row once and you skip forty minutes of blaming pandas, blaming Excel, blaming the third-party exporter, and blaming the FTP server.</p>\n<h2>What &#8220;Validate CSV&#8221; Actually Means</h2>\n<p>Most validators stop at &#8220;is this a valid table of rows and columns?&#8221; That answer is necessary but far from sufficient. A real CSV validator inspects:</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/card1-5.png\" alt=\"Five CSV import errors\" loading=\"lazy\"></figure>\n<ul>\n<li><strong>Row-to-header consistency.</strong> Every data row must carry the same number of fields as the header. Off-by-one rows are the single most common cause of silent truncation in downstream tooling.</li>\n<li><strong>Quote balance.</strong> <a href=\"https://blog.flowrust.com/tag/rfc-4180/\" class=\"wpai-auto-tags-link\">RFC 4180</a> quotes wrap any field that contains the delimiter, a newline, or the quote character itself. Every opening quote must be paired with a closing quote, and quotes inside quoted fields must be escaped as <code>\"\"</code>.</li>\n<li><strong>Delimiter consistency.</strong> If the header is comma-separated, every row must be comma-separated. A single tab in the middle of an otherwise comma-separated file is a parser killer.</li>\n<li><strong>Encoding.</strong> UTF-8 with or without BOM is the modern default. Latin-1 / Windows-1252 files pass <code>decode('utf-8')</code> only when the validator is willing to fall back and report.</li>\n<li><strong>Header hygiene.</strong> Duplicate header names, blank headers, and trailing commas in the header row all break column-keyed lookups downstream.</li>\n</ul>\n<p>The <a href=\"https://elysiatools.com/en/tools/csv-validator\">Elysia Tools CSV Validator</a> surfaces every one of those failure modes in a single pass, with row numbers and a structural verdict.</p>\n<h2>The Five Errors That Block 90 Percent of CSV Imports</h2>\n<p>These are the patterns the validator finds in roughly nine out of ten malformed production exports.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/card2-5.png\" alt=\"Three CSV validation modes\" loading=\"lazy\"></figure>\n<p><strong>1. Off-by-one row.</strong> A row has 8 columns when the header has 9. Usually the cause is a comma inside an unquoted address field or a quoted newline that was never closed. The validator reports the row number and the actual vs. expected field count.</p>\n<p><strong>2. Unbalanced quotes.</strong> A field opens with <code>\"</code> and never closes \u2014 usually because the original exporter forgot to escape an embedded quote. The validator flags every row that touches the runaway quote, which is often many more rows than the developer expects.</p>\n<p><strong>3. Header\u2013data column count mismatch.</strong> The header advertises 12 columns; the rows carry 11. Often a sign that someone added a column to the data generator but not to the schema document.</p>\n<p><strong>4. Mixed delimiters.</strong> A few rows use <code>,</code>, others use <code>;</code>, others use <code>t</code>. The validator pins down which delimiter is dominant and reports the row numbers of the outliers.</p>\n<p><strong>5. Trailing delimiter on the header row.</strong> The header ends with <code>,</code> \u2014 a comma that no data row contains. This breaks every header-counting parser and is invisible without structural validation.</p>\n<h2>The Three Modes Worth Running</h2>\n<p>A CSV validator earns its keep when it offers more than a single pass/fail verdict. The three modes that pay back immediately are:</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/card3-5.png\" alt=\"Spreadsheets hide four CSV bugs\" loading=\"lazy\"></figure>\n<ul>\n<li><strong>Structural mode.</strong> Counts fields per row, checks quote balance, verifies delimiter consistency. The default for &#8220;is this file even parseable.&#8221;</li>\n<li><strong>Schema mode.</strong> Pins the header as the source of truth and reports every row whose column count, type signature, or required-field presence deviates. Run this before any column-keyed import.</li>\n<li><strong>Encoding mode.</strong> Sniffs BOM, validates UTF-8 byte sequence, falls back to Latin-1 with a warning. The single best defense against the silent <code>\u00e2\u20ac\u2122</code> that ruins downstream text processing.</li>\n</ul>\n<p>Most teams should default to running structural + schema in the same pass; encoding mode belongs on the file-receipt side of any pipeline that ingests external CSV uploads.</p>\n<h2>What the Output Looks Like</h2>\n<p>The validator returns a structured verdict: total rows, total columns, header row, delimiter detected, encoding, and an error list with row indices, column indices, and human-readable descriptions. The error list is the actionable artifact \u2014 paste a row index back into the source generator and the exporter can usually self-correct.</p>\n<p>A clean output looks like:</p>\n<pre><code class=\"language-\">rows: 1000\ncolumns: 9\ndelimiter: \",\"\nencoding: utf-8\nerrors: 0</code></pre>\n<p>A failing output includes the row index, the field index, and a one-line reason. That three-field tuple is enough to triage 95 percent of CSV ingestion bugs without opening the file in a spreadsheet.</p>\n<h2>Why Pre-Validation Beats Post-Processing</h2>\n<p>The pattern that wastes hours is this: the CSV loads, the import script crashes, an engineer opens the file in Excel, scrolls until something looks wrong, fixes one row, re-runs the import, and hits the next failure. Pre-validation collapses that loop into a single pass.</p>\n<p>A second pattern that wastes days is silent corruption: the CSV loads, the import script logs a warning, downstream tooling quietly drops the malformed rows, and the report misses 12 percent of its data. Pre-validation with a hard fail turns silent corruption into loud rejection at the only point in the pipeline where rejection is cheap.</p>\n<p>The <a href=\"https://elysiatools.com/en/tools/csv-validator\">CSV Validator</a> exists for exactly this moment \u2014 the boundary between an external file and an internal pipeline. Run it before every import, not after the failure.</p>\n<h2>Common Pitfalls the Validator Catches That Spreadsheets Miss</h2>\n<p>Spreadsheets hide CSV bugs. They auto-close quotes, auto-detect delimiters, auto-trim whitespace, and silently coerce types. The same CSV that opens cleanly in Excel may break a parser that does none of those things.</p>\n<p>&#8211; A trailing newline after the last data row is harmless in Excel and an extra empty row in pandas. &#8211; A column named <code>SKU</code> followed by <code>sku</code> is two distinct keys in code and one repeated column in Excel. &#8211; A row with <code>,,,</code> in the middle is four empty fields to a parser and &#8220;blank cells&#8221; to a spreadsheet. &#8211; A header that uses spaces (<code>First Name</code>) and a code path that uses snake_case (<code>first_name</code>) silently mismatches at lookup time.</p>\n<p>Pre-validation reports these in canonical terms the code understands. Post-validation in Excel hides them.</p>\n<h2>When to Skip Validation</h2>\n<p>There are exactly two cases where skipping validation is defensible: tiny one-shot CSVs from a trusted source that the developer just authored, and CSVs that are already known-good because they passed validation on a previous run. For everything else \u2014 production data, third-party exports, FTP uploads, scheduled imports \u2014 pre-validation is a one-second cost that prevents a one-hour debugging session.</p>\n<p>The validator&#8217;s verdict is not optional metadata. It is the gate between the file and the pipeline.</p>\n<h2>Closing Note</h2>\n<p><strong>The cleanest CSV import you will ever run is the one that failed pre-validation and never reached the import.</strong> Treat the validator as a contract: every file that crosses the boundary must satisfy it, every failure must reject, and every rejection must include enough context to fix. That contract is what turns CSV ingestion from a recurring fire drill into a single auditable step.</p>\n<p>Explore the <a href=\"https://elysiatools.com/en/tools/csv-validator\">CSV Validator</a> and the wider <a href=\"https://elysiatools.com/en/tools\">Elysia Tools</a> catalog when the upstream of your data pipeline needs the same kind of structural gate.</p>\n",
+    "protected": false,
+    "block_version": 0
+  },
+  "excerpt": {
+    "raw": "Five structural CSV checks that catch malformed rows, unbalanced quotes, and header mismatches before your importer does.",
+    "rendered": "<p>Five structural CSV checks that catch malformed rows, unbalanced quotes, and header mismatches before your importer does.</p>\n",
+    "protected": false
+  },
+  "author": 1,
+  "featured_media": 0,
+  "comment_status": "open",
+  "ping_status": "open",
+  "sticky": false,
+  "template": "",
+  "format": "standard",
+  "meta": {
+    "om_disable_all_campaigns": false,
+    "_monsterinsights_skip_tracking": false,
+    "footnotes": ""
+  },
+  "categories": [
+    1
+  ],
+  "tags": [
+    1979,
+    401,
+    169,
+    1621,
+    1565
+  ],
+  "permalink_template": "https://blog.flowrust.com/2026/09/03/%postname%/",
+  "generated_slug": "csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12",
+  "class_list": [
+    "post-6698",
+    "post",
+    "type-post",
+    "status-publish",
+    "format-standard",
+    "hentry",
+    "category-uncategorized",
+    "tag-csv-validation",
+    "tag-data-quality",
+    "tag-data-engineering",
+    "tag-etl-pipelines",
+    "tag-rfc-4180"
+  ],
+  "aioseo_notices": [],
+  "aioseo_head": "\n\t\t<!-- All in One SEO 4.9.10 - aioseo.com -->\n\t<meta name=\"description\" content=\"Five structural CSV checks that catch malformed rows, unbalanced quotes, and header mismatches before your importer does.\" />\n\t<meta name=\"robots\" content=\"max-image-preview:large\" />\n\t<meta name=\"author\" content=\"xiezixing\"/>\n\t<meta name=\"google-site-verification\" content=\"xcSlplMgocNnrNwmxi7j46JcdU6F-L2jrlAnpUB5Lxg\" />\n\t<link rel=\"canonical\" href=\"https://blog.flowrust.com/2026/09/03/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02/\" />\n\t<meta name=\"generator\" content=\"All in One SEO (AIOSEO) 4.9.10\" />\n\t\t<meta property=\"og:locale\" content=\"en_US\" />\n\t\t<meta property=\"og:site_name\" content=\"COSESAI - Sharing my AI experiences\" />\n\t\t<meta property=\"og:type\" content=\"article\" />\n\t\t<meta property=\"og:title\" content=\"CSV Validator Field Guide: When Row 873 Crashes But The Fault Is On Row 12 - COSESAI\" />\n\t\t<meta property=\"og:description\" content=\"Five structural CSV checks that catch malformed rows, unbalanced quotes, and header mismatches before your importer does.\" />\n\t\t<meta property=\"og:url\" content=\"https://blog.flowrust.com/2026/09/03/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02/\" />\n\t\t<meta property=\"og:image\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<meta property=\"og:image:secure_url\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<meta property=\"og:image:width\" content=\"512\" />\n\t\t<meta property=\"og:image:height\" content=\"512\" />\n\t\t<meta property=\"article:published_time\" content=\"2026-09-02T18:23:26+00:00\" />\n\t\t<meta property=\"article:modified_time\" content=\"2026-09-02T21:48:05+00:00\" />\n\t\t<meta name=\"twitter:card\" content=\"summary_large_image\" />\n\t\t<meta name=\"twitter:title\" content=\"CSV Validator Field Guide: When Row 873 Crashes But The Fault Is On Row 12 - COSESAI\" />\n\t\t<meta name=\"twitter:description\" content=\"Five structural CSV checks that catch malformed rows, unbalanced quotes, and header mismatches before your importer does.\" />\n\t\t<meta name=\"twitter:image\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<script type=\"application/ld+json\" class=\"aioseo-schema\">\n\t\t\t{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/03\\/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02\\/#blogposting\",\"name\":\"CSV Validator Field Guide: When Row 873 Crashes But The Fault Is On Row 12 - COSESAI\",\"headline\":\"CSV Validator Field Guide: When Row 873 Crashes But The Fault Is On Row 12\",\"author\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"publisher\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\"},\"image\":{\"@type\":\"ImageObject\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/uploads\\/2026\\/09\\/poster-5.png\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/03\\/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02\\/#articleImage\",\"width\":1080,\"height\":800},\"datePublished\":\"2026-09-03T02:23:26+08:00\",\"dateModified\":\"2026-09-03T05:48:05+08:00\",\"inLanguage\":\"en-US\",\"mainEntityOfPage\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/03\\/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02\\/#webpage\"},\"isPartOf\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/03\\/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02\\/#webpage\"},\"articleSection\":\"\\u672a\\u5206\\u7c7b, csv validation, data quality, data-engineering, etl pipelines, RFC 4180\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/03\\/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02\\/#breadcrumblist\",\"itemListElement\":[{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com#listItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/blog.flowrust.com\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"name\":\"\\u672a\\u5206\\u7c7b\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"position\":2,\"name\":\"\\u672a\\u5206\\u7c7b\",\"item\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/03\\/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02\\/#listItem\",\"name\":\"CSV Validator Field Guide: When Row 873 Crashes But The Fault Is On Row 12\"},\"previousItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com#listItem\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/03\\/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02\\/#listItem\",\"position\":3,\"name\":\"CSV Validator Field Guide: When Row 873 Crashes But The Fault Is On Row 12\",\"previousItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"name\":\"\\u672a\\u5206\\u7c7b\"}}]},{\"@type\":\"Person\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\",\"name\":\"xiezixing\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/03\\/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02\\/#personImage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/litespeed\\/avatar\\/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1788181117\",\"width\":96,\"height\":96,\"caption\":\"xiezixing\"}},{\"@type\":\"Person\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\",\"url\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/\",\"name\":\"xiezixing\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/03\\/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02\\/#authorImage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/litespeed\\/avatar\\/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1788181117\",\"width\":96,\"height\":96,\"caption\":\"xiezixing\"}},{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/03\\/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02\\/#webpage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/03\\/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02\\/\",\"name\":\"CSV Validator Field Guide: When Row 873 Crashes But The Fault Is On Row 12 - COSESAI\",\"description\":\"Five structural CSV checks that catch malformed rows, unbalanced quotes, and header mismatches before your importer does.\",\"inLanguage\":\"en-US\",\"isPartOf\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/03\\/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02\\/#breadcrumblist\"},\"author\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"creator\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"datePublished\":\"2026-09-03T02:23:26+08:00\",\"dateModified\":\"2026-09-03T05:48:05+08:00\"},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/#website\",\"url\":\"https:\\/\\/blog.flowrust.com\\/\",\"name\":\"COSESAI\",\"description\":\"Sharing my AI experiences\",\"inLanguage\":\"en-US\",\"publisher\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\"}}]}\n\t\t</script>\n\t\t<!-- All in One SEO -->\n\n",
+  "aioseo_head_json": {
+    "title": "CSV Validator Field Guide: When Row 873 Crashes But The Fault Is On Row 12 - COSESAI",
+    "description": "Five structural CSV checks that catch malformed rows, unbalanced quotes, and header mismatches before your importer does.",
+    "canonical_url": "https://blog.flowrust.com/2026/09/03/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02/",
+    "robots": "max-image-preview:large",
+    "keywords": "",
+    "webmasterTools": {
+      "google-site-verification": "xcSlplMgocNnrNwmxi7j46JcdU6F-L2jrlAnpUB5Lxg",
+      "miscellaneous": ""
+    },
+    "schema": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "@id": "https://blog.flowrust.com/2026/09/03/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02/#blogposting",
+          "name": "CSV Validator Field Guide: When Row 873 Crashes But The Fault Is On Row 12 - COSESAI",
+          "headline": "CSV Validator Field Guide: When Row 873 Crashes But The Fault Is On Row 12",
+          "author": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "publisher": {
+            "@id": "https://blog.flowrust.com/#person"
+          },
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://blog.flowrust.com/wp-content/uploads/2026/09/poster-5.png",
+            "@id": "https://blog.flowrust.com/2026/09/03/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02/#articleImage",
+            "width": 1080,
+            "height": 800
+          },
+          "datePublished": "2026-09-03T02:23:26+08:00",
+          "dateModified": "2026-09-03T05:48:05+08:00",
+          "inLanguage": "en-US",
+          "mainEntityOfPage": {
+            "@id": "https://blog.flowrust.com/2026/09/03/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02/#webpage"
+          },
+          "isPartOf": {
+            "@id": "https://blog.flowrust.com/2026/09/03/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02/#webpage"
+          },
+          "articleSection": "\u672a\u5206\u7c7b, csv validation, data quality, data-engineering, etl pipelines, RFC 4180"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://blog.flowrust.com/2026/09/03/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02/#breadcrumblist",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com#listItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://blog.flowrust.com",
+              "nextItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+                "name": "\u672a\u5206\u7c7b"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+              "position": 2,
+              "name": "\u672a\u5206\u7c7b",
+              "item": "https://blog.flowrust.com/category/uncategorized/",
+              "nextItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/2026/09/03/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02/#listItem",
+                "name": "CSV Validator Field Guide: When Row 873 Crashes But The Fault Is On Row 12"
+              },
+              "previousItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com#listItem",
+                "name": "Home"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com/2026/09/03/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02/#listItem",
+              "position": 3,
+              "name": "CSV Validator Field Guide: When Row 873 Crashes But The Fault Is On Row 12",
+              "previousItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+                "name": "\u672a\u5206\u7c7b"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://blog.flowrust.com/#person",
+          "name": "xiezixing",
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://blog.flowrust.com/2026/09/03/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02/#personImage",
+            "url": "https://blog.flowrust.com/wp-content/litespeed/avatar/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1788181117",
+            "width": 96,
+            "height": 96,
+            "caption": "xiezixing"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://blog.flowrust.com/author/xiezixing/#author",
+          "url": "https://blog.flowrust.com/author/xiezixing/",
+          "name": "xiezixing",
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://blog.flowrust.com/2026/09/03/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02/#authorImage",
+            "url": "https://blog.flowrust.com/wp-content/litespeed/avatar/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1788181117",
+            "width": 96,
+            "height": 96,
+            "caption": "xiezixing"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://blog.flowrust.com/2026/09/03/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02/#webpage",
+          "url": "https://blog.flowrust.com/2026/09/03/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02/",
+          "name": "CSV Validator Field Guide: When Row 873 Crashes But The Fault Is On Row 12 - COSESAI",
+          "description": "Five structural CSV checks that catch malformed rows, unbalanced quotes, and header mismatches before your importer does.",
+          "inLanguage": "en-US",
+          "isPartOf": {
+            "@id": "https://blog.flowrust.com/#website"
+          },
+          "breadcrumb": {
+            "@id": "https://blog.flowrust.com/2026/09/03/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02/#breadcrumblist"
+          },
+          "author": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "creator": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "datePublished": "2026-09-03T02:23:26+08:00",
+          "dateModified": "2026-09-03T05:48:05+08:00"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://blog.flowrust.com/#website",
+          "url": "https://blog.flowrust.com/",
+          "name": "COSESAI",
+          "description": "Sharing my AI experiences",
+          "inLanguage": "en-US",
+          "publisher": {
+            "@id": "https://blog.flowrust.com/#person"
+          }
+        }
+      ]
+    },
+    "og:locale": "en_US",
+    "og:site_name": "COSESAI - Sharing my AI experiences",
+    "og:type": "article",
+    "og:title": "CSV Validator Field Guide: When Row 873 Crashes But The Fault Is On Row 12 - COSESAI",
+    "og:description": "Five structural CSV checks that catch malformed rows, unbalanced quotes, and header mismatches before your importer does.",
+    "og:url": "https://blog.flowrust.com/2026/09/03/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02/",
+    "og:image": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp",
+    "og:image:secure_url": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp",
+    "og:image:width": 512,
+    "og:image:height": 512,
+    "article:published_time": "2026-09-02T18:23:26+00:00",
+    "article:modified_time": "2026-09-02T21:48:05+00:00",
+    "twitter:card": "summary_large_image",
+    "twitter:title": "CSV Validator Field Guide: When Row 873 Crashes But The Fault Is On Row 12 - COSESAI",
+    "twitter:description": "Five structural CSV checks that catch malformed rows, unbalanced quotes, and header mismatches before your importer does.",
+    "twitter:image": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp"
+  },
+  "aioseo_meta_data": [],
+  "aioseo_breadcrumb": "<div class=\"aioseo-breadcrumbs\"><span class=\"aioseo-breadcrumb\">\n\t\t\t<a href=\"https://blog.flowrust.com\" title=\"Home\">Home</a>\n\t\t</span><span class=\"aioseo-breadcrumb-separator\">&raquo;</span><span class=\"aioseo-breadcrumb\">\n\t\t\t<a href=\"https://blog.flowrust.com/category/uncategorized/\" title=\"\u672a\u5206\u7c7b\">\u672a\u5206\u7c7b</a>\n\t\t</span><span class=\"aioseo-breadcrumb-separator\">&raquo;</span><span class=\"aioseo-breadcrumb\">\n\t\t\tCSV Validator Field Guide: When Row 873 Crashes But The Fault Is On Row 12\n\t\t</span></div>",
+  "aioseo_breadcrumb_json": [
+    {
+      "label": "Home",
+      "link": "https://blog.flowrust.com"
+    },
+    {
+      "label": "\u672a\u5206\u7c7b",
+      "link": "https://blog.flowrust.com/category/uncategorized/"
+    },
+    {
+      "label": "CSV Validator Field Guide: When Row 873 Crashes But The Fault Is On Row 12",
+      "link": "https://blog.flowrust.com/2026/09/03/csv-validator-field-guide-when-row-873-crashes-but-the-fault-is-on-row-12-2026-09-02/"
+    }
+  ],
+  "_links": {
+    "self": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6698",
+        "targetHints": {
+          "allow": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE"
+          ]
+        }
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts"
+      }
+    ],
+    "about": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/types/post"
+      }
+    ],
+    "author": [
+      {
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/users/1"
+      }
+    ],
+    "replies": [
+      {
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/comments?post=6698"
+      }
+    ],
+    "version-history": [
+      {
+        "count": 2,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6698/revisions"
+      }
+    ],
+    "predecessor-version": [
+      {
+        "id": 6700,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6698/revisions/6700"
+      }
+    ],
+    "wp:attachment": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/media?parent=6698"
+      }
+    ],
+    "wp:term": [
+      {
+        "taxonomy": "category",
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/categories?post=6698"
+      },
+      {
+        "taxonomy": "post_tag",
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/tags?post=6698"
+      }
+    ],
+    "wp:action-publish": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6698"
+      }
+    ],
+    "wp:action-unfiltered-html": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6698"
+      }
+    ],
+    "wp:action-sticky": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6698"
+      }
+    ],
+    "wp:action-assign-author": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6698"
+      }
+    ],
+    "wp:action-create-categories": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6698"
+      }
+    ],
+    "wp:action-assign-categories": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6698"
+      }
+    ],
+    "wp:action-create-tags": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6698"
+      }
+    ],
+    "wp:action-assign-tags": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6698"
+      }
+    ],
+    "curies": [
+      {
+        "name": "wp",
+        "href": "https://api.w.org/{rel}",
+        "templated": true
+      }
+    ]
+  }
+}
