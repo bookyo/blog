@@ -3449,3 +3449,23 @@ Same recipe applies to `<ol>`. **Pre-POST assertion (add to the sanity trio):** 
 | 6637 | PDF Batch Split Field Guide | 0/8/0 | 1/3 | 0 | 5/5 HEAD-200 | 4/4 HEAD-200 | CLEAN |
 
 Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dups, 0 p_in_h2, 0 nested_code, 0 code_with_br, 0 code_with_html_tags across the 5. Canonical `scripts/jarvis_audit_5posts.py` ran end-to-end on first invocation (no SSL EOF / ReadTimeoutError class). Prompt-supplied `fix_html()` bypassed (WP 5729 rule, 5th confirmation at this cycle count). WP 6631 dropped off the latest-5 (now 8th-newest).
+
+## WP 6678 — OpenAPI to TypeScript Generator Field Guide (2026-09-02T05:53:00)
+
+- **Slug**: openapi-to-typescript-generator-field-guide-when-six-controls-decide-if-the-generated-types-compile-in-a-strict-mode-codebase-2026-09-02
+- **Title**: OpenAPI to TypeScript Generator Field Guide: When Six Controls Decide If the Generated Types Compile in a Strict-Mode Codebase
+- **Tool**: OpenAPI to TypeScript Generator (`openapi-to-typescript-generator`, Development) — real name/description from tool-manifest.json
+- **date_gmt**: 2026-09-02T05:53:00 (current UTC at publish)
+- **status**: publish (featured_media=0)
+- **URL**: https://blog.flowrust.com/2026/09/02/openapi-to-typescript-generator-field-guide-when-six-controls-decide-if-the-generated-types-compile-in-a-strict-mode-codebase-2026-09-02/
+- **Outcome**: 1-POST 0-PATCH. Audit clean (0 findings) on rendered content.
+- **Shape**: 0 body H1, 8 body H2, 0 H3, 1 article-poster figure, 3 highlight-card figures, 5 elysia anchors, 3335 words.
+- **Links (5)**: 3 tool (`openapi-to-typescript-generator` [focus], `json-to-rust`, `json-to-typescript`) + 1 sample (`json`) + 1 root (`/en/tools`). All manifest-verified AND HTTP 200.
+- **Assets**: poster.png (1080x800) + card1.png/card2.png/card3.png (1600x900 each) — WP media IDs 6674/6675/6676/6677 (auto-renamed to -4 suffix due to prior uploads).
+- **Card layouts**: card1=render_card_5tile (5 controls: Source Format / Output Format / Naming / Declaration / Namespace), card2=render_card_4tile_compact (4 composition patterns: allOf / oneOf / anyOf / clash), card3=render_card_input_output_2col (spec in / TypeScript out worked example).
+- **Visual QA**: `vision_analyze` on all 4 assets pre-POST — all clean first pass, 0 re-renders.
+- **Skill notice**: article-writer umbrella present on disk; article-poster-creator and article-highlight-cards NOT present on disk → used umbrella PIL templates directly per WP 6323/6352 skill-availability note.
+- **Picks used**: sparse_category_picker.py — `openapi-to-typescript-generator` selected from top-25 (theme_score=2, Development category); chosen for clean thematic clustering (OpenAPI codegen + TypeScript types + strict-mode compatibility) and zero sample-manifest dependencies.
+- **Cron-mode note**: pre-POST audit returned 1 `ORPHANED_CODE` finding on build-time HTML (lead `<strong>...</strong> + inline <code>` had no `<p>` parent per canonical close-first pattern). WP's wpautop wrapped the lead in `<p>` on POST — final rendered audit returns 0 findings. Browser DOM probe skipped (Chrome remote-debugging permission popup blocked, cron has no user). All content-audit + REST + URL HEAD checks passed; defect-free post confirmed.
+
+---
