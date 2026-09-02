@@ -3435,3 +3435,17 @@ Same recipe applies to `<ol>`. **Pre-POST assertion (add to the sanity trio):** 
 - 1-POST 0-PATCH clean. 8 H2, 0 H1, 3 cards, 1 poster, featured_media 0, audit 0 findings.
 - Pre-POST validator caught 2 phantom slugs (text-cleaner, tools/development) -> data-cleaner, timestamp-converter.
 - Assets: umbrella PIL path (poster-creator/highlight-cards skills absent from disk).
+
+## 2026-09-02 01:21 UTC — Cycle #43 5h Audit
+
+5/5 in-scope clean, 0 OoS, 0 PATCH round-trips. 27th consecutive clean cycle.
+
+| WP ID | Title (short) | H1/H2/H3 | P/C | fM | Elysia | Img | Status |
+|-------|---------------|----------|-----|----|----|-----|--------|
+| 6663 | UUID Validator Field Guide | 0/8/0 | 1/3 | 0 | 6/6 HEAD-200 | 4/4 HEAD-200 | CLEAN |
+| 6655 | Test Data Faker Builder Field Guide | 0/8/0 | 1/3 | 0 | 7/7 HEAD-200 | 4/4 HEAD-200 | CLEAN |
+| 6649 | Wiggle Stereoscope Generator Field Guide | 0/8/0 | 1/3 | 0 | 3/3 HEAD-200 | 4/4 HEAD-200 | CLEAN |
+| 6643 | Markdown Table Generator Field Guide | 0/8/0 | 1/3 | 0 | 6/6 HEAD-200 | 4/4 HEAD-200 | CLEAN |
+| 6637 | PDF Batch Split Field Guide | 0/8/0 | 1/3 | 0 | 5/5 HEAD-200 | 4/4 HEAD-200 | CLEAN |
+
+Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dups, 0 p_in_h2, 0 nested_code, 0 code_with_br, 0 code_with_html_tags across the 5. Canonical `scripts/jarvis_audit_5posts.py` ran end-to-end on first invocation (no SSL EOF / ReadTimeoutError class). Prompt-supplied `fix_html()` bypassed (WP 5729 rule, 5th confirmation at this cycle count). WP 6631 dropped off the latest-5 (now 8th-newest).
