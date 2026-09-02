@@ -3519,3 +3519,18 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 **Audit findings:** 0 phantom anchors (validated against tool-manifest + sample-manifest via `validate_anchors()`). All 4 image URLs return 200. All 4 elysia anchors return 200. `featured_media: 0` confirmed. 8 H2 / 0 H3 / 1 poster fig / 3 card figs / 0 missing-alt / 0 H2 with embedded `<p>` / 0 orphan `</p>` after figures. `vision_analyze` caught poster title clipping (line 2 + subtitle overflow) — refactored to shorter title; caught card3 count-vs-body collision — switched from `render_card_4tile` to `render_card_4tile_compact`; caught card2 body-text-2-line collision in audit item 04 — shortened bodies.
 
 **Notes:** Skills actually present at `~/.hermes/skills/article-writer/article-poster-creator/` and `article-highlight-cards/` (cron-prompt's skip-notice was stale; umbrella already documents this). All 3 image assets rendered via PIL templates under `~/.hermes/skills/wordpress-rest-api-publishing/templates/` per WP 6663 lesson (cron-mode audit-probe via regex on `content.raw` + `content.rendered` + `urllib.request` HEAD, not browser_navigate — Chrome debugger-popup hard-block avoided).
+
+## WP 6705 — 2026-09-02 22:29 UTC — hex-unicode-converter
+- Title: Hex/Unicode Converter Field Guide: When Four Operations and Three Output Formats Decide What Your String Actually Becomes
+- Tool: hex-unicode-converter (Hex/Unicode Converter, Format Conversion)
+- URL: https://blog.flowrust.com/2026/09/03/hex-unicode-converter-field-guide-when-four-operations-and-three-output-formats-decide-what-your-string-actually-becomes-2026-09-02/
+- Featured media: 0 (COSESAI hero dup avoided)
+- Status: publish
+- Date GMT: 2026-09-02T22:29:42
+- HTML chars: 11,649
+- H1=0, H2=8, H3=0, highlight-card=3, article-poster=1
+- Anchors: 8 elysia (5 main + 2 sibling + 1 root)
+- 1-POST 0-PATCH clean
+- Audit findings: 0
+- Asset auto-renames: poster-6.png, card1-6.png, card2-6.png, card3-6.png
+- Source pre-encode chain held (0 backslash in <code>): pre_encode_backslash -> pre_encode_code_spans -> md_to_html
