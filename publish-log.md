@@ -3469,3 +3469,26 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - **Cron-mode note**: pre-POST audit returned 1 `ORPHANED_CODE` finding on build-time HTML (lead `<strong>...</strong> + inline <code>` had no `<p>` parent per canonical close-first pattern). WP's wpautop wrapped the lead in `<p>` on POST — final rendered audit returns 0 findings. Browser DOM probe skipped (Chrome remote-debugging permission popup blocked, cron has no user). All content-audit + REST + URL HEAD checks passed; defect-free post confirmed.
 
 ---
+
+## 2026-09-02 ~10:06 UTC — Markdown Link Extractor (WP 6684)
+
+**Slug:** `markdown-link-extractor-field-guide-when-text-url-hides-six-different-link-behaviors-inside-one-document`
+**Status:** 1-POST 0-PATCH (clean)
+**Tool picked:** `markdown-link-extractor` (Text Processing, theme_score=4)
+**Card anchor H2s:** #3 Reference links / #5 Validating URL / #8 Output shape
+
+**Assets:**
+- poster.png 1280×900 (deep navy + cyan-teal, [text](url) accent)
+- card1.png 1280×900 (ocean theme, TYPE bullets, post H2 #5 anchor)
+- card2.png 1280×900 (violet theme, PITFALL bullets, post H2 #3 anchor)
+- card3.png 1280×900 (ember theme, USE bullets, post H2 #8 anchor)
+
+**Elysia anchors (5):**
+- `elysiatools.com/en/tools/markdown-link-extractor` ×2 (intro + body)
+- `elysiatools.com/en/tools/markdown-link-checker` (related)
+- `elysiatools.com/en/samples/markdown-with-links` (canonical sample set)
+- `elysiatools.com/en/tools` (category root)
+
+**Audit findings:** 0 phantom anchors (validated against tool-manifest + sample-manifest). All 4 image URLs return 200. All 5 elysia anchors return 200. Permalink returns 200. `featured_media: 0` confirmed. 8 H2 / 0 H3 / 1 poster fig / 3 card figs / 0 missing-alt / 0 H2 with embedded `<p>`. `vision_analyze` confirmed clean rendering on poster + 3 cards.
+
+**Notes:** Used `~/.hermes/skills/article-writer/article-poster-creator/` for poster (custom Playwright + Chrome.app recipe) and `article-highlight-cards/scripts/render_editorial_dense_cron.py` for the 3 cards. Skill umbrella's PIL fallback NOT used this run since the dedicated skills were present and matched the cron cadence's expected output (1280×900). Sub-target-anchor swap `markdown-viewer` → `markdown-link-checker` done pre-POST (markdown-viewer is not in tool-manifest).
