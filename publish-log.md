@@ -3534,3 +3534,24 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - Audit findings: 0
 - Asset auto-renames: poster-6.png, card1-6.png, card2-6.png, card3-6.png
 - Source pre-encode chain held (0 backslash in <code>): pre_encode_backslash -> pre_encode_code_spans -> md_to_html
+
+## WP 6711 — 2026-09-03 02:40 UTC — pkce-code-verifier-generator
+- Title: PKCE Field Guide: When Three Modes And One RFC Stand Between An Attacker And Your SPA Login
+- Tool: pkce-code-verifier-generator (PKCE Code Verifier & Challenge Generator, Security)
+- URL: https://blog.flowrust.com/2026/09/03/pkce-code-verifier-generator-field-guide-when-three-modes-and-one-rfc-stand-between-an-attacker-and-your-spa-login-2026-09-03/
+- Featured media: 0 (COSESAI hero dup avoided)
+- Status: publish
+- Date GMT: 2026-09-03T02:40:10
+- HTML chars: 9,605 (raw) / 9,699 (rendered)
+- H1=0, H2=8, H3=0, highlight-card=3, article-poster=1
+- Anchors: 7 elysia (4 unique: pkce-code-verifier-generator ×4, jwt-inspector-verifier ×1, nonce-generator ×1, /en/tools root ×1)
+- 1-POST 0-PATCH clean
+- Audit findings: 0
+- 4 image URLs HEAD-checked 200; 7 elysia anchor URLs HEAD-checked 200
+- Card anchors (3):
+  - Card 1 (4 modes 4-tile compact) → after H2 "Why the mode field is the first decision, not the fourth"
+  - Card 2 (RFC 7636 audit 4-tile compact) → after H2 "The 256-bit floor that half the tutorials get wrong"
+  - Card 3 (invalid_grant causes 4-tile compact) → after H2 "Verifying the pair when the token endpoint returns invalid_grant"
+- Poster → before first `<p>` (left-rail style, deep navy + cyan-teal)
+- PIL render via umbrella templates (article-poster-creator / article-highlight-cards skills not on disk; cron-prompt skip-notice advisory confirmed by independent disk probe per WP 6352 lesson)
+- vision_analyze QA: poster + 3 cards all clean, no overflow/tofu/overlap
