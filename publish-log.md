@@ -3604,3 +3604,28 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 ## 2026-09-03T15:10:35 — image-colorspace-field-guide-when-five-spaces-decide-what-your-pixel-actually-becomes-2026-09-03 (WP 6731)
 - Title: Image Colorspace Converter Field Guide: When Five Spaces Decide What Your Pixel Actually Becomes
 - URL: https://blog.flowrust.com/2026/09/03/image-colorspace-field-guide-when-five-spaces-decide-what-your-pixel-actually-becomes-2026-09-03/
+
+## 2026-09-03T19:26:31 - WP 6737 - PDF/A Convert Field Guide: When ISO 19005 Calls The Shots
+
+- **Tool**: pdf-a-convert (PDF/A Convert) - Document Tools
+- **URL**: https://blog.flowrust.com/2026/09/04/pdf-a-convert-field-guide-when-iso-19005-calls-the-shots/
+- **Slug**: pdf-a-convert-field-guide-when-iso-19005-calls-the-shots
+- **Status**: 1-POST 0-PATCH
+- **Audit findings**: 0
+- **featured_media**: 0
+- **Assets**: 1 poster (1080x800) + 3 cards (1600x900 each)
+- **Elysia anchors**: 4 (3x pdf-a-convert, 1x pdf-compress-optimize)
+- **Notes**: 8 H2 sections, 0 H3, 0 H1, 1577 words. PIL visual QA caught subtitle clip (124 -> 67 chars) + card 2 row 07 overflow (7 -> 6 rows with font survey noted in warning). Pre-encoded code spans before md_to_html. Reused umbrella PIL templates; skills article-poster-creator/article-highlight-cards/article-writer not found on disk.
+
+## 2026-09-03 — JSON Path Extractor Field Guide (WP 6743)
+- Tool: json-path-extractor (Data Processing)
+- Post ID: 6743
+- Slug: json-path-extractor-field-guide-when-four-operators-beat-every-regex-you-wrote-this-year-2026-09-03
+- Link: https://blog.flowrust.com/2026/09/04/json-path-extractor-field-guide-when-four-operators-beat-every-regex-you-wrote-this-year-2026-09-03/
+- date_gmt: 2026-09-03T23:34:01
+- H2 count: 8 (close-first: lead `<strong>` opens, 7 content H2s, "Closing" is 8th)
+- Cards: 3 (operators, audit, complexity)
+- Anchors: 8 unique elysiatools.com — all real tools in tool-manifest.json
+- Audit: 0 findings (raw + rendered); 0 backslash strip; 0 wpautop artifacts
+- Assets: poster 1080x800, 3 cards 1600x900, all clean (vision_analyze passed)
+- Run: 1-POST 0-PATCH clean
