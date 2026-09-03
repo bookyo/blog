@@ -3555,3 +3555,18 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - Poster → before first `<p>` (left-rail style, deep navy + cyan-teal)
 - PIL render via umbrella templates (article-poster-creator / article-highlight-cards skills not on disk; cron-prompt skip-notice advisory confirmed by independent disk probe per WP 6352 lesson)
 - vision_analyze QA: poster + 3 cards all clean, no overflow/tofu/overlap
+
+## 2026-09-03 — WP 6717 — PDF Checklist Form Field Guide
+- Tool: pdf-checklist-form (Document Tools, Puppeteer)
+- date_gmt: 2026-09-03T06:49:11 UTC
+- Status: 1-POST + 1-PATCH (clean)
+- Slug: pdf-checklist-form-field-guide-when-pseudo-checkbox-glyphs-and-puppeteer-timing-decide-whether-the-form-survives-print-2026-09-03
+- Link: https://blog.flowrust.com/2026/09/03/pdf-checklist-form-field-guide-when-pseudo-checkbox-glyphs-and-puppeteer-timing-decide-whether-the-form-survives-print-2026-09-03/
+- Card 1 (5-tile "Five Decisions That Decide Print Fidelity") → after H2 #3 "Layout Controls That Decide Print Fidelity"
+- Card 2 (5-tile "When waitUntil And waitTime Matter") → after H2 #4 "Puppeteer Timing: When Extra Wait Time Actually Matters"
+- Card 3 (5-tile "checkedIndexes: Two Pitfalls") → after H2 #5 "Pre-Checked Indexes: Scaffolding a Partial Run"
+- Poster → before first `<p>` (left-rail style, deep navy + cyan-teal)
+- PIL render via umbrella templates (article-poster-creator / article-highlight-cards skills not on disk; cron-prompt skip-notice confirmed by independent disk probe per WP 6352 lesson)
+- vision_analyze QA: 1 re-render on poster subtitle clip (WP 6390 family, 95-char subtitle → 49-char); 2 re-renders on card body overflow (WP 6358 family, body lines > 18 chars at F_MONO on 290px tiles trimmed to ≤ 16 chars)
+- PATCH 1: converted 2 MERGED_BULLET_LIST paragraphs (H2 #3 + H2 #6) to real `<ul><li>`; converted 1 MERGED_NUMBERED_LIST paragraph (H2 #8) to real `<ol><li>`. md_to_html does NOT process "1. " / "2. " markdown lists (WP 6185/6212 lesson re-confirmed); WP wpautop converts en-dash "– " to ASCII "- " on raw serialization, so regex needs to match `- <strong>` not `&#8211; <strong>`.
+- Final state: 1 article-poster, 3 highlight-cards, 8 H2, 2 `<ul>`, 1 `<ol>`, 4 imgs (all HTTP 200), 3 elysia anchors (all HTTP 200, validate_anchors OK), featured_media=0, audit_post_content CLEAN
