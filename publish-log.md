@@ -3600,3 +3600,7 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - Anchors verified via tool-manifest + sample-manifest (per WP 6116/6390 lesson: sample-manifest has no toolId field, search by keywords)
 - Audit findings: 1 false-positive POSSIBLE_BACKSLASH_STRIPPED on Rust snake_case identifiers (`mod tests`, `created_at`, `tokens_used`, `src/types/`) — confirmed via source grep that NO real regex char-classes (`\w`/`\d`/`\s`) exist in the article; flagged spans are all valid Rust syntax. No PATCH needed per WP 5717 false-positive triage.
 - Final state: 1 article-poster, 3 highlight-cards, 8 H2, 0 H3, 4 imgs (all HTTP 200), 8 elysia anchors (all HTTP 200), featured_media=0
+
+## 2026-09-03T15:10:35 — image-colorspace-field-guide-when-five-spaces-decide-what-your-pixel-actually-becomes-2026-09-03 (WP 6731)
+- Title: Image Colorspace Converter Field Guide: When Five Spaces Decide What Your Pixel Actually Becomes
+- URL: https://blog.flowrust.com/2026/09/03/image-colorspace-field-guide-when-five-spaces-decide-what-your-pixel-actually-becomes-2026-09-03/
