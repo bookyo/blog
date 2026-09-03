@@ -3570,3 +3570,33 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - vision_analyze QA: 1 re-render on poster subtitle clip (WP 6390 family, 95-char subtitle → 49-char); 2 re-renders on card body overflow (WP 6358 family, body lines > 18 chars at F_MONO on 290px tiles trimmed to ≤ 16 chars)
 - PATCH 1: converted 2 MERGED_BULLET_LIST paragraphs (H2 #3 + H2 #6) to real `<ul><li>`; converted 1 MERGED_NUMBERED_LIST paragraph (H2 #8) to real `<ol><li>`. md_to_html does NOT process "1. " / "2. " markdown lists (WP 6185/6212 lesson re-confirmed); WP wpautop converts en-dash "– " to ASCII "- " on raw serialization, so regex needs to match `- <strong>` not `&#8211; <strong>`.
 - Final state: 1 article-poster, 3 highlight-cards, 8 H2, 2 `<ul>`, 1 `<ol>`, 4 imgs (all HTTP 200), 3 elysia anchors (all HTTP 200, validate_anchors OK), featured_media=0, audit_post_content CLEAN
+
+## 5h Audit Cycle — 2026-09-03 ~07:59 UTC (Cycle #34)
+- **Source**: cron-job (`jarvis 5h audit`)
+- **Operator**: jarvis <jarvis@flowrust.com>
+- **Mode**: audit-only (read latest-5 + audit; no publish)
+- **In-scope**: 5/5 (WP 6717/6711/6705/6698/6691), 0 OoS
+- **Findings**: 0 across all 5 posts via `audit_post_content`
+- **Shape check** (all 5): 0 H1 / 8 H2 / 0 H3 / 4 imgs (1 poster + 3 cards) / 3 highlight-card figures per post
+- **Out-of-scope heuristic**: 0 false-positives on English titles; no CJK / URL-encoded slugs / out-of-cron-shape posts in latest-5
+- **Defense steps**: canonical `wp_audit_runner.py` pipeline (`/Users/quyue/.hermes/skills/wordpress-rest-api-publishing/scripts/`) used; cron-prompt heredoc + `fix_html()` bypassed per WP 5729 audit
+- **Runtime**: ~3 seconds (1 REST fetch + 5-content audit); no browser DOM probes needed (Cycle #28+ audit-only recipe)
+- **Outcome**: clean. 0 PATCH round-trips. 26th consecutive clean cycle.
+
+## 2026-09-03 — WP 6725 — JSON to Rust Struct Converter Field Guide
+- Tool: json-to-rust (Development, JSON codegen)
+- date_gmt: 2026-09-03T10:57:11 UTC
+- Status: 1-POST 0-PATCH (clean)
+- Slug: json-to-rust-struct-converter-field-guide-when-three-knobs-decide-the-generated-code-2026-09-03
+- Link: https://blog.flowrust.com/2026/09/03/json-to-rust-struct-converter-field-guide-when-three-knobs-decide-the-generated-code-2026-09-03/
+- Title: JSON to Rust Struct Converter Field Guide: When Three Knobs Decide The Generated Code
+- Card 1 (5-tile "Five Output Patterns The Generator Tags On Every JSON") → after H2 #2 "The Three Output Shapes You Will Actually See"
+- Card 2 (5-row 2-col audit "Five Checks Before You Commit The Generated Struct") → after H2 #4 "The Wrap with Option Toggle: When to Turn It On"
+- Card 3 (4-tile compact "Same JSON, Four Different Rust Surface Forms") → after H2 #7 "When to Use the Converter vs. a Schema-Driven Generator"
+- Poster → before first `<p>` (left-rail style, deep navy + cyan-teal)
+- PIL render via umbrella templates (article-poster-creator / article-highlight-cards skills not on disk; cron-prompt skip-notice advisory confirmed by independent disk probe per WP 6352 lesson)
+- vision_analyze QA: 1 re-render on card 3 (canonical render_card_4tile with single-word short counts `String`/`Struct`/`Vec<T>`/`Option` vertically overlapped body description → switched to render_card_4tile_compact 1-row variant with `150pt → 84pt → 64pt` auto-shrink chain; WP 6122 + WP 6149 lesson re-confirmed)
+- 8 elysia anchors (all HTTP 200): 4× /en/tools/json-to-rust, 3× /en/samples/rust, 2× /en/samples/chat-transcript-json, 1× /en/tools root
+- Anchors verified via tool-manifest + sample-manifest (per WP 6116/6390 lesson: sample-manifest has no toolId field, search by keywords)
+- Audit findings: 1 false-positive POSSIBLE_BACKSLASH_STRIPPED on Rust snake_case identifiers (`mod tests`, `created_at`, `tokens_used`, `src/types/`) — confirmed via source grep that NO real regex char-classes (`\w`/`\d`/`\s`) exist in the article; flagged spans are all valid Rust syntax. No PATCH needed per WP 5717 false-positive triage.
+- Final state: 1 article-poster, 3 highlight-cards, 8 H2, 0 H3, 4 imgs (all HTTP 200), 8 elysia anchors (all HTTP 200), featured_media=0
