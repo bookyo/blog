@@ -3661,3 +3661,17 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 ## 2026-09-04T12:14:09 — text-pad (WP 6762)
 - Title: Text Pad & Align Field Guide: When Three Knobs Decide How a Line Sits Inside a Block
 - URL: https://blog.flowrust.com/2026/09/04/text-pad/
+
+## 2026-09-04T16:35:47Z — WP 6770 — ISO 8601 Duration Builder Field Guide
+- **Tool:** ISO 8601 Duration Builder (id: `iso-8601-duration-builder`, category: Development)
+- **URL:** https://blog.flowrust.com/2026/09/05/iso-8601-duration-builder-field-guide-when-four-parsing-rules-and-one-validation-cheat-sheet-save-your-api-contract-2026-09-04/
+- **date_gmt:** 2026-09-04T16:35:47Z
+- **featured_media:** 0
+- **Posters:** 1 (1080×800 deep-navy + cyan-teal) + 3 highlight cards (1600×900 each)
+- **Anchors (9 elysia, 7 unique slugs):** iso-8601-duration-builder (×3), iso-8601-converter, date-difference, crontab-converter, timestamp-converter, time-duration-formatter, date-time-validator
+- **Audit findings:** 0
+- **PATCH round-trips:** 0
+- **Skills note:** cron-prompt flagged article-poster-creator + article-highlight-cards as missing; confirmed via disk probe (`ls ~/.hermes/skills/article-poster-creator/` -> No such file or directory). Used umbrella fallback path (`templates/pil_poster_and_cards_network_theme.py` + `templates/render_card_4tile_compact.py` + `scripts/md_to_html.py`) for all 4 assets.
+- **WP-6197 LiteSpeed note:** cron-mode browser DOM probe is hard-blocked by Chrome's "Allow remote debugging?" popup; used regex-probe on `content.raw` + `content.rendered` + `urllib.request HEAD` for verification (per WP 6663 fallback).
+- **Source-side defenses applied:** pre_encode_backslash (0 backslash needed), pre_encode_code_spans (no literal HTML in code spans), `×` replaced `*` in math span to avoid md_to_html italic regex false-positive (single occurrence, 1 source edit, 0 PATCH).
+- **Word count:** 1,251; **H2 count:** 8; **H3 count:** 0; **ul count:** 1; **p count:** 24
