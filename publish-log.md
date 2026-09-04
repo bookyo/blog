@@ -3629,3 +3629,31 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - Audit: 0 findings (raw + rendered); 0 backslash strip; 0 wpautop artifacts
 - Assets: poster 1080x800, 3 cards 1600x900, all clean (vision_analyze passed)
 - Run: 1-POST 0-PATCH clean
+
+## 2026-09-04 03:47:46 UTC | env-parser-field-guide-when-five-flags-and-three-export-formats-turn-environment-files-into-reviewable-json-2026-09-04 (WP 6749)
+
+- date_gmt: 2026-09-04T03:45:11
+- tool_id: env-parser
+- tool_name: .env Parser
+- category: Data Processing
+- title: .env Parser Field Guide: When Five Flags And Three Export Formats Turn Environment Files Into Reviewable JSON
+- url: https://blog.flowrust.com/2026/09/04/env-parser-field-guide-when-five-flags-and-three-export-formats-turn-environment-files-into-reviewable-json-2026-09-04/
+- patches: 0 (1-POST 0-PATCH clean)
+- audit findings (raw): 0
+- elysia anchors: 12 (10 tools + 2 samples)
+- images: 1 poster (1080x800) + 3 cards (1600x900)
+- archive: /Users/quyue/www/blog/2026-09-04-env-parser-field-guide-when-five-flags-and-three-export-formats-turn-environment-files-into-reviewable-json-2026-09-04
+
+## 2026-09-04T08:02:55 — nsfw-image-detector-field-guide-when-five-buckets-three-sensitivities-and-six-formats-decide-what-your-moderation-queue-flags-2026-09-04 (WP 6755)
+
+- **Tool**: nsfw-image-detector (NSFW Image Content Detector) — AI Tools
+- **URL**: https://blog.flowrust.com/2026/09/04/nsfw-image-detector-field-guide-when-five-buckets-three-sensitivities-and-six-formats-decide-what-your-moderation-queue-flags-2026-09-04/
+- **Status**: 1-POST + 1-PATCH clean
+- **PATCH reason**: 2 MERGED_BULLET_LIST findings on rendered content (Three Sensitivity Thresholds list + Pre-Production Checklist list, both used en-dash + bold). Fixed via `scripts/wp_fix_merged_bullets.py 6755` — split 2 paragraphs into 10 separate `<p>` blocks (3 + 4). Source-side defense (rewrite as `<ul><li>` HTML) NOT applied this run; PATCH recipe used.
+- **featured_media**: 0
+- **Assets**: 1 poster (1080x800) + 3 cards (1600x900 each)
+- **Elysia anchors (6 unique paths)**: 3x `/en/tools/nsfw-image-detector`, 1x `/en/tools`, 1x `/en/samples/jpg-samples`, 1x `/en/samples/gif-samples`. All HEAD 200. sample-manifest validator flagged `/en/samples/*` as alternate-route not validated — manually confirmed both slugs exist in `sample-manifest.json` and HEAD-checked live URLs to 200.
+- **Audit findings**: 0 (raw + rendered, post-PATCH)
+- **PIL visual QA**: 1 re-render caught 2 defects: (1) poster subtitle left-edge clip ("When five bu" → "ckets"); reduced 116→53 chars, re-rendered clean. (2) Card 2 `render_card_4tile` (canonical 2x2) had PERMISSIVE label overlapping body description (single-word short counts `STRICT/DEFAULT/PERMISSIVE` don't trigger auto-shrink chain per WP 6122/6149/6171 family); switched to `render_card_4tile_compact` 1-row variant with `150pt → 84pt → 64pt` auto-shrink chain — all 4 tiles readable, no overlap.
+- **Source-side defense lesson (new pitfall)**: triple-fence code blocks (` ``` `) collide with `pre_encode_code_spans.py` and `pre_encode_backslash.py`'s `re.sub(r'`([^`]+)`', ...)` regex — the `[^`]+` set matches across newlines, so a triple-fence opening backtick pairs with the next available backtick (often in a different paragraph), eating all content in between and breaking `md_to_html`'s link regex downstream. Confirmed in this run: my source had ` ```...``` ` JSON block + `[JPG Samples](url)` link — the JPG/GIF links were silently stripped by the pre-encode chain. Fix: rewrote the JSON code block as inline `` `...` `` single-line. Future: triple-fence articles should NOT use `pre_encode_code_spans` or `pre_encode_backslash`, per the canonical decision table.
+- **Notes**: 8 H2 sections, 0 H3, 0 H1, 1302 words. Used umbrella PIL templates (`pil_poster_and_cards_network_theme.py`, `render_card_4tile_compact.py`); skills `article-poster-creator` and `article-highlight-cards` not on disk. Run was 1-POST + 1-PATCH (PATCH = `MERGED_BULLET_LIST` fix).
