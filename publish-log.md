@@ -3767,3 +3767,17 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - Defense layers held: canonical creds (not inline prompt creds), urllib.request HEAD+3-retry+UA, audit_post_content on raw+rendered, OoS foreign-script-range check, Tirith pipe-to-interpreter block
 - Cycle #38 rust-attribute-macro fix applied to canonical `is_function_call_pattern` (no Rust articles in this batch — FP filter not exercised)
 - Session trace: sessions/jarvis-5h-audit-session-2026-09-05-2057-utc.md
+
+## 2026-09-05 22:19:28 UTC — Post 6821
+
+- **Title**: Decibel Calculator Field Guide: When Ten Formulas, Six Absolute Scales, and One Reference Impedance Decide Whether Your Number Means Anything
+- **Slug**: `decibel-calculator-field-guide-when-ten-formulas-six-absolute-scales-and-one-reference-impedance-decide-whether-your-number-means-anything-2026-09-05`
+- **Link**: https://blog.flowrust.com/2026/09/06/decibel-calculator-field-guide-when-ten-formulas-six-absolute-scales-and-one-reference-impedance-decide-whether-your-number-means-anything-2026-09-05/
+- **Tool**: `decibel-calculator` (Math & Numbers)
+- **date_gmt**: 2026-09-05T22:19:28
+- **featured_media**: 0 (0 = no hero, poster embedded inline)
+- **Status**: 1-POST + 1-PATCH clean (MERGED_BULLET_LIST fix)
+- **Assets**: poster (1080×800) + 3 cards (1600×900)
+- **Elysia anchors**: 5 (decibel-calculator ×2, audio-batch-converter, /en/tools ×2)
+- **Audit findings**: 0 (final)
+
