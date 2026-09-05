@@ -3743,3 +3743,16 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 ## 2026-09-05T13:59:17 — gas-law-calculator (WP 6808)
 - Title: Gas Law Calculator Field Guide: When One Missing Decimal in PV=nRT Becomes a 10% Lab Error
 - URL: https://blog.flowrust.com/2026/09/05/gas-law-calculator/
+
+## 2026-09-05T18:08:33 — json-to-xml (WP 6815)
+- Tool: JSON to XML Converter (slug: json-to-xml)
+- Title: JSON to XML Converter Field Guide: When Four Flags Decide Ninety Percent of Output Quality
+- URL: https://blog.flowrust.com/2026/09/06/json-to-xml-converter-field-guide-when-four-flags-decide-ninety-percent-of-output-quality/
+- date_gmt: 2026-09-05T18:08:33
+- status: publish, featured_media=0
+- assets: 1 poster (1080×800) + 3 cards (1600×900: 5-tile bugs + audit checks + 4-tile compact flags)
+- anchors: 5 (json-to-xml x2, csv-to-xml, xml-to-csv, /en/tools root)
+- patches: 0 (1-POST clean)
+- audit: CLEAN (0 findings) on content + 8 H2s (DOTALL count, auto-tags-linked first H2) + 3 highlight-card + 1 article-poster + 4 imgs HEAD-200 + 5 elysia anchors HEAD-200
+- state: covered_slugs=705
+- pitfalls: (1) PIL render_card_4tile count-overlap on single-digit counts at F_HUGE → swap to render_card_4tile_compact (WP 6122/6149 family); (2) WP wpai-auto-tags-link adds `<a>` tags INSIDE `<h2>` text — use DOTALL regex to count H2s; (3) f-string backslash pitfall on Python 3.11 — hoist regex counts to locals (WP 6390)
