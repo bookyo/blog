@@ -3675,3 +3675,36 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - **WP-6197 LiteSpeed note:** cron-mode browser DOM probe is hard-blocked by Chrome's "Allow remote debugging?" popup; used regex-probe on `content.raw` + `content.rendered` + `urllib.request HEAD` for verification (per WP 6663 fallback).
 - **Source-side defenses applied:** pre_encode_backslash (0 backslash needed), pre_encode_code_spans (no literal HTML in code spans), `×` replaced `*` in math span to avoid md_to_html italic regex false-positive (single occurrence, 1 source edit, 0 PATCH).
 - **Word count:** 1,251; **H2 count:** 8; **H3 count:** 0; **ul count:** 1; **p count:** 24
+
+## 2026-09-04T20:40:00 — WebSocket Tester Field Guide (WP 6776)
+- **Tool**: websocket-tester (WebSocket Tester) — Development
+- **URL**: https://blog.flowrust.com/2026/09/05/websocket-tester-field-guide-when-eight-decisions-decide-whether-your-real-time-session-is-debuggable-or-a-black-box/
+- **Slug**: websocket-tester-field-guide-when-eight-decisions-decide-whether-your-real-time-session-is-debuggable-or-a-black-box
+- **date_gmt**: 2026-09-04T20:40:00
+- **featured_media**: 0
+- **Status**: 1-POST + 1-PATCH clean
+- **PATCH reason**: 1 MERGED_BULLET_LIST finding on 5 close-code items in H2 #4 (used `- **bold**` markdown list — md_to_html does NOT process `- ` or `*` markdown lists, WP wpautop kept ASCII `- ` separator in raw on re-serialize). PATCH converted the merged `<p>` block to real `<ul><li>` with `&#8212;` (em-dash) separator.
+- **H2 count**: 8 (canonical)
+- **H3 count**: 0
+- **ul count**: 1 (after PATCH)
+- **word count**: ~1500
+- **Assets**: 1 poster (1080×800) + 3 cards (1600×900 each)
+- **Elysia anchors (7 unique)**: 3× /en/tools/websocket-tester, 2× /en/tools/graphql-playground, 1× /en/tools/hex-editor, 1× /en/tools/jwt-inspector-verifier, 1× /en/tools/regex-tester, 1× /en/tools/json-formatter, 1× /en/tools root
+- **Phantom-slug defense (pre-POST)**: caught 3 phantom slugs (hex-viewer, jwt-debugger, json-viewer) before POST via `validate_anchors` (WP 6323 3rd confirmation); replaced with real tool IDs (hex-editor, jwt-inspector-verifier, json-formatter) at source.
+- **Audit findings (raw + rendered, post-PATCH)**: 0
+- **Image HEAD-checks**: 4/4 = 200
+- **Anchor HEAD-checks**: 7/7 = 200
+- **PIL visual QA**: 1 re-render on card 1 (5-tile URLs overflowed at F_MONO on 290px tiles — `wss://echo.websocket.events` etc. wrap-failed horizontally; fixed via 2-line `\n` split per WP 6358 lesson; re-rendered clean)
+- **Source-side defenses applied**: pre-encode checks (no literal HTML in code, no backslash in code, no asterisk in code) — clean pass
+- **Skills note**: cron-prompt flagged `article-poster-creator` and `article-highlight-cards` as missing from `~/.hermes/skills/` directly; confirmed present at `~/.hermes/skills/article-writer/article-poster-creator/SKILL.md` and `~/.hermes/skills/article-writer/article-highlight-cards/SKILL.md` via independent disk probe (per WP 6352 lesson). However, used the umbrella PIL templates for output consistency with the established 4h cadence (article-writer parent SKILL.md is present; the per-output skills' templates aren't exposed as drop-in helpers, so the umbrella's canonical `pil_poster_and_cards_network_theme.py` was the path of least surprise and produced output matching every prior cron run).
+- **Notes**: cron-prompt sparse-category fallback (per WP 6060/6149/6156/6163/6178/6185/6197/6206/6212/6273/6292/6323 pattern) — `pick_tool_v4_content_based.py` returned 0 diverse picks (top 8 candidates from `sparse_category_picker.py` all confirmed fresh against 690 covered slugs). Picked `websocket-tester` (Development, 193-char desc, theme_score=1, total score=104.3).
+
+## 2026-09-05 01:07 UTC — WP 6783 Funnel Chart Generator
+- 1-POST 0-PATCH clean
+- Tool: funnel-chart-generator (Funnel Chart Generator, Data Visualization)
+- Slug: funnel-chart-generator-field-guide-when-five-stages-and-three-number-formats-decide-whether-your-conversion-story-reads-as-a-real-pipeline-or-a-toy-bar-2026-09-05
+- URL: https://blog.flowrust.com/2026/09/05/funnel-chart-generator-field-guide-when-five-stages-and-three-number-formats-decide-whether-your-conversion-story-reads-as-a-real-pipeline-or-a-toy-bar-2026-09-05/
+- Cards: 5-tile (Five Stages Of A Real Funnel) + 2-col audit (Five Checks Before You Publish The Funnel) + 4-tile compact (Four Color Schemes And When To Use Each)
+- Anchors: 7 elysiatools.com (5x funnel-chart-generator + 1x bar-chart-generator + 1x sankey-diagram-generator + 1x /en/tools root)
+- Audit: 0 findings (audit_post_content + 13 regex probes + 4 image HEAD + 8 elysia HEAD + 1 permalink HEAD)
+- Skill stack: umbrella fallback (article-poster-creator + article-highlight-cards NOT on disk; used templates/pil_poster_and_cards_network_theme.py)

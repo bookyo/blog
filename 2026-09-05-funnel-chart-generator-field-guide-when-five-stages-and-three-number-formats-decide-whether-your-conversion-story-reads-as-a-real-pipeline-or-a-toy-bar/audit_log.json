@@ -1,0 +1,23 @@
+{
+  "post_id": 6783,
+  "findings": [],
+  "shape": {
+    "h1": 0,
+    "h2": 8,
+    "h3": 0,
+    "pre": 0,
+    "cards": 3,
+    "poster": 1,
+    "p_open": 22,
+    "p_close": 22,
+    "code": 60
+  },
+  "h2_dup_title": 0,
+  "p_in_h2": 0,
+  "md_links": 0,
+  "literal_html_code": 0,
+  "code_em_artifacts": 0,
+  "backslash_code": 0,
+  "elysia_ok": true,
+  "elysia_fails": []
+}
