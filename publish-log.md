@@ -3708,3 +3708,20 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - Anchors: 7 elysiatools.com (5x funnel-chart-generator + 1x bar-chart-generator + 1x sankey-diagram-generator + 1x /en/tools root)
 - Audit: 0 findings (audit_post_content + 13 regex probes + 4 image HEAD + 8 elysia HEAD + 1 permalink HEAD)
 - Skill stack: umbrella fallback (article-poster-creator + article-highlight-cards NOT on disk; used templates/pil_poster_and_cards_network_theme.py)
+
+## 2026-09-05 05:17 UTC — WP 6789 Batch Audio Converter
+- 1-POST + 1-PATCH clean
+- Tool: audio-batch-converter (Batch Audio Converter) — Media
+- Slug: audio-batch-converter-field-guide-when-seven-output-formats-six-bitrates-and-ten-files-decide-whether-your-audio-pipeline-ships-today-or-next-week-2026-09-05
+- URL: https://blog.flowrust.com/2026/09/05/audio-batch-converter-field-guide-when-seven-output-formats-six-bitrates-and-ten-files-decide-whether-your-audio-pipeline-ships-today-or-next-week-2026-09-05/
+- Cards: 5-tile (Five Output Formats And The Destination They Fit) + 5-tile (The Six Bitrates And Why 128 kbps Is The Trap) + 2-col (One Batch, One Configuration, One Zip)
+- Anchors: 2 elysiatools.com (1x /en/tools root + 1x /en/tools/audio-batch-converter)
+- Audit: 0 findings post-PATCH
+- PATCH reason: 1 MERGED_BULLET_LIST finding on rendered content (The configuration: list of 6 items in worked example used `– **bold**` en-dash bullet list — md_to_html does NOT process `-`/`*` markdown lists, WP wpautop joined into a single <p>). Fixed via `scripts/wp_fix_merged_bullets.py 6789` — split 1 paragraph into 7 separate <p> blocks. Source-side defense: rewrite future config-list paragraphs as `<ul><li>` HTML OR pre-bake 6-item configuration as explicit `<p>...</p>` blocks in source MD.
+- featured_media: 0
+- Source-side defenses applied: pre_encode_backslash (0 backslash needed), pre_encode_code_spans (no literal HTML in code), source-MD `<ol><li>` HTML for the 5-step workflow (avoided md_to_html's markdown-list gap), source-MD no `# Title` (theme provides entry-title H1)
+- H2 count: 8 | H3 count: 0 | H1 count: 0 (body) | word count: ~3,228
+- Word count pre-POST: 3,228 | post-PATCH: 3,228
+- Skill stack: umbrella fallback (article-poster-creator + article-highlight-cards NOT directly on disk; used templates/pil_poster_and_cards_network_theme.py + templates/custom_pil_card_layouts.py + templates/pre_encode_code_spans.py + templates/pre_encode_backslash.py + scripts/md_to_html.py + scripts/insert_highlight_cards.py + scripts/validate_elysia_anchors.py + scripts/wp_post_audit.py + scripts/wp_fix_merged_bullets.py)
+- PIL visual QA: 1 re-render NOT needed (first-pass clean for all 4 PNGs); vision_analyze confirmed clean
+- State: covered_slugs now 702 (was 693)
