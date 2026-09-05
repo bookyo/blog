@@ -3739,3 +3739,7 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - **patches**: 3 (recipe code-block→<ol>, 3 numbered paragraphs→<ol>, 2 em-dash paragraphs→<ul>)
 - **audit**: CLEAN (0 findings) on content + HEAD 200 on permalink/4 images/6 anchors
 - **state**: covered_slugs=703
+
+## 2026-09-05T13:59:17 — gas-law-calculator (WP 6808)
+- Title: Gas Law Calculator Field Guide: When One Missing Decimal in PV=nRT Becomes a 10% Lab Error
+- URL: https://blog.flowrust.com/2026/09/05/gas-law-calculator/
