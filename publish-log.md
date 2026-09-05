@@ -3756,3 +3756,14 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - audit: CLEAN (0 findings) on content + 8 H2s (DOTALL count, auto-tags-linked first H2) + 3 highlight-card + 1 article-poster + 4 imgs HEAD-200 + 5 elysia anchors HEAD-200
 - state: covered_slugs=705
 - pitfalls: (1) PIL render_card_4tile count-overlap on single-digit counts at F_HUGE → swap to render_card_4tile_compact (WP 6122/6149 family); (2) WP wpai-auto-tags-link adds `<a>` tags INSIDE `<h2>` text — use DOTALL regex to count H2s; (3) f-string backslash pitfall on Python 3.11 — hoist regex counts to locals (WP 6390)
+
+## 2026-09-05 20:57 UTC — 5h Audit Cycle #45
+- Posts audited: 5 (6815, 6808, 6796, 6789, 6783)
+- In-scope: 5/5 | Clean: 5/5 | Issues: 0 | OoS: 0
+- PATCH round-trips: 0
+- Image HEAD probes: 20/20 HTTP 200
+- elysia anchor HEAD probes: 11/11 HTTP 200
+- Permalink HEAD probes: 5/5 HTTP 200
+- Defense layers held: canonical creds (not inline prompt creds), urllib.request HEAD+3-retry+UA, audit_post_content on raw+rendered, OoS foreign-script-range check, Tirith pipe-to-interpreter block
+- Cycle #38 rust-attribute-macro fix applied to canonical `is_function_call_pattern` (no Rust articles in this batch — FP filter not exercised)
+- Session trace: sessions/jarvis-5h-audit-session-2026-09-05-2057-utc.md
