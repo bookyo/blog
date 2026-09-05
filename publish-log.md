@@ -3725,3 +3725,17 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - Skill stack: umbrella fallback (article-poster-creator + article-highlight-cards NOT directly on disk; used templates/pil_poster_and_cards_network_theme.py + templates/custom_pil_card_layouts.py + templates/pre_encode_code_spans.py + templates/pre_encode_backslash.py + scripts/md_to_html.py + scripts/insert_highlight_cards.py + scripts/validate_elysia_anchors.py + scripts/wp_post_audit.py + scripts/wp_fix_merged_bullets.py)
 - PIL visual QA: 1 re-render NOT needed (first-pass clean for all 4 PNGs); vision_analyze confirmed clean
 - State: covered_slugs now 702 (was 693)
+
+## 2026-09-05 09:24 UTC — WP 6796 — XLSX CSV Detect Normalize
+
+- **date_gmt**: 2026-09-05T09:24:59
+- **tool**: xlsx-csv-detect-normalize (Format Conversion)
+- **title**: XLSX CSV Detect Normalize Field Guide: When Five Diagnostics Decide Whether Your Importer Lives or Dies
+- **slug**: xlsx-csv-detect-normalize-field-guide-when-five-diagnostics-decide-whether-your-importer-lives-or-dies-2026-09-05
+- **link**: https://blog.flowrust.com/2026/09/05/xlsx-csv-detect-normalize-field-guide-when-five-diagnostics-decide-whether-your-importer-lives-or-dies-2026-09-05/
+- **status**: publish, featured_media=0
+- **assets**: 1 poster (1080×900) + 3 cards (1600×900)
+- **anchors**: 6 (3 primary tool, 2 related CSV, 1 root)
+- **patches**: 3 (recipe code-block→<ol>, 3 numbered paragraphs→<ol>, 2 em-dash paragraphs→<ul>)
+- **audit**: CLEAN (0 findings) on content + HEAD 200 on permalink/4 images/6 anchors
+- **state**: covered_slugs=703
