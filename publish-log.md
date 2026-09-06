@@ -3858,3 +3858,28 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - **Asset IDs**: poster=6858, card1=6859, card2=6860, card3=6861
 - **HEAD probe**: 9/9 HTTP 200 (4 images + 3 elysia anchors + 1 elysia root + 1 permalink)
 - **State**: covered_slugs now 711 entries (libreoffice-xlsx-to-pdf-report added)
+
+## 2026-09-06T23:30:47 UTC — LibreOffice DOCX to PDF Field Guide
+
+- **WP ID**: 6868
+- **Slug**: `libreoffice-docx-to-pdf-field-guide-when-track-changes-comments-footnotes-and-font-fallback-decide-whether-your-batch-reads-like-the-source-or-like-a-ghost`
+- **URL**: https://blog.flowrust.com/2026/09/07/libreoffice-docx-to-pdf-field-guide-when-track-changes-comments-footnotes-and-font-fallback-decide-whether-your-batch-reads-like-the-source-or-like-a-ghost/
+- **Tool**: LibreOffice DOCX to PDF (`libreoffice-docx-to-pdf`)
+- **Tool manifest**: Document Tools category, theme_score=3 (libreoffice/docx/pdf), score=99.7
+- **Description source**: `~/www/elysia-tools/src/generated/runtime/tool-manifest.json`
+- **Article word count**: ~2100 words
+- **Structure**: 0 H1 / 8 H2 / 0 H3 / 1 article-poster / 3 highlight-card
+- **Elysia anchors**: 9 unique — `/en/tools/libreoffice-docx-to-pdf` (×2), `/en/tools/libreoffice-xlsx-to-pdf-report`, `/en/tools/libreoffice-odt-to-pdf`, `/en/tools/libreoffice-docx-to-pdf-a`, `/en/tools/libreoffice-ppt-to-pdf-handouts`, `/en/tools/libreoffice-office-to-image`, `/en/tools/pdf-merge-documents` (×2), `/en/tools/pdf-extract-selected-pages`, `/en/tools` (×1)
+- **Pre-publish audit findings**: 0 (inserted 1 poster + 3 cards, 0 markdown-link leak, 0 backslash in code, 0 nested H2)
+- **Featured media**: 0 (COSESAI non-negotiable)
+- **Assets rendered**: PIL via `templates/pil_poster_and_cards_network_theme.py` (poster 1080×800 + 3× render_card_5tile cards 1600×900) — umbrella path; `article-poster-creator` + `article-highlight-cards` skills not present on disk
+- **Visual QA**: vision_analyze pre-POST on all 4 PNGs -- 0 defects (no overflow, no tofu, no panel-border overlap)
+- **Status**: 1-POST + 1-PATCH clean (zero audit findings after PATCH)
+- **Notes**: Sparse-category picker picked `libreoffice-docx-to-pdf` at score=99.7 (theme=3 cluster, LibreOffice DOCX batch path distinct from WP 6862 xlsx variant). Cron-prompt heredoc block hit; worked around with write_file + python3 file. First POST had 16 p-opens / 31 p-closes (P_TAG_MISMATCH); PATCH applied orphan `</p></p>` + `</figure></p>` + `</h2></p>` strip pattern (WP wpautop artifact); post-PATCH 16/16 balance, audit clean. 9/9 HTTP 200 on images + anchors + permalink HEAD probes.
+- **Asset IDs**: poster=6864, card1=6865, card2=6866, card3=6867
+- **PATCH round-trip**: 1 (P_TAG_MISMATCH defused via orphan-</p> strip)
+- **State**: covered_slugs now 712 entries (libreoffice-docx-to-pdf added)
+
+### New lesson (will be folded into umbrella)
+
+- **WP wpautop inserts orphan `</p>` after `</figure>` and `</h2>` blocks in DOCX-batch articles (WP 6868, 2026-09-06)** — extends the WP 6135 / WP 6163 wpautop-artifact family with a new pattern. When the article body has `<figure class="article-poster">` or `<figure class="highlight-card">` followed immediately by an open `<p>` (no blank line / no `<p>` close before the figure), WP `wpautop` inserts an orphan `</p>` between `</figure>` and `<p>`, producing `<figure>...</figure></p>\n<p>...</p>` instead of the canonical `<figure>...</figure>\n<p>...</p>`. Same artifact appears after `</h2>` when followed by an open `<p>` (4 + 7 = 11 occurrences on WP 6868 across 4 figures + 7 H2 boundaries). `audit_post_content` reports `P_TAG_MISMATCH: N opens, M closes` with M > N. **Defense (source-side):** add explicit blank lines between `</figure>` and `<p>` in the article source MD, AND between `</h2>` and `<p>`. **PATCH recipe (when already POSTed):** `re.sub(r'</figure>\s*</p>', '</figure>', rendered)` + `re.sub(r'</h2>\s*</p>', '</h2>', rendered)` + `re.sub(r'</p>\s*</p>', '</p>', rendered)`, POST back. Cost when hit: 1 PATCH round-trip. Confirmed on WP 6868 first POST had 16/31 (15 extras), PATCH applied all three strips → 16/16, audit clean.
