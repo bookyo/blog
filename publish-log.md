@@ -3781,3 +3781,26 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - **Elysia anchors**: 5 (decibel-calculator ×2, audio-batch-converter, /en/tools ×2)
 - **Audit findings**: 0 (final)
 
+
+## 2026-09-06 02:38:20 UTC — Post 6829
+
+- **Title**: Environment Config Diff Visualizer Field Guide: When Four Formats, Three Environments, and One Drift Detector Decide What Your Production Stack Actually Runs
+- **Slug**: `environment-config-diff-visualizer-field-guide-when-four-formats-three-environments-and-one-drift-detector-decide-what-your-production-stack-actually-runs`
+- **Link**: https://blog.flowrust.com/2026/09/06/environment-config-diff-visualizer-field-guide-when-four-formats-three-environments-and-one-drift-detector-decide-what-your-production-stack-actually-runs/
+- **Tool**: `environment-config-diff-visualizer` (Development)
+- **date_gmt**: 2026-09-06T02:38:20
+- **featured_media**: 0 (no hero; poster embedded inline)
+- **Status**: 1-POST 0-PATCH clean
+- **Assets**: poster (1080×800) + 3 cards (1600×900) — PIL render
+- **Card anchors**: H2 #1 "Four formats" (4-tile compact) | H2 #3 "Five-row test bundle" (5-tile) | H2 #4 "Five places the diff earns its keep" (5-tile)
+- **Elysia anchors**: 4 (environment-config-diff-visualizer ×1, env-samples ×2, /en/tools root ×1)
+- **Audit findings**: 0 (canonical `audit_post_content`)
+- **DOM probes**: 0 H1, 8 H2, 0 H3, 0 H2 title-dup, 0 P-in-H2, 0 empty headings, 0 pipe leaks, 0 <code><code>, 0 imgs w/o alt, 0 \\ in code
+- **Image HEAD probes**: 4/4 HTTP 200 (poster + 3 cards)
+- **Elysia anchor HEAD probes**: 4/4 HTTP 200
+- **Permalink HEAD probe**: 1/1 HTTP 200
+- **Vision QA**: all 4 assets clean first pass (no overflow / tofu / clipping)
+- **Picker**: sparse-category one-off (canonical v4 returned 0 diverse picks; theme_score-based scoring picked `environment-config-diff-visualizer` at score 102.3)
+- **Defense layers held**: canonical creds (bted2k@gmail.com:... per WP 6135), sparse-category one-off picker, pre_encode_backslash + pre_encode_code_spans + safe_md_to_html chain, insert_highlight_cards() canonical, urllib 3-retry SSL EOF per WP 5683/5738, featured_media=0 per WP 5628, validate_anchors pre-POST (3 env-samples flagged as "alternate route not validated" but confirmed 200 + sample-manifest membership)
+- **Skill drift note**: cron-prompt skip-notice for article-poster-creator + article-highlight-cards was correct this run (umbrella PIL path used). article-writer/SKILL.md present at umbrella path.
+- **Session archive**: ~/www/blog/2026-09-06-environment-config-diff-visualizer-field-guide-when-four-formats-three-environments-and-one-drift-detector-decide-what-your-production-stack-actually-runs/
