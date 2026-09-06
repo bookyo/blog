@@ -3804,3 +3804,35 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - **Defense layers held**: canonical creds (bted2k@gmail.com:... per WP 6135), sparse-category one-off picker, pre_encode_backslash + pre_encode_code_spans + safe_md_to_html chain, insert_highlight_cards() canonical, urllib 3-retry SSL EOF per WP 5683/5738, featured_media=0 per WP 5628, validate_anchors pre-POST (3 env-samples flagged as "alternate route not validated" but confirmed 200 + sample-manifest membership)
 - **Skill drift note**: cron-prompt skip-notice for article-poster-creator + article-highlight-cards was correct this run (umbrella PIL path used). article-writer/SKILL.md present at umbrella path.
 - **Session archive**: ~/www/blog/2026-09-06-environment-config-diff-visualizer-field-guide-when-four-formats-three-environments-and-one-drift-detector-decide-what-your-production-stack-actually-runs/
+## 2026-09-06 19:09 UTC — Calendar Heatmap Generator (Post 6844)
+
+**date_gmt**: `2026-09-06T11:08:01`
+**Status**: publish
+**Slug**: `calendar-heatmap-generator-field-guide-when-365-squares-five-color-buckets-and-one-date-threshold-decide-whether-your-yearly-activity-reads-as-a-real-streak-or-a-flat-wall`
+**Permalink**: https://blog.flowrust.com/2026/09/06/calendar-heatmap-generator-field-guide-when-365-squares-five-color-buckets-and-one-date-threshold-decide-whether-your-yearly-activity-reads-as-a-real-streak-or-a-flat-wall/
+**Tool (catalog)**: `calendar-heatmap` (Calendar Heatmap Generator, Data Visualization)
+**Tool description (real, from tool-manifest)**: "Generate GitHub-style calendar heatmaps to visualize activity patterns over time, perfect for tracking yearly contributions, habits, or metrics"
+
+- **Title**: Calendar Heatmap Generator Field Guide: When 365 Squares, Five Color Buckets, and One Date Threshold Decide Whether Your Yearly Activity Reads as a Real Streak or a Flat Wall
+- **Body**: ~1185 words across 8 H2 sections + lead + closing
+- **Cards published**: 3 highlight cards + 1 poster = 4 PIL assets
+- **Elysia anchors**: 5 unique URLs (all HTTP 200, all validated against `tool-manifest.json`)
+  - `elysiatools.com/en/tools/calendar-heatmap` (×2, intro + H2)
+  - `elysiatools.com/en/tools/heatmap-generator` (matrix variant)
+  - `elysiatools.com/en/tools/scatter-plot-generator` (diagnostic lens)
+  - `elysiatools.com/en/tools/area-chart-generator` (time-series variant)
+  - `elysiatools.com/en/tools` (closing root link)
+- **Audit findings (raw)**: 0
+- **PATCH round-trips**: 1 — strip body `<h1>` title wrapper per WP 6417 (md_to_html's `# Title` line produced a body H1 that duplicates theme's `<h1 class="entry-title">`). Recipe: `re.compile(r'^<h1>.*?</h1>', re.DOTALL).subn('', content, count=1)`, POST back. After PATCH: 0 H1, 8 H2, 3 cards intact.
+- **DOM probes (post-PATCH)**: 0 H1, 8 H2, 0 H3, 0 H2 title-dup, 0 P-in-H2, 0 empty headings, 0 pipe leaks, 0 <code><code>, 0 imgs w/o alt, 0 \ in code
+- **Image HEAD probes**: 4/4 HTTP 200 (poster + 3 cards)
+- **Elysia anchor HEAD probes**: 5/5 HTTP 200
+- **Permalink HEAD probe**: 1/1 HTTP 200
+- **Vision QA**: all 4 assets clean first pass (no overflow / tofu / clipping / panel-border overlap)
+- **Picker**: sparse-category one-off (canonical v4 returned 0 diverse picks; theme_score-based scoring picked `calendar-heatmap` at score 105.0 in Data Visualization)
+- **Defense layers held**: canonical creds (bted2k@gmail.com:zVlf aCkm vB79 GjXc zVrJ dSuH per WP 6135), sparse-category one-off picker per WP 6206 recipe, validate_anchors pre-POST per WP 6323 (5/5 valid), insert_highlight_cards() canonical per WP 6122 + WP 6370 (3/3 inserted), 3-retry SSL EOF per WP 5683/5738, featured_media=0 per WP 5628, urllib.request HEAD per WP 5731, vision_analyze pre-POST per WP 5663/6178/6206/6352 (4/4 clean)
+- **Skill drift note**: cron-prompt skip-notice for article-poster-creator + article-highlight-cards confirmed (disk-probed: only `~/.hermes/skills/article-writer/SKILL.md` present, neither child skill directory exists). Umbrella PIL templates used: `pil_poster_and_cards_network_theme.py::render_poster` (1080×800 deep-navy + cyan-teal) + `render_card_5tile` ×3 (1600×900).
+- **Session archive**: `~/www/blog/2026-09-06-calendar-heatmap-generator-field-guide/`
+
+### Lesson added (will be folded into umbrella)
+- **md_to_html.py turns `# Title` (markdown H1) into body `<h1>` (WP 6844, 2026-09-06)** — extends the WP 6417 body-H2-title-dup family. The canonical pattern is "0 body H1 (post title renders as `<h1 class="entry-title">` from theme)". When source MD starts with `# Article Title` (because the article's title is the title), `md_to_html`'s `re.sub(r'^# (.+)$', ...)` (line 170) renders it as a body `<h1>` that duplicates the theme title. `audit_post_content` returns 0 findings; only DOM probe or `re.findall(r'<h1>', content)` catches it. **Defense (source-side, recommended):** strip the leading `# Title` line from MD source before `md_to_html` (use a comment or plain text first line) — the title is already passed via `payload['title']` and the theme renders it. **PATCH recipe (when already POSTed):** `re.compile(r'^<h1>.*?</h1>', re.DOTALL).subn('', content, count=1)`, POST back. Cost: 1 PATCH round-trip. Confirmed on Post 6844 — first POST had H1=1, PATCH → H1=0.
