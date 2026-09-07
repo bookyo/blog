@@ -3950,3 +3950,26 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
   - 7/7 HTTP 200 on images + anchors + permalink HEAD probes
   - P_TAG balance 17/17; 0 backslash in code; 0 H2 with nested p
   - featured_media = 0 (COSESAI defense held)
+
+## 2026-09-07 20:14 UTC — WP 6902 — Convert Raw Pixel Buffer to JPEG
+- **date_gmt:** 2026-09-07T20:14:26
+- **tool_id:** raw-to-jpg (Convert Raw Pixel Buffer to JPEG, Media)
+- **post id:** 6902
+- **url:** https://blog.flowrust.com/2026/09/08/raw-to-jpg/
+- **patches:** 0
+- **audit findings:** 0 (raw), 0 (rendered)
+- **assets:** poster (1080x800) + 3 cards (1600x900) PIL
+- **anchors:** 2 elysiatools tools (raw-to-jpg, /en/tools root)
+- **picked via:** sparse_category_picker (theme_score=2, score=102.7, top candidate)
+- **fallback skill path:** article-poster-creator + article-highlight-cards both missing on disk; used umbrella's bundled PIL templates (render_poster, render_card_5tile, render_card_input_output_2col, render_card_5tile_3plus2)
+- **decisions:**
+  - used plain md_to_html (NOT safe wrapper) — source has 0 `*` in backticks + 0 triple-fence + 0 angle-bracket-literal in backticks
+  - source pre-strip: removed redundant `<p>` wrappers in source MD that would have caused nested `<p><p>` (WP 5828/6376 family)
+  - 8 H2 + 0 H1 + 0 H3; lead `<strong>` paragraph (raw text, not `<p>` wrapper — md_to_html adds it)
+  - 3 card anchors: `The headerless buffer is not the same as a camera RAW file`, `The five things you must know before you click convert`, `Putting it together for a sensor capture pipeline` — used extended block regex (handles `<p>` and `<ul>`/`<ol>`/etc.)
+  - PIL visual QA via vision_analyze on all 4 assets — caught poster subtitle clip (79 chars over 60-char limit per WP 6390), shortened to 51 chars, re-rendered clean
+  - 7/7 HTTP 200 on images + anchors + permalink HEAD probes
+  - 0 nested `<p>`, 0 empty heading, 0 pipe leak, 0 backslash in code, 0 H2 with nested p, 0 H2 matching title (WP 6417 defense held)
+  - 4/4 imgs have alt attribute (regex "without alt" was negative-lookahead false-positive)
+  - featured_media = 0 (COSESAI defense held)
+- **notes:** sparse-category picker fallback fired (canonical v4 returned 0 diverse picks at 716 covered slugs). Used umbrella PIL path per WP 6663 latest reference; skipped browser DOM probe per WP 6663 lesson (cron-mode Chrome may be permission-blocked), used `?context=edit` regex-probe + urllib.request HEAD-recipe canonical fallback.
