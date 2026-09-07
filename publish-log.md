@@ -3883,3 +3883,49 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 ### New lesson (will be folded into umbrella)
 
 - **WP wpautop inserts orphan `</p>` after `</figure>` and `</h2>` blocks in DOCX-batch articles (WP 6868, 2026-09-06)** — extends the WP 6135 / WP 6163 wpautop-artifact family with a new pattern. When the article body has `<figure class="article-poster">` or `<figure class="highlight-card">` followed immediately by an open `<p>` (no blank line / no `<p>` close before the figure), WP `wpautop` inserts an orphan `</p>` between `</figure>` and `<p>`, producing `<figure>...</figure></p>\n<p>...</p>` instead of the canonical `<figure>...</figure>\n<p>...</p>`. Same artifact appears after `</h2>` when followed by an open `<p>` (4 + 7 = 11 occurrences on WP 6868 across 4 figures + 7 H2 boundaries). `audit_post_content` reports `P_TAG_MISMATCH: N opens, M closes` with M > N. **Defense (source-side):** add explicit blank lines between `</figure>` and `<p>` in the article source MD, AND between `</h2>` and `<p>`. **PATCH recipe (when already POSTed):** `re.sub(r'</figure>\s*</p>', '</figure>', rendered)` + `re.sub(r'</h2>\s*</p>', '</h2>', rendered)` + `re.sub(r'</p>\s*</p>', '</p>', rendered)`, POST back. Cost when hit: 1 PATCH round-trip. Confirmed on WP 6868 first POST had 16/31 (15 extras), PATCH applied all three strips → 16/16, audit clean.
+
+## 2026-09-07 03:37 UTC — WP 6876 — JSON to TypeScript Converter
+- **date_gmt:** 2026-09-07T03:37:57
+- **tool_id:** json-to-typescript (JSON to TypeScript Converter, Development)
+- **post id:** 6876
+- **url:** https://blog.flowrust.com/2026/09/07/json-to-typescript-converter-field-guide-when-four-flags-decide-whether-your-type-hints-catch-real-bugs-or-just-look-like-they-do-2026-09-07/
+- **patches:** 0
+- **audit findings:** 0
+- **assets:** poster + 3 cards (4-tile compact + 5-tile + 5-tile 3+2)
+- **anchors:** 9 unique elysiatools tools (json-to-typescript x4, json-formatter, json-to-csharp/java/kotlin/go, json-schema-validator, graphql-playground, /en/tools root)
+- **picked via:** sparse_category_picker (theme_score=2 from "interface"/"codegen" keywords; picker returned json-to-typescript at score 101.0)
+- **fallback skill path:** article-poster-creator + article-highlight-cards both missing on disk; used umbrella's bundled PIL templates (render_card_4tile_compact, render_card_5tile, render_card_5tile_3plus2, render_poster)
+- **decisions:**
+  - used plain md_to_html (NOT safe wrapper) — source has 0 `*` in backticks + 0 triple-fence; safe wrapper corrupts H2s with inline backticks per WP 5828/6080 lesson
+  - pre-converted pipe table → HTML before md_to_html (per Cycle #30 lesson)
+  - 8 H2 + 0 H1 + 0 H3 + 8-item cheatsheet as `<ol><li>` under `<strong>` heading
+  - pre-encodes chained: pre_encode_backslash → pre_encode_code_spans
+  - 3 card anchors: `The <code>rootName</code> Flag:`, `The <code>optionalFields</code> Flag:`, `From One Type to a Family:` — used extended block regex (handles `<p>` and `<ol>`/`<ul>`/etc.)
+  - cron-prompt notice mismatch noted: skills marked "not found" but `article-writer` SKILL.md is on disk; per WP 6352 lesson, disk probe is authoritative → fell back to umbrella because both visual-output skills are genuinely absent
+
+## 2026-09-07T07:52:23.256006+00:00
+
+- **Post ID**: 6882
+- **Slug**: fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump
+- **Tool**: fitness-workout-pdf-generator (Fitness Workout PDF Generator)
+- **URL**: https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/
+- **Status**: 1-POST 0-PATCH clean
+- **Assets**: poster + 3 cards (PIL)
+- **Audit findings**: 0
+- **Notes**: sparse-category picker fallback fired; canonical picker fixed at runtime via WP-direct hyphen-prefix dedup + content-search echo check (catches WP 6364 phantom-slug class).
+
+## 2026-09-07T11:58:46+00:00
+
+- **Post ID**: 6888
+- **Slug**: photo-mosaic-generator-field-guide-when-eight-flags-three-color-buckets-and-one-tile-pool-decide-whether-your-composite-reads-like-a-real-mosaic-or-a-pixel-soup
+- **Tool**: image-mosaic-generator (Photo Mosaic Generator)
+- **URL**: https://blog.flowrust.com/2026/09/07/photo-mosaic-generator-field-guide-when-eight-flags-three-color-buckets-and-one-tile-pool-decide-whether-your-composite-reads-like-a-real-mosaic-or-a-pixel-soup/
+- **Status**: 1-POST 1-PATCH clean (MERGED_NUMBERED_LIST fixed via <ol><li>)
+- **Assets**: poster (1080x800) + 3 cards (1600x900) PIL
+- **Audit findings**: 0 (raw); 0 (rendered)
+- **HTML review**: 9 H2 = 8 body + 1 theme "Post navigation"; 0 H3; 3 highlight-cards on H2s 1/4/6; 1 article-poster; 1 entry-title H1; 10 elysia anchors (8 tool + 2 category root); 0 missing alt
+- **Notes**: notice — `article-poster-creator` and `article-highlight-cards` skills NOT present on disk; used umbrella `templates/pil_poster_and_cards_network_theme.py` PIL stack (canonical). Picked `image-mosaic-generator` (Design) — sparse-category fallback. MERGED_NUMBERED_LIST in "Building the Pipeline" fixed pre-POST via `<ol><li>` conversion (source-side).
+
+## 2026-09-07T16:08:44 — underline-text (WP 6896)
+- Title: Underline Text Field Guide: When One Combining Mark (U+0332) Decides Whether Your Emphasis Survives a Plain-Text Copy-Paste
+- URL: https://blog.flowrust.com/2026/09/08/underline-text/
