@@ -3929,3 +3929,24 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 ## 2026-09-07T16:08:44 — underline-text (WP 6896)
 - Title: Underline Text Field Guide: When One Combining Mark (U+0332) Decides Whether Your Emphasis Survives a Plain-Text Copy-Paste
 - URL: https://blog.flowrust.com/2026/09/08/underline-text/
+
+## 2026-09-07 16:08 UTC — WP 6896 — Underline Text
+- **date_gmt:** 2026-09-07T16:08:44
+- **tool_id:** underline-text (Underline Text, Text Processing)
+- **post id:** 6896
+- **url:** https://blog.flowrust.com/2026/09/08/underline-text/
+- **patches:** 0
+- **audit findings:** 0
+- **assets:** poster (1080x800) + 3 cards (1600x900) PIL
+- **anchors:** 2 elysiatools tools (underline-text, /en/tools root)
+- **picked via:** sparse_category_picker (theme_score=1, score=106.0, top candidate)
+- **fallback skill path:** article-poster-creator + article-highlight-cards both missing on disk; used umbrella's bundled PIL templates (render_poster, render_card_5tile, render_card_5tile_3plus2, render_card_input_output_2col)
+- **decisions:**
+  - used plain md_to_html (NOT safe wrapper) — source has 0 `*` in backticks + 0 triple-fence
+  - pre-encodes chained: pre_encode_backslash → pre_encode_code_spans
+  - 8 H2 + 0 H1 + 0 H3
+  - 3 card anchors: `The mark sits below the base, not as a styling layer`, `The five properties that make it portable`, `What goes wrong in specific environments` — used canonical block regex via insert_highlight_cards
+  - PIL visual QA via vision_analyze on all 4 assets — clean (no tofu, no clipping, all text within borders)
+  - 7/7 HTTP 200 on images + anchors + permalink HEAD probes
+  - P_TAG balance 17/17; 0 backslash in code; 0 H2 with nested p
+  - featured_media = 0 (COSESAI defense held)
