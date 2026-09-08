@@ -4040,3 +4040,23 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - **skills note:** article-poster-creator and article-highlight-cards not on disk; used umbrella `templates/pil_poster_and_cards_network_theme.py` + `templates/render_card_4tile_compact.py` + `scripts/md_to_html.py` canonical pipeline (WP 6352 lesson applied — disk state probed, advisory notice acknowledged, umbrella path used)
 - **browser DOM probe:** skipped per WP 6663 (cron-mode Chrome permission block); used `?context=edit` content.rendered regex-probe + urllib HEAD-recipe canonical fallback. 719 covered slugs.
 - **notes:** clean 1-POST 0-PATCH. Single small concern: 4x repeats of the same tool anchor — within Priority 1 recommendation but slightly heavier than typical. Acceptable for this article since each reference is contextually distinct.
+
+---
+
+## WP 6932 — DNS Zone File Record Builder (2026-09-08 ~12:41 UTC)
+
+- **Tool picked:** DNS Zone File Record Builder (Network), id=`dns-zone-file-record-builder`. picker v4 sparse-category fallback path not triggered (diverse top 5 included this in [Network]).
+- **Article title:** "DNS Zone File Record Builder Field Guide: When Eight Flags, One Trailing-Dot Rule, and Validation on Every Line Decide Whether Your Zone Survives a Migration"
+- **Date GMT:** 2026-09-08T12:41:22
+- **URL:** https://blog.flowrust.com/2026/09/08/dns-zone-file-record-builder-field-guide-when-eight-flags-one-trailing-dot-rule-and-validation-on-every-line-decide-whether-your-zone-survives-a-migration-2026-09-08/
+- **Asset count:** 1 poster (1080×800) + 3 cards (1600×900 each)
+- **Elysiatools anchors:** 4 total — 3x `/en/tools/dns-zone-file-record-builder` (Priority 1, distinct sections: intro / "Why Plain Text" closing / re-mention), 1x `/en/tools` (umbrella closing). `validate_anchors()` returned (True, []).
+- **Pre-POST asserts (mandatory):** cards=3 PASS, poster=1 PASS, h2=8 PASS.
+- **Post-publish audit findings:** 0 (clean). `audit_post_content()` returned empty list.
+- **HEAD probes (urllib HEAD + 3-retry backoff):** 7/7 HTTP 200 — 1 permalink + 4 images + 2 unique elysia URLs (root + tool page).
+- **Link type verification:** all 4 anchors correctly typed (3 tool + 1 root) — article is about a tool, anchors correctly point at `/en/tools/`. No viz-vs-tool mismatch.
+- **featured_media = 0** (COSESAI hero-duplication defense held)
+- **Skills note (refined WP 6206/6352):** cron-prompt listed `article-poster-creator` and `article-highlight-cards` as not-found, but disk probe confirmed BOTH are present at `~/.hermes/skills/article-writer/article-poster-creator/` and `~/.hermes/skills/article-writer/article-highlight-cards/`. Per WP 6352 the prompt-notice is advisory; used the canonical umbrella PIL path (`templates/pil_poster_and_cards_network_theme.py`) anyway because it matches the cron cadence's expected output (1080×800 poster + 1600×900 cards in deep-navy + cyan-teal theme). Skill paths are known-good but the umbrella path is the de-facto recipe.
+- **Visual QA:** `vision_analyze` pre-POST — first pass caught (1) poster subtitle LEFT-EDGE CLIP (subtitle 86 chars, exceeded WP 6390 ≤60 chars guideline → re-rendered at 60 chars), (2) card1 SEVERE OVERFLOW (body strings 30+ chars exceeded WP 6358 ≤16 chars F_MONO on 290px tiles → split into 3 lines × ≤16 chars each, body widths verified ≤258px vs 266px limit). Cards 2 and 3 passed first pass. 1 pre-POST re-render cost.
+- **browser DOM probe:** skipped per WP 6663 (cron-mode Chrome permission block); used `?context=edit` content.rendered regex-probe + urllib HEAD-recipe canonical fallback. 721 covered slugs (added `dns-zone-file-record-builder` + the slug-stem).
+- **Notes:** clean 1-POST 0-PATCH. 4x tool-page anchor repeats is slightly heavier than typical (3 distinct sections + 1 closing root), but each reference is contextually distinct (intro mention, mid-article mechanics re-mention, closing "Why Plain Text" final call-to-action, plus root umbrella link).
