@@ -4016,3 +4016,27 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
   - featured_media = 0 (COSESAI defense held)
   - `validate_anchors(html)` returned ok for all `/en/tools/` URLs; samples (png-viewer-samples, png-samples) flagged by validator as "alternate route" but verified independently against sample-manifest.json — both FOUND
 - **notes:** skipped browser DOM probe per WP 6663 lesson (cron-mode Chrome may be permission-blocked); used `?context=edit` regex-probe + urllib.request HEAD-recipe canonical fallback. 718 covered slugs (now 719).
+
+## WP 6925 — 2026-09-08 ~08:34 UTC — css-gradient-mesh-generator
+
+- **Title:** CSS Gradient Mesh Generator Field Guide: When Eight Flags, Four Layouts, and One Falloff Knob Decide Whether Your Hero Reads Like a Cosmic Aurora or a Pink Mush
+- **Link:** https://blog.flowrust.com/2026/09/08/css-gradient-mesh-generator-field-guide-2026-09-08/
+- **Tool:** css-gradient-mesh-generator (Design, picked via `sparse_category_picker.py` theme_score=3, rank #1 of 2033 candidates)
+- **Picked by:** sparse_category_picker.py (theme_score*20 + desc_score + kw_score weighting)
+- **Source:** tool-manifest.json metadata.description (2 examples — cosmic + ember); no sample-manifest matches (skip sample-link recipe per WP 6116 lesson)
+- **Article structure:** 2719 words, 0 H1, 8 H2 (close-first intro + lead; 8 sections: Mesh Basics / 8 Flags / Why Cosmic / Layout vs Content / Palette Strategy / Falloff / Conic / 4-Step Recipe)
+- **PIL assets (4):** poster 1080×800 (render_poster with eyebrow "WEB DESIGN · CSS GRADIENT MESH", title 2-line, callout, URL bar) + 3 cards 1600×900
+  - card1 `render_card_5tile` — Eight Flags You Actually Dial (5 numbered tiles: preset / blobCount / layout / falloff / blendMode)
+  - card2 `render_card_4tile_compact` — Which Layout Wins For Your Content (CORNERS / RING / SCATTER / GRID)
+  - card3 `render_card_4tile_compact` — Falloff Is Where Most Meshes Go Wrong (50% / 60% / 75% / 85%)
+- **PIL visual QA:** vision_analyze on all 4 — poster clean, 3 cards clean (no clipping, no tofu, no overlap); no re-render needed
+- **md_to_html pipeline:** `pre_encode_code_spans(md)` (2 backticks with literal HTML: `<section>`, `<radialGradient>`) → `md_to_html(md)` (plain wrapper — no `*` in backticks, no triple-fences)
+- **Card anchor regex (canonical WP 6122/6370):** 3 cards inserted after H2 anchors via `insert_highlight_cards()` with `assert_all_succeed=True` — final n==3 PASS
+- **elysiatools anchors:** 5 total — 4x `/en/tools/css-gradient-mesh-generator` (Priority 1, main tool page), 1x `/en/tools` (umbrella link in closing). `validate_anchors()` returned (True, []) — all real catalog IDs
+- **Post-publish audit findings:** 0 (clean)
+  - 0 H1, 8 H2, 3 highlight-card figures, 1 article-poster, 4 imgs total, 5 elysiatools anchors in rendered DOM
+- **HEAD probes (urllib.request, 3-retry exponential backoff):** 10/10 HTTP 200 — 1 permalink + 4 images + 5 elysia anchors
+- **featured_media = 0** (COSESAI defense held)
+- **skills note:** article-poster-creator and article-highlight-cards not on disk; used umbrella `templates/pil_poster_and_cards_network_theme.py` + `templates/render_card_4tile_compact.py` + `scripts/md_to_html.py` canonical pipeline (WP 6352 lesson applied — disk state probed, advisory notice acknowledged, umbrella path used)
+- **browser DOM probe:** skipped per WP 6663 (cron-mode Chrome permission block); used `?context=edit` content.rendered regex-probe + urllib HEAD-recipe canonical fallback. 719 covered slugs.
+- **notes:** clean 1-POST 0-PATCH. Single small concern: 4x repeats of the same tool anchor — within Priority 1 recommendation but slightly heavier than typical. Acceptable for this article since each reference is contextually distinct.
