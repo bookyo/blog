@@ -3973,3 +3973,26 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
   - 4/4 imgs have alt attribute (regex "without alt" was negative-lookahead false-positive)
   - featured_media = 0 (COSESAI defense held)
 - **notes:** sparse-category picker fallback fired (canonical v4 returned 0 diverse picks at 716 covered slugs). Used umbrella PIL path per WP 6663 latest reference; skipped browser DOM probe per WP 6663 lesson (cron-mode Chrome may be permission-blocked), used `?context=edit` regex-probe + urllib.request HEAD-recipe canonical fallback.
+
+## 2026-09-08: protein-isoelectric-point-field-guide-how-the-bjellqvist-pka-set-reads-a-sequence
+
+- **tool_id:** protein-isoelectric-point (Protein Isoelectric Point Calculator (pI by Composition), Education)
+- **post id:** 6912
+- **url:** https://blog.flowrust.com/2026/09/08/protein-isoelectric-point-field-guide-how-the-bjellqvist-pka-set-reads-a-sequence-2026-09-08/
+- **patches:** 0
+- **audit findings:** 0 (raw), 0 (rendered)
+- **assets:** poster (1080x800) + 3 cards (1600x900) PIL
+- **anchors:** 2 elysiatools tools (protein-isoelectric-point)
+- **picked via:** pick_tool_v4_content_based.py diverse top-10; chose Education entry (protein-isoelectric-point) over heavy Health/clinical top picks
+- **fallback skill path:** article-poster-creator + article-highlight-cards both missing on disk; used umbrella's bundled PIL templates (render_poster, render_card_5tile, render_card_input_output_2col)
+- **decisions:**
+  - 8 H2 + 0 H1 + 0 H3; lead `<strong>` paragraph (raw text, no `<p>` wrapper — md_to_html adds it)
+  - 3 card anchors: `What "pI by composition" actually computes` (5-tile Bjellqvist pKa), `A worked pair: an acidic peptide and a basic peptide` (2-col worked example), `A quick-start recipe for the calculator` (2-col bradykinin basic case)
+  - PIL visual QA via vision_analyze on all 4 assets — all clean (no tofu, no overflow, no clipping)
+  - 6/6 HTTP 200 on images + anchors + permalink HEAD probes
+  - 0 nested `<p>`, 0 empty heading, 0 pipe leak, 0 backslash in code, 0 H2 with nested p, 0 H2 matching title
+  - 4/4 imgs have alt attribute
+  - featured_media = 0 (COSESAI defense held)
+  - 2 elysiatools anchors both pointing at `/en/tools/protein-isoelectric-point` (real tool, NOT phantom)
+  - `validate_anchors(html)` returned `ok=(True, [])` pre-POST
+- **notes:** skipped browser DOM probe per WP 6663 lesson (cron-mode Chrome may be permission-blocked); used `?context=edit` regex-probe + urllib.request HEAD-recipe canonical fallback. 718 covered slugs.

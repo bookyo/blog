@@ -1,0 +1,368 @@
+{
+  "id": 6882,
+  "date": "2026-09-07T15:48:20",
+  "date_gmt": "2026-09-07T07:48:20",
+  "guid": {
+    "rendered": "https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/",
+    "raw": "https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/"
+  },
+  "modified": "2026-09-07T15:50:23",
+  "modified_gmt": "2026-09-07T07:50:23",
+  "password": "",
+  "slug": "fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump",
+  "status": "publish",
+  "type": "post",
+  "link": "https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/",
+  "title": {
+    "raw": "Fitness Workout PDF Generator Field Guide: When Five Flags, Four Column Choices, and One QR Strategy Decide Whether Your Printable Plan Reads Like a Real Program or a Spreadsheet Dump",
+    "rendered": "Fitness Workout PDF Generator Field Guide: When Five Flags, Four Column Choices, and One QR Strategy Decide Whether Your Printable Plan Reads Like a Real Program or a Spreadsheet Dump"
+  },
+  "content": {
+    "raw": "<figure class=\"article-poster\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/poster-14.png\" alt=\"Fitness Workout PDF Generator field guide cover poster\"></figure>\n<p>Working out is the easy part. Printing a program your members will actually read \u2014 week after week, set after set, without skipping the video links \u2014 is the part that quietly eats your afternoon. The <a href=\"https://elysiatools.com/en/tools/fitness-workout-pdf-generator\">Fitness Workout PDF Generator</a> takes a JSON or CSV workout plan and turns it into a printable PDF with exercise tables, progress checkboxes, and QR-coded video demonstrations. Five toggles decide whether the output looks like a real program or like an exported spreadsheet with no margin and a QR floating off the page.</p>\n<p></p>\n<p><strong>Lead phrase.</strong> Coaches and gym owners who run the same plan across dozens of trainees need a way to print one document that everyone can tick off, with the demo video one scan away. This generator takes a JSON or CSV workout plan and produces a printable PDF \u2014 exercise tables, progress boxes, and optional QR video links \u2014 and it does the layout choices for you if you give it five flags.</p>\n<h2>How the Workout Data Schema Drives the Output</h2>\n<p>The generator accepts two input shapes: a JSON array of objects or a CSV with the same column names. Either way, the columns that matter are the ones that show up in the printed table \u2014 day, exercise, sets, reps, rest, notes, and videoUrl. The full layout and input pipeline lives at the <a href=\"https://elysiatools.com/en/tools/fitness-workout-pdf-generator\">Fitness Workout PDF Generator</a> page.</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/card_1.png\" alt=\"Five flags that decide the layout\" loading=\"lazy\"></figure>\n<p>Each row becomes one row in the printed exercise table. Days become section breaks. The videoUrl column, when present, becomes either a QR code (if you enable QR codes) or a plain hyperlink (if you don't). Skipping videoUrl entirely is also a valid choice for plans that don't need video reference.</p>\n<p>What makes the schema forgiving is that you don't need every column for every exercise. A mobility day might leave rest blank; a hypertrophy day might skip notes entirely. The table renderer drops empty cells without leaving a dash, so missing data doesn't look like a typo.</p>\n<h2>The Five Flags That Decide Layout</h2>\n<p>Most of the layout choice happens in five toggles: <strong>Workout Data vs Workout File</strong>, <strong>Program Title / Subtitle</strong>, <strong>Include Progress Boxes</strong>, <strong>Include QR Codes</strong>, and <strong>Page Size</strong>.</p>\n<p><strong>Workout Data vs Workout File</strong> is just input source \u2014 paste rows or upload a saved CSV/JSON. Same parser either way; the file upload exists so coaches who keep programs in Drive can drop a file instead of opening the tool every week.</p>\n<p><strong>Program Title / Subtitle</strong> prints at the top of every page. Default is \"Workout Plan\". For a real program, set the title to the program name (\"PPL Hypertrophy \u2014 8 Weeks\") and the subtitle to the trainee phase (\"Week 3 of 8, deload\").</p>\n<p><strong>Include Progress Boxes</strong> adds a checkbox column to the right of every exercise row. This is the toggle that turns a reference sheet into a working sheet \u2014 trainees actually tick off sets as they go instead of referring to the PDF and forgetting which set they're on.</p>\n<p><strong>Include QR Codes</strong> turns each videoUrl into a scannable QR code at the end of the row. Without this, videoUrl renders as a plain text URL \u2014 fine for digital reading, useless for a printout on a gym floor. With this, trainees scan and watch without typing a URL on a sweaty phone.</p>\n<p><strong>Page Size</strong> is A4 vs Letter. A4 fits a 3-column metric layout better; Letter fits a 4-column imperial layout better. Pick the one that matches the trainee's paper supply \u2014 not the trainer's country.</p>\n<h2>Three Patterns for the Workout Data CSV</h2>\n<p>Three CSV patterns cover 90% of plans coaches actually write.</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/card_2.png\" alt=\"Three CSV patterns cover 90 percent of plans\" loading=\"lazy\"></figure>\n<p><strong>Pattern 1 \u2014 single-day programs.</strong> One day, multiple exercises. Headers: <code>exercise,sets,reps,rest,notes</code>. Day column is optional; if absent, every row goes into one section.</p>\n<p><strong>Pattern 2 \u2014 multi-day programs.</strong> Headers: <code>day,exercise,sets,reps,rest,notes</code>. Day column drives section breaks. Rows with the same day get grouped together; the renderer sorts days alphabetically by default (or by first-appearance order if you set day to \"Push\", \"Pull\", \"Legs\").</p>\n<p><strong>Pattern 3 \u2014 video-rich programs.</strong> Same as pattern 2, plus a <code>videoUrl</code> column. Each non-empty URL becomes a QR code if QR Codes is on. URLs that fail to render as QRs (malformed, non-HTTP, javascript: prefix) are silently skipped and the row still prints.</p>\n<h2>When Progress Boxes Earn Their Page Real Estate</h2>\n<p>Progress boxes add a column to the right of every exercise. Three pages or fewer \u2014 they earn it. Five pages or more, and the box column starts to push the notes column into a second line per row, which makes the table harder to scan.</p>\n<p>For programs with progress boxes, keep notes short (under 40 characters per row). For programs without boxes, notes can run longer because the freed space goes to text, not checkbox glyphs.</p>\n<h2>Choosing the Right Workout File Format</h2>\n<p>The generator accepts two input formats: CSV and JSON. Both produce identical output \u2014 the parser reads them into the same intermediate row representation before layout begins. The choice is about author workflow, not about capability.</p>\n<p>CSV wins when the plan is written by hand or exported from a spreadsheet. Coaches who keep programs in Google Sheets can save-as-CSV and drop the file straight into the generator. CSV is also easier to diff in version control if you and a co-trainer iterate on the same program week over week.</p>\n<p>JSON wins when the plan is generated programmatically. A fitness app that builds a personalized plan from a questionnaire can emit a JSON array of objects with the same field names the generator expects, no transformation needed. JSON also handles special characters in notes (commas, quotes, newlines) without escaping, which matters for plans with detailed coaching cues.</p>\n<p>If the input contains tabs, the parser falls back to tab-delimited CSV automatically. Useful for Excel exports from coaches who use semicolons or tabs instead of commas.</p>\n<h2>When QR Codes Beat Plain URLs</h2>\n<p>A printed PDF on a gym floor with plain text URLs is a 5-tap workflow: find the URL, type the domain, navigate, find the video. With QR codes, it's a 1-tap workflow: scan, watch. For programs where trainees actually need to watch the form on a heavy squat day, QR codes pay for themselves in the first session.</p>\n<p>The renderer uses standard error-correction level Q (about 25% redundancy) \u2014 robust enough to scan through a sweat-wet finger or a slightly bent page. It will not scan if the printed PDF has been photocopied at 50% scale, because the QR cell becomes too small. Print at 100%.</p>\n<h2>When the Output Looks Wrong (and How to Fix It)</h2>\n<p>Three common output problems and their fixes.</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/card_3.png\" alt=\"Three output problems and their fixes\" loading=\"lazy\"></figure>\n<p><strong>Problem 1: days print in alphabetical order instead of program order.</strong> Cause: the day column contains full names (\"Push Day\", \"Pull Day\", \"Leg Day\") that sort alphabetically. Fix: use short codes (\"Push\", \"Pull\", \"Legs\") \u2014 the renderer preserves first-appearance order for short day values.</p>\n<p><strong>Problem 2: video URLs render as plain text even though QR Codes is enabled.</strong> Cause: videoUrl cells are empty or contain non-URL text (\"see notes\"). Fix: ensure videoUrl is a complete <code>https://</code> URL; empty cells are dropped, malformed URLs are silently skipped.</p>\n<p><strong>Problem 3: notes wrap to two lines, pushing rows down the page.</strong> Cause: notes column contains long sentences. Fix: trim notes to under 40 chars, or split into a separate <code>note1</code> and <code>note2</code> columns if the trainer wants more detail.</p>\n<h2>Putting It Together</h2>\n<p>For a 4-day hypertrophy program printed for a dozen trainees, the working recipe is:</p>\n<p>- CSV with columns <code>day,exercise,sets,reps,rest,notes,videoUrl</code> - Day values: short codes (\"Push\", \"Pull\", \"Legs\", \"Upper\") - Program Title: the program name - Subtitle: the current week/phase - Progress Boxes: enabled - QR Codes: enabled - Page Size: Letter for US trainees, A4 for EU</p>\n<p>The output is a 6-page PDF \u2014 one page per day for a 4-day program plus a cover and a glossary \u2014 with every exercise tappable, scannable, and tickable. Coaches stop re-printing mid-cycle; trainees stop losing their spot.</p>\n<p>Try the generator on a one-day program first to feel the layout, then scale up to multi-day with QR codes for a real test of the print-to-scan path. The full feature reference is at the <a href=\"https://elysiatools.com/en/tools/fitness-workout-pdf-generator\">Fitness Workout PDF Generator</a> page if you need to check an option flag during a print run.</p>\n<p>Explore more document-generation options at <a href=\"https://elysiatools.com/en/tools\">Elysia Tools</a> \u2014 or generate a printable plan now at the <a href=\"https://elysiatools.com/en/tools/fitness-workout-pdf-generator\">Fitness Workout PDF Generator</a>.</p>",
+    "rendered": "<figure class=\"article-poster\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/poster-14.png\" alt=\"Fitness Workout PDF Generator field guide cover poster\"></figure>\n<p>Working out is the easy part. Printing a program your members will actually read \u2014 week after week, set after set, without skipping the video links \u2014 is the part that quietly eats your afternoon. The <a href=\"https://elysiatools.com/en/tools/fitness-workout-pdf-generator\">Fitness Workout PDF Generator</a> takes a JSON or CSV workout plan and turns it into a printable PDF with exercise tables, progress checkboxes, and QR-coded video demonstrations. Five toggles decide whether the output looks like a real program or like an exported spreadsheet with no margin and a QR floating off the page.</p>\n</p>\n<p><strong>Lead phrase.</strong> Coaches and gym owners who run the same plan across dozens of trainees need a way to print one document that everyone can tick off, with the demo video one scan away. This generator takes a JSON or CSV workout plan and produces a printable PDF \u2014 exercise tables, progress boxes, and optional QR video links \u2014 and it does the layout choices for you if you give it five flags.</p>\n<h2>How the Workout Data Schema Drives the Output</h2>\n<p>The generator accepts two input shapes: a JSON array of objects or a CSV with the same column names. Either way, the columns that matter are the ones that show up in the printed table \u2014 day, exercise, sets, reps, rest, notes, and videoUrl. The full layout and input pipeline lives at the <a href=\"https://elysiatools.com/en/tools/fitness-workout-pdf-generator\">Fitness Workout PDF Generator</a> page.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/card_1.png\" alt=\"Five flags that decide the layout\" loading=\"lazy\"></figure>\n<p>Each row becomes one row in the printed exercise table. Days become section breaks. The videoUrl column, when present, becomes either a QR code (if you enable QR codes) or a plain hyperlink (if you don&#8217;t). Skipping videoUrl entirely is also a valid choice for plans that don&#8217;t need video reference.</p>\n<p>What makes the schema forgiving is that you don&#8217;t need every column for every exercise. A mobility day might leave rest blank; a hypertrophy day might skip notes entirely. The table renderer drops empty cells without leaving a dash, so missing data doesn&#8217;t look like a typo.</p>\n<h2>The Five Flags That Decide Layout</h2>\n<p>Most of the layout choice happens in five toggles: <strong>Workout Data vs Workout File</strong>, <strong>Program Title / Subtitle</strong>, <strong>Include Progress Boxes</strong>, <strong>Include QR Codes</strong>, and <strong>Page Size</strong>.</p>\n<p><strong>Workout Data vs Workout File</strong> is just input source \u2014 paste rows or upload a saved CSV/JSON. Same parser either way; the file upload exists so coaches who keep programs in Drive can drop a file instead of opening the tool every week.</p>\n<p><strong>Program Title / Subtitle</strong> prints at the top of every page. Default is &#8220;Workout Plan&#8221;. For a real program, set the title to the program name (&#8220;PPL Hypertrophy \u2014 8 Weeks&#8221;) and the subtitle to the trainee phase (&#8220;Week 3 of 8, deload&#8221;).</p>\n<p><strong>Include Progress Boxes</strong> adds a checkbox column to the right of every exercise row. This is the toggle that turns a reference sheet into a working sheet \u2014 trainees actually tick off sets as they go instead of referring to the PDF and forgetting which set they&#8217;re on.</p>\n<p><strong>Include QR Codes</strong> turns each videoUrl into a scannable QR code at the end of the row. Without this, videoUrl renders as a plain text URL \u2014 fine for digital reading, useless for a printout on a gym floor. With this, trainees scan and watch without typing a URL on a sweaty phone.</p>\n<p><strong>Page Size</strong> is A4 vs Letter. A4 fits a 3-column metric layout better; Letter fits a 4-column imperial layout better. Pick the one that matches the trainee&#8217;s paper supply \u2014 not the trainer&#8217;s country.</p>\n<h2>Three Patterns for the Workout Data CSV</h2>\n<p>Three CSV patterns cover 90% of plans coaches actually write.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/card_2.png\" alt=\"Three CSV patterns cover 90 percent of plans\" loading=\"lazy\"></figure>\n<p><strong>Pattern 1 \u2014 single-day programs.</strong> One day, multiple exercises. Headers: <code>exercise,sets,reps,rest,notes</code>. Day column is optional; if absent, every row goes into one section.</p>\n<p><strong>Pattern 2 \u2014 multi-day programs.</strong> Headers: <code>day,exercise,sets,reps,rest,notes</code>. Day column drives section breaks. Rows with the same day get grouped together; the renderer sorts days alphabetically by default (or by first-appearance order if you set day to &#8220;Push&#8221;, &#8220;Pull&#8221;, &#8220;Legs&#8221;).</p>\n<p><strong>Pattern 3 \u2014 video-rich programs.</strong> Same as pattern 2, plus a <code>videoUrl</code> column. Each non-empty URL becomes a QR code if QR Codes is on. URLs that fail to render as QRs (malformed, non-HTTP, javascript: prefix) are silently skipped and the row still prints.</p>\n<h2>When Progress Boxes Earn Their Page Real Estate</h2>\n<p>Progress boxes add a column to the right of every exercise. Three pages or fewer \u2014 they earn it. Five pages or more, and the box column starts to push the notes column into a second line per row, which makes the table harder to scan.</p>\n<p>For programs with progress boxes, keep notes short (under 40 characters per row). For programs without boxes, notes can run longer because the freed space goes to text, not checkbox glyphs.</p>\n<h2>Choosing the Right Workout File Format</h2>\n<p>The generator accepts two input formats: CSV and JSON. Both produce identical output \u2014 the parser reads them into the same intermediate row representation before layout begins. The choice is about author workflow, not about capability.</p>\n<p>CSV wins when the plan is written by hand or exported from a spreadsheet. Coaches who keep programs in Google Sheets can save-as-CSV and drop the file straight into the generator. CSV is also easier to diff in version control if you and a co-trainer iterate on the same program week over week.</p>\n<p>JSON wins when the plan is generated programmatically. A fitness app that builds a personalized plan from a questionnaire can emit a JSON array of objects with the same field names the generator expects, no transformation needed. JSON also handles special characters in notes (commas, quotes, newlines) without escaping, which matters for plans with detailed coaching cues.</p>\n<p>If the input contains tabs, the parser falls back to tab-delimited CSV automatically. Useful for Excel exports from coaches who use semicolons or tabs instead of commas.</p>\n<h2>When QR Codes Beat Plain URLs</h2>\n<p>A printed PDF on a gym floor with plain text URLs is a 5-tap workflow: find the URL, type the domain, navigate, find the video. With QR codes, it&#8217;s a 1-tap workflow: scan, watch. For programs where trainees actually need to watch the form on a heavy squat day, QR codes pay for themselves in the first session.</p>\n<p>The renderer uses standard error-correction level Q (about 25% redundancy) \u2014 robust enough to scan through a sweat-wet finger or a slightly bent page. It will not scan if the printed PDF has been photocopied at 50% scale, because the QR cell becomes too small. Print at 100%.</p>\n<h2>When the Output Looks Wrong (and How to Fix It)</h2>\n<p>Three common output problems and their fixes.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/card_3.png\" alt=\"Three output problems and their fixes\" loading=\"lazy\"></figure>\n<p><strong>Problem 1: days print in alphabetical order instead of program order.</strong> Cause: the day column contains full names (&#8220;Push Day&#8221;, &#8220;Pull Day&#8221;, &#8220;Leg Day&#8221;) that sort alphabetically. Fix: use short codes (&#8220;Push&#8221;, &#8220;Pull&#8221;, &#8220;Legs&#8221;) \u2014 the renderer preserves first-appearance order for short day values.</p>\n<p><strong>Problem 2: video URLs render as plain text even though QR Codes is enabled.</strong> Cause: videoUrl cells are empty or contain non-URL text (&#8220;see notes&#8221;). Fix: ensure videoUrl is a complete <code>https://</code> URL; empty cells are dropped, malformed URLs are silently skipped.</p>\n<p><strong>Problem 3: notes wrap to two lines, pushing rows down the page.</strong> Cause: notes column contains long sentences. Fix: trim notes to under 40 chars, or split into a separate <code>note1</code> and <code>note2</code> columns if the trainer wants more detail.</p>\n<h2>Putting It Together</h2>\n<p>For a 4-day hypertrophy program printed for a dozen trainees, the working recipe is:</p>\n<p>&#8211; CSV with columns <code>day,exercise,sets,reps,rest,notes,videoUrl</code> &#8211; Day values: short codes (&#8220;Push&#8221;, &#8220;Pull&#8221;, &#8220;Legs&#8221;, &#8220;Upper&#8221;) &#8211; Program Title: the program name &#8211; Subtitle: the current week/phase &#8211; Progress Boxes: enabled &#8211; QR Codes: enabled &#8211; Page Size: Letter for US trainees, A4 for EU</p>\n<p>The output is a 6-page PDF \u2014 one page per day for a 4-day program plus a cover and a glossary \u2014 with every exercise tappable, scannable, and tickable. Coaches stop re-printing mid-cycle; trainees stop losing their spot.</p>\n<p>Try the generator on a one-day program first to feel the layout, then scale up to multi-day with QR codes for a real test of the print-to-scan path. The full feature reference is at the <a href=\"https://elysiatools.com/en/tools/fitness-workout-pdf-generator\">Fitness Workout PDF Generator</a> page if you need to check an option flag during a print run.</p>\n<p>Explore more document-generation options at <a href=\"https://elysiatools.com/en/tools\">Elysia Tools</a> \u2014 or generate a printable plan now at the <a href=\"https://elysiatools.com/en/tools/fitness-workout-pdf-generator\">Fitness Workout PDF Generator</a>.</p>\n",
+    "protected": false,
+    "block_version": 0
+  },
+  "excerpt": {
+    "raw": "",
+    "rendered": "<p>Working out is the easy part. Printing a program your members will actually read \u2014&hellip;</p>\n",
+    "protected": false
+  },
+  "author": 1,
+  "featured_media": 0,
+  "comment_status": "open",
+  "ping_status": "open",
+  "sticky": false,
+  "template": "",
+  "format": "standard",
+  "meta": {
+    "om_disable_all_campaigns": false,
+    "_monsterinsights_skip_tracking": false,
+    "footnotes": ""
+  },
+  "categories": [
+    1
+  ],
+  "tags": [
+    2053,
+    2050,
+    2052,
+    2010,
+    2051
+  ],
+  "permalink_template": "https://blog.flowrust.com/2026/09/07/%postname%/",
+  "generated_slug": "fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump",
+  "class_list": [
+    "post-6882",
+    "post",
+    "type-post",
+    "status-publish",
+    "format-standard",
+    "hentry",
+    "category-uncategorized",
+    "tag-data-automation",
+    "tag-fitness-coaching",
+    "tag-gym-management",
+    "tag-pdf-generation",
+    "tag-workout-templates"
+  ],
+  "aioseo_notices": [],
+  "aioseo_head": "\n\t\t<!-- All in One SEO 4.9.10 - aioseo.com -->\n\t<meta name=\"description\" content=\"Working out is the easy part. Printing a program your members will actually read \u2014 week after week, set after set, without skipping the video links \u2014 is the part that quietly eats your afternoon. The Fitness Workout PDF Generator takes a JSON or CSV workout plan and turns it into a printable PDF with\" />\n\t<meta name=\"robots\" content=\"max-image-preview:large\" />\n\t<meta name=\"author\" content=\"xiezixing\"/>\n\t<meta name=\"google-site-verification\" content=\"xcSlplMgocNnrNwmxi7j46JcdU6F-L2jrlAnpUB5Lxg\" />\n\t<link rel=\"canonical\" href=\"https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/\" />\n\t<meta name=\"generator\" content=\"All in One SEO (AIOSEO) 4.9.10\" />\n\t\t<meta property=\"og:locale\" content=\"en_US\" />\n\t\t<meta property=\"og:site_name\" content=\"COSESAI - Sharing my AI experiences\" />\n\t\t<meta property=\"og:type\" content=\"article\" />\n\t\t<meta property=\"og:title\" content=\"Fitness Workout PDF Generator Field Guide: When Five Flags, Four Column Choices, and One QR Strategy Decide Whether Your Printable Plan Reads Like a Real Program or a Spreadsheet Dump - COSESAI\" />\n\t\t<meta property=\"og:description\" content=\"Working out is the easy part. Printing a program your members will actually read \u2014 week after week, set after set, without skipping the video links \u2014 is the part that quietly eats your afternoon. The Fitness Workout PDF Generator takes a JSON or CSV workout plan and turns it into a printable PDF with\" />\n\t\t<meta property=\"og:url\" content=\"https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/\" />\n\t\t<meta property=\"og:image\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<meta property=\"og:image:secure_url\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<meta property=\"og:image:width\" content=\"512\" />\n\t\t<meta property=\"og:image:height\" content=\"512\" />\n\t\t<meta property=\"article:published_time\" content=\"2026-09-07T07:48:20+00:00\" />\n\t\t<meta property=\"article:modified_time\" content=\"2026-09-07T07:50:23+00:00\" />\n\t\t<meta name=\"twitter:card\" content=\"summary_large_image\" />\n\t\t<meta name=\"twitter:title\" content=\"Fitness Workout PDF Generator Field Guide: When Five Flags, Four Column Choices, and One QR Strategy Decide Whether Your Printable Plan Reads Like a Real Program or a Spreadsheet Dump - COSESAI\" />\n\t\t<meta name=\"twitter:description\" content=\"Working out is the easy part. Printing a program your members will actually read \u2014 week after week, set after set, without skipping the video links \u2014 is the part that quietly eats your afternoon. The Fitness Workout PDF Generator takes a JSON or CSV workout plan and turns it into a printable PDF with\" />\n\t\t<meta name=\"twitter:image\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<script type=\"application/ld+json\" class=\"aioseo-schema\">\n\t\t\t{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/07\\/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump\\/#blogposting\",\"name\":\"Fitness Workout PDF Generator Field Guide: When Five Flags, Four Column Choices, and One QR Strategy Decide Whether Your Printable Plan Reads Like a Real Program or a Spreadsheet Dump - COSESAI\",\"headline\":\"Fitness Workout PDF Generator Field Guide: When Five Flags, Four Column Choices, and One QR Strategy Decide Whether Your Printable Plan Reads Like a Real Program or a Spreadsheet Dump\",\"author\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"publisher\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\"},\"image\":{\"@type\":\"ImageObject\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/uploads\\/2026\\/09\\/poster-14.png\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/07\\/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump\\/#articleImage\",\"width\":1080,\"height\":800},\"datePublished\":\"2026-09-07T15:48:20+08:00\",\"dateModified\":\"2026-09-07T15:50:23+08:00\",\"inLanguage\":\"en-US\",\"mainEntityOfPage\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/07\\/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump\\/#webpage\"},\"isPartOf\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/07\\/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump\\/#webpage\"},\"articleSection\":\"\\u672a\\u5206\\u7c7b, data automation, fitness coaching, gym management, PDF Generation, workout templates\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/07\\/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump\\/#breadcrumblist\",\"itemListElement\":[{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com#listItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/blog.flowrust.com\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"name\":\"\\u672a\\u5206\\u7c7b\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"position\":2,\"name\":\"\\u672a\\u5206\\u7c7b\",\"item\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/07\\/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump\\/#listItem\",\"name\":\"Fitness Workout PDF Generator Field Guide: When Five Flags, Four Column Choices, and One QR Strategy Decide Whether Your Printable Plan Reads Like a Real Program or a Spreadsheet Dump\"},\"previousItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com#listItem\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/07\\/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump\\/#listItem\",\"position\":3,\"name\":\"Fitness Workout PDF Generator Field Guide: When Five Flags, Four Column Choices, and One QR Strategy Decide Whether Your Printable Plan Reads Like a Real Program or a Spreadsheet Dump\",\"previousItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"name\":\"\\u672a\\u5206\\u7c7b\"}}]},{\"@type\":\"Person\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\",\"name\":\"xiezixing\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/07\\/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump\\/#personImage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/litespeed\\/avatar\\/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1788181117\",\"width\":96,\"height\":96,\"caption\":\"xiezixing\"}},{\"@type\":\"Person\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\",\"url\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/\",\"name\":\"xiezixing\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/07\\/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump\\/#authorImage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/litespeed\\/avatar\\/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1788181117\",\"width\":96,\"height\":96,\"caption\":\"xiezixing\"}},{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/07\\/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump\\/#webpage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/07\\/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump\\/\",\"name\":\"Fitness Workout PDF Generator Field Guide: When Five Flags, Four Column Choices, and One QR Strategy Decide Whether Your Printable Plan Reads Like a Real Program or a Spreadsheet Dump - COSESAI\",\"description\":\"Working out is the easy part. Printing a program your members will actually read \\u2014 week after week, set after set, without skipping the video links \\u2014 is the part that quietly eats your afternoon. The Fitness Workout PDF Generator takes a JSON or CSV workout plan and turns it into a printable PDF with\",\"inLanguage\":\"en-US\",\"isPartOf\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/07\\/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump\\/#breadcrumblist\"},\"author\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"creator\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"datePublished\":\"2026-09-07T15:48:20+08:00\",\"dateModified\":\"2026-09-07T15:50:23+08:00\"},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/#website\",\"url\":\"https:\\/\\/blog.flowrust.com\\/\",\"name\":\"COSESAI\",\"description\":\"Sharing my AI experiences\",\"inLanguage\":\"en-US\",\"publisher\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\"}}]}\n\t\t</script>\n\t\t<!-- All in One SEO -->\n\n",
+  "aioseo_head_json": {
+    "title": "Fitness Workout PDF Generator Field Guide: When Five Flags, Four Column Choices, and One QR Strategy Decide Whether Your Printable Plan Reads Like a Real Program or a Spreadsheet Dump - COSESAI",
+    "description": "Working out is the easy part. Printing a program your members will actually read \u2014 week after week, set after set, without skipping the video links \u2014 is the part that quietly eats your afternoon. The Fitness Workout PDF Generator takes a JSON or CSV workout plan and turns it into a printable PDF with",
+    "canonical_url": "https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/",
+    "robots": "max-image-preview:large",
+    "keywords": "",
+    "webmasterTools": {
+      "google-site-verification": "xcSlplMgocNnrNwmxi7j46JcdU6F-L2jrlAnpUB5Lxg",
+      "miscellaneous": ""
+    },
+    "schema": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "@id": "https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/#blogposting",
+          "name": "Fitness Workout PDF Generator Field Guide: When Five Flags, Four Column Choices, and One QR Strategy Decide Whether Your Printable Plan Reads Like a Real Program or a Spreadsheet Dump - COSESAI",
+          "headline": "Fitness Workout PDF Generator Field Guide: When Five Flags, Four Column Choices, and One QR Strategy Decide Whether Your Printable Plan Reads Like a Real Program or a Spreadsheet Dump",
+          "author": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "publisher": {
+            "@id": "https://blog.flowrust.com/#person"
+          },
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://blog.flowrust.com/wp-content/uploads/2026/09/poster-14.png",
+            "@id": "https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/#articleImage",
+            "width": 1080,
+            "height": 800
+          },
+          "datePublished": "2026-09-07T15:48:20+08:00",
+          "dateModified": "2026-09-07T15:50:23+08:00",
+          "inLanguage": "en-US",
+          "mainEntityOfPage": {
+            "@id": "https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/#webpage"
+          },
+          "isPartOf": {
+            "@id": "https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/#webpage"
+          },
+          "articleSection": "\u672a\u5206\u7c7b, data automation, fitness coaching, gym management, PDF Generation, workout templates"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/#breadcrumblist",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com#listItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://blog.flowrust.com",
+              "nextItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+                "name": "\u672a\u5206\u7c7b"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+              "position": 2,
+              "name": "\u672a\u5206\u7c7b",
+              "item": "https://blog.flowrust.com/category/uncategorized/",
+              "nextItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/#listItem",
+                "name": "Fitness Workout PDF Generator Field Guide: When Five Flags, Four Column Choices, and One QR Strategy Decide Whether Your Printable Plan Reads Like a Real Program or a Spreadsheet Dump"
+              },
+              "previousItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com#listItem",
+                "name": "Home"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/#listItem",
+              "position": 3,
+              "name": "Fitness Workout PDF Generator Field Guide: When Five Flags, Four Column Choices, and One QR Strategy Decide Whether Your Printable Plan Reads Like a Real Program or a Spreadsheet Dump",
+              "previousItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+                "name": "\u672a\u5206\u7c7b"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://blog.flowrust.com/#person",
+          "name": "xiezixing",
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/#personImage",
+            "url": "https://blog.flowrust.com/wp-content/litespeed/avatar/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1788181117",
+            "width": 96,
+            "height": 96,
+            "caption": "xiezixing"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://blog.flowrust.com/author/xiezixing/#author",
+          "url": "https://blog.flowrust.com/author/xiezixing/",
+          "name": "xiezixing",
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/#authorImage",
+            "url": "https://blog.flowrust.com/wp-content/litespeed/avatar/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1788181117",
+            "width": 96,
+            "height": 96,
+            "caption": "xiezixing"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/#webpage",
+          "url": "https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/",
+          "name": "Fitness Workout PDF Generator Field Guide: When Five Flags, Four Column Choices, and One QR Strategy Decide Whether Your Printable Plan Reads Like a Real Program or a Spreadsheet Dump - COSESAI",
+          "description": "Working out is the easy part. Printing a program your members will actually read \u2014 week after week, set after set, without skipping the video links \u2014 is the part that quietly eats your afternoon. The Fitness Workout PDF Generator takes a JSON or CSV workout plan and turns it into a printable PDF with",
+          "inLanguage": "en-US",
+          "isPartOf": {
+            "@id": "https://blog.flowrust.com/#website"
+          },
+          "breadcrumb": {
+            "@id": "https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/#breadcrumblist"
+          },
+          "author": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "creator": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "datePublished": "2026-09-07T15:48:20+08:00",
+          "dateModified": "2026-09-07T15:50:23+08:00"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://blog.flowrust.com/#website",
+          "url": "https://blog.flowrust.com/",
+          "name": "COSESAI",
+          "description": "Sharing my AI experiences",
+          "inLanguage": "en-US",
+          "publisher": {
+            "@id": "https://blog.flowrust.com/#person"
+          }
+        }
+      ]
+    },
+    "og:locale": "en_US",
+    "og:site_name": "COSESAI - Sharing my AI experiences",
+    "og:type": "article",
+    "og:title": "Fitness Workout PDF Generator Field Guide: When Five Flags, Four Column Choices, and One QR Strategy Decide Whether Your Printable Plan Reads Like a Real Program or a Spreadsheet Dump - COSESAI",
+    "og:description": "Working out is the easy part. Printing a program your members will actually read \u2014 week after week, set after set, without skipping the video links \u2014 is the part that quietly eats your afternoon. The Fitness Workout PDF Generator takes a JSON or CSV workout plan and turns it into a printable PDF with",
+    "og:url": "https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/",
+    "og:image": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp",
+    "og:image:secure_url": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp",
+    "og:image:width": 512,
+    "og:image:height": 512,
+    "article:published_time": "2026-09-07T07:48:20+00:00",
+    "article:modified_time": "2026-09-07T07:50:23+00:00",
+    "twitter:card": "summary_large_image",
+    "twitter:title": "Fitness Workout PDF Generator Field Guide: When Five Flags, Four Column Choices, and One QR Strategy Decide Whether Your Printable Plan Reads Like a Real Program or a Spreadsheet Dump - COSESAI",
+    "twitter:description": "Working out is the easy part. Printing a program your members will actually read \u2014 week after week, set after set, without skipping the video links \u2014 is the part that quietly eats your afternoon. The Fitness Workout PDF Generator takes a JSON or CSV workout plan and turns it into a printable PDF with",
+    "twitter:image": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp"
+  },
+  "aioseo_meta_data": [],
+  "aioseo_breadcrumb": "<div class=\"aioseo-breadcrumbs\"><span class=\"aioseo-breadcrumb\">\n\t\t\t<a href=\"https://blog.flowrust.com\" title=\"Home\">Home</a>\n\t\t</span><span class=\"aioseo-breadcrumb-separator\">&raquo;</span><span class=\"aioseo-breadcrumb\">\n\t\t\t<a href=\"https://blog.flowrust.com/category/uncategorized/\" title=\"\u672a\u5206\u7c7b\">\u672a\u5206\u7c7b</a>\n\t\t</span><span class=\"aioseo-breadcrumb-separator\">&raquo;</span><span class=\"aioseo-breadcrumb\">\n\t\t\tFitness Workout PDF Generator Field Guide: When Five Flags, Four Column Choices, and One QR Strategy Decide Whether Your Printable Plan Reads Like a Real Program or a Spreadsheet Dump\n\t\t</span></div>",
+  "aioseo_breadcrumb_json": [
+    {
+      "label": "Home",
+      "link": "https://blog.flowrust.com"
+    },
+    {
+      "label": "\u672a\u5206\u7c7b",
+      "link": "https://blog.flowrust.com/category/uncategorized/"
+    },
+    {
+      "label": "Fitness Workout PDF Generator Field Guide: When Five Flags, Four Column Choices, and One QR Strategy Decide Whether Your Printable Plan Reads Like a Real Program or a Spreadsheet Dump",
+      "link": "https://blog.flowrust.com/2026/09/07/fitness-workout-pdf-generator-field-guide-when-five-flags-four-column-choices-and-one-qr-strategy-decide-whether-your-printable-plan-reads-like-a-real-program-or-a-spreadsheet-dump/"
+    }
+  ],
+  "_links": {
+    "self": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6882",
+        "targetHints": {
+          "allow": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE"
+          ]
+        }
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts"
+      }
+    ],
+    "about": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/types/post"
+      }
+    ],
+    "author": [
+      {
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/users/1"
+      }
+    ],
+    "replies": [
+      {
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/comments?post=6882"
+      }
+    ],
+    "version-history": [
+      {
+        "count": 1,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6882/revisions"
+      }
+    ],
+    "predecessor-version": [
+      {
+        "id": 6883,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6882/revisions/6883"
+      }
+    ],
+    "wp:attachment": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/media?parent=6882"
+      }
+    ],
+    "wp:term": [
+      {
+        "taxonomy": "category",
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/categories?post=6882"
+      },
+      {
+        "taxonomy": "post_tag",
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/tags?post=6882"
+      }
+    ],
+    "wp:action-publish": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6882"
+      }
+    ],
+    "wp:action-unfiltered-html": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6882"
+      }
+    ],
+    "wp:action-sticky": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6882"
+      }
+    ],
+    "wp:action-assign-author": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6882"
+      }
+    ],
+    "wp:action-create-categories": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6882"
+      }
+    ],
+    "wp:action-assign-categories": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6882"
+      }
+    ],
+    "wp:action-create-tags": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6882"
+      }
+    ],
+    "wp:action-assign-tags": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/6882"
+      }
+    ],
+    "curies": [
+      {
+        "name": "wp",
+        "href": "https://api.w.org/{rel}",
+        "templated": true
+      }
+    ]
+  }
+}
