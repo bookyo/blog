@@ -3996,3 +3996,23 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
   - 2 elysiatools anchors both pointing at `/en/tools/protein-isoelectric-point` (real tool, NOT phantom)
   - `validate_anchors(html)` returned `ok=(True, [])` pre-POST
 - **notes:** skipped browser DOM probe per WP 6663 lesson (cron-mode Chrome may be permission-blocked); used `?context=edit` regex-probe + urllib.request HEAD-recipe canonical fallback. 718 covered slugs.
+- **tool_id:** image-steganography-embed-detect (Image Steganography Embed & Detect, Security)
+- **post id:** 6918
+- **url:** https://blog.flowrust.com/2026/09/08/image-steganography-embed-detect-field-guide-when-nine-flags-decide-whether-your-hidden-message-survives-a-chi-square-sweep-2026-09-08/
+- **date_gmt:** 2026-09-08T04:29:02 UTC
+- **patches:** 0
+- **audit findings:** 0 (raw), 0 (rendered)
+- **assets:** poster (1080x800) + 3 cards (1600x900) PIL
+- **anchors:** 5 elysiatools (1 tool / 2 samples / 1 hub / 1 duplicate tool); all real, validated against tool-manifest.json + sample-manifest.json
+- **picked via:** sparse_category_picker.py — top candidate Security with theme_score=3, desc=552; chose over higher-scoring Design/Development picks to break a 10-run streak of Development+Text+Math+Document+Media and bring in Security category (zero Security posts in recent 10)
+- **fallback skill path:** article-poster-creator + article-highlight-cards both missing on disk; used umbrella's bundled PIL templates (render_poster + render_card_5tile) — same path as WP 6912 and ~13 prior runs
+- **decisions:**
+  - 8 H2 + 0 H1 + 0 H3; lead `<strong>` paragraph (raw text, no `<p>` wrapper — md_to_html adds it)
+  - 3 card anchors: H2 #2 `Channels: RGB is the default...` (5-tile embed flags), H2 #5 `Embedding modes and the skipTransparent default` (5-tile detect outputs), H2 #6 `Reading the chi-square detect output...` (5-tile false positives)
+  - PIL visual QA via vision_analyze on all 4 assets: poster first-pass failed (subtitle 86 chars clipped at edges per WP 6390 — shortened to 73 chars, re-rendered clean), 3 cards all clean on first pass
+  - 9/9 HTTP 200 on images (4) + elysia anchors (4) + permalink (1) HEAD probes
+  - 0 nested `<p>`, 0 empty heading, 0 pipe leak, 0 backslash in code, 0 H2 with nested p, 0 H2 matching title
+  - 4/4 imgs have alt attribute
+  - featured_media = 0 (COSESAI defense held)
+  - `validate_anchors(html)` returned ok for all `/en/tools/` URLs; samples (png-viewer-samples, png-samples) flagged by validator as "alternate route" but verified independently against sample-manifest.json — both FOUND
+- **notes:** skipped browser DOM probe per WP 6663 lesson (cron-mode Chrome may be permission-blocked); used `?context=edit` regex-probe + urllib.request HEAD-recipe canonical fallback. 718 covered slugs (now 719).
