@@ -1,0 +1,112 @@
+<strong>MD5 still ships in production code, but the day it collides with your build, the SHA-256 fingerprint is the one that saves you.</strong> When you paste a string into a hash tool, the five algorithms it returns are not interchangeable. They differ in security, in collision resistance, in length, and in what downstream systems will accept. Knowing which digest to use for a checksum, a content-addressed cache key, a deduplication signature, or a forensic fingerprint is a piece of practical engineering that no framework will automate for you.
+
+The [Text Hash Generator](https://elysiatools.com/en/tools/text-hash-generator) computes MD5, SHA-1, SHA-256, SHA-512, and CRC-32 over the same input at once, in both hex and Base64, and that one-screen comparison is the fastest way to develop the muscle memory of when each algorithm applies.
+
+## Why Five Hashes at Once
+
+A single algorithm is a single bet on the future. If the algorithm gets broken, every file you ever signed with it is suddenly suspect. Running all five at once gives you two layers of insurance:
+
+<ul>
+<li>A <em>current</em> digest for whatever the recipient expects today (MD5 for legacy ETags, SHA-256 for git, SHA-512 for high-assurance pipelines).</li>
+<li>A <em>belt-and-suspenders</em> digest using a different algorithm, so that a future collision in one family does not simultaneously compromise the other.</li>
+</ul>
+
+If your build only stores MD5 because that is what your CI logs already print, you have one independent line of defense. The moment you also persist the SHA-256 alongside, a collision in MD5 leaves the SHA-256 intact and the tampering is detectable. This is why software distribution channels like APT and most container registries require SHA-256 in their manifests, not MD5. They learned the lesson the hard way from the Flame malware, which abused an MD5 collision to forge a Windows update certificate in 2012.
+
+## The Five Algorithms and What They Are Good For
+
+Each algorithm in the five-hash output occupies a different niche:
+
+<ul>
+<li><strong>MD5</strong> (128-bit, 32-hex-char): fast, ubiquitous, broken for adversarial collision resistance since 2004. Still acceptable for non-security checksums, ETags, cache keys, and dedup where the input is not attacker-controlled.</li>
+<li><strong>SHA-1</strong> (160-bit, 40-hex-char): deprecated by NIST in 2011 after the SHAttered collision attack, but still seen in legacy git history and old PGP keys. Treat it as transitional.</li>
+<li><strong>SHA-256</strong> (256-bit, 64-hex-char): the default for TLS certificates, Bitcoin addresses, git object IDs, JWT signatures (HS256/RS256), and most software-distribution checksums. Currently the safe production default.</li>
+<li><strong>SHA-512</strong> (512-bit, 128-hex-char): stronger than SHA-256 and actually faster on 64-bit CPUs because the internal word size matches the register width. Used in high-assurance code-signing and some Linux distribution package verification.</li>
+<li><strong>CRC-32</strong> (32-bit, 8-hex-char): not a cryptographic hash at all — it is a cyclic-redundancy-check for catching accidental corruption in transit, not tampering. ZIP files, PNG chunks, and Ethernet frames all use CRC-32.</li>
+</ul>
+
+When in doubt, ship SHA-256. It is the only one of the five that is simultaneously (a) collision-resistant against known attacks, (b) universally accepted by modern infrastructure, and (c) short enough to embed in a URL without breaking things.
+
+## Hex vs Base64: When the Encoding Matters
+
+The same SHA-256 digest is 64 characters in hex (<code>e3b0c4...</code>) and 44 characters in Base64 (<code>47DEQpj...</code>). Both encode the identical 256-bit value, but the choice of encoding leaks into three downstream places:
+
+<ul>
+<li><strong>URL safety</strong>: Base64 uses <code>+</code> and <code>/</code> which require percent-encoding in URLs. Hex is URL-safe everywhere.</li>
+<li><strong>Length budget</strong>: Base64 is 33% shorter. For long paths in a database key column, that matters.</li>
+<li><strong>Case sensitivity</strong>: Hex is conventionally lowercased, but some tools output uppercase. Base64 is case-sensitive, and <code>==</code> padding can confuse parsers that strip whitespace.</li>
+</ul>
+
+A practical rule: use hex in any human-readable place (logs, commit messages, file paths). Use Base64 only when you are already in a Base64 ecosystem (JWT signatures, PEM headers, content-addressed stores like IPFS).
+
+## Building a Tamper-Evident Audit Trail
+
+A common mistake is logging only the hash. If an attacker edits the log <em>and</em> re-hashes the entry, the audit trail shows green. The fix is to chain the hashes — each entry's digest includes the previous entry's digest, the way a blockchain does. This is the construction used by Certificate Transparency logs, by Sigstore's Rekor, and by the audit trails in PCI-DSS-compliant payment systems.
+
+The pattern looks like this:
+
+<pre><code>entry_1.data = "user logged in"
+entry_1.hash = sha256(entry_1.data || entry_0.hash)
+entry_2.data = "user changed password"
+entry_2.hash = sha256(entry_2.data || entry_1.hash)
+</code></pre>
+
+If an attacker rewrites <code>entry_1.data</code>, the recomputed <code>entry_1.hash</code> no longer matches <code>entry_2</code>'s recorded predecessor, and the chain breaks at that point. A simple audit script can replay the chain forward from any trusted checkpoint and detect exactly which entry was tampered with.
+
+You can prototype this pattern in five minutes with the [Text Hash Generator](https://elysiatools.com/en/tools/text-hash-generator) and a Python script that feeds each entry through it.
+
+## Common Pitfalls When Hashing Text
+
+Three things go wrong silently when developers first write a hashing function:
+
+<ul>
+<li><strong>Encoding the wrong character set.</strong> <code>hashlib.sha256("café".encode("utf-8"))</code> and <code>hashlib.sha256("café".encode("latin-1"))</code> produce different digests because the byte representation of <code>é</code> differs. The Text Hash Generator fixes UTF-8 input by default, which is what you want 99% of the time, but if your source data is Windows-1252 or Shift-JIS, normalize first.</li>
+<li><strong>Hashing the JSON serialization instead of the canonical form.</strong> Two JSON objects with the same content but different key order produce different digests. Use a canonical serialization (RFC 8785 JCS, or sort keys before hashing) when you need deterministic output.</li>
+<li><strong>Forgetting the trailing newline.</strong> <code>"hello"</code> and <code>"hello\n"</code> hash to completely different values. When comparing digests across systems, normalize whitespace exactly the same way on both sides.</li>
+</ul>
+
+These bugs are not theoretical. A canonical-form mismatch in a payment-processing system caused a 2023 outage at a major fintech when two equivalent transactions failed to dedupe correctly.
+
+## When You Need More Than a Hash
+
+A hash is a one-way function. Given a digest, you cannot recover the input. That is the right behavior for fingerprints, cache keys, and integrity checks, but it is the wrong primitive for two adjacent use cases:
+
+<ul>
+<li><strong>Password storage.</strong> A hash is not enough, because attackers can pre-compute rainbow tables. Use bcrypt, scrypt, Argon2id, or PBKDF2 with a per-user salt and a high iteration count.</li>
+<li><strong>Encryption.</strong> A hash does not let you recover the plaintext. For that you need a reversible cipher (AES-GCM, ChaCha20-Poly1305) keyed with a secret.</li>
+</ul>
+
+If your task is one of those two, stop at the hash and pick up the right primitive. The Text Hash Generator is for the cases <em>between</em> those two: where you need a fingerprint, a checksum, a content address, or an audit-trail link.
+
+## Picking the Right Algorithm in Practice
+
+A quick decision matrix you can paste into your team's style guide:
+
+<ul>
+<li><strong>ETag / HTTP cache key</strong> → MD5 (non-adversarial input, short output)</li>
+<li><strong>Git commit object</strong> → SHA-1 (legacy compat) or SHA-256 (new repos)</li>
+<li><strong>Software download checksum</strong> → SHA-256 (industry standard)</li>
+<li><strong>JWT signature (HS256/RS256)</strong> → SHA-256</li>
+<li><strong>Container image digest</strong> → SHA-256</li>
+<li><strong>High-assurance code signing</strong> → SHA-512</li>
+<li><strong>ZIP file integrity</strong> → CRC-32</li>
+<li><strong>Tamper-evident log entry</strong> → SHA-256 with previous-hash chaining</li>
+</ul>
+
+If you want to look up the exact byte width and hex length of each algorithm, the side-by-side output from the [Text Hash Generator](https://elysiatools.com/en/tools/text-hash-generator) makes the differences concrete in a way that reading the spec does not.
+
+## Hash Discipline in Review
+
+The fastest way to make hash hygiene a habit is to ask three questions on every code review that touches a hash:
+
+<ol>
+<li>What is the threat model? If the input is attacker-controlled, MD5 and SHA-1 are out.</li>
+<li>What is the encoding? UTF-8 is the safe default; anything else needs explicit normalization.</li>
+<li>Is there a canonicalization step before the hash? If not, equivalent inputs will produce different digests.</li>
+</ol>
+
+Answers in writing, in the PR description, are worth more than answers in the reviewer's head. They become the next engineer's reference when the original author is on vacation.
+
+A tool that shows all five digests side-by-side trains the eye to spot misuses quickly — once you have seen what an MD5 collision looks like as two distinct inputs producing the same hex string, you never forget why SHA-256 exists.
+
+Explore more tools at [elysiatools.com](https://elysiatools.com/en/tools).
