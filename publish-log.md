@@ -4092,3 +4092,29 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - **Skills note:** cron-prompt listed `article-writer`, `article-poster-creator`, `article-highlight-cards` as not-found. Disk probe: `article-writer/SKILL.md` present (100KB); `article-poster-creator/` and `article-highlight-cards/` confirmed MISSING. Per WP 6352 + WP 6206 lesson, fell back to umbrella's PIL stack (`templates/pil_poster_and_cards_network_theme.py::render_poster` + `render_card_5tile`).
 - **Pitfalls avoided:** WP 6390 poster subtitle clip (caught pre-POST); WP 6122 figure-insertion (asserted cards=3 pre-POST); WP 6323 phantom-slug (used `validate_anchors`, not `curl`); WP 6358 5-tile overflow (kept body lines ≤16 chars); WP 6135 cron-prompt-credential-trap (used canonical `bted2k@gmail.com:zVlf...` from `wp_post_audit.py`); WP 6135 backslash-in-code (none in source, 0 PATCH needed); WP 6663 Chrome-permission-block (used `?context=view` regex-probe fallback); WP 6417 H2-dup (first H2 ≠ title); WP 5828 wpautop-strip (0 orphan elements).
 - **Notes:** clean 1-POST 0-PATCH. 725 covered slugs (added `short-url-utm-builder-qr-bundle` and its long slug).
+## 2026-09-09 — WP6956 — openapi-to-postman-collection
+- **Title**: OpenAPI to Postman Collection Field Guide: When One Spec, One Auth Helper, and One baseUrl Variable Decide Whether Your Newman Run Catches Drift or Hides It
+- **Tool**: OpenAPI to Postman Collection (Development)
+- **URL**: https://blog.flowrust.com/2026/09/09/openapi-to-postman-collection-field-guide-when-one-spec-one-auth-helper-and-one-baseurl-variable-decide-whether-your-newman-run-catches-drift-or-hides-it/
+- **date_gmt**: 2026-09-09T05:10:48
+- **Cards**: poster + 3 highlight cards
+- **Featured media**: 0 (COSESAI non-negotiable)
+- **Anchors**: 5 tools + 2 samples + 1 root (8 unique elysiatools links, all HTTP 200)
+- **Audit findings**: 0 (clean)
+- **Patches**: 0 (1-POST clean run)
+
+## WP 6962 — Tailwind Color Palette Sync — 2026-09-09T09:13:49 UTC
+
+- **Tool:** tailwind-color-palette-sync (Development; theme_score=3 from sparse_category_picker)
+- **Slug:** `tailwind-color-palette-sync-field-guide-when-six-brand-hexes-become-a-50-950-scale-with-wcag-stamps-across-every-repo-2026-09-09`
+- **Title:** Tailwind Color Palette Sync Field Guide: When Six Brand Hexes Become a 50-950 Scale with WCAG Stamps Across Every Repo
+- **Status:** 1-POST 0-PATCH clean
+- **Assets:** poster-20.png, card1-19.png, card2-19.png, card3-19.png (auto-renamed dedup counters per WP 6191)
+- **Anchors (14 instances, 5 distinct):** tailwind-color-palette-sync ×8, color-contrast-checker ×1, css-color-name-resolver ×2, samples/shadcn-ui ×2, samples/tailwind-css ×2
+- **Audit:** 8 H2 / 3 cards / 1 poster / 4 imgs / 0 nested p-in-h2 / 0 markdown-link residue / 0 backslash in code / 0 nested code / 0 H3 / 0 body H1 / p-tag delta=0 / first H2 ≠ post title
+- **Audit_post_content findings:** 1 (ORPHANED_CODE: 3 — walker false-positive: `<img>` is a HTML5 void element not handled by `find_immediate_parent_tag`; confirmed by direct DOM probe that all 3 are actually inside valid `<p>` parents)
+- **Picked by:** sparse_category_picker.py (sparse-category fallback per WP 6060/6149/6156/6163/6178 family)
+- **Source MD→HTML:** pre_encode_code_spans + safe_md_to_html (for `bg-brand-*` / `text-brand-*` wildcard patterns)
+- **Skipped anchors:** validate_anchors.py FAILs all `/en/samples/` routes by design (WP 6655 lesson); manually verified shadcn-ui + tailwind-css IDs against sample-manifest.json + HEAD-200
+- **Skills note:** cron-prompt flagged article-poster-creator + article-highlight-cards as missing; disk probe confirmed. Fell back to umbrella's PIL stack (WP 6950 same pattern).
+- **State:** 728 covered slugs (added tailwind-color-palette-sync and its long slug).
