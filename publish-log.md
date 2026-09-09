@@ -4118,3 +4118,18 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - **Skipped anchors:** validate_anchors.py FAILs all `/en/samples/` routes by design (WP 6655 lesson); manually verified shadcn-ui + tailwind-css IDs against sample-manifest.json + HEAD-200
 - **Skills note:** cron-prompt flagged article-poster-creator + article-highlight-cards as missing; disk probe confirmed. Fell back to umbrella's PIL stack (WP 6950 same pattern).
 - **State:** 728 covered slugs (added tailwind-color-palette-sync and its long slug).
+
+## 2026-09-09 — WP6968 — css-color-name-resolver
+
+- **Title**: CSS Color Name Resolver Field Guide: When One Hex, Four Distance Metrics, and One 148-Keyword Trail Decide Whether "Royalblue" and "Mediumblue" Land 6.2 or 84.0 DeltaE Apart
+- **Tool**: CSS Color Name Resolver (Design)
+- **URL**: https://blog.flowrust.com/2026/09/09/css-color-name-resolver-field-guide-when-one-hex-four-distance-metrics-and-one-148-keyword-trail-decide-whether-royalblue-and-mediumblue-land-6-2-or-84-0-deltae-apart-2026-09-09/
+- **date_gmt**: 2026-09-09T13:36:04
+- **Cards**: poster + 3 highlight cards (all PIL visual QA clean — no tofu, no overflow)
+- **Featured media**: 0 (COSESAI non-negotiable)
+- **Anchors (11 instances, 6 distinct)**: css-color-name-resolver ×4, color-contrast-checker ×2, hex-to-hsl-converter ×2, image-color-palette ×1, samples/color-code ×1, /en/tools root ×1 — all HEAD 200 + tool-manifest.json validated (no phantom)
+- **Audit findings**: 0 (clean 1-POST 0-PATCH)
+- **Patches**: 0
+- **Skills note**: cron-prompt flagged `article-poster-creator` and `article-highlight-cards` as missing; disk probe confirmed. Fell back to umbrella PIL stack (per WP 6352 + WP 6206 lesson).
+- **Pitfalls avoided**: WP 6212 render_card_5tile 3-tuple signature (used after subagent failed on 2-tuple); WP 6122 figure-insertion (asserted cards=3 pre-POST); WP 6323 phantom-slug (validate_anchors against tool-manifest, all real); WP 6390 subtitle clip (≤ 60 chars); WP 6135 cron-prompt credential trap (used canonical bted2k@gmail.com creds); WP 5628 COSESAI hero dup (featured_media=0); WP 6191 auto-rename (preserved poster-21/card1-20/card2-20/card3-20 with /uploads/2026/09/ prefix); WP 6417 H2-dup (first H2 ≠ title).
+- **State**: 730 covered slugs (added css-color-name-resolver and its long slug).
