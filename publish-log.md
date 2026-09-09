@@ -4153,3 +4153,19 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - **Skills note:** cron-prompt flagged `article-writer`, `article-poster-creator`, `article-highlight-cards` as not-found. Disk probe: `article-writer/SKILL.md` present (100KB); `article-poster-creator/` and `article-highlight-cards/` confirmed MISSING. Per WP 6352 + WP 6206 lesson, fell back to umbrella's PIL stack (`templates/pil_poster_and_cards_network_theme.py::render_poster` + `render_card_5tile`).
 - **Pitfalls avoided:** WP 6663 Chrome-permission-block (used `?context=edit` regex-probe fallback — no browser needed); WP 5628 COSESAI hero dup (`featured_media=0`); WP 6122 figure-insertion (asserted cards=3 pre-POST); WP 6323 phantom-slug (`validate_anchors` against manifest, not curl); WP 6135 cron-prompt credential trap (used canonical `bted2k@gmail.com:zVlf...`); WP 6417 H2-dup (first H2 ≠ title); WP 5683 SSL EOF (3-retry on uploads).
 - **State:** 731 covered slugs (added `protein-extinction-coefficient` and its long slug).
+
+## 2026-09-10 05:52 UTC — WP 6982 (combinatorial-generation)
+
+- Date GMT: 2026-09-09T21:52:15
+- Title: Multiset Counting Is Three Formulas — Permutation / Combination / Subset Generator Field Guide
+- Slug: combinatorial-generation-field-guide-when-three-formulas-cover-the-multiset-theory-of-permutations-combinations-and-subsets-of-repeated-items-2026-09-09
+- Tool id: combinatorial-generation (Permutation / Combination / Subset Generator (With Repeats), Math and Numbers)
+- Status: 1-POST + 1-PATCH clean
+- Asset IDs: poster=6978, card1=6979, card2=6980, card3=6981
+- H2 count: 8 body + 1 theme nav = 9 (matches WP 6323 baseline)
+- Figures: 1 article-poster + 3 highlight-card
+- Elysia anchors: 5 (all valid; 4 tool + 1 root /en/tools)
+- Audit findings pre-PATCH: 1 (MERGED_NUMBERED_LIST on Three traps section; md_to_html merged 1./2./3. inline)
+- PATCH recipe: replaced merged <p>1. ... 2. ... 3. ...</p> with explicit <ol><li>...</li></ol>
+- Audit findings post-PATCH: 0 (audit_post_content CLEAN on both rendered and raw)
+- Visual QA: 2 re-renders (poster subtitle over-clipped at 84 chars, trimmed to 51 chars; card1 takeaway pre-trimmed)
