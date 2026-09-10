@@ -4194,3 +4194,30 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - **elysia anchors**: 3 (all /en/tools/ - correct type)
 - **audit findings**: 0
 - **1-POST 0-PATCH** clean run
+
+## 2026-09-10T18:48:56 UTC — Pedigree Probability Tree Field Guide (WP 7018)
+
+- **Tool**: `pedigree-probability-tree` (Pedigree Probability Tree — Offspring Disease Risk)
+- **Category**: Education (genetic counseling)
+- **Article title**: "Pedigree Probability Tree Field Guide: When One Tree, Three Modes, and Four Leaves Decide the Offspring Risk"
+- **URL**: https://blog.flowrust.com/2026/09/11/pedigree-probability-tree-field-guide-when-one-tree-three-modes-and-four-leaves-decide-the-offspring-risk-2026-09-10/
+- **WP POST id**: 7018
+- **Slug**: `pedigree-probability-tree-field-guide-when-one-tree-three-modes-and-four-leaves-decide-the-offspring-risk-2026-09-10`
+- **date_gmt**: `2026-09-10T18:48:56`
+- **featured_media**: 0 (COSESAI defense)
+- **Status**: publish
+- **Result**: 1-POST 0-PATCH clean
+- **Structure**: 0 body H1 + 8 H2 + 0 H3 + 5 ul/19 li + 1 article-poster + 3 highlight-cards
+- **Elysia anchors**: 7 (6 tool + 1 root) — all validate against tool-manifest, all HEAD 200
+- **Source samples**: 0 (tool has no matching samples; sourced from `tool.metadata.description` + external domain knowledge per WP 6116 lesson)
+- **PIL defects caught and fixed**: 1 — card2 `Xᴬ Xᵃ` Unicode superscript tofu → replaced with ASCII `X^A X^a` (Phonetic Extensions block, WP 6178 family)
+- **Skill fallback**: `article-writer` and `article-highlight-cards` not found on disk; fell back to umbrella PIL templates (`templates/pil_poster_and_cards_network_theme.py::render_poster` + `templates/render_card_4tile_compact.py::render_card_4tile_compact` + `templates/pil_poster_and_cards_network_theme.py::render_card_5tile`)
+
+
+## WP 7024 — Thyroid Index Field Guide: When TSH, FT4, and FT3 Patterns Decide Overt vs Subclinical vs Central Disease
+- date_gmt: 2026-09-10T22:52:45
+- url: https://blog.flowrust.com/2026/09/11/thyroid-index-field-guide-when-tsh-ft4-and-ft3-patterns-decide-overt-vs-subclinical-vs-central-disease-2026-09-10/
+- tool: thyroid-index
+- cards: 3 (6-pattern branches, 5 caveats, 3-step process)
+- assets: poster.png + card1.png + card2.png + card3.png
+- archive: /Users/quyue/www/blog/2026-09-10-thyroid-index-field-guide-when-pattern-recognition-beats-single-number-reading
