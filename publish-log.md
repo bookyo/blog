@@ -4169,3 +4169,28 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - PATCH recipe: replaced merged <p>1. ... 2. ... 3. ...</p> with explicit <ol><li>...</li></ol>
 - Audit findings post-PATCH: 0 (audit_post_content CLEAN on both rendered and raw)
 - Visual QA: 2 re-renders (poster subtitle over-clipped at 84 chars, trimmed to 51 chars; card1 takeaway pre-trimmed)
+
+## 2026-09-10T06:22:56 - WP 6999 - Font File Inspector Field Guide: When a 142 KB WOFF2 Hides a 332 KB sfnt, Six Tables Tell the Truth
+
+- **slug**: font-file-inspector-field-guide-when-a-142-kb-woff2-hides-a-332-kb-sfnt-six-tables-tell-the-truth
+- **permalink**: https://blog.flowrust.com/2026/09/10/font-file-inspector-field-guide-when-a-142-kb-woff2-hides-a-332-kb-sfnt-six-tables-tell-the-truth/
+- **tool**: font-file-inspector (Design category)
+- **date_gmt**: 2026-09-10T06:22:56
+- **status**: publish
+- **H2 count**: 8
+- **asset count**: 4 (1 poster + 3 highlight cards)
+- **elysia anchors**: 2 (both /en/tools/ - correct type)
+- **audit findings**: 0
+- **1-POST + 1-PATCH** (PATCH fixed false-positive POSSIBLE_BACKSLASH_STRIPPED on "TTF (sfnt)" code span)
+
+## 2026-09-10T10:28:32 — Alveolar Ventilation Calculator Field Guide
+- **tool**: alveolar-ventilation-calculator (Health category)
+- **date_gmt**: 2026-09-10T10:28:32
+- **status**: publish
+- **post_id**: 7006
+- **url**: https://blog.flowrust.com/2026/09/10/alveolar-ventilation-calculator-field-guide-when-tidal-volume-dead-space-and-rate-decide-whether-your-patient-is-hypoventilating/
+- **H2 count**: 8
+- **asset count**: 4 (1 poster + 3 highlight cards)
+- **elysia anchors**: 3 (all /en/tools/ - correct type)
+- **audit findings**: 0
+- **1-POST 0-PATCH** clean run
