@@ -4235,3 +4235,18 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - **Elysia links**: 11
 - **Images**: 4 (1 poster + 3 highlight cards)
 - **Skill path**: umbrella-pil-fallback (article-poster-creator and article-highlight-cards loaded from /Users/quyue/.hermes/skills/article-writer/)
+
+## 2026-09-11: infusion-rate-ml-hr-field-guide-when-one-volume-one-time-window-and-one-pump-units-check-decide-whether-the-drip-lands-where-the-order-said-or-somewhere-you-have-to-chase
+
+- Tool: Infusion Rate Calculator (mL/hr) (slug: infusion-rate-ml-hr)
+- Post ID: 7037
+- URL: https://blog.flowrust.com/2026/09/11/infusion-rate-ml-hr-field-guide-when-one-volume-one-time-window-and-one-pump-units-check-decide-whether-the-drip-lands-where-the-order-said-or-somewhere-you-have-to-chase-2026-09-11/
+- Date (UTC): 2026-09-11T11:16:25
+- Cards: 3 (4-tile compact / 5-tile numbered / 3+2 layout)
+- PATCH round-trips: 1 (MERGED_BULLET_LIST: 4 paragraphs with `- **bold** lead` items converted to real <ul><li> HTML; 4 ul + 9 li added)
+- Audit: 0 findings, 10/10 HEAD checks 200
+- elysia links: 5 (all /en/tools/infusion-rate-ml-hr, real tool id)
+
+## 2026-09-11T15:24:30 — barcode-generator-field-guide-when-format-quiet-zone-and-module-width-decide-if-the-scanner-reads (WP 7044)
+- Title: Barcode Generator Field Guide: When Format, Quiet Zone, and Module Width Decide If the Scanner Reads
+- URL: https://blog.flowrust.com/2026/09/11/barcode-generator-field-guide-when-format-quiet-zone-and-module-width-decide-if-the-scanner-reads/
