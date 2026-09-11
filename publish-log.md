@@ -4221,3 +4221,17 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - cards: 3 (6-pattern branches, 5 caveats, 3-step process)
 - assets: poster.png + card1.png + card2.png + card3.png
 - archive: /Users/quyue/www/blog/2026-09-10-thyroid-index-field-guide-when-pattern-recognition-beats-single-number-reading
+
+
+## 2026-09-11 — kanban-cycle-time-throughput-coach (Cron Auto-Publish)
+- **WP ID**: 7030
+- **Status**: publish
+- **date_gmt**: 2026-09-11T07:06:52
+- **Tool**: [Kanban Cycle Time & Throughput Coach](https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach) (Data Analysis)
+- **Slug**: kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11
+- **Permalink**: https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/
+- **Patches**: 1 (replaced placeholder Card 1/2/3 alts with descriptive text)
+- **Audit findings**: 0
+- **Elysia links**: 11
+- **Images**: 4 (1 poster + 3 highlight cards)
+- **Skill path**: umbrella-pil-fallback (article-poster-creator and article-highlight-cards loaded from /Users/quyue/.hermes/skills/article-writer/)

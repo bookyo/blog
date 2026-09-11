@@ -1,0 +1,368 @@
+{
+  "id": 7030,
+  "date": "2026-09-11T15:06:52",
+  "date_gmt": "2026-09-11T07:06:52",
+  "guid": {
+    "rendered": "https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/",
+    "raw": "https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/"
+  },
+  "modified": "2026-09-11T15:06:54",
+  "modified_gmt": "2026-09-11T07:06:54",
+  "password": "",
+  "slug": "kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11",
+  "status": "publish",
+  "type": "post",
+  "link": "https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/",
+  "title": {
+    "raw": "Kanban Cycle Time & Throughput Coach Field Guide: When Lead Time, Cycle Time, WIP, and CFD Reading Rules Decide Whether Your Team Is Actually Delivering",
+    "rendered": "Kanban Cycle Time &#038; Throughput Coach Field Guide: When Lead Time, Cycle Time, WIP, and CFD Reading Rules Decide Whether Your Team Is Actually Delivering"
+  },
+  "content": {
+    "raw": "<figure class=\"article-poster\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/kanban-poster.png\" alt=\"Kanban Cycle Time &amp; Throughput Coach field guide cover \u2014 flow metrics and CFD reading rules\"></figure>\n<p>A <a href=\"https://blog.flowrust.com/tag/kanban/\" class=\"wpai-auto-tags-link\">kanban</a> board is not a delivery metric. It is a queue with a calendar. The team looking at a board of red dots and blue dots and asking \"are we shipping faster?\" is asking the wrong question \u2014 the right question is \"what does the cumulative flow diagram say about where work is piling up, and what does Little's Law tell us is about to break?\" The <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Kanban Cycle Time &amp; Throughput Coach</a> reads a Jira-style CSV of created, started, and resolved timestamps the way an agile coach reads one \u2014 by extracting percentiles, computing throughput, drawing the CFD, and surfacing the four reading rules that catch the cases where \"we shipped 12 stories\" is actually masking a stalled flow. This field guide walks through the import format, the percentile math, the CFD reading rules, the Little's Law consistency check, and the three diagnostic patterns that turn a board snapshot into a coaching conversation.</p>\n<h2>What \"Cycle Time\" Actually Means and Why the Board Lies</h2>\n<p>Cycle time is the elapsed time from when work <em>started</em> (entered \"in progress\") to when work <em>resolved</em> (entered \"done\"). Lead time is the elapsed time from when work was <em>created</em> (entered the backlog) to when it resolved. The two numbers are not interchangeable: <a href=\"https://blog.flowrust.com/tag/cycle-time/\" class=\"wpai-auto-tags-link\">cycle time</a> measures how fast the team works once it picks something up; lead time measures how fast the customer sees a result from the moment they asked. Most kanban reporting conflates them and produces numbers that look good but mean nothing \u2014 a team can drop their reported \"cycle time\" by waiting two weeks before starting tickets, because the metric measures from start, not from request.</p>\n<p>Three operational consequences follow. First, the CSV must include all three timestamps (created, started, resolved) for the metric to be meaningful \u2014 a board with only created and resolved produces only lead time, and the cycle-time percentile analysis collapses. Second, the resolution event has to be defined explicitly: in Jira this is usually the transition into a \"Done\" or \"Closed\" status, but some teams have intermediate \"Resolved\" states that should not count as a true finish. Third, work that was started but never resolved is WIP, not a cycle-time sample \u2014 including it skews the percentile downward because the in-progress stories sit in the dataset as long-tailed outliers rather than being filtered out as live work.</p>\n<p>The <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Cycle Time Coach</a> accepts the canonical Jira CSV export shape (Issue key, Issue type, Status, Created, In Progress, Resolved, plus optional Cycle time and Lead time columns if Jira has computed them server-side) and a simpler three-column shape (Issue, created, resolved) for teams not on Jira. The latter is lead-time-only; the tool flags this in the output and disables the cycle-time percentiles rather than computing them on incomplete data.</p>\n<h2>The Percentile Stack: 50, 85, 95</h2>\n<p>A mean cycle time is almost always wrong. Distribution is everything in queue theory \u2014 a team with a mean of 5 days and a tight distribution (everything done in 4\u20136 days) is healthy; a team with the same mean but a long-tailed distribution (most things done in 3 days, some in 30) is in trouble and the trouble is invisible in the mean. This is why cycle-time reporting uses percentiles: the 50th (median) is the typical case, the 85th is the realistic case-management forecast (most customer commitments should be honored if you commit at the 85th percentile or lower), and the 95th is the worst-reasonable-case that catches the tail.</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/kanban-card1.png\" alt=\"Card 1\" loading=\"lazy\"></figure>\n<p>The reading rule the <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Cycle Time Coach</a> applies: if the 85th percentile is more than 2.5x the median, the distribution is bimodal and there is a separate long-tail problem that the mean hides. If the 95th percentile is more than 4x the median, there is a starvation or blocking pattern \u2014 some tickets are sitting blocked for days or weeks and the team's working cycle is being polluted by dependency stalls. A useful operational heuristic: forecast delivery dates at the 85th percentile (most customer commitments should be safe); use the 95th to identify the tickets that need help or de-scoping.</p>\n<p>A second reading rule applies when the 50th percentile is itself high (more than the team's iteration length). If the median cycle time is 14 days and the team operates on 2-week iterations, half the tickets take the full iteration or longer \u2014 there is no slack for incidents, dependency stalls, or the unplanned work that always shows up. The board is at saturation.</p>\n<h2>WIP Age and the Stuck-Ticket Alert</h2>\n<p>WIP age is the elapsed time since the <em>current</em> in-progress work entered the in-progress state. It is not the same as cycle time (which only applies to completed work) and it is not the same as lead time (which applies to resolved work). WIP age is the live equivalent: how old is the work sitting on the board right now?</p>\n<p>The reading rule the <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Cycle Time Coach</a> surfaces: any in-progress ticket whose age exceeds the 85th-percentile historical cycle time is stuck. A 30-day-old in-progress ticket on a team whose 85th percentile cycle time is 9 days is not \"still in progress\" \u2014 it is stuck, and the cost of leaving it on the board is the implicit message that the team tolerates 30-day tickets, which pulls the distribution right and inflates every future percentile. The tool flags every WIP item past the 85th-percentile threshold in the output and recommends either splitting, de-scoping, or explicit re-prioritization.</p>\n<p>A second use of WIP age is the WIP-age distribution itself. Healthy teams have a tight WIP-age distribution (most in-progress items are days old, not weeks); teams in trouble have a long WIP-age tail that mirrors the long cycle-time tail. The two metrics measure different things but tell the same story.</p>\n<h2>Throughput: Per Day, Per Week, Per Month</h2>\n<p>Throughput is items resolved per unit time \u2014 count, not duration. The metric sounds simple and it is, but the reporting window matters. Daily throughput is volatile and small samples make the percentage error large (3 stories on a Tuesday and 0 on a Wednesday is a 100% drop that means nothing). Weekly throughput is the standard reporting window for most kanban teams and the <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Cycle Time Coach</a> defaults to it. Monthly throughput is useful for trend lines and capacity conversations but loses the weekly signal.</p>\n<p>The reading rule: weekly throughput variance greater than 40% (i.e. some weeks ship 8 stories and others ship 12) is a flow-stability problem. Throughput is supposed to be approximately constant when WIP is constant \u2014 that is the operational consequence of Little's Law. Large week-to-week variance with stable WIP means the team is being interrupted (incidents, dependencies, unplanned work) or the work-item sizes are bimodal (some 1-day tasks mixed with 5-day tasks with no intermediate).</p>\n<p>Throughput per month is the metric to use for stakeholder reporting. A team that ships 40 stories per month with a stable 1.5 throughput/day average has a predictable delivery rate; that number is the basis for forecasting, capacity conversations, and the answer to \"how long will the backlog take?\" \u2014 the forecast is <code>backlog_size / monthly_throughput</code>, with the appropriate confidence interval from the cycle-time distribution layered on top.</p>\n<h2>The CFD Reading Rules</h2>\n<p>The cumulative flow diagram plots the cumulative count of items in each kanban state (To Do, In Progress, Done, etc.) over time. The chart looks deceptively simple \u2014 three or four monotonically increasing lines \u2014 but four reading rules catch the patterns that change management.</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/kanban-card2.png\" alt=\"Card 2\" loading=\"lazy\"></figure>\n<p><em>Rule 1: the gap between two lines is the WIP in the band they represent.</em> If the In Progress line and the Done line are diverging, WIP in the In Progress band is growing. If they are parallel, WIP is stable. If they are converging, WIP is shrinking. This is the live WIP reading from the CFD.</p>\n<p><em>Rule 2: the slope of the Done line is throughput.</em> A steeper Done-line means higher throughput. A flatter Done-line means lower throughput. Slope changes from one week to the next are the visual signature of throughput variance.</p>\n<p><em>Rule 3: the slope of the To Do line is arrival rate.</em> If the To Do line is steepening, more work is entering the backlog than the team is finishing. The gap between To Do and Done grows over time, which is the visual signature of an unmanaged backlog.</p>\n<p><em>Rule 4: the vertical gap between the To Do line and the Done line at any moment is the cycle time converted to count.</em> The shape of the gap (whether it is straight or curved) tells you whether cycle time is stable or drifting.</p>\n<p>The <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Cycle Time Coach</a> renders the CFD with these rules annotated and flags each one when the visual reading detects a problem: diverging WIP, flattening throughput, steepening arrival, or drifting cycle time. The annotated CFD is the single best conversation-starter for a team retro \u2014 the visual makes the problem obvious in a way that tables of numbers do not.</p>\n<h2>Little's Law Consistency Check</h2>\n<p>Little's Law states that <code>WIP = throughput \u00d7 cycle_time</code>. The relationship holds for any stable queue. The consistency check the <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Cycle Time Coach</a> performs: compute the implied WIP from the throughput and cycle-time percentiles, compare it to the actual average WIP over the reporting window, and flag any discrepancy larger than 25%.</p>\n<p>A discrepancy means one of three things. Either the throughput is being measured wrong (resolved items being double-counted, or unresolved items being included), or the cycle time is being measured wrong (clock not stopping on blocked items, or work that was started but never marked done is distorting the average), or the queue is not in steady state (WIP is changing fast enough that Little's Law's stability assumption is violated). In practice the discrepancy usually points to a measurement problem, not a flow problem \u2014 and discovering it surfaces a metric-hygiene issue that needs to be fixed before any flow improvement work is done.</p>\n<p>The Little's Law check is also the diagnostic for the most common team self-deception: \"we have high throughput AND low cycle time, we are doing great.\" If those two numbers are inconsistent with the actual WIP on the board, the team is misreading its own metrics. The tool's check catches this directly.</p>\n<h2>The Three Diagnostic Patterns</h2>\n<p>Three patterns show up repeatedly in kanban data and each one calls for a different intervention. The <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Cycle Time Coach</a> labels them so the team has a vocabulary for the conversation.</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/kanban-card3.png\" alt=\"Card 3\" loading=\"lazy\"></figure>\n<p><em>Pattern 1: Long-tail cycle time with normal median.</em> The 50th percentile is healthy (5 days), the 85th is borderline (12 days), the 95th is catastrophic (45 days). The team is delivering most things at a normal pace but a small fraction of tickets are dragging for weeks. The cause is almost always dependencies \u2014 a ticket is \"in progress\" but actually blocked on another team, and the cycle-time clock keeps running while no work happens. The intervention is dependency mapping: identify which tickets are blocked, escalate the blockers, and consider splitting or de-scoping the dependent work.</p>\n<p><em>Pattern 2: High WIP with low throughput.</em> The board has 25 in-progress items and the team is finishing 5 per week. The cause is work-in-progress limits not being enforced, or the team has no WIP limit at all. The intervention is explicit WIP limits per column, with the <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Cycle Time Coach</a> suggesting a starting limit based on Little's Law: <code>WIP_limit = team_size \u00d7 1.5</code>. When the WIP exceeds the limit, the team stops starting new work and finishes what is in progress.</p>\n<p><em>Pattern 3: Bimodal cycle time with bimodal work size.</em> Tickets come in two size buckets \u2014 1-day and 10-day \u2014 with nothing in between. The median cycle time hides the bimodality. The cause is missing story-splitting discipline: large items are not being decomposed before they enter the sprint. The intervention is story-splitting coaching, with the explicit goal of having 90% of items in the small bucket.</p>\n<h2>How to Use the Tool in a 60-Second Read</h2>\n<p>The <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Cycle Time Coach</a> is built to compress the metric analysis above into a single import-and-read flow. Paste the CSV (Jira-style or three-column simple), and the tool returns the percentile stack, the throughput per day/week/month, the CFD with the four reading rules annotated, the WIP-age flagged list, the Little's Law consistency check, and the diagnostic pattern label if one applies. For coaches, the tool is the data backbone of a flow retrospective. For engineering managers, it is the weekly health check. For Scrum Masters converting teams from sprint-driven to flow-driven, it is the metric set that justifies the transition with hard numbers rather than intuition.</p>\n<p>The single most important habit the tool reinforces: read the distribution, not the average. A mean cycle time of 7 days is not a forecast, a target, or a commitment \u2014 it is a midpoint of a distribution that probably has a long tail. The forecast is the 85th percentile. The target is the 85th percentile shrinking over time. The commitment to a customer is the 85th percentile with an explicit confidence band.</p>\n<p>Explore more flow and metrics tools at <a href=\"https://elysiatools.com/en/tools\">elysiatools.com</a>.</p>",
+    "rendered": "<figure class=\"article-poster\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/kanban-poster.png\" alt=\"Kanban Cycle Time &amp; Throughput Coach field guide cover \u2014 flow metrics and CFD reading rules\"></figure>\n<p>A <a href=\"https://blog.flowrust.com/tag/kanban/\" class=\"wpai-auto-tags-link\">kanban</a> board is not a delivery metric. It is a queue with a calendar. The team looking at a board of red dots and blue dots and asking &#8220;are we shipping faster?&#8221; is asking the wrong question \u2014 the right question is &#8220;what does the cumulative flow diagram say about where work is piling up, and what does Little&#8217;s Law tell us is about to break?&#8221; The <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Kanban Cycle Time &amp; Throughput Coach</a> reads a Jira-style CSV of created, started, and resolved timestamps the way an agile coach reads one \u2014 by extracting percentiles, computing throughput, drawing the CFD, and surfacing the four reading rules that catch the cases where &#8220;we shipped 12 stories&#8221; is actually masking a stalled flow. This field guide walks through the import format, the percentile math, the CFD reading rules, the Little&#8217;s Law consistency check, and the three diagnostic patterns that turn a board snapshot into a coaching conversation.</p>\n<h2>What &#8220;Cycle Time&#8221; Actually Means and Why the Board Lies</h2>\n<p>Cycle time is the elapsed time from when work <em>started</em> (entered &#8220;in progress&#8221;) to when work <em>resolved</em> (entered &#8220;done&#8221;). Lead time is the elapsed time from when work was <em>created</em> (entered the backlog) to when it resolved. The two numbers are not interchangeable: <a href=\"https://blog.flowrust.com/tag/cycle-time/\" class=\"wpai-auto-tags-link\">cycle time</a> measures how fast the team works once it picks something up; lead time measures how fast the customer sees a result from the moment they asked. Most kanban reporting conflates them and produces numbers that look good but mean nothing \u2014 a team can drop their reported &#8220;cycle time&#8221; by waiting two weeks before starting tickets, because the metric measures from start, not from request.</p>\n<p>Three operational consequences follow. First, the CSV must include all three timestamps (created, started, resolved) for the metric to be meaningful \u2014 a board with only created and resolved produces only lead time, and the cycle-time percentile analysis collapses. Second, the resolution event has to be defined explicitly: in Jira this is usually the transition into a &#8220;Done&#8221; or &#8220;Closed&#8221; status, but some teams have intermediate &#8220;Resolved&#8221; states that should not count as a true finish. Third, work that was started but never resolved is WIP, not a cycle-time sample \u2014 including it skews the percentile downward because the in-progress stories sit in the dataset as long-tailed outliers rather than being filtered out as live work.</p>\n<p>The <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Cycle Time Coach</a> accepts the canonical Jira CSV export shape (Issue key, Issue type, Status, Created, In Progress, Resolved, plus optional Cycle time and Lead time columns if Jira has computed them server-side) and a simpler three-column shape (Issue, created, resolved) for teams not on Jira. The latter is lead-time-only; the tool flags this in the output and disables the cycle-time percentiles rather than computing them on incomplete data.</p>\n<h2>The Percentile Stack: 50, 85, 95</h2>\n<p>A mean cycle time is almost always wrong. Distribution is everything in queue theory \u2014 a team with a mean of 5 days and a tight distribution (everything done in 4\u20136 days) is healthy; a team with the same mean but a long-tailed distribution (most things done in 3 days, some in 30) is in trouble and the trouble is invisible in the mean. This is why cycle-time reporting uses percentiles: the 50th (median) is the typical case, the 85th is the realistic case-management forecast (most customer commitments should be honored if you commit at the 85th percentile or lower), and the 95th is the worst-reasonable-case that catches the tail.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/kanban-card1.png\" alt=\"Card 1\" loading=\"lazy\"></figure>\n<p>The reading rule the <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Cycle Time Coach</a> applies: if the 85th percentile is more than 2.5x the median, the distribution is bimodal and there is a separate long-tail problem that the mean hides. If the 95th percentile is more than 4x the median, there is a starvation or blocking pattern \u2014 some tickets are sitting blocked for days or weeks and the team&#8217;s working cycle is being polluted by dependency stalls. A useful operational heuristic: forecast delivery dates at the 85th percentile (most customer commitments should be safe); use the 95th to identify the tickets that need help or de-scoping.</p>\n<p>A second reading rule applies when the 50th percentile is itself high (more than the team&#8217;s iteration length). If the median cycle time is 14 days and the team operates on 2-week iterations, half the tickets take the full iteration or longer \u2014 there is no slack for incidents, dependency stalls, or the unplanned work that always shows up. The board is at saturation.</p>\n<h2>WIP Age and the Stuck-Ticket Alert</h2>\n<p>WIP age is the elapsed time since the <em>current</em> in-progress work entered the in-progress state. It is not the same as cycle time (which only applies to completed work) and it is not the same as lead time (which applies to resolved work). WIP age is the live equivalent: how old is the work sitting on the board right now?</p>\n<p>The reading rule the <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Cycle Time Coach</a> surfaces: any in-progress ticket whose age exceeds the 85th-percentile historical cycle time is stuck. A 30-day-old in-progress ticket on a team whose 85th percentile cycle time is 9 days is not &#8220;still in progress&#8221; \u2014 it is stuck, and the cost of leaving it on the board is the implicit message that the team tolerates 30-day tickets, which pulls the distribution right and inflates every future percentile. The tool flags every WIP item past the 85th-percentile threshold in the output and recommends either splitting, de-scoping, or explicit re-prioritization.</p>\n<p>A second use of WIP age is the WIP-age distribution itself. Healthy teams have a tight WIP-age distribution (most in-progress items are days old, not weeks); teams in trouble have a long WIP-age tail that mirrors the long cycle-time tail. The two metrics measure different things but tell the same story.</p>\n<h2>Throughput: Per Day, Per Week, Per Month</h2>\n<p>Throughput is items resolved per unit time \u2014 count, not duration. The metric sounds simple and it is, but the reporting window matters. Daily throughput is volatile and small samples make the percentage error large (3 stories on a Tuesday and 0 on a Wednesday is a 100% drop that means nothing). Weekly throughput is the standard reporting window for most kanban teams and the <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Cycle Time Coach</a> defaults to it. Monthly throughput is useful for trend lines and capacity conversations but loses the weekly signal.</p>\n<p>The reading rule: weekly throughput variance greater than 40% (i.e. some weeks ship 8 stories and others ship 12) is a flow-stability problem. Throughput is supposed to be approximately constant when WIP is constant \u2014 that is the operational consequence of Little&#8217;s Law. Large week-to-week variance with stable WIP means the team is being interrupted (incidents, dependencies, unplanned work) or the work-item sizes are bimodal (some 1-day tasks mixed with 5-day tasks with no intermediate).</p>\n<p>Throughput per month is the metric to use for stakeholder reporting. A team that ships 40 stories per month with a stable 1.5 throughput/day average has a predictable delivery rate; that number is the basis for forecasting, capacity conversations, and the answer to &#8220;how long will the backlog take?&#8221; \u2014 the forecast is <code>backlog_size / monthly_throughput</code>, with the appropriate confidence interval from the cycle-time distribution layered on top.</p>\n<h2>The CFD Reading Rules</h2>\n<p>The cumulative flow diagram plots the cumulative count of items in each kanban state (To Do, In Progress, Done, etc.) over time. The chart looks deceptively simple \u2014 three or four monotonically increasing lines \u2014 but four reading rules catch the patterns that change management.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/kanban-card2.png\" alt=\"Card 2\" loading=\"lazy\"></figure>\n<p><em>Rule 1: the gap between two lines is the WIP in the band they represent.</em> If the In Progress line and the Done line are diverging, WIP in the In Progress band is growing. If they are parallel, WIP is stable. If they are converging, WIP is shrinking. This is the live WIP reading from the CFD.</p>\n<p><em>Rule 2: the slope of the Done line is throughput.</em> A steeper Done-line means higher throughput. A flatter Done-line means lower throughput. Slope changes from one week to the next are the visual signature of throughput variance.</p>\n<p><em>Rule 3: the slope of the To Do line is arrival rate.</em> If the To Do line is steepening, more work is entering the backlog than the team is finishing. The gap between To Do and Done grows over time, which is the visual signature of an unmanaged backlog.</p>\n<p><em>Rule 4: the vertical gap between the To Do line and the Done line at any moment is the cycle time converted to count.</em> The shape of the gap (whether it is straight or curved) tells you whether cycle time is stable or drifting.</p>\n<p>The <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Cycle Time Coach</a> renders the CFD with these rules annotated and flags each one when the visual reading detects a problem: diverging WIP, flattening throughput, steepening arrival, or drifting cycle time. The annotated CFD is the single best conversation-starter for a team retro \u2014 the visual makes the problem obvious in a way that tables of numbers do not.</p>\n<h2>Little&#8217;s Law Consistency Check</h2>\n<p>Little&#8217;s Law states that <code>WIP = throughput \u00d7 cycle_time</code>. The relationship holds for any stable queue. The consistency check the <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Cycle Time Coach</a> performs: compute the implied WIP from the throughput and cycle-time percentiles, compare it to the actual average WIP over the reporting window, and flag any discrepancy larger than 25%.</p>\n<p>A discrepancy means one of three things. Either the throughput is being measured wrong (resolved items being double-counted, or unresolved items being included), or the cycle time is being measured wrong (clock not stopping on blocked items, or work that was started but never marked done is distorting the average), or the queue is not in steady state (WIP is changing fast enough that Little&#8217;s Law&#8217;s stability assumption is violated). In practice the discrepancy usually points to a measurement problem, not a flow problem \u2014 and discovering it surfaces a metric-hygiene issue that needs to be fixed before any flow improvement work is done.</p>\n<p>The Little&#8217;s Law check is also the diagnostic for the most common team self-deception: &#8220;we have high throughput AND low cycle time, we are doing great.&#8221; If those two numbers are inconsistent with the actual WIP on the board, the team is misreading its own metrics. The tool&#8217;s check catches this directly.</p>\n<h2>The Three Diagnostic Patterns</h2>\n<p>Three patterns show up repeatedly in kanban data and each one calls for a different intervention. The <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Cycle Time Coach</a> labels them so the team has a vocabulary for the conversation.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/09/kanban-card3.png\" alt=\"Card 3\" loading=\"lazy\"></figure>\n<p><em>Pattern 1: Long-tail cycle time with normal median.</em> The 50th percentile is healthy (5 days), the 85th is borderline (12 days), the 95th is catastrophic (45 days). The team is delivering most things at a normal pace but a small fraction of tickets are dragging for weeks. The cause is almost always dependencies \u2014 a ticket is &#8220;in progress&#8221; but actually blocked on another team, and the cycle-time clock keeps running while no work happens. The intervention is dependency mapping: identify which tickets are blocked, escalate the blockers, and consider splitting or de-scoping the dependent work.</p>\n<p><em>Pattern 2: High WIP with low throughput.</em> The board has 25 in-progress items and the team is finishing 5 per week. The cause is work-in-progress limits not being enforced, or the team has no WIP limit at all. The intervention is explicit WIP limits per column, with the <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Cycle Time Coach</a> suggesting a starting limit based on Little&#8217;s Law: <code>WIP_limit = team_size \u00d7 1.5</code>. When the WIP exceeds the limit, the team stops starting new work and finishes what is in progress.</p>\n<p><em>Pattern 3: Bimodal cycle time with bimodal work size.</em> Tickets come in two size buckets \u2014 1-day and 10-day \u2014 with nothing in between. The median cycle time hides the bimodality. The cause is missing story-splitting discipline: large items are not being decomposed before they enter the sprint. The intervention is story-splitting coaching, with the explicit goal of having 90% of items in the small bucket.</p>\n<h2>How to Use the Tool in a 60-Second Read</h2>\n<p>The <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Cycle Time Coach</a> is built to compress the metric analysis above into a single import-and-read flow. Paste the CSV (Jira-style or three-column simple), and the tool returns the percentile stack, the throughput per day/week/month, the CFD with the four reading rules annotated, the WIP-age flagged list, the Little&#8217;s Law consistency check, and the diagnostic pattern label if one applies. For coaches, the tool is the data backbone of a flow retrospective. For engineering managers, it is the weekly health check. For Scrum Masters converting teams from sprint-driven to flow-driven, it is the metric set that justifies the transition with hard numbers rather than intuition.</p>\n<p>The single most important habit the tool reinforces: read the distribution, not the average. A mean cycle time of 7 days is not a forecast, a target, or a commitment \u2014 it is a midpoint of a distribution that probably has a long tail. The forecast is the 85th percentile. The target is the 85th percentile shrinking over time. The commitment to a customer is the 85th percentile with an explicit confidence band.</p>\n<p>Explore more flow and metrics tools at <a href=\"https://elysiatools.com/en/tools\">elysiatools.com</a>.</p>\n",
+    "protected": false,
+    "block_version": 0
+  },
+  "excerpt": {
+    "raw": "A kanban board is a queue with a calendar. The percentiles, CFD reading rules, and Little's Law consistency check tell you whether the team is shipping or stalling.",
+    "rendered": "<p>A kanban board is a queue with a calendar. The percentiles, CFD reading rules, and Little&#8217;s Law consistency check tell you whether the team is shipping or stalling.</p>\n",
+    "protected": false
+  },
+  "author": 1,
+  "featured_media": 0,
+  "comment_status": "open",
+  "ping_status": "open",
+  "sticky": false,
+  "template": "",
+  "format": "standard",
+  "meta": {
+    "om_disable_all_campaigns": false,
+    "_monsterinsights_skip_tracking": false,
+    "footnotes": ""
+  },
+  "categories": [
+    1
+  ],
+  "tags": [
+    2098,
+    2099,
+    2100,
+    2097,
+    1224
+  ],
+  "permalink_template": "https://blog.flowrust.com/2026/09/11/%postname%/",
+  "generated_slug": "kanban-cycle-time-throughput-coach-field-guide-when-lead-time-cycle-time-wip-and-cfd-reading-rules-decide-whether-your-team-is-actually-delivering",
+  "class_list": [
+    "post-7030",
+    "post",
+    "type-post",
+    "status-publish",
+    "format-standard",
+    "hentry",
+    "category-uncategorized",
+    "tag-agile-metrics",
+    "tag-cycle-time",
+    "tag-flow-analytics",
+    "tag-kanban",
+    "tag-project-management"
+  ],
+  "aioseo_notices": [],
+  "aioseo_head": "\n\t\t<!-- All in One SEO 4.9.10 - aioseo.com -->\n\t<meta name=\"description\" content=\"A kanban board is a queue with a calendar. The percentiles, CFD reading rules, and Little&#039;s Law consistency check tell you whether the team is shipping or stalling.\" />\n\t<meta name=\"robots\" content=\"max-image-preview:large\" />\n\t<meta name=\"author\" content=\"xiezixing\"/>\n\t<meta name=\"google-site-verification\" content=\"xcSlplMgocNnrNwmxi7j46JcdU6F-L2jrlAnpUB5Lxg\" />\n\t<link rel=\"canonical\" href=\"https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/\" />\n\t<meta name=\"generator\" content=\"All in One SEO (AIOSEO) 4.9.10\" />\n\t\t<meta property=\"og:locale\" content=\"en_US\" />\n\t\t<meta property=\"og:site_name\" content=\"COSESAI - Sharing my AI experiences\" />\n\t\t<meta property=\"og:type\" content=\"article\" />\n\t\t<meta property=\"og:title\" content=\"Kanban Cycle Time &amp; Throughput Coach Field Guide: When Lead Time, Cycle Time, WIP, and CFD Reading Rules Decide Whether Your Team Is Actually Delivering - COSESAI\" />\n\t\t<meta property=\"og:description\" content=\"A kanban board is a queue with a calendar. The percentiles, CFD reading rules, and Little&#039;s Law consistency check tell you whether the team is shipping or stalling.\" />\n\t\t<meta property=\"og:url\" content=\"https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/\" />\n\t\t<meta property=\"og:image\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<meta property=\"og:image:secure_url\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<meta property=\"og:image:width\" content=\"512\" />\n\t\t<meta property=\"og:image:height\" content=\"512\" />\n\t\t<meta property=\"article:published_time\" content=\"2026-09-11T07:06:52+00:00\" />\n\t\t<meta property=\"article:modified_time\" content=\"2026-09-11T07:06:54+00:00\" />\n\t\t<meta name=\"twitter:card\" content=\"summary_large_image\" />\n\t\t<meta name=\"twitter:title\" content=\"Kanban Cycle Time &amp; Throughput Coach Field Guide: When Lead Time, Cycle Time, WIP, and CFD Reading Rules Decide Whether Your Team Is Actually Delivering - COSESAI\" />\n\t\t<meta name=\"twitter:description\" content=\"A kanban board is a queue with a calendar. The percentiles, CFD reading rules, and Little&#039;s Law consistency check tell you whether the team is shipping or stalling.\" />\n\t\t<meta name=\"twitter:image\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<script type=\"application/ld+json\" class=\"aioseo-schema\">\n\t\t\t{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/11\\/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11\\/#blogposting\",\"name\":\"Kanban Cycle Time & Throughput Coach Field Guide: When Lead Time, Cycle Time, WIP, and CFD Reading Rules Decide Whether Your Team Is Actually Delivering - COSESAI\",\"headline\":\"Kanban Cycle Time &#038; Throughput Coach Field Guide: When Lead Time, Cycle Time, WIP, and CFD Reading Rules Decide Whether Your Team Is Actually Delivering\",\"author\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"publisher\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\"},\"image\":{\"@type\":\"ImageObject\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/uploads\\/2026\\/09\\/kanban-poster.png\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/11\\/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11\\/#articleImage\",\"width\":1080,\"height\":800},\"datePublished\":\"2026-09-11T15:06:52+08:00\",\"dateModified\":\"2026-09-11T15:06:54+08:00\",\"inLanguage\":\"en-US\",\"mainEntityOfPage\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/11\\/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11\\/#webpage\"},\"isPartOf\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/11\\/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11\\/#webpage\"},\"articleSection\":\"\\u672a\\u5206\\u7c7b, agile metrics, cycle time, flow analytics, kanban, Project Management\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/11\\/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11\\/#breadcrumblist\",\"itemListElement\":[{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com#listItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/blog.flowrust.com\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"name\":\"\\u672a\\u5206\\u7c7b\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"position\":2,\"name\":\"\\u672a\\u5206\\u7c7b\",\"item\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/11\\/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11\\/#listItem\",\"name\":\"Kanban Cycle Time &#038; Throughput Coach Field Guide: When Lead Time, Cycle Time, WIP, and CFD Reading Rules Decide Whether Your Team Is Actually Delivering\"},\"previousItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com#listItem\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/11\\/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11\\/#listItem\",\"position\":3,\"name\":\"Kanban Cycle Time &#038; Throughput Coach Field Guide: When Lead Time, Cycle Time, WIP, and CFD Reading Rules Decide Whether Your Team Is Actually Delivering\",\"previousItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"name\":\"\\u672a\\u5206\\u7c7b\"}}]},{\"@type\":\"Person\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\",\"name\":\"xiezixing\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/11\\/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11\\/#personImage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/litespeed\\/avatar\\/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1788785918\",\"width\":96,\"height\":96,\"caption\":\"xiezixing\"}},{\"@type\":\"Person\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\",\"url\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/\",\"name\":\"xiezixing\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/11\\/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11\\/#authorImage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/litespeed\\/avatar\\/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1788785918\",\"width\":96,\"height\":96,\"caption\":\"xiezixing\"}},{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/11\\/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11\\/#webpage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/11\\/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11\\/\",\"name\":\"Kanban Cycle Time & Throughput Coach Field Guide: When Lead Time, Cycle Time, WIP, and CFD Reading Rules Decide Whether Your Team Is Actually Delivering - COSESAI\",\"description\":\"A kanban board is a queue with a calendar. The percentiles, CFD reading rules, and Little's Law consistency check tell you whether the team is shipping or stalling.\",\"inLanguage\":\"en-US\",\"isPartOf\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/09\\/11\\/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11\\/#breadcrumblist\"},\"author\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"creator\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"datePublished\":\"2026-09-11T15:06:52+08:00\",\"dateModified\":\"2026-09-11T15:06:54+08:00\"},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/#website\",\"url\":\"https:\\/\\/blog.flowrust.com\\/\",\"name\":\"COSESAI\",\"description\":\"Sharing my AI experiences\",\"inLanguage\":\"en-US\",\"publisher\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\"}}]}\n\t\t</script>\n\t\t<!-- All in One SEO -->\n\n",
+  "aioseo_head_json": {
+    "title": "Kanban Cycle Time & Throughput Coach Field Guide: When Lead Time, Cycle Time, WIP, and CFD Reading Rules Decide Whether Your Team Is Actually Delivering - COSESAI",
+    "description": "A kanban board is a queue with a calendar. The percentiles, CFD reading rules, and Little's Law consistency check tell you whether the team is shipping or stalling.",
+    "canonical_url": "https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/",
+    "robots": "max-image-preview:large",
+    "keywords": "",
+    "webmasterTools": {
+      "google-site-verification": "xcSlplMgocNnrNwmxi7j46JcdU6F-L2jrlAnpUB5Lxg",
+      "miscellaneous": ""
+    },
+    "schema": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "@id": "https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/#blogposting",
+          "name": "Kanban Cycle Time & Throughput Coach Field Guide: When Lead Time, Cycle Time, WIP, and CFD Reading Rules Decide Whether Your Team Is Actually Delivering - COSESAI",
+          "headline": "Kanban Cycle Time &#038; Throughput Coach Field Guide: When Lead Time, Cycle Time, WIP, and CFD Reading Rules Decide Whether Your Team Is Actually Delivering",
+          "author": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "publisher": {
+            "@id": "https://blog.flowrust.com/#person"
+          },
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://blog.flowrust.com/wp-content/uploads/2026/09/kanban-poster.png",
+            "@id": "https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/#articleImage",
+            "width": 1080,
+            "height": 800
+          },
+          "datePublished": "2026-09-11T15:06:52+08:00",
+          "dateModified": "2026-09-11T15:06:54+08:00",
+          "inLanguage": "en-US",
+          "mainEntityOfPage": {
+            "@id": "https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/#webpage"
+          },
+          "isPartOf": {
+            "@id": "https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/#webpage"
+          },
+          "articleSection": "\u672a\u5206\u7c7b, agile metrics, cycle time, flow analytics, kanban, Project Management"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/#breadcrumblist",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com#listItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://blog.flowrust.com",
+              "nextItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+                "name": "\u672a\u5206\u7c7b"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+              "position": 2,
+              "name": "\u672a\u5206\u7c7b",
+              "item": "https://blog.flowrust.com/category/uncategorized/",
+              "nextItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/#listItem",
+                "name": "Kanban Cycle Time &#038; Throughput Coach Field Guide: When Lead Time, Cycle Time, WIP, and CFD Reading Rules Decide Whether Your Team Is Actually Delivering"
+              },
+              "previousItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com#listItem",
+                "name": "Home"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/#listItem",
+              "position": 3,
+              "name": "Kanban Cycle Time &#038; Throughput Coach Field Guide: When Lead Time, Cycle Time, WIP, and CFD Reading Rules Decide Whether Your Team Is Actually Delivering",
+              "previousItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+                "name": "\u672a\u5206\u7c7b"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://blog.flowrust.com/#person",
+          "name": "xiezixing",
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/#personImage",
+            "url": "https://blog.flowrust.com/wp-content/litespeed/avatar/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1788785918",
+            "width": 96,
+            "height": 96,
+            "caption": "xiezixing"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://blog.flowrust.com/author/xiezixing/#author",
+          "url": "https://blog.flowrust.com/author/xiezixing/",
+          "name": "xiezixing",
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/#authorImage",
+            "url": "https://blog.flowrust.com/wp-content/litespeed/avatar/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1788785918",
+            "width": 96,
+            "height": 96,
+            "caption": "xiezixing"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/#webpage",
+          "url": "https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/",
+          "name": "Kanban Cycle Time & Throughput Coach Field Guide: When Lead Time, Cycle Time, WIP, and CFD Reading Rules Decide Whether Your Team Is Actually Delivering - COSESAI",
+          "description": "A kanban board is a queue with a calendar. The percentiles, CFD reading rules, and Little's Law consistency check tell you whether the team is shipping or stalling.",
+          "inLanguage": "en-US",
+          "isPartOf": {
+            "@id": "https://blog.flowrust.com/#website"
+          },
+          "breadcrumb": {
+            "@id": "https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/#breadcrumblist"
+          },
+          "author": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "creator": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "datePublished": "2026-09-11T15:06:52+08:00",
+          "dateModified": "2026-09-11T15:06:54+08:00"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://blog.flowrust.com/#website",
+          "url": "https://blog.flowrust.com/",
+          "name": "COSESAI",
+          "description": "Sharing my AI experiences",
+          "inLanguage": "en-US",
+          "publisher": {
+            "@id": "https://blog.flowrust.com/#person"
+          }
+        }
+      ]
+    },
+    "og:locale": "en_US",
+    "og:site_name": "COSESAI - Sharing my AI experiences",
+    "og:type": "article",
+    "og:title": "Kanban Cycle Time &amp; Throughput Coach Field Guide: When Lead Time, Cycle Time, WIP, and CFD Reading Rules Decide Whether Your Team Is Actually Delivering - COSESAI",
+    "og:description": "A kanban board is a queue with a calendar. The percentiles, CFD reading rules, and Little's Law consistency check tell you whether the team is shipping or stalling.",
+    "og:url": "https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/",
+    "og:image": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp",
+    "og:image:secure_url": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp",
+    "og:image:width": 512,
+    "og:image:height": 512,
+    "article:published_time": "2026-09-11T07:06:52+00:00",
+    "article:modified_time": "2026-09-11T07:06:54+00:00",
+    "twitter:card": "summary_large_image",
+    "twitter:title": "Kanban Cycle Time &amp; Throughput Coach Field Guide: When Lead Time, Cycle Time, WIP, and CFD Reading Rules Decide Whether Your Team Is Actually Delivering - COSESAI",
+    "twitter:description": "A kanban board is a queue with a calendar. The percentiles, CFD reading rules, and Little's Law consistency check tell you whether the team is shipping or stalling.",
+    "twitter:image": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp"
+  },
+  "aioseo_meta_data": [],
+  "aioseo_breadcrumb": "<div class=\"aioseo-breadcrumbs\"><span class=\"aioseo-breadcrumb\">\n\t\t\t<a href=\"https://blog.flowrust.com\" title=\"Home\">Home</a>\n\t\t</span><span class=\"aioseo-breadcrumb-separator\">&raquo;</span><span class=\"aioseo-breadcrumb\">\n\t\t\t<a href=\"https://blog.flowrust.com/category/uncategorized/\" title=\"\u672a\u5206\u7c7b\">\u672a\u5206\u7c7b</a>\n\t\t</span><span class=\"aioseo-breadcrumb-separator\">&raquo;</span><span class=\"aioseo-breadcrumb\">\n\t\t\tKanban Cycle Time &amp; Throughput Coach Field Guide: When Lead Time, Cycle Time, WIP, and CFD Reading Rules Decide Whether Your Team Is Actually Delivering\n\t\t</span></div>",
+  "aioseo_breadcrumb_json": [
+    {
+      "label": "Home",
+      "link": "https://blog.flowrust.com"
+    },
+    {
+      "label": "\u672a\u5206\u7c7b",
+      "link": "https://blog.flowrust.com/category/uncategorized/"
+    },
+    {
+      "label": "Kanban Cycle Time &#038; Throughput Coach Field Guide: When Lead Time, Cycle Time, WIP, and CFD Reading Rules Decide Whether Your Team Is Actually Delivering",
+      "link": "https://blog.flowrust.com/2026/09/11/kanban-cycle-time-throughput-coach-field-guide-when-percentile-distributions-cfd-reading-rules-and-littles-law-decide-whether-your-team-is-actually-shipping-2026-09-11/"
+    }
+  ],
+  "_links": {
+    "self": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/7030",
+        "targetHints": {
+          "allow": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE"
+          ]
+        }
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts"
+      }
+    ],
+    "about": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/types/post"
+      }
+    ],
+    "author": [
+      {
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/users/1"
+      }
+    ],
+    "replies": [
+      {
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/comments?post=7030"
+      }
+    ],
+    "version-history": [
+      {
+        "count": 1,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/7030/revisions"
+      }
+    ],
+    "predecessor-version": [
+      {
+        "id": 7031,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/7030/revisions/7031"
+      }
+    ],
+    "wp:attachment": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/media?parent=7030"
+      }
+    ],
+    "wp:term": [
+      {
+        "taxonomy": "category",
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/categories?post=7030"
+      },
+      {
+        "taxonomy": "post_tag",
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/tags?post=7030"
+      }
+    ],
+    "wp:action-publish": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/7030"
+      }
+    ],
+    "wp:action-unfiltered-html": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/7030"
+      }
+    ],
+    "wp:action-sticky": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/7030"
+      }
+    ],
+    "wp:action-assign-author": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/7030"
+      }
+    ],
+    "wp:action-create-categories": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/7030"
+      }
+    ],
+    "wp:action-assign-categories": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/7030"
+      }
+    ],
+    "wp:action-create-tags": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/7030"
+      }
+    ],
+    "wp:action-assign-tags": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/7030"
+      }
+    ],
+    "curies": [
+      {
+        "name": "wp",
+        "href": "https://api.w.org/{rel}",
+        "templated": true
+      }
+    ]
+  }
+}
