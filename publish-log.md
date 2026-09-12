@@ -4250,3 +4250,27 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 ## 2026-09-11T15:24:30 — barcode-generator-field-guide-when-format-quiet-zone-and-module-width-decide-if-the-scanner-reads (WP 7044)
 - Title: Barcode Generator Field Guide: When Format, Quiet Zone, and Module Width Decide If the Scanner Reads
 - URL: https://blog.flowrust.com/2026/09/11/barcode-generator-field-guide-when-format-quiet-zone-and-module-width-decide-if-the-scanner-reads/
+## 2026-09-11 23:50:01 UTC — html-entity-encoder (Post 7059)
+
+- **Tool:** HTML Entity Encoder/Decoder (Development)
+- **Slug:** html-entity-encoder-field-guide-when-five-characters-decide-if-your-pasted-string-is-text-or-markup-2026-09-11
+- **Link:** https://blog.flowrust.com/2026/09/12/html-entity-encoder-field-guide-when-five-characters-decide-if-your-pasted-string-is-text-or-markup-2026-09-11/
+- **date_gmt:** 2026-09-11T23:47:47
+- **Status:** publish (1-POST 0-PATCH)
+- **Cards:** 1 poster + 3 highlight cards, all vision-checked clean
+- **Anchors:** 3 tool anchors, 1 sample anchor, 1 root anchor — all HTTP 200
+- **Audit:** 0 structural findings; 1 ORPHANED_CODE false positive from audit regex (HTML5 void <img> tags without trailing /> — known false positive in audit script)
+
+## 2026-09-12  -  POST 7066  -  Corrected QT (QTc) Calculator Field Guide — When Bazett, Fridericia, and Framingham Disagree
+
+- **date_gmt**: 2026-09-12T04:01:22
+- **url**: https://blog.flowrust.com/2026/09/12/corrected-qt-qtc-calculator-field-guide-when-bazett-fridericia-and-framingham-disagree-2026-09-12/
+- **slug**: corrected-qt-qtc-calculator-field-guide-when-bazett-fridericia-and-framingham-disagree-2026-09-12
+- **tool**: corrected-qt-bazett-fridericia (Corrected QT (QTc) Calculator (Bazett/Fridericia/Framingham))
+- **category**: Health
+- **assets**: 1 poster (1080x800) + 3 cards (1600x900)
+- **audit**: 1-POST + 1-PATCH (defused MERGED_BULLET_LIST on en-dash list in `Reading the Output` section)
+- **anchors**: 2 tool links + 1 root link (all real catalog IDs, all HEAD 200)
+- **images**: 4 (all HEAD 200)
+- **permalink HEAD**: 200
+
