@@ -4274,3 +4274,20 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - **images**: 4 (all HEAD 200)
 - **permalink HEAD**: 200
 
+
+## 2026-09-12 08:10:52 UTC — Ligation Insert:Vector Molar Ratio Calculator (Post 7072)
+
+- **date_gmt**: 2026-09-12T08:10:52
+- **url**: https://blog.flowrust.com/2026/09/12/ligation-molar-ratio-field-guide-when-five-inputs-and-one-canceled-factor-decide-whether-the-cloning-plates-a-million-colonies-or-three/
+- **slug**: ligation-molar-ratio-field-guide-when-five-inputs-and-one-canceled-factor-decide-whether-the-cloning-plates-a-million-colonies-or-three
+- **tool**: ligation-molar-ratio (Ligation Insert:Vector Molar Ratio Calculator)
+- **category**: Education
+- **assets**: 1 poster (1280x900) + 2 cards (1280x900 each, editorial-dense theme)
+- **audit**: 1-POST 0-PATCH (audit_post_content 0 findings)
+- **anchors**: 4 tool links + 1 root link (all HEAD 200)
+- **images**: 3 (poster + 2 cards, all HEAD 200)
+- **permalink HEAD**: 200
+- **featured_media**: 0 (COSESAI hero dup avoided)
+- **structure**: 0 body H1, 8 H2, 0 H3, 2 `<ul>` blocks (6 `<li>`), 1 article-poster, 2 highlight-card
+- **visual QA**: vision_analyze PASS on poster + both cards (no overflow, no tofu, even spacing)
+- **source-side defenses**: real `<ul><li>` HTML for the 3-band list and the 3 edge cases (WP 5676/6135 MERGED_BULLET_LIST family avoided); no backslash in code; no em-in-code; no nested code
