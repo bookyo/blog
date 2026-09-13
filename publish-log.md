@@ -4387,3 +4387,14 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - HTML check: 0 missing-alt on article imgs; 4 image URLs + 3 elysia anchors + permalink all HEAD 200
 - Browser DOM probe unavailable (Chromium binary not in default path) — fell back to raw+rendered regex probe per WP 6663
 - State: covered_slugs 762→763 (+1: csv-flavor-to-sql-insert-emitter)
+
+## 2026-09-13 — WP 7121 — SVG Sprite Sheet Generator
+- **Title:** The Five Decisions Behind Every Working SVG Sprite
+- **Tool:** svg-sprite-generator (Media)
+- **Slug:** svg-sprite-sheet-generator-field-guide-when-five-merge-decisions-and-three-late-surprises-decide-whether-your-30-icon-set-shines-or-ships-broken
+- **Link:** https://blog.flowrust.com/2026/09/13/svg-sprite-sheet-generator-field-guide-when-five-merge-decisions-and-three-late-surprises-decide-whether-your-30-icon-set-shines-or-ships-broken/
+- **Status:** publish (1-POST + 1-PATCH clean)
+- **Asset count:** 4 (poster + 3 cards)
+- **Elysia anchors:** /en/tools/svg-sprite-generator x2, /en/tools x1 (all 200)
+- **Audit findings:** 0 (after PATCH v3: stripped 3 stray </p></li>)
+
