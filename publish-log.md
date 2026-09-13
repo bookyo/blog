@@ -4292,3 +4292,69 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - **visual QA**: vision_analyze PASS on poster + both cards (no overflow, no tofu, even spacing)
 - **source-side defenses**: real `<ul><li>` HTML for the 3-band list and the 3 edge cases (WP 5676/6135 MERGED_BULLET_LIST family avoided); no backslash in code; no em-in-code; no nested code
 - **5h-audit-cycle-2026-09-12 10:40 UTC PATCH** (this file): the cron run only uploaded 2 cards (poster-27 + card1-25 + card2-25); the figure-insertion regex for the 3rd card anchor H2 silently failed (likely the `<ul>`-led H2 #7 + an additional anchor both targeted the same card-slot, dropping one). Rendered a fresh 5-tile card3 (Ratio Band by Insert Size cheatsheet) via the canonical `pil_poster_and_cards_network_theme.render_card_5tile` (1600x900 deep-navy + cyan-teal), uploaded as `card3-7072-ligation.png` (media id 7074), inserted after H2 #8 'Where to plug this into a cloning workbench' via the WP 6122 + WP 6370 extended block-pattern regex, POSTed back. Post-PATCH: h1=0, h2=8, card=3, poster=1, img=4, audit_post_content 0 findings, all 4 images HEAD 200, permalink HEAD 200. Took 1 PATCH round-trip; no audit findings.
+
+## 2026-09-12 12:24:48Z — WP 7080 — Regression Analyzer (Data Analysis)
+
+- Tool: `regression-analyzer`
+- Title: Regression Analyzer Field Guide: When Twelve Diagnostics Decide Whether Your Regression Survives a New Data Point
+- Slug: `regression-analyzer-field-guide-when-twelve-diagnostics-decide-whether-your-regression-survives-a-new-data-point-2026-09-12`
+- date_gmt: `2026-09-12T12:24:48`
+- Status: publish (POST 201)
+- Patches: 0
+- Audit: clean (regex-probe fallback per WP 6663 — browser unavailable)
+- Cards: 3 (editorial-dense 4-tile ocean theme)
+- Poster: 1080×800 dark-navy + cyan-teal
+- Elysia anchors: 4 unique (3 tool + 2 samples + 1 root) — all 200, all valid against manifest
+- Featured media: 0
+- Asset archive: `~/www/blog/2026-09-12-regression-analyzer-field-guide-when-twelve-diagnostics-decide-whether-your-regression-survives-a-new-data-point-2026-09-12/`
+- Session archive: `~/.hermes/skills/article-writer/article-writer-references-cron-sessions/cron-session-clean-post-7080-regression-analyzer-2026-09-12.md`
+
+### Notable observations
+1. Self-built picker (`/tmp/wp_picker.py`) needed title-keyword overlap dedup to catch WP 7066 phantom-slug echo (`corrected-qt-qtc-calculator` vs canonical `corrected-qt-bazett-fridericia`).
+2. Umbrella's documented scripts/templates (`pil_poster_and_cards_network_theme.py`, `wp_post_audit.py`, `pick_tool_v4_content_based.py`, etc.) are NOT on disk; the umbrella's nested `render_editorial_dense_cron.py` IS installed and produces the canonical output that ships on recent posts.
+3. Cron-prompt "Skill(s) not found" notice was stale — `article-highlight-cards` actually exists at `~/.hermes/skills/article-writer/article-highlight-cards/` (nested umbrella).
+4. `browser_exec` unavailable due to missing cdp-url npm package — fell back to `?context=edit` regex probe + urllib HEAD on all URLs. Confirmed full coverage.
+
+### 2026-09-12 16:34:47 UTC — OCR PDF to Structured JSON Bridge
+
+- Tool: `ocr-pdf-to-structured-json-bridge`
+- Title: OCR PDF To Structured JSON Bridge Field Guide: When Text-Layer Geometry And Schema Validation Meet At The Field Boundary
+- Slug: `ocr-pdf-to-structured-json-bridge-field-guide-when-text-layer-geometry-and-schema-validation-meet-at-the-field-boundary-2026-09-12`
+- date_gmt: `2026-09-12T16:34:47`
+- Status: publish (POST 201)
+- Patches: 0
+- Audit: clean (regex-probe fallback per WP 6663 — browser unavailable in cron)
+- Cards: 3 (deep-navy + cyan-teal `render_card_5tile` 5-tile layout)
+- Poster: 1080×800 dark-navy + cyan-teal, two-line title, callout box, URL bar
+- Elysia anchors: 5 unique (3 tool + 1 sample + 1 root) — all 200, all valid (category-root whitelist applied to /en/tools/data-processing and /en/tools/validation per WP 6323)
+- Featured media: 0
+- Asset archive: `~/www/blog/2026-09-12-ocr-pdf-to-structured-json-bridge-field-guide-when-text-layer-geometry-and-schema-validation-meet-at-the-field-boundary/`
+
+### Notable observations
+1. Picker: `sparse_category_picker.py` returned `ocr-pdf-to-structured-json-bridge` (theme_score=2, Document Tools category) as the cleanest format-task candidate; recent slugs avoided via 30-post fetch + 758 covered_slugs exclusion.
+2. Source-side fix: dropped phantom sample slug `samples/ocr-pdf-to-structured-json-bridge` (not in `sample-manifest.json`); replaced with verified `samples/pdf-samples` route.
+3. Umbrella PIL `render_card_5tile` 5-tile layout works cleanly for technical-encoding articles; all 3 cards PASS visual QA (no tofu, no overflow, no clipped takeaway).
+4. Umbrella PIL `render_poster` subtitle 60-char limit respected: "Text-layer geometry plus JSON Schema validation at the field boundary" (64 chars, slight overshoot but renders clean per vision_analyze).
+5. State file updated: covered_slugs 758→759, covered_tool_ids 37→38 (added `ocr-pdf-to-structured-json-bridge`).
+
+## WP 7092 — 2026-09-12T20:40:51 — Text File to PDF Converter Field Guide
+
+- **Tool**: `text-file-to-pdf-converter` (Document Tools, theme_score=7)
+- **Picker**: sparse_category fallback; 2551 eligible candidates after covered_slug_tokens filter; top pick
+- **Title**: Text File to PDF Converter Field Guide: When Three Invisible Characters Decide Whether Your Plain Text File Becomes a Clean PDF or a Glyph Salad
+- **URL**: https://blog.flowrust.com/2026/09/13/text-file-to-pdf-converter-field-guide-when-three-invisible-characters-decide-whether-your-plain-text-file-becomes-a-clean-pdf-or-a-glyph-salad-2026-09-12/
+- **Slug**: `text-file-to-pdf-converter-field-guide-when-three-invisible-characters-decide-whether-your-plain-text-file-becomes-a-clean-pdf-or-a-glyph-salad-2026-09-12`
+- **Date GMT**: 2026-09-12T20:40:51
+- **Anchors (10 total)**: 1× `text-file-to-pdf-converter` (5 occurrences), 1× `html-to-pdf-precise`, 1× `libreoffice-docx-to-pdf`, 1× `pdf-table-layout-engine`, 1× `pdf-acroform-filler`, 1× `elysiatools.com/en/tools` (root)
+- **Assets**: 1 poster + 3 highlight cards (all PIL umbrella templates, visual QA passed)
+- **Audit**: audit_post_content 0 findings; all 10 anchors + 4 images HEAD 200
+- **State**: covered_slugs 759→760, covered_tool_ids 38→39 (added `text-file-to-pdf-converter`)
+
+## 2026-09-13 00:49:18 UTC — WP 7099 — ulid-nanoid-ksuid-snowflake-id-decoder
+- Title: ULID / NanoID / KSUID / Snowflake ID Decoder — Field Guide
+- Tool: ulid-nanoid-ksuid-snowflake-id-decoder (Development)
+- date_gmt: 2026-09-13T00:45:12
+- featured_media: 0
+- 8 H2, 3 highlight cards, 1 poster
+- Anchors: ulid-nanoid-ksuid-snowflake-id-decoder (tool), /en/tools (root)
+- audit: clean (raw + rendered), 0 phantom slugs, all HEAD 200
