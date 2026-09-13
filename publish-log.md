@@ -4358,3 +4358,32 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - 8 H2, 3 highlight cards, 1 poster
 - Anchors: ulid-nanoid-ksuid-snowflake-id-decoder (tool), /en/tools (root)
 - audit: clean (raw + rendered), 0 phantom slugs, all HEAD 200
+
+## 2026-09-13 04:55:00 UTC — WP 7105 — oauth-oidc-authorization-code-pkce-flow-visualizer
+- Title: OAuth 2.0 / OIDC Authorization Code with PKCE Field Guide: When S256 Closes the Downgrade Attack Your Plain PKCE Leaves Open
+- Tool: oauth-oidc-authorization-code-pkce-flow-visualizer (Development, theme_score=1, category bonus)
+- Picker: sparse_category with PREFERRED_CATS={Format Conversion, Text Processing, Data Processing, Development, Generator, Security, Encoding, Validation, Visualization, Color & Design, Web, Productivity}; 2027 eligible; top dev-flavored pick
+- date_gmt: 2026-09-13T04:50:18
+- featured_media: 0 (COSESAI non-negotiable)
+- 8 H2 (merged "Live Examples" into "Where to Run It"), 3 highlight cards, 1 poster, 0 H1, 0 H3
+- Anchors (4 elysiatools, all HEAD 200): oauth-oidc-authorization-code-pkce-flow-visualizer (×2 in body), oauth-openid-connect (sample), oauth2-samples (sample), /en/tools (root footer)
+- Auto-tags rendered: oauth-2-0, oidc, pkce (3 wpai-auto-tags-link tags)
+- Assets: 1 poster (1080×800) + 3 cards (1600×900) via umbrella `pil_poster_and_cards_network_theme.render_poster` / `render_card_5tile`. Visual QA via vision_analyze caught initial defects: poster subtitle 138 chars left-clipped at W=1080 (WP 6390); card 1 tile 1 body 60+ chars overflowed (WP 6358 family); card 2/3 takeaways clipped at panel edge. Fixed: subtitle→30 chars; bodies→3-line `\n` splits; takeaways shortened. Re-render visual QA clean.
+- Upload: 4 PNGs to /wp/v2/media; card1 required 1 SSL retry (WP 5683 family)
+- Audit: audit_post_content 0 findings; regex-probe clean (raw + rendered, no ORPHANED_CODE / MERGED_BULLET / P_TAG_MISMATCH / RAW_ITALIC / wpautop-strip / backslash); 0 missing-alt; all 4 images + 5 elysia URLs + permalink HEAD 200
+- Browser-based DOM probe unavailable (Chromium cdp-url 404 npm install error); fell back to WP 6663 recipe: regex-probe context=edit rendered + urllib HEAD
+- State: covered_slugs 760→761 (added oauth-oidc-authorization-code-pkce-flow-visualizer), covered_tool_ids 38→39
+
+## 2026-09-13 ~09:14 UTC — WP 7112 — CSV Flavor to SQL INSERT Emitter
+- Tool: csv-flavor-to-sql-insert-emitter (Format Conversion, theme_score=3, sparse-picker score=144)
+- Picker: sparse_category_picker.py (canonical pick_tool_v4_content_based returns <5 diverse past 762 covered)
+- Article: 8 H2s + 0 H1 (stripped post-md_to_html) + close-first lead + 3 card-anchor H2s
+- Source defense: pre_encode_code_spans.py (no backslash pre-encode — empirically not needed here, 0 raw `\` survived POST)
+- Anchors (4, all HTTP 200): tools/csv-flavor-to-sql-insert-emitter (×2 intro/closing), tools/xlsx-sql-insert-generator (related), /en/tools root (closing)
+- Assets: 1 poster (1080×800) + 3 cards (1600×900) via umbrella PIL. Visual QA via vision_analyze caught initial poster subtitle 84 chars → clipped at W=1080 (WP 6390 lesson applied); re-rendered with 47-char subtitle. Cards 1/2/3 clean first-pass (≤16 char body lines, ≤14 char notes per WP 6358/6436).
+- Upload: 4 PNGs to /wp/v2/media; first run hung at card3 SSL EOF (WP 5731 family) — split into step1/step2; card3 retry succeeded on attempt 2. IDs: poster=7107, card1=7108, card2=7109, card3=7111.
+- POST: 201 Created at 2026-09-13T09:02:08 GMT, featured_media=0, status=publish
+- Audit: audit_post_content 0 findings; rendered DOM (via context=edit, WP 6663 recipe): H1=0, H2=8, H3=0, p=18, cards=3, poster=1, imgs=4, strong=1, backtick=37 (backslash=0)
+- HTML check: 0 missing-alt on article imgs; 4 image URLs + 3 elysia anchors + permalink all HEAD 200
+- Browser DOM probe unavailable (Chromium binary not in default path) — fell back to raw+rendered regex probe per WP 6663
+- State: covered_slugs 762→763 (+1: csv-flavor-to-sql-insert-emitter)
