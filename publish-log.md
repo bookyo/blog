@@ -4398,3 +4398,38 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - **Elysia anchors:** /en/tools/svg-sprite-generator x2, /en/tools x1 (all 200)
 - **Audit findings:** 0 (after PATCH v3: stripped 3 stray </p></li>)
 
+
+## 2026-09-13 18:46 UTC — WP 7131 — PCR Cycle Number Calculator Field Guide
+
+- Tool: PCR Cycle Number / Product Amount Calculator (2^n) (Education)
+- URL: https://blog.flowrust.com/2026/09/14/pcr-cycle-number-calculator-field-guide-when-2n-19n-and-plateau-decide-whether-your-band-hits-production-or-hits-a-smear-2026-09-13/
+- date_gmt: 2026-09-13T18:46:42
+- featured_media: 0 (correct)
+- Cards: 3 (efficiency table 5-tile, failure modes 4-tile compact, sample calc 4-tile compact)
+- Anchors: 4 (3 tool-page + 1 root)
+- Audit: 0 findings
+- Mode: 1-POST 0-PATCH clean
+- Skill path: umbrella fallback (article-poster-creator + article-highlight-cards missing)
+
+## 2026-09-13 23:01:12 UTC — WP 7137 — Markdown Link Extractor Field Guide
+- Title: Markdown Link Extractor Field Guide: When Five Link Shapes, Three Failure Modes, and One Status Flag Decide Whether Your 4,000-Line README Lands in a Triage Queue
+- Tool: markdown-link-extractor (Text Processing, theme_score=3, sparse-picker top pick)
+- Picker: sparse_category_picker.py (canonical pick_tool_v4 returns <5 diverse past 766 covered)
+- Article: 8 H2s + 0 H1 + 0 H3 + 3 cards + 1 poster + close-first lead
+- Source defense: pre_encode_backslash + pre_encode_code_spans + canonical md_to_html
+- Anchors (7 unique, all HTTP 200): tools/markdown-link-extractor (×2), samples/markdown-with-links (×11), tools/markdown-link-checker (×2), tools/markdown-linter, tools/markdown-lint-style-checker, tools/json-to-markdown, /en/tools (×2 root)
+- Assets: 1 poster (1080×800) + 3 cards (1600×900) via umbrella PIL. Visual QA caught poster subtitle left-clipped at 88 chars (WP 6390); re-rendered with 60-char subtitle. Cards 1/2/3 clean first-pass (5-tile, ≤16 char body, ≤14 char notes per WP 6358/6436).
+- Upload: 4 PNGs to /wp/v2/media via curl (Python urllib hit SSL EOF); IDs: poster=7133, card1=7134, card2=7135, card3=7136. URLs preserve /uploads/2026/09/ prefix and -NN counter (poster-30, card1-29, card2-30, card3-27).
+- POST: 201 Created at 2026-09-13T23:01:12 GMT, featured_media=0, status=publish
+- 1st POST audit: 1 POSSIBLE_BACKSLASH_STRIPPED (real — WP KSES stripped all 4 `&#92;` entities) + 1 MERGED_BULLET_LIST (3-mode list with ASCII `-` separators). Both legitimate findings.
+- PATCH v2: restored `&#92;u00A0`/`&#92;u200B`/`&#92;u00AD`/`&#92;s` entities via regex on context=edit raw; converted MERGED_BULLET_LIST paragraph to `<ul><li>` (3 items).
+- 2nd POST: 200 OK
+- Final audit: 0 findings on raw + rendered; structure H1=0 H2=8 H3=0 poster=1 cards=3 ul=1 li=3
+- HTML check: 12/12 URLs HEAD 200 (4 images + 7 elysia anchors + permalink); rendered DOM regex-probe matches expected counts
+- Mode: 1-POST + 1-PATCH clean (after PATCH)
+- Skill path: umbrella fallback (article-poster-creator + article-highlight-cards missing per WP 6185/6352)
+- State: covered_slugs 766→767, covered_tool_ids 41→42 (added markdown-link-extractor)
+
+## 2026-09-14T03:10:45 — trough-level-estimator-field-guide-when-cmax-half-life-and-the-dosing-interval-decide-whether-your-next-dose-lands-therapeutic-or-sub-therapeutic (WP 7144)
+- Title: Trough Level Estimator Field Guide: When Cmax, Half-Life, and the Dosing Interval Decide Whether Your Next Dose Lands Therapeutic or Sub-Therapeutic
+- URL: https://blog.flowrust.com/2026/09/14/trough-level-estimator-field-guide-when-cmax-half-life-and-the-dosing-interval-decide-whether-your-next-dose-lands-therapeutic-or-sub-therapeutic/
