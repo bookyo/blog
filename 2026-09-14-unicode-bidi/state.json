@@ -1,0 +1,27 @@
+{
+  "post_id": 7156,
+  "post_url": "https://blog.flowrust.com/2026/09/14/unicode-bidi-paired-bracket-isolate-embedding-cf-rule-explainer-field-guide-when-x1-n0-and-l2-decide-whether-your-mixed-script-paragraph-lands-readable-or-backwards/",
+  "post_slug": "unicode-bidi-paired-bracket-isolate-embedding-cf-rule-explainer-field-guide-when-x1-n0-and-l2-decide-whether-your-mixed-script-paragraph-lands-readable-or-backwards",
+  "date_gmt": "2026-09-14T11:26:23",
+  "media": {
+    "poster": {
+      "id": 7152,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/09/unicode-bidi-poster.png"
+    },
+    "card1": {
+      "id": 7153,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/09/unicode-bidi-card1-rules.png"
+    },
+    "card2": {
+      "id": 7154,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/09/unicode-bidi-card2-spec-example.png"
+    },
+    "card3": {
+      "id": 7155,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/09/unicode-bidi-card3-debug-moves.png"
+    }
+  },
+  "tool_slug": "unicode-bidi-paired-bracket-isolate-embedding-cf-rule-explainer",
+  "tool_name": "Unicode Bidi Paired Bracket Isolate Embedding CF Rule Explainer",
+  "tool_category": "Text Processing"
+}

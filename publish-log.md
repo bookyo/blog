@@ -4433,3 +4433,31 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 ## 2026-09-14T03:10:45 — trough-level-estimator-field-guide-when-cmax-half-life-and-the-dosing-interval-decide-whether-your-next-dose-lands-therapeutic-or-sub-therapeutic (WP 7144)
 - Title: Trough Level Estimator Field Guide: When Cmax, Half-Life, and the Dosing Interval Decide Whether Your Next Dose Lands Therapeutic or Sub-Therapeutic
 - URL: https://blog.flowrust.com/2026/09/14/trough-level-estimator-field-guide-when-cmax-half-life-and-the-dosing-interval-decide-whether-your-next-dose-lands-therapeutic-or-sub-therapeutic/
+
+## 2026-09-14T07:18:40 — pdf-merge-cover-with-doc-field-guide-when-one-cover-file-two-inputs-and-zero-reformat-decide-whether-your-branded-output-ships-or-lands-in-a-repair-queue (WP 7150)
+- Title: PDF Merge Cover with Doc Field Guide: When One Cover File, Two Inputs, and Zero Reformat Decide Whether Your Branded Output Ships or Lands in a Repair Queue
+- Tool: pdf-merge-cover-with-doc (PDF Tools) — narrow PDF cover-prepend utility
+- URL: https://blog.flowrust.com/2026/09/14/pdf-merge-cover-with-doc-field-guide-when-one-cover-file-two-inputs-and-zero-reformat-decide-whether-your-branded-output-ships-or-lands-in-a-repair-queue/
+- date_gmt: 2026-09-14T07:18:40
+- Mode: 1-POST 0-PATCH clean
+- Assets: 1 poster (1080×800) + 3 cards (1600×900, 5-tile)
+- vision_analyze: caught overflow on card1 first pass + card2 first pass; reflowed to 2-line bodies, re-rendered clean
+- elysia anchors: /en/tools/pdf-merge-cover-with-doc + /en/tools (kind-root, validator-passing after dropping /en/tools/pdf-tools which is not in CATEGORY_ROOT_WHITELIST)
+- Pre-flight: 0 md-link-leak, 0 placeholder, 0 backslash-in-code, 0 br-in-p, 0 figures
+- Audit: 0 findings on raw content
+- DOM: 1 H1 (theme title), 9 H2 (8 body + 1 nav), 0 H3, 1 article-poster, 3 highlight-card, 6 imgs total
+- URL check: 12/12 HEAD 200 (4 images + 7 elysia anchors + permalink)
+- Skill path: umbrella fallback (article-poster-creator + article-highlight-cards missing per WP 6185/6352)
+- State: covered_slugs 768→769, covered_tool_ids 42→43 (added pdf-merge-cover-with-doc)
+
+## WP 7156 — 2026-09-14 11:26 UTC — Unicode Bidi Paired Bracket Isolate Embedding CF Rule Explainer
+
+- Mode: 1-POST + 1-PATCH (PATCH removed lead H2 to enforce 8-body-H2 canonical pattern)
+- Assets: 1 poster (1080×800) + 3 cards (1600×900: 2×5-tile, 1×4-tile compact)
+- vision_analyze: caught tofu glyphs in card2 first pass (Hebrew + bidi control chars); reflowed to ASCII+HBR labels, re-rendered clean
+- elysia anchors: /en/tools/unicode-bidi-paired-bracket-isolate-embedding-cf-rule-explainer (×2) + /en/tools (kind-root)
+- Pre-flight: 0 md-link-leak, 0 placeholder, 0 backslash-in-code, 0 br-in-p, 3 highlight-card figures (assert PASS)
+- Audit: 8 body H2, 0 H1, 0 H3, 1 article-poster, 3 highlight-card, 0 empty artifacts
+- URL check: 7/7 HEAD 200 (4 images + 2 elysia anchors + permalink)
+- Skill path: umbrella fallback (article-poster-creator + article-highlight-cards missing per WP 6185/6352)
+- State: covered_slugs 769→770, covered_tool_ids 43→44 (added unicode-bidi-paired-bracket-isolate-embedding-cf-rule-explainer)

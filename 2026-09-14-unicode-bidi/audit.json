@@ -1,0 +1,30 @@
+{
+  "post_id": 7156,
+  "permalink": "https://blog.flowrust.com/2026/09/14/unicode-bidi-paired-bracket-isolate-embedding-cf-rule-explainer-field-guide-when-x1-n0-and-l2-decide-whether-your-mixed-script-paragraph-lands-readable-or-backwards/",
+  "date_gmt": "2026-09-14T11:26:23",
+  "h1": 0,
+  "h2": 8,
+  "h3": 0,
+  "poster": 1,
+  "cards": 3,
+  "img": 4,
+  "elysia_anchors": 4,
+  "code": 38,
+  "strong": 1,
+  "p": 11,
+  "anchor_validation": "(True, [])",
+  "empty_h1": 0,
+  "empty_button": 0,
+  "empty_img": 0,
+  "backslash_in_code": 0,
+  "body_h2": [
+    "A Note on L4 Mirroring and Why It Trips People Up",
+    "Paired Brackets Are Where Surprises Hide",
+    "Reverse the Order of Operations to Debug a Bug",
+    "The Three Rules That Cause the Most Headaches",
+    "Three Worked Examples Worth Replaying",
+    "What the Tool Actually Shows You",
+    "When You Should Reach for This Tool",
+    "Why Isolate Run Sequences Matter"
+  ]
+}
