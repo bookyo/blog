@@ -4461,3 +4461,33 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - URL check: 7/7 HEAD 200 (4 images + 2 elysia anchors + permalink)
 - Skill path: umbrella fallback (article-poster-creator + article-highlight-cards missing per WP 6185/6352)
 - State: covered_slugs 769→770, covered_tool_ids 43→44 (added unicode-bidi-paired-bracket-isolate-embedding-cf-rule-explainer)
+
+## 2026-09-14 15:35 UTC — Text Hash Generator Field Guide (WP 7163)
+
+- **date_gmt**: 2026-09-14T15:35:56
+- **post id**: 7163
+- **slug**: text-hash-generator-field-guide-when-five-algorithms-two-output-formats-and-one-utf-8-byte-boundary-decide-whether-your-content-fingerprint-survives-cross-platform-cache-invalidation
+- **tool**: `text-hash-generator` (Text Processing)
+- **description**: Compute MD5, SHA-1, SHA-256, SHA-512, and CRC-32 hashes of any text in one shot.
+- **assets**: 1 poster + 3 highlight cards
+- **anchors**: 1 tool + 2 samples + 1 kind-root = 4 elysiatools.com links (all 200 OK)
+- **audit**: 0 findings (audit_post_content)
+- **defects**: 1 — initial POST had `CARD1_URL`/`CARD2_URL`/`CARD3_URL` placeholder strings surviving into img src (replace pattern bug in publish driver — used `CARD_URL` literal instead of the numbered placeholders). PATCHed in 1 round-trip via POST /wp/v2/posts/7163 with corrected content.
+- **notes**: wpai-auto-tags-link added `<a class="wpai-auto-tags-link">` inside the "Pairing With Cryptography Samples" H2 — first-pass regex audit (`<h2[^>]*>([^<]+)</h2>`) undercounted H2s (7 instead of 8) because it didn't handle nested `<a>`. Re-audit with `re.DOTALL` confirmed 8 H2s as expected.
+- **status**: published, 1 PATCH round-trip
+
+## 2026-09-14T19:44:26 — epistasis-ratio-calculator-field-guide-when-seven-f2-ratios-one-chi-square-and-five-ordered-steps-decide-whether-your-cross-reads-as-recessive-epistasis-or-complementary-genes (WP 7170)
+
+- Title: Epistasis Ratio Calculator Field Guide: When Seven F2 Ratios, One Chi-Square, and Five Ordered Steps Decide Whether Your Cross Reads as Recessive Epistasis or Complementary Genes
+- URL: https://blog.flowrust.com/2026/09/15/epistasis-ratio-calculator-field-guide-when-seven-f2-ratios-one-chi-square-and-five-ordered-steps-decide-whether-your-cross-reads-as-recessive-epistasis-or-complementary-genes/
+- Tool: epistasis-ratio-calculator (Education) — modified dihybrid F2 ratios across 7 gene-interaction patterns
+- date_gmt: 2026-09-14T19:44:26
+- Mode: 1-POST 0-PATCH clean
+- Assets: 1 poster (1080×800) + 3 cards (1600×900: 2×5-tile + 1×2-col input/output)
+- vision_analyze: all 4 PNGs clean — no tofu, no overflow, no clipping, no overlap
+- elysia anchors: /en/tools/epistasis-ratio-calculator (×1) + /en/tools (kind-root, ×1) = 2 anchors
+- Pre-flight: 0 md-link-leak, 0 placeholder, 0 backslash-in-code, 0 br-in-p, 0 p-in-h2, 0 H1, 0 H3, 1 poster, 3 cards
+- Audit: 0 findings on raw content
+- URL check: 7/7 HEAD 200 (4 images + 2 elysia anchors + permalink)
+- Skill path: umbrella fallback (article-poster-creator + article-highlight-cards missing per WP 6185/6352; parent umbrella bundles them as subdirs)
+- State: covered_slugs 770→771, covered_tool_ids 44→45 (added epistasis-ratio-calculator)
