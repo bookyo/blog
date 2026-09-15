@@ -1,0 +1,18 @@
+{
+  "id": "openapi-to-postman-collection",
+  "name": "OpenAPI to Postman Collection",
+  "description": "Convert an OpenAPI 3.x (or Swagger 2.0) spec — JSON or YAML — into a Postman Collection v2.1.0 JSON that imports cleanly into the Postman app and runs in Newman. Folders by path trie or tags, maps path/query/header parameters, generates JSON bodies with deterministic sample values from schemas, saves example responses, converts security schemes to bearer/basic/apiKey auth, and emits {{baseUrl}} plus server variables.",
+  "category": "Development",
+  "keywords": [
+    "openapi to postman",
+    "swagger to postman",
+    "postman collection generator",
+    "openapi converter",
+    "api import postman",
+    "collection v2.1",
+    "swagger 2.0 converter"
+  ],
+  "score": 174.0,
+  "theme_score": 3,
+  "sample_count": 0
+}

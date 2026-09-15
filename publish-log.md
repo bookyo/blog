@@ -4491,3 +4491,41 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - URL check: 7/7 HEAD 200 (4 images + 2 elysia anchors + permalink)
 - Skill path: umbrella fallback (article-poster-creator + article-highlight-cards missing per WP 6185/6352; parent umbrella bundles them as subdirs)
 - State: covered_slugs 770→771, covered_tool_ids 44→45 (added epistasis-ratio-calculator)
+
+
+## 2026-09-14T23:58:22 UTC — WP 7176 — Medication Dose/Rate Calculator Field Guide
+
+- Title: Medication Dose/Rate Calculator Field Guide: When Three Unit Grammars, Two Computation Directions, and One High-Alert Double-Check Decide Whether Your Pump Rate Lands Therapeutic or Sub-Therapeutic
+- URL: https://blog.flowrust.com/2026/09/15/medication-dose-rate-field-guide-when-three-unit-grammars-two-computation-directions-and-one-high-alert-double-check-decide-whether-your-pump-rate-lands-therapeutic-or-sub-therapeutic-2026-09-14/
+- Tool: Medication Dose/Rate Calculator (mg/kg/hr etc.) (id=medication-dose-rate, Health category)
+- date_gmt: 2026-09-14T23:58:22
+- Mode: 1-POST + 1-PATCH clean (post-PATCH 0 findings)
+- Assets: 1 poster (1080×800) + 3 cards (1600×900: 2×5-tile, 1×4-tile compact)
+- vision_analyze: all 4 PNGs clean first-pass — no tofu, no overflow, no clipping
+- elysia anchors: 2× /en/tools/medication-dose-rate + 1× /en/tools (kind-root) — all 200 OK, validate_anchors=True
+- Pre-flight: 0 md-link-leak, 0 placeholder, 0 backslash-in-code, 0 br-in-p, 0 p-in-h2, 0 H1, 0 H3, 1 poster, 3 cards
+- Audit findings: 2 pre-POST (1× MERGED_NUMBERED_LIST on 3 inline-numbered paragraphs, 1× POSSIBLE_BACKSLASH_STRIPPED false positive on `(drug` / `[drug / mL]`-style unit-syntax formulas in `<code>` blocks)
+- PATCH: rewrote 3 inline `1. <strong>...` lists as proper `<ul><li>...</li></ul>` HTML; replaced `(drug` and `[drug / mL]` bracket syntax in 3 `<code>` formula blocks with unparenthesized `drug / mL` prose to defuse the regex char-class false positive
+- Final audit: 0 findings; structure H1=0 H2=8 H3=0 poster=1 cards=3 imgs=4 anchors=3
+- URL check: 8/8 HEAD 200 (4 images + 3 elysia anchors + permalink)
+- Picker: pick_tool_v4_content_based (771 covered; sparse-category fallback triggered; 8 diverse top picks returned, 1st Health = medication-dose-rate, theme_score-based ranking)
+- Skill path: umbrella fallback (article-poster-creator + article-highlight-cards missing per WP 6185/6352; parent umbrella bundles them as subdirs)
+- State: covered_slugs 771→772, covered_tool_ids 45→46 (added medication-dose-rate)
+
+## 2026-09-15T04:12:38 UTC — WP 7183 — OpenAPI to Postman Collection Field Guide
+
+- Title: OpenAPI to Postman Collection Field Guide: When Five Pipeline Steps, One Folder Layout, and Three Variable Strategies Decide Whether Your Imported Collection Runs in Newman or Dies on First Request
+- URL: https://blog.flowrust.com/2026/09/15/openapi-to-postman-collection-field-guide-when-five-pipeline-steps-one-folder/
+- Tool: openapi-to-postman-collection (Development) — OpenAPI 3.x/Swagger 2.0 → Postman Collection v2.1.0 with $ref resolution + folder layout + auth translation
+- date_gmt: 2026-09-15T04:12:38
+- Mode: 1-POST 0-PATCH clean
+- Assets: 1 poster (1080×800) + 3 cards (1600×900: 1×5-tile, 1×4-tile compact, 1×2-col input/output)
+- vision_analyze: all 4 PNGs clean first-pass — no tofu, no overflow, no clipping
+- elysia anchors: 5× /en/tools/openapi-to-postman-collection + 1× /en/tools (kind-root) — all 200 OK, validate_anchors=True
+- Pre-flight: 0 md-link-leak, 0 placeholder, 0 backslash-in-code, 0 br-in-p, 0 p-in-h2, 0 H1, 0 H3, 1 poster, 3 cards
+- Audit findings: 0 on raw content
+- DOM: H1=0 H2=8 H3=0 poster=1 cards=3 imgs=4 anchors=6 real (8 total includes wpai-auto-tags-link Postman/Newman tags)
+- URL check: 7/7 HEAD 200 (4 images + 2 elysia anchors + permalink)
+- Picker: sparse_category_picker (canonical pick_tool_v4 returns <5 diverse past 772 covered); top pick openapi-to-postman-collection (theme_score=3, score=174.0)
+- Skill path: umbrella fallback (article-poster-creator + article-highlight-cards missing per WP 6185/6352; parent umbrella bundles them as subdirs)
+- State: covered_slugs 772→773, covered_tool_ids 46→47 (added openapi-to-postman-collection)
