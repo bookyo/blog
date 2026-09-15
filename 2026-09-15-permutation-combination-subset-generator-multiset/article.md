@@ -1,0 +1,39 @@
+<strong>Five items, six rows.</strong> Five items, six rows: that is the entire surprise of multiset combinatorics, and it is the difference between a tool that quietly gives you the right answer and one that hands you a number that is too large, too small, or simply wrong. When [Permutation / Combination / Subset Generator (With Repeats)](https://elysiatools.com/en/tools/combinatorial-generation) accepts `[A, A, B]`, it does not return 6 permutations; it returns 3 — because three of the six factorial orderings are duplicates that next_permutation collapses automatically. That single change ripples through every count the tool emits: subsets drop from `2³ = 8` to `(2+1)(1+1) = 6`, combinations shrink to whatever the generating-function coefficient says, and the empty set reappears as a first-class citizen rather than a footnote. Eight short sections below walk through the math, the deduplication machinery, the three modes, the display cap, and the places where a "naive factorial" answer would mislead you.
+
+## Why Multisets Break The Plain Factorial
+
+The textbook formula `n!` is built for `n` distinct items: every position can hold any of `n` symbols, so the count is `n × (n-1) × … × 1`. The moment you allow repeats, two positions collapse into "either order is the same ordering," and you have to divide by the multiplicities. For `[A, A, B]` that gives `3! / 2! = 3` permutations, not 6. The general formula is `n! / Π(mᵢ!)` where each `mᵢ` counts how many times item `i` appears. This is the [combinatorial-generation](https://elysiatools.com/en/tools/combinatorial-generation) tool's first non-obvious decision: instead of asking the caller to pre-divide by `2!` themselves, it computes the multiset counts internally and reports the exact number alongside the deduplicated list. The display then stays short, but the count stays mathematically honest.
+
+## How next_permutation Walks The Multiset
+
+Under the hood, the tool uses the same `next_permutation` algorithm that drives C++'s `std::next_permutation` and Python's `itertools.permutations` family — but with a multiset-aware input layer. You feed in `A, B, C` (or `A, A, B`); the tool parses the items into a multiset signature, generates the lexicographic first permutation from sorted input, then walks forward until the next call would wrap. For three distinct items the walk visits exactly 6 states; for two-of-a-kind it visits 3. Two practical payoffs: (1) the output is **always** in lexicographic order without an extra sort pass, and (2) duplicate suppression happens by construction rather than by post-hoc filtering — the latter is what most homegrown scripts get wrong, because they generate `n!` then `set()` the result and end up with the same numbers as a tool but the wrong intuition about what they mean. See a worked example on the [Permutation / Combination / Subset Generator](https://elysiatools.com/en/tools/combinatorial-generation) page.
+
+## Combinations As Generating-Function Coefficients
+
+Combinations mode takes a multiset and a `k` and returns the distinct `k`-sub-multisets. The count is the coefficient of `x^k` in the product `Π (1 + x + x² + … + x^mᵢ)` — for distinct items this collapses to the familiar `C(n, k) = n! / (k!(n-k)!)`, but for `[A, A, B]` at `k=2` it gives 3 (AA, AB, BB-ish: actually A A, A B, A B → deduped to A A and A B, so 2) instead of the naive `C(3, 2) = 3`. The general formula the tool uses does not need to special-case distinct-vs-repeated; it is one expression that works for both. The constraint surfaced in the UI is `1 ≤ k ≤ n` — when `k` is 0 or larger than the multiset cardinality the count is either 1 (only the empty selection) or 0 (impossible), and the tool rejects `k=0` to keep the UI tidy rather than render a one-row output that looks like a bug.
+
+## Subsets As The Compressed Power Set
+
+Subsets mode is the most striking case for the count mismatch. For three **distinct** items the power set has `2³ = 8` members — including the empty set, four singletons, two pairs, and the full triple. For `[A, A, B]` the multiset collapses this to `(2+1)(1+1) = 6`: the empty set, three ways to pick A (none, one A, two A's), one way to pick B, and one way to pick A A B. You can verify this on the tool's [subsets mode](https://elysiatools.com/en/tools/combinatorial-generation) — it lists them in lexicographic order: `(empty)`, `A`, `A A`, `A A B`, `A B`, `B`. The general formula is `Π(mᵢ + 1)`, again deduplicated by construction.
+
+## Display Cap And Exact Counts
+
+There is one asymmetry between the **displayed** list and the **counted** total: the tool shows at most 200 rows but reports the exact total even when the true total is in the millions. This matters because combinatorics on small multisets can blow up fast — twelve distinct items have `12! = 479,001,600` permutations, far more than fits on screen. By capping the visible list at 200 and keeping the count exact, the tool stays usable for sanity-checking huge outputs without truncating the number itself. If you need the full list programmatically, switch to a different output mode; for human-in-the-loop verification of the count, the cap is a feature. Compare against other discrete-math tools like the [Assignment Problem Solver (Hungarian Algorithm)](https://elysiatools.com/en/tools/assignment-problem-solver) or the [Boolean Algebra Simplifier (Karnaugh Map)](https://elysiatools.com/en/tools/boolean-algebra-simplifier) where exact counts are similarly important but the list sizes stay bounded by construction.
+
+## Where The Multiset Math Shows Up In Practice
+
+Three places where this matters outside combinatorics homework: (1) **password-strength estimation** — if your character pool has 26 letters but the password allows repeats, the count is `26^n`, not `n!`; (2) **DNA k-mer enumeration** — `[A, C, G, T]` with `k=3` gives `4³ = 64` orderings because each position is independently chosen; but a degenerate sequence like `A, A, A, C` has only `4! / 3! = 4` orderings of those four nucleotides; (3) **binomial theorem coefficients** — `C(n, k)` is exactly the generating-function coefficient of `(1 + x)^n` at `x^k`, which is why the same machinery gives you combinations "for free" when you already have a product-of-sums representation.
+
+## Worked Example With Three Modes
+
+Take `[A, A, B]` and run all three modes:
+
+- **Permutations**: 3! / 2! = **3** rows — `A A B`, `A B A`, `B A A`.
+- **Combinations at k=2**: coefficient of `x²` in `(1 + x + x²)(1 + x) = 1 + 2x + 2x² + x³` → **2** — `A A`, `A B`.
+- **Subsets**: `(2 + 1)(1 + 1) = 6` — empty, A, A A, A A B, A B, B.
+
+Each of these is the **exact** count the tool reports, and the displayed list matches. If your homegrown script returns 6 permutations, 3 combinations, or 8 subsets for the same input, you are computing with distinct-item formulas on a multiset — the [Permutation / Combination / Subset Generator](https://elysiatools.com/en/tools/combinatorial-generation) is the canonical counter-example to reach for.
+
+## When To Reach For Multiset Combinatorics
+
+Reach for the tool when your input list may contain duplicates **and** you need either the deduplicated list or the exact count — not the naive factorial. Specifically: (a) generating test cases for a sort or dedup function (the output should match what your sort produces); (b) computing the number of distinct anagrams of a word with repeated letters (`"MISSISSIPPI"` has `11! / (4!·4!·2!·1!) = 34,650`); (c) teaching or verifying the difference between permutations and combinations on a multiset. Skip it when all items are guaranteed distinct and you only need the plain factorial — at that point any language's built-in `permutations` helper does the same job with less ceremony. Explore related discrete-math utilities at [elysiatools.com/en/tools](https://elysiatools.com/en/tools) for sibling tools like the assignment solver and the Karnaugh simplifier.
