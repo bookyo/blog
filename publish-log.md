@@ -15,3 +15,15 @@
 - Picker: sparse_category_picker (canonical pick_tool_v4 returns <5 diverse past 775 covered); top pick combinatorial-generation (Math & Numbers, theme_score=2, score=160.0)
 - Skill path: umbrella fallback (article-poster-creator + article-highlight-cards missing from ~/.hermes/skills/ root per WP 6185/6352; bundled PIL templates + cron publish driver used)
 - State: covered_slugs 775→776, covered_tool_ids 48→49 (added combinatorial-generation)
+## 2026-09-15T20:58:00 UTC — AHU Coil Capacity Calculator (Cooling / Heating) (Field Guide)
+
+- **WP ID:** 7211
+- **Slug:** `ahu-coil-capacity-calculator-field-guide-2026-09-15`
+- **URL:** https://blog.flowrust.com/2026/09/16/ahu-coil-capacity-calculator-field-guide-2026-09-15/
+- **Tool ID:** `ahu-capacity-calculator`
+- **Category:** Math & Numbers
+- **date_gmt:** 2026-09-15T20:58:00
+- **Outcome:** Clean 1-POST 0-PATCH
+- **Audit:** 0 findings, 10/10 HEAD 200
+- **Covered slugs:** 777
+
