@@ -4550,3 +4550,13 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - Picker: sparse_category_picker (canonical pick_tool_v4 returns <5 diverse past 773 covered); top pick fraction-decimal-percent-visualizer (theme_score=2, score=157.7)
 - Skill path: umbrella fallback (article-poster-creator + article-highlight-cards missing per WP 6185/6352; parent umbrella bundles them as subdirs)
 - State: covered_slugs 773→774, covered_tool_ids 47→48 (added fraction-decimal-percent-visualizer)
+
+## 2026-09-15 - rydberg-formula-calculator-field-guide-when-z-n1-n2-rinf-vs-rm-and-the-pickering-coincidence-decide-whether-your-spectral-line-lands-where-you-think-it-does-2026-09-15
+
+- WP ID: 7197
+- URL: https://blog.flowrust.com/2026/09/15/rydberg-formula-calculator-field-guide-when-z-n1-n2-rinf-vs-rm-and-the-pickering-coincidence-decide-whether-your-spectral-line-lands-where-you-think-it-does-2026-09-15/
+- Tool: rydberg-formula-calculator (Rydberg Formula Calculator)
+- Category: Science & Education
+- Date (UTC): 2026-09-15T12:41:35
+- Patches: 0 (clean 1-POST run)
+- Audit findings: 0
