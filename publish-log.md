@@ -4529,3 +4529,24 @@ Totals: 27/27 elysia anchors HEAD-200, 20/20 image URLs HEAD-200. 0 H2 title-dup
 - Picker: sparse_category_picker (canonical pick_tool_v4 returns <5 diverse past 772 covered); top pick openapi-to-postman-collection (theme_score=3, score=174.0)
 - Skill path: umbrella fallback (article-poster-creator + article-highlight-cards missing per WP 6185/6352; parent umbrella bundles them as subdirs)
 - State: covered_slugs 772→773, covered_tool_ids 46→47 (added openapi-to-postman-collection)
+
+
+## 2026-09-15T08:15:41 UTC — WP 7189 — Fraction / Decimal / Percent Visual Tutor Field Guide
+
+- Title: Fraction / Decimal / Percent Visual Tutor Field Guide: When One Quantity, Three Notations, Five Visual Models, and Four Repeating-Decimal Stories Decide Whether a Student Sees Equivalence or Memorizes It
+- URL: https://blog.flowrust.com/2026/09/15/fraction-decimal-percent-visual-tutor-field-guide-when-one-quantity-three-notations-five-visual-models-and-four-repeating-decimal-stories-decide-whether-2026-09-15/
+- Tool: fraction-decimal-percent-visualizer (Education) — Fraction / Decimal / Percent Visual Tutor: pie + bar + 10×10 grid + 0–1 line + per-mille slider, all live-synced from one source mode (fraction/decimal/percent/per-mille), with repeating-decimal (repetend) auto-detection
+- date_gmt: 2026-09-15T08:15:41
+- Mode: 1-POST + 1-PATCH clean (post-PATCH 0 findings)
+- Assets: 1 poster (1080×800) + 3 cards (1600×900: 1×5-tile "Five Views of 3/4", 1×2-col audit "Three Input Modes", 1×4-tile compact "Four Fractions, Four Stories")
+- vision_analyze: card 2 first-pass had row-overflow (2-line bodies colliding with next-row badges) — shortened body to 1-line per row, re-rendered clean. All 4 PNGs clean final.
+- elysia anchors: 4× /en/tools/fraction-decimal-percent-visualizer + 1× /en/tools (kind-root) — all 200 OK, validate_anchors=True
+- Pre-flight: 0 md-link-leak, 0 placeholder, 0 backslash-in-code, 0 br-in-p, 0 p-in-h2, 0 H1, 0 H3, 1 poster, 3 cards
+- Audit findings: 1 pre-POST (MERGED_NUMBERED_LIST on the 5-step lesson plan — source used `1. **Pick**` markdown, rendered as one merged `<p>`)
+- PATCH: rewrote the 5-step lesson plan as proper `<ol><li>` HTML, POSTed back via POST /wp/v2/posts/7189
+- Final audit: 0 findings; structure H1=0 H2=8 H3=0 poster=1 cards=3 imgs=4 anchors=5
+- URL check: 10/10 HEAD 200 (4 images + 5 elysia anchors + permalink)
+- DOM probe (browser-fallback per WP 6663): rendered H2=8 poster=1 cards=3 imgs=4 anchors=5 (no nested p-in-h2, no broken bullets, no wpai-auto-tags-link nested H1)
+- Picker: sparse_category_picker (canonical pick_tool_v4 returns <5 diverse past 773 covered); top pick fraction-decimal-percent-visualizer (theme_score=2, score=157.7)
+- Skill path: umbrella fallback (article-poster-creator + article-highlight-cards missing per WP 6185/6352; parent umbrella bundles them as subdirs)
+- State: covered_slugs 773→774, covered_tool_ids 47→48 (added fraction-decimal-percent-visualizer)
