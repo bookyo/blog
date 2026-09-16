@@ -47,3 +47,14 @@
 - vision_analyze: caught U+2192 → tofu on cards 1 & 3 first-pass; replaced with ASCII -> (per WP 5699 family). All 4 PNGs clean final.
 - elysia anchors: 4 total — 3× /en/tools/asciimath-latex-mathml-equation-converter + 1× /en/samples (kind-root) — all 200 OK, validate_anchors=True
 - Source-side defenses: pre_encode_backslash + pre_encode_code_spans (4 backslash + 14 literal-HTML-in-code-span repairs) before md_to_html. Post-PATCH clean: 0 audit findings.
+
+## 2026-09-16 09:15:54 UTC — Two Proportion Z Test Calculator (two-proportion-z-test-calculator)
+
+- Post ID: 7235
+- Slug: `two-proportion-z-test-calculator-field-guide-when-five-counts-three-numbers-and-one-pooled-se-decide-whether-your-a-b-test-2026-09-16`
+- URL: https://blog.flowrust.com/2026/09/16/two-proportion-z-test-calculator-field-guide-when-five-counts-three-numbers-and-one-pooled-se-decide-whether-your-a-b-test-2026-09-16/
+- date_gmt: 2026-09-16T09:15:13
+- Tool: Two Proportion Z Test Calculator (Math & Numbers)
+- Anchor links: 3 tool + 1 kind-root
+- PATCH round-trips: 0
+- Audit: clean (0 findings)
