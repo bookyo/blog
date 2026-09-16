@@ -27,3 +27,23 @@
 - **Audit:** 0 findings, 10/10 HEAD 200
 - **Covered slugs:** 777
 
+
+## 2026-09-16T01:00:00 — font-file-inspector (WP 7217)
+- Title: Font File Inspector Field Guide: When Five Containers, Four Variable Axes, and One OpenType Feature Toggle Decide Whether Your Font Lands as a Brand Asset or a Mystery Box
+- URL: https://blog.flowrust.com/2026/09/16/font-file-inspector-field-guide-when-five-containers-four-variable-axes-and-one-opentype-feature-toggle-decide-whether-your-font-lands-as-a-brand-asset-or-a-mystery-box-2026-09-16/
+- Tool: font-file-inspector (Design)
+- Cards: 3 (sfnt containers / fvar axes / GSUB features)
+- Anchors: 4 (2 tool page + 1 /en/tools + 1 closing)
+- Verdict: 1-POST 0-PATCH clean
+
+## 2026-09-16T05:04:25 UTC — WP 7228 — AsciiMath / LaTeX / MathML Equation Converter
+
+- Title: AsciiMath / LaTeX / MathML Equation Converter Field Guide: When Three Equation Dialects, Five Output Layers, and One Auto-Detect Pass Decide Whether Your Math Markup Ships as One Canonical String or Three Fragments
+- URL: https://blog.flowrust.com/2026/09/16/asciimath-latex-mathml-equation-converter-field-guide-when-three-equation-dialects-five-output-layers-and-one-auto-detect-pass-decide-whether-your-math-markup-ships-as-one-canonical-string-or-three-fr/
+- Tool: asciimath-latex-mathml-equation-converter (Format Conversion) — AsciiMath LaTeX MathML Equation Converter: auto-detect input format (AsciiMath / LaTeX / MathML), produce canonical LaTeX hub, presentation MathML with embedded TeX annotation in <semantics>, best-effort AsciiMath back-translation, role=math aria-label snippet for screen readers, server-side KaTeX HTML preview; conversion chain via asciimath2tex / temml / mathml-to-latex.
+- date_gmt: 2026-09-16T05:04:25
+- Mode: 1-POST + 1-PATCH (MERGED_NUMBERED_LIST false-positive on canonical md_to_html collapse of "1. ... 2. ... 3. ..." into single <p> — per WP 6185/6212 lesson)
+- Assets: 1 poster (1080×800) + 3 cards (1600×900: 2×5-tile "Five Outputs From One Source String" + "Three Parsers, Three Detection Rules", 1×input-output-2col "A Worked Example: MathML -> LaTeX + aria-label")
+- vision_analyze: caught U+2192 → tofu on cards 1 & 3 first-pass; replaced with ASCII -> (per WP 5699 family). All 4 PNGs clean final.
+- elysia anchors: 4 total — 3× /en/tools/asciimath-latex-mathml-equation-converter + 1× /en/samples (kind-root) — all 200 OK, validate_anchors=True
+- Source-side defenses: pre_encode_backslash + pre_encode_code_spans (4 backslash + 14 literal-HTML-in-code-span repairs) before md_to_html. Post-PATCH clean: 0 audit findings.
