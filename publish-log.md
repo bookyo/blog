@@ -99,3 +99,19 @@
 - **Audit findings**: 0 (after 1 PATCH for MERGED_NUMBERED_LIST + orphan </p> cleanup)
 - **Patches**: 2 (split 7-item numbered list + remove orphan </p> after split)
 - **Status**: ✅ 1-POST + 2-PATCH, audit clean, all 4 imgs + 5 anchors HTTP 200
+
+## 2026-09-17 01:50 UTC — WP 7261 — Contingency Table Chi-Square Fisher Exact Cramér V Tutor Field Guide
+
+- Tool: Contingency Table Chi-Square Fisher Exact Cramér V Tutor (id: contingency-table-chi-square-fisher-exact-cramer-v-tutor)
+- Category: Data Analysis
+- Slug: contingency-table-chi-square-fisher-exact-cramer-v-tutor-field-guide-when-seven-decisions-2x2-fisher-cramer-v-and-cochran-rule
+- URL: https://blog.flowrust.com/2026/09/17/contingency-table-chi-square-fisher-exact-cramer-v-tutor-field-guide-when-seven-decisions-2x2-fisher-cramer-v-and-cochran-rule/
+- date_gmt: 2026-09-17T01:50:25
+- Word count: 1427
+- Structure: 0 H1, 8 H2, 0 H3, 1 article-poster, 3 highlight-cards
+- Elysia anchors: 5 (3 unique tool pages + 1 sibling + 1 kind-root)
+- PIL: poster 1080x800 + 3 cards 1600x900, vision_analyze clean on all 4
+- Patches: 2 (split 7-item numbered list + remove orphan closing p)
+- Final audit_post_content findings: 0
+- All 4 imgs HTTP 200, all 5 elysia anchors HTTP 200
+- Status: clean publish
