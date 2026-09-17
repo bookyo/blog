@@ -115,3 +115,27 @@
 - Final audit_post_content findings: 0
 - All 4 imgs HTTP 200, all 5 elysia anchors HTTP 200
 - Status: clean publish
+
+## 2026-09-17 06:09 UTC — secure-random-generator-field-guide-when-64-hex-chars-beat-a-24-char-password (WP 7270)
+
+- **Tool**: Secure Random Generator (Security / CSPRNG / Key Generation)
+- **Slug**: `secure-random-generator-field-guide-when-64-hex-chars-beat-a-24-char-password`
+- **Link**: https://blog.flowrust.com/2026/09/17/secure-random-generator-field-guide-when-64-hex-chars-beat-a-24-char-password/
+- **date_gmt**: 2026-09-17T06:09:27
+- **Status**: publish (1-POST + 2-PATCH clean)
+- **Article structure**: 0 body H1 + 8 body H2 + 1 article-poster figure + 3 highlight-card figures + 4 images
+- **Patches applied**:
+  1. Convert 5 `<h3>` to `<strong>` (WP 6212 lesson — body must have 0 H3s)
+  2. Add meaningful alts to 3 highlight-card figures (audit IMG_MISSING_ALT)
+- **Anchors** (9 total, 0 phantom):
+  - 7× `https://elysiatools.com/en/tools/secure-random-generator` (in tool-manifest)
+  - 1× `https://elysiatools.com/en/samples/jwt-samples` (in sample-manifest)
+  - 1× `https://elysiatools.com/en/samples/cryptography` (in sample-manifest)
+  - 1× `https://elysiatools.com/en/tools` (kind-root whitelist, Cycle #40)
+- **Cards**: 
+  - card1: `render_card_5tile` — 5 Decisions (entropy, CSPRNG, encoding, alphabet, audit)
+  - card2: `render_card_input_output_2col` — JWT HS256 step-by-step
+  - card3: `render_card_5tile` — 5 production bugs (seed-time, modulo, off-by-one, in-logs, reused)
+- **Visual QA**: All 4 PNGs verified via vision_analyze — no tofu, no clipping, no overflow
+- **Audit**: 0 findings post-PATCH (canonical `audit_post_content`)
+
