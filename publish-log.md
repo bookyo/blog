@@ -150,3 +150,10 @@
 - **Anchors (6, all 200):** 5× /en/tools/enteral-nutrition-target + 1× /en/tools (kind-root)
 - **Audit:** 0 findings (canonical `audit_post_content`)
 - **Status:** 1-POST 0-PATCH clean. Browser DOM probe unavailable in cron (Chromium install 404); used WP 6663 fallback: regex audit + urllib HEAD on 4 images + 6 anchors + permalink, all 200.
+
+## 2026-09-17T14:24:41 — combinatorial-generation-field-guide-when-multinomial-divisor-generating-function-and-empty-set-corner-case-decide-whether-your-multiset-count-lands-at-12-or-24-2026-09-17 (WP 7286)
+- Title: Permutation / Combination / Subset Generator Field Guide: When Multinomial Divisor, Generating-Function Coefficient, and the Empty-Set Corner Case Decide Whether Your Multiset Count Lands at 12 or 24
+- URL: https://blog.flowrust.com/2026/09/17/combinatorial-generation-field-guide-when-multinomial-divisor-generating-function-and-empty-set-corner-case-decide-whether-your-multiset-count-lands-at-12-or-24-2026-09-17/
+- Tool: combinatorial-generation (Math & Numbers)
+- 1-POST 0-PATCH clean
+- featured_media=0, 8 body H2, 3 highlight-cards, 1 poster, 0 audit findings
