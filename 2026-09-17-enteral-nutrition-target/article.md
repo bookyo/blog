@@ -1,0 +1,113 @@
+**Two numbers decide almost every clinical question about an enterally fed adult.** Whether the pump rate is safe to start, whether the formula on the shelf delivers enough protein, whether the team should accept a gastric residual of 480 mL, whether a "trophic" 10 mL/hr trickle is enough — every one of those decisions is downstream of kcal/kg/day and g/kg/day. The [Enteral Nutrition Target Calculator](https://elysiatools.com/en/tools/enteral-nutrition-target) computes both, then translates them into mL per hour against a formula density.
+
+The mistake most early-career clinicians make is to grab a single rule — "25 kcal/kg, 1.5 g/kg" — and apply it to every patient regardless of category. The ASPEN/SCCM, ESPEN, and Boullata guidance already publishes category-specific bands for a reason: a critically ill patient on day 1 tolerates permissive underfeeding at 12–18 kcal/kg/day, a burn patient at 30–35, an obese patient at 11–14 kcal/kg actual or 22–25 kcal/kg ideal. Plug the wrong band in and the math produces a number the team is willing to act on — that is the dangerous part.
+
+## Why the per-kg multiplier matters more than total calories
+
+A 70 kg well-nourished patient at 25 kcal/kg/day needs 1,750 kcal. A 70 kg critically ill patient on day 1 at 15 kcal/kg/day needs 1,050 kcal. A 70 kg major burn patient at 32 kcal/kg/day needs 2,240 kcal. The weight is the same; the multiplier is what changes. Every energy target in clinical nutrition is expressed per kilogram because total calories scale with body mass, not with admission diagnosis.
+
+Three pitfalls show up when clinicians skip the per-kg step:
+
+<ul><li><strong>Using total calories from a previous admission.</strong> The 1,800 kcal target that worked for a 60 kg patient last month is 30 kcal/kg; applied to a 90 kg patient it becomes 20 kcal/kg, which is below the maintenance band.</li>
+<li><strong>Mixing kcal/day and kcal/kg/day.</strong> A 2,000 kcal target on a 50 kg patient is 40 kcal/kg/day — well above the burn range and into overfeeding territory.</li>
+<li><strong>Forgetting weight changes.</strong> ICU patients on diuresis can lose 5–10 kg of fluid in a week; the per-kg target stays the same, the absolute target drops.</li>
+</ul>
+
+The [Enteral Nutrition Target Calculator](https://elysiatools.com/en/tools/enteral-nutrition-target) takes weight and the chosen per-kg multiplier and returns the kcal/day directly, which sidesteps all three.
+
+## Choosing the right kcal/kg band
+
+The five clinical categories the guidance documents cover — well-nourished, malnourished/surgical, critically ill early, recovery, and major burns/trauma — are not interchangeable. The table below captures the published bands:
+
+<table>
+<thead><tr><th>Category</th><th>kcal/kg/day</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>Well-nourished</td><td>20–25</td><td>Maintenance floor; safe default for stable patients</td></tr>
+<tr><td>Malnourished or surgical</td><td>25–30</td><td>Catch-up range; reassess weekly</td></tr>
+<tr><td>Critically ill, day 1–3</td><td>12–18</td><td>Permissive underfeeding; avoid overfeeding early</td></tr>
+<tr><td>Recovery / post-ICU</td><td>25–30</td><td>Build back to requirement</td></tr>
+<tr><td>Major burns / trauma</td><td>30–35</td><td>Hypermetabolic; reassess at wound closure</td></tr>
+<tr><td>Obese (BMI > 30)</td><td>11–14 actual or 22–25 ideal</td><td>Use ideal weight when actual > 120% of ideal</td></tr>
+</tbody>
+</table>
+
+Two categories overlap at the edges. A malnourished surgical patient on day 5 of recovery can reasonably shift from 25–30 to 30 if the trend is toward catch-up. A critically ill patient who reaches day 4 should move out of the 12–18 permissive band into the 25–30 range regardless of whether ICU status has changed. The calculator does not enforce these shifts — the clinician does — but it does enforce that the chosen band is the one being multiplied.
+
+## Protein targets and the g/kg mistake
+
+Protein is where the 0.8 g/kg/day floor does the most damage. That figure is the maintenance target for a healthy adult — not the target for an ICU patient, not for a burn patient, not for an obese patient. The published ranges:
+
+<ul><li><strong>Maintenance:</strong> 0.8–1.0 g/kg/day</li>
+<li><strong>Acute illness (non-ICU):</strong> 1.0–1.2 g/kg/day</li>
+<li><strong>Critically ill:</strong> 1.2–2.0 g/kg/day</li>
+<li><strong>Burns / trauma:</strong> 1.5–2.5 g/kg/day</li>
+<li><strong>Obese:</strong> ≥ 2.0 g/kg ideal body weight / day</li>
+</ul>
+
+The mistake is treating 0.8 as a universal minimum. A 70 kg ICU patient at 0.8 g/kg/day gets 56 g of protein — half what the published range calls for, and almost certainly contributing to the muscle loss that drives ICU-acquired weakness. The calculator surfaces the protein target in the same display as the energy target so the team sees both numbers, not just one.
+
+## Translating kcal/day into formula volume
+
+Once the daily target is set, the next question is volume — and volume is what the pump actually delivers. Formula densities cluster around four canonical values: 1.0 kcal/mL (standard polymeric), 1.2 kcal/mL (high-protein or moderately concentrated), 1.5 kcal/mL (high-energy), and 2.0 kcal/mL (very high energy, used when fluid restriction matters).
+
+A worked example: a 70 kg malnourished surgical patient at 28 kcal/kg/day = 1,960 kcal. With a 1.5 kcal/mL formula, that is 1,307 mL per day — about 54 mL per hour over 24 hours, or 41 mL per hour over 32 hours if the team is using a cyclic overnight regimen. The [Enteral Nutrition Target Calculator](https://elysiatools.com/en/tools/enteral-nutrition-target) computes both the daily volume and a starting pump rate from volume / 24, which is the conservative starting point most protocols use.
+
+Three practical notes on volume translation:
+
+<ul><li><strong>Start at the conservative rate.</strong> Most ICU protocols start at 20–30 mL/hr and advance by 10–20 mL/hr every 4–6 hours. The calculated full-target rate is the goal, not the start.</li>
+<li><strong>Watch the protein adequacy check.</strong> A 1.0 kcal/mL formula at 60 g protein per liter delivers 60 g per liter of feed — so the protein adequacy check (formula protein g/L × volume L) catches cases where the formula density is too low for the protein target.</li>
+<li><strong>Flag fluid overload.</strong> A 2,400 mL/day target is 100 mL/hr; on a patient with a 1.5 L fluid balance the team should question whether the energy goal or the volume goal gives first.</li>
+</ul>
+
+## Weight selection: actual, ideal, or adjusted
+
+The calculator takes weight as a single input, but the clinical reasoning behind which weight to plug in is the most common source of miscalculation. The published rules:
+
+<ul><li><strong>Actual body weight (ABW)</strong> is the default for normal-weight patients.</li>
+<li><strong>Ideal body weight (IBW)</strong> is used when actual is > 120% of ideal — i.e., obese patients. The IBW formula: men 50 + 2.3 × (height inches − 60); women 45.5 + 2.3 × (height inches − 60).</li>
+<li><strong>Adjusted body weight (AdjBW)</strong> is IBW + 0.4 × (ABW − IBW); used in mild obesity or when edema distorts ABW but actual is not > 120% of ideal.</li>
+<li><strong>Fluid-overloaded patients.</strong> When a 70 kg admission weight includes 8 kg of third-spacing, the team should use dry weight (admission weight − estimated fluid overload) for the per-kg calculation.</li>
+</ul>
+
+The calculator does not enforce weight selection — the clinician picks the right weight for the patient and plugs it in. The audit step on the output is to verify the chosen weight matches the chosen kcal/kg band: a 110 kg patient on the 11–14 kcal/kg actual band means ABW × 11–14; the same patient on the 22–25 kcal/kg ideal band means IBW × 22–25.
+
+## Trophic feeding and gastric residuals
+
+Two situations override the full-target calculation. Both deserve explicit handling rather than letting the calculated rate drive the protocol.
+
+**Trophic feeding.** At ~10 mL/hr, the gut receives enough substrate to maintain mucosal integrity without attempting to meet full nutritional targets. The [Enteral Nutrition Target Calculator](https://elysiatools.com/en/tools/enteral-nutrition-target) returns a starting rate; the team should override it down to 10 mL/hr if the patient is on a trophic protocol, has just initiated feeds after a long NPO period, or is hemodynamically unstable on vasopressors. The starting rate is a ceiling, not a floor.
+
+**Gastric residuals.** A residual of 200 mL is not a contraindication to continuing feeds; a residual of 500 mL is not an automatic cessation. The current guidance treats residuals > 500 mL as a trigger to consider prokinetics, post-pyloric access, or holding feeds — but not as an automatic stop. The calculator does not enforce either threshold; the bedside clinician does.
+
+Two additional safety steps the protocol should include regardless of the calculated rate:
+
+<ul><li><strong>Head of bed 30–45°.</strong> Reduces aspiration pneumonia risk; this is independent of formula choice or rate.</li>
+<li><strong>Verify tube position.</strong> pH check on aspirate (pH < 5.5 suggests gastric), auscultation is unreliable, and an X-ray or electromagnetic placement confirmation is the gold standard before initiating feeds.</li>
+</ul>
+
+## When the calculator output needs a sanity check
+
+The calculator returns three numbers: kcal/day, g protein/day, and mL/hr starting rate. Three sanity checks before acting on them:
+
+<ul><li><strong>Energy vs protein vs volume.</strong> A 2,000 kcal target that requires 1,500 mL/day is not appropriate for a fluid-restricted patient; the team should consider a 2.0 kcal/mL formula before adjusting the energy target downward.</li>
+<li><strong>Protein adequacy.</strong> 1,500 mL of a 40 g/L formula delivers 60 g of protein — enough for a maintenance patient, not for a critically ill patient. Switch formula density or add protein modular.</li>
+<li><strong>Rate tolerance.</strong> A calculated starting rate above 50 mL/hr in a brand-new feeding tube warrants a slower start and advance protocol regardless of the math.</li>
+</ul>
+
+The audit step is not whether the math is right — the math is straightforward — but whether the chosen inputs (weight, kcal/kg band, g/kg band, formula density) match the patient in front of the clinician.
+
+## How to use the calculator on a real patient
+
+The workflow that avoids the most common mistakes:
+
+<ul><li><strong>Pick the weight.</strong> Actual for normal-weight, IBW for obese (> 120% of IBW), dry weight if fluid-overloaded.</li>
+<li><strong>Pick the kcal/kg band.</strong> Reference the table in §Why the per-kg multiplier matters more than total calories and pick the band that matches the current clinical state, not the admission diagnosis.</li>
+<li><strong>Pick the g/kg band.</strong> Reference the protein section; do not default to 0.8 unless the patient is genuinely a healthy adult.</li>
+<li><strong>Pick the formula density.</strong> Default 1.0 or 1.2 unless fluid restriction forces 1.5 or 2.0.</li>
+<li><strong>Read the three outputs.</strong> kcal/day, g protein/day, and mL/hr starting rate.</li>
+<li><strong>Cross-check protein adequacy.</strong> Formula protein g/L × volume L = total protein delivered; verify against the g/kg target.</li>
+</ul>
+
+The [Enteral Nutrition Target Calculator](https://elysiatools.com/en/tools/enteral-nutrition-target) does not replace clinical judgment — it enforces that the chosen inputs are the inputs being multiplied. Most miscalculations in enteral nutrition are not arithmetic errors; they are input-selection errors that produce a number the team is willing to act on. The calculator makes the inputs visible, and that is the actual safety property.
+
+Explore more enteral and parenteral nutrition tools at [elysiatools.com](https://elysiatools.com/en/tools).

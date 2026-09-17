@@ -139,3 +139,14 @@
 - **Visual QA**: All 4 PNGs verified via vision_analyze — no tofu, no clipping, no overflow
 - **Audit**: 0 findings post-PATCH (canonical `audit_post_content`)
 
+
+## 2026-09-17 10:18 UTC — WP 7281 — Enteral Nutrition Target Calculator Field Guide
+
+- **Tool:** `enteral-nutrition-target` (Health, picker v4 score=1632)
+- **Title:** Enteral Nutrition Target Calculator Field Guide: When kcal/kg/day, g/kg/day, and a 1.5 kcal/mL Formula Decide Whether Your Pump Rate Lands at 54 mL/hr or 41 mL/hr
+- **URL:** https://blog.flowrust.com/2026/09/17/enteral-nutrition-target-calculator-field-guide-when-kcal-per-kg-and-protein-g-per-kg-decide-whether-your-pump-rate-lands-at-54-or-41-ml-per-hr/
+- **date_gmt:** 2026-09-17T10:18:30
+- **Assets:** poster (1080×800) + 3 cards (1600×900) — vision-analyzed clean
+- **Anchors (6, all 200):** 5× /en/tools/enteral-nutrition-target + 1× /en/tools (kind-root)
+- **Audit:** 0 findings (canonical `audit_post_content`)
+- **Status:** 1-POST 0-PATCH clean. Browser DOM probe unavailable in cron (Chromium install 404); used WP 6663 fallback: regex audit + urllib HEAD on 4 images + 6 anchors + permalink, all 200.
