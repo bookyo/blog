@@ -157,3 +157,11 @@
 - Tool: combinatorial-generation (Math & Numbers)
 - 1-POST 0-PATCH clean
 - featured_media=0, 8 body H2, 3 highlight-cards, 1 poster, 0 audit findings
+
+## 2026-09-17T18:31:43 — title-case-converter-field-guide-when-function-word-handling-across-ap-chicago-wikipedia-and-simple-styles-decide-whether-your-headline-looks-editorially-clean-or-eyeball-wrong-2026-09-17 (WP 7291)
+- Title: Title Case Converter Field Guide: When Function-Word Handling Across AP, Chicago, Wikipedia, and Simple Styles Decide Whether Your Headline Looks Editorially Clean or Eyeball-Wrong
+- URL: https://blog.flowrust.com/2026/09/18/title-case-converter-field-guide-when-function-word-handling-across-ap-chicago-wikipedia-and-simple-styles-decide-whether-your-headline-looks-editorially-clean-or-eyeball-wrong-2026-09-17/
+- Tool: title-case-converter (Text Processing)
+- 1-POST 1-PATCH clean (MERGED_NUMBERED_LIST from `1. <strong>...` markdown list, source-converted to <ul><li>; also fixed `- **AP**...` and `- Always capitalize...` markdown bullets which would have triggered MERGED_BULLET_LIST in the second run)
+- featured_media=0, 8 body H2, 3 highlight-cards, 1 poster, 0 audit findings (final)
+- Anchors (4, all 200): 3× /en/tools/title-case-converter + 1× /en/tools (kind-root)
