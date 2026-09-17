@@ -58,3 +58,44 @@
 - Anchor links: 3 tool + 1 kind-root
 - PATCH round-trips: 0
 - Audit: clean (0 findings)
+
+## 2026-09-16 mtu-mss-path-calculator-field-guide-when-gre-vxlan-wireguard-and-the-20-byte-ipsec-header-decide-whether-your-tcp-mss-lands-at-1380-or-1330-2026-09-16
+- WP post ID: 7247
+- Link: https://blog.flowrust.com/2026/09/17/mtu-mss-path-calculator-field-guide-when-gre-vxlan-wireguard-and-the-20-byte-ipsec-header-decide-whether-your-tcp-mss-lands-at-1380-or-1330-2026-09-16/
+- Tool: MTU / MSS Path Calculator (id=mtu-and-mss-path-calculator, category=Network)
+- date_gmt: 2026-09-16T17:39:35
+- 0 PATCH round-trips
+- 4 assets uploaded (1 poster + 3 highlight cards)
+- Elysia anchors: /en/tools/mtu-and-mss-path-calculator, /en/tools/ipv4-to-ipv6, /en/tools/wireguard-openvpn-to-clash-singbox-bridge, /en/tools
+- PIL: render_poster + render_card_5tile + render_card_audit + render_card_4tile_compact (card 3 needed compact to avoid F_HUGE 150pt overlap on 4-digit numeric counts)
+- Pre-POST checks: 0 audit findings; 0 phantom anchors; 11/11 pre-publish checks pass
+- DOM verify (raw + content.rendered): 8 H2 body / 0 H1 / 0 H3 / 3 highlight-cards / 1 poster / 4 imgs with alt
+- Public page check: HTTP 200, 8 body H2 + 1 nav H2 = 9 in DOM (per WP 6323); 4 figures; 6 imgs (4 article + 2 theme chrome per WP 6323)
+
+## 2026-09-16 — OD600 Cell Density Calculator Field Guide (1-POST 0-PATCH clean)
+
+- WP ID: 7254
+- Tool: od600-cell-density (OD600 Cell Density Calculator (E. coli))
+- Category: Education
+- date_gmt: 2026-09-16T21:48:02
+- URL: https://blog.flowrust.com/2026/09/17/od600-cell-density-field-guide-when-path-length-the-cells-per-od-default-and-the-linear-range-decide-whether-your-turbidity-reading-lands-as-a-cell-count-or-a-story-you-tell-yourself-2026-09-16/
+- 8 body H2 + 1 nav H2 = 9 in DOM (rendered via context=edit shows 8 body H2)
+- 4 assets uploaded (poster 1080x800, 3x cards 1600x900), all HEAD=200
+- 4 elysia anchors all HEAD=200 (2x /tools/od600-cell-density + 2x /tools kind-root)
+- audit_post_content: 0 findings
+- PIL visual QA: all 4 assets clean (vision_analyze)
+
+
+## 2026-09-17 01:50 UTC — WP 7261 — Contingency Table Chi-Square Fisher Exact Cramér V Tutor Field Guide
+
+- **Tool**: Contingency Table Chi-Square Fisher Exact Cramér V Tutor ()
+- **Category**: Data Analysis
+- **Slug**: 
+- **URL**: https://blog.flowrust.com/2026-09-17/contingency-table-chi-square-fisher-exact-cramer-v-tutor-field-guide-when-seven-decisions-2x2-fisher-cramer-v-and-cochran-rule/
+- **date_gmt**: 2026-09-17T01:50:25
+- **Word count**: 1427
+- **Structure**: 0 H1, 8 H2, 0 H3, 1 article-poster, 3 highlight-cards
+- **Elysia anchors**: 5 (3 unique tool + 2 sibling tool + 1 kind-root)
+- **Audit findings**: 0 (after 1 PATCH for MERGED_NUMBERED_LIST + orphan </p> cleanup)
+- **Patches**: 2 (split 7-item numbered list + remove orphan </p> after split)
+- **Status**: ✅ 1-POST + 2-PATCH, audit clean, all 4 imgs + 5 anchors HTTP 200
