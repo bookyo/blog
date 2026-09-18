@@ -175,3 +175,66 @@
 ## 2026-09-18T02:54:40 — carrying-capacity-estimator-field-guide-when-linearization-grid-scan-and-the-60-percent-plateau-rule-decide-whether-your-k-hat-lands-at-664-or-1000 (WP 7303)
 - Title: Carrying Capacity Estimator Field Guide: When Linearization, Grid Scan, and the 60-Percent Plateau Rule Decide Whether Your K-hat Lands at 664 or 1000
 - URL: https://blog.flowrust.com/2026/09/18/carrying-capacity-estimator-field-guide-when-linearization-grid-scan-and-the-60-percent-plateau-rule-decide-whether-your-k-hat-lands-at-664-or-1000/
+## 2026-09-18T06:56:57 — cam-follower-displacement-field-guide-when-constant-velocity-cycloidal-and-the-pressure-angle-30-degree-rule-decide-whether-your-follower-reaches-50-mm-in-50-ms-or-slams-the-spring-2026-09-18 (WP 7308)
+- Title: Cam Follower Displacement Field Guide: When Constant Velocity, Cycloidal, and the 30-Degree Pressure-Angle Rule Decide Whether Your Follower Reaches 50 mm in 50 ms or Slams the Spring
+- URL: https://blog.flowrust.com/2026/09/18/cam-follower-displacement-field-guide-when-constant-velocity-cycloidal-and-the-pressure-angle-30-degree-rule-decide-whether-your-follower-reaches-50-mm-in-50-ms-or-slams-the-spring-2026-09-18/
+- Tool: cam-follower-displacement (Math & Numbers, picker theme_score=55 — 4 motion laws: constant velocity, constant acceleration, harmonic, cycloidal)
+- 1-POST 0-PATCH clean
+- featured_media=0, 8 body H2, 3 highlight-cards, 1 poster, 0 audit findings (false-positive on `POSSIBLE_BACKSLASH_STRIPPED` from math formulas `(s + r_r + ...)` and `(ds/dθ − e)` — algebraic group expressions, not stripped regex char-classes)
+- Anchors (4, all 200): 4× /en/tools/cam-follower-displacement (in tool-manifest)
+- Cards: 
+  - card1: render_card_5tile — 4 motion laws + "Pick by" rule (Cv < 2.0, Ca finite)
+  - card2: render_card_input_output_2col — Geometry inputs (r_b, h, r_r, rise, law) → computed outputs (h/r_b, Cs, φ_max, ρ_min, verdict)
+  - card3: render_card_4tile_compact — 3 pressure-angle traps (small base circle, large roller, short rise) + combined
+- Visual QA: all 4 PNGs passed vision_analyze (no tofu, no clipping, no overflow, takeaway visible)
+- Audit: false-positive on `POSSIBLE_BACKSLASH_STRIPPED` from math formulas with `(s + ...)` pattern (s ∈ [wdsWDS] per detector). False positive because the spans are correct mathematical grouping, not stripped regex. No PATCH applied.
+
+## WP 7313 — Hall Effect Calculator Field Guide (2026-09-18 11:03 UTC)
+- Tool: hall-effect-calculator (Science & Education, picker theme_score=2 — Hall voltage V_H = I·B/(n·q·t), carrier-type polarity rule, semiconductor-vs-metal gap)
+- 1-POST 0-PATCH clean
+- featured_media=0, 8 body H2, 3 highlight-cards, 1 poster, 0 audit findings
+- Anchors (3, all 200): 2× /en/tools/hall-effect-calculator (in tool-manifest) + 1× /en/tools (kind-root, Cycle #40 allowlist)
+- Cards:
+  - card1: render_card_5tile — 5 inputs (I, B, n, t, q carrier) for V_H = I·B/(n·q·t)
+  - card2: render_card_5tile — 5 sensitivity rules (bias, geometry, material, sign, noise)
+  - card3: render_card_5tile — 5 practical rules when picking a Hall element
+- Visual QA: all 4 PNGs passed vision_analyze (no tofu, no clipping, no overflow, takeaway visible)
+- Article: ~1080 words, close-first lead on 0.31 V vs 7 µV gap; 8 H2s cover formula, inputs, sign, metals-fail-semiconductors-work, sensitivity, units, temperature drift, rules
+- Assets archived to ~/www/blog/2026-09-18-hall-effect-calculator/
+
+## 2026-09-18 15:40 UTC — JSON Diff Visualizer (WP 7319)
+
+- Tool: **JSON Diff Visualizer** (category: Development) — first tool in this slot for this run
+- Title: "JSON Diff Visualizer Field Guide: When Sort-Keys, Path Tags, and the Left/Right Labels Decide Whether Your Diff Reads Clean or Fills With Noise"
+- Slug: `json-diff-visualizer-field-guide-when-sort-keys-path-tags-and-the-left-right-labels-decide-whether-your-diff-reads-clean-or-fills-with-noise`
+- Date GMT: 2026-09-18T15:40:26
+- Status: publish
+- WP ID: 7319
+- Link: https://blog.flowrust.com/2026/09/18/json-diff-visualizer-field-guide-when-sort-keys-path-tags-and-the-left-right-labels-decide-whether-your-diff-reads-clean-or-fills-with-noise/
+
+**Asset stack (per WP 6206/6352 disk probe):** article-writer umbrella present; article-poster-creator + article-highlight-cards missing on top-level — fell back to `article-writer/article-highlight-cards/scripts/render_editorial_dense_cron.py` for cards and built a custom left-rail poster HTML rendered via Playwright + Chrome.
+
+**Structure:**
+- 1 article-poster figure (deep-navy + cyan accent, left-rail 1280×900)
+- 3 highlight-card figures inserted at H2 #2 (sort-keys), H2 #5 (5 path tags), H2 #6 (migration workflow)
+- 0 body H1, 8 body H2, 0 H3, 19 `<p>` blocks
+- Article length ~1700 words
+
+**Card themes:**
+- card1: ocean (sort-keys toggle)
+- card2: ember (5 path classifications)
+- card3: violet (migration workflow)
+
+**Visual QA (mandatory per WP 5663):** vision_analyze on all 4 PNGs. Poster: title fits 4 lines, divider + subtitle clean, accent colors working. Cards: 3-column grid, bullets fit, no overflow, no tofu.
+
+**Audit (canonical WP 6122/6323/6417 checks):**
+- All 14 audit checks PASS
+- All 4 image URLs return HTTP 200 (HEAD probe)
+- All 10 elysia anchors point at real `json-diff-visualizer` tool ID (validated against tool-manifest)
+- First H2 does NOT duplicate title (WP 6417 trap avoided)
+- `featured_media: 0` set (WP 5628 hero duplication avoided)
+- 0 backslash, 0 name placeholders, 0 `<br>` in `<p>`, 0 markdown link leaks, 0 placeholder leaks
+
+**No PATCH round-trip needed.**
+
+Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card1-3.png, article.md, article_final.html).
