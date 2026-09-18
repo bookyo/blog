@@ -165,3 +165,13 @@
 - 1-POST 1-PATCH clean (MERGED_NUMBERED_LIST from `1. <strong>...` markdown list, source-converted to <ul><li>; also fixed `- **AP**...` and `- Always capitalize...` markdown bullets which would have triggered MERGED_BULLET_LIST in the second run)
 - featured_media=0, 8 body H2, 3 highlight-cards, 1 poster, 0 audit findings (final)
 - Anchors (4, all 200): 3× /en/tools/title-case-converter + 1× /en/tools (kind-root)
+- 2026-09-17 22:43 UTC — WP 7297 [TPN Osmolality Estimator](https://blog.flowrust.com/2026/09/18/tpn-osmolality-estimator-field-guide-when-peripheral-veins-tolerate-a-1500-ml-admixture-and-when-they-dont-2026-09-17/) — 1-POST 0-PATCH clean
+- featured_media=0, 8 body H2, 3 highlight-cards, 1 poster, 0 audit findings
+- Anchors (3, all 200): 2× /en/tools/tpn-osmolality-estimator + 1× /en/tools (kind-root)
+- Tool picker returned TPN Osmolality (Health, theme_score=1555) — sum-of-solute formula + peripheral-vs-central access decision
+- Skills fallback: umbrella PIL templates used (article-poster-creator + article-highlight-cards not on disk; article-writer present but slower scoring pipeline skipped per cron cadence)
+- Visual QA: all 4 PNGs passed vision_analyze (no overflow, no tofu, takeaway visible)
+
+## 2026-09-18T02:54:40 — carrying-capacity-estimator-field-guide-when-linearization-grid-scan-and-the-60-percent-plateau-rule-decide-whether-your-k-hat-lands-at-664-or-1000 (WP 7303)
+- Title: Carrying Capacity Estimator Field Guide: When Linearization, Grid Scan, and the 60-Percent Plateau Rule Decide Whether Your K-hat Lands at 664 or 1000
+- URL: https://blog.flowrust.com/2026/09/18/carrying-capacity-estimator-field-guide-when-linearization-grid-scan-and-the-60-percent-plateau-rule-decide-whether-your-k-hat-lands-at-664-or-1000/
