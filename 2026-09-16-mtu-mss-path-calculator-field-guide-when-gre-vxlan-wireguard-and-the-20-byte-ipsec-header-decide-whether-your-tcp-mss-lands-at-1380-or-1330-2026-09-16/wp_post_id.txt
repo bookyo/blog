@@ -1,0 +1,2 @@
+7247
+https://blog.flowrust.com/2026/09/17/mtu-mss-path-calculator-field-guide-when-gre-vxlan-wireguard-and-the-20-byte-ipsec-header-decide-whether-your-tcp-mss-lands-at-1380-or-1330-2026-09-16/

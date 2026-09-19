@@ -264,3 +264,19 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - Source: `pre_encode_code_spans` + `safe_md_to_html` (3 backtick spans had `*` from multiplication formulas; multi-line blocks rewritten to single-line inlined to avoid WP 6376 nested-code+br pitfall)
 - All 7 URLs HEAD 200: poster, card1, card2, card3, tool anchor, kind-root anchor, permalink
 - No browser DOM probe (Chrome daemon unavailable); used raw rendered-content probe + urllib HEAD per WP 6663 fallback
+
+## 2026-09-19 ~08:23 UTC — Messy Text to Structured Data Workbench (WP 7341)
+
+- date_gmt: 2026-09-19T08:23:21
+- post id: 7341
+- title: "From Clipboard to Typed Rows: A Field Guide to the Messy Text to Structured Data Workbench"
+- slug: `messy-text-to-structured-data-workbench-field-guide-when-paste-detect-coerce-and-export-need-to-agree-on-the-first-row-2026-09-19`
+- link: https://blog.flowrust.com/2026/09/19/messy-text-to-structured-data-workbench-field-guide-when-paste-detect-coerce-and-export-need-to-agree-on-the-first-row-2026-09-19/
+- tool id: `messy-text-to-structured-data-workbench` (Text Processing cluster)
+- picker: custom v4 with extended 100-post horizon — sparse_category_picker returned ocr-pdf-to-structured-json-bridge but that was WP 7086 (2026-09-12); extended horizon found messy-text as the next fresh theme-rich candidate
+- 8 body H2, 0 H1, 0 H3, 1 article-poster, 3 highlight-card, 6 elysiatools anchors (5 tool + 1 kind-root)
+- source: plain `md_to_html` (triple-fence present → safe_md_to_html would corrupt per WP 5828); pre_encode_code_spans pre-encoded literal `<table>` and `<td data-x="42">` to defuse WP 5828/6109 wpautop strip
+- assets: poster (1080×800, deep-navy + cyan-teal), card1 (5-tile 3+2 cheatsheet), card2 (audit-style 2-col with 5-row failure modes + verdict), card3 (4-tile compact)
+- vision_analyze caught 2 pre-POST defects: (1) poster eyebrow had literal `&middot;` → switched to Unicode `\u00b7`; (2) card3 with `render_card_4tile` had auto/tab/auto/true overlap body → switched to `render_card_4tile_compact`
+- all 11 URLs HEAD 200 (4 images + 6 anchors + 1 permalink); 0 audit findings; 0 placeholder leaks; 0 nested p in h2; 0 wpai-auto-tags-link
+- asset archive: ~/www/blog/2026-09-19-messy-text-to-structured-data-workbench-field-guide-when-paste-detect-coerce-and-export-need-to-agree-on-the-first-row-2026-09-19/
