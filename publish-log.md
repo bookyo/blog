@@ -280,3 +280,21 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - vision_analyze caught 2 pre-POST defects: (1) poster eyebrow had literal `&middot;` → switched to Unicode `\u00b7`; (2) card3 with `render_card_4tile` had auto/tab/auto/true overlap body → switched to `render_card_4tile_compact`
 - all 11 URLs HEAD 200 (4 images + 6 anchors + 1 permalink); 0 audit findings; 0 placeholder leaks; 0 nested p in h2; 0 wpai-auto-tags-link
 - asset archive: ~/www/blog/2026-09-19-messy-text-to-structured-data-workbench-field-guide-when-paste-detect-coerce-and-export-need-to-agree-on-the-first-row-2026-09-19/
+
+
+## 2026-09-19 — WP 7351 — Z85 RFC 1924 Base85 Stream Encoder Decoder Field Guide
+- Tool: `z85-rfc1924-base85-stream-codec` (Format Conversion)
+- Slug: `z85-rfc1924-base85-stream-codec-field-guide-when-three-alphabets-hide-behind-base85-and-the-25-percent-density-win-comes-with-a-wrong-alphabet-tax`
+- URL: https://blog.flowrust.com/2026/09/20/z85-rfc1924-base85-stream-codec-field-guide-when-three-alphabets-hide-behind-base85-and-the-25-percent-density-win-comes-with-a-wrong-alphabet-tax/
+- date_gmt: 2026-09-19T16:33:05
+- Words: ~1417 | H2: 8 | Cards: 3 | Poster: 1
+- Audit: 0 findings, 4/4 imgs HTTP 200, 2/2 elysia anchors HTTP 200, permalink HTTP 200
+- 1-POST 0-PATCH clean run
+
+## 2026-09-19T20:39:00 — AI Domain Name Idea Generator (WP 7356)
+- slug: `ai-domain-name-idea-generator-field-guide-when-seven-inputs-one-rdap-check-and-one-naming-style-choice-decide-whether-your-brand-lands-a-free-com-or-a-30-round-refund-2026-09-19`
+- url: https://blog.flowrust.com/2026/09/20/ai-domain-name-idea-generator-field-guide-when-seven-inputs-one-rdap-check-and-one-naming-style-choice-decide-whether-your-brand-lands-a-free-com-or-a-30-round-refund-2026-09-19/
+- category: AI Tools
+- patches: 0 (clean 1-POST)
+- elysia anchors: 4
+- assets: poster-48.png, card1-47.png, card2-48.png, card3-45.png
