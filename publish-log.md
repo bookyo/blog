@@ -238,3 +238,29 @@
 **No PATCH round-trip needed.**
 
 Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card1-3.png, article.md, article_final.html).
+
+## 2026-09-19 — MPV Analyzer Field Guide (WP 7330)
+- Tool: Mean Platelet Volume (MPV) Analyzer (`mean-platelet-volume-analyzer`)
+- URL: https://blog.flowrust.com/2026/09/19/mean-platelet-volume-mpv-analyzer-reading-the-four-quadrant-grid-on-every-cbc/
+- date_gmt: 2026-09-19T00:07:33
+- Audit: 0 findings (after 1-PATCH)
+- PATCHes: 1 (MERGED_BULLET_LIST x4 + MERGED_NUMBERED_LIST -> <ul><li>)
+- Assets: PIL poster (1280x900) + 3 cards (1600x900) via umbrella templates
+
+## 2026-09-19 — TPN Macronutrient Calculator Field Guide (WP 7336)
+- Tool: TPN Macronutrient Calculator (Glucose/AA/Lipid) (`tpn-macronutrient-calculator`)
+- URL: https://blog.flowrust.com/2026/09/19/tpn-macronutrient-calculator-2026-09-19/
+- date_gmt: 2026-09-19T04:13:40
+- Audit: 0 findings (1-POST 0-PATCH clean)
+- PATCHes: 0
+- Assets: PIL poster (1280x900) + 3 cards (1600x900) via umbrella templates
+  - poster: deep-navy + cyan-teal, eyebrow "CLINICAL NUTRITION SUPPORT · PARENTERAL FEEDING", title "Reading a TPN Order / in Five Numbers", shortened subtitle after first vision_analyze flagged left/right edge clip
+  - card1 (5-tile): Five formulas (dextrose, AA, lipid, nitrogen, NP kcal:N)
+  - card2 (4-tile compact): Four per-kg ceilings (energy, protein, GIR, lipid)
+  - card3 (input/output 2-col): 70-kg post-op worked example
+- All 4 PNGs vision_analyze-checked clean (no tofu, no overflow)
+- 8 body H2, 0 H3, 1 article-poster figure, 3 highlight-card figures
+- 6 elysiatools anchors: 5 tool-page + 1 kind-root (all 200, all validated against tool-manifest)
+- Source: `pre_encode_code_spans` + `safe_md_to_html` (3 backtick spans had `*` from multiplication formulas; multi-line blocks rewritten to single-line inlined to avoid WP 6376 nested-code+br pitfall)
+- All 7 URLs HEAD 200: poster, card1, card2, card3, tool anchor, kind-root anchor, permalink
+- No browser DOM probe (Chrome daemon unavailable); used raw rendered-content probe + urllib HEAD per WP 6663 fallback
