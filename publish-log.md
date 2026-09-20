@@ -298,3 +298,38 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - patches: 0 (clean 1-POST)
 - elysia anchors: 4
 - assets: poster-48.png, card1-47.png, card2-48.png, card3-45.png
+
+## 2026-09-20T04:48:06 — Crystal Structure Explorer (WP 7366)
+- Tool: `crystal-structure-explorer` (Chemistry / Education cluster: solid-state chemistry, crystallography, Three.js 3D)
+- Slug: `crystal-structure-explorer-field-guide-when-rotating-na-cl-diamond-cs-cl-and-fluorite-finally-makes-coordination-numbers-click`
+- URL: https://blog.flowrust.com/2026/09/20/crystal-structure-explorer-field-guide-when-rotating-na-cl-diamond-cs-cl-and-fluorite-finally-makes-coordination-numbers-click/
+- date_gmt: 2026-09-20T04:48:06
+- Words: ~1480 | H2: 8 | Cards: 3 | Poster: 1
+- Patches: 1 (MERGED_BULLET_LIST → <ul><li> for "What the Library Covers" 6-item structure family list)
+- Audit: 0 findings after PATCH, 4/4 imgs HTTP 200, 5/5 elysia anchors HTTP 200, permalink HTTP 200
+- Elysia anchors: 5 (4 tool + 1 kind-root)
+- Assets: poster.png (1080×800, NETWORK theme), card1.png (5-tile "Six Families in One Library"), card2.png (audit-style 2-col "Five Checks Before You Trust a Structure" with verdict), card3.png (4-tile compact 1×4 "Four Comparisons a Diagram Cannot Show")
+- visual QA caught: (1) card3 first-pass had "C allotrope"/"AX2 / MX2" overflowed tile width — reduced to "C"/"MX2"; (2) card2 first-pass had row5 body text clipped at bottom — increased col_h 600→640 + row_h 100→105
+- Skills path: umbrella fallback (article-poster-creator + article-highlight-cards missing from disk; used templates/pil_poster_and_cards_network_theme.py + custom PIL render)
+- Asset archive: ~/www/blog/2026-09-20-crystal-structure-explorer-field-guide-when-rotating-na-cl-diamond-cs-cl-and-fluorite-finally-makes-coordination-numbers-click/
+
+## 2026-09-20T09:09:51 | WP 7373 | recipe-ingredient-scaler-field-guide-when-parsing-density-table-and-smart-seasoning-beat-the-generic-multiplier | recipe-ingredient-scaler | 1-POST 0-PATCH clean | 4 imgs (poster + 3 cards) | 3 elysia anchors | 0 audit findings
+
+## 2026-09-20T13:14:31 — LDL-C Calculator (Friedewald) (WP 7378)
+- Tool: `ldl-calculator-friedewald` (Health cluster: clinical lipid panel, ACC/AHA 2018 cholesterol guideline, Friedewald/Martin-Hopkins/Sampson-NIH equations)
+- Slug: `ldl-calculator-friedewald-field-guide-when-three-inputs-and-a-5-to-1-tg-vldl-ratio-drive-fifty-years-of-quietly-underestimated-ldl-c`
+- URL: https://blog.flowrust.com/2026/09/20/ldl-calculator-friedewald-field-guide-when-three-inputs-and-a-5-to-1-tg-vldl-ratio-drive-fifty-years-of-quietly-underestimated-ldl-c/
+- date_gmt: 2026-09-20T13:14:31
+- Words: ~1421 | H2: 8 | Cards: 3 | Poster: 1 | Audit: 0 findings
+- Patches: 1 (MERGED_NUMBERED_LIST on 2 blocks: "Five Edge Cases" 1.-5. joined into 1 <p> → <ol>; "Panel A/B/C" dash list joined into 1 <p> → <ul><li>; round-1 fix was messy — section 5 lost Panel C; round-2 fix regenerated cleanly with all 3 panels)
+- Audit final: 0 findings, 8 body H2, 0 H3, 0 H1, 1 poster, 3 highlight-cards, 1 body <ol> (5 items), 1 body <ul> (3 items), featured_media=0
+- Elysia anchors: 3 (3× tool URL + 1× kind-root `/en/tools`); all 2 unique URLs HTTP 200
+- Assets: 4/4 imgs HTTP 200 (poster-50.png, card1-49.png, card2-50.png, card3-47.png); visual QA pre-POST confirmed clean (no tofu, no overflow, all glyphs rendered)
+- Card designs: card1 = `render_card_5tile` "Five Edge Cases" 5-tile, card2 = `render_card_5tile` "Five Threshold Bands" 5-tile, card3 = `render_card_4tile_compact` "Four LDL-C Formulas" 4-tile
+- Skills path: umbrella fallback (article-poster-creator + article-highlight-cards missing from disk; used templates/pil_poster_and_cards_network_theme.py + render_card_4tile_compact.py)
+- Notable: confirmed WP 6436 5-tile arity OK (5 items each); confirmed WP 6358 card3 4-tile body fits within tile_w-60 (each body ≤ 40 chars at F_MONO on tile_w=660)
+- Asset archive: ~/www/blog/2026-09-20-ldl-calculator-friedewald/
+
+## 2026-09-20T17:21:43 — fractional-flow-reserve-field-guide-when-pd-over-pa-and-adenosine-140-turn-a-60-percent-stenosis-into-a-defer-or-stent-call-2026-09-20 (WP 7387)
+- Title: Fractional Flow Reserve Calculator (FFR) Field Guide: When Pd / Pa and Adenosine 140 Turn a 60% Stenosis Into a Defer-or-Stent Call
+- URL: https://blog.flowrust.com/2026/09/21/fractional-flow-reserve-field-guide-when-pd-over-pa-and-adenosine-140-turn-a-60-percent-stenosis-into-a-defer-or-stent-call-2026-09-20/
