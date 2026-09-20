@@ -333,3 +333,18 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 ## 2026-09-20T17:21:43 — fractional-flow-reserve-field-guide-when-pd-over-pa-and-adenosine-140-turn-a-60-percent-stenosis-into-a-defer-or-stent-call-2026-09-20 (WP 7387)
 - Title: Fractional Flow Reserve Calculator (FFR) Field Guide: When Pd / Pa and Adenosine 140 Turn a 60% Stenosis Into a Defer-or-Stent Call
 - URL: https://blog.flowrust.com/2026/09/21/fractional-flow-reserve-field-guide-when-pd-over-pa-and-adenosine-140-turn-a-60-percent-stenosis-into-a-defer-or-stent-call-2026-09-20/
+
+## 2026-09-20T21:51:04Z — dockerfile-linter (WP 7395)
+- Title: Five Dockerfile Lines That Inflate Your Image by 800 MB
+- URL: https://blog.flowrust.com/2026/09/21/dockerfile-linter/
+- Tool: dockerfile-linter (Dockerfile Linter & Best-Practices Checker)
+- Category: Development
+- Cards: 3 (5-tile buckets, 2-col before/after, 5-tile 3+2 cheatsheet)
+- Audit: 0 findings
+- Asset URLs:
+  - poster: https://blog.flowrust.com/wp-content/uploads/2026/09/jarvis-poster-dockerfile-linter.png
+  - card1:  https://blog.flowrust.com/wp-content/uploads/2026/09/jarvis-card1-dockerfile-linter.png
+  - card2:  https://blog.flowrust.com/wp-content/uploads/2026/09/jarvis-card2-dockerfile-linter.png
+  - card3:  https://blog.flowrust.com/wp-content/uploads/2026/09/jarvis-card3-dockerfile-linter.png
+- Elysia anchors: 6 instances of /en/tools/dockerfile-linter (validated REAL), 1 /en/tools (kind-root)
+- Pre-publish checks: 0 H1, 8 H2, 0 H3, 1 poster fig, 3 card figs, 4 imgs, 0 audit findings
