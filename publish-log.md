@@ -379,3 +379,14 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **date_gmt**: 2026-09-21T06:00:28
 - **1-POST + 1-PATCH** — PATCH split 4 MERGED_BULLET_LIST paragraphs (md_to_html does not process `- ` markdown bullets per WP 6185/6212). Pre-POST visual QA via vision_analyze passed all 4 PIL assets. Audit clean (0 findings). All 4 images + 3 elysia anchors return HTTP 200.
 
+
+## 2026-09-21 -- WP 7414 -- nemenyi-critical-difference-friedman-rank-plotter
+
+- date_gmt: 2026-09-21T10:07:16
+- tool: Nemenyi Critical-Difference & Friedman Rank Plotter (Data Analysis)
+- status: publish (1-POST 0-PATCH)
+- audit findings: 0
+- 8 body H2, 3 highlight-card figures, 1 poster figure
+- 6 unique elysia anchors, all 200
+- 1866 words
+- artifacts: ~/www/blog/2026-09-21-nemenyi-critical-difference-friedman-rank-plotter/
