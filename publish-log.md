@@ -357,4 +357,15 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - 1-POST 1-PATCH (POST /wp/v2/posts/7395) — verified clean via ?context=edit re-fetch
 - Other 4 posts: 0 audit findings, no PATCH needed
 - Asset archive: ~/www/blog/2026-09-21-dockerfile-linter-fix/
-- Pitfall family: extends WP 6376 (`safe_md_to_html` nested `<code><code>` artifacts) — but WP 7395's variant had NO `<br />` inside the inner code and the outer `<code>` was unclosed (dangling). New WP 7395 case: triple-fence source markdown produced dangling `<code>` open when wpautop processed `<pre><code>...` and stripped the outer wrapper. Defense recipe: detect `<code><code class="language-X">...</code>` (one close only) and rebuild as `<pre><code class="language-X">...</code></pre>` with `<br>` → `\n`.
+- Pitfall family: extends WP 6376 (`safe_md_to_html` nested `<code><code>` artifacts) — but WP 7395's variant had NO `<br />` inside the inner code and the outer `<code>` was unclosed (dangling). New WP 7395 case: triple-fence source markdown produced dangling `<code>` open when wpautop processed `<pre><code>...` and stripped the outer wrapper. Defense recipe: detect `<code><code class="language-X">...</code>` (one close only) and rebuild as `<pre><code class="language-X">...</code></pre>` with `<br>` → `\n`.## 2026-09-21 — WP 7401 — Bitcoin Address Validator Field Guide
+
+- **Tool**: `btc-address-validator` (Bitcoin Address Validator) — Finance category
+- **date_gmt**: 2026-09-21T01:56:06
+- **URL**: https://blog.flowrust.com/2026/09/21/btc-address-validator-field-guide-when-prefix-base58-alphabet-version-byte-bech32-checksum-and-network-cross-check-decide-whether-your-address-renders-as-p2pkh-p2sh-or-segwit-2026-09-21/
+- **Featured media**: 0 (per umbrella §9 critical)
+- **H1/H2/H3**: 0 / 8 / 0
+- **Cards**: 3 (poster + 5-tile + 4-tile compact + 2-col worked example)
+- **Elysia anchors**: 3 (2× tools/btc-address-validator + 1× kind_root /en/tools)
+- **Audit findings**: 0
+- **Patches**: 0
+- **Stack**: umbrella fallback (`article-poster-creator` and `article-highlight-cards` skills not on disk; used umbrella PIL templates per WP 6185/6352 fallback path)
