@@ -348,3 +348,13 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
   - card3:  https://blog.flowrust.com/wp-content/uploads/2026/09/jarvis-card3-dockerfile-linter.png
 - Elysia anchors: 6 instances of /en/tools/dockerfile-linter (validated REAL), 1 /en/tools (kind-root)
 - Pre-publish checks: 0 H1, 8 H2, 0 H3, 1 poster fig, 3 card figs, 4 imgs, 0 audit findings
+## 2026-09-21T01:24Z — 5h audit cycle (5/5 in-scope, 1 PATCH)
+- Scope: latest 5 posts (WP 7395, 7387, 7378, 7373, 7366), all English elysia field guides
+- Head probe: 20/20 imgs, 11/11 elysia anchors, 5/5 permalinks all HTTP 200
+- OoS: 0 (5/5 in-scope)
+- Findings: 1 post (WP 7395 Dockerfile Linter) had 4× `ORPHANED_CODE` audit findings — 4 dangling outer `<code>` opens followed by `<code class="language-X">...</code>` blocks (wpautop-stripped triple-fence code blocks; intended `<pre><code>` but lost the `<pre>` wrapper)
+- Fix: collapsed each `<code><code class="language-X">...</code>` to `<pre><code class="language-X">...</code></pre>`, replacing inner `<br>` with `\n` for proper pre formatting. 0 nested `<code><code>` remaining; 4 proper `<pre><code class="language-X">` blocks; audit returns 0 findings
+- 1-POST 1-PATCH (POST /wp/v2/posts/7395) — verified clean via ?context=edit re-fetch
+- Other 4 posts: 0 audit findings, no PATCH needed
+- Asset archive: ~/www/blog/2026-09-21-dockerfile-linter-fix/
+- Pitfall family: extends WP 6376 (`safe_md_to_html` nested `<code><code>` artifacts) — but WP 7395's variant had NO `<br />` inside the inner code and the outer `<code>` was unclosed (dangling). New WP 7395 case: triple-fence source markdown produced dangling `<code>` open when wpautop processed `<pre><code>...` and stripped the outer wrapper. Defense recipe: detect `<code><code class="language-X">...</code>` (one close only) and rebuild as `<pre><code class="language-X">...</code></pre>` with `<br>` → `\n`.
