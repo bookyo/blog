@@ -369,3 +369,13 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Audit findings**: 0
 - **Patches**: 0
 - **Stack**: umbrella fallback (`article-poster-creator` and `article-highlight-cards` skills not on disk; used umbrella PIL templates per WP 6185/6352 fallback path)
+## 2026-09-21 — Optical Path Difference Calculator (WP 7406)
+
+- **Title**: Optical Path Difference Field Guide: When 275 nm of Air Becomes a Dark Fringe
+- **Slug**: `optical-path-difference-field-guide-when-275-nm-of-air-becomes-a-dark-fringe-2026-09-21`
+- **URL**: https://blog.flowrust.com/2026/09/21/optical-path-difference-field-guide-when-275-nm-of-air-becomes-a-dark-fringe-2026-09-21/
+- **Tool**: `optical-path-difference` (Optical Path Difference Calculator)
+- **Category**: Science & Education
+- **date_gmt**: 2026-09-21T06:00:28
+- **1-POST + 1-PATCH** — PATCH split 4 MERGED_BULLET_LIST paragraphs (md_to_html does not process `- ` markdown bullets per WP 6185/6212). Pre-POST visual QA via vision_analyze passed all 4 PIL assets. Audit clean (0 findings). All 4 images + 3 elysia anchors return HTTP 200.
+
