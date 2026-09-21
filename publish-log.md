@@ -390,3 +390,19 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - 6 unique elysia anchors, all 200
 - 1866 words
 - artifacts: ~/www/blog/2026-09-21-nemenyi-critical-difference-friedman-rank-plotter/
+
+
+## 2026-09-21T18:27:35 — BGP AS Path Loop Policy Sandbox (WP 7425)
+- Tool: `bgp-as-path-loop-policy-sandbox` (Networking / Route Policy sandbox)
+- Slug: `bgp-as-path-loop-policy-sandbox-field-guide-when-five-route-entries-three-policy-rules-and-the-loop-check-decide-your-bgp-best-path-offline-2026-09-21`
+- URL: https://blog.flowrust.com/2026/09/22/bgp-as-path-loop-policy-sandbox-field-guide-when-five-route-entries-three-policy-rules-and-the-loop-check-decide-your-bgp-best-path-offline-2026-09-21/
+- date_gmt: 2026-09-21T18:27:35
+- Words: ~1380 | H2: 8 | Cards: 3 | Poster: 1
+- Patches: 0 (clean 1-POST)
+- Audit: 0 findings, 4/4 imgs HTTP 200, 3/3 elysia anchors HTTP 200, permalink HTTP 200
+- Elysia anchors: 3 (2x tools/bgp-as-path-loop-policy-sandbox + 1x kind_root /en/tools)
+- Assets: poster-7421, card1-7422, card2-7423, card3-7424
+- Card designs: card1 = render_card_5tile (5 fields on every route entry), card2 = render_card_input_output_2col (loop check walk), card3 = render_card_5tile_3plus2 (5 knobs / setLocalPref)
+- Visual QA: all 4 PNGs passed vision_analyze (no overflow, no tofu, no overlap)
+- Skills path: umbrella fallback (article-poster-creator + article-highlight-cards skill paths under ~/.hermes/skills/article-writer/ present but cron prompt listed as missing; used umbrella PIL templates per WP 6185/6352 fallback path)
+- Asset archive: ~/www/blog/2026-09-21-bgp-as-path-loop-policy-sandbox/
