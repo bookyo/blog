@@ -1,0 +1,48 @@
+<p><strong>An NTP packet is not 48 random bytes — it is a 384-bit structure where the first 8 bits alone tell a client whether the world just learned about a leap second, the next 2 bits betray which protocol version is in play, and the last 32 bits encode an absolute UTC timestamp using an epoch that predates Unix by 70 years.</strong> If you have ever stared at a hexdump from <code>tcpdump -ni eth0 'udp port 123'</code> and tried to make sense of <code>24 01 0c fa 000005e4 0000059c 47505300 ...</code>, this guide is for you. We will walk through the NTPv4 packet (RFC 5905) and its SNTP cousin (RFC 4330) field by field, then see how the <a href="https://elysiatools.com/en/tools/ntp-rfc-5905-sntp-leap-second-epoch-decoder">NTP RFC 5905 / SNTP Leap Second & Epoch Decoder</a> renders the same numbers into a panel your watch can compare to wall-clock time.</p>
+<h2>Why NTP packets look so strange</h2>
+<p>The NTP wire format was frozen in 1985 and has barely moved since. It uses the <strong>NTP epoch</strong> of 1900-01-01 00:00:00 — seventy years before the Unix epoch of 1970-01-01. By the time you read this, the NTP timestamp for "right now" is a 64-bit unsigned integer around <code>0xec5e0d0000000000</code> (about 4.0 billion seconds since 1900). Every modern NTP client converts this to Unix time by subtracting the well-known <code>0x83aa7e80</code> (2,208,988,800 seconds) offset.</p>
+<p>The first 32 bits of every NTP packet are a <strong>status octet cascade</strong> — Leap Indicator (2 bits), Version Number (3 bits), Mode (3 bits), then Stratum (8), Poll (8), Precision (8), and Root Delay (32). That is a lot of dense semantics before you even reach a timestamp. A single bit flip in the right place can change a packet's meaning from "sync to me" to "drop your association, do not respond".</p>
+<h2>The first 8 bits tell three stories at once</h2>
+<p><code>0x24</code> in the canonical stratum-1 packet from a GPS-disciplined server reads as binary <code>0010 0100</code>. Reading the bits left-to-right:</p>
+<ul>
+<li><strong>Leap Indicator (LI) = 0</strong> (<code>00</code>) — no warning. A value of <code>01</code> would mean "last minute has 61 seconds", <code>10</code> would mean "last minute has 59 seconds", and <code>11</code> means "clock unsynchronized" (often kiss-o'-death).</li>
+<li><strong>Version Number (VN) = 4</strong> (<code>100</code>) — this is NTPv4, RFC 5905. SNTPv4 uses the same version field.</li>
+<li><strong>Mode = 4</strong> (<code>100</code>) — the server is responding to a client. Mode 3 is client, mode 4 is server, mode 5 is broadcast, mode 7 is symmetric active for NTP peer exchanges.</li>
+</ul>
+<p>That is exactly what a decoded panel shows in the LI/VN/Mode row — the bit triplets in their natural reading order, plus a textual legend so you do not have to memorize that <code>011</code> in Mode means a symmetric-peer packet rather than a unicast client.</p>
+<h2>From raw bytes to a UTC timestamp</h2>
+<p>The four timestamps (Reference, Origin, Receive, Transmit) each occupy 64 bits — 32 bits of seconds since 1900 and 32 bits of fractional second. The fractional field is <strong>not</strong> a millisecond; it is a fixed-point denominator of <code>2^32</code>, which gives roughly 233 picosecond resolution. A value of <code>0x80000000</code> therefore represents exactly 0.5 seconds.</p>
+<p>Conversion to UTC is a three-step recipe:</p>
+<ol>
+<li>Read the seconds field as an unsigned 32-bit integer.</li>
+<li>Subtract <code>2208988800</code> to move from the 1900 epoch to the Unix epoch.</li>
+<li>Add the current TAI-UTC offset to get UTC. As of 2026-01-01, that offset is <strong>37 seconds</strong> (the leap-second insertion at the end of 2016, plus the 27 added earlier). The decoder shows this offset explicitly so the result can be sanity-checked against <code>date -u</code> on the host.</li>
+</ol>
+<p>The fractional part is left as raw <code>0.xxxxxxxx</code> seconds unless you round it to milliseconds, which is almost always enough for log correlation.</p>
+<h2>Stratum, reference ID, and the kiss codes</h2>
+<p>Stratum is the hop count from a primary reference clock. Stratum 0 means "this device is itself the reference" (a GPS receiver, an atomic clock). Stratum 1 means "directly synchronized to a stratum-0 device". Stratum 2 synchronizes to stratum 1, and so on, with a hard ceiling of 15 — anything beyond that is considered unusable.</p>
+<p>The Reference ID is four ASCII characters when the stratum is low (<code>47505300</code> reads <code>GPS&#92;0</code>, identifying a GPS source) and a four-character <strong>kiss-o'-death code</strong> when stratum is 0 or unsynchronized. The codes are unkind by design:</p>
+<ul>
+<li><code>DENY</code>, <code>RSTR</code>, <code>CRYP</code> — the server refuses to serve you, often because of access controls or cryptographic failure.</li>
+<li><code>RATE</code> — you are polling too often; back off.</li>
+<li><code>STEP</code> — the server's time changed by more than the step threshold; a client should reset its association.</li>
+</ul>
+<p>A <code>CRYP</code> from your upstream is the NTP equivalent of a stern letter from your bank: do not ignore it.</p>
+<h2>What SNTPv4 leaves on the table</h2>
+<p>SNTPv4 (RFC 4330) deliberately drops the stateful parts of NTP — the filtering, selection, and clock-discipline algorithms — and keeps only the wire format. A pure SNTP client reads one packet, computes one offset, and applies it. For a single-server setup this is exactly what you want; for a multi-peer mesh it is not, because SNTP does not perform Marzullo's algorithm or intersection to filter out a falseticker.</p>
+<p>The decoder handles both modes transparently because the on-wire format is identical. If you feed it a packet that has only the Transmit timestamp populated and zeros in the other three, it will decode the LI/VN/Mode, the stratum, and the precision while flagging the missing Reference, Origin, and Receive fields. That is exactly the SNTP broadcast packet a server would emit from <code>ntpdate -q</code>.</p>
+<h2>Verifying against a live capture</h2>
+<p>The fastest way to see a real packet is <code>tcpdump -ni lo0 -X 'udp port 123'</code>. After kicking <code>sntp -sS pool.ntppool.org</code>, you will see a 48-byte UDP datagram from a stratum-2 or stratum-3 server. Drop the bytes into the decoder in the same order they appeared in the dump (the first byte in the hexdump is the high byte of the LI/VN/Mode field). You should see UTC timestamps within a few milliseconds of your host's <code>date -u</code>, and a Reference ID like <code>132.163.xx.xx</code> if the upstream is a US pool node, or <code>GOOG</code> if you happen to be synced to Google's anycast NTP service.</p>
+<p>For deterministic offline testing, the decoder ships with a built-in GPS-synced sample (<code>24 01 0c fa 000005e4 0000059c 47505300 eb5c3a80 ...</code>) that produces a fully-populated stratum-1 panel. Working through the bytes against the sample is the fastest way to internalize the bit layout.</p>
+<h2>When the leap-second indicator finally fires</h2>
+<p>LI values of <code>01</code> and <code>10</code> are vanishingly rare — IERS announces leap seconds about six months in advance, and only 27 have been inserted since 1972. When the next one is announced, the world's NTP daemons will start emitting LI=1 packets at the end of the last day. If you are building any system that consumes NTP, the decoder is the quickest way to confirm your parser agrees with a reference implementation on what <code>01</code> and <code>10</code> actually mean — they are easy to swap if you read them as "minute has 61 seconds" vs "minute has 59 seconds" without checking the spec.</p>
+<p>For a hands-on walk-through, paste a captured packet (or the canonical sample) into the <a href="https://elysiatools.com/en/tools/ntp-rfc-5905-sntp-leap-second-epoch-decoder">NTP / SNTP decoder</a>. The panel will resolve every field, including the bit triplets, the four timestamps in UTC, and the TAI-UTC offset in play at the moment the packet was generated. From there, comparing to <code>date -u</code> on the same host is a one-line sanity check — and the easiest way to catch a clock-skew bug before it bites a downstream log search.</p>
+<h2>Common decoding mistakes worth flagging</h2>
+<p>A few pitfalls show up repeatedly when teams ship a custom NTP parser:</p>
+<ul>
+<li><strong>Byte order.</strong> The 32-bit seconds fields are big-endian. Reading them as little-endian silently shifts the timestamp by 4.0 billion seconds — exactly enough to land in 2076 and immediately look like a clock-skew bug from the future.</li>
+<li><strong>Signed vs unsigned.</strong> The Stratum, Poll, and Precision fields are all <strong>signed</strong> 8-bit integers in the spec, even though their natural values are small positive integers. A precision of <code>0xfa</code> decodes to <code>-6</code> and means "the system clock ticks every 64 ms", not "250 ticks per second". A parser that treats it as unsigned will report nonsense poll intervals.</li>
+<li><strong>Fractional truncation.</strong> Rounding the 32-bit fractional seconds to a 16-bit integer for storage loses ~16 bits of precision and turns a sub-microsecond offset into a multi-second one. Keep the full 64 bits if your downstream cares about phase, not just wall-clock.</li>
+</ul>
+<p>For each of these, the decoder renders the field the way the spec actually defines it, and a quick eyeball comparison against the raw input tells you whether your parser agrees.</p>
+<p>Explore more protocol and timestamp tools at <a href="https://elysiatools.com/en/tools">elysiatools.com</a>.</p>
