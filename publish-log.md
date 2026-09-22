@@ -427,3 +427,52 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 ## 2026-09-22T07:12:57 — tailwind-class-to-css-converter-field-guide-when-five-utility-decisions-one-alpha-syntax-and-three-compound-shadow-rules-combine-decide-whether-your-copied-css-matches-the-original-2026-09-22 (WP 7445)
 - Title: Tailwind Class to CSS Converter Field Guide: When Five Utility Decisions, One Alpha Syntax, and Three Compound Shadow Rules Combine, Decide Whether Your Copied CSS Matches the Original
 - URL: https://blog.flowrust.com/2026/09/22/tailwind-class-to-css-converter-field-guide-when-five-utility-decisions-one-alpha-syntax-and-three-compound-shadow-rules-combine-decide-whether-your-copied-css-matches-the-original-2026-09-22/
+
+## 2026-09-22T11:17:20 — MTU / MSS Path Calculator (WP 7451)
+- Tool: `mtu-and-mss-path-calculator` (Network)
+- Title: MTU / MSS Path Calculator Field Guide: When Eight Encapsulation Layers, the 40-Byte MSS Rule, and the Don't-Fragment Ping Probe Decide Whether Your SD-WAN Packet Clears 1500 Bytes or Black-Holes at 1404
+- URL: https://blog.flowrust.com/2026/09/22/mtu-and-mss-path-calculator-field-guide-when-eight-encapsulation-layers-the-40-byte-mss-rule-and-the-dont-fragment-ping-probe-decide-whether-your-sd-wan-packet-clears-1500-bytes-or-black-holes-at-1404/
+- date_gmt: 2026-09-22T11:17:20
+- Words: ~1500 | H2: 8 | Cards: 3 | Poster: 1
+- Patches: 0 (clean 1-POST)
+- Audit: 0 findings, 4/4 imgs HTTP 200, 6/6 elysia anchors HTTP 200, permalink HTTP 200
+- Elysia anchors: 6 (3x tools/mtu-and-mss-path-calculator + 1x tools/http-3-quic-handshake-anatomy + 1x tools/cidr-calculator + 1x kind_root /en/tools)
+- Assets: poster-56, card1-55, card2-56, card3-53
+- Card designs: card1 = render_card_5tile (5 numeric outputs), card2 = render_card_4tile_compact (4 encapsulation footguns), card3 = render_card_input_output_2col (worked example VXLAN+WG+VLAN)
+- Visual QA: all 4 PNGs passed vision_analyze (no overflow, no tofu, no overlap)
+- Skills path: parent skills present under ~/.hermes/skills/article-writer/{article-poster-creator, article-highlight-cards}; umbrella PIL templates used (matches cron cadence output per WP 6185/6352)
+- Asset archive: /Users/quyue/www/blog/2026-09-22-mtu-and-mss-path-calculator
+## 2026-09-22 23:32 UTC — Serum Anion Gap (AG) Calculator — Field Guide
+
+- Post ID: 7457
+- URL: https://blog.flowrust.com/2026/09/22/serum-anion-gap-calculator-field-guide-when-sodium-chloride-bicarbonate-and-the-gold-mark-mnemonic-decide-whether-your-metabolic-acidosis-is-hagma-or-nagma/
+- date_gmt: 2026-09-22T15:29:52
+- Tool: anion-gap-calculator (Health)
+- Words: 1240 | H2: 8 | Cards: 3 | Poster: 1
+- Patches: 1 (MERGED_BULLET_LIST on the 3-zone reference ranges section: converted merged `<p>` to `<ul><li>`)
+- Audit: 0 findings after PATCH, 4/4 imgs HTTP 200, 3/3 elysia anchors HTTP 200, permalink HTTP 200
+- Elysia anchors: 3 (2x tools/anion-gap-calculator + 1x kind_root /en/tools)
+- Assets: poster-57, card1-56, card2-57, card3-54
+- Card designs: card1 = render_card_5tile (five AG zones), card2 = render_card_5tile (GOLD-MARK top 5), card3 = render_card_input_output_2col (worked example HAGMA hidden by hypoalbuminemia)
+- Visual QA: all 4 PNGs passed vision_analyze (no overflow, no tofu, no overlap, no clipping)
+- Skills path: parent skill article-writer present; article-poster-creator + article-highlight-cards NOT on disk — umbrella PIL templates used (per WP 6185/6352 cron cadence)
+- Picker: pick_tool_v4_content_based diverse top pick (Health category, anion-gap-calculator; 1396-candidate pool after dedup against 812 covered_slugs)
+- Source-side defenses: pre_encode_code_spans (no literal-HTML code spans), plain md_to_html (no `*` inside `<code>`), insert_highlight_cards canonical helper, validate_elysia_anchors pre-POST (2 anchors resolved)
+- Asset archive: /Users/quyue/www/blog/2026-09-22-serum-anion-gap-calculator
+## 2026-09-22T23:40:47 — Carrying Capacity Estimator (WP 7470)
+
+- **Tool**: `carrying-capacity-estimator` (Carrying Capacity Estimator — Verhulst logistic K-fit) — Health category
+- **URL**: https://blog.flowrust.com/2026/09/23/carrying-capacity-estimator-field-guide-when-five-parameters-seven-judgement-calls-and-the-60-percent-rule-decide-whether-your-s-curve-identified-k-or-just-fit-the-data-2026-09-22/
+- **date_gmt**: 2026-09-22T23:40:47
+- **Title**: Carrying Capacity Estimator Field Guide: When Five Parameters, Seven Judgement Calls, and the 60 Percent Rule Decide Whether Your S-Curve Identified K or Just Fit the Data
+- **Words**: ~1180 | H2: 8 | Cards: 3 | Poster: 1
+- **Patches**: 0 (clean 1-POST)
+- **Audit**: 0 findings (post-publish re-audit clean); 4/4 imgs HTTP 200; 2/2 elysia anchors HTTP 200; permalink HTTP 200
+- **Elysia anchors**: 2 unique URLs (`/en/tools/carrying-capacity-estimator` x2 + `/en/tools` x1 kind_root)
+- **Assets**: poster-7466, card1-7467, card2-7468, card3-7469
+- **Card designs**: card1 = render_card_5tile (5 fit parameters), card2 = render_card_5tile_3plus2 (60% rule 3+2 grid), card3 = render_card_input_output_2col (Gause 1932 worked example)
+- **Visual QA**: all 4 PNGs passed vision_analyze (no overflow, no tofu, no overlap, takeaway text correct)
+- **Skills path**: umbrella fallback (article-poster-creator + article-highlight-cards skills NOT on disk; used umbrella PIL templates per WP 6185/6352 cron cadence)
+- **Picker**: theme-word scoring (theme_high keywords: estimator, calculator, validator, generator, etc.) → carrying-capacity-estimator (theme_score=11)
+- **Source-side defenses**: pre_encode_code_spans + pre_encode_backslash (one `<code>` block with raw text), plain md_to_html (no `*` inside `<code>` spans), insert_highlight_cards canonical helper (3/3 cards inserted), validate_elysia_anchors pre-POST (2 anchors resolved against tool-manifest.json)
+- **Asset archive**: /Users/quyue/www/blog/2026-09-22-carrying-capacity-estimator
