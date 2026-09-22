@@ -1,0 +1,28 @@
+{
+  "post_id": 7445,
+  "issues": [],
+  "elysia_links": {
+    "https://elysiatools.com/en/tools": 200,
+    "https://elysiatools.com/en/tools/tailwind-arbitrary-value-playground": 200,
+    "https://elysiatools.com/en/tools/tailwind-class-to-css-converter": 200,
+    "https://elysiatools.com/en/tools/tailwind-color-palette-sync": 200
+  },
+  "img_urls": {
+    "https://blog.flowrust.com/wp-content/uploads/2026/09/jarvis-card1-tailwind-class-to-css-converter.png": 200,
+    "https://blog.flowrust.com/wp-content/uploads/2026/09/jarvis-card2-tailwind-class-to-css-converter.png": 200,
+    "https://blog.flowrust.com/wp-content/uploads/2026/09/jarvis-card3-tailwind-class-to-css-converter.png": 200,
+    "https://blog.flowrust.com/wp-content/uploads/2026/09/jarvis-poster-tailwind-class-to-css-converter.png": 200
+  },
+  "structure": {
+    "h1": 0,
+    "h2": 8,
+    "h3": 0,
+    "poster": 1,
+    "cards": 3
+  },
+  "featured_media": 0,
+  "status": "publish",
+  "url": "https://blog.flowrust.com/2026/09/22/tailwind-class-to-css-converter-field-guide-when-five-utility-decisions-one-alpha-syntax-and-three-compound-shadow-rules-combine-decide-whether-your-copied-css-matches-the-original-2026-09-22/",
+  "date_gmt": "2026-09-22T07:12:57",
+  "slug": "tailwind-class-to-css-converter-field-guide-when-five-utility-decisions-one-alpha-syntax-and-three-compound-shadow-rules-combine-decide-whether-your-copied-css-matches-the-original-2026-09-22"
+}

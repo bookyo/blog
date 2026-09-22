@@ -406,3 +406,24 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - Visual QA: all 4 PNGs passed vision_analyze (no overflow, no tofu, no overlap)
 - Skills path: umbrella fallback (article-poster-creator + article-highlight-cards skill paths under ~/.hermes/skills/article-writer/ present but cron prompt listed as missing; used umbrella PIL templates per WP 6185/6352 fallback path)
 - Asset archive: ~/www/blog/2026-09-21-bgp-as-path-loop-policy-sandbox/
+
+
+## 2026-09-22T02:58:30 — Contingency Table Chi-Square Fisher Exact Cramér V Tutor (WP 7439)
+
+- Tool: `contingency-table-chi-square-fisher-exact-cramer-v-tutor` (Data Analysis)
+- Slug: `contingency-table-chi-square-fisher-exact-cramer-v-tutor-field-guide-when-four-statistics-eight-decisions-and-one-caption-rule-combine-decide-whether-your-2x2-holds-2026-09-22`
+- URL: https://blog.flowrust.com/2026/09/22/contingency-table-chi-square-fisher-exact-cramer-v-tutor-field-guide-when-four-statistics-eight-decisions-and-one-caption-rule-combine-decide-whether-your-2x2-holds-2026-09-22/
+- date_gmt: 2026-09-22T02:56:51
+- Words: ~1430 | H2: 8 | Cards: 3 | Poster: 1
+- Patches: 0 (clean 1-POST)
+- Audit: 0 findings, 4/4 imgs HTTP 200, 3/3 elysia anchors HTTP 200, permalink HTTP 200
+- Elysia anchors: 3 (2x tools/contingency-table-chi-square-fisher-exact-cramer-v-tutor + 1x kind_root /en/tools)
+- Assets: poster-55, card1-54, card2-55, card3-52 (auto-renamed by WP upload dedup)
+- Card designs: card1 = render_card_5tile (4 statistics side-by-side), card2 = render_card_input_output_2col (5-row test picker), card3 = render_card_5tile_3plus2 (5 effect-size/rule items)
+- Visual QA: all 4 PNGs passed vision_analyze (no overflow, no tofu, no overlap)
+- Skills path: umbrella fallback (article-poster-creator + article-highlight-cards skill paths under ~/.hermes/skills/ missing on disk; used umbrella PIL templates per WP 6185/6352)
+- Asset archive: /Users/quyue/www/blog/2026-09-22-contingency-table-chi-square-fisher-exact-cramer-v-tutor
+
+## 2026-09-22T07:12:57 — tailwind-class-to-css-converter-field-guide-when-five-utility-decisions-one-alpha-syntax-and-three-compound-shadow-rules-combine-decide-whether-your-copied-css-matches-the-original-2026-09-22 (WP 7445)
+- Title: Tailwind Class to CSS Converter Field Guide: When Five Utility Decisions, One Alpha Syntax, and Three Compound Shadow Rules Combine, Decide Whether Your Copied CSS Matches the Original
+- URL: https://blog.flowrust.com/2026/09/22/tailwind-class-to-css-converter-field-guide-when-five-utility-decisions-one-alpha-syntax-and-three-compound-shadow-rules-combine-decide-whether-your-copied-css-matches-the-original-2026-09-22/
