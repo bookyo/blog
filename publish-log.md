@@ -491,4 +491,20 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Visual QA**: all 4 PNGs passed vision_analyze (no overflow, no tofu, no overlap, takeaway text correct)
 - **Skills path**: umbrella fallback (article-poster-creator + article-highlight-cards skills NOT on disk; used umbrella PIL templates per WP 6185/6352 cron cadence)
 - **Picker**: theme-word scoring (theme_high keywords: estimator, calculator, validator, generator, etc.) → modulo-arithmetic-converter (theme_score=6, top pick from 2281 eligible candidates)
-- **Asset archive**: /Users/quyue/www/blog/2026-09-23-modular-arithmetic-calculator
+- **Asset archive**: /Users/quyue/www/blog/2026-09-23-modular-arithmetic-calculator## 2026-09-23T08:07:48 UTC — WP 7485 — TPN Osmolality Estimator Field Guide
+
+- Title: TPN Osmolality Estimator Field Guide: When Five Components, Three Failure Modes, and the Calcium-Phosphate Hole Decide Whether Your Admixture Is Peripheral or Central
+- URL: https://blog.flowrust.com/2026/09/23/tpn-osmolality-estimator-field-guide-when-five-components-three-failure-modes-and-the-calcium-phosphate-hole-decide-whether-your-admixture-is-peripheral-or-central-2026-09-23/
+- Tool: tpn-osmolality-estimator (Health) — TPN Osmolality Estimator (Peripheral/Central)
+- date_gmt: 2026-09-23T08:07:48
+- Mode: 1-POST 0-PATCH clean
+- Assets: 1 poster (1080x800) + 3 cards (1600x900: 1x5-tile "The Formula Anatomy", 1x4-tile compact "What Osmolality Can Not Catch", 1xaudit "The Four Checks Before You Trust")
+- vision_analyze: all 4 PNGs passed (no overflow, no tofu, no overlap, takeaway text correct; poster subtitle 799 px under 1080 limit; card 2 first-pass 4tile canonical overlap -> switched to render_card_4tile_compact auto-shrink chain, re-rendered clean)
+- elysia anchors: 9 total - 8x /en/tools/tpn-osmolality-estimator + 1x /en/tools (kind-root); all 200 OK, validate_anchors=True, 0 phantom slugs
+- image URLs: 4/4 HTTP 200 after retry (poster-1, card1-1, card2-1, card3-1; initial transient URLError on poster+card1 retry resolved)
+- Pre-POST sanity: 0 surviving `[..](..)` markdown links, 0 literal-HTML placeholders in `<code>`, 0 nested `<p><p>`, 0 orphan `<p></p>`, 1 poster + 3 highlight-card figures (WP 6122 mandatory assertion)
+- Source-side defenses: no backslash escapes needed, no literal HTML in backticks, plain md_to_html (no `*` inside `<code>` spans, no triple-fence), insert_highlight_cards canonical helper (3/3 inserted), validate_elysia_anchors pre-POST (0 phantom, 8 tool + 1 kind-root)
+- **Picker**: theme-word scoring (theme_high keywords: estimator, calculator, validator) -> tpn-osmolality-estimator (theme_score=11, top pick from 2983 tools)
+- **Skills path**: umbrella fallback (article-poster-creator + article-highlight-cards skills NOT on disk; used umbrella PIL templates per WP 6185/6352 cron cadence)
+- **Asset archive**: /Users/quyue/www/blog/2026-09-23-tpn-osmolality-estimator
+
