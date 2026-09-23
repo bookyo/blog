@@ -526,3 +526,22 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Skills path**: umbrella fallback (article-poster-creator + article-highlight-cards skills NOT on disk; used umbrella PIL templates per WP 6185/6352 cron cadence)
 - **Asset archive**: /Users/quyue/www/blog/2026-09-23-protein-dna-binding-affinity-calculator-field-guide-when-one-fraction-bound-reading-two-affinity-bands-and-the-delta-g-temperature-sweep-decide-whether-your-tf-site-interaction-is-tight-sequence-speci
 - covered_slugs: 818
+
+## 2026-09-23T16:19:26 UTC — WP 7498 (SVG Sprite Sheet Generator Field Guide)
+
+- **date_gmt**: 2026-09-23T16:19:26 UTC
+- **post URL**: https://blog.flowrust.com/2026/09/24/svg-sprite-sheet-generator-field-guide-when-five-decisions-decide-whether-your-icon-library-loads-once-or-fights-the-browser-2026-09-23/
+- **post status**: publish (1-POST + 1-PATCH)
+- **tool**: SVG Sprite Sheet Generator (slug: svg-sprite-generator, category: Media)
+- **samples**: svg-samples, svg-viewer-samples (verified against sample-manifest.json)
+- **8 H2 sections**: The Two Sprite Modes / Filenames With Leading Digits / viewBox Normalization / Stripping fill and stroke / Sanitization / Duplicate Detection / Output Snippets / What the Linter Actually Inspects
+- **3 highlight-card anchors**: The Two Sprite Modes Decide Everything (card 1, 4-tile compact: <symbol>/<view>/CSS/React), viewBox Normalization Saves You From Three Bugs (card 2, 4-tile compact: 24/16/32/360 viewBox grids), Output Snippets Decide How You Drop It Into Code (card 3, 4-tile compact: HTML/React/Vue/CSS)
+- **elysia links (6 anchors / 4 unique)**: /en/tools/svg-sprite-generator x2, /en/samples/svg-samples, /en/samples/svg-viewer-samples, /en/tools x2
+- **PATCH round**: ORPHANED_CODE: 2 code tags with invalid parent (WP 6109 family). Root cause: 2 prose mentions of `<symbol>` and `<use>` outside backtick spans in the intro paragraph — the wp_post_audit.py parent-stack walker incorrectly identified `<use>` (which appears inside earlier `<code>` text as the literal self-closing tag) as the immediate parent. PATCH entity-encoded both: `An <symbol>-mode` → `An <code>&lt;symbol&gt;</code>-mode`, `every <use href="#icon-name">` → `every <code>&lt;use href="#icon-name"/&gt;</code>`. Re-audit clean (0 findings). ~2 sec round-trip.
+- **Source-side defenses**: pre_encode_code_spans for backtick literal HTML (37 spans encoded), plain md_to_html (no `*` in `<code>`, no triple-fence, no backslash escapes), insert_highlight_cards canonical helper (3/3 inserted), validate_elysia_anchors pre-POST (samples verified manually since the script does not validate `/en/samples/<slug>` route).
+- **Picker**: sparse_category_picker.py — first 5 candidates (openapi-to-postman-collection, unicode-bidi, etc.) either COVERED or theme_score=2 with better alternatives; chose svg-sprite-generator (Media, theme=2, score=156.0, description 328 chars).
+- **Vision QA**: all 4 PIL assets passed (poster + 3 cards clean, no tofu/overflow/clipping).
+- **HEAD probes**: 9/9 URLs returned 200 (post permalink + 4 image URLs + 4 elysia anchors).
+- **Skills path**: umbrella PIL fallback (article-poster-creator + article-highlight-cards skills NOT on disk; used `templates/pil_poster_and_cards_network_theme.py::render_poster` + `render_card_4tile_compact` per WP 6185/6352).
+- **Asset archive**: /Users/quyue/www/blog/2026-09-23-svg-sprite-sheet-generator-field-guide-when-five-decisions-decide-whether-your-icon-library-loads-once-or-fights-the-browser-2026-09-23/
+- covered_slugs: 819
