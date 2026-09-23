@@ -545,3 +545,14 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Skills path**: umbrella PIL fallback (article-poster-creator + article-highlight-cards skills NOT on disk; used `templates/pil_poster_and_cards_network_theme.py::render_poster` + `render_card_4tile_compact` per WP 6185/6352).
 - **Asset archive**: /Users/quyue/www/blog/2026-09-23-svg-sprite-sheet-generator-field-guide-when-five-decisions-decide-whether-your-icon-library-loads-once-or-fights-the-browser-2026-09-23/
 - covered_slugs: 819
+
+## 2026-09-23 — WP 7505 — OpenAPI to Postman Collection
+- Tool: openapi-to-postman-collection (Development, sparse_category_picker #1, theme=3, score=174.0)
+- date_gmt: 2026-09-23T20:31:41 UTC
+- Status: publish (1-POST 0-PATCH clean)
+- Auto-PATCH: wp_fix_merged_bullets.py fixed 1 MERGED_BULLET_LIST block (en-dash bullets in `## Parameter mapping` and `## Security schemes` paragraphs got merged by md_to_html italic regex)
+- Post-PATCH audit: 0 findings
+- Links: 4 to elysiatools.com/en/tools/ (all to /openapi-to-postman-collection plus one /en/tools root)
+- 7/7 URLs HEAD-200 (1 permalink + 2 anchors + 4 image URLs)
+- DOM: 1 article-poster + 3 highlight-card + 8 H2 + 0 H1 + 33 p
+- PIL pitfall: HELV size-2 `}` (U+007D) tofu at F_MONO/F_MONO_BIG (new pitfall variant — `{}` literal and `{{var}}.` text tofu). Fix: ASCII-safe replacements `Cycle ends with empty obj.` and `bearer token var.`. Plus poster subtitle clip above ~80 chars fixed by shortening.
