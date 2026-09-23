@@ -476,3 +476,19 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Picker**: theme-word scoring (theme_high keywords: estimator, calculator, validator, generator, etc.) → carrying-capacity-estimator (theme_score=11)
 - **Source-side defenses**: pre_encode_code_spans + pre_encode_backslash (one `<code>` block with raw text), plain md_to_html (no `*` inside `<code>` spans), insert_highlight_cards canonical helper (3/3 cards inserted), validate_elysia_anchors pre-POST (2 anchors resolved against tool-manifest.json)
 - **Asset archive**: /Users/quyue/www/blog/2026-09-22-carrying-capacity-estimator
+## 2026-09-23T03:52:34 UTC — WP 7476 — Modular Arithmetic Calculator Field Guide
+
+- Title: Modular Arithmetic Calculator Field Guide: When Five Operations, One Bezout Identity, and the Bit-Length Rule Decide Whether Your Modular Computation Is Exact or a Free Estimate
+- URL: https://blog.flowrust.com/2026/09/23/modular-arithmetic-calculator-field-guide-when-five-operations-one-bezout-identity-and-the-bit-length-rule-decide-whether-your-modular-computation-is-exact-or-a-free-estimate-2026-09-23/
+- Tool: modulo-arithmetic-converter (Math & Numbers) — Modular Arithmetic Calculator (Add / Subtract / Multiply / Inverse / Power): exact BigInt arithmetic for m up to 10^18, add/subtract/multiply show step-by-step reduction; inverse runs extended Euclidean algorithm with Bezout identity and explicit gcd(a,m)>1 handling; power uses fast square-and-multiply with per-bit table.
+- date_gmt: 2026-09-23T03:52:34
+- Mode: 1-POST + 1-PATCH (WP 6417 H1=title-dup family — body H1 emitted by md_to_html from source `# Title` line; stripped via `<h1>...</h1>\s*` regex, POSTed back via `POST /wp/v2/posts/7476`)
+- Assets: 1 poster (1080×800) + 3 cards (1600×900: 1×3+2 cheatsheet "Five Operations, Five Algorithms", 1×2-col "Inverse: 5⁻¹ mod 18 = 11 with Bezout verification", 1×2-col "Power: 17⁵ mod 13 = 10 via square-and-multiply")
+- vision_analyze: all 4 PNGs passed (no overflow, no tofu, no overlap, takeaway text correct; poster subtitle 795 px under 1080 limit)
+- elysia anchors: 10 total — 9× /en/tools/modulo-arithmetic-converter + 1× /en/tools (kind-root); all 200 OK, validate_anchors=True
+- Pre-POST sanity: 0 surviving `[..](..)` markdown links, 0 literal-HTML placeholders in `<code>`, 0 nested `<p><p>`, 0 orphan `<p></p>`, 3 highlight-card figures (WP 6122 mandatory assertion)
+- Source-side defenses: pre_encode_backslash (no backslash escapes needed), pre_encode_code_spans (no literal HTML in backticks), plain md_to_html (no `*` inside `<code>` spans, no triple-fence), insert_highlight_cards canonical helper (3/3 inserted), validate_elysia_anchors pre-POST
+- **Visual QA**: all 4 PNGs passed vision_analyze (no overflow, no tofu, no overlap, takeaway text correct)
+- **Skills path**: umbrella fallback (article-poster-creator + article-highlight-cards skills NOT on disk; used umbrella PIL templates per WP 6185/6352 cron cadence)
+- **Picker**: theme-word scoring (theme_high keywords: estimator, calculator, validator, generator, etc.) → modulo-arithmetic-converter (theme_score=6, top pick from 2281 eligible candidates)
+- **Asset archive**: /Users/quyue/www/blog/2026-09-23-modular-arithmetic-calculator
