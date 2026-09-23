@@ -508,3 +508,21 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Skills path**: umbrella fallback (article-poster-creator + article-highlight-cards skills NOT on disk; used umbrella PIL templates per WP 6185/6352 cron cadence)
 - **Asset archive**: /Users/quyue/www/blog/2026-09-23-tpn-osmolality-estimator
 
+
+## 2026-09-23T12:17:17 UTC — WP 7491 — Protein-DNA Binding Affinity Calculator Field Guide
+
+- Title: Protein-DNA Binding Affinity Calculator Field Guide: When One Fraction-Bound Reading, Two Affinity Bands, and the delta-G Temperature Sweep Decide Whether Your TF-Site Interaction Is Tight, Sequence-Specific, or Just Electrostatic
+- URL: https://blog.flowrust.com/2026/09/23/protein-dna-binding-affinity-calculator-field-guide-when-one-fraction-bound-reading-two-affinity-bands-and-the-delta-g-temperature-sweep-decide-whether-your-tf-site-interaction-is-tight-sequence-speci/
+- Tool: protein-dna-binding-affinity (Education) - Protein-DNA Binding Affinity Calculator (Kd Estimate): single-point Kd estimate for 1:1 protein-DNA complex, f=[P]/([P]+Kd), reports Kd + delta-G + tier classification (very tight/tight/weak); supports anisotropy path r=(r-rfree)/(rbound-rfree); assumes 1:1 stoichiometry + [P]free=[P]total + equilibrium
+- date_gmt: 2026-09-23T12:17:17
+- Mode: 1-POST 0-PATCH clean
+- Assets: 1 poster (1080x800) + 3 cards (1600x900: 1x5-tile "Five Numbers Behind the 25C Default", 1x5-tile "Three Affinity Bands and Their Biology", 1x5-tile "Three Assumptions That Bite")
+- vision_analyze: all 4 PNGs passed (no overflow, no tofu, no overlap, takeaway text correct; poster subtitle within W=1080; cards 1/2/3 clean at 1600x900)
+- elysia anchors: 3 total - 2x /en/tools/protein-dna-binding-affinity + 1x /en/tools (kind-root); all 200 OK, validate_anchors=True, 0 phantom slugs
+- image URLs: 4/4 HTTP 200 (poster-59, card1-58, card2-59, card3-56; WP dedup auto-renamed)
+- Pre-POST sanity: 0 surviving `[..](..)` markdown links, 0 literal-HTML placeholders in `<code>`, 0 nested `<p><p>`, 0 orphan `<p></p>`, 3 highlight-card figures (WP 6122 mandatory assertion), 0 CARD placeholder leak
+- Source-side defenses: pre_encode_backslash (no backslash escapes needed), pre_encode_code_spans (no literal HTML in backticks), plain md_to_html (no `*` inside `<code>` spans, no triple-fence), insert_highlight_cards canonical helper (3/3 inserted), validate_elysia_anchors pre-POST
+- **Picker**: pick_tool_v4_content_based.py -> top diverse pick (Education) = protein-dna-binding-affinity (theme_score from among Health-heavy Top-20)
+- **Skills path**: umbrella fallback (article-poster-creator + article-highlight-cards skills NOT on disk; used umbrella PIL templates per WP 6185/6352 cron cadence)
+- **Asset archive**: /Users/quyue/www/blog/2026-09-23-protein-dna-binding-affinity-calculator-field-guide-when-one-fraction-bound-reading-two-affinity-bands-and-the-delta-g-temperature-sweep-decide-whether-your-tf-site-interaction-is-tight-sequence-speci
+- covered_slugs: 818
