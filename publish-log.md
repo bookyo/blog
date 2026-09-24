@@ -582,3 +582,18 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Anchors**: 13 (6 unique tools + 1 root) — all valid in tool-manifest.json
 - **Assets**: poster + 3 cards (5-tile, 2-col audit, 4-tile compact)
 - **Audit**: 0 findings
+
+## 2026-09-24 13:02 UTC — WP 7532 (Condensing / Evaporating Temperature Calculator)
+
+- Tool: `condensing-temperature-calculator` (Math & Numbers / HVAC thermodynamics)
+- date_gmt: 2026-09-24T13:02:06
+- status: publish (1-POST, 0-PATCH)
+- POST URL: https://blog.flowrust.com/wp-json/wp/v2/posts/7532
+- Permalink: https://blog.flowrust.com/2026/09/24/condensing-evaporating-temperature-calculator-field-guide-when-five-inputs-three-refrigerants-and-the-approach-dt-decide-whether-your-cooling-coil-holds-at-38-c-or-spikes-to-47-c-2026-09-24/
+- featured_media: 0 (correct — COSESAI hero dup avoidance)
+- Audit: 0 findings (`wp_post_audit.audit_post_content`)
+- 8 H2 + 0 H3 + 1 article-poster + 3 highlight-cards (3 cards passed URL substitution)
+- 3 elysiatools anchors (all HEAD200): 2× /en/tools/condensing-temperature-calculator + 1× /en/tools?category=math-numbers
+- 4 image URLs HEAD200 (poster + 3 cards)
+- PIL visual QA: poster ✓, card1 (5-tile) ✓, card2 (2-col audit) ✓, card3 (4-tile compact 1-row) ✓ — caught + fixed card3 overlap on first pass (4-tile numeric counts overlapped body; refactored to `render_card_4tile_compact` per WP 6122 family)
+- 1-POST clean run, 0 PATCH round-trips
