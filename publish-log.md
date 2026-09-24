@@ -625,3 +625,14 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Skill availability**: cron-prompt said `article-poster-creator` and `article-highlight-cards` missing → confirmed on disk (per WP 6352 advisory); used umbrella PIL templates (canonical cron-mode path)
 - **Cron-prompt inline creds (WP 6135 trap)**: bypassed; used canonical `bted2k@gmail.com:zVlf...` creds
 - **Notes**: Sibling subagent overwrote `/tmp/wp_article_final.html` with a phantom `condensing-temperature-calculator` anchor during parallel run; re-derived article from source MD via `wp_insert_v2.py` (per WP 6423 sibling `/tmp/` path-conflict lesson)
+
+## 2026-09-24 21:14 UTC — WP 7545 Mean Platelet Volume (MPV) Analyzer
+
+- **Tool**: Mean Platelet Volume (MPV) Analyzer (Health)
+- **URL**: https://blog.flowrust.com/2026/09/25/mean-platelet-volume-analyzer-field-guide-when-two-platelet-numbers-build-a-2x2-differential-that-points-to-itp-marrow-failure-reactive-thrombocytosis-or-a-myeloproliferative-clone-2026-09-24/
+- **Title**: Mean Platelet Volume (MPV) Analyzer Field Guide: When Two Platelet Numbers Build a 2x2 Differential That Points to ITP, Marrow Failure, Reactive Thrombocytosis, or a Myeloproliferative Clone
+- **Cards**: poster (1080x800) + 3 highlight cards (1600x900 each)
+- **Anchors**: 4 elysia-tools links (3 tool + 1 kind-root)
+- **Audit**: clean (0 findings)
+- **Patches**: 0 (1-POST clean run)
+- **Theme**: deep-navy + cyan-teal (`#081024` + `#00DCC8`)
