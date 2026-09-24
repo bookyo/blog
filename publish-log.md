@@ -572,3 +572,13 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **featured_media**: 0
 - **structure_score**: 40/40
 - **asset_dir**: /Users/quyue/www/blog/2026-09-24-restriction-fragment-length-calculator-field-guide-when-topology-recognition-site-length-and-agarose-resolution-decide-whether-your-digest-bands-match-the-bench-2026-09-24
+
+## 2026-09-24 08:53 UTC — Coefficient of Variation Calculator Field Guide
+- **WP ID**: 7524
+- **Slug**: coefficient-of-variation-calculator-field-guide-when-standard-deviation-lies-about-variability-and-three-csv-columns-quietly-disagree-on-spread-2026-09-24
+- **Link**: https://blog.flowrust.com/2026/09/24/coefficient-of-variation-calculator-field-guide-when-standard-deviation-lies-about-variability-and-three-csv-columns-quietly-disagree-on-spread-2026-09-24/
+- **Tool**: coefficient-of-variation (Data Processing)
+- **Result**: 1-POST + 1-PATCH (defused MERGED_BULLET_LIST × 3 + MERGED_NUMBERED_LIST × 1 by converting source MD bullet/numbered lists to explicit `<ul><li>` / `<ol><li>` HTML)
+- **Anchors**: 13 (6 unique tools + 1 root) — all valid in tool-manifest.json
+- **Assets**: poster + 3 cards (5-tile, 2-col audit, 4-tile compact)
+- **Audit**: 0 findings
