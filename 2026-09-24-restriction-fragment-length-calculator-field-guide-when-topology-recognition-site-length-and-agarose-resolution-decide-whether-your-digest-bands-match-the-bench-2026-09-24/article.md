@@ -1,0 +1,49 @@
+<strong>Most published restriction digest tables assume you already know whether your plasmid is circular, which bases your enzyme recognizes, and what the agarose gel can actually resolve — three assumptions that silently skew every downstream ligation calculation.</strong> A 4-base recognizer cutting a 6 kb plasmid does not behave like a 6-base recognizer cutting the same plasmid; the fragment count changes, the fragment sizes change, and the smallest fragment may run off the bottom of a 1.5 percent agarose gel before you ever load the ladder. The [Restriction Fragment Length Calculator](https://elysiatools.com/en/tools/restriction-fragment-length) exposes both modes — count (a single integer for sanity-checking expected band counts) and positions (the actual cut coordinates that produce the exact fragment list) — and adds the two sanity checks most published tables omit: the expected random-DNA cut frequency for 4-base vs 6-base recognizers (256 bp vs 4096 bp) and the agarose resolution floor where fragments under roughly 50 bp become invisible.
+
+## What a Restriction Digest Actually Produces
+
+A restriction digest is the enzymatic cutting of double-stranded DNA at specific palindromic sequences. The number of fragments a digest produces depends on the topology of the substrate and the number of cuts, not on the enzyme's name. For a circular plasmid with <code>n</code> cuts, the digest produces exactly <code>n</code> fragments — the cut sites partition the circular backbone into <code>n</code> arcs and each fragment wraps the origin of replication. For a linear DNA molecule with <code>n</code> cuts, the digest produces <code>n+1</code> fragments — each internal cut contributes one new boundary, plus the two molecule ends.
+
+The two cases look similar in textbooks but behave differently at the bench. A 5-cut circular plasmid yields 5 bands on a gel; the same plasmid linearized yields 6 bands if you cut a second enzyme that has one recognition site on the original circle. Mix that up and you waste a gel, a lane, and an afternoon. The calculator accepts the topology as an explicit flag and refuses to silently coerce one into the other.
+
+## Positions Mode: When You Have the Cut Coordinates
+
+Paste a comma-separated list of cut positions into the positions field and the calculator returns the fragment list verbatim, plus count, mean, min, and max. This is the mode you want when you already mapped the plasmid in SnapGene, Geneious, or a hand-drawn REBASE digest, and you want to confirm what the bench should produce. Each fragment size is the gap between consecutive cut sites, with the wrap-around gap closing the loop for circular substrates.
+
+The wrap-around is the silent error source. If you paste cut positions for a circular plasmid but the calculator is set to linear, the last fragment will be the gap from the highest cut to the molecule end, not the wrap-around gap back to position 1 — and that fragment will be wrong by exactly the linearized length minus the wrap-around arc. Always confirm the topology flag matches the substrate before you trust the output.
+
+## Count Mode: When All You Have Is the Number of Cuts
+
+When you do not have the cut positions — only the number of recognition sites and the substrate length — the count mode estimates the fragment size statistics assuming even spacing. This is the mode you want when you are planning a digest, before the bench work has started, and you want a ballpark band count to size the agarose gel and choose the ladder. The estimate is a sanity check, not a substitute for the positions output once you have the map.
+
+The expected cut frequency for random DNA is the second sanity check the calculator surfaces: a 4-base recognizer (such as <code>Taq</code>I or <code>Mse</code>I) cuts random DNA every 256 bp on average; a 6-base recognizer (such as <code>EcoR</code>I, <code>Hind</code>III, or <code>BamH</code>I) cuts random DNA every 4096 bp. These numbers come straight from the recognition site length: 4<sup>4</sup> = 256 and 4<sup>6</sup> = 4096. A planned double digest of a 6 kb plasmid with two 6-base enzymes should produce roughly 1.5 bands on average per enzyme, so the expected band count for the double digest is around 3 if the sites do not overlap, 4 if they do not interfere. If your bench gel shows 9 bands, one of your enzymes has an unexpected star activity site or your plasmid is not what the miniprep says it is.
+
+## The 4-Cutter vs 6-Cutter Decision
+
+A 4-cutter cuts more often, produces more fragments, and is the right choice when you are deliberately fragmenting genomic DNA for a sequencing library prep, a fingerprinting assay, or a complex restriction map. A 6-cutter cuts less often, produces fewer fragments, and is the right choice when you are cloning, doing a diagnostic digest, or verifying a plasmid construct by cutting it at a known site. Mixing the two in the same digest is the standard recipe for a double digest — one 6-cutter for specificity, one 4-cutter for additional band count when you need it.
+
+The frequency numbers also expose a planning trap. A 6 kb plasmid has room for roughly one 6-cutter site (4096 bp frequency on a 6144 bp substrate) but room for twenty-four 4-cutter sites (256 bp frequency on a 6144 bp substrate). A planned 4-cutter-only digest of a 6 kb plasmid will produce roughly 24 bands on a gel — which is fine for a fingerprinting experiment and a disaster for a clean cloning workflow. Pick the enzyme to match the assay, not the other way around.
+
+## Agarose Resolution: Why Small Fragments Disappear
+
+Agarose gels do not resolve fragments below roughly 50 bp reliably. The smallest fragments migrate with the bromophenol blue dye front and run off the bottom of a standard 1 percent gel. The calculator surfaces this as a flag: any fragment in the output that is under the resolution floor is marked as likely invisible on a standard agarose gel. If your smallest predicted fragment is under 50 bp, you have three options — use a higher percentage agarose (3 percent resolves down to roughly 30 bp), use a polyacrylamide gel for sub-50 bp resolution, or accept that the smallest band will not show up in the image and account for it when you count bands.
+
+This is also why a planned digest that "should" produce 5 bands sometimes shows 4 on the gel — the fifth fragment ran off. Always check the smallest predicted fragment size before you image the gel, especially when you are using a 4-cutter and expecting small fragments.
+
+## When Count and Positions Disagree
+
+If the positions output and the count output disagree on the number of fragments, the positions output is always correct for the substrate you described — the count output is an estimate. The disagreement is a flag, not an error: it means your substrate has clustered or sparse recognition sites that the even-spacing estimate does not capture. Plasmid pUC19, for example, has a single <code>EcoR</code>I site in the multiple cloning site but no other <code>EcoR</code>I sites, so the count mode (1 site → roughly 1 fragment for a linearized form, 2 for the supercoiled form) and the positions output (the actual coordinate of that single site) will agree on count for the linearized form but disagree on the predicted fragment sizes because the single site is not evenly spaced along the 2686 bp backbone.
+
+When this happens, trust the positions output for the actual bench work and use the count output only as a "did I forget a cut site?" sanity check. If positions says 5 and count says 1, you have an unexpected additional site or you miscounted the recognition sequences in your plasmid map.
+
+## Why Topology Errors Hide Until the Gel Image
+
+The single most common bench-side failure mode for a planned digest is the topology mismatch — pasting a circular plasmid's cut coordinates into the linear mode, or vice versa. The output numbers look reasonable at the planning stage because the calculator does not stop on topology change, it just applies the wrong wrap-around rule. The bench gel then shows bands at unexpected positions because the smallest "fragment" in the calculator output was actually the gap from the highest cut site to the linearized molecule end, not the wrap-around arc. The fix is mechanical: confirm the topology flag matches the substrate before you trust the output, every time, even when the calculator output looks plausible. A 5-minute topology check saves a 2-hour gel redo.
+
+## REBASE, Sambrook, and the Source Numbers
+
+The expected cut frequencies and the topology math are textbook values from Sambrook & Russell <em>Molecular Cloning: A Laboratory Manual</em> 3rd edition, cross-checked against the REBASE database of restriction enzyme recognition sites. REBASE is the canonical reference for any modern restriction enzyme work — it lists every known recognition sequence, the cutting position within that sequence (5' overhang, 3' overhang, or blunt), and the expected frequency for random DNA of standard base composition. The calculator does not try to replace REBASE; it just makes the numbers easy to apply to a specific substrate without redoing the arithmetic by hand every time you plan a digest.
+
+The calculator is also explicitly educational / lab-planning only. It does not design your primers, it does not pick your enzymes, and it does not order your reagents — it tells you what the bench should produce so you can plan the gel, the ladder, and the imaging time. Once you have the actual gel image, the fragment sizes should match the predicted output within the gel's resolution; if they do not, the bench work needs to be redone, not the math.
+
+For related lab-planning calculators — annealing temperature, ligation ratios, GC content, plasmid copy number — explore the rest of the [Education tools](https://elysiatools.com/en/tools) catalog. Each one encodes a single textbook rule so the bench work does not have to.

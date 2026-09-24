@@ -556,3 +556,19 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - 7/7 URLs HEAD-200 (1 permalink + 2 anchors + 4 image URLs)
 - DOM: 1 article-poster + 3 highlight-card + 8 H2 + 0 H1 + 33 p
 - PIL pitfall: HELV size-2 `}` (U+007D) tofu at F_MONO/F_MONO_BIG (new pitfall variant — `{}` literal and `{{var}}.` text tofu). Fix: ASCII-safe replacements `Cycle ends with empty obj.` and `bearer token var.`. Plus poster subtitle clip above ~80 chars fixed by shortening.
+
+## 2026-09-24 - restriction-fragment-length-calculator-field-guide-when-topology-recognition-site-length-and-agarose-resolution-decide-whether-your-digest-bands-match-the-bench-2026-09-24
+
+- **WP ID**: 7518
+- **URL**: https://blog.flowrust.com/2026/09/24/restriction-fragment-length-calculator-field-guide-when-topology-recognition-site-length-and-agarose-resolution-decide-whether-your-digest-bands-match-the-bench-2026-09-24/
+- **date_gmt**: 2026-09-24T04:47:00
+- **tool_id**: restriction-fragment-length
+- **tool_name**: Restriction Fragment Length Calculator
+- **category**: Education
+- **n_cards**: 3
+- **n_elysia_anchors**: 2
+- **audit_findings**: 0
+- **patches**: 0
+- **featured_media**: 0
+- **structure_score**: 40/40
+- **asset_dir**: /Users/quyue/www/blog/2026-09-24-restriction-fragment-length-calculator-field-guide-when-topology-recognition-site-length-and-agarose-resolution-decide-whether-your-digest-bands-match-the-bench-2026-09-24
