@@ -719,3 +719,33 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
   - U+0305 combining overline tofu on PIL Helvetica — replaced with ASCII arrows per WP 5699 family
   - Cron-prompt heredoc + hostname-scanner blocks; recipe is `write_file` + `python3 /file`
 - **State**: covered_slugs 826→827, last_post_id=7575
+
+## 2026-09-27 — BOM Character Remover Field Guide (WP 7581)
+
+- **Post ID:** 7581
+- **Slug:** bom-character-remover-field-guide-when-three-bytes-quietly-break-your-csv-header-detection-2026-09-27
+- **URL:** https://blog.flowrust.com/2026/09/28/bom-character-remover-field-guide-when-three-bytes-quietly-break-your-csv-header-detection-2026-09-27/
+- **Tool:** data-bom-remover (BOM Character Remover, Data Processing category)
+- **date_gmt:** 2026-09-27T19:27:33 UTC
+- **Status:** 1-POST + 1-PATCH clean
+- **Audit:** 0 findings after v3 PATCH (closed MERGED_BULLET_LIST 5→1→0 + MERGED_NUMBERED_LIST 1→0)
+- **Assets:** 1 poster + 3 highlight cards (deep-navy + cyan-teal theme)
+  - poster.png (1080×800)
+  - card1.png — Four Detection Rules (1600×900, 5-tile)
+  - card2.png — Four Removal Modes (1600×900, 5-tile)
+  - card3.png — Three-Step Audit (1600×900, 5-tile, last highlighted)
+- **Elysia anchors (9 total, 3 unique URLs):**
+  - 6× https://elysiatools.com/en/tools/data-bom-remover
+  - 2× https://elysiatools.com/en/samples/txt-samples
+  - 1× https://elysiatools.com/en/tools (kind-root)
+- **Source-side defenses applied:**
+  - pre_encode_backslash: entity-encoded `\` in `\ufeff`, `\xEF\xBB\xBF`, etc.
+  - pre_encode_code_spans: entity-encoded `<meta charset>`, `<!DOCTYPE html>` in code spans
+  - `<ul><li>` HTML for bullet groups (5 sites: BOM types, sources, modes, pipelines, "don't strip")
+  - `<ol><li>` HTML for the 3-step audit (lines 49-51)
+- **Pitfalls hit + resolved:**
+  - MERGED_BULLET_LIST false-flag on first POST (5+1 findings) — converted markdown lists to `<ul><li>` HTML, PATCHed
+  - PIL poster subtitle clip (117 chars → 80 chars)
+  - PIL card1 tile 5 overflow (`no_bom_detected` → `no_bom\ndetected`)
+- **Image quality:** all 4 PNGs verified via vision_analyze — no tofu glyphs, no clipping, clean hierarchy
+- **URL HEAD checks:** 4/4 images 200, 3/3 elysia anchors 200 (txt-samples, data-bom-remover, kind-root)

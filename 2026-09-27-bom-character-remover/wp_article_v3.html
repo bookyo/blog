@@ -1,0 +1,73 @@
+<figure class="article-poster"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/09/poster-64.png" alt="The Three Bytes Quietly Breaking Your CSV — BOM Character Remover field guide" /></figure>
+<p><strong>That single invisible character at the start of your CSV is a UTF-8 BOM, and Excel will happily hide it from you while Python, Node, and your JSON parser trip over it.</strong> When a downstream tool reads your file expecting clean UTF-8, the leading <code>EF BB BF</code> sequence can quietly break header detection, mis-align column names by one byte, or survive to corrupt the first JSON key in an API payload. The fix is mechanical, but only if you know which BOM you have and where it lives. This field guide walks through how the four BOM flavors show up in real files, the four detection rules the <a href="https://elysiatools.com/en/tools/data-bom-remover">BOM Character Remover</a> uses, and the three-step audit that catches the leftover bytes your editor never showed you.</p>
+<h2>What a BOM Actually Is</h2>
+<p>A Byte Order Mark is a 2-to-4 byte signature at the very start of a text file that tells the reader two things: which Unicode encoding the file uses, and in the case of UTF-16 and UTF-32, which byte order (big-endian vs little-endian) the multi-byte characters are stored in. The four BOMs you will see in practice:</p>
+<ul>
+<li><strong>UTF-8 BOM</strong> — <code>EF BB BF</code> (3 bytes). Optional in the UTF-8 standard; never required for decoding, but many Windows tools still prepend it.</li>
+<li><strong>UTF-16 LE BOM</strong> — <code>FF FE</code> (2 bytes). Indicates little-endian UTF-16.</li>
+<li><strong>UTF-16 BE BOM</strong> — <code>FE FF</code> (2 bytes). Indicates big-endian UTF-16.</li>
+<li><strong>UTF-32 LE/BE BOM</strong> — <code>FF FE 00 00</code> or <code>00 00 FE FF</code> (4 bytes). Rare in CSV/JSON but shows up in legacy database exports.</li>
+<p></ul></p>
+<p>The trap is that the UTF-8 BOM is invisible in most editors, terminal viewers, and even <code>head -c</code> output when you are not looking for it byte-by-byte. Excel happily opens a UTF-8-BOM-prefixed CSV, ignores the leading bytes, and saves it back the same way; every other parser your team uses sees <code>&#92;ufeffProduct</code> as the first column name.</p>
+<h2>Where the BOM Comes From</h2>
+<p>Three origin stories account for almost every BOM-prefixed file that lands in your pipeline:</p>
+<ul>
+<li><strong>Windows Notepad save-as-UTF-8</strong> — Notepad on Windows 10 and 11 defaults to UTF-8 with BOM for plain-text saves. If your authors use Notepad, every <code>.txt</code>, <code>.csv</code>, and <code>.md</code> file they produce will carry the 3-byte prefix unless they explicitly switch encoding in the Save dialog.</li>
+<li><strong>Excel CSV export</strong> — Excel exports UTF-16-BE-prefixed CSV by default on most Windows installations, even when the source spreadsheet is plain ASCII. This is the most common cause of "Excel file works, Python pandas breaks" failures.</li>
+<li><strong>Legacy database exports</strong> — SQL Server's <code>bcp</code> and some MySQL <code>SELECT ... INTO OUTFILE</code> configurations prepend a UTF-8 BOM on UTF-8 dumps. The bytes survive every subsequent <code>cat</code>, <code>grep</code>, and <code>awk</code> pass.</li>
+<p></ul></p>
+<p>Detection without a hex viewer is the missing step. Most engineers discover the BOM only when a downstream tool errors out, then patch the file in place without checking whether the source pipeline is still emitting BOMs on every save. The proper fix is detection at the source, not surgery on every output.</p>
+<h2>The Four Detection Rules</h2>
+<p>The <a href="https://elysiatools.com/en/tools/data-bom-remover">BOM Character Remover</a> detects each BOM by inspecting the first 2, 3, or 4 bytes of the file in raw binary mode — <code>head -c 4 | xxd</code> is the manual equivalent. For each BOM flavor the tool records:</p><figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/09/card1-63.png" alt="Four Detection Rules For Every BOM Flavor" loading="lazy" /></figure>
+<ul>
+<li>The detected encoding (UTF-8 / UTF-16 LE / UTF-16 BE / UTF-32 LE / UTF-32 BE)</li>
+<li>The byte sequence, in hex, with offsets</li>
+<li>A "BOM present at offset 0" flag with byte count</li>
+<p></ul></p>
+<p>When the file has no BOM, the tool reports <code>no_bom_detected</code> with an empty hex dump and a zero-byte count. This negative result is just as useful as a positive one — it lets you confirm a file is clean UTF-8 before it enters a strict pipeline. The detection logic is byte-exact, not heuristic: it does not try to infer the encoding from content, only from the leading byte sequence. This is the right trade-off for the BOM-removal use case because the BOM is by definition the first thing in the file.</p>
+<h2>The Four Removal Modes</h2>
+<p>Once a BOM is detected, four removal modes cover every realistic workflow:</p><figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/09/card2-64.png" alt="Four Removal Modes For Every Downstream Pipeline" loading="lazy" /></figure>
+<ul>
+<li><strong>Strip all BOMs</strong> — removes every leading BOM regardless of encoding. Use this when downstream tools strictly forbid any prefix and you do not care which encoding the file is actually in.</li>
+<li><strong>Strip UTF-8 only</strong> — removes only <code>EF BB BF</code>. Keeps the file UTF-8 if it already was; does not touch UTF-16 or UTF-32 files. This is the safe default for Excel-exported CSVs destined for pandas or jq.</li>
+<li><strong>Normalize to UTF-8 (no BOM)</strong> — strips the BOM AND transcodes UTF-16/UTF-32 content to UTF-8 in one pass. Use this when you need to standardize an entire batch of legacy exports.</li>
+<li><strong>Preview-only mode</strong> — leaves the file untouched but renders a hex dump of the first 16 bytes with annotations showing which bytes are the BOM, which are content, and where the first printable character starts. Use this when you are not sure whether the bytes are a BOM or just legacy control characters.</li>
+<p></ul></p>
+<p>Each mode preserves the file's non-BOM content byte-for-byte. There is no transcoding unless you explicitly pick the normalize mode. For a CSV headed into pandas or for a JSON file headed into a strict parser, mode 2 is usually the right answer; for a batch of mixed legacy files that all need to land in the same S3 prefix, mode 3 saves you a second tool.</p>
+<h2>The Three-Step Audit That Catches Leftover Bytes</h2>
+<p>A single BOM strip is not enough. After running the <a href="https://elysiatools.com/en/tools/data-bom-remover">BOM Character Remover</a> on a file, run this three-step audit to confirm the cleanup is actually clean and the source pipeline is not silently re-emitting BOMs:</p><figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/09/card3-61.png" alt="The Three-Step Audit That Closes The Loop" loading="lazy" /></figure>
+<ol>
+<li><strong>Hex dump the first 16 bytes</strong> — <code>head -c 16 file.csv | xxd</code>. The first three bytes must NOT be <code>ef bb bf</code>. If they are, the file was not actually overwritten, or the BOM was reintroduced by a tool in your chain.</li>
+<li><strong>Print the first character of column headers</strong> — in Python: <code>next(csv.reader(open('file.csv')))</code> and inspect the first element. It must NOT start with <code>&#92;ufeff</code>. If pandas is your downstream, <code>pd.read_csv('file.csv').columns[0]</code> should also be clean.</li>
+<li><strong>Spot-check the source pipeline</strong> — open the file in Notepad, click Save As, and note the encoding dropdown. If it says "UTF-8 (with BOM)", switch it to "UTF-8 (without BOM)" for the next save, or script the source tool to write BOM-free output. The strip is a one-time fix; the source fix is permanent.</li>
+<p></ol></p>
+<p>For batch jobs, automate steps 1 and 2 in a CI gate. The hex dump check is one <code>head -c 3 file.csv | od -An -tx1 | tr -d ' &#92;n'</code> comparison against the literal string <code>efbbbf</code>; the column-header check is one <code>csv.reader</code> line. Both run in microseconds. Pair them with the <a href="https://elysiatools.com/en/tools/data-bom-remover">BOM Character Remover</a> in your pre-commit hook and the BOM class of failures becomes structurally unreachable.</p>
+<h2>Common Pipelines That Re-Introduce the BOM</h2>
+<p>Even after a clean strip, five upstream tools silently re-add the BOM on the next write:</p>
+<ul>
+<li><strong>Windows Notepad</strong> — every save. Switch to Notepad++, VS Code, or <code>Set-Content -Encoding utf8NoBOM</code> in PowerShell.</li>
+<li><strong>Excel on Windows</strong> — CSV export. Use "CSV UTF-8 (Comma delimited)" from Excel 365's Save As menu; legacy "CSV (Comma delimited)" writes UTF-16 BE.</li>
+<li><strong><code>Add-Content</code> / <code>Set-Content</code> in PowerShell</strong> without the <code>-Encoding utf8NoBOM</code> flag.</li>
+<li><strong><code>iconv -t UTF-8</code></strong> without the explicit <code>--byte-substitue</code> or BOM-strip flags (iconv does not strip on its own; you need <code>dos2unix</code> or a sed pass).</li>
+<li><strong>Some database exports</strong>, including MySQL Workbench's "Export to Self-Contained SQL File" and certain PostgreSQL <code>pg_dump</code> configurations on Windows.</li>
+<p></ul></p>
+<p>If your audit step 3 reveals one of these as the source, fix it once at the producer and you stop needing the <a href="https://elysiatools.com/en/tools/data-bom-remover">BOM Character Remover</a> on every downstream read. The tool is the right defense when you cannot change the source; the right fix is to remove the producer.</p>
+<h2>When NOT to Strip the BOM</h2>
+<p>There are three cases where the BOM should stay in the file:</p>
+<ul>
+<li><strong>UTF-16 / UTF-32 files consumed by Windows-only tools</strong> — Excel, Notepad, and the Windows scripting host rely on the BOM to determine byte order. Stripping it can flip every CJK character to mojibake.</li>
+<li><strong>HTML pages served as <code>text/html</code></strong> — the HTML5 spec recommends that HTML served as UTF-8 omit the BOM because the <code>&lt;meta charset&gt;</code> tag already declares encoding, but a BOM before <code>&lt;!DOCTYPE html&gt;</code> is still legal HTML5 and some legacy CMS templates require it.</li>
+<li><strong>XML files consumed by strict parsers</strong> — the XML 1.0 specification requires the BOM to be stripped by the parser, but several older SAX parsers (notably <code>libxml2</code> before 2.9) refuse to parse a UTF-16 file without the BOM.</li>
+<p></ul></p>
+<p>In each of these cases, the BOM is load-bearing. Stripping it produces a broken file. Always check the downstream consumer's encoding requirements before running any strip pass. If you are unsure, the preview-only mode shows you the bytes without modifying the file.</p>
+<h2>How to Verify the Cleanup Worked</h2>
+<p>Confirmation takes three lines of shell, no special tools required. From the directory holding your cleaned file:</p>
+<ul>
+<li><code>head -c 3 file.csv | xxd</code> — must not contain <code>efbbbf</code> anywhere in the first row of output.</li>
+<li><code>file file.csv</code> — should report <code>UTF-8 Unicode text</code> rather than <code>UTF-8 Unicode (with BOM) text</code>.</li>
+<li><code>python3 -c "import csv; print(next(csv.reader(open('file.csv')))[0][:10])"</code> — the first 10 characters of the first row should be your actual first header, with no leading <code>&#92;ufeff</code>.</li>
+<p></ul></p>
+<p>If all three pass, the strip succeeded and the file is ready for downstream consumption. If any of them fail, re-run the <a href="https://elysiatools.com/en/tools/data-bom-remover">BOM Character Remover</a> in mode 2 (strip UTF-8 only) and check whether your producer tool re-added the BOM between the strip and the verify.</p>
+<p>For batch files, replace <code>file.csv</code> with a <code>for f in *.csv; do ...; done</code> loop and pipe the three checks into a single pass/fail per file. For CI, encode the same loop in your test runner and fail the build on any file that reports <code>UTF-8 Unicode (with BOM) text</code> from the <code>file</code> command. The goal is to make a BOM-prefixed file structurally impossible to ship, not just easy to fix after the fact.</p>
+<p>For a hands-on test with realistic input files, the <a href="https://elysiatools.com/en/samples/txt-samples">Txt Samples collection</a> at <a href="https://elysiatools.com/en/samples/txt-samples">Elysia Tools</a> includes a UTF-8-with-BOM variant you can use to verify the strip-and-audit flow end-to-end before you wire it into your own pipeline. The full BOM-removal plus audit loop, including the hex-dump comparison and the column-header sanity check, runs in under a second per file and catches the BOM class of failures permanently.</p>
+<p>Explore more tools at <a href="https://elysiatools.com/en/tools">elysiatools.com</a>.</p>
