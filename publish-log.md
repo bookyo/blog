@@ -749,3 +749,47 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
   - PIL card1 tile 5 overflow (`no_bom_detected` → `no_bom\ndetected`)
 - **Image quality:** all 4 PNGs verified via vision_analyze — no tofu glyphs, no clipping, clean hierarchy
 - **URL HEAD checks:** 4/4 images 200, 3/3 elysia anchors 200 (txt-samples, data-bom-remover, kind-root)
+
+---
+## WP 7589 — AI RAG Chunk Quality Scorer (2026-09-27 23:37 UTC)
+- **date_gmt:** 2026-09-27T23:37:14
+- **Tool:** AI RAG Chunk Quality Scorer (`ai-rag-chunk-quality-scorer`, category: AI Tools)
+- **Title:** AI RAG Chunk Quality Field Guide: When Four Offline Heuristics Beat a Week of Indexing
+- **URL:** https://blog.flowrust.com/2026/09/28/ai-rag-chunk-quality-field-guide-when-four-offline-heuristics-beat-a-week-of-indexing/
+- **Structure:** 0 H1 + 8 H2 + 0 H3, 1 article-poster + 3 highlight-card figures, 3 elysiatools anchors (2 tool-slug + 1 root)
+- **Pre-publish audit:** 0 findings; elysia-anchor validator: 0 phantoms
+- **POST:** 1 round-trip (clean)
+- **Patches:** 0
+- **Image quality:** all 4 PNGs verified via vision_analyze — no tofu, no clipping, clean
+- **URL HEAD checks:** permalink 200, all 4 image URLs 200, all 3 elysia anchors 200
+
+## WP 7595 — 2026-09-28 03:46:21 UTC — Regex Debugger
+- **Tool**: `regex-debugger` (Development)
+- **Title**: Regex Debugger Field Guide: When Five Decisions, One Trace Timeline, and the Backtrack Panel Decide Whether Your Regex Lands a Match or Burns 10 ms on a Catastrophic Pattern
+- **Slug**: `regex-debugger-field-guide-when-five-decisions-one-trace-timeline-and-the-backtrack-panel-decide-whether-your-regex-lands-a-match-or-burns-10-ms-on-a-catastrophic-2026-09-28`
+- **URL**: https://blog.flowrust.com/2026/09/28/regex-debugger-field-guide-when-five-decisions-one-trace-timeline-and-the-backtrack-panel-decide-whether-your-regex-lands-a-match-or-burns-10-ms-on-a-catastrophic-2026-09-28/
+- **date_gmt**: 2026-09-28T03:46:21
+- **Cards**: 1 poster (1080×800) + 3 highlight cards (1600×900)
+- **Audit**: 0 findings (8 H2, 0 body H1, 3 highlight-card, 1 article-poster, 0 backslash-in-code, 0 markdown links, 8 elysia anchors all valid)
+- **PATCHes**: 0
+- **Note**: 1-POST 0-PATCH clean run
+## WP 7602 — 2026-09-28 07:50:08 UTC — Markdown Link Extractor
+- **Tool**: `markdown-link-extractor` (Text Processing)
+- **Title**: Markdown Link Extractor Field Guide: When Four Kinds of Links and the Seven-Field Record Decide What Your README Actually Points At
+- **Slug**: `markdown-link-extractor-field-guide-when-four-kinds-of-links-and-the-seven-field-record-decide-what-your-readme-actually-points-at-2026-09-28`
+- **URL**: https://blog.flowrust.com/2026/09/28/markdown-link-extractor-field-guide-when-four-kinds-of-links-and-the-seven-field-record-decide-what-your-readme-actually-points-at-2026-09-28/
+- **date_gmt**: 2026-09-28T07:50:08
+- **Cards**: 1 poster (1080×800) + 3 highlight cards (1600×900)
+- **Audit**: 0 phantom elysia anchors; 8 elysia anchors total (6 tool + 1 sample + 1 kind_root), 0 nested tags, 0 nested <p>, 0 nested <code>, 0 backslash-stripped
+- **POST/PATCH**: 1 POST + 1 PATCH (CARDn_URL placeholder leak — case mismatch in substitution script: ASSETS tuple used `CARD1_URL` but HTML had `card1_URL` lowercase; corrected via per-card re.sub on POST)
+- **New defense**: substitute key must match the placeholder case EXACTLY — pre-POST mandatory assertion check should be `'POSTER_URL' not in body AND 'card1_URL' not in body AND 'card2_URL' not in body AND 'card3_URL' not in body`, not the upper-case ASSETS keys
+- **Note**: PATCHed cleanly in <2s via POST /wp/v2/posts/7602
+
+## 2026-09-28 2026-09-28T12:14:02 UTC — Podcast Chapter Marker Builder
+- **WP ID:** 7609
+- **Slug:** `podcast-chapter-marker-builder-field-guide-when-six-chapter-formats-need-to-ship-at-once-2026-09-28`
+- **URL:** https://blog.flowrust.com/2026/09/28/podcast-chapter-marker-builder-field-guide-when-six-chapter-formats-need-to-ship-at-once-2026-09-28/
+- **Tool:** podcast-chapter-marker-builder (Media)
+- **date_gmt:** 2026-09-28T12:14:02
+- **Audit findings:** 0 (PASS)
+- **Anchor validation:** ok=True
