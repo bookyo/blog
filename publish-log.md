@@ -793,3 +793,18 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **date_gmt:** 2026-09-28T12:14:02
 - **Audit findings:** 0 (PASS)
 - **Anchor validation:** ok=True
+
+## 2026-09-28 — Alveolar Gas Equation (post 7615)
+
+- **Tool**: Alveolar Gas Equation (PAO₂ Calculator) — `alveolar-gas-equation`
+- **Category**: Health
+- **URL**: https://blog.flowrust.com/2026/09/29/alveolar-gas-equation-field-guide-when-five-inputs-one-respiratory-quotient-and-the-altitude-toggle-decide-whether-your-pao2-lands-at-100-or-collapses-to-50-2026-09-28/
+- **Slug**: alveolar-gas-equation-field-guide-when-five-inputs-one-respiratory-quotient-and-the-altitude-toggle-decide-whether-your-pao2-lands-at-100-or-collapses-to-50-2026-09-28
+- **Date (UTC)**: 2026-09-28T16:17:49
+- **Status**: 1-POST 0-PATCH clean
+- **Audit findings**: 0
+- **Elysia anchors**: 5 (4 tools/alveolar-gas-equation + 1 tools kind-root)
+- **Asset re-renders**: card2 re-rendered 1x (render_card_4tile 2x2 had giant-number/detail overlap; switched to render_card_4tile_compact 1x4 per WP 6122/6149)
+- **Skills**: umbrella fallback (article-poster-creator + article-highlight-cards missing from disk)
+- **Notice**: Using `templates/pil_poster_and_cards_network_theme.py` + `templates/render_card_4tile_compact.py` from `wordpress-rest-api-publishing/` per WP 6323/6352/6358 fallback.
+
