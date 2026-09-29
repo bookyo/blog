@@ -930,3 +930,23 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 ## 2026-09-29T12:51:38 — ldl-calculator-friedewald-field-guide-when-five-inputs-three-branches-and-four-ascvd-decisions-decide-whether-the-printed-ldl-c-is-clinical-or-silent-2026-09-29 (WP 7647)
 - Title: LDL-C Calculator (Friedewald) Field Guide: When Five Inputs, Three Branches, and Four ASCVD Decisions Decide Whether the Printed LDL-C Is Clinical or Silent
 - URL: https://blog.flowrust.com/2026/09/29/ldl-calculator-friedewald-field-guide-when-five-inputs-three-branches-and-four-ascvd-decisions-decide-whether-the-printed-ldl-c-is-clinical-or-silent-2026-09-29/
+
+
+## 2026-09-29T17:06:49 — Cylinder Radial Heat Conduction Field Guide (WP 7654)
+
+- **Tool:** Cylinder Radial Heat Conduction (`cylinder-radial-conduction`, Math & Numbers)
+- **URL:** https://blog.flowrust.com/2026/09/30/cylinder-radial-conduction-field-guide-when-a-natural-log-and-four-output-bands-decide-whether-the-lagging-holds-or-burns-through-2026-09-29/
+- **WP ID:** 7654
+- **date_gmt:** 2026-09-29T17:03:18
+- **Status:** 1-POST 0-PATCH clean (HTTP 201 first attempt, status=publish, featured_media=0)
+- **Audit findings:** 0
+- **DOM check:** 0 body H1, 8 body H2 + 1 nav H2, 0 H3, 1 article-poster, 3 highlight-card, 4 article imgs all have alt (2 missing-alt are theme chrome per WP 6323), 6 elysia anchors
+- **Anchors validated:** True (5 unique tool slugs + 1 kind-root; all confirmed real via tool-manifest.json + HEAD 200)
+- **Anchor HEAD probe:** 5/5 tool anchors return 200; kind-root `/en/tools/` returns 308 → 200 (follow redirect)
+- **Image HEAD probe:** 4/4 return 200
+- **Assets:** poster.png (1280×900) + 3 cards (1280×900, editorial-dense multi-column numbered-box layout, deep-navy + cyan-teal theme)
+  - poster id=7650
+  - card1 id=7651, card2 id=7652, card3 id=7653
+- **Skill path:** umbrella fallback (article-poster-creator + article-highlight-cards subdirs only, per WP 6206/6352).
+- **Browser backend:** unavailable (Chromium not installed, per WP 7641); DOM check via curl + regex on rendered HTML.
+- **State:** covered_slugs +1, last_post_id=7654
