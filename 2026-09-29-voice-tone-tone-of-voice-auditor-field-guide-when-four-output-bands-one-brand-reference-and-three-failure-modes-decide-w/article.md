@@ -1,0 +1,79 @@
+**A four-axis voice print is the only thing that catches a chatbot reply drifting into "We" while the brand guideline says "I".** Most copy audits grade the same paragraph twice and call it done.
+
+A voice auditor walks four axes at once — Formal↔Casual, Confident↔Cautious, Optimistic↔Concerned, Playful↔Serious — using a curated lexicon and punctuation/structure heuristics. Pair that print with a 50-word brand reference and the gap between "what we wrote" and "what we say" becomes a single number per axis, plus an overall drift score. The catch is knowing what each axis actually measures, when a high score is a feature, and which thresholds force a rewrite.
+
+The four axes form a 2D scatter, not a single bar. A draft can score Casual and Serious at the same time; that is a register clash, not a bug. The reference math is straightforward: per-axis scores land 0–100 with 50 as neutral, deviations ≥30 mark a real mismatch, and overall drift >30 should send the copy back. Anything below 15 is on-brand.
+
+This field guide walks the inputs, the four output bands, the brand-reference comparison, the failure modes (lexicon gaps, sarcasm, register shifts), and the three cases where the auditor catches defects a human editor misses.
+
+## The Four Output Bands The Auditor Prints On Every Row
+
+Every audit returns four scores, one per axis, plus a composite drift when a brand reference is supplied. Each axis runs 0–100 with 50 as the neutral midpoint.
+
+<ul><li><strong>Formal↔Casual (0 = formal, 100 = casual).</strong> Contractions, slang, emoji, first-person vs. third-person, jargon density. A launch email typically scores 60–80 casual; a regulatory disclosure sits at 15–25.</li><li><strong>Confident↔Cautious (0 = cautious, 100 = confident).</strong> Hedges ("maybe", "might", "perhaps"), intensifiers ("definitely", "certainly"), passive voice, conditional framing. Investor letters sit at 75–85 confident; product disclaimers land at 25–40.</li><li><strong>Optimistic↔Concerned (0 = concerned, 100 = optimistic).</strong> Positive vs. negative sentiment vocabulary, future framing, risk language. Growth-stage landing pages run 70–85 optimistic; incident postmortems run 20–35.</li><li><strong>Playful↔Serious (0 = serious, 100 = playful).</strong> Exclamation marks, humor markers, conversational openers, puns vs. measured academic register. B2C consumer copy sits at 60–80 playful; legal contracts sit at 5–15.</li></ul>
+
+The composite drift score is the Euclidean distance between the draft's 4D vector and the reference's 4D vector, normalized to 0–100. A drift under 15 reads as on-brand; 15–30 is a stylistic nudge worth reviewing; over 30 is a real voice mismatch.
+
+## Where The 1500-Marker Lexicon Actually Helps
+
+The auditor's core is a hand-curated lexicon of roughly 1500 markers — hedges, intensifiers, contractions, fillers, sentiment-bearing words, formality cues. Each marker has an axis weight; matching words get normalized by word count and projected onto each axis.
+
+The lexicon covers English with full density and supports other languages with reduced coverage. Three classes of input benefit most:
+
+<ul><li><strong>Marketing copy</strong> with dense intensifiers and exclamation marks. The Playful↔Serious axis catches emoji-laden tweets that "feel off" but no human can name the defect.</li><li><strong>Customer support macros</strong> that drift over quarters. A support team that started "We'll get this sorted for you" can quietly migrate to "Unfortunately, this issue is outside our policy" — the Formal↔Casual axis shifts 30 points over six months without anyone noticing.</li><li><strong>Long-form content</strong> (whitepapers, blog posts) where a single paragraph drifts. The Optimistic↔Concerned axis catches the third paragraph of a launch announcement that quietly pivots from "we're shipping the upgrade" to "users may experience intermittent failures".</li></ul>
+
+The engine is fast and offline. No LLM calls, no data leaves the browser. A 2,000-word audit finishes in well under a second.
+
+## The Brand Reference Is The Differentiator
+
+Without a brand reference, the auditor prints four absolute scores. With a 50-word reference pasted into the comparison slot, it computes the reference's own 4D voice print and reports the draft's per-axis deviation (0–100) plus an overall drift score.
+
+The reference math is the value. A draft can score 70 casual in absolute terms and still deviate 35 points from a brand whose reference is at 30. The absolute score is misleading; the deviation is what matters.
+
+Three rules make the reference reliable:
+
+<ul><li><strong>Paste 50–200 words of canonical copy.</strong> A single sentence is too noisy; a 5,000-word manifesto over-weights the auditor toward that document's quirks.</li><li><strong>Pick the reference from the channel you are auditing.</strong> If the draft is for an email, paste last quarter's best-performing email. If the draft is for in-app copy, paste the onboarding sequence.</li><li><strong>Re-baseline quarterly.</strong> Voice drift accumulates; the reference that was on-brand in Q1 drifts off-brand by Q3 unless someone refreshes it.</li></ul>
+
+A drift <15 is on-brand; >30 suggests a voice mismatch worth revisiting. Anything between 15 and 30 is the band where a human editor's judgment beats the auditor's number.
+
+## How The Per-Axis Score Maps To A Rewrite Decision
+
+The auditor's per-axis deviation is what triggers a rewrite, not the composite drift. Three threshold bands structure the decision.
+
+<ul><li><strong>Deviation <15: ship it.</strong> The draft matches the reference closely enough on every axis. No human review needed beyond a standard proofread.</li><li><strong>Deviation 15–30: editor pass.</strong> The draft is in the brand's neighborhood but one or more axes have drifted. A skilled editor can usually fix the offending paragraphs without touching the rest. Send these drafts to a human before send.</li><li><strong>Deviation >30: rewrite.</strong> The draft has crossed the brand boundary on at least one axis. Per-paragraph patches will leave structural mismatches. Rewrite the affected sections against the reference, then re-audit.</li></ul>
+
+The same thresholds apply to the absolute per-axis scores (when no brand reference is supplied). A draft that scores 90 casual when the channel expects 30 is in the same "rewrite" band as one that deviates 60 from a 30-casual reference.
+
+## The Three Failure Modes The Lexicon Cannot Catch
+
+Lexicon-based scoring is approximate. Three classes of input produce numbers that look right but mean nothing.
+
+<ul><li><strong>Irony and sarcasm.</strong> "Oh great, another deployment at 5pm on Friday" scores high on Optimistic↔Concerned because the surface vocabulary is positive. The intended register is the opposite. The auditor has no signal here; a human editor still wins.</li><li><strong>Register shifts mid-text.</strong> A draft that opens with measured academic prose and pivots to a casual sign-off will print mid-band scores on every axis. The auditor averages; the reader experiences the shift.</li><li><strong>Domain-specific jargon that the lexicon doesn't recognize.</strong> A biotech postmortem uses "titer", "IC50", "clearance" — none are in the curated lexicon, so the Formal↔Casual axis under-weights the actual density. Add custom markers or run a manual review pass for any domain with heavy specialized vocabulary.</li></ul>
+
+The auditor does not claim to detect these. It prints a number, you interpret the number, and when the number says "neutral" but the draft reads "off", trust your reading.
+
+## When The Drift Score Forces A Rewrite
+
+Three patterns in the output band force a rewrite rather than a polish.
+
+<ul><li><strong>One axis deviates >30 while the other three stay under 15.</strong> That single axis is the bug. The draft is on-brand except for one trait — too casual, too confident, too playful. Fix the specific axis; do not rewrite the whole draft.</li><li><strong>Two adjacent axes deviate >20 in the same direction.</strong> Formal↔Casual and Playful↔Serious moving together suggests the register has shifted uniformly — the writer is using a different voice, not just different words. A rewrite to match the reference's register is faster than per-sentence patches.</li><li><strong>The composite drift is under 15 but a per-axis deviation is over 40.</strong> The Euclidean average masks an axis that has been traded for another. A draft that goes too formal but compensates by going too playful will print a low composite while failing both axes individually. Always read the per-axis table; never trust the composite alone.</li></ul>
+
+The auditor catches these because it prints all four axes plus the composite. A reader who only sees "drift: 12, looks fine" misses the per-axis defects.
+
+## Pairing With A Human Editor Pass
+
+The auditor is a fast first pass, not a replacement for an editor. Three workflows pair the two cleanly.
+
+<ul><li><strong>Pre-submit gate.</strong> Paste every outbound email, blog post, or support macro through the auditor before send. Reject any draft with composite drift >30 or any per-axis deviation >40.</li><li><strong>Style-guide enforcement.</strong> Run the auditor against the style guide itself; the per-axis scores should match the guide's prescribed voice. If they don't, the guide is the artifact that needs rewriting.</li><li><strong>Drift dashboard.</strong> Audit the last 30 published pieces and chart the four-axis scores over time. The dashboard catches the slow drift that no individual edit reveals — the support team's formal drift, the blog's optimism creep, the launch copy's intensifier inflation.</li></ul>
+
+The auditor is offline, fast, and runs in the browser. Run it on every draft; trust the per-axis numbers over the composite; send a human editor anything that scores between 15 and 30 on any axis.
+
+## Where The Tool Fits In A Content Stack
+
+Three integrations make the auditor more useful than a standalone page.
+
+<ul><li><strong>CMS plugin.</strong> Wire the audit into the publish workflow so every draft is scored before it goes live. The pre-submit gate becomes automatic; the editor only sees drafts that pass the per-axis thresholds.</li><li><strong>Style-guide linter.</strong> Run the auditor against the style guide document itself. If the guide scores 65 casual and the brand wants 30, the guide is the artifact that needs a voice pass.</li><li><strong>Quarterly brand audit.</strong> Score the last quarter's published copy against the brand reference. The dashboard reveals which channels drift fastest and which writers hold the line.</li></ul>
+
+The tool's core — lexicon + heuristics + 4D projection + brand-reference deviation — stays the same in every integration. What changes is who reads the output: a writer, an editor, a content lead, or a CMO.
+
+For a deeper walk through the math and a hands-on audit pass against a sample brand reference, see the [Voice / Tone of Voice Auditor](https://elysiatools.com/en/tools/voice-tone-tone-of-voice-auditor). For a comparison view against related text-processing tools, browse the [Text Processing category](https://elysiatools.com/en/tools) on Elysia Tools. The auditor prints its four-axis score plus deviation on every run; the rest is interpretation.

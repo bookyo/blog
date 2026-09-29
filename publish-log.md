@@ -950,3 +950,28 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Skill path:** umbrella fallback (article-poster-creator + article-highlight-cards subdirs only, per WP 6206/6352).
 - **Browser backend:** unavailable (Chromium not installed, per WP 7641); DOM check via curl + regex on rendered HTML.
 - **State:** covered_slugs +1, last_post_id=7654
+
+## 2026-09-29T21:09:55 — Voice / Tone of Voice Auditor Field Guide (WP 7660)
+
+- **Tool:** Voice / Tone of Voice Auditor (`voice-tone-tone-of-voice-auditor`, Text Processing)
+- **URL:** https://blog.flowrust.com/2026/09/30/voice-tone-tone-of-voice-auditor-field-guide-when-four-output-bands-one-brand-reference-and-three-failure-modes-decide-whether-a-draft-is-on-brand-or-silently-drifting-2026-09-29/
+- **WP ID:** 7660
+- **date_gmt:** 2026-09-29T21:09:55
+- **Status:** 1-POST 0-PATCH clean (HTTP 201 first attempt, status=publish, featured_media=0)
+- **Audit findings:** 0
+- **DOM check:** 0 body H1, 8 body H2, 0 H3, 1 article-poster, 3 highlight-card, 4 article imgs all with alt (2 elysia anchors), 8 UL + 25 LI
+- **Anchors validated:** True (1 tool + 1 kind-root; both confirmed real via tool-manifest.json + HEAD 200)
+- **Anchor HEAD probe:** 2/2 elysia anchors return 200 (kind-root `/en/tools` returns 200)
+- **Image HEAD probe:** 4/4 assets return 200 (1 poster 1080x800 + 3 cards 1600x900)
+- **Permalink HEAD:** 200
+- **Assets:**
+  - poster.png (1080x800, deep-navy + cyan-teal eyebrow/callout, 4-axis theme)
+  - card1.png (1600x900, 5-tile numbered list, 4 axes + composite drift)
+  - card2.png (1600x900, audit-style 2-column, deviation thresholds SHIP/EDITOR/REWRITE)
+  - card3.png (1600x900, 4-tile compact, 3 failure modes + 1 fix tile)
+- **Skill path:** umbrella fallback (`article-poster-creator` + `article-highlight-cards` missing, per WP 6352; `article-writer` SKILL.md present per WP 6352 disk probe). PIL templates `pil_poster_and_cards_network_theme.py` + `render_card_4tile_compact.py` used.
+- **Visual QA:** 4/4 assets passed `vision_analyze` after 1 round of fixes (card1 labels shortened from CONFIDENT/CAUTIOUS to CONFIDENT to fit tile width; card3 changed from `render_card_4tile` to `render_card_4tile_compact` because original count strings were long text not numbers)
+- **Source-side defense:** All bullets written as explicit `<ul><li>` HTML (WP 5676 / WP 5746 MERGED_BULLET_LIST prevention). Plain `md_to_html` (no `*` in backtick spans; no triple-fence).
+- **Pre-publish sanity trio:** 0 MD links | 0 unclosed code w/ HTML | 0 backslash in code | 0 br-in-p | 3 highlight-card figures | 8 H2 | 0 H3 | 0 H1
+- **State:** covered_slugs +2, last_post_id=7660
+
