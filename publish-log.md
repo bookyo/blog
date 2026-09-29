@@ -808,3 +808,72 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Skills**: umbrella fallback (article-poster-creator + article-highlight-cards missing from disk)
 - **Notice**: Using `templates/pil_poster_and_cards_network_theme.py` + `templates/render_card_4tile_compact.py` from `wordpress-rest-api-publishing/` per WP 6323/6352/6358 fallback.
 
+
+## 2026-09-28 — Recipe Ingredient Scaler Field Guide (post 7622)
+
+- **Post ID:** 7622
+- **Slug:** recipe-ingredient-scaler-field-guide-when-five-decisions-one-density-table-and-the-sub-linear-seasoning-curve-decide-whether-doubling-your-cookies-doubles-the-salt-2026-09-28
+- **URL:** https://blog.flowrust.com/2026/09/29/recipe-ingredient-scaler-field-guide-when-five-decisions-one-density-table-and-the-sub-linear-seasoning-curve-decide-whether-doubling-your-cookies-doubles-the-salt-2026-09-28/
+- **Tool:** Recipe Ingredient Scaler (`recipe-ingredient-scaler`, category: Math & Numbers)
+- **date_gmt:** 2026-09-28T20:24:25
+- **Status:** 1-POST clean
+- **Audit findings:** []
+- **Anchors validated:** True (n_reasons=0)
+- **Assets:** 1 poster + 3 highlight cards (deep-navy + cyan-teal theme)
+  - poster.png (1080×800, id=7618)
+  - card1.png — Five Density Rows (1600×900, id=7619)
+  - card2.png — Sub-Linear Seasoning Curve (1600×900, id=7620)
+  - card3.png — Kitchen-Fraction Conversions (1600×900, id=7621)
+- **Elysia anchors (4 total, 3 unique URLs):**
+  - 2× https://elysiatools.com/en/tools/recipe-ingredient-scaler
+  - 1× https://elysiatools.com/en/tools/decimal-to-fraction-calculator
+  - 1× https://elysiatools.com/en/tools/volume-converter
+- **DOM counts:** H1=0, H2=8, H3=0, posters=1, cards=3
+- **Pre-flight:** 0 md-link-leak, 0 placeholder, 0 backslash-in-code, 0 br-in-p, 0 H1, 0 H3, 1 poster, 3 cards.
+- **Skill path:** umbrella fallback (article-poster-creator + article-highlight-cards subdir-only per WP 6206/6352).
+- **State:** covered_slugs 831->832, last_post_id=7622
+
+
+## WP 7628 — 2026-09-29 ~00:33 UTC — AHU Coil Capacity Calculator
+- **URL:** https://blog.flowrust.com/2026/09/29/ahu-coil-capacity-calculator-field-guide-when-five-inputs-one-magnus-fit-and-the-cp-ma-moisture-correction-decide-whether-your-cooling-coil-holds-47-kw-or-stalls-at-33-kw/
+- **Tool:** AHU Coil Capacity Calculator (Cooling / Heating) (`ahu-capacity-calculator`, category: Math & Numbers)
+- **date_gmt:** 2026-09-29T00:33:30
+- **Status:** 1-POST clean
+- **Audit findings:** 0
+- **Anchors validated:** True (12 valid /en/tools/<slug> references — all 9 unique tools in tool-manifest)
+- **Assets:** 1 poster + 3 highlight cards (deep-navy + cyan-teal theme)
+  - poster.png (1080x800, id=7624)
+  - card1.png — Five Inputs That Decide the Cooling Coil (1600x900, id=7625)
+  - card2.png — Five Checks Before You Compute Coil Capacity (1600x900, id=7626)
+  - card3.png — The Four Outputs the Coil Selector Wants (1600x900, id=7627)
+- **Elysia anchors (13 total, 9 unique tools):**
+  - 5x https://elysiatools.com/en/tools/ahu-capacity-calculator
+  - 1x https://elysiatools.com/en/tools/psychrometric-properties
+  - 1x https://elysiatools.com/en/tools/cooling-load-calculator
+  - 1x https://elysiatools.com/en/tools/heating-load-calculator
+  - 1x https://elysiatools.com/en/tools/dew-point-calculator-hvac
+  - 1x https://elysiatools.com/en/tools/refrigerant-pressure-temperature
+  - 1x https://elysiatools.com/en/tools/sensible-latent-heat-split
+  - 1x https://elysiatools.com/en/tools/thermal-comfort-pmv
+  - 1x https://elysiatools.com/en/tools/condensing-temperature-calculator
+- **DOM counts (REST audit):** body H1=0, H2=8, H3=0, posters=1, cards=3, all 4 imgs have alt
+- **Pre-flight:** 0 md-link-leak, 0 placeholder, 0 backslash-in-code, 0 br-in-p, 0 H1, 0 H3, 1 poster, 3 cards, 0 audit findings.
+- **PIL pitfall caught pre-POST (WP 6122 family):** first-pass card3 used `render_card_4tile` with multi-line bodies which collided with F_HUGE count strings; re-rendered with `render_card_4tile_compact` (auto-shrink chain 150pt->84pt->64pt) -- clean.
+- **Skill path:** umbrella fallback (article-poster-creator + article-highlight-cards subdir-only per WP 6206/6352).
+- **State:** covered_slugs 832->833, last_post_id=7628
+## 2026-09-29 04:38 UTC — AVIF to PDF (WP 7635)
+
+- **Post:** [AVIF to PDF Field Guide: When Six Page Sizes, Four Quality Bands, and Three Failure Modes Decide Whether Your AVIF Lands as Print-Ready or as a White Page](https://blog.flowrust.com/2026/09/29/avif-to-pdf-field-guide-when-six-page-sizes-four-quality-bands-and-three-failure-modes-decide-whether-your-avif-lands-as-print-ready-or-as-a-white-page/)
+- **Tool:** Convert AVIF to PDF (`avif-to-pdf`, Media category)
+- **WP ID:** 7635 (1-POST 0-PATCH clean)
+- **Slug:** `avif-to-pdf-field-guide-when-six-page-sizes-four-quality-bands-and-three-failure-modes-decide-whether-your-avif-lands-as-print-ready-or-as-a-white-page`
+- **date_gmt:** 2026-09-29T04:38:27
+- **Assets:** 1 poster (1080×800) + 3 highlight cards (1600×900), PIL rendered
+- **Anchors (3):** `/en/tools/avif-to-pdf` (tool), `/en/samples/avif-samples` (sample), `/en/tools` (kind-root)
+- **Audit:** 0 findings (`audit_post_content`)
+- **DOM check (REST):** 0 body H1, 8 body H2, 0 H3, 1 article-poster figure, 3 highlight-card figures, 23 `<p>` tags
+- **Word count:** 1283 (target 1000-1300) ✓
+- **Featured media:** 0 (COSESAI hero dup avoidance)
+- **PIL pitfall caught pre-POST (WP 6122 + WP 6149 family):** first-pass card2 (4 quality bands) + card3 (failure modes) used `render_card_4tile` with F_HUGE counts colliding with multi-word body text; `vision_analyze` caught the overlap pre-POST; re-rendered both with `render_card_4tile_compact` (auto-shrink chain 150pt→84pt→64pt) — clean.
+- **Skill path:** umbrella path used (cron-prompt listed `article-poster-creator` + `article-highlight-cards` as not-found; on-disk probe confirmed `article-poster-creator` lives inside `~/.hermes/skills/article-writer/article-poster-creator/`, PIL templates used per WP 6185/6206 protocol).
+- **State:** covered_slugs 833→834, last_post_id=7635
