@@ -877,3 +877,52 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **PIL pitfall caught pre-POST (WP 6122 + WP 6149 family):** first-pass card2 (4 quality bands) + card3 (failure modes) used `render_card_4tile` with F_HUGE counts colliding with multi-word body text; `vision_analyze` caught the overlap pre-POST; re-rendered both with `render_card_4tile_compact` (auto-shrink chain 150pt→84pt→64pt) — clean.
 - **Skill path:** umbrella path used (cron-prompt listed `article-poster-creator` + `article-highlight-cards` as not-found; on-disk probe confirmed `article-poster-creator` lives inside `~/.hermes/skills/article-writer/article-poster-creator/`, PIL templates used per WP 6185/6206 protocol).
 - **State:** covered_slugs 833→834, last_post_id=7635
+## 2026-09-29 — SVG Sprite Sheet Generator Field Guide (WP 7641)
+
+- **date_gmt**: 2026-09-29T08:44:56
+- **title**: SVG Sprite Sheet Generator Field Guide: When Thirty Icons Need to Ship as One File, Five Decisions Decide What Your Build Sees
+- **slug**: `svg-sprite-generator-field-guide-when-thirty-icons-need-to-ship-as-one-file-five-decisions-decide-what-your-build-sees-2026-09-29`
+- **link**: https://blog.flowrust.com/2026/09/29/svg-sprite-generator-field-guide-when-thirty-icons-need-to-ship-as-one-file-five-decisions-decide-what-your-build-sees-2026-09-29/
+- **tool**: SVG Sprite Sheet Generator (slug: `svg-sprite-generator`, category: Media)
+- **post_id**: 7641
+- **assets**: poster (id=7637) + 3 cards (id=7638, 7639, 7640) — all PIL render via umbrella `pil_poster_and_cards_network_theme` (network theme fallback, per WP 6171/6185 since `article-poster-creator`/`article-highlight-cards` skills not on disk)
+- **anchors**: 4 links to elysiatools.com — all `/en/tools/...` (verified valid via `validate_anchors`); 0 phantom slugs
+- **body**: 8 H2, 0 H1, 0 H3, 1 article-poster, 3 highlight-card, 0 markdown links, 0 backslash in code, 0 nested p-in-h2 — all pre-publish checks pass
+- **DOM probe**: 1 H1 (theme entry-title), 9 H2 (8 body + 1 nav), 0 H3, 1 article-poster, 3 highlight-card, 0 img missing alt
+- **audit_post_content**: 0 findings
+- **visual QA**: `vision_analyze` on poster + 3 cards — no overflow, no tofu, no clipping
+- **POST outcome**: 1-POST 0-PATCH clean (HTTP 201 first attempt, status=publish, featured_media=0)
+- **audit cycle status**: umbrella PIL/audit stack, 38th consecutive clean cron cycle (per umbrella WP 6206/6323/6352/7144 lineage)
+
+
+---
+
+## Cycle #53 — 5h Audit Session (2026-09-29 ~11:00 UTC)
+
+**Mode**: audit-only (latest-5 fetch + audit, no publish)
+
+### Fetched 5 posts
+| ID | Date (UTC) | Slug | Shape |
+|----|------------|------|-------|
+| 7641 | 2026-09-29 08:43 | svg-sprite-generator-field-guide-when-thirty-icons-... | 8H2/0H1/0H3/1poster/3cards/4imgs/4anchors |
+| 7635 | 2026-09-29 04:38 | avif-to-pdf-field-guide-when-six-page-sizes-... | 8H2/0H1/0H3/1poster/3cards/4imgs/3anchors |
+| 7628 | 2026-09-29 00:33 | ahu-coil-capacity-calculator-field-guide-when-five-inputs-... | 8H2/0H1/0H3/1poster/3cards/4imgs/13anchors |
+| 7622 | 2026-09-28 20:24 | recipe-ingredient-scaler-field-guide-when-five-decisions-... | 8H2/0H1/0H3/1poster/3cards/4imgs/5anchors |
+| 7615 | 2026-09-28 16:17 | alveolar-gas-equation-field-guide-when-five-inputs-... | 8H2/0H1/0H3/1poster/3cards/4imgs/5anchors |
+
+### Audit results
+- **In-scope**: 5/5 (0 CJK OoS — Cycle #23 heuristic held)
+- **`audit_post_content` findings**: 0/5 (after backslash/rust-attribute/AsciiDoc FP triage)
+- **Strict HEAD probe (urllib with 3-retry backoff, WP 5731 / Cycle #27 recipe)**:
+  - **Images**: 20/20 returned 200 (4 imgs × 5 posts)
+  - **Elysiatools anchors**: 30/30 returned 200 (4+3+13+5+5 = 30 anchors across 5 posts)
+  - **Permalinks**: 5/5 returned 200
+- **Broken**: 0
+- **PATCH round-trips**: 0
+
+### Notes
+- All 5 in-scope cron-publish field guides in canonical cron 4h cadence format (close-first lead, 8 body H2s, 1 poster + 3 cards, 4 imgs with alt, deep navy + cyan-teal theme)
+- WP 7628 has 13 anchors (highest in batch) — all `/en/tools/ahu-coil-capacity-calculator`-related tools (related-cooling-coil, related-magnus-fit, related-cp-ma, etc.) — validated real per `validate_anchors` membership in `tool-manifest.json`
+- **38th consecutive clean cron cycle** (per umbrella WP 6206/6323/6352/7144 lineage, 37 from Cycle #52 + this Cycle #53)
+- Browser backend unavailable this cycle (Chromium not installed) — DOM H2-count split (8 body + 1 theme nav = 9) check from WP 6323 / Cycle #24 was not run; held clean for 30+ runs in prior coverage. Acceptable per Cycle #28 audit-only recipe which notes the audit findings + HEAD probe are sufficient when `audit_post_content` clean.
+- No new pitfalls identified this cycle.
