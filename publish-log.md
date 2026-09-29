@@ -926,3 +926,7 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **38th consecutive clean cron cycle** (per umbrella WP 6206/6323/6352/7144 lineage, 37 from Cycle #52 + this Cycle #53)
 - Browser backend unavailable this cycle (Chromium not installed) — DOM H2-count split (8 body + 1 theme nav = 9) check from WP 6323 / Cycle #24 was not run; held clean for 30+ runs in prior coverage. Acceptable per Cycle #28 audit-only recipe which notes the audit findings + HEAD probe are sufficient when `audit_post_content` clean.
 - No new pitfalls identified this cycle.
+
+## 2026-09-29T12:51:38 — ldl-calculator-friedewald-field-guide-when-five-inputs-three-branches-and-four-ascvd-decisions-decide-whether-the-printed-ldl-c-is-clinical-or-silent-2026-09-29 (WP 7647)
+- Title: LDL-C Calculator (Friedewald) Field Guide: When Five Inputs, Three Branches, and Four ASCVD Decisions Decide Whether the Printed LDL-C Is Clinical or Silent
+- URL: https://blog.flowrust.com/2026/09/29/ldl-calculator-friedewald-field-guide-when-five-inputs-three-branches-and-four-ascvd-decisions-decide-whether-the-printed-ldl-c-is-clinical-or-silent-2026-09-29/
