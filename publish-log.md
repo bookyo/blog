@@ -975,3 +975,19 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Pre-publish sanity trio:** 0 MD links | 0 unclosed code w/ HTML | 0 backslash in code | 0 br-in-p | 3 highlight-card figures | 8 H2 | 0 H3 | 0 H1
 - **State:** covered_slugs +2, last_post_id=7660
 
+
+## WP 7672 — 2026-09-30 05:21:53 UTC — Osmolar Gap Calculator
+
+- **Slug:** osmolar-gap-calculator-field-guide-when-the-calculated-osmolality-hides-a-toxic-alcohol-2026-09-30
+- **URL:** https://blog.flowrust.com/2026/09/30/osmolar-gap-calculator-field-guide-when-the-calculated-osmolality-hides-a-toxic-alcohol-2026-09-30/
+- **Tool (real name from manifest):** Osmolar Gap Calculator (id=osmolar-gap-calculator)
+- **Category:** Health
+- **Title:** The Osmolar Gap Field Guide
+- **Date GMT:** 2026-09-30T05:21:53
+- **Asset count:** 1 poster (1080x800) + 3 highlight cards (1600x900 each)
+- **Elysia anchors (3):** /en/tools/osmolar-gap-calculator (x2), /en/tools (kind-root)
+- **Pre-publish sanity:** 0 MD links | 0 unclosed code w/ HTML | 0 backslash in code | 0 br-in-p | 3 highlight-card figures | 8 H2 | 0 H3 | 0 H1 | 0 audit_post_content findings
+- **Asset visual QA:** caught + fixed 1st-pass poster subtitle clip (120→60 chars) and Card 2/3 tile-label overflow; vision_analyze second-pass clean
+- **Validation:** validate_anchors OK; all 3 elysia URLs + 4 image URLs HEAD-200
+- **Files archived to:** ~/www/blog/2026-09-30-osmolar-gap/
+- **State:** covered_slugs +1, last_post_id=7672
