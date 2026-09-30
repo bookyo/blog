@@ -1,3 +1,17 @@
+## 2026-09-30T13:52:31 UTC — WP 7691 — Train/Test Split with Stratification Field Guide
+
+- Title: Train/Test Split with Stratification Field Guide: When Five Input Decisions Decide Whether Your 95 Percent Accuracy Is Real or a 70/15/15 Illusion
+- URL: https://blog.flowrust.com/2026/09/30/train-test-split-with-stratification-2026-09-30/
+- Tool: train-test-split-with-stratification (Data Analysis) — Train/Test Split with Stratification: 70/15/15 stratified 3-way split + stratified k-fold, per-split class distribution with deviation bars, duplicate-leakage check, SMOTE preview on training slice, ZIP-bundled CSV exports.
+- date_gmt: 2026-09-30T13:52:31
+- Mode: 1-POST + 1-PATCH (defused MERGED_BULLET_LIST on first POST — 3-item en-dash + bold list in "Common Audit Findings" H2; rewrote to real `<ul><li>` HTML per WP 5676/5717 recipe)
+- Assets: 1 poster (1080×800) + 3 cards (1600×900: 1×5-tile "Five Input Decisions", 1×audit "Five Audit Checks", 1×4-tile compact "Same Dataset, Different Split Recipe" — swapped from canonical 4-tile to compact 1×4 after vision_analyze caught "SMOTE 1:2" / "shuffle off" overflow at F_HUGE=150pt)
+- vision_analyze: poster clean first-pass; card 1 clean; card 2 clean; card 3 first-pass had 4-tile 2x2 with bottom-row count text overflowing tile borders and overlapping body text — refactored to 1×4 compact layout with 150pt→84pt→64pt auto-shrink chain (WP 6149/6171/6358 decision tree)
+- elysia anchors: 4 total — 3× /en/tools/train-test-split-with-stratification + 1× /en/tools (kind-root, per Cycle #40 fix) — all 200 OK, validate_anchors=True
+- audit: 0 findings on final rendered HTML (0 raw, 0 MERGED_*, 0 ORPHANED_CODE, 0 IMG_MISSING_ALT, 0 P_TAG_MISMATCH)
+- Skills probe: `article-writer` present; `article-poster-creator` + `article-highlight-cards` missing — fell back to umbrella templates `pil_poster_and_cards_network_theme.py` + `render_card_4tile_compact.py` per refined WP 6206/WP 6352
+- Cron-mode quirks hit: WP 6390 f-string backslash pitfall (hoisted counts to locals); WP 6423 sibling `/tmp/` path conflict (used `/tmp/wp_ttss/` namespace); WP 6135 cron-prompt creds (used canonical `wp_post_audit.py` defaults); Python `requests` library hangs on POST → fell back to curl for upload + publish + PATCH
+
 ## 2026-09-15T16:44:12 UTC — WP 7203 — Permutation / Combination / Subset Generator (With Repeats) Field Guide
 
 - Title: Permutation / Combination / Subset Generator (With Repeats) Field Guide: When Five Items, Six Rows, Three Modes, and One Display Cap Decide Whether Your Multiset Count Lands at n! or n!/Π(mᵢ!)
@@ -1008,3 +1022,12 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Validation:** validate_anchors OK; all 4 anchors are real tools (heat-exchanger-ntu, cylinder-radial-conduction) or kind-root
 - **Files archived to:** ~/www/blog/2026-09-30-heat-exchanger-ntu/
 - **State:** covered_slugs +2 (slug_root + slug_full), last_post_id=7683, last_n_patches=0
+
+## 2026-09-30 18:10:04 UTC — regression-analyzer
+- post id: 7698
+- url: https://blog.flowrust.com/2026/10/01/regression-analyzer/
+- title: Regression Analyzer Field Guide: When Six Inputs, Three Diagnostic Bands, and One Outlier Toggle Decide Whether Your Fit Lands at R² = 0.92 or Silently Drifts to 0.41
+- tool: regression-analyzer (Regression Analyzer)
+- status: publish
+- assets: poster + 3 cards (all 1600x900; poster 1080x800)
+- audit: 0 findings, 0 PATCH round-trips
