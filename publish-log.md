@@ -991,3 +991,20 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Validation:** validate_anchors OK; all 3 elysia URLs + 4 image URLs HEAD-200
 - **Files archived to:** ~/www/blog/2026-09-30-osmolar-gap/
 - **State:** covered_slugs +1, last_post_id=7672
+
+## WP 7683 - 2026-09-30 09:31:22 UTC - Heat Exchanger epsilon-NTU Calculator
+
+- **Slug:** heat-exchanger-ntu-field-guide-when-four-arrangements-five-outputs-and-three-capacity-ratios-decide-whether-the-effectiveness-lands-at-93-percent-or-collapses-to-62-2026-09-30
+- **URL:** https://blog.flowrust.com/2026/09/30/heat-exchanger-ntu-field-guide-when-four-arrangements-five-outputs-and-three-capacity-ratios-decide-whether-the-effectiveness-lands-at-93-percent-or-collapses-to-62-2026-09-30/
+- **Tool (real name from manifest):** Heat Exchanger epsilon-NTU Calculator (Effectiveness-NTU Method) (id=heat-exchanger-ntu)
+- **Category:** Math & Numbers
+- **Title:** Heat Exchanger epsilon-NTU Calculator Field Guide: When Four Arrangements, Five Outputs, and Three Capacity Ratios Decide Whether the Effectiveness Lands at 93 Percent or Collapses to 62
+- **Date GMT:** 2026-09-30T09:31:22
+- **Asset count:** 1 poster (1080x800) + 3 highlight cards (1600x900 each)
+- **Elysia anchors (4):** /en/tools/heat-exchanger-ntu (x2), /en/tools/cylinder-radial-conduction, /en/tools (kind-root)
+- **Pre-publish sanity:** 0 MD links | 0 backslash in code | 0 <br/> in <p> | 0 nested <p> | 3 highlight-card figures | 8 H2 | 0 H3 | 0 H1 | 4 elysia anchors | audit_post_content: 0 findings
+- **Asset visual QA:** all 4 assets passed vision_analyze (no tofu, no clipping, no overflow)
+- **Live verification:** 4 image URLs HEAD-200, 9 H2 in DOM (8 body + 1 theme Post nav), 5 elysia anchors visible (4 body + 1 theme chrome), 1 H1 (theme entry-title)
+- **Validation:** validate_anchors OK; all 4 anchors are real tools (heat-exchanger-ntu, cylinder-radial-conduction) or kind-root
+- **Files archived to:** ~/www/blog/2026-09-30-heat-exchanger-ntu/
+- **State:** covered_slugs +2 (slug_root + slug_full), last_post_id=7683, last_n_patches=0
