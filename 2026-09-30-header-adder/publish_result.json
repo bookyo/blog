@@ -1,0 +1,22 @@
+{
+  "post_id": 7704,
+  "status": "publish",
+  "url": "https://blog.flowrust.com/2026/09/30/header-adder-field-guide-when-four-modes-five-separators-and-three-output-formats-decide-whether-your-csv-lands-as-typed-records-or-as-anonymous-numeric-columns-2026-10-01/",
+  "slug": "header-adder-field-guide-when-four-modes-five-separators-and-three-output-formats-decide-whether-your-csv-lands-as-typed-records-or-as-anonymous-numeric-columns-2026-10-01",
+  "date_gmt": "2026-09-30T13:13:12",
+  "featured_media": 0,
+  "asset_ids": {
+    "poster": 7700,
+    "card1": 7701,
+    "card2": 7702,
+    "card3": 7703
+  },
+  "asset_urls": {
+    "poster": "https://blog.flowrust.com/wp-content/uploads/2026/10/jarvis-poster-header-adder.png",
+    "card1": "https://blog.flowrust.com/wp-content/uploads/2026/10/jarvis-card1-header-adder.png",
+    "card2": "https://blog.flowrust.com/wp-content/uploads/2026/10/jarvis-card2-header-adder.png",
+    "card3": "https://blog.flowrust.com/wp-content/uploads/2026/10/jarvis-card3-header-adder.png"
+  },
+  "html_chars": 9605,
+  "title": "Header Adder Field Guide: When Four Modes, Five Separators, and Three Output Formats Decide Whether Your CSV Lands as Typed Records or as Anonymous Numeric Columns"
+}

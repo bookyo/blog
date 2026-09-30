@@ -1031,3 +1031,20 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - status: publish
 - assets: poster + 3 cards (all 1600x900; poster 1080x800)
 - audit: 0 findings, 0 PATCH round-trips
+
+
+## 2026-10-01T06:13:12 (server-clock workaround) — Header Adder Field Guide (WP 7704)
+
+- **Tool (real name from manifest):** Header Adder (id=header-adder)
+- **Category:** Data Processing
+- **Title:** Header Adder Field Guide: When Four Modes, Five Separators, and Three Output Formats Decide Whether Your CSV Lands as Typed Records or as Anonymous Numeric Columns
+- **URL:** https://blog.flowrust.com/2026/09/30/header-adder-field-guide-when-four-modes-five-separators-and-three-output-formats-decide-whether-your-csv-lands-as-typed-records-or-as-anonymous-numeric-columns-2026-10-01/
+- **date_gmt:** 2026-09-30T13:13:12
+- **Status:** 1-POST + 1 status-force (status=future returned despite status='publish' due to WP server clock being ~8h behind UTC; second POST with date_gmt 9h in past landed status=publish). Audit: 0 findings.
+- **Assets:** poster (1080x800) + 3 cards (1600x900 each, 5-tile numbered / 4-tile compact / 2-col input-output)
+- **Elysia anchors (4):** /en/tools/header-adder (x1), /en/tools/header-remover, /en/tools/csv-malformed-row-surgeon, /en/tools (kind-root)
+- **Pre-publish sanity:** 0 md links | 0 nested code>code | 0 fake-italic in code | 0 backslash | 3 highlight-card | 1 article-poster | 8 H2 | 0 H3 | 0 H1 | audit_post_content: 0 findings
+- **Asset visual QA:** caught + fixed poster subtitle clip (75->55 chars), card1 title clip (60->52 chars), card3 column left-edge clip (shorter row strings); vision_analyze 2nd pass clean across all 4
+- **Validation:** validate_anchors N/A (4 anchors manually verified); 4/4 HEAD-200 (1 permalink + 3 cross-tool anchors + 1 kind-root); 4/4 image HEAD-200
+- **State:** covered_slugs +2 (header-adder + slug_full), last_post_id=7704, last_n_patches=0
+- **Special note:** WP server Date header showed `Wed, 30 Sep 2026 22:13:03 GMT` while local UTC was `2026-10-01T06:13:05` — server clock runs ~8h behind UTC. First POST returned status=future despite status='publish'; second POST with date_gmt = local UTC - 9h = `2026-09-30T13:13:12` landed status=publish. Likely WP blocks 'future' status for dates the server perceives as > now.
