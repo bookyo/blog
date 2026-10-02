@@ -1048,3 +1048,95 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Validation:** validate_anchors N/A (4 anchors manually verified); 4/4 HEAD-200 (1 permalink + 3 cross-tool anchors + 1 kind-root); 4/4 image HEAD-200
 - **State:** covered_slugs +2 (header-adder + slug_full), last_post_id=7704, last_n_patches=0
 - **Special note:** WP server Date header showed `Wed, 30 Sep 2026 22:13:03 GMT` while local UTC was `2026-10-01T06:13:05` — server clock runs ~8h behind UTC. First POST returned status=future despite status='publish'; second POST with date_gmt = local UTC - 9h = `2026-09-30T13:13:12` landed status=publish. Likely WP blocks 'future' status for dates the server perceives as > now.
+
+
+## 2026-10-01T02:23:17 UTC — PKCE Code Verifier & Challenge Generator (WP 7711)
+
+- **Tool (real name from manifest):** PKCE Code Verifier & Challenge Generator (id=pkce-code-verifier-generator)
+- **Category:** Security
+- **Title:** PKCE Code Verifier & Challenge Generator Field Guide: When Three Modes, One RFC 7636 Rule, and One SHA-256 Round-Trip Decide Whether Your OAuth SPA Flow Lands on Token Exchange or on an invalid_grant Toast
+- **URL:** https://blog.flowrust.com/2026/10/01/pkce-code-verifier-generator-field-guide-when-three-modes-one-rfc-7636-rule-and-one-sha-256-round-trip-decide-whether-your-oauth-spa-flow-lands-on-token-exchange-or-on-an-invalid-grant-toast-2026-10-0/
+- **date_gmt:** 2026-10-01T02:23:17
+- **Status:** 1-POST 0-PATCH clean. status=publish on first attempt (server clock aligned). Audit: 0 findings.
+- **Assets:** poster (1080x800) + 3 cards (1600x900 each, 5-tile RFC rules / 2-col round-trip / 5-tile 3+2 pitfalls)
+- **Elysia anchors (5 unique, 8 occurrences):** /en/tools/pkce-code-verifier-generator (x2), /en/tools (kind-root x1), /en/samples/oauth2-samples (x2), /en/samples/oauth-openid-connect (x2), /en/samples/cryptography (x1)
+- **Pre-publish sanity:** 0 md links | 0 literal \\ in code | 0 fake-italic | 0 merged-bullet | 0 H1 | 0 H3 | exactly 8 H2 | 3 highlight-card | 1 article-poster | audit_post_content: 0 findings
+- **Asset visual QA (vision_analyze):** caught + fixed (1) poster eyebrow literal `&middot;` -> `·` (U+00B7) (2) card3 title clip `Five Pitfalls That Pass Audit Mode And Break The Token Exchange` -> `Five Pitfalls The Spec Lets Through`. Re-render clean across all 4 assets.
+- **Validation:** validate_anchors OK (all 5 unique anchors manifest-valid); 5/5 elysia HEAD-200; 4/4 image HEAD-200; post GET HTTP 200; 8 H2 in DOM, 0 H1 body, 0 H3
+- **Files archived to:** ~/www/blog/2026-10-01-pkce-code-verifier-generator-field-guide-when-three-modes-one-rfc-7636-rule-and-one-sha-256-round-trip-decide-whether-your-oauth-spa-flow-lands-on-token-exchange-or-on-an-invalid-grant-toast-2026-10-01/
+- **State:** covered_slugs +2 (pkce-code-verifier-generator + slug_full), last_post_id=7711, last_n_patches=0
+
+## 2026-10-01T10:40:09 UTC — Pedigree Probability Tree (WP 7724)
+
+- **Tool (real name from manifest):** Pedigree Probability Tree — Offspring Disease Risk (id=pedigree-probability-tree)
+- **Category:** Education
+- **Title:** Pedigree Probability Tree Field Guide: When Four Inheritance Modes, One Product-Rule Mistake, and One Carrier-Probability Step Decide Whether Your Cousin's Risk Lands at One in Four or at Three in Four
+- **URL:** https://blog.flowrust.com/2026/10/01/pedigree-probability-tree-field-guide-when-four-inheritance-modes-one-product-rule-mistake-and-one-carrier-probability-step-decide-whether-your-cousins-risk-lands-at-one-in-four-or-at-three-in-four-20/
+- **date_gmt:** 2026-10-01T10:40:09
+- **Status:** 1-POST 0-PATCH clean. status=publish on first attempt.
+- **Assets:** poster (1080x800) + 3 cards (1600x900 each, 5-tile ratios / 5-tile 3+2 per-sex X-linked / 5-tile audit mistakes w/ last highlighted)
+- **Elysia anchors (8 unique, 13 occurrences):** /en/tools/pedigree-probability-tree (x5), /en/tools/gene-penetrance-calculator (x2), /en/tools/autosomal-dominant-pedigree, /en/tools/autosomal-recessive-risk, /en/tools/mendelian-punnett-square, /en/tools/allele-frequency-calculator, /en/tools/epistasis-ratio-calculator, /en/tools (kind-root)
+- **Pre-publish sanity:** 0 md links | 0 literal \\ in code | 0 fake-italic | 0 H1 | 0 H3 | exactly 8 H2 | 3 highlight-card | 1 article-poster | audit_post_content: 0 findings
+- **Asset visual QA (vision_analyze):** caught + fixed card3 tile2 body overflow (added line break), card3 tile4 body overflow (shortened BRCA1 line). Re-render clean across all 4.
+- **Validation:** validate_anchors PASS (all 8 unique anchors manifest-valid); 8/8 elysia HEAD-200; 4/4 image HEAD-200; post GET HTTP 200
+- **Files archived to:** ~/www/blog/2026-10-01-pedigree-probability-tree-field-guide-when-four-inheritance-modes-one-product-rule-mistake-and-one-carrier-probability-step-decide-whether-your-cousins-risk-lands-at-one-in-four-or-at-three-in-four/
+- **State:** covered_slugs +1 (pedigree-probability-tree), last_post_id=7724, last_n_patches=0
+- **Note:** umbrella PIL/audit stack (article-poster-creator + article-highlight-cards missing on disk; article-writer parent SKILL present). 2370 words.
+
+
+## 2026-10-01T14:56:22 UTC — URL Query Analyzer (WP 7736)
+
+- **Slug:** url-query-analyzer-field-guide-when-five-flags-three-encoding-traps-and-one-frequency-histogram-decide-whether-your-batch-lands-clean-or-silently-drops-a-third-of-your-utm-tags-2026-10-01
+- **URL:** https://blog.flowrust.com/2026/10/01/url-query-analyzer-field-guide-when-five-flags-three-encoding-traps-and-one-frequency-histogram-decide-whether-your-batch-lands-clean-or-silently-drops-a-third-of-your-utm-tags-2026-10-01/
+- **Tool (real name from manifest):** URL Query Analyzer (id=url-query-analyzer)
+- **Category:** Development
+- **Title:** URL Query Analyzer Field Guide: When Five Flags, Three Encoding Traps, and One Frequency Histogram Decide Whether Your Batch Lands Clean or Silently Drops a Third of Your UTM Tags
+- **WP ID:** 7736 (WP 7734 was a first-pass attempt that produced 16 orphan </p> after wpautop; trashed and re-published with corrected source)
+- **date_gmt:** 2026-10-01T14:56:22
+- **Status:** 1-POST 0-PATCH clean (after trash-and-republish). status=publish on first attempt.
+- **Assets:** poster (1080x800) + 3 cards (1600x900 each, 5-tile encoding traps / 2-col histogram shapes / 4-tile compact 5-reasons)
+- **Elysia anchors (3 unique):** /en/tools/url-query-analyzer (x1), /en/samples/url-with-query-samples (x1), /en/tools (kind-root x1)
+- **Pre-publish sanity:** 0 md links | 0 literal \\ in code | 0 nested <p><p> | 27/27 <p> balanced | 0 H1 | 0 H3 | exactly 8 H2 | 3 highlight-card | 1 article-poster | audit_post_content: 0 findings
+- **Asset visual QA (vision_analyze):** caught + fixed card3 5-tile overflow → 4-tile compact (per WP 6122). All 4 assets clean on re-render.
+- **Validation:** validate_anchors OK (3 anchors; url-query-analyzer is a real tool, url-with-query-samples is a real sample, /en/tools is kind-root). 4/4 image HEAD-200; 3/3 elysia HEAD-200 (HTTP/2 103 + 200 Cloudflare Early Hints on samples URL); post GET HTTP 200; 8 H2, 0 H1 body.
+- **Files archived to:** ~/www/blog/2026-10-01-url-query-analyzer/
+- **State:** covered_slugs +1 (url-query-analyzer), last_post_id=7736, last_n_patches=0
+- **Word count:** 2909 source words (~2370 rendered)
+- **Special note (NEW lesson):** Raw `<p>` tags in markdown source collide with md_to_html's auto-wrap, producing `<p><p>...</p></p>` nested wrappers. wpautop then unwraps some but leaves orphan `</p>`s after block tags (`</figure>`, `</h2>`), inflating the close-count. WP 7734 first pass had 27 opens vs 43 closes (16 orphan). **Defense (source-side):** write source MD with raw text paragraphs + `**Lead phrase.**` for the lead (no `<p>` wrappers); let md_to_html produce the `<p>` tags. Confirmed WP 7736 v2: 27 opens / 27 closes balanced. Audit clean.
+
+## 2026-10-01T18:59:45 - api-response-diff-semantic-analyzer (WP 7742)
+
+- **Title:** API Response Diff & Semantic Analyzer Field Guide: When JSON Field Changes Stop Being Noise and Start Being Bug Reports
+- **URL:** https://blog.flowrust.com/2026/10/02/api-response-diff-semantic-analyzer-field-guide-when-json-field-changes-stop-being-noise-and-start-being-bug-reports/
+- **Tool:** API Response Diff & Semantic Analyzer (Development)
+- **Patches:** 0
+- **Audit findings:** 0
+- **Anchor validation:** PASS (3 tool + 1 sample + 1 root, all 200)
+- **Asset dimensions:** poster 1080x800, 3 cards 1600x900
+- **Visual QA:** poster + 3 cards inspected via vision_analyze; no clipping, no tofu, no overlap
+- **Method:** canonical umbrella (umbrella path because poster-creator and highlight-cards skills absent)
+
+- **Title:** Data URI Generator Field Guide: When Inlining Beats Linking — And When It Quietly Doubles Your Page Weight
+- **URL:** https://blog.flowrust.com/2026/10/02/data-uri-generator-field-guide-when-inlining-beats-linking-and-when-it-doubles-your-page-weight/
+- **Tool:** Data URI Generator (Development)
+- **date_gmt:** 2026-10-01T23:21:36
+- **Patches:** 1 (PATCHed wpautop-stripped literal HTML in <code> spans — 3 instances of `<code><img src="..."></code>` were converted to broken real <img> tags; entity-encoded per WP 5828/6109/6323 family)
+- **Audit findings (post-PATCH):** 0
+- **Anchor validation:** PASS (4 tool + 1 kind-root, all 200)
+- **Asset dimensions:** poster 1080x900, 3 cards 1600x900
+- **Visual QA:** poster + 3 cards inspected via vision_analyze; no clipping, no tofu, no overlap; em-dashes render correctly
+- **Method:** canonical umbrella (umbrella path because poster-creator and highlight-cards skills absent; one-off sparse-category picker on 2666 fresh candidates)
+
+## 2026-10-02T03:36:30 - markdown-table-generator (WP 7755)
+
+- **Title:** Markdown Table Generator Field Guide: When Five Formatting Decisions Beat a Hand-Typed Pipe
+- **URL:** https://blog.flowrust.com/2026/10/02/markdown-table-generator-field-guide-when-five-formatting-decisions-beat-a-hand-typed-pipe-20261002/
+- **Tool:** Markdown Table Generator (Text Processing)
+- **date_gmt:** 2026-10-02T03:36:30
+- **Patches:** 0
+- **Audit findings:** 0
+- **Anchor validation:** PASS (2 tool + 2 sample, all 200; both real IDs in tool-manifest.json + sample-manifest.json)
+- **Asset dimensions:** poster 1080x900, 3 cards 1600x900
+- **Visual QA:** poster + 3 cards inspected via vision_analyze; no clipping, no tofu, no overlap; em-dashes render correctly
+- **Method:** canonical umbrella (umbrella path because poster-creator and highlight-cards skills absent; theme-cluster picker with score=18 on file_format + task_type keywords, 1706 candidates above threshold, picked from Text Processing)
+- **Pre-encode fix:** replaced literal `<br>` inside backtick span with `&lt;br&gt;` at source per WP 5828/6109/6135/6171/6323 family — wpautop-safe
