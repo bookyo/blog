@@ -1153,3 +1153,13 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Visual QA:** poster + 3 cards inspected via vision_analyze; no clipping, no tofu, no overlap; em-dashes render correctly
 - **Method:** canonical umbrella (umbrella path because poster-creator and highlight-cards skills absent; theme-cluster picker with score=17 on cardiology/ECG/rate correction keywords; Health domain)
 - **Card layouts:** card1 = render_card_5tile_3plus2 (5 formulae + rules); card2 = render_card_4tile_compact (4 threshold tiles); card3 = render_card_input_output_2col (worked example)
+
+## WP 7768 — 2026-10-02 ~11:51 UTC
+- **Tool**: Text File to PDF Converter (`text-file-to-pdf-converter`, Document Tools)
+- **URL**: https://blog.flowrust.com/2026/10/02/text-file-to-pdf-converter-field-guide-when-six-formatting-decisions-beat-a-word-processor-save-as-pdf-2026-10-02/
+- **date_gmt**: 2026-10-02T11:51:17
+- **Mode**: 1-POST 0-PATCH (clean)
+- **Assets**: poster 7764 + card1 7765 + card2 7766 + card3 7767 (4-tile compact workflow + 2× 5-tile)
+- **Anchors**: 5 total (3× tools/text-file-to-pdf-converter + 1× samples/txt-samples + 1× /en/tools kind-root)
+- **Audit**: 0 findings; 0 H1, 8 H2, 0 H3, 1 poster, 3 cards, 0 p-in-h2
+- **HEAD probes**: 7/7 HTTP 200 (4 images + 3 anchor paths)

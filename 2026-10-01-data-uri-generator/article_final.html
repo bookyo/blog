@@ -1,0 +1,113 @@
+<figure class="article-poster"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/10/poster-1.png" alt="Data URI Generator field guide cover: inlining beats linking until the file is 12 KB" /></figure>
+
+<strong>Inlining beats linking &#8212; until the file is 12 KB.</strong> That is the paradox of a Data URI. You drop a 4 KB PNG straight into the CSS as <code>background-image: url(data:image/png;base64,iVBOR...)</code> and you eliminate one HTTP request, kill a flash-of-unstyled-content bug, and ship the icon even on offline-first PWAs. You also just turned a binary asset into a string that has to be parsed as text on every render, lost the browser&#8217;s ability to defer-load it, and made the stylesheet 33 percent larger than the asset it replaced. The trade looks free until you measure it. The <a href="https://elysiatools.com/en/tools/data-uri-generator">Data URI Generator</a> at Elysia Tools converts any file (image, audio, font, video) into the exact <code>data:&lt;mime&gt;;base64,...</code> or <code>data:&lt;mime&gt;,...</code> string your markup needs, with the encoding mode (Base64 or percent-encoded), the size in KB, and a copy-ready output. Knowing when to use it &#8212; and when a real file URL wins &#8212; is the difference between a snappier page and a bloated one. This guide walks through the seven decisions that decide whether inlining pays off: file size, encoding mode, MIME accuracy, hot-reload friendliness, CSS cache busting, accessibility, and the lazy-load trap.
+
+<h2>Why Data URIs Exist, And Why They Are Not A Free Lunch</h2>
+
+<p>A Data URI is just a string with the shape <code>data:[<mediatype>][;base64],<data></code>. Browsers parse it the same way they parse an HTTP URL — fetch the bytes, decode them, render them. The savings come from collapsing what would have been two round trips (HTML parse + image fetch) into one (HTML parse already contains the bytes). The cost is that every byte of that asset now ships on every page load, even when the asset is on a different route, even when the cache is cold.</p>
+
+<p>The empirical break-even sits around 2–4 KB per asset. Below that, you almost always win: one fewer DNS lookup, one fewer TLS handshake, one fewer render-blocking resource. Above that, you almost always lose: the string bakes into the stylesheet, the stylesheet bakes into the cache miss, and the user pays the bytes whether or not the page actually renders that icon.</p>
+
+<p>The <a href="https://elysiatools.com/en/tools/data-uri-generator">Data URI Generator</a> takes any file you drop in (image, audio clip, font, video frame) and emits the exact string with the right MIME prefix. It also prints the KB cost next to the output so you can make the size call before you paste the string into production CSS.</p>
+
+<h2>Base64 Versus Percent-Encoding — The Two Competing Encodings</h2>
+
+<p>Base64 expands every 3 bytes of input into 4 bytes of ASCII text — a 33 percent size penalty. Percent-encoding (URL-encoding the raw bytes) leaves the size closer to 1:1 for ASCII content but explodes for binary content like PNG or WOFF2. The choice is not aesthetic — it changes what the browser can decode and what bytes hit the wire.</p>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/10/card1-1.png" alt="Data URI field guide card 1: the seven decisions that decide whether to inline a file" loading="lazy" /></figure>
+
+<p>Use Base64 for:
+<ul>
+  <li>Binary content (images, fonts, audio, video)</li>
+  <li>Anything that needs to round-trip through a UTF-8-clean pipeline (JSON-LD payloads, CSS strings, SVG <code>xlink:href</code>)</li>
+  <li>Files where the 33 percent overhead is acceptable</li>
+</ul></p>
+
+<p>Use percent-encoding for:
+<ul>
+  <li>SVG with inline text and minimal binary content (paths, simple shapes)</li>
+  <li>Short text-only payloads where every byte matters</li>
+  <li>Cases where you want grep-able readable content</li>
+</ul></p>
+
+<p>The generator lets you toggle between the two modes and shows the resulting byte count for each. For a 1 KB PNG, the Base64 string is ~1.4 KB and the percent-encoded string is ~3 KB (because each byte becomes <code>%XX</code>). For the same PNG, Base64 wins by a wide margin. For a 2 KB SVG with mostly ASCII, percent-encoding wins.</p>
+
+<h2>The MIME-Type Trap — Why <code>image/png</code> Beats <code>image/octet-stream</code></h2>
+
+<p>A Data URI without an accurate MIME type is a broken Data URI. Browsers do not sniff the bytes inside a <code>data:</code> URL — they read the prefix and pick a decoder. <code>data:application/octet-stream;base64,xxx</code> will not render as an image; it will render as a download prompt or a broken element. The MIME type has to match the actual bytes, and the file extension of the source file is not always a reliable hint (especially for fonts, which have four distinct MIMEs depending on format).</p>
+
+<p>The canonical MIME list for files you might inline:
+<ul>
+  <li>Images: <code>image/png</code>, <code>image/jpeg</code>, <code>image/gif</code>, <code>image/webp</code>, <code>image/avif</code>, <code>image/svg+xml</code>, <code>image/bmp</code>, <code>image/x-icon</code>, <code>image/tiff</code></li>
+  <li>Audio: <code>audio/mpeg</code>, <code>audio/wav</code>, <code>audio/ogg</code>, <code>audio/flac</code></li>
+  <li>Video: <code>video/mp4</code>, <code>video/webm</code></li>
+  <li>Fonts: <code>font/woff</code>, <code>font/woff2</code>, <code>font/ttf</code>, <code>font/otf</code></li>
+</ul></p>
+
+<p>The generator detects the MIME from the file header bytes, not from the file extension, so a <code>logo.svg.txt</code> (renamed SVG) still emits <code>image/svg+xml</code>. That matters when you script the build pipeline and the source filenames lie.</p>
+
+<h2>The Three Sweet Spots — Where Data URIs Always Win</h2>
+
+<p>Three use cases almost always pay off inlining, regardless of the byte count argument:</p>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/10/card2-1.png" alt="Data URI field guide card 2: the four canonical use cases where Data URIs always win" loading="lazy" /></figure>
+
+<ul>
+  <li>Favicons. A 1–3 KB `.ico` or `.png` file used on every page load on every tab. Inlining it in `<link rel="icon" href="data:...">` removes the request entirely and survives offline.</li>
+  <li>Critical-path UI icons. A small arrow, a chevron, a play button that sits in the header on every route. Inlining in CSS kills a render-blocking request.</li>
+  <li>Email HTML. Email clients (Gmail, Outlook web) block external image fetches for privacy and tracking reasons. Data URIs are the only way to get an image into an HTML email reliably.</li>
+</ul>
+
+<p>For all three, the <a href="https://elysiatools.com/en/tools/data-uri-generator">Data URI Generator</a> gives you a copy-ready string in seconds. For larger hero images, product photos, and background art, link them as real URLs and let the browser's normal cache and lazy-load mechanisms do their job.</p>
+
+<h2>The Cache-Busting Trap — Why Data URIs Invalidate Your Whole Stylesheet</h2>
+
+<p>This is the silent killer. When you inline a Data URI into a CSS file, the Data URI becomes part of the CSS file's byte content. Every time you change anything in the CSS file — even a comment, even a single declaration — the cache key changes and the browser re-downloads the entire stylesheet, including every inlined asset, even if those assets themselves did not change.</p>
+
+<p>Two mitigation patterns:
+<ul>
+  <li>Generate a separate <code>.inline.css</code> file that holds only the Data URI declarations. Cache it aggressively (<code>Cache-Control: public, max-age=31536000, immutable</code>). Change the HTML to point at it. Now changes to the main stylesheet do not re-download the inlined assets.</li>
+  <li>Hash the inlined asset's content and include the hash in a comment so you know which Data URIs you can delete after a deploy.</li>
+</ul></p>
+
+<h2>Accessibility And Lazy Loading — What You Lose By Inlining</h2>
+
+<p>Data URIs in <code><img src="data:..."></code> do not load lazily. They are part of the document's text content — the parser hits them on the first byte and decodes them inline. That is fine for a 1 KB favicon. It is catastrophic for a 50 KB hero image you would otherwise have <code>loading="lazy"</code> on.</p>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/10/card3-1.png" alt="Data URI field guide card 3: inline vs link decision matrix for asset embedding" loading="lazy" /></figure>
+
+<p>A few more accessibility caveats:
+<ul>
+  <li>Screen readers cannot describe a Data URI image differently from a text image. The <code>alt</code> text still works, but there is no separate fetch to retry on failure.</li>
+  <li>Browser dev-tools network panel does not show Data URIs as separate requests — you cannot inspect timing, status, or size from the network tab. Use the generator's KB counter as your only sanity check.</li>
+  <li>Right-click "Save image as" on a Data URI gives you a base64 blob in a text file, not a usable asset. If users need to download the image, link it instead.</li>
+</ul></p>
+
+<h2>CSS, HTML, And Markdown — Where Each Pipeline Wants The String</h2>
+
+<p>CSS: Drop it straight into <code>background-image</code>, <code>list-style-image</code>, <code>content</code>, or <code>@font-face { src: url(data:font/woff2;base64,...) }</code>. Escape <code>#</code> as <code>%23</code> and <code>?</code> as <code>%25</code> if your build pipeline does not handle them.</p>
+
+<p>HTML: Use it in <code><img src="..."></code>, <code><link rel="icon" href="..."></code>, or <code><a href="..." download></code> (the <code>download</code> attribute is a hint, not a guarantee, that the browser saves the file).</p>
+
+<p>Markdown: Most Markdown renderers do not allow <code>data:</code> URLs in image syntax for security reasons. If you need to inline in Markdown, use HTML inside the Markdown: <code><img src="data:image/png;base64,..." alt="..."></code>.</p>
+
+<p>The generator's output panel formats for each case with the right escaping, so you can paste directly without re-encoding.</p>
+
+<h2>Closing — When To Open The Generator</h2>
+
+<p>Open the <a href="https://elysiatools.com/en/tools/data-uri-generator">Data URI Generator</a> when:
+<ul>
+  <li>The asset is under 4 KB and used on every page (favicons, critical icons, email).</li>
+  <li>You need offline-first behavior (PWA icons, app shell fonts).</li>
+  <li>You need to survive an email client's image-blocking (inline everything).</li>
+  <li>You want to remove a render-blocking request from the critical path.</li>
+</ul></p>
+
+<p>Keep the real file URL when:
+<ul>
+  <li>The asset is over 8 KB (hero images, background art, product photos).</li>
+  <li>You want lazy loading (<code>loading="lazy"</code>) to defer the fetch.</li>
+  <li>You want the browser's normal cache and CDN edge behavior.</li>
+  <li>You want users to be able to right-click and save the image.</li>
+</ul></p>
+
+<p>For everything in between (4–8 KB), measure both. Drop the asset into the generator, copy both the Base64 and percent-encoded strings, paste them into a test stylesheet, and compare the Lighthouse Performance score with and without the inline version. The break-even is real and it is empirical. The tool is the calculator; the numbers are the answer.</p>
+
+<p>Explore more tools at <a href="https://elysiatools.com/en/tools">elysiatools.com</a>.</p>
