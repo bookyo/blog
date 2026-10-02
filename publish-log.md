@@ -1163,3 +1163,11 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Anchors**: 5 total (3× tools/text-file-to-pdf-converter + 1× samples/txt-samples + 1× /en/tools kind-root)
 - **Audit**: 0 findings; 0 H1, 8 H2, 0 H3, 1 poster, 3 cards, 0 p-in-h2
 - **HEAD probes**: 7/7 HTTP 200 (4 images + 3 anchor paths)
+
+## 2026-10-02 16:10 UTC — CSV Transformer Field Guide
+- WP ID: 7775
+- URL: https://blog.flowrust.com/2026/10/03/csv-transformer-field-guide-when-six-operations-beat-a-hand-built-script-2026-10-02/
+- Tool: csv-transformer (CSV Transformer)
+- Cards: 3 (rules / properties / boundaries)
+- Anchors: 5 (3 tools + 2 samples)
+- 1-POST 0-PATCH clean
