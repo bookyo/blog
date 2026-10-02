@@ -1140,3 +1140,16 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Visual QA:** poster + 3 cards inspected via vision_analyze; no clipping, no tofu, no overlap; em-dashes render correctly
 - **Method:** canonical umbrella (umbrella path because poster-creator and highlight-cards skills absent; theme-cluster picker with score=18 on file_format + task_type keywords, 1706 candidates above threshold, picked from Text Processing)
 - **Pre-encode fix:** replaced literal `<br>` inside backtick span with `&lt;br&gt;` at source per WP 5828/6109/6135/6171/6323 family — wpautop-safe
+
+## 2026-10-02 ~07:47 UTC — WP 7761 — Corrected QT (QTc) Calculator
+
+- **URL:** https://blog.flowrust.com/2026/10/02/corrected-qt-bazett-fridericia-field-guide-when-three-formulae-one-rate-and-one-spread-decide-whether-your-repolarization-reserve-is-healthy/
+- **Tool:** Corrected QT (QTc) Calculator (Health)
+- **date_gmt:** 2026-10-02T07:47:17
+- **Patches:** 0
+- **Audit findings:** 0
+- **Anchor validation:** PASS (3 tool + 1 kind_root, all 200; tool is a real ID in tool-manifest.json)
+- **Asset dimensions:** poster 1080x800, 3 cards 1600x900
+- **Visual QA:** poster + 3 cards inspected via vision_analyze; no clipping, no tofu, no overlap; em-dashes render correctly
+- **Method:** canonical umbrella (umbrella path because poster-creator and highlight-cards skills absent; theme-cluster picker with score=17 on cardiology/ECG/rate correction keywords; Health domain)
+- **Card layouts:** card1 = render_card_5tile_3plus2 (5 formulae + rules); card2 = render_card_4tile_compact (4 threshold tiles); card3 = render_card_input_output_2col (worked example)
