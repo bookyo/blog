@@ -1171,3 +1171,43 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - Cards: 3 (rules / properties / boundaries)
 - Anchors: 5 (3 tools + 2 samples)
 - 1-POST 0-PATCH clean
+
+## 2026-10-02 20:19 UTC — Recipe Ingredient Scaler Field Guide
+- WP ID: 7781
+- URL: https://blog.flowrust.com/2026/10/03/recipe-ingredient-scaler-field-guide-2026-10-02/
+- Tool: recipe-ingredient-scaler (Recipe Ingredient Scaler, Math & Numbers)
+- Cards: 3 (parser modes / pre-scale audit / density table outputs)
+- Anchors: 4 (3x tool + 1 category landing + 1 root)
+- 1-POST 0-PATCH clean; PIL card3 used render_card_4tile_compact after canonical 4-tile overlap (vision_analyze caught)
+
+## 2026-10-03 00:31 UTC — WP 7787 — Enteral Nutrition Target Calculator
+
+- **Title:** Enteral Nutrition Target Field Guide: When a Two-Line Prescription Beats a Hand-Tuned Pump Rate
+- **URL:** https://blog.flowrust.com/2026/10/03/enteral-nutrition-target-field-guide-when-two-bands-beat-a-hand-tuned-pump-rate-2026-10-03/
+- **Tool:** Enteral Nutrition Target Calculator (kcal/kg + Protein g/kg) [slug=enteral-nutrition-target]
+- **date_gmt:** 2026-10-03T00:31:41 (cron-mode local: 2026-10-03 08:31 UTC+8)
+- **Status:** 1-POST 0-PATCH clean
+- **Pre-publish findings:** 0
+- **Audit findings:** 0
+- **Media:** poster=7783 card1=7784 card2=7785 card3=7786 (all HTTP 200, vision_analyze PASS)
+- **Elysia anchors (6):** tools/enteral-nutrition-target + tools (kind-root x2) + tools/anion-gap-calculator + tools/caprini-score + samples (kind-root) — all HTTP 200
+- **Body structure:** 0 H1 + 8 H2 + 3 highlight-card figures + 1 article-poster figure
+- **Picked via:** pick_tool_v4_content_based.py (Health category)
+- **Cycle lessons confirmed:** WP 5628 featured_media=0, WP 6122 card insertion n==1 assertion, WP 6197 source_url preservation, WP 7163 CARD*_URL no-leak, WP 6340 render_card_4tile compact vs canonical vertical overlap, Cycle #54 SSL EOF -> curl fallback for media upload
+- **Pitfalls encountered:** (1) Python requests.post SSL EOF on media upload (3 attempts), recovered via curl subprocess. (2) render_card_4tile vertical overlap on count strings (1750 / 1458 mL / 61 mL/hr / 1.04 g/kg), switched to render_card_4tile_compact auto-shrink chain.
+- **Archive:** ~/www/blog/2026-10-03-enteral-nutrition-target/
+- **Featured media:** 0 (CRITICAL per WP 5628 — COSESAI theme hero-dup avoidance)
+
+## 2026-10-03 04:56 UTC — Card Probability Calculator Field Guide
+
+- **Post**: https://blog.flowrust.com/2026/10/03/card-probability-calculator-field-guide-when-ten-named-hand-classes-beat-memorized-ratios-2026-10-03/
+- **WP ID**: 7793
+- **Tool**: card-probability (Card Probability Calculator) — Calculator category
+- **Slug**: card-probability-calculator-field-guide-when-ten-named-hand-classes-beat-memorized-ratios-2026-10-03
+- **date_gmt**: 2026-10-03T04:56:25
+- **Status**: publish, 0 H1, 8 H2, 0 H3, 1 article-poster, 3 highlight-cards, 4 elysia anchors
+- **Audit**: 0 findings
+- **Images**: poster (49KB 1080x800), card1 5tile (69KB 1600x900), card2 3+2 (94KB 1600x900), card3 2-col (84KB 1600x900)
+- **Archive**: ~/www/blog/2026-10-03-card-probability-calculator-field-guide-when-ten-named-hand-classes-beat-memorized-ratios-2026-10-03/
+- **Asset media IDs**: poster=7789, card1=7790, card2=7791, card3=7792
+- **Notes**: Skills  and  not on disk; fell back to umbrella PIL templates (canonical per WP 6185). 1-POST 0-PATCH clean.
