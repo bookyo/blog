@@ -1,0 +1,62 @@
+The pharmacy calls at 6:14 a.m. with the new TPN order: D25W 1000 mL, 10% amino acids 500 mL, lipid 250 mL, electrolytes 600 mOsm/L. Before anyone changes a dressing, the question is whether that admixture can run through a midline or whether the patient needs a central line today. Most clinicians can run the math in their head; fewer can defend the threshold they just used. A free [TPN Osmolality Estimator](https://elysiatools.com/en/tools/tpn-osmolality-estimator) returns the same number, the working band, and the access recommendation in under a second — and it lets you swap one variable at a time when the order changes mid-morning.
+
+## The formula behind the estimate
+
+The estimator implements the textbook sum-of-solute formula, the one pharmacy residents learn before they learn the Kreb cycle: `Osm (mOsm/L) ≈ Dextrose(g/L) × 5.0 + Amino acids(g/L) × 10.0 + Electrolyte additive (mOsm/L)`.
+
+Lipid is treated as near-iso-osmolar and contributes ≈ 0 — but it dilutes the aqueous phase. Dextrose and amino acids only dissolve in water, so the denominator is total volume minus lipid volume. That detail matters: a 1500 mL TPN with 250 mL of lipid is not a 1500 mL aqueous solution, it is a 1250 mL aqueous solution carrying 1500 mL of total fluid. The formula breaks if you skip the subtraction. It also breaks for neonatal admixtures, total nutrient admixtures (3-in-1), and any case where the lab-measured osmolality (freezing-point depression) is the only defensible value — that lab measurement can differ from the estimate by 100–200 mOsm/L.
+
+## The two thresholds that decide access
+
+Consensus ranges, institution-dependent but stable across the major guidelines (Mirtallo 2004, Pittiruti 2009, Dugan 2014):
+
+<table>
+<thead><tr><th>Final osmolality</th><th>Access recommendation</th></tr></thead>
+<tbody>
+<tr><td>&le; 900 mOsm/L</td><td>Peripheral vein tolerated; rotate sites every 72&ndash;96 h</td></tr>
+<tr><td>900&ndash;1200 mOsm/L</td><td>Borderline; some institutions use PICC/midline with dilution, most prefer central</td></tr>
+<tr><td>&gt; 1200 mOsm/L</td><td>Central venous access strongly favored; phlebitis and thrombosis risk rise sharply</td></tr>
+</tbody>
+</table>
+
+For reference numbers most clinicians already have memorized: D5W ≈ 250, normal saline ≈ 308, D10W ≈ 505 mOsm/L. A typical central TPN runs 1500–2000 mOsm/L; a typical peripheral PN runs 600–900 mOsm/L. The cutoff is not a sharp cliff; it is a band where the risk curve changes slope.
+
+## The peripheral case — D10W 1000 mL, AA 5% 500 mL, lipid 250 mL, electrolytes 350
+
+Working it out by hand: the non-lipid phase is 1500 mL carrying 100 g of dextrose (66.7 g/L × 5 = 333 mOsm/L) and 25 g of amino acids (16.7 g/L × 10 = 167 mOsm/L), plus 350 mOsm/L of electrolytes. Total ≈ 850 mOsm/L. The estimator returns the same number, lands in the peripheral-tolerable band, and prints a one-line access verdict. This is the order pattern you will see on a medical floor with a patient who has been NPO for five days and needs short-term supplementation through a midline that was placed for antibiotics. The [TPN Osmolality Estimator](https://elysiatools.com/en/tools/tpn-osmolality-estimator) is built for exactly this decision point — and it lets the prescriber see in real time what happens when the dextrose concentration drops from D10 to D7.5.
+
+## The central case — D25W 1000 mL, AA 10% 500 mL, lipid 250 mL, electrolytes 600
+
+Same shape, different magnitudes: 250 g of dextrose in the non-lipid phase (166.7 g/L × 5 = 833 mOsm/L) plus 50 g of amino acids (33.3 g/L × 10 = 333 mOsm/L), plus 600 mOsm/L of electrolytes. Total ≈ 1767 mOsm/L — well past the borderline band and into the central-access zone. A CVC tip in the SVC is the only safe route; running that admixture through a PICC or peripheral cannula would predictably thrombose the vessel within 24–48 hours. The estimator makes the contrast vivid: swap D10 for D25 and the same 1500 mL aqueous phase jumps from 850 to 1767 mOsm/L with no other change.
+
+## What the estimator does NOT catch
+
+Three failure modes the tool flags but does not solve:
+
+<ul>
+<li><strong>Calcium-phosphate precipitation.</strong> A separate solubility concern driven by the <code>Ca &times; PO&#8324;</code> product, not by osmolality. A precipitate that reaches the pulmonary circulation is an emergency; the estimator does not model it. Order-entry systems should enforce Ca-PO&#8324; compatibility checks independently.</li>
+<li><strong>High-electrolyte admixtures.</strong> Orders with more than 80 mEq/L of sodium or more than 40 mEq/L of potassium can vary from the sum-of-solute estimate by 100&ndash;200 mOsm/L. Always cross-check with the lab-measured value before central infusion in neonates.</li>
+<li><strong>3-in-1 total nutrient admixtures (TNA).</strong> When dextrose, amino acids, and lipid are mixed in one bag, the stability window depends on pH, electrolyte load, and lipid emulsion type &mdash; none of which the formula captures.</li>
+</ul>
+
+The estimator is the first line of defense, not the last. Use it to triage the order, then let the lab-measured value close the loop.
+
+## Common off-by-one mistakes
+
+The three errors that recur on first-pass pharmacy rotations:
+
+<ul>
+<li><strong>Forgetting to subtract lipid volume from the denominator.</strong> Adds a 15&ndash;20% underestimation in TNAs.</li>
+<li><strong>Using percent (g/100 mL) directly instead of g/L.</strong> D25W is 25 g/100 mL = 250 g/L, not 25 g/L. The formula expects g/L.</li>
+<li><strong>Adding the electrolyte additive to the lipid denominator.</strong> Lipid does not carry electrolytes in the aqueous sense; the electrolyte mOsm/L applies only to the non-lipid phase.</li>
+</ul>
+
+All three collapse to a single verifiable output when you run the same admixture through the [TPN Osmolality Estimator](https://elysiatools.com/en/tools/tpn-osmolality-estimator) twice &mdash; once with the suspected mistake, once corrected.
+
+## Pairing the estimator with the rest of the order
+
+A TPN order rarely travels alone. In practice the same prescriber is also writing electrolyte replacement, insulin coverage, and a fluid goal. The estimator does not model those &mdash; but it does model the one variable that determines the access decision, which is the variable that determines whether the rest of the order can run through the line that is already in place. The pairing worth remembering is osmolality (this tool) for access, calcium-phosphate solubility (a separate compatibility check) for precipitation risk, and the lab-measured value for any admixture that crosses 1200 mOsm/L.
+
+## Closing recommendation
+
+If your institution runs a high volume of short-term PN through midlines, the single highest-leverage habit is to run every new order through the [TPN Osmolality Estimator](https://elysiatools.com/en/tools/tpn-osmolality-estimator) before the line is dressed. It is not a substitute for the pharmacy's compatibility check or for the lab-measured osmolality on borderline cases, but it catches the three off-by-one mistakes above and it gives the prescriber, the nurse, and the access team the same number in the same band before the first drop runs. Explore more tools at [elysiatools.com](https://elysiatools.com/en/tools).

@@ -1211,3 +1211,16 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Archive**: ~/www/blog/2026-10-03-card-probability-calculator-field-guide-when-ten-named-hand-classes-beat-memorized-ratios-2026-10-03/
 - **Asset media IDs**: poster=7789, card1=7790, card2=7791, card3=7792
 - **Notes**: Skills  and  not on disk; fell back to umbrella PIL templates (canonical per WP 6185). 1-POST 0-PATCH clean.
+
+## 2026-10-03T09:14:16 UTC — WP 7799 — TPN Osmolality Estimator Field Guide
+
+- Title: TPN Osmolality Estimator Field Guide: When Two Thresholds Pick the Line You Use
+- URL: https://blog.flowrust.com/2026/10/03/tpn-osmolality-estimator-field-guide-when-two-thresholds-pick-the-line-you-use/
+- Tool: tpn-osmolality-estimator (Health) — TPN Osmolality Estimator (Peripheral/Central): sum-of-solute Osm(mOsm/L) ≈ Dextrose(g/L)×5.0 + Amino acids(g/L)×10.0 + Electrolyte additive (mOsm/L); lipid ≈ 0; thresholds ≤ 900 peripheral / 900-1200 borderline / > 1200 central. Mirtallo 2004, Pittiruti 2009, Dugan 2014.
+- date_gmt: 2026-10-03T09:14:16
+- Mode: 1-POST 0-PATCH clean
+- Assets: 1 poster (1080×800) + 3 cards (1600×900: 1×4-tile compact "The Sum-of-Solute Formula" with 4 inputs × multipliers, 1×5-tile "Five Output Bands the Estimator Tags On Every Order", 1×2-col input/output "Peripheral vs Central: D10 vs D25" — title shortened from "The Same Shape, Two Orders of Magnitude" after vision_analyze caught right-edge clip)
+- vision_analyze: poster clean first-pass; card 1 clean first-pass; card 2 clean first-pass; card 3 first-pass had title overflow clipping "Pe" and "e" at left/right edges — refactored to "D10 vs D25" (per WP 6390/7144 title-overflow pitfall)
+- elysia anchors: 5 total — 4× /en/tools/tpn-osmolality-estimator (in lead + 2 H2s + closing) + 1× /en/tools (kind-root closing "Explore more tools", per Cycle #40 fix) — all 200 OK, validate_anchors=True
+- Pre-flight checks: 8 H2 ✓, 0 H1 ✓, 0 nested code ✓, 0 italic-in-code ✓, 0 pipe-leak ✓ (table written as explicit `<table>` HTML per Cycle #30 / WP 6370 lesson), 0 MERGED_BULLET_LIST (used explicit `<ul><li>` HTML per WP 5676/6135 recipe), 3 highlight-card figures ✓, 1 article-poster figure ✓
+- Notes: Skills article-poster-creator and article-highlight-cards not on disk (per WP 6352 advisory); fell back to umbrella PIL templates `pil_poster_and_cards_network_theme.py` + `render_card_4tile_compact.py` + `custom_pil_card_layouts.py` (canonical per WP 6185). Transport hit Cycle #54 SSL EOF class on `urllib.request` first call — switched to curl subprocess for all REST + HEAD per the umbrella recipe. Asset auto-rename per WP 6191 (`poster-10.png`, `card1-8.png`, `card2-8.png`, `card3-8.png`).
