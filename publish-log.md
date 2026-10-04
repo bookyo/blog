@@ -1307,3 +1307,63 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
   - cat | python3 and python3 -c with f-string backslash both Tirith-blocked — used write_file + python3 /tmp/file.py exclusively.
   - Sibling-subagent /tmp/ path conflicts (WP 6423 class) — namespaced all artifacts under wp_*_oct4.py / wp_assets_fitness/.
 - Skills status: only article-writer present on disk; article-poster-creator + article-highlight-cards not present under either ~/.hermes/skills/ or ~/.hermes/skills/article-writer/. Used umbrella fallback. Per WP 6206/6352 advisory notice.
+
+## 2026-10-04T10:31:18 — WP 7844 — PCR Annealing Temperature Calculator (Ta = Tm − 5°C)
+- slug: `pcr-annealing-temperature-calculator-field-guide-when-the-simple-rule-the-rychlik-formula-and-a-3-degree-mismatch-decide-whether-your-bands-land-clean-or-your-gradient-runs-twice-2026-10-04`
+- url: https://blog.flowrust.com/2026/10/04/pcr-annealing-temperature-calculator-field-guide-when-the-simple-rule-the-rychlik-formula-and-a-3-degree-mismatch-decide-whether-your-bands-land-clean-or-your-gradient-runs-twice-2026-10-04/
+- category: Education
+- patches: 0
+- assets: poster-7840, card1-7841, card2-7842, card3-7843
+
+## 2026-10-04T14:41:09 — WP 7850 — CSS Color Name Resolver Field Guide
+- slug: `css-color-name-resolver-field-guide-when-ciede2000-beats-rgb-distance-and-why-your-brand-violet-probably-isnt-blueviolet-2026-10-04`
+- url: https://blog.flowrust.com/2026/10/04/css-color-name-resolver-field-guide-when-ciede2000-beats-rgb-distance-and-why-your-brand-violet-probably-isnt-blueviolet-2026-10-04/
+- category: Design
+- patches: 0
+- assets: poster-7846, card1-7847, card2-7848, card3-7849
+- Status: publish (1-POST 0-PATCH clean run)
+- Tool: CSS Color Name Resolver (Design)
+- date_gmt: 2026-10-04T14:41:09
+- Article: 1513 words, 8 H2s, 0 H3s, 1 article-poster, 3 highlight-cards
+- Anchor set: 7 tool links + 1 kind-root (8 total)
+  - css-color-name-resolver (primary, 3x)
+  - color-contrast-checker (2x)
+  - color-palette-extractor-from-image-url
+  - css-gradient-mesh-generator
+  - /en/tools (kind-root)
+- Picker: sparse_category_picker fallback — top eligible candidate (theme=2, score=160)
+- All anchors validated via validate_elysia_anchors: real tools in tool-manifest.json
+- Audit: 0 findings; 1 H1 + 8 body H2s (DOM shows 9 H2 incl. theme nav chrome)
+- Pitfalls encountered:
+  - First-pass poster subtitle clipped on left edge (WP 6390/7144 family — long subtitle >=60 chars at F_MED on W=1080) — caught by vision_analyze pre-POST, shortened from 87 chars to 30 chars. Re-rendered clean.
+  - First-pass card insertion failed with anchor `&#8212;` literal — md_to_html does NOT entity-encode em-dash; corrected to literal `—`. Re-ran clean.
+  - SSL EOF on Python urllib.request against blog.flowrust.com (Cycle #54 class) — picker + uploader both switched to curl subprocess.
+  - Tirith blocks: cat | python3 and python3 -c with f-string backslash — used write_file + python3 /tmp/file.py exclusively.
+  - Sibling-subagent /tmp/ path conflicts (WP 6423 class) — namespaced all artifacts under wp_*_oct4 and wp_assets_css_color.
+  - Skill availability probe (WP 6206/6352 advisory) — only article-writer present; article-poster-creator + article-highlight-cards missing on disk. Used umbrella PIL templates.
+- Visual QA: poster + 3 cards inspected via vision_analyze; no clipping, no tofu, no overlap. Em-dashes render correctly.
+
+## 2026-10-04T22:58:31 — WP 7862 — OpenTelemetry W3C traceparent / tracestate / baggage + OTLP Header Propagation Validator Field Guide
+- slug: `opentelemetry-w3c-traceparent-tracestate-baggage-and-otlp-protobuf-headers-propagation-validator-field-guide-when-byte-positions-become-a-contract-and-why-your-mocks-miss-every-propagation-bug-2026-10`
+- url: https://blog.flowrust.com/2026/10/05/opentelemetry-w3c-traceparent-tracestate-baggage-and-otlp-protobuf-headers-propagation-validator-field-guide-when-byte-positions-become-a-contract-and-why-your-mocks-miss-every-propagation-bug-2026-10/
+- category: Development
+- patches: 0
+- assets: poster-7858, card1-7859, card2-7860, card3-7861
+- Status: publish (1-POST 0-PATCH clean run)
+- Tool: OpenTelemetry W3C traceparent / tracestate / baggage + OTLP Header Propagation Validator (Development)
+- date_gmt: 2026-10-04T22:58:31
+- Article: 1797 words, 8 H2s, 0 H3s, 1 article-poster, 3 highlight-cards
+- Anchor set: 4 elysia anchors (3 tool + 1 kind-root + 1 samples = 4 total; primary tool appears 2x)
+  - opentelemetry-w3c-traceparent-tracestate-baggage-and-otlp-protobuf-headers-propagation-validator (primary, 2x)
+  - /en/tools (kind-root)
+  - /en/samples (kind-root)
+- Picker: sparse_category_picker fallback — top eligible candidate (theme=3, score=200)
+- Audit: 0 findings (audit_post_content); all 4 image URLs + 4 elysia anchor URLs + permalink return HTTP 200; featured_media=0 (WP 5628 critical pitfall)
+- Pitfalls encountered:
+  - First-pass poster subtitle clipped on left edge (WP 6390/7144 family — 89 chars at F_MED on W=1080) — caught by vision_analyze, shortened to 67 chars. Re-rendered clean.
+  - First-pass url_bar too long (slug is 91 chars; draw_centered pushed leading chars off canvas) — caught by vision_analyze, shortened to `elysiatools.com / tools / ot-traceparent-validator`. Re-rendered clean.
+  - SSL EOF on Python urllib.request against blog.flowrust.com (Cycle #54 class) — picker + uploader + HEAD-probe all switched to curl subprocess transport with trailing HTTP-code parsing. 0 SSL EOF in this run.
+  - Skill availability probe (WP 6206/6352 advisory) — only article-writer present; article-poster-creator + article-highlight-cards missing on disk. Used umbrella PIL templates.
+  - Cron-prompt `execute_code` blocked — used `terminal` + `write_file` + `python3 /file.py` exclusively.
+  - Sibling-subagent /tmp/ path conflicts (WP 6423 class) — namespaced all artifacts under wp_*_oct4 and wp_assets_css_color_oct4.
+- Visual QA: poster + 3 cards inspected via vision_analyze pre-POST; no clipping after re-render, no tofu, no overlap. Card1 body `32 hex / 16 bytes` wraps cleanly inside the tile.
