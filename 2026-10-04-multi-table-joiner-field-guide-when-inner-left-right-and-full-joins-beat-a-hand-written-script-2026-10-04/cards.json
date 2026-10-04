@@ -1,0 +1,41 @@
+[
+  {
+    "eyebrow": "FOUR JOIN MODES, ONE CONTRACT",
+    "title": "What each join actually keeps",
+    "dek": "Pick the smallest output that answers the question you actually have.",
+    "bullets": [
+      "<strong>Inner</strong> &mdash; both sides must match. Drop the rest. Smallest output, cleanest intersection.",
+      "<strong>Left</strong> &mdash; keep every row on the left. Fill right-side gaps with nulls. Authoritative list + enrichment.",
+      "<strong>Right</strong> &mdash; mirror of left. Keep every row on the right; left-side gaps become nulls.",
+      "<strong>Full</strong> &mdash; keep every row from both sides. Use when neither list is authoritative."
+    ],
+    "box_label": "MODE",
+    "theme": "ocean"
+  },
+  {
+    "eyebrow": "THE KEY-COLUMN CONTRACT",
+    "title": "Three inputs that decide whether the join is honest",
+    "dek": "Each control surfaces a decision that ad-hoc scripts usually leave implicit.",
+    "bullets": [
+      "<strong>Left key column</strong> &mdash; literal header name, not index. A renamed column refuses to run instead of silently dropping rows.",
+      "<strong>Right key column</strong> &mdash; same. Different names are fine; the matcher compares values, not labels.",
+      "<strong>First row contains headers</strong> &mdash; explicit checkbox. Uncheck it for headerless input; the tool uses positional keys instead.",
+      "<strong>Custom join condition</strong> &mdash; optional. Substring, composite, or non-equality joins, with the same join-mode semantics."
+    ],
+    "box_label": "INPUT",
+    "theme": "ocean"
+  },
+  {
+    "eyebrow": "WHEN TO REACH FOR THIS",
+    "title": "Joining two or three tables without re-deriving the semantics",
+    "dek": "Use the dedicated joiner for one-off and small repeatable joins. Reach for SQL when the question gets bigger.",
+    "bullets": [
+      "<strong>Two or three tables</strong> &mdash; the joiner is sized for ad-hoc merges, not warehouse-scale pipelines.",
+      "<strong>Four join modes only</strong> &mdash; no <code>USING</code>, no cross joins, no composite keys. Narrow on purpose.",
+      "<strong>No aggregations afterward</strong> &mdash; if you need <code>GROUP BY</code>, that's a SQL-shaped problem.",
+      "<strong>Inputs fit in memory</strong> &mdash; paste-and-go for CSVs in the kilobyte-to-low-megabyte range."
+    ],
+    "box_label": "FIT",
+    "theme": "ocean"
+  }
+]

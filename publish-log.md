@@ -1245,3 +1245,39 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - Status: 41st consecutive clean cycle
 - Driver: /tmp/wp_cycle56_audit.py; summary → /tmp/wp_cycle56_summary.json
 - Notes: Cycle #54's curl-subprocess transport recipe confirmed for the second consecutive run — used from line 1, 0 SSL EOF, 0 false-positive head checks.
+
+## 2026-10-03 ~13:27 UTC — WP 7810 — SMT-LIB Formal Verification Orchestrator Field Guide
+
+- **Tool**: SMT-LIB 2.7 / AIGER / BTOR2 Formal Verification Orchestrator (CDCL + BMC + k-Induction + Craig Interpolation + IC3) (slug: smt-smtlib-2-7-cvc5-z3-btor2-aiger-k-induction-cddr-dbg-invariant-synthesis-orchestrator)
+- **Category**: Science & Education (NOT in recent 10 — good thematic break from Health/Converter cluster)
+- **Slug**: smtlib-formal-verification-orchestrator-field-guide-2026-10-03
+- **Title**: SMT-LIB Formal Verification Orchestrator Field Guide: When CDCL, k-Induction, Craig Interpolation, and IC3 Beat a Single Native Solver
+- **Date GMT**: 2026-10-03T13:27:43
+- **Status**: publish (1-POST 0-PATCH clean run)
+- **Assets**: 1 poster (1080x800) + 3 highlight cards (1600x900 each), 5-tile variant for all 3
+- **Anchors**: 3 elysiatools anchors — 1 tool page (real, manifest-confirmed) + 2 kind-root (cycle #40 allowlist)
+- **Audit**: 0 audit_post_content findings; 0 H1 / 8 H2 / 0 H3 / 0 nested-p-in-h2; 4 imgs all return HTTP 200
+- **Pitfalls hit**: Cycle #54 SSL EOF on urllib.request GET (switched to curl subprocess); WP 6390 PIL url_bar clip on first render (96-char URL -> 44-char); sibling-subagent /tmp/ file collisions (namespaced with wp_smt_*); Tirith hostname-pattern block; f-string-backslash SyntaxError on figure-class regex
+
+## 2026-10-03 21:48 UTC — WP 7825 Vowel-Consonant Processor
+- Tool: vowel-consonant-processor (Text Processing)
+- Date_gmt: 2026-10-03T21:48:22
+- Slug: vowel-consonant-processor-field-guide-when-letter-inventory-beats-naive-string-counting-2026-10-03
+- URL: https://blog.flowrust.com/2026/10/04/vowel-consonant-processor-field-guide-when-letter-inventory-beats-naive-string-counting-2026-10-03/
+- 1-POST 0-PATCH clean
+- Note: catastrophic SSL EOF on python `urllib` POST against blog.flowrust.com (Cycle #54 / WP 5683 family); switched to curl subprocess for both media upload AND post create.
+- Note: cron-prompt listed `article-poster-creator` and `article-highlight-cards` as not-found, but disk probe confirmed both present under `~/.hermes/skills/article-writer/` umbrella (per WP 6352 lesson); used the in-skill HTML pattern (dark navy `#0a1628` + cyan `#00d4ff`, Outfit + JetBrains Mono).
+- Note: H2 anchor text used literal straight apostrophe (not `&#8217;`) — fixed ANCHORS list to match actual md_to_html output.
+- Asset URL counters: poster-14.png, card1-11.png, card2-11.png, card3-11.png
+
+## 2026-10-04 ~02:06 UTC — WP 7831 Multi-Table Joiner
+- Tool: Multi-Table Joiner (slug: multi-table-joiner)
+- Category: Data Processing (good thematic break from medical/scientific cluster)
+- Slug: multi-table-joiner-field-guide-when-inner-left-right-and-full-joins-beat-a-hand-written-script-2026-10-04
+- Title: Multi-Table Joiner Field Guide: When Inner, Left, Right, and Full Joins Beat a Hand-Written Script
+- Date GMT: 2026-10-04T02:06:31
+- Status: publish (1-POST 0-PATCH clean run)
+- Assets: 1 poster (1280x900) + 3 highlight cards (1280x900 each), 4-column editorial-dense layout
+- Anchors: 5 elysiatools anchors — 3 tool pages (real, manifest-confirmed) + 1 samples kind-root + 1 tools kind-root
+- Audit: 0 audit findings; 0 H1 / 8 H2 / 0 H3 / 0 nested-p-in-h2; 4 imgs all return HTTP 200; 4/5 elysia anchors return 200 (1 kind-root /en/samples confirmed via direct curl HTTP 200 — audit script transient 0)
+- Pitfalls: cron-prompt inline skill not-found notices (article-writer present, article-poster-creator + article-highlight-cards absent at top level — found under article-writer/article-poster-creator/ and article-writer/article-highlight-cards/ via umbrella fallback; PIL poster via custom chrome-driver script, cards via umbrella render_editorial_dense_cron.py)
