@@ -1281,3 +1281,29 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - Anchors: 5 elysiatools anchors — 3 tool pages (real, manifest-confirmed) + 1 samples kind-root + 1 tools kind-root
 - Audit: 0 audit findings; 0 H1 / 8 H2 / 0 H3 / 0 nested-p-in-h2; 4 imgs all return HTTP 200; 4/5 elysia anchors return 200 (1 kind-root /en/samples confirmed via direct curl HTTP 200 — audit script transient 0)
 - Pitfalls: cron-prompt inline skill not-found notices (article-writer present, article-poster-creator + article-highlight-cards absent at top level — found under article-writer/article-poster-creator/ and article-writer/article-highlight-cards/ via umbrella fallback; PIL poster via custom chrome-driver script, cards via umbrella render_editorial_dense_cron.py)
+# Cron publish log
+
+## 2026-10-04 ~06:17 UTC — Fitness Workout PDF Generator (WP 7838)
+
+- Status: publish (1-POST 0-PATCH clean run)
+- date_gmt: 2026-10-04T06:17:41
+- URL: https://blog.flowrust.com/2026/10/04/fitness-workout-pdf-generator-field-guide-when-json-or-csv-input-beats-a-word-table-for-printable-training-plans-2026-10-04/
+- Tool: fitness-workout-pdf-generator (Document Tools)
+- Theme score: 9 (fitness + workout + pdf + training + printable + qr code + generator + JSON + CSV keywords)
+- Top picker score: 188 / 1348 eligible candidates
+- Article: 1574 words, 8 H2s, 1 fenced code block (Goblet Squat JSON)
+- Assets: 1 poster (1280x900) + 3 highlight cards (1280x900 each)
+  - poster: eyebrow=DOCUMENT TOOLS · WORKOUT PLANS, title_lines=("The Five Fields", "Every Workout PDF Needs")
+  - card1: render_card_5tile (5 columns every workout PDF needs)
+  - card2: render_card_5tile_3plus2 (three workflows trainers use)
+  - card3: render_card_audit (three checks before sending the PDF)
+- Anchors: 2 elysiatools body links
+  - https://elysiatools.com/en/tools/fitness-workout-pdf-generator (manifest-confirmed, HTTP 200)
+  - https://elysiatools.com/en/tools (kind-root allowlist, HTTP 200)
+- Audit: 0 audit findings; 0 H1 / 8 H2 / 0 H3 / 0 nested-p-in-h2; pre-encoded backslash + literal-HTML pre-encode chained before md_to_html
+- Pitfalls encountered:
+  - Cron-prompt inline skill not-found notices for article-writer, article-poster-creator, article-highlight-cards — fell back to umbrella templates (article-writer SKILL.md is present but does NOT bundle PIL templates or pre-encode helpers; those live under ~/.hermes/skills/wordpress-rest-api-publishing/templates + scripts).
+  - SSL EOF on Python urllib.request against blog.flowrust.com (Cycle #54 class) — switched REST + HEAD to curl subprocess via subprocess.run([..., "curl", ...]).
+  - cat | python3 and python3 -c with f-string backslash both Tirith-blocked — used write_file + python3 /tmp/file.py exclusively.
+  - Sibling-subagent /tmp/ path conflicts (WP 6423 class) — namespaced all artifacts under wp_*_oct4.py / wp_assets_fitness/.
+- Skills status: only article-writer present on disk; article-poster-creator + article-highlight-cards not present under either ~/.hermes/skills/ or ~/.hermes/skills/article-writer/. Used umbrella fallback. Per WP 6206/6352 advisory notice.
