@@ -1391,3 +1391,59 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
   - Tirith blocks `cat | python3` and `curl | python3` (pipe-to-interpreter / pipe-to-shell) — used `write_file` + `python3 /file.py` and curl-with-temp-files exclusively.
   - render_card_4tile_compact required sys.path tweak — uses `import pil_poster_and_cards_network_theme` which needs the templates dir on sys.path.
 - Visual QA: poster + 3 cards inspected via vision_analyze pre-POST; no clipping after re-render, no tofu, no overlap. Magic bytes render cleanly.
+
+## 2026-10-05T07:10:46Z — WP 7875 — pcie-link-training-ltssm-lane-margining-eye-decoder-field-guide-when-the-rate-identifier-walk-and-the-equalization-phase-bytes-decide-whether-your-gen5-bring-up-lands-at-l0-or-rcuclock
+- Tool: PCIe Link Training LTSSM & Lane Margining Eye Decoder (Network)
+- date_gmt: 2026-10-05T07:10:46
+- url: https://blog.flowrust.com/2026/10/05/pcie-link-training-ltssm-lane-margining-eye-decoder-field-guide-when-the-rate-identifier-walk-and-the-equalization-phase-bytes-decide-whether-your-gen5-bring-up-lands-at-l0-or-rcuclock/
+- Assets: poster (1080x800) + 3 cards (1600x900), all visual QA passed (no tofu)
+- Audit: 0 issues; featured_media=0; elysia anchors: tool page (1) + root (2); all 200
+- Cards: 5tile rate identifiers, 2col equalization audit, 4tile-compact heatmap
+
+## 2026-10-05T11:33:54 — WP 7881 — OpenAPI to Postman Collection Field Guide
+- slug: `openapi-to-postman-collection-field-guide-when-path-trie-folders-ref-resolution-and-securityscheme-mapping-decide-whether-your-collection-imports-cleanly-or-crashes-the-runner-2026-10-05`
+- url: https://blog.flowrust.com/2026/10/05/openapi-to-postman-collection-field-guide-when-path-trie-folders-ref-resolution-and-securityscheme-mapping-decide-whether-your-collection-imports-cleanly-or-crashes-the-runner-2026-10-05/
+- category: Development
+- patches: 2 (MERGED_BULLET_LIST + MERGED_NUMBERED_LIST round-trips via POST /wp/v2/posts/7881)
+- assets: poster-7877, card1-7878, card2-7879, card3-7880
+- Status: publish (clean after 2 PATCH round-trips)
+- Tool: OpenAPI to Postman Collection (Development, score=174)
+- date_gmt: 2026-10-05T11:33:54
+- Article: 8 H2s, 0 H3s, 0 H1s, 1 article-poster, 3 highlight-cards, 4 ul/ol with 15 li items
+- Anchor set: 4 elysia anchors (3 tool + 1 kind-root + 1 cross-link = 4 unique; primary tool appears 3x)
+  - openapi-to-postman-collection (primary, 3x)
+  - toml-ini-hcl-envfile-nix-dotenv-kubernetes-configmap-secret-config-format-bridge (cross-link)
+  - api-response-diff-semantic-analyzer (cross-link)
+  - /en/tools (kind-root)
+- Picker: sparse_category_picker fallback — top eligible candidate after BOM dedup
+- All anchors validated via validate_elysia_anchors: real tools in tool-manifest.json
+- Audit (post-2-PATCH): 0 findings; 4 image URLs + 4 elysia anchor URLs + permalink return HTTP 200; featured_media=0
+- Pitfalls encountered:
+  - Picker top-1 was `data-bom-remover` but Cycle #52 lesson applied: WP 7581 (2026-09-27) used the phantom slug `bom-character-remover` (NOT catalog ID) — skipped to avoid thematic dup. Picked `openapi-to-postman-collection` instead.
+  - First-pass render_card_4tile_compact card1 had Unicode `→` arrow rendering as tofu boxes (WP 5699/6135 family). Re-rendered with `->` ASCII; clean.
+  - First-pass card3 audit rows had body text right-edge clipped. Re-rendered with shorter body text; clean.
+  - First-pass card2 takeaway had `→` arrow tofu box. Re-rendered without arrows; clean.
+  - First-pass poster eyebrow had `×` tofu in `3.x`. Re-rendered without `×`; clean.
+  - First POST had 2 audit findings: MERGED_BULLET_LIST (4 blocks) + MERGED_NUMBERED_LIST (1 block) — wpautop collapsed inline `- <strong>lead</strong> ...` and `1. <strong>...</strong> ...` patterns into merged `<p>` (WP 5676/6135 family). PATCH 1 fixed 3 blocks (numbered + 2 en-dash). PATCH 2 fixed remaining 2 blocks (after wpautop converted en-dash to `&#8211;` HTML entity). Total 2 PATCH round-trips.
+  - SSL EOF avoided via curl subprocess transport for upload + audit fetch + HEAD probes (Cycle #54 recipe). 0 SSL EOF in this run.
+  - Skill availability probe (WP 6206/6352 advisory): cron-prompt skip notice was correct — `~/.hermes/skills/article-poster-creator/` and `~/.hermes/skills/article-highlight-cards/` genuinely missing on disk. Used umbrella PIL templates from `~/.hermes/skills/wordpress-rest-api-publishing/templates/`.
+  - Cron-prompt `execute_code` blocked — used `terminal` + `write_file` + `python3 /file.py` exclusively.
+  - Sibling-subagent `/tmp/` path conflicts (WP 6423 class) — namespaced all artifacts under `wp_*_oct5_openapi*` to avoid collisions.
+- Visual QA: poster + 3 cards inspected via vision_analyze pre-POST (and again after re-renders); no tofu after fixes, no right-edge clipping.
+
+## WP 7892 — 2026-10-05T15:50:33 UTC — bulk-email-extractor
+
+- **Title**: Bulk Email Extractor Field Guide: When Plus-Addressing, Gmail Dotted Aliasing, and Trailing Dots Slip Past Naive Regex
+- **Slug**: bulk-email-extractor-field-guide-when-plus-addressing-gmail-dotted-aliasing-and-trailing-dots-slip-past-naive-regex
+- **URL**: https://blog.flowrust.com/2026/10/05/bulk-email-extractor-field-guide-when-plus-addressing-gmail-dotted-aliasing-and-trailing-dots-slip-past-naive-regex/
+- **Tool**: bulk-email-extractor (Text Processing — score=5 theme cluster)
+- **Featured media**: 0 (COSESAI hero bypass)
+- **Assets**: 1 poster (cover.png, 1280x900) + 3 cards (card-1.png, card-2.png, card-3.png, 1600x900)
+- **Anchors**: 5 elysia-tools links (2 tools, 1 sample, 2 tools kind-root)
+- **Date_gmt**: 2026-10-05T15:42:55
+- **Audit findings**: 0 (after 1 PATCH round-trip for POSSIBLE_BACKSLASH_STRIPPED)
+- **PATCH history**: 1 round-trip (backslashes stripped by wpautop on first POST — WP 5717/5822/6060/6149/6358 family, source-side pre_encode_backslash did not preempt cost on this article)
+- **Curl transport**: subprocess per Cycle #54 lesson — 0 SSL EOF
+- **Visual QA**: vision_analyze on all 4 assets, 0 clipping/tofu/overflow
+- **Skill drift notice**: article-poster-creator and article-highlight-cards skills missing from disk; used umbrella PIL/audit pipeline (templates/pil_poster_and_cards_network_theme.py + templates/custom_pil_card_layouts.py + scripts/wp_post_audit.py)
+
