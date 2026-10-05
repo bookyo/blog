@@ -1,0 +1,35 @@
+# PCR Annealing Temperature Calculator Field Guide: When the Simple Rule, the Rychlik Formula, and a 3°C Mismatch Decide Whether Your Bands Land Clean or Your Gradient Runs Twice
+
+<strong>PCR primers drift more than the calculator implies.</strong> Most lab notebooks quote Ta = Tm − 5°C as if it were a single number, but the actual annealing temperature depends on which Tm you measure, how the product's duplex stability pulls the reaction hotter, and how far apart the forward and reverse primers sit. Set Ta five degrees below the wrong Tm, and your reaction smears; set it five above, and you amplify nothing at all. The [PCR Annealing Temperature Calculator](https://elysiatools.com/en/tools/annealing-temperature-calculator) encodes both the bench rule and the Rychlik 1990 formula side by side, so the same input pair returns two temperatures, a 52–58°C gradient window, and a primer-spread warning — everything you need to plan a gradient run from a fresh primer order without consulting three papers.
+
+## What the two rules actually compute
+
+The simple rule is the lower primer's Tm minus five. Feed in forward Tm = 62°C and reverse Tm = 60°C and the calculator returns Ta = 55°C, because the lower of the two values drives the rule. The Rychlik 1990 formula weights the lower primer's Tm at 30% and the product's Tm at 70%, then subtracts 14.9: Ta = 0.3 × 60 + 0.7 × 85 − 14.9 = 62.6°C. The two answers differ by 7.6°C on the same primer pair, and that gap is not a bug — it reflects two different theories of what annealing is. The bench rule says annealing happens when both primers can find their sites; the formula says productive extension happens when the full amplicon holds together. For most primer pairs both descriptions point at roughly the same neighborhood, and the calculator's job is to give you both numbers so you can bracket the right Ta with a gradient.
+
+## The ±3°C gradient window
+
+Every Ta value comes with a 52–58°C gradient window for the standard pair, or whatever six-degree spread surrounds the recommended point for your inputs. The window is the cheapest information in the output and the one most often ignored. A gradient block at 52, 54, 56, and 58°C across four tubes costs the same as a single-tube reaction at whatever Ta you guessed; the only added cost is four lanes on the gel. Run the gradient first, and the single-tube optimization on the next pass is almost trivial. Run a single-tube reaction at a guessed Ta and you either get a smear that you cannot interpret, or no band that you also cannot interpret, and the next reaction costs the same amount of time as the gradient would have.
+
+## When the Tm spread fires the warning
+
+The calculator flags primer pairs whose forward and reverse Tm differ by more than 3°C. The flag is not aesthetic — a 5°C spread means the lower-Tm primer starts binding at a temperature where the higher-Tm primer is still mostly unbound, so the early cycles enrich for one strand of product and the late cycles work harder to balance. The signal on the gel is a band that looks right at cycle 25 and disappears at cycle 35, or a band that gets brighter in the wrong place. Either the primers need redesigning or the reaction needs a touchdown protocol that ramps the annealing temperature down over the first ten cycles. The warning is the calculator's way of telling you the answer will be unreliable until one of those two fixes happens.
+
+## Why the simple rule smears on GC-rich products
+
+The bench rule treats the primer's Tm as if the entire product were equally GC-rich. For a 200 bp amplicon with 60% GC and Tm around 85°C, the primer's Tm is around 60°C but the product's own duplex stability is much higher than the primer's. At Ta = 55°C, both primers bind, but the extension product stays hybridized long after the polymerase has finished reading it, so the next cycle's primers bind to a template that has not yet fully denatured. The smear on the gel is partly primer-dimers and partly incomplete denaturation, and raising Ta to 62 or 63°C sharpens both. The Rychlik formula's prediction of 62.6°C is the same intuition made quantitative.
+
+## The Rychlik formula on short amplicons
+
+Below 100 bp, the product's Tm and the primer's Tm start to converge, and the Rychlik formula's 70% weight on the product pulls Ta back toward the simple rule. For a 60 bp amplicon with Tm around 75°C, Rychlik returns Ta = 0.3 × 60 + 0.7 × 75 − 14.9 = 55.6°C — only 0.6°C above the simple rule's 55°C. That convergence is why short PCR products tolerate a wider range of Ta and why primer-design tools treat the amplicon length as a separate axis from the Tm calculation. The calculator lets you dial the product Tm directly so you can see how short or long amplicons shift the recommended Ta without re-running the design tool.
+
+## How to pick between the two rules in practice
+
+Use the simple rule as the lower end of the gradient when you have no product Tm estimate. Use the Rychlik formula as the upper end when you can read the product Tm off a primer-design tool's amplicon panel. The two together give you a six-degree window that brackets the productive Ta for almost any primer pair. For a standard pair with Tm 62/60 and a 200 bp product of Tm 85°C, the gradient runs 55 to 62.6°C, and one of the four tubes in a 52–58°C block will be bright and clean. If both ends of the window produce smears, the primers need redesign, not retuning.
+
+## What "too low" and "too high" look like
+
+Ta too low: primer-dimers at the bottom of the gel, a smear from the well down to the expected band, and a band that is the right size but the wrong brightness. The polymerase is extending off the primers themselves before it ever finds the template. Ta too high: no band at all, or a band that appears at cycle 35 but not at cycle 25. The polymerase is rejecting the primer-template duplex faster than it can extend. Both are recoverable on the next gradient run if you keep the same primer pair; both are uninformative if you only ran one tube.
+
+## Putting the calculator into a daily workflow
+
+Run the calculator first thing when primers arrive, before you order the polymerase. The output is a Ta, a gradient window, and a primer-spread flag — three numbers that decide whether the rest of the day's work is a single-tube reaction or a redesign session. The 30 seconds it takes to enter four Tm values costs less than one failed gradient, and the calculator remembers no state, so each new primer pair is a fresh calculation. The [PCR Annealing Temperature Calculator](https://elysiatools.com/en/tools/annealing-temperature-calculator) is the kind of tool that should be open in a tab whenever the thermocycler is loading.
