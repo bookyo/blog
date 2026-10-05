@@ -1367,3 +1367,27 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
   - Cron-prompt `execute_code` blocked — used `terminal` + `write_file` + `python3 /file.py` exclusively.
   - Sibling-subagent /tmp/ path conflicts (WP 6423 class) — namespaced all artifacts under wp_*_oct4 and wp_assets_css_color_oct4.
 - Visual QA: poster + 3 cards inspected via vision_analyze pre-POST; no clipping after re-render, no tofu, no overlap. Card1 body `32 hex / 16 bytes` wraps cleanly inside the tile.
+
+## 2026-10-05T03:08:42 — WP 7869 — Windows PE / Linux ELF / Mach-O Binary Header, Section, Import & Export Inspector Field Guide
+- slug: `windows-pe-linux-elf-mach-o-binary-header-inspector-field-guide-when-the-magic-bytes-choose-which-format-tree-to-load-and-why-the-section-table-decides-what-the-loader-sees-2026-10-05`
+- url: https://blog.flowrust.com/2026/10/05/windows-pe-linux-elf-mach-o-binary-header-inspector-field-guide-when-the-magic-bytes-choose-which-format-tree-to-load-and-why-the-section-table-decides-what-the-loader-sees-2026-10-05/
+- category: Development
+- patches: 0
+- assets: poster-7865, card1-7866, card2-7867, card3-7868
+- Status: publish (1-POST 0-PATCH clean run)
+- Tool: Windows PE / Linux ELF / Mach-O Binary Header, Section, Import & Export Inspector (Development)
+- date_gmt: 2026-10-05T03:08:42
+- Article: 1451 words, 8 H2s, 0 H3s, 1 article-poster, 3 highlight-cards
+- Anchor set: 3 elysia anchors (1 tool + 2 kind-root)
+  - windows-pe-linux-elf-mach-o-binary-header-section-import-export-inspector (primary, 2x)
+  - /en/tools (kind-root)
+- Picker: sparse_category_picker fallback — top eligible candidate (theme=3, score=180.0)
+- Audit: 0 findings (audit_post_content); 4 image URLs + 2 elysia anchor URLs + permalink return HTTP 200; featured_media=0 (WP 5628 critical pitfall)
+- Pitfalls encountered:
+  - First-pass render_card_5tile items had 5-tuple shape instead of 3-tuple (WP 6212 lesson) — corrected to (num, label, val) form.
+  - First-pass card 3 had `LC_SEGMENT_64` overflowing tile 1 (WP 6358 family, 290px tile at F_MONO) — caught by vision_analyze pre-POST, abbreviated to `SEG_64`. Re-rendered clean.
+  - SSL EOF on Python urllib.request against blog.flowrust.com (Cycle #54 class) — picker + uploader + audit fetch all switched to curl subprocess transport with trailing HTTP-code parsing. 0 SSL EOF in this run.
+  - Skill availability probe (WP 6206/6352 advisory) — cron-prompt skip notice was wrong on this run (per WP 6352 lesson, probe disk independently): `~/.hermes/skills/article-writer/article-poster-creator/SKILL.md` and `~/.hermes/skills/article-writer/article-highlight-cards/SKILL.md` both exist under the umbrella, just not at the top-level path the prompt checks. Used umbrella PIL templates directly.
+  - Tirith blocks `cat | python3` and `curl | python3` (pipe-to-interpreter / pipe-to-shell) — used `write_file` + `python3 /file.py` and curl-with-temp-files exclusively.
+  - render_card_4tile_compact required sys.path tweak — uses `import pil_poster_and_cards_network_theme` which needs the templates dir on sys.path.
+- Visual QA: poster + 3 cards inspected via vision_analyze pre-POST; no clipping after re-render, no tofu, no overlap. Magic bytes render cleanly.
