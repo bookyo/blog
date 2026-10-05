@@ -1447,3 +1447,15 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Visual QA**: vision_analyze on all 4 assets, 0 clipping/tofu/overflow
 - **Skill drift notice**: article-poster-creator and article-highlight-cards skills missing from disk; used umbrella PIL/audit pipeline (templates/pil_poster_and_cards_network_theme.py + templates/custom_pil_card_layouts.py + scripts/wp_post_audit.py)
 
+
+## 2026-10-05 19:55 UTC — WP 7899 — BOM Character Remover Field Guide
+- tool: data-bom-remover (BOM Character Remover, Data Processing)
+- title: "The BOM Character Remover Field Guide: When an Invisible Three-Byte Prefix Silently Breaks Your CSV Imports"
+- slug: bom-character-remover-field-guide-when-an-invisible-three-byte-prefix-silently-breaks-your-csv-imports-2026-10-05
+- date_gmt: 2026-10-05T19:55:53
+- post_id: 7899
+- post_link: https://blog.flowrust.com/2026/10/06/bom-character-remover-field-guide-when-an-invisible-three-byte-prefix-silently-breaks-your-csv-imports-2026-10-05/
+- assets: poster (1080x800), 3 cards (1600x900) — all rendered via umbrella PIL templates, vision_analyze QA clean
+- anchors: 4 valid (/en/tools/data-bom-remover, /en/tools/mojibake-repair, /en/tools/xlsx-csv-detect-normalize, /en/tools kind-root)
+- audit: 0 findings (content clean), 0 wpautop artifacts, 0 backslash strips, 0 empty H1/H2, 8 body H2s
+- run mode: 1-POST 0-PATCH clean
