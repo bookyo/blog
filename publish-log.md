@@ -1475,3 +1475,13 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 ## 2026-10-06T12:43:10 — totp-hotp-offline-generator (WP 7973)
 - Title: TOTP and HOTP Field Guide: When Your 2FA Stops Needing a Phone
 - URL: https://blog.flowrust.com/2026/10/06/totp-hotp-offline-generator/
+
+## 2026-10-06T16:55:49 — tip-sales-tax-currency-conversion-discount-stacking-waterfall-field-guide-when-sequential-stacking-tax-cascade-tip-etiquette-and-mid-market-fx-decide-the-final-receipt-line-2026-10-06 (WP 7980)
+- Title: Tip + Sales Tax + Currency Conversion + Discount Stacking Final Price Waterfall Field Guide: When Sequential Discounts, Tax Cascade, Tip Etiquette, and Mid-Market FX Decide What You Actually Pay at Checkout
+- URL: https://blog.flowrust.com/2026/10/07/tip-sales-tax-currency-conversion-discount-stacking-waterfall-field-guide-when-sequential-stacking-tax-cascade-tip-etiquette-and-mid-market-fx-decide-the-final-receipt-line-2026-10-06/
+- Tool: Tip + Sales Tax + Currency Conversion + Discount Stacking Final Price Waterfall Calculator (id=tip-sales-tax-currency-conversion-discount-stacking-calculator)
+- Category: Calculator
+- Cards: 3 (4-tile compact + 5-tile + 2-col)
+- Elysia anchors: 2 (1 tool id, 1 plain-text mention)
+- Audit: 0 findings pre-POST, 1 MERGED_BULLET_LIST post-wpautop → 1 PATCH → 0 findings
+- Status: publish, featured_media=0
