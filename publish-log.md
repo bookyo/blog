@@ -1459,3 +1459,19 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - anchors: 4 valid (/en/tools/data-bom-remover, /en/tools/mojibake-repair, /en/tools/xlsx-csv-detect-normalize, /en/tools kind-root)
 - audit: 0 findings (content clean), 0 wpautop artifacts, 0 backslash strips, 0 empty H1/H2, 8 body H2s
 - run mode: 1-POST 0-PATCH clean
+
+## 2026-10-06 08:37:30 UTC — Cron Auto-Publish (Jarvis)
+- WP ID: 7967
+- Tool: Security Headers Checker (slug: security-headers-checker)
+- Source: tool-manifest.json (Security category, 16 keywords)
+- Title: Security Headers Checker Field Guide: When HSTS, CSP, and the Order of Operations Decide Whether a Downgrade Attack Lands
+- Slug: security-headers-checker-field-guide-when-hsts-csp-and-the-order-of-operations-decide-whether-a-downgrade-attack-lands-2026-10-06
+- URL: https://blog.flowrust.com/2026/10/06/security-headers-checker-field-guide-when-hsts-csp-and-the-order-of-operations-decide-whether-a-downgrade-attack-lands-2026-10-06/
+- date_gmt: 2026-10-06T08:36:12
+- Cards: 3 (5-tile x 2 + 4-tile-compact x 1)
+- Elysia anchors: 4 (security-headers-checker x3, /en/tools root)
+- Audit: 0 findings, 0 H1, 8 H2, 1 poster, 3 cards, featured_media=0
+
+## 2026-10-06T12:43:10 — totp-hotp-offline-generator (WP 7973)
+- Title: TOTP and HOTP Field Guide: When Your 2FA Stops Needing a Phone
+- URL: https://blog.flowrust.com/2026/10/06/totp-hotp-offline-generator/
