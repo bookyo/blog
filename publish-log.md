@@ -1485,3 +1485,7 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - Elysia anchors: 2 (1 tool id, 1 plain-text mention)
 - Audit: 0 findings pre-POST, 1 MERGED_BULLET_LIST post-wpautop → 1 PATCH → 0 findings
 - Status: publish, featured_media=0
+
+## 2026-10-06T21:08:04 — oauth-pkce-field-guide-when-the-code-verifier-and-the-intercepted-code-sit-on-the-same-wire (WP 7987)
+- Title: OAuth PKCE Field Guide: When the code_verifier and the intercepted code sit on the same wire
+- URL: https://blog.flowrust.com/2026/10/07/oauth-pkce-field-guide-when-the-code-verifier-and-the-intercepted-code-sit-on-the-same-wire/
