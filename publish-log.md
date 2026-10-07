@@ -1489,3 +1489,29 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 ## 2026-10-06T21:08:04 — oauth-pkce-field-guide-when-the-code-verifier-and-the-intercepted-code-sit-on-the-same-wire (WP 7987)
 - Title: OAuth PKCE Field Guide: When the code_verifier and the intercepted code sit on the same wire
 - URL: https://blog.flowrust.com/2026/10/07/oauth-pkce-field-guide-when-the-code-verifier-and-the-intercepted-code-sit-on-the-same-wire/
+
+## 2026-10-07T01:32:22 — WP 7994 — Em-dash & Typographic Purifier (Field Guide)
+
+- Title: Em-dash & Typographic Purifier Field Guide: When AI-Generated Plain ASCII, Markdown Source, and Six Quote and Dash Decisions Decide Whether Your Manuscript Reads as Polished or as 1995
+- URL: https://blog.flowrust.com/2026/10/07/em-dash-and-typographic-purifier-field-guide-when-ai-generated-plain-ascii-markdown-source-and-six-quote-and-dash-decisions-decide-whether-your-manuscript-reads-as-polished-or-as-1995-2026-10-07/
+- Tool: em-dash-and-typographic-purifier (Text Processing)
+- date_gmt: 2026-10-07T01:32:22
+- Cards: 3 (5-tile "Six Decisions the Purifier Actually Makes" + 5-tile "Three Dashes, Three Different Jobs" + 5-tile "Three Spaces, Three Dots, One Ellipsis")
+- elysia anchors: 6 (5 unique tools + 1 kind-root) — all 200 OK
+- audit: 1 findings
+- Status: publish, featured_media=0
+- PATCH: MERGED_NUMBERED_LIST fixed — rebuilt 5-item numbered paragraph as <ol><li>, re-audit 0 findings
+
+## 2026-10-07T05:48:38 — environment-config-diff-visualizer (WP 8003)
+- Title: Environment Config Diff Visualizer Field Guide: When Three Config Files, Three Formats, and One Missing Key Decide Whether Your Deploy Lights Up or Returns 502
+- URL: https://blog.flowrust.com/2026/10/07/environment-config-diff-visualizer-field-guide-when-three-config-files-three-formats-and-one-missing-key-decide-whether-your-deploy-lights-up-or-returns-502-2/
+- Tool: Environment Config Diff Visualizer (id=environment-config-diff-visualizer)
+- Category: Development
+- date_gmt: 2026-10-07T05:48:38
+- Cards: 3 (5-tile "Four Things the Diff Actually Computes" + 5-tile "Four Headers, Four Parsers, One Bundle" + 5-tile "Three Cases Where Masking Hides Drift")
+- elysia anchors: 4 (1 tool id, 2 samples, 1 trailing CTA) — all 200 OK
+- audit: 0 findings pre-POST (1 ORPHANED_CODE false-positive from literal `<missing>` in backtick code span → entity-encoded as `<code>&lt;missing&gt;</code>`; 3 MERGED_NUMBERED_LIST from `1. **X**` markdown numbered paragraphs → rebuilt as `<ol><li>` HTML)
+- Status: publish, featured_media=0
+- WP 8001 (first POST with audit defects) trashed
+- Pitfall: literal `<missing>` placeholder text inside backtick code span triggers the wp_post_audit ORPHANED_CODE false-positive class because the parent-stack regex parses `<missing>` as a tag named 'missing'. Source-side fix: entity-encode as `<code>&lt;missing&gt;</code>`. Same pattern applies to any literal `<X>` placeholder inside backtick spans.
+- Pitfall: `1. **X.** ... 2. **Y.** ... 3. **Z.**` on consecutive lines inside one paragraph is a MERGED_NUMBERED_LIST positive. Source-side fix: rewrite as explicit `<ol><li>` HTML. This article had 3 such blocks (3 reading rules, 3 reasons to mix formats, 5 cleanup steps); rebuilt all 3 as `<ol><li>`.
