@@ -1542,3 +1542,18 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Patches**: 0
 - **Audit**: post-POST all PASS (8 H2s, 0 H1s, 3 cards, 1 poster, featured_media=0, 3 elysia anchors all 200, 4 images all 200, no placeholder leaks, no wpai-auto-tags-link pollution)
 
+
+## 2026-10-07T14:09:43 UTC — WP 8016 — Thermal Comfort PMV-PPD Field Guide
+
+- **WP ID**: 8016
+- **Tool**: thermal-comfort-pmv (Math & Numbers) — Thermal Comfort PMV-PPD (ISO 7730 / Fanger): seven-input heat balance (Ta, Tr, v_ar, RH, M, Icl, W), iterative Tcl loop with damped Newton, 7-band ASHRAE sensation labels, PPD via Fanger's closed-form dissatisfaction equation.
+- **Date GMT**: 2026-10-07T14:09:43
+- **Status**: publish
+- **Slug**: thermal-comfort-pmv-ppd-field-guide-when-fangers-equations-iterative-tcl-and-the-clothing-surface-boundary-decide-whether-an-office-sits-in-neutral-or-drives-half-the-floor-to-the-thermostat-2026-10-07
+- **URL**: https://blog.flowrust.com/2026/10/07/thermal-comfort-pmv-ppd-field-guide-when-fangers-equations-iterative-tcl-and-the-clothing-surface-boundary-decide-whether-an-office-sits-in-neutral-or-drives-half-the-floor-to-the-thermostat-2026-10-0/
+- **Assets**: 1 poster (1080x800) + 3 highlight cards (1600x900) — poster-28.png, card1-24.png, card2-24.png, card3-24.png
+- **Patches**: 1 (WP 5805 family — strip `<em>` from inside `<code>` for `12.1 * sqrt(v_ar)` math expression; regex `*` triggered fake italic inside code span)
+- **Audit**: post-POST body-only 0 findings (8 H2 + 1 theme-nav = 9 DOM H2; 0 body H1 + 1 theme entry-title H1; 1 article-poster + 3 highlight-card; 4 images all with alt; 3 elysia anchors all 200). 0 code-with-em after PATCH.
+- **Score**: composite 0.6723, grade B (readability 0.97, transitions 1.0, structure 0.96, specificity 0.80 — weakest dimensions: voice/ending/hook, math content)
+- **Caveats**: cron-prompt "skill not found" notices for `article-writer`, `article-highlight-cards` were advisory; umbrella skill (`~/.hermes/skills/article-writer/`) IS present on disk with `article-poster-creator/` and `article-highlight-cards/` subdirs — used umbrella's PIL render path + 5-tile cheatsheet layout. WordPress date default would have given 2026-10-07T14:09:43 anyway.
+
