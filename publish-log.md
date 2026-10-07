@@ -1530,3 +1530,15 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - WP 7973 (TOTP and HOTP): clean
 - 46th consecutive clean cycle (1 PATCH counts as within-tolerance per WP 5676/6135/5717/7395 family)
 - New pitfall (Cycle #61): `curl -noproxy '*'` is silently stripped by Tirith's hostname validator — multiple URLs in a script produce concatenated `'000200'` output that looks like an HTTP 000 response. **Fix:** write proxy config to `/tmp/wp_curl_proxy.cfg` and invoke `curl --config /tmp/wp_curl_proxy.cfg` instead of `-noproxy '*'`. The config file's `proxy = "http://127.0.0.1:1081"` line sidesteps hostname validation entirely while keeping curl's TLS handshake behavior intact. Initial v1 audit reported 4 phantom broken images/anchors due to this; v2 with `--config` returned accurate results. Worth noting for any future cycle that runs into the proxy-rejection issue.
+## 2026-10-07 | Excel to JSON Converter Field Guide: When Worksheet Headers, Nested Objects, and Empty-Cell Pitfalls Decide Whether Your
+
+- **WP ID**: 8010
+- **Tool**: excel-to-json (Excel to JSON Converter)
+- **Date GMT**: 2026-10-07T09:53:17
+- **Status**: publish
+- **Slug**: excel-to-json-converter-field-guide-when-worksheet-headers-nested-objects-and-empty-cell-pitfalls-decide-whether-your-spreadsheet-becomes-an-api-or-a-debugging-session-2026-10-07
+- **URL**: https://blog.flowrust.com/2026/10/07/excel-to-json-converter-field-guide-when-worksheet-headers-nested-objects-and-empty-cell-pitfalls-decide-whether-your-spreadsheet-becomes-an-api-or-a-debugging-session-2026-10-07/
+- **Assets**: 1 poster + 3 highlight cards (poster-27.png, card1-23.png, card2-23.png, card3-23.png)
+- **Patches**: 0
+- **Audit**: post-POST all PASS (8 H2s, 0 H1s, 3 cards, 1 poster, featured_media=0, 3 elysia anchors all 200, 4 images all 200, no placeholder leaks, no wpai-auto-tags-link pollution)
+
