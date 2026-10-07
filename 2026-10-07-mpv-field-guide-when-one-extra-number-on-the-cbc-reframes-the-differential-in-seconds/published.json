@@ -1,0 +1,363 @@
+{
+  "id": 8024,
+  "date": "2026-10-08T02:41:39",
+  "date_gmt": "2026-10-07T18:41:39",
+  "guid": {
+    "rendered": "https://blog.flowrust.com/2026/10/08/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07/",
+    "raw": "https://blog.flowrust.com/2026/10/08/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07/"
+  },
+  "modified": "2026-10-08T02:41:41",
+  "modified_gmt": "2026-10-07T18:41:41",
+  "password": "",
+  "slug": "mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07",
+  "status": "publish",
+  "type": "post",
+  "link": "https://blog.flowrust.com/2026/10/08/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07/",
+  "title": {
+    "raw": "MPV Field Guide \u2014 When One Extra Number on the CBC Reframes the Differential in Seconds",
+    "rendered": "MPV Field Guide \u2014 When One Extra Number on the CBC Reframes the Differential in Seconds"
+  },
+  "content": {
+    "raw": "<figure class=\"article-poster\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/poster-29.png\" alt=\"MPV field guide poster: MPV reads platelet age where the count cannot\"></figure>\n<p>A platelet count tells you how many platelets circulate; mean platelet volume tells you how old they are when they show up. MPV is the cheapest, fastest way to separate \"the marrow is not making them\" from \"the body is eating them faster than the marrow can replace them,\" and a single fL value plus the optional platelet count narrows the differential in seconds. This field guide explains what MPV measures, the four clinical patterns, the pre-analytical traps that invalidate the number, and where the analyzer tool fits.</p>\n<h2>What MPV Actually Measures</h2>\n<p><a href=\"https://blog.flowrust.com/tag/mean-platelet-volume/\" class=\"wpai-auto-tags-link\">Mean Platelet Volume</a> is the average size of circulating platelets, reported in femtoliters (fL). Most analyzers compute it from the platelet histogram \u2014 the same histogram that yields the platelet count itself. Healthy reference ranges sit around <strong>7.5 to 11.5 fL</strong>, but the range is method-dependent (impedance &gt; optical &gt; immuno) and lab-dependent.</p>\n<p>Why size matters: a young platelet released from the marrow is larger than a mature circulating one. When the marrow accelerates production under peripheral destruction, the average size of circulating platelets rises. When the marrow is suppressed, the circulating pool is older and smaller. MPV is therefore a production-kinetics proxy, not a clotting function test.</p>\n<p>The MPV analyzer tool reads the value, classifies it against the reference band, and \u2014 when you also enter the platelet count \u2014 produces a two-axis clinical pattern.</p>\n<h2>The Four Patterns When You Pair MPV With Platelet Count</h2>\n<p>The interesting diagnostic content appears when MPV is read alongside the platelet count. Four quadrants cover most non-marrow-failure presentations:</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/card1-25.png\" alt=\"Highlight card: the four-quadrant MPV differential paired with platelet count\" loading=\"lazy\"></figure>\n<ul><li><strong>Low MPV + low platelet count</strong> \u2192 marrow underproduction (aplastic anemia, chemotherapy, recent platelet transfusion, iron-deficiency regeneration, Wiskott-Aldrich).</li><li><strong>High MPV + low platelet count</strong> \u2192 peripheral destruction with marrow compensation (immune thrombocytopenia / ITP, post-splenectomy, DIC, sepsis in recovery).</li><li><strong>Low MPV + high platelet count</strong> \u2192 reactive thrombocytosis (iron deficiency resolving, post-splenectomy recovery, chronic inflammation).</li><li><strong>High MPV + high platelet count</strong> \u2192 myeloproliferative neoplasm suspicion (essential thrombocythemia, polycythemia vera, primary myelofibrosis).</li></ul>\n<p>The MPV analyzer reports this quadrant pattern as the headline interpretation and flags the high-MPV low-platelet case (ITP-class) explicitly because that pairing is the most actionable in a routine lab workup.</p>\n<h2>Worked Example \u2014 ITP at 12.5 fL With Platelets 45</h2>\n<p>A patient with newly identified bruising has the following CBC indices: platelet count <strong>45 \u00d710\u2079/L</strong> (low, reference 150\u2013400), MPV <strong>12.5 fL</strong> (high, reference 7.5\u201311.5), white count and hemoglobin within range. The MPV analyzer classifies this as \"High MPV \u2014 large platelets, peripheral destruction or macrothrombocytopenia.\"</p>\n<p>The clinical reasoning is the inverse of what the count alone suggests. A platelet count of 45 might look alarming; combined with MPV 12.5 it points to a marrow that is working hard to keep up, not to one that has failed. The tool does not make the diagnosis \u2014 ITP requires exclusion of secondary causes, review of the peripheral smear for schistocytes and clumping, and often bone-marrow biopsy in atypical cases \u2014 but it correctly reframes the question from \"why is the count low\" to \"what is destroying the platelets.\"</p>\n<h2>Worked Example \u2014 Normal Range Edge Case</h2>\n<p>MPV 6.8 fL with platelets 220 \u00d710\u2079/L. The count is normal and MPV is on the low end. The analyzer returns \"Normal\" rather than a flag, because low-normal MPV with a normal count fits healthy variation. This is a useful check against the reflex to flag every outside-of-strict-range value.</p>\n<p>The complementary pattern \u2014 MPV 12.8 fL with platelets 380 \u00d710\u2079/L \u2014 sits in the high-high quadrant. Both metrics are elevated, which is the myeloproliferative-neoplasm suspicion zone. The analyzer flags this pattern explicitly and recommends specialist referral rather than watchful waiting, because essential thrombocythemia can present with normal platelet counts for years before the count itself rises.</p>\n<h2>High MPV in Acute Myocardial Infarction</h2>\n<p>The clinical pattern with the strongest published prognostic signal outside hematology is <strong>elevated MPV after acute MI</strong>. Multiple cohort studies have shown that patients whose MPV is elevated at admission have larger infarcts, higher rates of in-hospital reinfarction, and worse six-month mortality than patients with normal MPV at the same troponin.</p>\n<p>The interpretation: large platelets are more metabolically active, contain more alpha and dense granules, and aggregate faster. An elevated MPV is therefore not just a marker of platelet activation but a marker of the subset of patients whose platelets will continue to drive thrombosis under standard dual antiplatelet therapy. The MPV analyzer does not replace the troponin or the ECG, but it is the cheapest hematology add-on to risk-stratify an MI patient on admission.</p>\n<h2>Method Matters \u2014 Impedance vs Optical vs Immuno</h2>\n<p><a href=\"https://blog.flowrust.com/tag/hematology/\" class=\"wpai-auto-tags-link\">Hematology</a> analyzers from different vendors report systematically different MPV values, even on the same sample. Impedance counters (Coulter principle) tend to read <strong>0.5 to 1.0 fL higher</strong> than optical counters, which in turn read higher than immunoplate (CD41/CD61) measurements. The implication is that the reference range printed on the analyzer's lab report may not match the range printed on a different vendor's analyzer.</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/card2-25.png\" alt=\"Highlight card: impedance vs optical vs immuno MPV method comparison\" loading=\"lazy\"></figure>\n<p>The MPV analyzer is therefore explicit that values are <strong>method-dependent</strong> and recommends comparing within the same lab and analyzer. A patient whose MPV jumps from 10.5 fL on a Beckman analyzer to 12.0 fL on a Sysmex analyzer has not had a clinical change \u2014 the lab has. This is the most common source of false-positive \"deterioration\" reports in clinic notes.</p>\n<h2>The EDTA Pre-Analytical Trap</h2>\n<p>Platelets swell in EDTA anticoagulant over time. A sample drawn at 8 AM and measured at 10 AM reads <strong>0.5 to 1.5 fL higher</strong> than the same sample measured within 30 minutes of draw. The MPV analyzer's caveat paragraph flags this explicitly: <strong>platelets swell in EDTA over ~2 hours raising MPV, and values are method-dependent</strong> (impedance &gt; optical &gt; immuno).</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/card3-25.png\" alt=\"Highlight card: the EDTA pre-analytical trap and MPV swelling over time\" loading=\"lazy\"></figure>\n<p>Practical consequences for a clinic or lab: either measure MPV within the first hour after draw, or use citrate-theophylline-adenosine-dipyridamole (CTAD) tubes for samples that will sit. The analyzer's value is only as good as the pre-analytical chain that produced the number.</p>\n<h2>Where the Tool Fits in a CBC Workflow</h2>\n<p>The MPV analyzer sits one step after the CBC differential. The workflow is:</p>\n<p>1. Run the CBC on the analyzer of record. 2. Read the platelet count and MPV from the report. 3. Enter both into the MPV analyzer. 4. Use the quadrant pattern to direct the next step: peripheral smear, iron studies, coagulation, bone-marrow biopsy, or specialist referral.</p>\n<p>The tool is not a replacement for clinical judgment. It is a fast pattern-recognition layer that prevents the common error of treating MPV as just another number on a CBC report. With the platelet count, it becomes one of the few CBC-derived metrics that actively redirects the differential.</p>\n<p>For a live walkthrough of the analyzer on the three clinical patterns above, open <a href=\"https://elysiatools.com/en/tools/mean-platelet-volume-analyzer\">the MPV Analyzer</a>. The tool runs the same classification the field guide describes, returns the quadrant interpretation, and lets you paste in real lab values to verify your differential before you write the chart note. Explore more tools at <a href=\"https://elysiatools.com/en/tools\">elysiatools.com</a>.</p>",
+    "rendered": "<figure class=\"article-poster\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/poster-29.png\" alt=\"MPV field guide poster: MPV reads platelet age where the count cannot\"></figure>\n<p>A platelet count tells you how many platelets circulate; mean platelet volume tells you how old they are when they show up. MPV is the cheapest, fastest way to separate &#8220;the marrow is not making them&#8221; from &#8220;the body is eating them faster than the marrow can replace them,&#8221; and a single fL value plus the optional platelet count narrows the differential in seconds. This field guide explains what MPV measures, the four clinical patterns, the pre-analytical traps that invalidate the number, and where the analyzer tool fits.</p>\n<h2>What MPV Actually Measures</h2>\n<p><a href=\"https://blog.flowrust.com/tag/mean-platelet-volume/\" class=\"wpai-auto-tags-link\">Mean Platelet Volume</a> is the average size of circulating platelets, reported in femtoliters (fL). Most analyzers compute it from the platelet histogram \u2014 the same histogram that yields the platelet count itself. Healthy reference ranges sit around <strong>7.5 to 11.5 fL</strong>, but the range is method-dependent (impedance &gt; optical &gt; immuno) and lab-dependent.</p>\n<p>Why size matters: a young platelet released from the marrow is larger than a mature circulating one. When the marrow accelerates production under peripheral destruction, the average size of circulating platelets rises. When the marrow is suppressed, the circulating pool is older and smaller. MPV is therefore a production-kinetics proxy, not a clotting function test.</p>\n<p>The MPV analyzer tool reads the value, classifies it against the reference band, and \u2014 when you also enter the platelet count \u2014 produces a two-axis clinical pattern.</p>\n<h2>The Four Patterns When You Pair MPV With Platelet Count</h2>\n<p>The interesting diagnostic content appears when MPV is read alongside the platelet count. Four quadrants cover most non-marrow-failure presentations:</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/card1-25.png\" alt=\"Highlight card: the four-quadrant MPV differential paired with platelet count\" loading=\"lazy\"></figure>\n<ul>\n<li><strong>Low MPV + low platelet count</strong> \u2192 marrow underproduction (aplastic anemia, chemotherapy, recent platelet transfusion, iron-deficiency regeneration, Wiskott-Aldrich).</li>\n<li><strong>High MPV + low platelet count</strong> \u2192 peripheral destruction with marrow compensation (immune thrombocytopenia / ITP, post-splenectomy, DIC, sepsis in recovery).</li>\n<li><strong>Low MPV + high platelet count</strong> \u2192 reactive thrombocytosis (iron deficiency resolving, post-splenectomy recovery, chronic inflammation).</li>\n<li><strong>High MPV + high platelet count</strong> \u2192 myeloproliferative neoplasm suspicion (essential thrombocythemia, polycythemia vera, primary myelofibrosis).</li>\n</ul>\n<p>The MPV analyzer reports this quadrant pattern as the headline interpretation and flags the high-MPV low-platelet case (ITP-class) explicitly because that pairing is the most actionable in a routine lab workup.</p>\n<h2>Worked Example \u2014 ITP at 12.5 fL With Platelets 45</h2>\n<p>A patient with newly identified bruising has the following CBC indices: platelet count <strong>45 \u00d710\u2079/L</strong> (low, reference 150\u2013400), MPV <strong>12.5 fL</strong> (high, reference 7.5\u201311.5), white count and hemoglobin within range. The MPV analyzer classifies this as &#8220;High MPV \u2014 large platelets, peripheral destruction or macrothrombocytopenia.&#8221;</p>\n<p>The clinical reasoning is the inverse of what the count alone suggests. A platelet count of 45 might look alarming; combined with MPV 12.5 it points to a marrow that is working hard to keep up, not to one that has failed. The tool does not make the diagnosis \u2014 ITP requires exclusion of secondary causes, review of the peripheral smear for schistocytes and clumping, and often bone-marrow biopsy in atypical cases \u2014 but it correctly reframes the question from &#8220;why is the count low&#8221; to &#8220;what is destroying the platelets.&#8221;</p>\n<h2>Worked Example \u2014 Normal Range Edge Case</h2>\n<p>MPV 6.8 fL with platelets 220 \u00d710\u2079/L. The count is normal and MPV is on the low end. The analyzer returns &#8220;Normal&#8221; rather than a flag, because low-normal MPV with a normal count fits healthy variation. This is a useful check against the reflex to flag every outside-of-strict-range value.</p>\n<p>The complementary pattern \u2014 MPV 12.8 fL with platelets 380 \u00d710\u2079/L \u2014 sits in the high-high quadrant. Both metrics are elevated, which is the myeloproliferative-neoplasm suspicion zone. The analyzer flags this pattern explicitly and recommends specialist referral rather than watchful waiting, because essential thrombocythemia can present with normal platelet counts for years before the count itself rises.</p>\n<h2>High MPV in Acute Myocardial Infarction</h2>\n<p>The clinical pattern with the strongest published prognostic signal outside hematology is <strong>elevated MPV after acute MI</strong>. Multiple cohort studies have shown that patients whose MPV is elevated at admission have larger infarcts, higher rates of in-hospital reinfarction, and worse six-month mortality than patients with normal MPV at the same troponin.</p>\n<p>The interpretation: large platelets are more metabolically active, contain more alpha and dense granules, and aggregate faster. An elevated MPV is therefore not just a marker of platelet activation but a marker of the subset of patients whose platelets will continue to drive thrombosis under standard dual antiplatelet therapy. The MPV analyzer does not replace the troponin or the ECG, but it is the cheapest hematology add-on to risk-stratify an MI patient on admission.</p>\n<h2>Method Matters \u2014 Impedance vs Optical vs Immuno</h2>\n<p><a href=\"https://blog.flowrust.com/tag/hematology/\" class=\"wpai-auto-tags-link\">Hematology</a> analyzers from different vendors report systematically different MPV values, even on the same sample. Impedance counters (Coulter principle) tend to read <strong>0.5 to 1.0 fL higher</strong> than optical counters, which in turn read higher than immunoplate (CD41/CD61) measurements. The implication is that the reference range printed on the analyzer&#8217;s lab report may not match the range printed on a different vendor&#8217;s analyzer.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/card2-25.png\" alt=\"Highlight card: impedance vs optical vs immuno MPV method comparison\" loading=\"lazy\"></figure>\n<p>The MPV analyzer is therefore explicit that values are <strong>method-dependent</strong> and recommends comparing within the same lab and analyzer. A patient whose MPV jumps from 10.5 fL on a Beckman analyzer to 12.0 fL on a Sysmex analyzer has not had a clinical change \u2014 the lab has. This is the most common source of false-positive &#8220;deterioration&#8221; reports in clinic notes.</p>\n<h2>The EDTA Pre-Analytical Trap</h2>\n<p>Platelets swell in EDTA anticoagulant over time. A sample drawn at 8 AM and measured at 10 AM reads <strong>0.5 to 1.5 fL higher</strong> than the same sample measured within 30 minutes of draw. The MPV analyzer&#8217;s caveat paragraph flags this explicitly: <strong>platelets swell in EDTA over ~2 hours raising MPV, and values are method-dependent</strong> (impedance &gt; optical &gt; immuno).</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/card3-25.png\" alt=\"Highlight card: the EDTA pre-analytical trap and MPV swelling over time\" loading=\"lazy\"></figure>\n<p>Practical consequences for a clinic or lab: either measure MPV within the first hour after draw, or use citrate-theophylline-adenosine-dipyridamole (CTAD) tubes for samples that will sit. The analyzer&#8217;s value is only as good as the pre-analytical chain that produced the number.</p>\n<h2>Where the Tool Fits in a CBC Workflow</h2>\n<p>The MPV analyzer sits one step after the CBC differential. The workflow is:</p>\n<p>1. Run the CBC on the analyzer of record. 2. Read the platelet count and MPV from the report. 3. Enter both into the MPV analyzer. 4. Use the quadrant pattern to direct the next step: peripheral smear, iron studies, coagulation, bone-marrow biopsy, or specialist referral.</p>\n<p>The tool is not a replacement for clinical judgment. It is a fast pattern-recognition layer that prevents the common error of treating MPV as just another number on a CBC report. With the platelet count, it becomes one of the few CBC-derived metrics that actively redirects the differential.</p>\n<p>For a live walkthrough of the analyzer on the three clinical patterns above, open <a href=\"https://elysiatools.com/en/tools/mean-platelet-volume-analyzer\">the MPV Analyzer</a>. The tool runs the same classification the field guide describes, returns the quadrant interpretation, and lets you paste in real lab values to verify your differential before you write the chart note. Explore more tools at <a href=\"https://elysiatools.com/en/tools\">elysiatools.com</a>.</p>\n",
+    "protected": false,
+    "block_version": 0
+  },
+  "excerpt": {
+    "raw": "Mean Platelet Volume (MPV) is the cheapest way to separate marrow underproduction from peripheral destruction. This field guide walks through the four-quadrant pattern, the impedance vs optical vs immuno method gap, the EDTA pre-analytical trap, and the MPV-in-acute-MI prognostic signal.",
+    "rendered": "<p>Mean Platelet Volume (MPV) is the cheapest way to separate marrow underproduction from peripheral destruction. This field guide walks through the four-quadrant pattern, the impedance vs optical vs immuno method gap, the EDTA pre-analytical trap, and the MPV-in-acute-MI prognostic signal.</p>\n",
+    "protected": false
+  },
+  "author": 1,
+  "featured_media": 0,
+  "comment_status": "open",
+  "ping_status": "open",
+  "sticky": false,
+  "template": "",
+  "format": "standard",
+  "meta": {
+    "om_disable_all_campaigns": false,
+    "_monsterinsights_skip_tracking": false,
+    "footnotes": ""
+  },
+  "categories": [],
+  "tags": [
+    2370,
+    2095,
+    2205,
+    2217
+  ],
+  "permalink_template": "https://blog.flowrust.com/2026/10/08/%postname%/",
+  "generated_slug": "mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds",
+  "class_list": [
+    "post-8024",
+    "post",
+    "type-post",
+    "status-publish",
+    "format-standard",
+    "hentry",
+    "tag-cbc-analysis",
+    "tag-diagnostics",
+    "tag-hematology",
+    "tag-mean-platelet-volume"
+  ],
+  "aioseo_notices": [],
+  "aioseo_head": "\n\t\t<!-- All in One SEO 4.9.10 - aioseo.com -->\n\t<meta name=\"description\" content=\"Mean Platelet Volume (MPV) is the cheapest way to separate marrow underproduction from peripheral destruction. This field guide walks through the four-quadrant pattern, the impedance vs optical vs immuno method gap, the EDTA pre-analytical trap, and the MPV-in-acute-MI prognostic signal.\" />\n\t<meta name=\"robots\" content=\"max-image-preview:large\" />\n\t<meta name=\"author\" content=\"xiezixing\"/>\n\t<meta name=\"google-site-verification\" content=\"xcSlplMgocNnrNwmxi7j46JcdU6F-L2jrlAnpUB5Lxg\" />\n\t<link rel=\"canonical\" href=\"https://blog.flowrust.com/2026/10/08/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07/\" />\n\t<meta name=\"generator\" content=\"All in One SEO (AIOSEO) 4.9.10\" />\n\t\t<meta property=\"og:locale\" content=\"en_US\" />\n\t\t<meta property=\"og:site_name\" content=\"COSESAI - Sharing my AI experiences\" />\n\t\t<meta property=\"og:type\" content=\"article\" />\n\t\t<meta property=\"og:title\" content=\"MPV Field Guide \u2014 When One Extra Number on the CBC Reframes the Differential in Seconds - COSESAI\" />\n\t\t<meta property=\"og:description\" content=\"Mean Platelet Volume (MPV) is the cheapest way to separate marrow underproduction from peripheral destruction. This field guide walks through the four-quadrant pattern, the impedance vs optical vs immuno method gap, the EDTA pre-analytical trap, and the MPV-in-acute-MI prognostic signal.\" />\n\t\t<meta property=\"og:url\" content=\"https://blog.flowrust.com/2026/10/08/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07/\" />\n\t\t<meta property=\"og:image\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<meta property=\"og:image:secure_url\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<meta property=\"og:image:width\" content=\"512\" />\n\t\t<meta property=\"og:image:height\" content=\"512\" />\n\t\t<meta property=\"article:published_time\" content=\"2026-10-07T18:41:39+00:00\" />\n\t\t<meta property=\"article:modified_time\" content=\"2026-10-07T18:41:41+00:00\" />\n\t\t<meta name=\"twitter:card\" content=\"summary_large_image\" />\n\t\t<meta name=\"twitter:title\" content=\"MPV Field Guide \u2014 When One Extra Number on the CBC Reframes the Differential in Seconds - COSESAI\" />\n\t\t<meta name=\"twitter:description\" content=\"Mean Platelet Volume (MPV) is the cheapest way to separate marrow underproduction from peripheral destruction. This field guide walks through the four-quadrant pattern, the impedance vs optical vs immuno method gap, the EDTA pre-analytical trap, and the MPV-in-acute-MI prognostic signal.\" />\n\t\t<meta name=\"twitter:image\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<script type=\"application/ld+json\" class=\"aioseo-schema\">\n\t\t\t{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/08\\/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07\\/#blogposting\",\"name\":\"MPV Field Guide \\u2014 When One Extra Number on the CBC Reframes the Differential in Seconds - COSESAI\",\"headline\":\"MPV Field Guide \\u2014 When One Extra Number on the CBC Reframes the Differential in Seconds\",\"author\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"publisher\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\"},\"image\":{\"@type\":\"ImageObject\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/uploads\\/2026\\/10\\/poster-29.png\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/08\\/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07\\/#articleImage\",\"width\":1080,\"height\":800},\"datePublished\":\"2026-10-08T02:41:39+08:00\",\"dateModified\":\"2026-10-08T02:41:41+08:00\",\"inLanguage\":\"en-US\",\"mainEntityOfPage\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/08\\/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07\\/#webpage\"},\"isPartOf\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/08\\/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07\\/#webpage\"},\"articleSection\":\"CBC Analysis, Diagnostics, Hematology, Mean Platelet Volume\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/08\\/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07\\/#breadcrumblist\",\"itemListElement\":[{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com#listItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/blog.flowrust.com\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/tag\\/diagnostics\\/#listItem\",\"name\":\"Diagnostics\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/tag\\/diagnostics\\/#listItem\",\"position\":2,\"name\":\"Diagnostics\",\"item\":\"https:\\/\\/blog.flowrust.com\\/tag\\/diagnostics\\/\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/08\\/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07\\/#listItem\",\"name\":\"MPV Field Guide \\u2014 When One Extra Number on the CBC Reframes the Differential in Seconds\"},\"previousItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com#listItem\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/08\\/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07\\/#listItem\",\"position\":3,\"name\":\"MPV Field Guide \\u2014 When One Extra Number on the CBC Reframes the Differential in Seconds\",\"previousItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/tag\\/diagnostics\\/#listItem\",\"name\":\"Diagnostics\"}}]},{\"@type\":\"Person\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\",\"name\":\"xiezixing\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/08\\/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07\\/#personImage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/litespeed\\/avatar\\/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1791205210\",\"width\":96,\"height\":96,\"caption\":\"xiezixing\"}},{\"@type\":\"Person\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\",\"url\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/\",\"name\":\"xiezixing\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/08\\/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07\\/#authorImage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/litespeed\\/avatar\\/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1791205210\",\"width\":96,\"height\":96,\"caption\":\"xiezixing\"}},{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/08\\/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07\\/#webpage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/08\\/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07\\/\",\"name\":\"MPV Field Guide \\u2014 When One Extra Number on the CBC Reframes the Differential in Seconds - COSESAI\",\"description\":\"Mean Platelet Volume (MPV) is the cheapest way to separate marrow underproduction from peripheral destruction. This field guide walks through the four-quadrant pattern, the impedance vs optical vs immuno method gap, the EDTA pre-analytical trap, and the MPV-in-acute-MI prognostic signal.\",\"inLanguage\":\"en-US\",\"isPartOf\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/08\\/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07\\/#breadcrumblist\"},\"author\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"creator\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"datePublished\":\"2026-10-08T02:41:39+08:00\",\"dateModified\":\"2026-10-08T02:41:41+08:00\"},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/#website\",\"url\":\"https:\\/\\/blog.flowrust.com\\/\",\"name\":\"COSESAI\",\"description\":\"Sharing my AI experiences\",\"inLanguage\":\"en-US\",\"publisher\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\"}}]}\n\t\t</script>\n\t\t<!-- All in One SEO -->\n\n",
+  "aioseo_head_json": {
+    "title": "MPV Field Guide \u2014 When One Extra Number on the CBC Reframes the Differential in Seconds - COSESAI",
+    "description": "Mean Platelet Volume (MPV) is the cheapest way to separate marrow underproduction from peripheral destruction. This field guide walks through the four-quadrant pattern, the impedance vs optical vs immuno method gap, the EDTA pre-analytical trap, and the MPV-in-acute-MI prognostic signal.",
+    "canonical_url": "https://blog.flowrust.com/2026/10/08/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07/",
+    "robots": "max-image-preview:large",
+    "keywords": "",
+    "webmasterTools": {
+      "google-site-verification": "xcSlplMgocNnrNwmxi7j46JcdU6F-L2jrlAnpUB5Lxg",
+      "miscellaneous": ""
+    },
+    "schema": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "@id": "https://blog.flowrust.com/2026/10/08/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07/#blogposting",
+          "name": "MPV Field Guide \u2014 When One Extra Number on the CBC Reframes the Differential in Seconds - COSESAI",
+          "headline": "MPV Field Guide \u2014 When One Extra Number on the CBC Reframes the Differential in Seconds",
+          "author": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "publisher": {
+            "@id": "https://blog.flowrust.com/#person"
+          },
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://blog.flowrust.com/wp-content/uploads/2026/10/poster-29.png",
+            "@id": "https://blog.flowrust.com/2026/10/08/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07/#articleImage",
+            "width": 1080,
+            "height": 800
+          },
+          "datePublished": "2026-10-08T02:41:39+08:00",
+          "dateModified": "2026-10-08T02:41:41+08:00",
+          "inLanguage": "en-US",
+          "mainEntityOfPage": {
+            "@id": "https://blog.flowrust.com/2026/10/08/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07/#webpage"
+          },
+          "isPartOf": {
+            "@id": "https://blog.flowrust.com/2026/10/08/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07/#webpage"
+          },
+          "articleSection": "CBC Analysis, Diagnostics, Hematology, Mean Platelet Volume"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://blog.flowrust.com/2026/10/08/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07/#breadcrumblist",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com#listItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://blog.flowrust.com",
+              "nextItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/tag/diagnostics/#listItem",
+                "name": "Diagnostics"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com/tag/diagnostics/#listItem",
+              "position": 2,
+              "name": "Diagnostics",
+              "item": "https://blog.flowrust.com/tag/diagnostics/",
+              "nextItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/2026/10/08/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07/#listItem",
+                "name": "MPV Field Guide \u2014 When One Extra Number on the CBC Reframes the Differential in Seconds"
+              },
+              "previousItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com#listItem",
+                "name": "Home"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com/2026/10/08/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07/#listItem",
+              "position": 3,
+              "name": "MPV Field Guide \u2014 When One Extra Number on the CBC Reframes the Differential in Seconds",
+              "previousItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/tag/diagnostics/#listItem",
+                "name": "Diagnostics"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://blog.flowrust.com/#person",
+          "name": "xiezixing",
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://blog.flowrust.com/2026/10/08/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07/#personImage",
+            "url": "https://blog.flowrust.com/wp-content/litespeed/avatar/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1791205210",
+            "width": 96,
+            "height": 96,
+            "caption": "xiezixing"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://blog.flowrust.com/author/xiezixing/#author",
+          "url": "https://blog.flowrust.com/author/xiezixing/",
+          "name": "xiezixing",
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://blog.flowrust.com/2026/10/08/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07/#authorImage",
+            "url": "https://blog.flowrust.com/wp-content/litespeed/avatar/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1791205210",
+            "width": 96,
+            "height": 96,
+            "caption": "xiezixing"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://blog.flowrust.com/2026/10/08/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07/#webpage",
+          "url": "https://blog.flowrust.com/2026/10/08/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07/",
+          "name": "MPV Field Guide \u2014 When One Extra Number on the CBC Reframes the Differential in Seconds - COSESAI",
+          "description": "Mean Platelet Volume (MPV) is the cheapest way to separate marrow underproduction from peripheral destruction. This field guide walks through the four-quadrant pattern, the impedance vs optical vs immuno method gap, the EDTA pre-analytical trap, and the MPV-in-acute-MI prognostic signal.",
+          "inLanguage": "en-US",
+          "isPartOf": {
+            "@id": "https://blog.flowrust.com/#website"
+          },
+          "breadcrumb": {
+            "@id": "https://blog.flowrust.com/2026/10/08/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07/#breadcrumblist"
+          },
+          "author": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "creator": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "datePublished": "2026-10-08T02:41:39+08:00",
+          "dateModified": "2026-10-08T02:41:41+08:00"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://blog.flowrust.com/#website",
+          "url": "https://blog.flowrust.com/",
+          "name": "COSESAI",
+          "description": "Sharing my AI experiences",
+          "inLanguage": "en-US",
+          "publisher": {
+            "@id": "https://blog.flowrust.com/#person"
+          }
+        }
+      ]
+    },
+    "og:locale": "en_US",
+    "og:site_name": "COSESAI - Sharing my AI experiences",
+    "og:type": "article",
+    "og:title": "MPV Field Guide \u2014 When One Extra Number on the CBC Reframes the Differential in Seconds - COSESAI",
+    "og:description": "Mean Platelet Volume (MPV) is the cheapest way to separate marrow underproduction from peripheral destruction. This field guide walks through the four-quadrant pattern, the impedance vs optical vs immuno method gap, the EDTA pre-analytical trap, and the MPV-in-acute-MI prognostic signal.",
+    "og:url": "https://blog.flowrust.com/2026/10/08/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07/",
+    "og:image": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp",
+    "og:image:secure_url": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp",
+    "og:image:width": 512,
+    "og:image:height": 512,
+    "article:published_time": "2026-10-07T18:41:39+00:00",
+    "article:modified_time": "2026-10-07T18:41:41+00:00",
+    "twitter:card": "summary_large_image",
+    "twitter:title": "MPV Field Guide \u2014 When One Extra Number on the CBC Reframes the Differential in Seconds - COSESAI",
+    "twitter:description": "Mean Platelet Volume (MPV) is the cheapest way to separate marrow underproduction from peripheral destruction. This field guide walks through the four-quadrant pattern, the impedance vs optical vs immuno method gap, the EDTA pre-analytical trap, and the MPV-in-acute-MI prognostic signal.",
+    "twitter:image": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp"
+  },
+  "aioseo_meta_data": [],
+  "aioseo_breadcrumb": "<div class=\"aioseo-breadcrumbs\"><span class=\"aioseo-breadcrumb\">\n\t\t\t<a href=\"https://blog.flowrust.com\" title=\"Home\">Home</a>\n\t\t</span><span class=\"aioseo-breadcrumb-separator\">&raquo;</span><span class=\"aioseo-breadcrumb\">\n\t\t\t<a href=\"https://blog.flowrust.com/tag/diagnostics/\" title=\"Diagnostics\">Diagnostics</a>\n\t\t</span><span class=\"aioseo-breadcrumb-separator\">&raquo;</span><span class=\"aioseo-breadcrumb\">\n\t\t\tMPV Field Guide \u2014 When One Extra Number on the CBC Reframes the Differential in Seconds\n\t\t</span></div>",
+  "aioseo_breadcrumb_json": [
+    {
+      "label": "Home",
+      "link": "https://blog.flowrust.com"
+    },
+    {
+      "label": "Diagnostics",
+      "link": "https://blog.flowrust.com/tag/diagnostics/"
+    },
+    {
+      "label": "MPV Field Guide \u2014 When One Extra Number on the CBC Reframes the Differential in Seconds",
+      "link": "https://blog.flowrust.com/2026/10/08/mpv-field-guide-when-one-extra-number-on-the-cbc-reframes-the-differential-in-seconds-2026-10-07/"
+    }
+  ],
+  "_links": {
+    "self": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8024",
+        "targetHints": {
+          "allow": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE"
+          ]
+        }
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts"
+      }
+    ],
+    "about": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/types/post"
+      }
+    ],
+    "author": [
+      {
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/users/1"
+      }
+    ],
+    "replies": [
+      {
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/comments?post=8024"
+      }
+    ],
+    "version-history": [
+      {
+        "count": 1,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8024/revisions"
+      }
+    ],
+    "predecessor-version": [
+      {
+        "id": 8025,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8024/revisions/8025"
+      }
+    ],
+    "wp:attachment": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/media?parent=8024"
+      }
+    ],
+    "wp:term": [
+      {
+        "taxonomy": "category",
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/categories?post=8024"
+      },
+      {
+        "taxonomy": "post_tag",
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/tags?post=8024"
+      }
+    ],
+    "wp:action-publish": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8024"
+      }
+    ],
+    "wp:action-unfiltered-html": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8024"
+      }
+    ],
+    "wp:action-sticky": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8024"
+      }
+    ],
+    "wp:action-assign-author": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8024"
+      }
+    ],
+    "wp:action-create-categories": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8024"
+      }
+    ],
+    "wp:action-assign-categories": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8024"
+      }
+    ],
+    "wp:action-create-tags": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8024"
+      }
+    ],
+    "wp:action-assign-tags": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8024"
+      }
+    ],
+    "curies": [
+      {
+        "name": "wp",
+        "href": "https://api.w.org/{rel}",
+        "templated": true
+      }
+    ]
+  }
+}
