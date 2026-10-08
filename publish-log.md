@@ -1627,3 +1627,17 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **HEAD checks**: 4/4 images 200, 5/5 elysia anchors 200 (kind-root /en/tools = 200, tool = 200 on all 4 instances)
 - **PIL QA**: vision_analyze on poster + 3 cards; all clean — no tofu, no border clipping, no overlap, no title overflow; card 3 URI paths (/3/0/9 etc.) fit cleanly at F_MONO 28pt within tile_w-60
 - **Caveats**: `article-poster-creator` and `article-highlight-cards` skills missing from disk — fell back to umbrella `pil_poster_and_cards_network_theme.py::render_poster` (1080×800) + `render_card_5tile` (1600×900, 5-tile, deep-navy + cyan-teal). browser_exec failed with cdp-url npm 404; fell back to curl-rendered DOM probe for HTML structure validation. em-dash in H2 anchors (e.g. "Block-wise transfers (RFC 7959) — the part that catches everyone") required FULL H2 text matching in insert_highlight_cards.py (anchoring on partial H2 text fails because md_to_html preserves the full em-dash span inside `<h2>`)
+## 2026-10-08T19:52:33 UTC — WP 8070 — XML to JSON Converter Field Guide
+
+- Title: XML to JSON Converter Field Guide: Five Toggles, Eight Questions, Zero Silent Loss
+- Slug: xml-to-json-converter-field-guide-five-toggles-eight-questions-zero-silent-loss
+- URL: https://blog.flowrust.com/2026/10/09/xml-to-json-converter-field-guide-five-toggles-eight-questions-zero-silent-loss/
+- date_gmt: 2026-10-08T19:52:33
+- Tool id: xml-to-json (XML to JSON Converter, Format Conversion)
+- Pick source: one-off theme-cluster picker (theme_score=5; chosen over sibling xml-to-csv / json-to-xml / csv-to-json / text-to-json by canonical `Format Conversion` anchor). 2153 candidates from 3066 tools, 1006 already covered.
+- **Patches**: 0 (1-POST 0-PATCH clean)
+- **Audit**: pre-POST all PASS (3 highlight-card figures, 1 article-poster, 0 body H1, exactly 8 body H2, 0 body H3, 0 markdown links, 0 placeholder leaks, 0 backslash in code, 0 literal-HTML-in-code, 0 nested p-in-h2, validate_anchors (True, []) for 7 unique anchors). post-POST body-only audit: 0 findings.
+- **Structural counts**: H1=0 body (theme will add entry-title), H2=8, cards=3, posters=1, 4 figure.imgs
+- **HEAD checks**: 4/4 images 200 (poster-33.png, card1-29.png, card2-29.png, card3-29.png with auto-rename suffix per WP 6191/6323), 9/9 elysia anchors 200 (xml-to-json ×3, json-to-xml ×1, json-formatter ×1, csv-to-json ×1, chat-transcript-json ×1, rich-media-json ×1, /en/tools kind-root ×1)
+- **PIL QA**: vision_analyze on poster + 3 cards; all clean — no tofu, no border clipping, no overlap, no horizontal overflow; poster subtitle 62 chars (≤80 safe per WP 6390, within margin); 5-tile cards 1 and 3 fit cleanly at F_MONO with no overflow into adjacent tiles; card 2 4-tile-compact shows HIGH/HIGH/MEDIUM/LOW cleanly with notes visible inside each tile.
+- **Caveats**: `article-poster-creator` and `article-highlight-cards` skills missing from disk (12+ consecutive cron runs with this state per WP 6206/6323); fell back to umbrella `pil_poster_and_cards_network_theme.render_poster` (1080×800) + `render_card_5tile` (1600×900 ×2 for cards 1 and 3) + `render_card_4tile_compact` (1600×900 for card 2). browser_exec failed with cdp-url npm 404 (browser tooling unavailable on this host); fell back to curl-rendered DOM probe + `audit_post_content` + vision_analyze for full HTML/visual QA cycle. Note: cron-prompt skill-not-found notice was confirmed advisory per WP 6352 lesson; umbrella skill path is canonical when subskills are missing.
