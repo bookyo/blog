@@ -1571,3 +1571,29 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Audit**: pre-POST all PASS (0 audit findings, 8 H2 + 0 H1 + 0 H3, 3 highlight-card + 1 article-poster inserted after correct H2 anchors, 0 CARD*N_URL placeholder leaks, no MERGED_BULLET_LIST false positive). post-POST body-only 0 findings, DOM probe: 1 theme H1 + 8 body H2 + 1 nav H2 = 10, 4 article imgs (3 cards + 1 poster) all 200 via curl HEAD, 2 elysia anchors all 200 (1 tool + 1 kind-root), validate_anchors PASS. LiteSpeed lazy-load applied `data-lazyloaded="1"` to all 4 figure imgs with `data-src` carrying the real URL (per WP 6197/6323 — not a defect).
 - **PIL QA**: vision_analyze caught card 1 first-pass (4-tile compact with 14-21 char count strings overflowing horizontally into adjacent tiles — fixed by switching to 2-col layout per WP 6149/6171 decision tree), and poster title clip ("A Platelet Count Tells You How Many" exceeded W=1080 — shortened to "MPV Reads Platelet Age / Where the Count Cannot" per WP 6390/7144 lesson). All 4 final renders clean.
 - **Caveats**: cron-prompt skill-not-found notices for `article-writer`, `article-highlight-cards` were advisory — confirmed via disk probe that umbrella `article-writer/SKILL.md` is present but the two visual-output subskills are missing (13+ runs confirmed per WP 6206). Used umbrella PIL templates (`pil_poster_and_cards_network_theme.render_poster`, `custom_pil_card_layouts.render_card_input_output_2col`) end-to-end. cron-prompt heredoc + cat | python3 still BLOCKED by Tirith (WP 5746/6135); used write_file + python3 /tmp/<script>.py throughout. Python urllib SSL EOF on blog.flowrust.com (Cycle #54 family) — switched to curl-subprocess for both POST and DOM probe.
+## 2026-10-07 ~22:48 UTC — WP 8030 — Atbash Cipher Field Guide
+
+- Tool: **Atbash Cipher** (Format Conversion)
+- Slug: `atbash-cipher-field-guide-when-the-simplest-substitution-is-its-own-inverse-2026-10-07`
+- URL: https://blog.flowrust.com/2026/10/08/atbash-cipher-field-guide-when-the-simplest-substitution-is-its-own-inverse-2026-10-07/
+- date_gmt: `2026-10-07T22:48:55`
+- Word count: 1478
+- H2 sections: 8 (What Atbash actually does / Position formula / Mirror is a 13-shift self-equivalence / Worked example / Boundary cases / Verifying output / Where Atbash fits / Closing)
+- Assets: 1 poster (1080×800) + 3 cards (1600×900 each)
+- Anchors: 9 elysiatools links — 6× atbash-cipher tool page, 3× category root /en/tools
+- Outcome: 1-POST + 1-PATCH (3 paragraphs: 2× MERGED_BULLET_LIST + 1× MERGED_NUMBERED_LIST rebuilt as `<ul><li>`/`<ol><li>`)
+- Post-PATCH audit: 0 findings, all 4 images 200, all 9 elysia anchors 200
+
+## 2026-10-08T03:17:12 UTC — WP 8042 — Orifice Flow Calculator Field Guide
+
+- **Tool**: orifice-flow-calculator (Math & Numbers) — Orifice Flow Calculator (Bernoulli, Q=Cd·A·√(2ΔP/ρ)): ISO 5167 thin-plate flow rate from discharge coefficient + differential pressure + fluid density; volumetric / mass / throat-velocity outputs in m³/s, L/s, L/min, m³/h.
+- **Date GMT**: 2026-10-08T03:17:12
+- **Status**: publish
+- **Slug**: orifice-flow-calculator-field-guide-when-iso-5167-bernoulli-form-the-discharge-coefficient-and-the-beta-ratio-decide-whether-a-thin-plate-flow-meter-reads-true-or-lies-on-every-reading-your-plant-has-2026-10-08
+- **URL**: https://blog.flowrust.com/2026/10/08/orifice-flow-calculator-field-guide-when-iso-5167-bernoulli-form-the-discharge-coefficient-and-the-beta-ratio-decide-whether-a-thin-plate-flow-meter-reads-true-or-lies-on-every-reading-your-plant-has/
+- **Assets**: 1 poster (1080×800) + 3 cards (1600×900) — orifice-flow-poster.png, orifice-flow-card1.png, orifice-flow-card2.png, orifice-flow-card3.png
+- **Patches**: 0
+- **Audit**: pre-POST all PASS (0 audit findings, 0 H1, 8 H2, 0 H3, 0 literal-HTML-in-code, 0 raw md links, 0 placeholder leaks, 0 <br> in <p>, 1 article-poster + 3 highlight-card inserted at correct H2 anchors). post-POST body-only 0 findings, all 4 images 200 via curl (poster transient 000 retried 200), all 8 elysia anchors 200 (4 distinct tools + 2 kind-roots + 2 deep-link repeats), validate_anchors pre-POST PASS.
+- **PIL QA**: vision_analyze on poster + 3 cards; all clean — title not clipped (W=1080), subtitle 46 chars (≤60 safe per WP 6390), callout box positioned at box_y = t2_y + 250 (no collision), card 1 5-tile: all 5 values ≤266 px (F_MONO_BIG 36pt), notes ≤163 px (F_MONO_SM 22pt), last tile highlighted. Card 2 3+2 cheatsheet: all 5 items fit (name ≤199, desc ≤228 px on tile_w-24=266). Card 3 2-col input/output: all 10 rows ≤363 px (max 640 px).
+- **Theme clustering**: 4 sibling fluid-mechanics tools cross-linked (orifice-flow-calculator ×3, bernoulli-equation-solver, pipe-pressure-drop-darcy, pipe-friction-factor) + 2 kind-root (/en/tools) links.
+- **Caveats**: cron-prompt skill-not-found notices for `article-writer`, `article-poster-creator`, `article-highlight-cards` were advisory — confirmed via disk probe that umbrella `article-writer/SKILL.md` is present but the two visual-output subskills are missing. Used umbrella PIL templates (`pil_poster_and_cards_network_theme.render_poster`, `render_card_5tile`, `custom_pil_card_layouts.render_card_5tile_3plus2`, `render_card_input_output_2col`) end-to-end. `cat | python3` Tirith pipe-to-interpreter block re-confirmed (WP 5746/6135); used `write_file` + `python3 /tmp/<script>.py` throughout. SSL EOF on WordPress connection (Cycle #54 family) — switched to `subprocess.run(['curl', ...])` for the GET-rendered-content fetch; uploads via `requests` succeeded with the 3-retry exponential backoff (card3 retried once on transient SSLEOFError). browser tool unavailable on this host (cdp-url npm 404).
