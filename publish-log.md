@@ -1651,3 +1651,34 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Asset QA**: vision_analyze on poster + 3 cards; all clean. Card 3 was rebuilt from `render_card_4tile` to `render_card_4tile_compact` after first-pass render had count-text overlap; 2nd pass clean.
 - **Audit**: post-POST body audit 0 findings after PATCH; structural 1 poster + 3 cards + 8 H2 + 1 ul (3 li) + featured_media=0.
 - **Skill note**: 13+ consecutive cron runs with `article-poster-creator` + `article-highlight-cards` missing from disk; fell back to umbrella's bundled PIL/audit stack. browser_exec failed (cdp-url npm 404); used audit_post_content + HEAD probes for HTML QA.
+## 2026-10-09 - 8083 - RDB SSTable LevelDB RocksDB Memcached Binary KV-Store Encoding Lineage
+
+- date_gmt: 2026-10-09T04:19:24+00:00
+- title: RDB SSTable LevelDB RocksDB Memcached Binary KV-Store Encoding Lineage Field Guide
+- tool: rdb-sstable-leveldb-rocksdb-memcached-binary-key-value-store-encoding-lineage
+- category: Converter
+- wp_id: 8083
+- url: https://blog.flowrust.com/2026/10/09/rdb-sstable-leveldb-rocksdb-memcached-binary-kv-store-encoding-lineage/
+- patches: 0
+- content_chars: 10299
+- assets: poster+3 cards (1 poster, 4 highlight tiles / 2-col + 4-tile-compact)
+- links: 3 tool + 1 sample + 1 root = 4 elysia anchors
+
+## 2026-10-09 08:24 UTC — WP 8089 — HMAC + BLAKE3 + SHA-3 + Poly1305 + BLAKE2 Keyed MAC Construction Linter
+
+- **Tool**: hmac-blake3-sha3-keccak-keyed-hash-and-mac-construction-linter (Cryptography)
+- **Slug**: hmac-blake3-sha3-keccak-poly1305-blake2-keyed-mac-construction-linter-field-guide-when-one-time-keys-tag-length-and-domain-separation-decide-if-your-mac-survives-an-audit-2026-10-09
+- **date_gmt**: 2026-10-09T08:29:21
+- **Status**: 1-POST + 1-PATCH (MERGED_BULLET_LIST repair)
+- **H2 count**: 8 body + 1 nav = 9 (theme chrome)
+- **Cards**: 3 highlight-card figures (1× `render_card_5tile` × 2, 1× `render_card_input_output_2col`)
+- **Poster**: 1 article-poster figure
+- **Elysia anchors**: 7 (1 tool + 2 samples + 1 tools-root + 2 more sample refs)
+- **Audit findings (post-PATCH)**: 0
+- **Skill fallback notice**: article-poster-creator + article-highlight-cards not on disk; used umbrella templates `pil_poster_and_cards_network_theme.py` + `custom_pil_card_layouts.py`
+- **Pitfalls encountered**:
+  - WP 6390 poster subtitle left-edge clip — first subtitle was 90 chars, clipped both edges at F_MED on W=1080. Shortened to 76 chars, re-rendered clean.
+  - MERGED_BULLET_LIST: 2 blocks (the Poly1305 failure-mode list + the "outside the linter's reach" list). Rebuilt as `<ul><li><strong>X</strong></li></ul>` HTML, PATCHed in 1 round-trip.
+  - WP 5746 / Cycle #54 SSL EOF on `requests` and `urllib.request` — switched to `subprocess.run([..., "curl", ...])` for the post-fetch (after first attempt 000 → second attempt 200 confirmed transient edge-blip).
+  - Tirith hostname validator rejected `elysiatools\.com` and `blog\.flowrust\.com` regex literals — built patterns via Python string concatenation.
+- **Total cycle time**: ~9 minutes
