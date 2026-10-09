@@ -1,0 +1,45 @@
+<h2>Overtime Pay Field Guide: When US, China, and EU/UK Rules Pick Different Numbers for the Same Hours</h2>
+<p><strong>The first time you plug the same hours worked into a US, China, and EU/UK overtime calculator, you get three different totals — and only one of them matches what your payroll team is actually going to cut.</strong> If you've ever sat across from an accountant who says "but the bonus isn't in the regular rate" while your FLSA-compliant spreadsheet says it is, you've hit the wall that this field guide is built to walk around.</p>
+<figure class="article-poster"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/10/jarvis-poster-overtime-bonus-hourly-wage-converter.png" alt="Overtime Pay Field Guide poster" /></figure>
+
+<p>The <a href="https://elysiatools.com/en/tools/overtime-bonus-hourly-wage-converter">Overtime & Hourly Wage Bi-directional Converter</a> is the calculator that takes one paycheck and reports it under all three regimes simultaneously — US FLSA, China 21.75-day month, and EU/UK contractual — so you can see where the disagreements come from before they hit the payslip.</p>
+<h2>Why Three Regimes Return Three Different Answers for the Same Hours</h2>
+<p>US, China, and EU/UK all pay overtime, but the <em>definition</em> of "overtime", what counts toward the regular rate, and the cap on hours all diverge. The calculator makes those divergences explicit instead of hiding them in assumptions:</p>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/10/jarvis-card1-overtime-bonus-hourly-wage-converter.png" alt="Three overtime regimes side by side" loading="lazy" /></figure>
+<p>- <strong>US FLSA</strong>: 1.5x the regular rate for hours <strong>beyond 40 per workweek</strong>. The calendar day doesn't matter federally — Sunday-to-Saturday defines the workweek. Nondiscretionary bonuses raise the regular rate itself (DOL method: <code>(straight-time + bonus) / hours worked</code>). - <strong>China</strong>: Base hourly = <code>monthly salary ÷ 21.75 ÷ 8</code>. Weekday overtime = 150%, rest days = 200% (without compensatory rest), statutory holidays = 300%. Hard cap: 3 hours/day and 36 hours/month overtime. - <strong>EU/UK</strong>: No statutory overtime multiplier — the contractual one wins. The 48-hour average week (17-week UK reference, opt-out possible) is the only enforced limit. Night-shift premiums are employer policy, not statute.</p>
+<p>The calculator walks every input through all three regimes in one pass and emits the matching payslip waterfall for each.</p>
+<h2>Anatomy of a Single Paycheck Across All Three Regimes</h2>
+<p>Take one example: an employee earning <code>$7,500 monthly</code>, working <code>48 hours/week</code> with <code>36 overtime hours per period</code>, plus a <code>$5,000 annual bonus</code>. Plug those into the <a href="https://elysiatools.com/en/tools/overtime-bonus-hourly-wage-converter">converter</a> and you get three entirely different answers:</p>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/10/jarvis-card2-overtime-bonus-hourly-wage-converter.png" alt="One paycheck, three payslips worked example" loading="lazy" /></figure>
+<table>
+<thead><tr><th>Field</th><th>US FLSA</th><th>China</th><th>EU/UK (1.5x contractual)</th></tr></thead>
+<tbody>
+<tr><td>Base hourly</td><td>$57.47</td><td>$43.10</td><td>$43.10</td></tr>
+<tr><td>Overtime hours</td><td>36</td><td>36</td><td>36</td></tr>
+<tr><td>Overtime pay/period</td><td>$4,022.99</td><td>$1,938.97</td><td>$2,908.32</td></tr>
+<tr><td>Total/period</td><td>$14,022.99</td><td>$11,938.97</td><td>$12,908.32</td></tr>
+<tr><td>Annual comp</td><td>$168,275.86</td><td>$143,267.64</td><td>$154,899.84</td></tr>
+<tr><td>Effective hourly</td><td>$66.78</td><td>$56.87</td><td>$61.55</td></tr>
+<tr><td>Avg weekly hours</td><td>48.5</td><td>48.5</td><td>48.5</td></tr>
+<p></tbody> </table></p>
+<p>The same hours, the same bonus, three different totals. The reason: US treats the bonus as part of the regular rate (so the overtime multiplier climbs with it); China uses a fixed 21.75 divisor; EU/UK uses whatever multiplier the contract names, with no statutory floor.</p>
+<h2>What the Bonus Actually Does to the Regular Rate</h2>
+<p>This is the single most-misunderstood number in cross-border payroll. The US Department of Labor method says:</p>
+<pre><code class="language-">regular_rate = (straight_time_earnings + nondiscretionary_bonus) / hours_worked</code></pre>
+<p>If your employee earned <code>$7,500 monthly</code> plus a <code>$5,000 annual bonus</code>, and worked <code>2,080 regular hours</code> plus <code>144 overtime hours</code> in a year, the regular rate climbs by the bonus-per-hour, and the overtime premium applies to the <em>new</em> regular rate. China and EU/UK treat the bonus as a separate line — it doesn't enter the regular-rate calculation. The calculator's compliance-warning panel flags this divergence on every run so you don't miss it.</p>
+<h2>Compliance Warnings the Calculator Raises</h2>
+<p>Three warnings fire automatically when the input crosses a known legal boundary:</p>
+<p>- <strong>US</strong>: weekly hours exceed 40 with no compensatory rest configured → "regular rate recalculated against 48.5-hour week". - <strong>China</strong>: overtime total exceeds 36 hours/month or any single day exceeds 3 hours → "statutory cap exceeded; hours above cap excluded from pay". - <strong>EU/UK</strong>: 17-week rolling average above 48 hours and no opt-out recorded → "Working Time Directive breach; either record opt-out or reduce schedule".</p>
+<p>The warnings are not advisory — they map directly to each jurisdiction's enforcement triggers. See the <a href="https://elysiatools.com/en/tools/overtime-bonus-hourly-wage-converter">calculator</a> for the exact threshold logic.</p>
+<h2>When Each Regime Wins (and Loses)</h2>
+<p>- <strong>US wins on simplicity</strong> when you have a clean 40-hour week and a small bonus — the FLSA math is one formula and audit-friendly. - <strong>China wins on transparency</strong> for shift workers — the 21.75 divisor is publicly posted and every employee can recompute it. - <strong>EU/UK wins on flexibility</strong> for high-skill contractors — the contractual multiplier and opt-out cover cases the US/China frameworks simply don't address.</p>
+<p>The same employee gets $168,275.86 US, $143,267.64 China, $154,899.84 EU/UK — a $25k spread between regimes. Run your numbers through the <a href="https://elysiatools.com/en/tools/overtime-bonus-hourly-wage-converter">converter</a> before you sign an offer letter.</p>
+<h2>Five Numbers the Calculator Tags on Every Row</h2>
+<p>Every input field carries five tags downstream:</p>
+<figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/10/jarvis-card3-overtime-bonus-hourly-wage-converter.png" alt="Five tags on every payslip row cheatsheet" loading="lazy" /></figure>
+<p>- The <strong>base rate</strong> (US FLSA, China 21.75, EU/UK contractual). - The <strong>overtime hours</strong> split by weekday/weekend/holiday. - The <strong>bonus-adjusted regular rate</strong> (US only — flagged for the others). - The <strong>effective hourly rate</strong> including premiums. - The <strong>annualized total</strong> on hourly, monthly, and annual bases.</p>
+<p>Pick the regime that matches your employment contract, then re-run the other two to see what the same hours would have paid. The cross-check is one input, three payslips, no spreadsheet.</p>
+<p>The result panel itself carries the same five tags: base and total on all three bases, an itemized waterfall (<code>base → bonus → weekday OT → weekend OT → holiday OT → night premium → total</code>), the effective hourly rate including premiums, and region-specific compliance notes. The waterfall is the audit trail your finance team will ask for when an employee disputes a pay stub.</p>
+<h2>Working With Multi-Currency and Cross-Border Teams</h2>
+<p>For employees paid in one currency but taxed or contracted in another, run the input twice — once with the source-currency figures (US branch paying in USD) and once with the destination figures (China branch paying in CNY). The converter doesn't do FX conversion, but it isolates which regime's math applies so you don't double-count the bonus or the multiplier.</p>
+<p>Explore more calculators at <a href="https://elysiatools.com/en/tools">elysiatools.com</a> — the converter sits in the Calculator cluster alongside the rest of the payroll, finance, and unit-conversion tools.</p>

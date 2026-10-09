@@ -1697,3 +1697,7 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - card3.png upload needed 2 retries for SSL EOF (WP 5738 retry pattern)
 - audit_post_content: 0 findings
 - URL HEAD: poster/cards all 200, elysia anchors 200 on retry (transient SSL blip)
+
+## 2026-10-09T20:49:18 — overtime-bonus-hourly-wage-converter (WP 8109)
+- Title: Overtime Pay Field Guide: When US, China, and EU/UK Rules Pick Different Numbers for the Same Hours
+- URL: https://blog.flowrust.com/2026/10/10/overtime-bonus-hourly-wage-converter/
