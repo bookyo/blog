@@ -1682,3 +1682,18 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
   - WP 5746 / Cycle #54 SSL EOF on `requests` and `urllib.request` — switched to `subprocess.run([..., "curl", ...])` for the post-fetch (after first attempt 000 → second attempt 200 confirmed transient edge-blip).
   - Tirith hostname validator rejected `elysiatools\.com` and `blog\.flowrust\.com` regex literals — built patterns via Python string concatenation.
 - **Total cycle time**: ~9 minutes
+
+## 2026-10-09 12:37 UTC — WP 8097 — OTel Semantic-Convention v1.20 → v1.27 Migration
+- tool_id: `otel-semantic-convention-migration-tool`
+- tool_name: OpenTelemetry Semantic-Convention v1.20 → v1.27 Attribute Migration Tool
+- category: Development
+- url: https://blog.flowrust.com/2026/10/09/otel-semantic-convention-migration-tool-field-guide-when-three-release-layers-decide-whether-your-v1-20-instrumentation-survives-contact-with-v1-27/
+- date_gmt: 2026-10-09T12:37:42
+- 1-POST 0-PATCH clean
+- 8 body H2s, 3 highlight-card figures, 1 article-poster figure
+- 4 elysiatools anchors (3 tool + 1 kind_root)
+- assets: poster.png (51970B), card1.png (91292B), card2.png (68986B), card3.png (75782B)
+- visual QA: 1st pass had poster subtitle left+right clip + card2 tile-02 overflow; re-rendered with shorter subtitle + shorter tile-02 value, all 4 assets clean
+- card3.png upload needed 2 retries for SSL EOF (WP 5738 retry pattern)
+- audit_post_content: 0 findings
+- URL HEAD: poster/cards all 200, elysia anchors 200 on retry (transient SSL blip)
