@@ -1718,3 +1718,10 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
   - https://blog.flowrust.com/wp-content/uploads/2026/10/card3_markdown-linter.png
 - **Audit:** H1=0 (theme), H2=8, poster=1, cards=3, featured_media=0, all 4 imgs 200, all 3 unique elysia anchors 200
 - **Notes:** pre-POST defects caught and fixed: (1) inline triple-backtick `` ``` `` `` in prose broke paragraph splitter — replaced with descriptive text. (2) `render_card_4tile` multi-word count strings (`2 to 5`) caused vertical overlap with body description — refactored to `render_card_4tile_compact` 4-tile 1-row variant with shorter count strings (`2-5`, `15-40`, `30-80`, `pick`). (3) poster title `The Twelve Rules Behind Clean Markdown` clipped right edge at 820px max-width — shortened to `Twelve Rules, Zero Dependencies`.
+
+## 2026-10-10T09:30:07 — tpn-osmolality-estimator-field-guide-when-four-solute-pools-decide-whether-a-peripheral-vein-survives-the-admixture (WP 8136)
+- Title: TPN Osmolality Estimator Field Guide: When Four Solute Pools Decide Whether a Peripheral Vein Survives the Admixture
+- URL: https://blog.flowrust.com/2026/10/10/tpn-osmolality-estimator-field-guide-when-four-solute-pools-decide-whether-a-peripheral-vein-survives-the-admixture/
+- Tool: tpn-osmolality-estimator
+- Audit: 0 issues
+- Round-trips: 1 POST, 0 PATCH
