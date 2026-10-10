@@ -1701,3 +1701,20 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 ## 2026-10-09T20:49:18 — overtime-bonus-hourly-wage-converter (WP 8109)
 - Title: Overtime Pay Field Guide: When US, China, and EU/UK Rules Pick Different Numbers for the Same Hours
 - URL: https://blog.flowrust.com/2026/10/10/overtime-bonus-hourly-wage-converter/
+
+## 2026-10-10 05:14 UTC — Markdown Linter Field Guide
+
+- **WP ID:** 8129
+- **Slug:** `markdown-linter-field-guide-when-twelve-rules-beat-a-handful-of-style-conventions`
+- **Tool:** `markdown-linter` (Development category, score=11)
+- **date_gmt:** 2026-10-10T05:13:55
+- **Status:** publish (1-POST 0-PATCH)
+- **Cards:** 3 (5tile "Five Rules" / audit "Five Checks" / compact 4tile "Four Profiles")
+- **Anchors:** `/en/tools/markdown-linter` (×2), `/en/samples/markdown-samples`, `/en/tools`
+- **Asset URLs:**
+  - https://blog.flowrust.com/wp-content/uploads/2026/10/poster_markdown-linter.png
+  - https://blog.flowrust.com/wp-content/uploads/2026/10/card1_markdown-linter.png
+  - https://blog.flowrust.com/wp-content/uploads/2026/10/card2_markdown-linter.png
+  - https://blog.flowrust.com/wp-content/uploads/2026/10/card3_markdown-linter.png
+- **Audit:** H1=0 (theme), H2=8, poster=1, cards=3, featured_media=0, all 4 imgs 200, all 3 unique elysia anchors 200
+- **Notes:** pre-POST defects caught and fixed: (1) inline triple-backtick `` ``` `` `` in prose broke paragraph splitter — replaced with descriptive text. (2) `render_card_4tile` multi-word count strings (`2 to 5`) caused vertical overlap with body description — refactored to `render_card_4tile_compact` 4-tile 1-row variant with shorter count strings (`2-5`, `15-40`, `30-80`, `pick`). (3) poster title `The Twelve Rules Behind Clean Markdown` clipped right edge at 820px max-width — shortened to `Twelve Rules, Zero Dependencies`.
