@@ -1,0 +1,21 @@
+{
+  "tool_id": "bernoulli-equation-solver",
+  "tool_name": "Bernoulli Equation Solver (Velocity / Pressure / Elevation)",
+  "tool_description": "Solve the Bernoulli equation p/(ρg) + v²/(2g) + z = const for steady, ideal, incompressible flow between two points on a streamline. Supply all three upstream quantities (p₁, v₁, z₁) and any two of the three downstream quantities; the tool solves for the third. Solve velocity: v₂ = √[v₁² + 2(p₁-p₂)/ρ + 2g(z₁-z₂)] — a negative radicand is physically impossible and is rejected. Solve pressure: p₂ = p₁ + ½ρ(v₁²-v₂²) + ρg(z₁-z₂). Solve elevation: z₂ = z₁ + (p₁-p₂)/(ρg) + (v₁²-v₂²)/(2g). g = 9.81 m/s². Density in kg/m³/g/cm³, pressure in Pa/kPa/bar/atm/psi, velocity in m/s, elevation in m/cm/ft. The upstream pressure/velocity/elevation heads and the total head are also reported.",
+  "tool_category": "Math & Numbers",
+  "tool_keywords": [
+    "Bernoulli",
+    "Bernoulli equation",
+    "streamline",
+    "pressure head",
+    "velocity head",
+    "elevation head",
+    "total head",
+    "fluid mechanics",
+    "ideal flow",
+    "incompressible"
+  ],
+  "samples": [],
+  "score": 110,
+  "picked_at_utc": "2026-10-10T21:56:48"
+}

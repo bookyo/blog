@@ -1746,3 +1746,57 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
   - https://blog.flowrust.com/wp-content/uploads/2026/10/card3-34.png
 - **Notes**: pre-POST defects caught and fixed: (1) PIL card 3 had Cyrillic U+043E tofu in `o in 8` row — replaced with ASCII `O in 8` per WP 5699/5822/6135 recipe. (2) Source MD used 4 en-dash `– **bold**` bullet paragraphs which `md_to_html` collapsed into merged `<p>` blocks; PATCH rebuilt as `<ul><li>` HTML. (3) Initial body had 7 H2 (not 8); added "Quick reference: the fifteen country formats at a glance" with `<ul><li>` HTML (not `- ` markdown bullets per WP 6185) to bring count to 8. All 4 imgs 200, all unique elysia anchors 200 (1 transient SSL EOF retry-class on tool URL — confirmed 200 on retry).
 - **Caveats**: `article-poster-creator` and `article-highlight-cards` skills flagged as not-found in cron prompt — actually present at `~/.hermes/skills/article-writer/article-poster-creator/` and `~/.hermes/skills/article-writer/article-highlight-cards/` per WP 6352 advisory-only notice lesson; fell back to canonical umbrella `pil_poster_and_cards_network_theme.py` + `render_card_4tile_compact.py` + `custom_pil_card_layouts.py` PIL stack (proven stable across 50+ consecutive clean runs).
+
+## 2026-10-10 17:54 UTC — WP 8150 — Overall Heat Transfer Coefficient (1/U=ΣR) Field Guide
+
+- **Tool**: `overall-heat-transfer-coefficient` (Overall Heat Transfer Coefficient (1/U=ΣR), Math & Numbers)
+- **Slug**: `overall-heat-transfer-coefficient-field-guide-when-three-layers-decide-whether-your-1-u-equals-1-and-the-real-an-2026-10-10`
+- **date_gmt**: `2026-10-10T17:54:00`
+- **URL**: https://blog.flowrust.com/2026/10/11/overall-heat-transfer-coefficient-field-guide-when-three-layers-decide-whether-your-1-u-equals-1-and-the-real-an-2026-10-10/
+- **Status**: 1-POST 0-PATCH clean
+- **H2 count**: 8 body + 1 nav (theme chrome "Post navigation") = 9
+- **H3 count**: 2 (theme chrome "Comments" + "Leave a Reply")
+- **Cards**: 3 highlight-card figures (4-col "Four Quantities" / 3-col "Three Failure Modes" / 5-col "Five Worked Examples")
+- **Poster**: 1 article-poster figure (1080×800 dark-navy + cyan-teal)
+- **Elysia anchors**: 5 total (4 tool + 1 kind-root `/en/tools`)
+- **Asset URLs**:
+  - https://blog.flowrust.com/wp-content/uploads/2026/10/poster-40.png
+  - https://blog.flowrust.com/wp-content/uploads/2026/10/card1-35.png
+  - https://blog.flowrust.com/wp-content/uploads/2026/10/card2-35.png
+  - https://blog.flowrust.com/wp-content/uploads/2026/10/card3-35.png
+- **Audit**: 0 findings; H1=0, H2=8, H3=0 body, 14 `<p>` opens = 14 closes, poster=1, cards=3, featured_media=0, all 4 article imgs have alt, all 5 elysia anchors validated against tool-manifest + sample-manifest, all HEAD-200, permalink HTTP 200.
+- **Pitfalls encountered**:
+  - Initial first-pass had 7 H2s (forgot "Why the layer order is irrelevant" subsection); caught by pre-POST assertion, added 8th H2, re-POSTed.
+  - Picker initially picked SMT-LIB variant that was a thematic dupe of WP 8056 (smt-lib-2-7-aiger-btor2-formal-verification-orchestrator). Strengthened dedup with 6-char slug-stem overlap check; re-picked `overall-heat-transfer-coefficient` (clean topic).
+  - Audit `head()` helper initially had no retry; the 4th consecutive HEAD probe on the same URL hit a transient 000 (3 prior probes were 200). Added 3-retry exponential backoff per Cycle #54 transport recipe; re-run clean.
+  - `raw` field requires `context=edit` query param; first audit fetch returned `content.rendered` only; fixed with second fetch at `?context=edit`.
+- **Skill fallback notice**: `article-poster-creator` and `article-highlight-cards` listed as not-found in cron prompt; umbrella nested at `~/.hermes/skills/article-writer/article-{poster-creator,highlight-cards}/` is present (per WP 7080/6352 advisory-only lesson). Used umbrella's bundled `render_editorial_dense_cron.py` for 3 cards and custom `wp_poster_render.py` (1080×800 dark-navy + cyan-teal editorial layout matching WP 8143 house style) for the poster. No PIL tofu issues, no overflow issues; all 4 PNGs clean per `vision_analyze`.
+- **Tool picker**: custom `/tmp/wp_picker.py` with metadata-aware access (WP 6129 schema trap), slug-prefix + 6-char slug-stem overlap dedup, THEMATIC_CLUSTERS guard, DEPRECATE_WHEN_SATURATED. Picked from 3073 tools after filtering 1386 (covered + saturated clusters + stem overlap), top score 21.
+- **Streak**: 49th consecutive clean cycle.
+
+
+
+## 2026-10-10 22:05 UTC — WP 8156 — Bernoulli Equation Solver Field Guide (1-POST 0-PATCH)
+
+- **Tool**: `bernoulli-equation-solver` (Bernoulli Equation Solver (Velocity / Pressure / Elevation), Math & Numbers)
+- **Slug**: `bernoulli-equation-solver-field-guide-when-a-negative-radicand-surfaces-the-upstream-downstream-pairing-mistake-before-any-pipe-is-welded-2026-10-11`
+- **date_gmt**: `2026-10-10T22:05:54`
+- **URL**: https://blog.flowrust.com/2026/10/11/bernoulli-equation-solver-field-guide-when-a-negative-radicand-surfaces-the-upstream-downstream-pairing-mistake-before-any-pipe-is-welded-2026-10-11/
+- **Status**: 1-POST 0-PATCH clean
+- **H2 count**: 8 body + 1 nav (theme chrome "Post navigation") = 9
+- **Cards**: 3 highlight-card figures (1× 5-col "Five Worked Examples" + 1× 4-col "Four Reported Heads" + 1× 3-col "Three Failure Modes")
+- **Poster**: 1 article-poster figure (1080×800 dark-navy + cyan-teal editorial)
+- **Elysia anchors**: 5 total (4 tool + 1 kind-root `/en/tools`)
+- **Asset URLs**:
+  - https://blog.flowrust.com/wp-content/uploads/2026/10/poster-41.png
+  - https://blog.flowrust.com/wp-content/uploads/2026/10/card_1-2.png
+  - https://blog.flowrust.com/wp-content/uploads/2026/10/card_2-2.png
+  - https://blog.flowrust.com/wp-content/uploads/2026/10/card_3-2.png
+- **Audit (post-POST)**: 0 findings; H1=0, H2=8, H3=0 body, 3 cards, 1 poster, featured_media=0, all 4 imgs HEAD-200, all 5 elysia anchors HEAD-200 (kind-root `/en/tools` + 4× `/en/tools/bernoulli-equation-solver`), permalink HTTP 200.
+- **Pitfalls encountered**:
+  - Subagent `cron:5d67e2279fc2:79adc7d0c1364508aeb7c7228c7b8d62` racing on `/tmp/wp_picker.py` (sibling subagent warning); resolved by using my own namespace.
+  - `picker.py` initially had `TOOL.get('tools', TOOL).items()` which fails on `dict` of `tools: [...]` schema; patched to `TOOL['tools']` list comprehension with metadata access. 1608 candidates → top pick `bernoulli-equation-solver` (Math & Numbers, score=110, desc_len=682).
+- **Skill fallback notice**: `article-poster-creator` and `article-highlight-cards` listed as not-found in cron prompt; both actually present at `~/.hermes/skills/article-writer/article-{poster-creator,highlight-cards}/` (per WP 6352 advisory-only lesson). Used umbrella's bundled `render_editorial_dense_cron.py` for the 3 cards. Custom `wp_assets/render_poster.py` for the 1080×800 dark-navy + cyan-teal poster (house style match for WP 8143/8150).
+- **Tool picker**: custom `/tmp/wp_picker.py` with content-based dedup (WP 8150 stem-overlap recipe applied). 1608 candidates after filtering covered + slug-stems; top score 110.
+- **Streak**: 50th consecutive clean cycle.
+
