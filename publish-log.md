@@ -1725,3 +1725,24 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - Tool: tpn-osmolality-estimator
 - Audit: 0 issues
 - Round-trips: 1 POST, 0 PATCH
+
+## 2026-10-10T13:33:39 — phone-number-formatter (WP 8143)
+
+- **Tool**: `phone-number-formatter` (Phone Number Formatter, Text Processing)
+- **Title**: Phone Number Formatter Field Guide: When One Raw Digit String Folds Into Fifteen National Shapes
+- **Slug**: `phone-number-formatter-field-guide-when-one-raw-digit-string-folds-into-fifteen-national-shapes`
+- **URL**: https://blog.flowrust.com/2026/10/10/phone-number-formatter-field-guide-when-one-raw-digit-string-folds-into-fifteen-national-shapes/
+- **date_gmt**: 2026-10-10T13:33:39
+- **Status**: 1-POST + 1-PATCH (MERGED_BULLET_LIST on 4 paragraphs converted to <ul><li> per WP 6135/6185/6212 recipe)
+- **H2 count**: 8 body + 1 nav (theme chrome) = 9
+- **Cards**: 3 highlight-card figures (1× render_card_5tile "Five Separator Rules" + 1× render_card_4tile_compact "Four Normalization Rules" + 1× render_card_input_output_2col "Three Failure Modes")
+- **Poster**: 1 article-poster figure
+- **Elysia anchors**: 8 total (7× /en/tools/phone-number-formatter + 1× /en/tools kind-root)
+- **Audit findings (post-PATCH)**: 0
+- **Asset URLs**:
+  - https://blog.flowrust.com/wp-content/uploads/2026/10/poster-39.png
+  - https://blog.flowrust.com/wp-content/uploads/2026/10/card1-34.png
+  - https://blog.flowrust.com/wp-content/uploads/2026/10/card2-34.png
+  - https://blog.flowrust.com/wp-content/uploads/2026/10/card3-34.png
+- **Notes**: pre-POST defects caught and fixed: (1) PIL card 3 had Cyrillic U+043E tofu in `o in 8` row — replaced with ASCII `O in 8` per WP 5699/5822/6135 recipe. (2) Source MD used 4 en-dash `– **bold**` bullet paragraphs which `md_to_html` collapsed into merged `<p>` blocks; PATCH rebuilt as `<ul><li>` HTML. (3) Initial body had 7 H2 (not 8); added "Quick reference: the fifteen country formats at a glance" with `<ul><li>` HTML (not `- ` markdown bullets per WP 6185) to bring count to 8. All 4 imgs 200, all unique elysia anchors 200 (1 transient SSL EOF retry-class on tool URL — confirmed 200 on retry).
+- **Caveats**: `article-poster-creator` and `article-highlight-cards` skills flagged as not-found in cron prompt — actually present at `~/.hermes/skills/article-writer/article-poster-creator/` and `~/.hermes/skills/article-writer/article-highlight-cards/` per WP 6352 advisory-only notice lesson; fell back to canonical umbrella `pil_poster_and_cards_network_theme.py` + `render_card_4tile_compact.py` + `custom_pil_card_layouts.py` PIL stack (proven stable across 50+ consecutive clean runs).
