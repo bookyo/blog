@@ -1,0 +1,51 @@
+{
+  "tool_id": "overall-heat-transfer-coefficient",
+  "tool_name": "Overall Heat Transfer Coefficient (1/U=ΣR)",
+  "tool_description": "Compute the overall heat transfer coefficient for series thermal resistances (flat-wall model): total resistance R_total = Σ R_i (K/W), thermal conductance G = 1/R_total (W/K), area-based coefficient U = 1/(R_total·A) (W/(m²·K)), and if a temperature difference is given the heat flow rate Q = ΔT/R_total (W). Each R_i is a layer resistance already containing the area factor (e.g. convection R_conv=1/(h·A), conduction R_cond=d/(k·A), fouling R_foul=R_f''/A). Enter one resistance (K/W) per line, at least one, all positive. ΔT may be negative (reverse heat flow); a °C difference equals a K difference, a °F difference is converted by ×5/9.",
+  "tool_category": "math & numbers",
+  "tool_keywords": [
+    "overall heat transfer coefficient",
+    "U-value",
+    "thermal resistance",
+    "series resistance",
+    "heat transfer",
+    "1/U=ΣR",
+    "thermal conductance",
+    "heat flow rate",
+    "convection resistance",
+    "conduction resistance",
+    "fouling resistance",
+    "R_total",
+    "heat exchanger",
+    "wall",
+    "composite wall",
+    "insulation"
+  ],
+  "samples": [
+    {
+      "id": "3ds-viewer-samples",
+      "title": "3DS Viewer Samples",
+      "description": "A 3DS 3D model sample for in-browser preview"
+    },
+    {
+      "id": "3mf-viewer-samples",
+      "title": "3MF Viewer Samples",
+      "description": "A 3MF 3D model sample for in-browser preview"
+    },
+    {
+      "id": "7z-viewer-samples",
+      "title": "7Z Viewer Samples",
+      "description": "A small 7Z archive with text and JSON files for in-browser preview"
+    },
+    {
+      "id": "aac-samples",
+      "title": "Copyright-Free AAC Audio Samples",
+      "description": "High-quality AAC encoded audio samples for testing and development, featuring nature sounds and meditation music with excellent compression"
+    },
+    {
+      "id": "activitypub-samples",
+      "title": "ActivityPub Decentralized Social Network",
+      "description": "ActivityPub protocol examples for federated social networks, Mastodon compatibility, and decentralized social media"
+    }
+  ]
+}

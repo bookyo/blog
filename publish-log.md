@@ -1800,3 +1800,25 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - **Tool picker**: custom `/tmp/wp_picker.py` with content-based dedup (WP 8150 stem-overlap recipe applied). 1608 candidates after filtering covered + slug-stems; top score 110.
 - **Streak**: 50th consecutive clean cycle.
 
+
+## 2026-10-11 — BOM Character Remover (WP 8162)
+- Tool: `data-bom-remover` — BOM Character Remover
+- URL: https://blog.flowrust.com/2026/10/11/bom-character-remover-field-guide-when-three-invisible-bytes-eat-your-first-csv-column/
+- date_gmt: 2026-10-11T02:12:01 UTC
+- Words: 1029 | 8 H2 sections + 1 closing
+- 3 elysia anchors: 1 tool + 2 kind-root
+- 1-POST + 1-PATCH (MERGED_NUMBERED_LIST → <ol>)
+- 0 audit findings post-PATCH
+- Visual QA: 4/4 PNGs clean (poster + 3 cards)
+- covered_slugs: 729 -> 730
+
+## 2026-10-11 — Luhn Checksum Calculator (WP 8179)
+- Tool: `luhn-checksum` — Luhn Checksum Calculator
+- URL: https://blog.flowrust.com/2026/10/11/luhn-checksum-field-guide-when-one-mod-10-walk-beats-eight-different-identifier-pipelines-2026-10-11/
+- date_gmt: 2026-10-11T10:32:35
+- Words: ~1100 | 8 H2 sections
+- 3 elysia anchors: 1 tool + 2 samples
+- 1-POST 0-PATCH clean
+- 0 audit findings
+- Visual QA: 4/4 PNGs clean (poster + 3 cards)
+- covered_slugs: 729 -> 730
