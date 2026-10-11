@@ -1822,3 +1822,20 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - 0 audit findings post-PATCH
 - Visual QA: 4/4 PNGs clean (poster + 3 cards)
 - covered_slugs: 729 -> 730
+
+## 2026-10-11T14:39:07 UTC — WP 8186 — PCIe Link Training LTSSM & Lane Margining Eye Decoder Field Guide
+
+- Title: PCIe Link Training LTSSM &#038; Lane Margining Eye Decoder Field Guide: When One Log File Reveals Whether Setup and Hold Actually Held
+- URL: https://blog.flowrust.com/2026/10/11/pcie-link-training-ltssm-eye-decoder-field-guide-when-one-log-file-reveals-whether-setup-and-hold-actually-held-2026-10-11/
+- Tool: pcie-link-training-linkstate-and-lane-margining-eye-decode (Network) — PCIe Link Training LTSSM & Lane Margining Eye Decoder
+- date_gmt: 2026-10-11T14:39:07
+- Mode: 1-POST + 1-PATCH (defused MERGED_BULLET_LIST on 7 blocks per WP 5676/5717/6135 recipe — `&#8211; <strong>` items joined into single <p>; rebuilt to `<ul><li>` HTML preserving inline `<code>` spans)
+- Assets: 1 poster (1080×800) + 3 cards (1600×900: 2×5-tile "Five Things A Clean Gen5 Bring-Up Shows" + "Five Rate-ID Values And What They Mean", 1×input-output-2col "A Worked Example: Gen5 x4 Bring-Up Decode" with custom title/subtitle)
+- vision_analyze: poster clean; card 1 clean; card 2 clean (0x01..0x1F Gen1-Gen5 hex rate-ids all readable); card 3 first-pass had default template title "Grouped Output in Practice" — refactored to "A Worked Example: Gen5 x4 Bring-Up Decode" with custom subtitle; all 4 PNGs clean final
+- elysia anchors: 9 total — 8× /en/tools/pcie-link-training-linkstate-and-lane-margining-eye-decode + 1× /en/tools (kind-root) — validate_anchors=True, all HEAD/GET 200 OK
+- audit: 0 findings on final rendered HTML (after PATCH closed MERGED_BULLET_LIST; pre-PATCH had 7 blocks)
+- DOM: H1=0 H2=8 H3=0 cards=3 poster=1 ul=7 li=32
+- Cycle #54 SSL EOF fallback: urllib.request HEAD probes false-failed on card1/3 (timeout) — switched to curl subprocess which returned 200; elysia HEAD probes timed out via curl `-I` (CDN blocks HEAD); confirmed 200 via `curl -L -A Mozilla/5.0` GET
+- Skills probe: `article-writer` umbrella present; `article-poster-creator` + `article-highlight-cards` present under `article-writer/` umbrella path (cron prompt skip notice was stale per WP 6352 lesson) — used umbrella PIL templates per canonical cadence
+- State: covered_slugs 673→674
+
