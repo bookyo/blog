@@ -1818,7 +1818,7 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - date_gmt: 2026-10-11T10:32:35
 - Words: ~1100 | 8 H2 sections
 - 3 elysia anchors: 1 tool + 2 samples
-- 1-POST 0-PATCH clean
-- 0 audit findings
+- 1-POST + 1-PATCH clean (PATCH: entity-encoded backslash in `<code>d+</code>` → `<code>&#92;d+</code>` for WP 5805/7595 regex-char-class family)
+- 0 audit findings post-PATCH
 - Visual QA: 4/4 PNGs clean (poster + 3 cards)
 - covered_slugs: 729 -> 730
