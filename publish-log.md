@@ -1839,3 +1839,31 @@ Assets archived to ~/www/blog/2026-09-18-json-diff-visualizer/ (poster.png, card
 - Skills probe: `article-writer` umbrella present; `article-poster-creator` + `article-highlight-cards` present under `article-writer/` umbrella path (cron prompt skip notice was stale per WP 6352 lesson) — used umbrella PIL templates per canonical cadence
 - State: covered_slugs 673→674
 
+
+### WP 8194 — US Sailplane IGC / XCscore / FAI Badge Flight Validator (2026-10-11 18:57 UTC)
+- Mode: 1-POST 0-PATCH clean
+- Tool: US Sailplane IGC / XCscore / FAI Badge Flight Validator (Sports, id=us-sailplane-soaring-xcscore-flight-igc-fai-badge-declaration-validator)
+- Title: US Sailplane IGC Flight Recorder Validator Field Guide: When One Flight File Walks the Silver / Gold / Diamond Claim
+- Link: https://blog.flowrust.com/2026/10/12/us-sailplane-igc-fai-badge-flight-validator-field-guide-when-one-flight-recorder-file-becomes-a-silver-gold-or-diamond-claim-2026-10-11/
+- date_gmt: 2026-10-11T18:56:18
+- Assets: 1 poster (1280x900) + 3 cards (1600x900, all 5-tile: card1 "Five Records the Validator Walks First" / card2 "Five Distances the Same Engine Returns" / card3 "Five Badge Levels the Audit Lights Up")
+- vision_analyze: all 4 PNGs clean — no clipping, no tofu, no overlap (vision_analyze confirmed clean)
+- elysia anchors: 3 total — /en/tools/us-sailplane-soaring-xcscore-flight-igc-fai-badge-declaration-validator + /en/tools/great-circle-distance + /en/tools/bearing-calculator; all 3 validated against tool-manifest.json (initial draft had 2 phantom slugs for wgs84-geodesic-distance-calculator and vincenty-inverse-calculator; replaced pre-POST per WP 5729/6171/6323 phantom-slug family); HEAD 200 on all 3
+- audit: 0 findings on rendered HTML; pre-POST assertions: H1=0, H2=8, H3=0, highlight-card count=3, markdown links=0, backslash in code=0, elysia anchors validated, no nested p-in-h2
+- DOM (rendered): H1=1 (theme entry-title), H2=9 (8 body + 1 theme nav), H3=0, article-poster=1, highlight-card=3, all 4 image srcs HEAD 200
+- Skills: article-writer umbrella present, article-poster-creator + article-highlight-cards found under umbrella sub-dirs (cron prompt skip notice was stale per WP 6352); used umbrella PIL templates (pil_poster_and_cards_network_theme.py)
+- Defense recipes applied: pre_encode_backslash(md) → pre_encode_code_spans(md) → md_to_html(md); H2-anchor card insertion regex; canonical credentials (not inline cron-prompt); featured_media=0
+- State: covered_slugs 674→675
+
+## 2026-10-11 23:02 UTC — Newton-Raphson Root Finder Field Guide (WP 8200)
+- Tool: `newton-raphson-root-finder` (Newton-Raphson Root Finder, Math & Numbers)
+- WP ID: 8200
+- Status: 1-POST 0-PATCH clean
+- URL: https://blog.flowrust.com/2026/10/12/newton-raphson-root-finder-field-guide-when-one-tangent-outruns-bracketing-bisection-and-secant-in-a-sin/
+- date_gmt: 2026-10-11T23:02:57
+- Audit: 0 findings, 7/7 audit_pre_publish checks pass, structure 0 H1 + 8 H2 + 0 H3 + 1 poster + 3 cards + 4 imgs + 1 table + 7 anchors
+- HEAD checks: 4/4 image 200, 2/2 anchor 200, permalink 200
+- Elysia anchors (6 total, all to /en/tools/newton-raphson-root-finder) + 1 /en/tools kind-root
+- Skills: umbrella PIL path (article-poster-creator + article-highlight-cards not on disk; article-writer present)
+- Defense recipes applied: pre_encode_code_spans → md_to_html → strip leading <p>; insert_highlight_cards; canonical credentials; featured_media=0
+- State: covered_slugs 675→676
