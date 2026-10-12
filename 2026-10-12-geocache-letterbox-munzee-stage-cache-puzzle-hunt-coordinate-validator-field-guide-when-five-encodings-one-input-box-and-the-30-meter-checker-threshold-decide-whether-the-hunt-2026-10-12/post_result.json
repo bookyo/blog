@@ -1,0 +1,365 @@
+{
+  "id": 8215,
+  "date": "2026-10-12T15:34:25",
+  "date_gmt": "2026-10-12T07:34:25",
+  "guid": {
+    "rendered": "https://blog.flowrust.com/2026/10/12/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12/",
+    "raw": "https://blog.flowrust.com/2026/10/12/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12/"
+  },
+  "modified": "2026-10-12T15:34:28",
+  "modified_gmt": "2026-10-12T07:34:28",
+  "password": "",
+  "slug": "geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12",
+  "status": "publish",
+  "type": "post",
+  "link": "https://blog.flowrust.com/2026/10/12/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12/",
+  "title": {
+    "raw": "Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator Field Guide: When Five Encodings, One Input Box, and the 30-Meter Checker Threshold Decide Whether the Hunt Closes Clean",
+    "rendered": "Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator Field Guide: When Five Encodings, One Input Box, and the 30-Meter Checker Threshold Decide Whether the Hunt Closes Clean"
+  },
+  "content": {
+    "raw": "<p><strong>A field-stamped geocache is not a problem you can solve with a single math call.</strong> The puzzle-hunt hobby hides five different encodings behind one hobby: a six-character GC-code that decodes to a numeric ID, a 1-to-5 D/T grid that lives on a separate 81-cell scale from the rating, a multi-stage projection that walks WGS84 waypoints through bearing and distance offsets, a 31-character alphabet that resists parsing with standard regex, and a \"checker\" coordinate that the puzzle author plants in plain text and trusts you to compare against. The Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator at <a href=\"https://elysiatools.com/en/tools/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator\">Elysia Tools</a> puts all five on a single page and tells you which type your cache is before it tells you whether your answer is right.</p>\n<figure class=\"article-poster\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/geocache-validator-poster-2026-10-12.png\" alt=\"Field-guide poster for the Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator\"></figure>\n<h2>What the GC-Code Encoding Is Really Doing</h2>\n<p>The GC-code on a <a href=\"https://blog.flowrust.com/tag/geocaching/\" class=\"wpai-auto-tags-link\">geocaching</a>.com cache page looks like a four-or-five character hex string \u2014 <code>GC1ABC</code>, <code>GC12345</code>, <code>GC4F7Z</code> \u2014 but the older format is hexadecimal and the post-2005 format is a custom base-31 encoding with a quirky +411120 offset. A naive <code>parseInt(code, 16)</code> returns 127 for <code>GC1ABC2</code> on the modern era and a number that wraps to negative for <code>GCABC</code> on the legacy era. The validator takes a single string, detects which era it belongs to, normalizes the prefix, and emits the numeric ID along with the cache type label. If the encoding falls outside the expected range the tool flags the input as malformed and prints the expected character set rather than failing silently.</p>\n<p>This matters more than it sounds. A puzzle cache whose GC-code has been transcribed wrong on a forum post will return a \"valid\" hex number that points at a different cache \u2014 the solver checks the wrong coordinates, the cache-owner emails you about your mistake, and a 30-minute hunt turns into a half-day. The validator's encoding check is the cheap pre-flight that costs two seconds and saves the rest.</p>\n<h2>The D/T Grid Is Two Numbers, Not One</h2>\n<p>Geocachers rate caches with two numbers: Difficulty (1 to 5) and Terrain (1 to 5), printed as <code>D3.5/T4</code>. The Fizzy grid the community uses to visualize them is an 81-cell (9\u00d79) matrix, but the rating you see on a cache page is half-step \u2014 1.0, 1.5, 2.0, 2.5, 3.0 \u2014 which means half the cells in the grid are unreachable from the published rating scheme. The validator plots the cache's D/T on a 9\u00d79 grid that respects the half-step boundary and color-codes the cell to make the actual cognitive load of the hunt obvious at a glance.</p>\n<p>What the D/T really tells a solver is whether the cache needs climbing gear, a long walk, a kayak, or just street shoes. A <code>D2/T5</code> is a trivial puzzle with a hard physical approach \u2014 common for letterbox hybrids in remote parks \u2014 and a <code>D5/T1</code> is a brutally hard puzzle solved from a parking lot. The validator's grid view makes that asymmetry impossible to miss.</p>\n<h2>Multi-Stage Projections: Bearings, Distances, and WGS84</h2>\n<p>Puzzle caches and multi-caches walk the solver through a chain of \"stage\" coordinates. Stage 1's waypoint is the published coordinate, stage 2 is a bearing-and-distance offset from stage 1 (<code>bearing 47\u00b0 for 0.6 miles</code>), stage 3 is another offset from stage 2, and the final is where the cache sits. A naive solver projects the first offset on a flat plane, gets a coordinate 200 meters off, and concludes the puzzle is wrong.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/geocache-validator-card1-multi-stage-2026-10-12.png\" alt=\"Multi-stage bearing and distance projection card \u2014 haversine on WGS84 with the 30-meter checker threshold\" loading=\"lazy\"></figure>\n<p>The projection math is <a href=\"https://blog.flowrust.com/tag/haversine/\" class=\"wpai-auto-tags-link\">haversine</a> on a sphere (WGS84), not a flat-plane transform. The validator walks each stage, applies the bearing and distance on the spherical surface, emits the decimal-degree coordinate and the <code>N 47\u00b0 36.600' W 122\u00b0 19.450'</code> DMS format side by side, and labels each as stage N. When the final waypoint differs from the checker coordinate by more than 30 meters the validator flags the cache as a puzzle \u2014 that's the radius at which GPS noise still leaves a real answer, and below which the solver is searching inside a parking-lot radius.</p>\n<h2>The 31-Character Base-31 Alphabet</h2>\n<p>The base-31 encoding behind modern GC-codes skips digits that look like letters (0/O, 1/I/L) and uses exactly 31 characters. That makes the encoding regex <code>^[0-9A-HJ-NP-Z]+$</code> \u2014 not the obvious <code>^[0-9A-Z]+$</code> your first try will write. The validator enforces this alphabet on the parsed value and refuses to interpret an input that contains I, O, or 0 in the wrong position, which is the most common transcription error on old forum posts that lost the original formatting.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/geocache-validator-card2-base31-2026-10-12.png\" alt=\"Base-31 alphabet card \u2014 why the regex skips I, O, and 0, and the +411120 offset that maps the encoded value back into the cache ID space\" loading=\"lazy\"></figure>\n<p>A pre-65536 cache uses the legacy hexadecimal era and decodes as <code>parseInt(code, 16)</code>; a post-65536 cache uses base-31 with the +411120 offset that maps the encoded value back into the cache ID space. The validator handles both with one parser and a single <code>era</code> flag in the output, so the solver does not have to know which era the cache was published in.</p>\n<h2>Checker Coordinates and Puzzle-Cache Reality</h2>\n<p>Puzzle-cache authors usually embed the answer in the puzzle \u2014 a hidden coordinate that the solver has to extract from a series of clues, a coded message, or a physical artifact. The author almost always publishes a \"checker\" coordinate on the cache page that lets the solver confirm their derived answer before going outside. The validator's checker input takes the solver's derived coordinate, takes the published checker, and emits a distance-and-bearing result. Under 30 meters: the solver's math is right. Over 30 meters: something is off and the validator prints a sanity-check warning rather than a clean pass.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/geocache-validator-card3-checker-2026-10-12.png\" alt=\"Checker coordinate card \u2014 the 30-meter threshold that catches real puzzle bugs\" loading=\"lazy\"></figure>\n<p>The 30-meter threshold is the real-world GPS noise floor. A handheld GPS in tree cover is good to about 10 meters, a phone GPS is good to about 5 meters in open sky, and a cache hidden in a cliff face is good to about 30. The validator's threshold matches the noise floor so a clean pass really means clean.</p>\n<h2>Letterbox Hybrids and Munzees Need Different Defaults</h2>\n<p>Letterbox hybrids use a rubber-stamp and a logbook instead of a trackable, and the cache page is usually missing the typical geocaching fields. Munzees use a QR code on a virtual or physical location and the validation rules are different. The validator detects the cache type from the GC-code prefix and the input shape, then applies the type-specific tolerance and grid placement. A munzee virtual at a city fountain with no physical container is not \"found\" the way a letterbox is, and the validator's output reflects that.</p>\n<p>This is the part the geocaching forums skip. The community assumes every cache is a geocache, and the tools that grew up around that assumption treat letterbox and munzee caches as a special case. The validator's type detection is a single check, but it changes which fields the output cares about.</p>\n<h2>The Five-Check Output Format</h2>\n<p>A clean validator run prints five labeled fields in order: parsed cache type (geocache / letterbox hybrid / munzee / multi-cache / mystery cache), GC-code era flag (legacy hex or modern base-31), the D/T grid cell with the half-step enforced, the multi-stage chain as <code>stage 1 \u2192 stage 2 \u2192 ... \u2192 final</code> with the bearing and distance between each pair, and the checker-coordinate distance with the green-or-red 30-meter threshold. The five fields are the minimum a solver needs to trust the output; anything less and the tool is forcing a manual cross-check downstream.</p>\n<h2>Why a Single Validator Page Beats a Stack of Scripts</h2>\n<p>A solver who is debugging a puzzle cache typically runs a regex over the GC-code, then a base-conversion, then a haversine, then a D/T-grid plot, then a checker compare, and then debugs whichever step the chain broke in. The validator runs all five in one input box and prints the disambiguated output, which means a solver can paste a forum-posted code, see whether the transcription is the bug or the puzzle is the bug, and skip the half-hour of setup. The tool is free, runs in the browser, and saves the alternative \u2014 opening five tabs and re-entering the same input in each.</p>\n<p>For puzzle-hunt organizers, the same tool validates the chain before publication: a multi-stage cache with a broken projection never reaches the page because the validator caught it during authoring. The checker-coordinate distance is the last field in the output and the first field a serious organizer checks.</p>\n<p>Run the validator at <a href=\"https://elysiatools.com/en/tools/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator\">Elysia Tools</a> when the next puzzle-cache page arrives in your feed. The tool is the difference between a half-day of frustration and a clean pass at the published coordinates.</p>\n<p>Explore more puzzle-solving and projection tools at <a href=\"https://elysiatools.com/en/tools\">elysiatools.com/en/tools</a>.</p>",
+    "rendered": "<p><strong>A field-stamped geocache is not a problem you can solve with a single math call.</strong> The puzzle-hunt hobby hides five different encodings behind one hobby: a six-character GC-code that decodes to a numeric ID, a 1-to-5 D/T grid that lives on a separate 81-cell scale from the rating, a multi-stage projection that walks WGS84 waypoints through bearing and distance offsets, a 31-character alphabet that resists parsing with standard regex, and a &#8220;checker&#8221; coordinate that the puzzle author plants in plain text and trusts you to compare against. The Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator at <a href=\"https://elysiatools.com/en/tools/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator\">Elysia Tools</a> puts all five on a single page and tells you which type your cache is before it tells you whether your answer is right.</p>\n<figure class=\"article-poster\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/geocache-validator-poster-2026-10-12.png\" alt=\"Field-guide poster for the Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator\"></figure>\n<h2>What the GC-Code Encoding Is Really Doing</h2>\n<p>The GC-code on a <a href=\"https://blog.flowrust.com/tag/geocaching/\" class=\"wpai-auto-tags-link\">geocaching</a>.com cache page looks like a four-or-five character hex string \u2014 <code>GC1ABC</code>, <code>GC12345</code>, <code>GC4F7Z</code> \u2014 but the older format is hexadecimal and the post-2005 format is a custom base-31 encoding with a quirky +411120 offset. A naive <code>parseInt(code, 16)</code> returns 127 for <code>GC1ABC2</code> on the modern era and a number that wraps to negative for <code>GCABC</code> on the legacy era. The validator takes a single string, detects which era it belongs to, normalizes the prefix, and emits the numeric ID along with the cache type label. If the encoding falls outside the expected range the tool flags the input as malformed and prints the expected character set rather than failing silently.</p>\n<p>This matters more than it sounds. A puzzle cache whose GC-code has been transcribed wrong on a forum post will return a &#8220;valid&#8221; hex number that points at a different cache \u2014 the solver checks the wrong coordinates, the cache-owner emails you about your mistake, and a 30-minute hunt turns into a half-day. The validator&#8217;s encoding check is the cheap pre-flight that costs two seconds and saves the rest.</p>\n<h2>The D/T Grid Is Two Numbers, Not One</h2>\n<p>Geocachers rate caches with two numbers: Difficulty (1 to 5) and Terrain (1 to 5), printed as <code>D3.5/T4</code>. The Fizzy grid the community uses to visualize them is an 81-cell (9\u00d79) matrix, but the rating you see on a cache page is half-step \u2014 1.0, 1.5, 2.0, 2.5, 3.0 \u2014 which means half the cells in the grid are unreachable from the published rating scheme. The validator plots the cache&#8217;s D/T on a 9\u00d79 grid that respects the half-step boundary and color-codes the cell to make the actual cognitive load of the hunt obvious at a glance.</p>\n<p>What the D/T really tells a solver is whether the cache needs climbing gear, a long walk, a kayak, or just street shoes. A <code>D2/T5</code> is a trivial puzzle with a hard physical approach \u2014 common for letterbox hybrids in remote parks \u2014 and a <code>D5/T1</code> is a brutally hard puzzle solved from a parking lot. The validator&#8217;s grid view makes that asymmetry impossible to miss.</p>\n<h2>Multi-Stage Projections: Bearings, Distances, and WGS84</h2>\n<p>Puzzle caches and multi-caches walk the solver through a chain of &#8220;stage&#8221; coordinates. Stage 1&#8217;s waypoint is the published coordinate, stage 2 is a bearing-and-distance offset from stage 1 (<code>bearing 47\u00b0 for 0.6 miles</code>), stage 3 is another offset from stage 2, and the final is where the cache sits. A naive solver projects the first offset on a flat plane, gets a coordinate 200 meters off, and concludes the puzzle is wrong.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/geocache-validator-card1-multi-stage-2026-10-12.png\" alt=\"Multi-stage bearing and distance projection card \u2014 haversine on WGS84 with the 30-meter checker threshold\" loading=\"lazy\"></figure>\n<p>The projection math is <a href=\"https://blog.flowrust.com/tag/haversine/\" class=\"wpai-auto-tags-link\">haversine</a> on a sphere (WGS84), not a flat-plane transform. The validator walks each stage, applies the bearing and distance on the spherical surface, emits the decimal-degree coordinate and the <code>N 47\u00b0 36.600' W 122\u00b0 19.450'</code> DMS format side by side, and labels each as stage N. When the final waypoint differs from the checker coordinate by more than 30 meters the validator flags the cache as a puzzle \u2014 that&#8217;s the radius at which GPS noise still leaves a real answer, and below which the solver is searching inside a parking-lot radius.</p>\n<h2>The 31-Character Base-31 Alphabet</h2>\n<p>The base-31 encoding behind modern GC-codes skips digits that look like letters (0/O, 1/I/L) and uses exactly 31 characters. That makes the encoding regex <code>^[0-9A-HJ-NP-Z]+$</code> \u2014 not the obvious <code>^[0-9A-Z]+$</code> your first try will write. The validator enforces this alphabet on the parsed value and refuses to interpret an input that contains I, O, or 0 in the wrong position, which is the most common transcription error on old forum posts that lost the original formatting.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/geocache-validator-card2-base31-2026-10-12.png\" alt=\"Base-31 alphabet card \u2014 why the regex skips I, O, and 0, and the +411120 offset that maps the encoded value back into the cache ID space\" loading=\"lazy\"></figure>\n<p>A pre-65536 cache uses the legacy hexadecimal era and decodes as <code>parseInt(code, 16)</code>; a post-65536 cache uses base-31 with the +411120 offset that maps the encoded value back into the cache ID space. The validator handles both with one parser and a single <code>era</code> flag in the output, so the solver does not have to know which era the cache was published in.</p>\n<h2>Checker Coordinates and Puzzle-Cache Reality</h2>\n<p>Puzzle-cache authors usually embed the answer in the puzzle \u2014 a hidden coordinate that the solver has to extract from a series of clues, a coded message, or a physical artifact. The author almost always publishes a &#8220;checker&#8221; coordinate on the cache page that lets the solver confirm their derived answer before going outside. The validator&#8217;s checker input takes the solver&#8217;s derived coordinate, takes the published checker, and emits a distance-and-bearing result. Under 30 meters: the solver&#8217;s math is right. Over 30 meters: something is off and the validator prints a sanity-check warning rather than a clean pass.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/geocache-validator-card3-checker-2026-10-12.png\" alt=\"Checker coordinate card \u2014 the 30-meter threshold that catches real puzzle bugs\" loading=\"lazy\"></figure>\n<p>The 30-meter threshold is the real-world GPS noise floor. A handheld GPS in tree cover is good to about 10 meters, a phone GPS is good to about 5 meters in open sky, and a cache hidden in a cliff face is good to about 30. The validator&#8217;s threshold matches the noise floor so a clean pass really means clean.</p>\n<h2>Letterbox Hybrids and Munzees Need Different Defaults</h2>\n<p>Letterbox hybrids use a rubber-stamp and a logbook instead of a trackable, and the cache page is usually missing the typical geocaching fields. Munzees use a QR code on a virtual or physical location and the validation rules are different. The validator detects the cache type from the GC-code prefix and the input shape, then applies the type-specific tolerance and grid placement. A munzee virtual at a city fountain with no physical container is not &#8220;found&#8221; the way a letterbox is, and the validator&#8217;s output reflects that.</p>\n<p>This is the part the geocaching forums skip. The community assumes every cache is a geocache, and the tools that grew up around that assumption treat letterbox and munzee caches as a special case. The validator&#8217;s type detection is a single check, but it changes which fields the output cares about.</p>\n<h2>The Five-Check Output Format</h2>\n<p>A clean validator run prints five labeled fields in order: parsed cache type (geocache / letterbox hybrid / munzee / multi-cache / mystery cache), GC-code era flag (legacy hex or modern base-31), the D/T grid cell with the half-step enforced, the multi-stage chain as <code>stage 1 \u2192 stage 2 \u2192 ... \u2192 final</code> with the bearing and distance between each pair, and the checker-coordinate distance with the green-or-red 30-meter threshold. The five fields are the minimum a solver needs to trust the output; anything less and the tool is forcing a manual cross-check downstream.</p>\n<h2>Why a Single Validator Page Beats a Stack of Scripts</h2>\n<p>A solver who is debugging a puzzle cache typically runs a regex over the GC-code, then a base-conversion, then a haversine, then a D/T-grid plot, then a checker compare, and then debugs whichever step the chain broke in. The validator runs all five in one input box and prints the disambiguated output, which means a solver can paste a forum-posted code, see whether the transcription is the bug or the puzzle is the bug, and skip the half-hour of setup. The tool is free, runs in the browser, and saves the alternative \u2014 opening five tabs and re-entering the same input in each.</p>\n<p>For puzzle-hunt organizers, the same tool validates the chain before publication: a multi-stage cache with a broken projection never reaches the page because the validator caught it during authoring. The checker-coordinate distance is the last field in the output and the first field a serious organizer checks.</p>\n<p>Run the validator at <a href=\"https://elysiatools.com/en/tools/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator\">Elysia Tools</a> when the next puzzle-cache page arrives in your feed. The tool is the difference between a half-day of frustration and a clean pass at the published coordinates.</p>\n<p>Explore more puzzle-solving and projection tools at <a href=\"https://elysiatools.com/en/tools\">elysiatools.com/en/tools</a>.</p>\n",
+    "protected": false,
+    "block_version": 0
+  },
+  "excerpt": {
+    "raw": "A field-stamped geocache is not a problem you can solve with a single math call. Five encodings hide behind one hobby: a base-31 GC-code, a 1-to-5 D/T grid, a multi-stage haversine projection, a 30-meter checker threshold, and a type-specific tolerance for letterbox and munzee variants. The Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator at Elysia Tools puts all five on a single page and tells you which type your cache is before it tells you whether your answer is right.",
+    "rendered": "<p>A field-stamped geocache is not a problem you can solve with a single math call. Five encodings hide behind one hobby: a base-31 GC-code, a 1-to-5 D/T grid, a multi-stage haversine projection, a 30-meter checker threshold, and a type-specific tolerance for letterbox and munzee variants. The Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator at Elysia Tools puts all five on a single page and tells you which type your cache is before it tells you whether your answer is right.</p>\n",
+    "protected": false
+  },
+  "author": 1,
+  "featured_media": 0,
+  "comment_status": "open",
+  "ping_status": "open",
+  "sticky": false,
+  "template": "",
+  "format": "standard",
+  "meta": {
+    "om_disable_all_campaigns": false,
+    "_monsterinsights_skip_tracking": false,
+    "footnotes": ""
+  },
+  "categories": [],
+  "tags": [
+    2438,
+    2439,
+    2436,
+    2440,
+    2437
+  ],
+  "permalink_template": "https://blog.flowrust.com/2026/10/12/%postname%/",
+  "generated_slug": "geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-closes-clean",
+  "class_list": [
+    "post-8215",
+    "post",
+    "type-post",
+    "status-publish",
+    "format-standard",
+    "hentry",
+    "tag-coordinate-validator",
+    "tag-gc-codes",
+    "tag-geocaching",
+    "tag-haversine",
+    "tag-puzzle-hunting"
+  ],
+  "aioseo_notices": [],
+  "aioseo_head": "\n\t\t<!-- All in One SEO 4.9.10 - aioseo.com -->\n\t<meta name=\"description\" content=\"A field-stamped geocache is not a problem you can solve with a single math call. Five encodings hide behind one hobby: a base-31 GC-code, a 1-to-5 D/T grid, a multi-stage haversine projection, a 30-meter checker threshold, and a type-specific tolerance for letterbox and munzee variants. The Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator at Elysia Tools puts all five on a single page and tells you which type your cache is before it tells you whether your answer is right.\" />\n\t<meta name=\"robots\" content=\"max-image-preview:large\" />\n\t<meta name=\"author\" content=\"xiezixing\"/>\n\t<meta name=\"google-site-verification\" content=\"xcSlplMgocNnrNwmxi7j46JcdU6F-L2jrlAnpUB5Lxg\" />\n\t<link rel=\"canonical\" href=\"https://blog.flowrust.com/2026/10/12/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12/\" />\n\t<meta name=\"generator\" content=\"All in One SEO (AIOSEO) 4.9.10\" />\n\t\t<meta property=\"og:locale\" content=\"en_US\" />\n\t\t<meta property=\"og:site_name\" content=\"COSESAI - Sharing my AI experiences\" />\n\t\t<meta property=\"og:type\" content=\"article\" />\n\t\t<meta property=\"og:title\" content=\"Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator Field Guide: When Five Encodings, One Input Box, and the 30-Meter Checker Threshold Decide Whether the Hunt Closes Clean - COSESAI\" />\n\t\t<meta property=\"og:description\" content=\"A field-stamped geocache is not a problem you can solve with a single math call. Five encodings hide behind one hobby: a base-31 GC-code, a 1-to-5 D/T grid, a multi-stage haversine projection, a 30-meter checker threshold, and a type-specific tolerance for letterbox and munzee variants. The Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator at Elysia Tools puts all five on a single page and tells you which type your cache is before it tells you whether your answer is right.\" />\n\t\t<meta property=\"og:url\" content=\"https://blog.flowrust.com/2026/10/12/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12/\" />\n\t\t<meta property=\"og:image\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<meta property=\"og:image:secure_url\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<meta property=\"og:image:width\" content=\"512\" />\n\t\t<meta property=\"og:image:height\" content=\"512\" />\n\t\t<meta property=\"article:published_time\" content=\"2026-10-12T07:34:25+00:00\" />\n\t\t<meta property=\"article:modified_time\" content=\"2026-10-12T07:34:28+00:00\" />\n\t\t<meta name=\"twitter:card\" content=\"summary_large_image\" />\n\t\t<meta name=\"twitter:title\" content=\"Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator Field Guide: When Five Encodings, One Input Box, and the 30-Meter Checker Threshold Decide Whether the Hunt Closes Clean - COSESAI\" />\n\t\t<meta name=\"twitter:description\" content=\"A field-stamped geocache is not a problem you can solve with a single math call. Five encodings hide behind one hobby: a base-31 GC-code, a 1-to-5 D/T grid, a multi-stage haversine projection, a 30-meter checker threshold, and a type-specific tolerance for letterbox and munzee variants. The Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator at Elysia Tools puts all five on a single page and tells you which type your cache is before it tells you whether your answer is right.\" />\n\t\t<meta name=\"twitter:image\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<script type=\"application/ld+json\" class=\"aioseo-schema\">\n\t\t\t{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/12\\/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12\\/#blogposting\",\"name\":\"Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator Field Guide: When Five Encodings, One Input Box, and the 30-Meter Checker Threshold Decide Whether the Hunt Closes Clean - COSESAI\",\"headline\":\"Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator Field Guide: When Five Encodings, One Input Box, and the 30-Meter Checker Threshold Decide Whether the Hunt Closes Clean\",\"author\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"publisher\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\"},\"image\":{\"@type\":\"ImageObject\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/uploads\\/2026\\/10\\/geocache-validator-poster-2026-10-12.png\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/12\\/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12\\/#articleImage\",\"width\":1280,\"height\":900},\"datePublished\":\"2026-10-12T15:34:25+08:00\",\"dateModified\":\"2026-10-12T15:34:28+08:00\",\"inLanguage\":\"en-US\",\"mainEntityOfPage\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/12\\/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12\\/#webpage\"},\"isPartOf\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/12\\/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12\\/#webpage\"},\"articleSection\":\"coordinate-validator, gc-codes, geocaching, haversine, puzzle-hunting\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/12\\/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12\\/#breadcrumblist\",\"itemListElement\":[{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com#listItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/blog.flowrust.com\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/tag\\/geocaching\\/#listItem\",\"name\":\"geocaching\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/tag\\/geocaching\\/#listItem\",\"position\":2,\"name\":\"geocaching\",\"item\":\"https:\\/\\/blog.flowrust.com\\/tag\\/geocaching\\/\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/12\\/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12\\/#listItem\",\"name\":\"Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator Field Guide: When Five Encodings, One Input Box, and the 30-Meter Checker Threshold Decide Whether the Hunt Closes Clean\"},\"previousItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com#listItem\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/12\\/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12\\/#listItem\",\"position\":3,\"name\":\"Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator Field Guide: When Five Encodings, One Input Box, and the 30-Meter Checker Threshold Decide Whether the Hunt Closes Clean\",\"previousItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/tag\\/geocaching\\/#listItem\",\"name\":\"geocaching\"}}]},{\"@type\":\"Person\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\",\"name\":\"xiezixing\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/12\\/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12\\/#personImage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/litespeed\\/avatar\\/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1791205210\",\"width\":96,\"height\":96,\"caption\":\"xiezixing\"}},{\"@type\":\"Person\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\",\"url\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/\",\"name\":\"xiezixing\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/12\\/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12\\/#authorImage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/litespeed\\/avatar\\/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1791205210\",\"width\":96,\"height\":96,\"caption\":\"xiezixing\"}},{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/12\\/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12\\/#webpage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/12\\/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12\\/\",\"name\":\"Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator Field Guide: When Five Encodings, One Input Box, and the 30-Meter Checker Threshold Decide Whether the Hunt Closes Clean - COSESAI\",\"description\":\"A field-stamped geocache is not a problem you can solve with a single math call. Five encodings hide behind one hobby: a base-31 GC-code, a 1-to-5 D\\/T grid, a multi-stage haversine projection, a 30-meter checker threshold, and a type-specific tolerance for letterbox and munzee variants. The Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator at Elysia Tools puts all five on a single page and tells you which type your cache is before it tells you whether your answer is right.\",\"inLanguage\":\"en-US\",\"isPartOf\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/12\\/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12\\/#breadcrumblist\"},\"author\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"creator\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"datePublished\":\"2026-10-12T15:34:25+08:00\",\"dateModified\":\"2026-10-12T15:34:28+08:00\"},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/#website\",\"url\":\"https:\\/\\/blog.flowrust.com\\/\",\"name\":\"COSESAI\",\"description\":\"Sharing my AI experiences\",\"inLanguage\":\"en-US\",\"publisher\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\"}}]}\n\t\t</script>\n\t\t<!-- All in One SEO -->\n\n",
+  "aioseo_head_json": {
+    "title": "Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator Field Guide: When Five Encodings, One Input Box, and the 30-Meter Checker Threshold Decide Whether the Hunt Closes Clean - COSESAI",
+    "description": "A field-stamped geocache is not a problem you can solve with a single math call. Five encodings hide behind one hobby: a base-31 GC-code, a 1-to-5 D/T grid, a multi-stage haversine projection, a 30-meter checker threshold, and a type-specific tolerance for letterbox and munzee variants. The Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator at Elysia Tools puts all five on a single page and tells you which type your cache is before it tells you whether your answer is right.",
+    "canonical_url": "https://blog.flowrust.com/2026/10/12/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12/",
+    "robots": "max-image-preview:large",
+    "keywords": "",
+    "webmasterTools": {
+      "google-site-verification": "xcSlplMgocNnrNwmxi7j46JcdU6F-L2jrlAnpUB5Lxg",
+      "miscellaneous": ""
+    },
+    "schema": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "@id": "https://blog.flowrust.com/2026/10/12/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12/#blogposting",
+          "name": "Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator Field Guide: When Five Encodings, One Input Box, and the 30-Meter Checker Threshold Decide Whether the Hunt Closes Clean - COSESAI",
+          "headline": "Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator Field Guide: When Five Encodings, One Input Box, and the 30-Meter Checker Threshold Decide Whether the Hunt Closes Clean",
+          "author": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "publisher": {
+            "@id": "https://blog.flowrust.com/#person"
+          },
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://blog.flowrust.com/wp-content/uploads/2026/10/geocache-validator-poster-2026-10-12.png",
+            "@id": "https://blog.flowrust.com/2026/10/12/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12/#articleImage",
+            "width": 1280,
+            "height": 900
+          },
+          "datePublished": "2026-10-12T15:34:25+08:00",
+          "dateModified": "2026-10-12T15:34:28+08:00",
+          "inLanguage": "en-US",
+          "mainEntityOfPage": {
+            "@id": "https://blog.flowrust.com/2026/10/12/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12/#webpage"
+          },
+          "isPartOf": {
+            "@id": "https://blog.flowrust.com/2026/10/12/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12/#webpage"
+          },
+          "articleSection": "coordinate-validator, gc-codes, geocaching, haversine, puzzle-hunting"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://blog.flowrust.com/2026/10/12/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12/#breadcrumblist",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com#listItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://blog.flowrust.com",
+              "nextItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/tag/geocaching/#listItem",
+                "name": "geocaching"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com/tag/geocaching/#listItem",
+              "position": 2,
+              "name": "geocaching",
+              "item": "https://blog.flowrust.com/tag/geocaching/",
+              "nextItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/2026/10/12/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12/#listItem",
+                "name": "Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator Field Guide: When Five Encodings, One Input Box, and the 30-Meter Checker Threshold Decide Whether the Hunt Closes Clean"
+              },
+              "previousItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com#listItem",
+                "name": "Home"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com/2026/10/12/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12/#listItem",
+              "position": 3,
+              "name": "Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator Field Guide: When Five Encodings, One Input Box, and the 30-Meter Checker Threshold Decide Whether the Hunt Closes Clean",
+              "previousItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/tag/geocaching/#listItem",
+                "name": "geocaching"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://blog.flowrust.com/#person",
+          "name": "xiezixing",
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://blog.flowrust.com/2026/10/12/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12/#personImage",
+            "url": "https://blog.flowrust.com/wp-content/litespeed/avatar/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1791205210",
+            "width": 96,
+            "height": 96,
+            "caption": "xiezixing"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://blog.flowrust.com/author/xiezixing/#author",
+          "url": "https://blog.flowrust.com/author/xiezixing/",
+          "name": "xiezixing",
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://blog.flowrust.com/2026/10/12/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12/#authorImage",
+            "url": "https://blog.flowrust.com/wp-content/litespeed/avatar/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1791205210",
+            "width": 96,
+            "height": 96,
+            "caption": "xiezixing"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://blog.flowrust.com/2026/10/12/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12/#webpage",
+          "url": "https://blog.flowrust.com/2026/10/12/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12/",
+          "name": "Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator Field Guide: When Five Encodings, One Input Box, and the 30-Meter Checker Threshold Decide Whether the Hunt Closes Clean - COSESAI",
+          "description": "A field-stamped geocache is not a problem you can solve with a single math call. Five encodings hide behind one hobby: a base-31 GC-code, a 1-to-5 D/T grid, a multi-stage haversine projection, a 30-meter checker threshold, and a type-specific tolerance for letterbox and munzee variants. The Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator at Elysia Tools puts all five on a single page and tells you which type your cache is before it tells you whether your answer is right.",
+          "inLanguage": "en-US",
+          "isPartOf": {
+            "@id": "https://blog.flowrust.com/#website"
+          },
+          "breadcrumb": {
+            "@id": "https://blog.flowrust.com/2026/10/12/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12/#breadcrumblist"
+          },
+          "author": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "creator": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "datePublished": "2026-10-12T15:34:25+08:00",
+          "dateModified": "2026-10-12T15:34:28+08:00"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://blog.flowrust.com/#website",
+          "url": "https://blog.flowrust.com/",
+          "name": "COSESAI",
+          "description": "Sharing my AI experiences",
+          "inLanguage": "en-US",
+          "publisher": {
+            "@id": "https://blog.flowrust.com/#person"
+          }
+        }
+      ]
+    },
+    "og:locale": "en_US",
+    "og:site_name": "COSESAI - Sharing my AI experiences",
+    "og:type": "article",
+    "og:title": "Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator Field Guide: When Five Encodings, One Input Box, and the 30-Meter Checker Threshold Decide Whether the Hunt Closes Clean - COSESAI",
+    "og:description": "A field-stamped geocache is not a problem you can solve with a single math call. Five encodings hide behind one hobby: a base-31 GC-code, a 1-to-5 D/T grid, a multi-stage haversine projection, a 30-meter checker threshold, and a type-specific tolerance for letterbox and munzee variants. The Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator at Elysia Tools puts all five on a single page and tells you which type your cache is before it tells you whether your answer is right.",
+    "og:url": "https://blog.flowrust.com/2026/10/12/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12/",
+    "og:image": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp",
+    "og:image:secure_url": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp",
+    "og:image:width": 512,
+    "og:image:height": 512,
+    "article:published_time": "2026-10-12T07:34:25+00:00",
+    "article:modified_time": "2026-10-12T07:34:28+00:00",
+    "twitter:card": "summary_large_image",
+    "twitter:title": "Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator Field Guide: When Five Encodings, One Input Box, and the 30-Meter Checker Threshold Decide Whether the Hunt Closes Clean - COSESAI",
+    "twitter:description": "A field-stamped geocache is not a problem you can solve with a single math call. Five encodings hide behind one hobby: a base-31 GC-code, a 1-to-5 D/T grid, a multi-stage haversine projection, a 30-meter checker threshold, and a type-specific tolerance for letterbox and munzee variants. The Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator at Elysia Tools puts all five on a single page and tells you which type your cache is before it tells you whether your answer is right.",
+    "twitter:image": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp"
+  },
+  "aioseo_meta_data": [],
+  "aioseo_breadcrumb": "<div class=\"aioseo-breadcrumbs\"><span class=\"aioseo-breadcrumb\">\n\t\t\t<a href=\"https://blog.flowrust.com\" title=\"Home\">Home</a>\n\t\t</span><span class=\"aioseo-breadcrumb-separator\">&raquo;</span><span class=\"aioseo-breadcrumb\">\n\t\t\t<a href=\"https://blog.flowrust.com/tag/geocaching/\" title=\"geocaching\">geocaching</a>\n\t\t</span><span class=\"aioseo-breadcrumb-separator\">&raquo;</span><span class=\"aioseo-breadcrumb\">\n\t\t\tGeocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator Field Guide: When Five Encodings, One Input Box, and the 30-Meter Checker Threshold Decide Whether the Hunt Closes Clean\n\t\t</span></div>",
+  "aioseo_breadcrumb_json": [
+    {
+      "label": "Home",
+      "link": "https://blog.flowrust.com"
+    },
+    {
+      "label": "geocaching",
+      "link": "https://blog.flowrust.com/tag/geocaching/"
+    },
+    {
+      "label": "Geocache Letterbox Munzee Stage-Cache Puzzle-Hunt Coordinate Validator Field Guide: When Five Encodings, One Input Box, and the 30-Meter Checker Threshold Decide Whether the Hunt Closes Clean",
+      "link": "https://blog.flowrust.com/2026/10/12/geocache-letterbox-munzee-stage-cache-puzzle-hunt-coordinate-validator-field-guide-when-five-encodings-one-input-box-and-the-30-meter-checker-threshold-decide-whether-the-hunt-2026-10-12/"
+    }
+  ],
+  "_links": {
+    "self": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8215",
+        "targetHints": {
+          "allow": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE"
+          ]
+        }
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts"
+      }
+    ],
+    "about": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/types/post"
+      }
+    ],
+    "author": [
+      {
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/users/1"
+      }
+    ],
+    "replies": [
+      {
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/comments?post=8215"
+      }
+    ],
+    "version-history": [
+      {
+        "count": 1,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8215/revisions"
+      }
+    ],
+    "predecessor-version": [
+      {
+        "id": 8216,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8215/revisions/8216"
+      }
+    ],
+    "wp:attachment": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/media?parent=8215"
+      }
+    ],
+    "wp:term": [
+      {
+        "taxonomy": "category",
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/categories?post=8215"
+      },
+      {
+        "taxonomy": "post_tag",
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/tags?post=8215"
+      }
+    ],
+    "wp:action-publish": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8215"
+      }
+    ],
+    "wp:action-unfiltered-html": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8215"
+      }
+    ],
+    "wp:action-sticky": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8215"
+      }
+    ],
+    "wp:action-assign-author": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8215"
+      }
+    ],
+    "wp:action-create-categories": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8215"
+      }
+    ],
+    "wp:action-assign-categories": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8215"
+      }
+    ],
+    "wp:action-create-tags": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8215"
+      }
+    ],
+    "wp:action-assign-tags": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8215"
+      }
+    ],
+    "curies": [
+      {
+        "name": "wp",
+        "href": "https://api.w.org/{rel}",
+        "templated": true
+      }
+    ]
+  }
+}
