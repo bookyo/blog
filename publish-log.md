@@ -41,3 +41,13 @@
 - Total round-trips: 1 POST + 1 PATCH
 - Skill fallback: umbrella PIL stack (article-poster-creator + article-highlight-cards missing per WP 6206/6352)
 2026-10-13 2026-10-13T13:07:07 | WP 8275 | isin-validator-field-guide-when-twelve-characters-traverse-three-validation-layers-2026-10-13 | ISIN Validator Field Guide: When Three Layers Hide Behind One Luhn Check
+
+## 2026-10-14 - WP 8281 - audio-melody-contour-extractor
+- slug: audio-melody-contour-extractor-field-guide-when-five-knobs-decide-which-polyphonic-voice-becomes-the-midi-line-2026-10-13
+- url: https://blog.flowrust.com/2026/10/14/audio-melody-contour-extractor-field-guide-when-five-knobs-decide-which-polyphonic-voice-becomes-the-midi-line-2026-10-13/
+- date_gmt: 2026-10-13T17:10:42
+- title: Audio Melody Contour Extractor Field Guide
+- 1-POST 0-PATCH clean
+- poster + 3 highlight cards (5tile / 4tile compact / 2col input-output)
+- 0 audit findings, 0 placeholder leaks, 0 phantom anchors
+- 8 H2 / 0 H1 / 0 H3
