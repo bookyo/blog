@@ -29,3 +29,14 @@
 - Anchors: 4× `/en/tools/regression-analyzer` (real ID) + 1× `/en/tools` kind-root
 - Result: 1-POST + 1-PATCH (or 1-POST + 1-trash + 1-PATCH to fix content defects)
 - Notes: First POST (8252) had MERGED_BULLET_LIST (2) + MERGED_NUMBERED_LIST (1) from ` – **bold** — body` en-dash itemized lists (WP 5676/5683/6212 family). Rebuild source MD with explicit `<ul><li>` + `<ol><li>` HTML; re-substitute URLs. Second run created dup post 8254 (slug collision `-2`); trashed and PATCHed WP 8252 with corrected content via POST endpoint. Audit clean: 0 findings, 3 cards, 1 poster, 4 anchors all 200, 4 imgs all 200. Umbrella PIL fallback. vision_analyze pre-POST QA clean.
+
+## 2026-10-13T08:52:25 — regex-linter-field-guide-when-five-redos-shapes-hide-inside-one-line-of-regex-2026-10-13 (WP 8268)
+- Title: Regex Linter Field Guide: When Five ReDoS Shapes Hide Inside One Line of Regex
+- URL: https://blog.flowrust.com/2026/10/13/regex-linter-field-guide-when-five-redos-shapes-hide-inside-one-line-of-regex-2026-10-13/
+- Status: publish, featured_media=0
+- Shape: 0 H1 / 8 H2 / 0 H3 / 1 poster / 3 cards / 62 codes / 24 strongs / 7 uls
+- Elysia anchors: 6 unique (3 samples + 2 tool + 1 root)
+- All 4 image URLs + 6 elysia URLs HEAD 200
+- Audit: 0 findings after 1 PATCH (POSSIBLE_BACKSLASH_STRIPPED on `d+d+` -> `&#92;d+&#92;d+`)
+- Total round-trips: 1 POST + 1 PATCH
+- Skill fallback: umbrella PIL stack (article-poster-creator + article-highlight-cards missing per WP 6206/6352)

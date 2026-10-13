@@ -1,0 +1,67 @@
+One misplaced quantifier inside one capture group can take down the API on a Tuesday afternoon. **Catastrophic backtracking** is a regex failure mode where a pattern looks fine in tests, runs in microseconds on the developer's laptop, and then spikes to multi-minute CPU on production data because a single long input forces the engine to explore an exponential number of paths through the backtracking graph. The [Regex Linter](https://elysiatools.com/en/tools/regex-linter) is built to flag that family — and three more anti-pattern families — before the pattern ever reaches a request handler. This guide walks through the eight things it checks, why each one matters, and how to read its rewrite suggestions.
+
+## Why regex can lock up a server: backtracking, the basic case
+
+A regex engine that supports backtracking runs in linear time on well-behaved patterns and exponential time on adversarial ones. The classic example is `(a+)+` against a long string of `a`s followed by a single non-`a`: the engine sees the outer group, captures `a`s, tries to match the inner `a+` again, fails, backtracks one capture, tries again — and at every failure the inner group re-evaluates from scratch. The result is that matching a 30-character string takes billions of steps, and a 60-character string takes longer than the rest of the request budget combined.
+
+This is not a rare problem. The Cloudflare ReDoS writeup catalogues 143 production patterns that exhibited the same shape — nested quantifiers, alternating wildcards, overlapped alternations. A 2019 paper measured 467 ReDoS-prone regexes in the npm registry alone. The pattern slips into frameworks via copy-paste from Stack Overflow, and once it lands in a request validator or a routing matcher it stays until somebody notices a latency spike.
+
+## The four severity bands the linter reports
+
+The [Regex Linter](https://elysiatools.com/en/tools/regex-linter) classifies findings into four bands, ordered by impact:
+
+<ul><li><strong>Critical</strong> — patterns the engine may evaluate in super-linear time. Nested quantifiers, ambiguous alternations, unbounded repetitions on hot paths.</li><li><strong>Error</strong> — patterns that match the wrong substring on at least some inputs. Unescaped dots outside intended literals, character-class ranges like `[a-Z]` that include unexpected bytes, missing anchors on validation rules.</li><li><strong>Warning</strong> — patterns that work but confuse the next reader. Observable non-greedy, double negation, redundant backslashes, ambiguous alternation ordering.</li><li><strong>Info</strong> — patterns that work and are correct but verbose. Capturing groups used as non-capturing, verbose quantifiers like `ddd` instead of `d{3}`.</li></ul>
+
+The recommendation from the tool itself is to run `<strong>standard</strong>` in CI and `<strong>strict</strong>` before merging a new pattern into a shared library — `basic` is for hot-path CI where any latency from the linter itself is unwelcome. Each band has a per-rule description, a concrete test case, and a rewrite suggestion. Three bands worth digging into next.
+
+## Critical: catastrophic backtracking and how to defuse it
+
+The catastrophic-backtracking rule fires on patterns that match the ReDoS shape. The signature is one of three:
+
+<ul><li><strong>Nested quantifier on an overlapping group</strong> — patterns like <code>(a+)+</code>, <code>(.*)*</code>, <code>([a-z]+)+</code>. The inner repetition and the outer repetition share characters; the engine explores every split.</li><li><strong>Adjacent overlapping repetitions</strong> — patterns like <code>a+a</code> or <code>\d+\d+</code>. The two quantifiers can each own the boundary, so the engine tries every split point.</li><li><strong>Alternation with overlapping branches</strong> — patterns like <code>a|a+</code> where one branch is a prefix of the next.</li></ul>
+
+The fix is mechanical but depends on the shape of the input:
+
+<ul><li><strong>Use a possessive quantifier or atomic group</strong> (when the engine supports it): <code>(?:[a-z]+)+</code> becomes <code>[a-z]++</code> in PCRE / Java, or <code>(?>[a-z]+)+</code> as the portable atomic-group form. The engine commits the first capture without backtracking.</li><li><strong>Use a negated character class</strong>: <code>[^a]*a</code> is linear; <code>(a+)+</code> is exponential. Rewriting the inner quantifier to "any character that is not the boundary" cuts the alternatives to one.</li><li><strong>Use the RE2 engine if you can</strong> (Go's <code>regexp</code>, re2 library in Python). RE2 refuses to backtrack; it always runs in linear time at the cost of dropping backreferences and lookaround. If you can use it, every catastrophic-backtracking finding disappears.</li></ul>
+
+The [Regex Linter](https://elysiatools.com/en/tools/regex-linter) emits one of these three rewrite suggestions automatically when it flags the pattern. The "strict" check level also adds a warning when the pattern relies on a backreference — RE2 will not run it.
+
+## Error: unescaped dots and the "matches anywhere" trap
+
+The next band catches patterns that look right to the author and match the wrong substring on real input. Two patterns recur:
+
+<ul><li><strong>Unescaped dots outside literal context</strong> — <code>2026.01.15</code> looks like a date matcher, but the dots are wildcard metacharacters; it matches 2026X01X15 and 202600115 equally well. The fix is <code>2026\.01\.15</code>, or use <code>[.]</code> as the portable form that survives dot-all modes.</li><li><strong>Character-class ranges that include unexpected codepoints</strong> — <code>[a-Z]</code> is technically valid and matches `a` to `Z` in ASCII, but in between it sweeps in `<code>[</code>, `<code>\</code>, `<code>]</code>, `<code>^</code>, `<code>_</code>, and `<code>`</code>`. Most validators intended "letters" want <code>[a-zA-Z]</code>, not the half-range.</li></ul>
+
+The linter also flags <strong>octal escapes like <code>\0</code> in modern dialect contexts</strong> — browsers warn on them, PCRE treats them differently than Python's <code>re</code> does, and the safest fix is to use the hex form <code>\x00</code> explicitly. For typical application patterns the rewrite suggestion collapses the bad range or escape into the canonical form.
+
+## Warning: redundant escapes and double negation
+
+The warning band catches patterns that work correctly but invite the next reader to misread them:
+
+<ul><li><strong>Redundant backslashes</strong> — <code>\-</code>, <code>\.</code> inside character classes where the character does not need escaping in the first place. Some dialects are permissive; others rejoin the wrong character class. Dropping the redundant slash is one character less to misread.</li><li><strong>Double negation</strong> — <code>[^[^]]</code> and similar. The intent is "any character that is not `^` or `]`" but the form reads as "not-not". Rewriting to <code>[^\^]]</code> preserves the meaning and removes the cognitive load.</li><li><strong>Ambiguous alternation ordering</strong> — <code>a|ab</code> matches the prefix first. For most patterns that is fine; for the ones where it is not, the engine returns a different match than the reader expected. The linter flags it so you can decide explicitly.</li></ul>
+
+None of these break the pattern; they are maintenance-burden warnings. They are the reason the "strict" level exists — the rule is that strict is for the moment you save the pattern in a shared library, and warnings become interesting at that point.
+
+## Info: non-capturing groups and verbose quantifiers
+
+The info band is the cleanup pass:
+
+<ul><li><strong>Capturing groups that are never referenced</strong> — <code>([a-z]+)</code> becomes <code>(?:[a-z]+)</code>. The capture-cost is small per match, but it matters when the regex runs in a hot loop.</li><li><strong>Verbose quantifiers</strong> — <code>ddd</code> becomes <code>d{3}</code>; <code>.</code> repeated a literal number of times becomes <code>.{N}</code>. The rewrite makes the count explicit and the intent obvious.</li></ul>
+
+These are style suggestions, not correctness improvements. The linter emits them at the "strict" level and as part of the rewrite hint when the user requests rewrite suggestions.
+
+## Pick the right dialect for the right rewrite
+
+The linter picks the dialect from a dropdown — JavaScript, Python, PCRE, Go (RE2), or Java — and adjusts its suggestions accordingly:
+
+<ul><li><strong>JavaScript</strong> — supports lookahead and lookbehind, supports the <code>s</code> (dotAll) flag from ES2018 onward, supports named capture groups. Unicode property escapes (<code>\p{Letter}</code>) work in the <code>u</code> flag.</li><li><strong>Python</strong> — supports lookbehind and named groups; recommends raw strings (<code>r'...'</code>) so the Python literal does not absorb the regex backslash. The verbose flag (<code>re.VERBOSE</code>) is offered as the readability toggle.</li><li><strong>PCRE</strong> — supports possessive quantifiers and atomic groups out of the box. The linter emits these as the rewrite target by default for critical findings.</li><li><strong>Go (RE2)</strong> — backreferences and lookaround are unsupported; the linter warns when a critical or warning finding depends on a feature RE2 does not have. The rewrite hint steers the user toward a Go-safe form.</li><li><strong>Java</strong> — supports atomic groups via <code>(?>...)</code> and possessive quantifiers from Java 9 onward. The linter flags Java versions when the rewrite would target a feature not available in the runtime.</li></ul>
+
+The right dialect matters because the same fix looks different across engines. The Python equivalent of "use a possessive quantifier" is to wrap the group in <code>(?:...)</code> and use the third-party <code>regex</code> library; the JavaScript equivalent is to keep backtracking on and rely on the engine's "match once" path; the Go equivalent is to rewrite the pattern so it never needs backtracking at all.
+
+## Try it on real risky-regex inputs
+
+For a working set of patterns to test against, the [Risky Regex Patterns](https://elysiatools.com/en/samples/risky-regex) sample pack ships 30+ patterns that have all been flagged by at least one of the four bands, with the original source and a rewritten safe version side by side. The companion packs — [Common Regex Patterns](https://elysiatools.com/en/samples/regex-samples) and [Regex Named Capture Groups](https://elysiatools.com/en/samples/regex-named-groups) — give you the validation patterns and the structured-extraction patterns to test against.
+
+Run each pattern through the [Regex Linter](https://elysiatools.com/en/tools/regex-linter) with `<strong>strict</strong>` and the right dialect; the tool returns the per-band findings, the suggested rewrite, and a severity score on a 0-100 scale. Patterns scoring 80+ are safe to merge; patterns scoring below 50 deserve a rewrite before they reach the shared library.
+
+For related tooling in the same family, browse the [Development category on Elysia Tools](https://elysiatools.com/en/tools) — the [Named Group Tester](https://elysiatools.com/en/tools/named-group-tester) parses named-capture groups out of a pattern to verify they actually exist, which is the natural companion step after linting passes.
