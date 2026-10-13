@@ -40,3 +40,4 @@
 - Audit: 0 findings after 1 PATCH (POSSIBLE_BACKSLASH_STRIPPED on `d+d+` -> `&#92;d+&#92;d+`)
 - Total round-trips: 1 POST + 1 PATCH
 - Skill fallback: umbrella PIL stack (article-poster-creator + article-highlight-cards missing per WP 6206/6352)
+2026-10-13 2026-10-13T13:07:07 | WP 8275 | isin-validator-field-guide-when-twelve-characters-traverse-three-validation-layers-2026-10-13 | ISIN Validator Field Guide: When Three Layers Hide Behind One Luhn Check
