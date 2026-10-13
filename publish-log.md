@@ -51,3 +51,17 @@
 - poster + 3 highlight cards (5tile / 4tile compact / 2col input-output)
 - 0 audit findings, 0 placeholder leaks, 0 phantom anchors
 - 8 H2 / 0 H1 / 0 H3
+
+## 2026-10-13 — WP 8287 (structured-log-analyzer)
+
+- **Title**: Structured Log Analyzer Field Guide: When Three Log Formats Hide Inside One Paste
+- **Slug**: structured-log-analyzer-field-guide-when-three-log-formats-hide-inside-one-paste-and-the-export-format-decides-whether-the-pipeline-2026-10-13
+- **Link**: https://blog.flowrust.com/2026/10/13/structured-log-analyzer-field-guide-when-three-log-formats-hide-inside-one-paste-and-the-export-format-decides-whether-the-pipeline-2026-10-13/
+- **Status**: publish
+- **Tool**: Structured Log Analyzer (structured-log-analyzer)
+- **Category**: Data Processing
+- **Description**: Detect common log formats, extract core fields, infer field types, and export parsed logs as JSON, CSV, or SQL inserts
+- **Anchors**: 1 tool + 4 samples + 1 kind-root = 6 elysiatools.com links
+- **Assets**: 1 poster (1080x800) + 3 cards (1600x900)
+- **Audit**: All checks PASS — 8 H2, 0 H1, 1 poster, 3 cards, 4 imgs, 6 anchors, no md_links, no backslash strips
+- **Path**: /Users/quyue/www/blog/2026-10-13-structured-log-analyzer-field-guide-when-three-log-formats-hide-inside-one-paste-and-the-export-format-decides-whether-the-pipeline
