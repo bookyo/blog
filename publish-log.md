@@ -82,3 +82,19 @@
 - Round-trips: 1 POST + 0 PATCH (clean publish)
 - Asset counts: 1 poster (1080x800) + 3 cards (1600x900)
 - Skill fallback: umbrella PIL stack + custom audit-card layout (article-poster-creator + article-highlight-cards missing per WP 6206/6352)
+## 2026-10-14 05:39 UTC — WP 8300 — Correlation Analyzer Field Guide
+
+- **Post ID**: 8300
+- **Slug**: correlation-analyzer-field-guide-when-three-correlation-methods-on-one-csv-return-three-different-stories-2026-10-14
+- **URL**: https://blog.flowrust.com/2026/10/14/correlation-analyzer-field-guide-when-three-correlation-methods-on-one-csv-return-three-different-stories-2026-10-14/
+- **Tool**: correlation-analyzer (Data Analysis) — Pearson/Spearman/Kendall + p-values + heatmap + group analysis
+- **date_gmt**: 2026-10-14T05:39:34
+- **Body**: 1702 words / 8 H2 sections / 3 highlight cards / 1 article-poster
+- **Round-trips**: 1 POST + 0 PATCH (clean publish)
+- **Asset counts**: 1 poster (1080x800) + 3 cards (1600x900)
+- **Skill fallback**: umbrella PIL stack — article-poster-creator + article-highlight-cards missing from skills folder per WP 6206/6352 lesson. Used pil_poster_and_cards_network_theme.py + render_card_4tile_compact.py + custom_pil_card_layouts.py
+- **Vision QA**: caught Card 1 missing 03 tile (first pass had 4 items passed to 5-tile render) + poster URL bar showing 'your-tool-slug' placeholder. Re-rendered both, vision_pass clean on v2.
+- **Audit**: audit_post_content clean (0 findings), 4 elysiatools anchors all HTTP 200 (2 unique URLs: correlation-analyzer + tools root), 4 images all HTTP 200
+- **Pre-flight checks**: 0 markdown links surviving, 0 backslashes in `<code>`, 0 nested `<p>` in `<h2>`, exactly 8 H2s, exactly 3 cards, exactly 1 poster, 0 placeholder leaks (POSTER_URL/CARD1_URL/CARD2_URL/CARD3_URL all substituted)
+- **Defuse during iteration**: Python 3.11 f-string backslash pitfall (WP 6390) — hoisted `n_cards = html.count(...)` and `n_posters = html.count(...)` to locals before f-string interpolation. Same pattern as cron_publish_driver.py fix.
+- **Phantom-slug check**: validate_elysia_anchors returned ok=True, 3 anchors all real tools in tool-manifest.json

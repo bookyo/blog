@@ -1,0 +1,26 @@
+{
+  "id": 8300,
+  "link": "https://blog.flowrust.com/2026/10/14/correlation-analyzer-field-guide-when-three-correlation-methods-on-one-csv-return-three-different-stories-2026-10-14/",
+  "status": "publish",
+  "title": "Correlation Analyzer Field Guide: When Three Correlation Methods on One CSV Return Three Different Stories",
+  "date_gmt": "2026-10-14T05:39:34",
+  "slug": "correlation-analyzer-field-guide-when-three-correlation-methods-on-one-csv-return-three-different-stories-2026-10-14",
+  "uploaded": {
+    "poster": {
+      "id": 8296,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/10/correlation-analyzer-poster.png"
+    },
+    "card1": {
+      "id": 8297,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/10/correlation-analyzer-card1.png"
+    },
+    "card2": {
+      "id": 8298,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/10/correlation-analyzer-card2.png"
+    },
+    "card3": {
+      "id": 8299,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/10/correlation-analyzer-card3.png"
+    }
+  }
+}
