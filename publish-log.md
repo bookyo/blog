@@ -65,3 +65,20 @@
 - **Assets**: 1 poster (1080x800) + 3 cards (1600x900)
 - **Audit**: All checks PASS — 8 H2, 0 H1, 1 poster, 3 cards, 4 imgs, 6 anchors, no md_links, no backslash strips
 - **Path**: /Users/quyue/www/blog/2026-10-13-structured-log-analyzer-field-guide-when-three-log-formats-hide-inside-one-paste-and-the-export-format-decides-whether-the-pipeline
+
+## 2026-10-14 — WP 8294 — css-gradient-mesh-generator
+- Title: CSS Gradient Mesh Generator Field Guide: When Four Blobs Decide Whether The Mesh Blooms Or Collapses
+- URL: https://blog.flowrust.com/2026/10/14/css-gradient-mesh-generator-field-guide-when-four-blobs-decide-whether-the-mesh-blooms-or-collapses-2026-10-14/
+- date_gmt: 2026-10-14T01:33:49
+- status: publish
+- Tool: CSS Gradient Mesh Generator (css-gradient-mesh-generator)
+- Category: Design
+- Description: Generate the layered-gradient mesh look (Dribbble/Behance trending): radial-gradients stacked over a base color with optional conic underlay, blend modes, SVG film grain, seeded layouts, curated palettes — with live preview, copyable CSS and Tailwind arbitrary-value class export.
+- Anchors: 5 unique (1 tool + 3 samples + 1 kind-root = css-gradient-mesh-generator, css-viewer-samples, tailwind-css, figma-samples, /en/tools)
+- All 5 elysia URLs HEAD 200
+- All 4 image URLs HEAD 200 (1 poster + 3 cards)
+- Audit: 0 findings, 0 placeholder leaks, 0 phantom anchors
+- 8 H2 / 0 H1 / 0 H3 / 3 highlight-cards / 1 poster
+- Round-trips: 1 POST + 0 PATCH (clean publish)
+- Asset counts: 1 poster (1080x800) + 3 cards (1600x900)
+- Skill fallback: umbrella PIL stack + custom audit-card layout (article-poster-creator + article-highlight-cards missing per WP 6206/6352)
