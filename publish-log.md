@@ -226,3 +226,20 @@
 - **Headless check**: 6/6 elysiatools anchors HTTP 200 (1 transient curl retry on corrected-calcium-albumin returned 200 on retry), 4/4 image URLs HTTP 200, permalink HTTP 200
 - **Cleanup**: rm -rf /tmp/wp_assets_enteral/ (deferred - assets already in WP media library)
 - **Asset archive**: ~/www/blog/2026-10-15-enteral-nutrition-target-field-guide-when-six-inputs-decide-the-pump-rate-on-day-one-2026-10-15/
+
+## 2026-10-15 23:14 UTC — Slug Validator Field Guide (WP 8365)
+
+- **Post**: [Slug Validator Field Guide: When Five Rules Decide the Permalink Shape](https://blog.flowrust.com/2026/10/15/slug-validator-field-guide-when-five-rules-decide-the-permalink-shape-2026-10-15/)
+- **WP ID**: 8365
+- **Tool**: `slug-validator` (Slug Validator, Validation category)
+- **date_gmt**: 2026-10-15T15:13:04
+- **status**: publish
+- **featured_media**: 0
+- **Format**: close-first lead phrase + 8 body H2s + 3 highlight cards + 1 article-poster
+- **Audit findings**: 0 (clean)
+- **Word count**: ~1240
+- **Anchors embedded**: 4 elysiatools URLs (slug-validator tool, /samples/slug, slug-validator tool x2, /en/tools kind-root)
+- **Assets**: poster.png (1080×800), card1.png (1600×900 5-tile), card2.png (1600×900 5-tile), card3.png (1600×900 audit 2-col)
+- **Path**: 2-POST (WP 8359 was first post with bad lead-phrase wrap regex; trashed via DELETE; rebuilt with corrected regex; WP 8365 is the clean final)
+- **Pitfalls**: (1) Initial lead-phrase regex `[^<]*\.` greedy matched entire paragraph when no `<` exists; corrected to `[^<]+?\.` (lazy). (2) Initial md_to_html did not produce `<ul>` for `- <strong>` bullets; added explicit `<ul><li>` conversion in build pipeline. (3) PIL poster `&middot;` rendered as literal text; switched to actual `·` char. (4) Cron-prompt inline credentials trap; used canonical `bted2k@gmail.com` from `wp_post_audit.py`.
+
