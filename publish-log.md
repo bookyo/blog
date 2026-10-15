@@ -175,3 +175,54 @@
 - **Pitfall count: 0 new pitfalls.** Existing pitfalls fired: (1) WP 6122 render_card_4tile overflow on count strings (caught by vision_analyze); (2) WP 6323 phantom-slug family — `bsa-calculator` and `creatinine-clearance-calculator` are NOT in `tool-manifest.json`, real slugs are `dose-by-body-surface-area` and `creatinine-clearance-cockcroft` (caught by validate_anchors pre-POST); (3) PIL tofu on U+2192 → replaced with ASCII; (4) Tirith pipe-to-interpreter block on `python3 -c "..."` → moved all inline Python to `/tmp/*.py` files
 - **Cleanup**: rm -rf /tmp/wp_assets_medication-dose-rate/ (deferred — assets already in WP media library)
 - **Asset archive**: ~/www/blog/2026-10-15-medication-dose-rate-field-guide-when-three-conversions-sit-between-the-order-and-the-pump-setting-2026-10-15/
+
+## 2026-10-15 06:51 UTC — WP 8340 (Free Water Clearance Calculator)
+
+- **Post ID**: 8340
+- **Slug**: free-water-clearance-field-guide-when-one-litre-of-urine-holds-more-math-than-the-patients-serum-sodium-suggests-2026-10-15
+- **URL**: https://blog.flowrust.com/2026/10/15/free-water-clearance-field-guide-when-one-litre-of-urine-holds-more-math-than-the-patients-serum-sodium-suggests-2026-10-15/
+- **Tool**: free-water-clearance (Free Water Clearance Calculator, Health category)
+- **date_gmt**: 2026-10-15T06:51:48
+- **Title**: Free Water Clearance Calculator Field Guide: When One Litre of Urine Holds More Math Than the Patient's Serum Sodium Suggests
+- **featured_media**: 0 (COSESAI non-hero-duplication defense)
+- **Body**: 16385 chars / 8 H2 sections / 3 highlight cards / 1 article-poster / 0 body H1 / 6 elysiatools anchors
+- **Round-trips**: 1 POST + 0 PATCH (clean publish)
+- **Asset counts**: 1 poster (1280x900) + 3 cards (1280x900 each)
+- **Source recipe**: umbrella PIL stack — `article-poster-creator` + `article-highlight-cards` skills present on disk under `~/.hermes/skills/article-writer/` (NOT at the top-level paths the cron-prompt listed as not-found). Used canonical `render_editorial_dense_cron.py` (3-column multi-band card) and the SKILL.md article-poster-creator HTML template + Playwright/Chrome. The umbrella's `pil_poster_and_cards_network_theme.py` was missing from disk — fell back to SKILL.md template.
+- **Picker**: theme-keyword scoring on 3085 tools → 2916 unique candidates → `free-water-clearance` (Health, score=19). Top hit `data-bom-remover` was manually excluded for thematic overlap with WP 8162 (already covered BOM character removal).
+- **Sample verification**: 0 sample-manifest matches for `free-water-clearance` (no `toolId` linkage; sample-manifest also has no Health category per umbrella WP 6116/6390 lesson). Article draws from the 2 example results in tool-manifest (solute-free water clearance example + electrolyte-free water clearance example).
+- **Validator hits (WP 6323 family)**: 1 phantom anchor caught pre-POST — `serum-osmolality` → real catalog id `serum-osmolality-calculator`. Both WP 8162 (bom-character-remover phantom slug from this catalog id) and this run (serum-osmolality phantom slug) confirm the phantom-slug family is recurring. Replaced before POST.
+- **Elysia anchors** (5 unique): /tools/free-water-clearance (primary, used 2x for emphasis), /tools/anion-gap-calculator (related Health), /tools/renal-dose-adjustment (related), /tools/serum-osmolality-calculator (related), /tools (root browse)
+- **Card positions**: H2#2 "The two clearance formulas..." → card1 (ocean, 2-column formula explanation), H2#4 "A worked example..." → card2 (ember, 3-step worked example), H2#6 "The pitfalls..." → card3 (violet, 3-column pitfall list)
+- **Pre-publish sanity trio passed**: 0 markdown links surviving, 0 body H1, 0 body H3, 0 literal backslash in `<code>`, 0 nested `<p>` in `<h2>`, 0 nested `<code><code>`, 0 `<code><br>` artifacts, exactly 8 H2, exactly 3 cards, exactly 1 poster, featured_media=0
+- **Visual QA pre-POST**: poster CLEAN (eyebrow/title/divider/subtitle all fit; C_H₂O and eC_H₂O subscripts render via Outfit font), card1 CLEAN (2-column ocean layout, formulas readable), card2 CLEAN (3-column ember layout, math symbols render), card3 CLEAN (3-column violet layout, 5-of-5 pitfalls covered — note: card text lists 3 of 5 pitfalls, the other 2 are in prose)
+- **Headless check**: 6/6 elysiatools anchors HTTP 200, 4/4 image URLs HTTP 200 (poster urllib SSL EOF hit once on first HEAD — Cycle #54 / WP 5683 family — confirmed via curl subprocess HTTP 200)
+- **Pitfall count: 0 new pitfalls.** Existing pitfalls fired: (1) phantom-slug family — `serum-osmolality` not in `tool-manifest.json`, real slug is `serum-osmolality-calculator` (caught by validate_anchors pre-POST); (2) Cycle #54 urllib SSL EOF on poster HEAD probe (caught by curl subprocess retry)
+- **Cleanup**: deferred — assets already in WP media library
+- **Asset archive**: ~/www/blog/2026-10-15-free-water-clearance-field-guide-when-one-litre-of-urine-holds-more-math-than-the-patients-serum-sodium-suggests-2026-10-15/
+
+## 2026-10-15 11:02 UTC — WP 8349 (Enteral Nutrition Target Calculator)
+
+- **Post ID**: 8349
+- **Slug**: enteral-nutrition-target-field-guide-when-six-inputs-decide-the-pump-rate-on-day-one-2026-10-15
+- **URL**: https://blog.flowrust.com/2026/10/15/enteral-nutrition-target-field-guide-when-six-inputs-decide-the-pump-rate-on-day-one-2026-10-15/
+- **Tool**: enteral-nutrition-target (Enteral Nutrition Target Calculator, Health category)
+- **date_gmt**: 2026-10-15T10:58:32
+- **Title**: Enteral Nutrition Target Calculator Field Guide: When Six Inputs Decide the Pump Rate on Day One
+- **featured_media**: 0 (COSESAI non-hero-duplication defense)
+- **Body**: 11022 chars / 8 H2 sections / 3 highlight cards / 1 article-poster / 0 body H1 / 2 HTML tables / 6 elysiatools anchors (6 unique)
+- **Round-trips**: 1 POST + 2 PATCH (final clean)
+- **Asset counts**: 1 poster (1080x800) + 3 cards (1600x900 each)
+- **Source recipe**: umbrella PIL templates (article-poster-creator + article-highlight-cards skills absent from disk per WP 6352; cron-prompt skip-notice verified, ls probe confirms)
+- **Picker**: pick_tool_v4_content_based (theme scoring on 3085 tools) -> top diverse pick: enteral-nutrition-target (Health)
+- **Sample verification**: 0 sample-manifest matches (no toolId linkage per WP 6116 lesson). Article draws from the 2 example results in tool-manifest (70 kg maintenance + 80 kg permissive underfeeding).
+- **Validator hits**: 0 phantom anchors caught pre-POST (all 6 anchors verified against tool-manifest.json)
+- **Elysia anchors** (6 unique): /tools/enteral-nutrition-target (primary, used 2x), /tools/tpn-macronutrient-calculator (related parenteral), /tools/tpn-osmolality-estimator (related parenteral), /tools/corrected-calcium-albumin (related, used 2x for re-feeding syndrome note), /tools/dose-by-body-surface-area (related), /tools (root browse)
+- **Card positions**: H2#0 "What the calculator actually computes" -> card1 (5-tile inputs/outputs), H2#2 "A worked example - standard maintenance" -> card2 (2-col audit w/ inputs vs outputs + 83% protein adequacy verdict), H2#5 "Common pitfalls and how the calculator prevents them" -> card3 (4-tile compact HIGH/MED/LOW pitfall ranking)
+- **Pre-publish sanity trio passed**: 0 markdown links surviving, 0 body H1, 0 body H3, 0 literal backslash in <code>, 0 nested <p> in <h2>, 0 nested <code><code>, 0 <code><br> artifacts, exactly 8 H2, exactly 3 cards, exactly 1 poster, featured_media=0
+- **Visual QA pre-POST** (vision_analyze on all 4 assets): all 4 clean (poster title/subtitle/callout fit; cards 1/2/3 fit within tile borders, no overflow, no tofu)
+- **PATCH round-trips**: 1-POST + 2-PATCH (final clean). Round 1: convert 2 GFM pipe-tables to <table> HTML (PIPE_TABLE_LEAK family per WP 6370 / Cycle #30). Round 2: convert 2 markdown  itemized lists (weight-basis decision + common pitfalls) to <ul><li> HTML (MERGED_BULLET_LIST family per WP 5746/6135/6212).
+- **Pitfall count: 0 new pitfalls.** Existing pitfalls fired: (1) PIPE_TABLE_LEAK on GFM tables in H2#1 - pre-emptible in source by writing <table> HTML directly; (2) MERGED_BULLET_LIST on inline  markdown lists in H2#4 + H2#5 - pre-emptible in source by writing <ul><li> HTML directly.
+- **Headless check**: 6/6 elysiatools anchors HTTP 200 (1 transient curl retry on corrected-calcium-albumin returned 200 on retry), 4/4 image URLs HTTP 200, permalink HTTP 200
+- **Cleanup**: rm -rf /tmp/wp_assets_enteral/ (deferred - assets already in WP media library)
+- **Asset archive**: ~/www/blog/2026-10-15-enteral-nutrition-target-field-guide-when-six-inputs-decide-the-pump-rate-on-day-one-2026-10-15/
