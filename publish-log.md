@@ -151,6 +151,27 @@
 - **Cleanup**: rm -rf /tmp/wp_assets_csv-transformer/ (sibling-safety housekeeping deferred to next cron tick — kept for visual QA this run)
 - **Asset archive**: ~/www/blog/2026-10-14-csv-transformer-field-guide-when-six-typed-operations-decide-whether-a-csv-reaches-the-warehouse-2026-10-14/
 
-## 2026-10-15T02:28:34 — medication-dose-rate-field-guide-when-three-conversions-sit-between-the-order-and-the-pump-setting-2026-10-15 (WP 8334)
-- Title: Medication Dose/Rate Calculator Field Guide: When Three Conversions Sit Between the Order and the Pump Setting
-- URL: https://blog.flowrust.com/2026/10/15/medication-dose-rate-field-guide-when-three-conversions-sit-between-the-order-and-the-pump-setting-2026-10-15/
+## 2026-10-15 02:15 UTC — WP 8334 (Medication Dose/Rate Calculator)
+
+- **Post ID**: 8334
+- **Slug**: medication-dose-rate-field-guide-when-three-conversions-sit-between-the-order-and-the-pump-setting-2026-10-15
+- **URL**: https://blog.flowrust.com/2026/10/15/medication-dose-rate-field-guide-when-three-conversions-sit-between-the-order-and-the-pump-setting-2026-10-15/
+- **Tool**: medication-dose-rate (Medication Dose/Rate Calculator (mg/kg/hr etc.), Health category)
+- **date_gmt**: 2026-10-15T02:15:54
+- **Title**: Medication Dose/Rate Calculator Field Guide: When Three Conversions Sit Between the Order and the Pump Setting
+- **featured_media**: 0 (COSESAI non-hero-duplication defense)
+- **Body**: 2082 words / 8 H2 sections / 3 highlight cards / 1 article-poster / 0 body H1 / 6 elysia anchors
+- **Round-trips**: 1 POST + 0 PATCH (clean publish)
+- **Asset counts**: 1 poster (1080x800) + 3 cards (1600x900)
+- **Source recipe**: umbrella PIL templates (article-poster-creator + article-highlight-cards skills absent from disk — confirmed before run via ls probe)
+- **Picker**: content-extracted theme scoring on 3085 tools → 3049 unique candidates → `medication-dose-rate` (Health, score=1399)
+- **Sample verification**: 0 sample-manifest matches for `medication-dose-rate` (no `toolId` linkage in source); article draws from the 2 example results in tool-manifest (dopamine mcg/kg/min and heparin units/hr)
+- **Validator hits (WP 6323 family)**: 2 phantom anchors caught pre-POST — `bsa-calculator` → real catalog id `dose-by-body-surface-area`; `creatinine-clearance-calculator` → real catalog id `creatinine-clearance-cockcroft`. Both replaced before POST.
+- **Elysia anchors** (5 unique): /tools/medication-dose-rate (primary, used 2x for emphasis), /tools/dose-by-body-surface-area (related Health), /tools/antibiotic-concentration (related), /tools/creatinine-clearance-cockcroft (related), /tools (root browse)
+- **Card positions**: H2#2 "Dose unit families..." → card1 (5-tile numbered families), H2#4 "A worked example..." → card2 (2-col audit w/ verdict + bad-example box), H2#7 "Double-clinician checks..." → card3 (4-tile compact ISMP families)
+- **Pre-publish sanity trio passed**: 0 markdown links surviving, 0 body H1, 0 literal backslash in `<code>`, 0 nested `<p>` in `<h2>`, 0 nested `<code><code>`, 0 `<code><br>` artifacts, exactly 8 H2, exactly 3 cards, exactly 1 poster, featured_media=0
+- **Visual QA pre-POST** (vision_analyze on all 4 assets): first-pass card3 had `100 u/mL` / `50 mcg/mL` overflowing tile borders at F_HUGE 150pt (WP 6122 family — render_card_4tile auto-shrink only catches `x 10`/`e+` notation) → re-rendered with `render_card_4tile_compact` (auto-shrink chain 150pt→84pt→64pt), re-render CLEAN. First-pass poster + card2 had `→` U+2192 rendering as tofu → replaced with ASCII "to" / "dose-to-rate", re-render CLEAN.
+- **Headless check**: 5/5 elysia anchors HTTP 200, 4/4 image URLs HTTP 200
+- **Pitfall count: 0 new pitfalls.** Existing pitfalls fired: (1) WP 6122 render_card_4tile overflow on count strings (caught by vision_analyze); (2) WP 6323 phantom-slug family — `bsa-calculator` and `creatinine-clearance-calculator` are NOT in `tool-manifest.json`, real slugs are `dose-by-body-surface-area` and `creatinine-clearance-cockcroft` (caught by validate_anchors pre-POST); (3) PIL tofu on U+2192 → replaced with ASCII; (4) Tirith pipe-to-interpreter block on `python3 -c "..."` → moved all inline Python to `/tmp/*.py` files
+- **Cleanup**: rm -rf /tmp/wp_assets_medication-dose-rate/ (deferred — assets already in WP media library)
+- **Asset archive**: ~/www/blog/2026-10-15-medication-dose-rate-field-guide-when-three-conversions-sit-between-the-order-and-the-pump-setting-2026-10-15/
