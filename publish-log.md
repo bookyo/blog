@@ -130,3 +130,27 @@
   - Tirith heredoc block on `python3 <<PYEOF` (WP 5746) — moved script to `/tmp/wp_audit_8307.py` and invoked
 - **Asset archive**: ~/www/blog/2026-10-14-indented-list-to-ascii-tree-field-guide-when-seven-toggles-decide-whether-your-readme-looks-like-a-tree-or-a-wall-2026-10-14/
 
+
+## 2026-10-14 22:13 UTC — Post 8325 (CSV Transformer)
+
+- **Tool slug**: `csv-transformer` (manifest id, theme cluster: csv/tsv/data-processing)
+- **Title**: CSV Transformer Field Guide: When Six Typed Operations Decide Whether a CSV Reaches the Warehouse
+- **URL**: https://blog.flowrust.com/2026/10/15/csv-transformer-field-guide-when-six-typed-operations-decide-whether-a-csv-reaches-the-warehouse-2026-10-14/
+- **date_gmt**: 2026-10-14T22:13:28
+- **featured_media**: 0 (required for COSESAI non-hero-duplication)
+- **Source recipe**: umbrella PIL templates (Cron article-poster-creator + article-highlight-cards skills absent from disk — confirmed before run via ls probe; WP 6191/6206/6323 fallback pattern)
+- **Picker**: theme-keyword scoring on 3085 tools → 2669 unique candidates → `csv-transformer` (theme_score=11 in Data Processing)
+- **Source verification**: 3 example results pulled (01-simple-students, 02-products-price, 03-employees-info); literal CSV files read from /Users/quyue/www/elysia-tools/public/samples/csv/ for realistic illustrative examples
+- **Validator hits**: 0 phantom anchors (validate_anchors on raw content returned all 4 tool slugs real; data-deduplicator/csv-excel-diff-tool/csv-filter/csv-transformer all confirmed)
+- **Elysia anchors** (5): /tools/csv-transformer (primary), /tools/data-deduplicator (related Data Processing), /tools/csv-excel-diff-tool (related), /tools/csv-filter (related), /tools (root browse)
+- **Card positions** (actual insertion): H2#1 "The six operation types" → card1 (operations 5-tile), H2#3 "Composing operations" → card3 (output modes 4-tile), H2#6 "Error handling" → card2 (5-row audit). Content-coherent at each anchor.
+- **Pre-publish sanity trio passed**: 0 markdown links surviving, 0 body H1, 0 literal backslash in `<code>`, 1 article-poster, 3 highlight-card, 8 body H2, featured_media=0
+- **Live DOM probe (WP 6323 expectations)**: 1 article H1, 9 article H2 (8 body + 1 nav), 1 article-poster, 3 highlight-card, 6 imgs, 0 imgs missing alt, 0 nested p-in-h2, 5 elysia anchors all 200 OK
+- **Visual QA pre-POST**: poster CLEAN (eyebrow/title/callout/url_bar all fit), card1 CLEAN (5-tile body text fits 290px tiles), card2 CLEAN (5-row audit + verdict grid fits col_w=700), card3 re-rendered with `render_card_4tile_compact` after first-pass `render_card_4tile` had body overlapping huge count (WP 6122 family); re-render CLEAN
+- **Pitfall count: 0 new pitfalls.** Existing pitfalls fired: (1) sibling-subagent `/tmp/` namespace collision warning on wp_article.md (WP 6423/6463 family — used `wp_article_csv-transformer.html` namespace throughout); (2) WP 6122 trigger on first-pass card3 (render_card_4tile short-numeric + multi-word body overlap — fixed by switching to `render_card_4tile_compact`); (3) anchor-to-card mapping mismatch (chosen anchors "The three..." / "Less-common..." didn't match exactly against post-md_to_html H2 text — `insert_highlight_cards` succeeded by matching the 1st/3rd/6th H2 in document order; cards landed at content-coherent positions with no PATCH needed)
+- **Cleanup**: rm -rf /tmp/wp_assets_csv-transformer/ (sibling-safety housekeeping deferred to next cron tick — kept for visual QA this run)
+- **Asset archive**: ~/www/blog/2026-10-14-csv-transformer-field-guide-when-six-typed-operations-decide-whether-a-csv-reaches-the-warehouse-2026-10-14/
+
+## 2026-10-15T02:28:34 — medication-dose-rate-field-guide-when-three-conversions-sit-between-the-order-and-the-pump-setting-2026-10-15 (WP 8334)
+- Title: Medication Dose/Rate Calculator Field Guide: When Three Conversions Sit Between the Order and the Pump Setting
+- URL: https://blog.flowrust.com/2026/10/15/medication-dose-rate-field-guide-when-three-conversions-sit-between-the-order-and-the-pump-setting-2026-10-15/
