@@ -319,3 +319,16 @@
 - **DOM check**: 8 H2 / 0 H3 / 0 body H1 / 1 article-poster / 3 highlight-card figures / 2× tool-page anchors + 1× kind-root anchor.
 - **Pitfall count: 0 new pitfalls.** Existing pitfalls fired: (1) WP 6122 — `figure.highlight-card` insertion assert fired (n==3, clean). (2) WP 7163 — `assert 'CARD' not in body` placeholder leak check fired (clean). (3) WP 6323 — `audit_post_content` 0 findings; visual QA confirmed.
 - **Asset archive**: ~/www/blog/2026-10-15-nb-iot-lte-m-cat-m1-coap-lwm2m-cellular-iot-packet-analyzer-field-guide-when-six-payload-decoders-cannot-disagree-on-which-byte-is-the-method-2026-10-15/
+
+## 2026-10-16 12:05 UTC — LDL-C Calculator (Friedewald) Field Guide
+
+- WP ID: 8399
+- Slug: ldl-calculator-friedewald-field-guide-when-three-equations-decide-whether-a-calculated-ldl-tells-the-truth-2026-10-16
+- Tool: ldl-calculator-friedewald (Health)
+- Date GMT: 2026-10-16T12:05:15
+- URL: https://blog.flowrust.com/2026/10/16/ldl-calculator-friedewald-field-guide-when-three-equations-decide-whether-a-calculated-ldl-tells-the-truth-2026-10-16/
+- Assets: poster.png (8395), card1.png (8396), card2.png (8397), card3.png (8398)
+- Elysia anchors: 8 tool + 1 kind-root, all valid
+- H2 count: 8, cards inserted: 3, audit findings: 0
+- Article body words: 1623
+- Notes: Used umbrella PIL templates (article-poster-creator and article-highlight-cards skills not on disk this run). Pre-render vision_analyze caught 1 poster subtitle-clip defect (long subtitle 100 chars; fixed to 51 chars, re-render clean).
