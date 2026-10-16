@@ -358,3 +358,12 @@
 - **Pitfall count: 0 new pitfalls.** Existing pitfalls fired: (1) WP 6323 phantom-slug on `/tools/data-analysis` (not in whitelist) — pre-empted by switching to `/tools?category=data-analysis`. (2) WP 6122 + WP 6370 + WP 6376 — confirmed 0 nested artifacts via `audit_payload.py` belt-and-suspenders checks. (3) WP 5683/6109 subtitle pre-measure — kept subtitle at 59 chars (under the 60-char safety band). (4) WP 6212 0-body-H3 rule — no `###` in source.
 - **Cleanup**: assets retained in WP media library; `/tmp/wp_cron_kanban_20261016_160903/` archive preserved for this session.
 - **Asset archive**: ~/www/blog/2026-10-16-kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/
+
+## 2026-10-16T20:29:38 — pcie-link-training-linkstate-and-lane-margining-eye-decode (WP 8411)
+- Title: PCIe Link Training, Decoded: What LTSSM, Equalization, and Lane Margining Actually Negotiate
+- URL: https://blog.flowrust.com/2026/10/17/pcie-link-training-linkstate-and-lane-margining-eye-decode/
+- Tool: PCIe Link Training LTSSM & Lane Margining Eye Decoder (Network)
+- Round trips: 1 POST + 1 PATCH (MERGED_BULLET_LIST + MERGED_NUMBERED_LIST fix)
+- Audit: 0 findings
+- Assets: poster.png + 3 cards
+- Elysia anchors: 5
