@@ -332,3 +332,29 @@
 - H2 count: 8, cards inserted: 3, audit findings: 0
 - Article body words: 1623
 - Notes: Used umbrella PIL templates (article-poster-creator and article-highlight-cards skills not on disk this run). Pre-render vision_analyze caught 1 poster subtitle-clip defect (long subtitle 100 chars; fixed to 51 chars, re-render clean).
+
+## 2026-10-16 16:15 UTC — Kanban Cycle Time & Throughput Coach Field Guide (WP 8405)
+
+- **Post**: [Kanban Cycle Time & Throughput Coach Field Guide: When Five Numbers Reveal Whether the Board Is Flowing or Stuck](https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/)
+- **WP ID**: 8405
+- **Tool**: `kanban-cycle-time-throughput-coach` (Kanban Cycle Time & Throughput Coach, Data Analysis category)
+- **date_gmt**: 2026-10-16T16:15:00
+- **status**: publish
+- **featured_media**: 0 (COSESAI non-hero-duplication defense)
+- **Format**: close-first lead + 8 body H2s + 3 highlight cards + 1 article-poster
+- **Audit findings**: 0 (clean — all 13 manual pre-publish sanity checks pass; audit_post_content returns 0)
+- **Word count**: ~1320
+- **Anchors embedded**: 5 elysiatools URLs — `/tools/kanban-cycle-time-throughput-coach` (primary), `/tools/heat-exchanger-ntu` (related), `/tools?category=data-analysis` x2 (catalog filter), `/en/tools` kind-root — all 200 OK, 0 phantom
+- **Assets**: poster.png (1080x800 cyan-teal theme, 62788 bytes), card1.png (1600x900 5-tile: lead/cycle/wip/percentiles/throughput, 72156 bytes), card2.png (1600x900 4-tile compact worked-example, 71538 bytes), card3.png (1600x900 2-col CFD reading rules, 73765 bytes)
+- **Path**: 1-POST 0-PATCH (clean)
+- **Skill availability**: parent umbrella `article-writer` present; `article-poster-creator` and `article-highlight-cards` skills NOT present at top-level (cron-prompt skip-notice correct). Used umbrella PIL templates (`pil_poster_and_cards_network_theme.py::render_poster`, `render_card_5tile`; `render_card_4tile_compact.py::render_card_4tile_compact`; `custom_pil_card_layouts.py::render_card_input_output_2col`).
+- **Tool pick rationale**: sparse-category picker top picks: csv-header-alias-resolver, echarts-theme-token-extractor, jsonpath-repl-playground, opentelemetry-*, train-test-split-with-stratification. Picked `kanban-cycle-time-throughput-coach` from the second tier (theme_score=2: 'analyze' + 'workflow' + 'flow' keywords) — clean Data Analysis category with strong blog-flow theme, real 654-char description with full flow-metrics coverage (lead/cycle percentiles, WIP, throughput, CFD, Little's Law).
+- **Pre-publish sanity trio**: 0 markdown links surviving, 0 `<name>` placeholders, 0 literal backslash in `<code>`, 0 br_in_p, 0 nested p-in-h2 (correct regex check), 0 nested `<code><code>`, 0 `<code><br>` artifacts, 0 H1, 0 H3, exactly 8 H2, exactly 1 article-poster, exactly 3 highlight-cards, no `CARD` placeholder leaks, featured_media=0
+- **Source-side fixes baked in**: (1) all 4 raw `<ul><li>` markup written explicitly (avoided MERGED_BULLET_LIST family per WP 5746/6135/6212 by NOT using `- ` markdown); (2) all percent terms (`p50`, `p85`, `p95`) and code-like tokens (`Created`, `Resolved`, etc.) wrapped in backticks; (3) rebuilt `/tools/data-analysis` to `/tools?category=data-analysis` after phantom-slug validation caught it pre-POST.
+- **Visual QA pre-POST** (vision_analyze on all 4 assets): first-pass verification was clean — poster title fits 1080, subtitle 59 chars fits 906 px wide, all 5-tile card1 values fit tile_w=290, card2 4-tile counts `4.0`/`4.0`/`2`/`1+4+3` render correctly with auto-shrink, card3 2-col data rows fit col_w=700. No re-renders needed.
+- **Card positions**: H2#0 "The five metrics..." -> card1 (5-tile metrics), H2#2 "A worked example..." -> card2 (4-tile compact July 2026 results), H2#3 "The CFD's two reading rules..." -> card3 (2-col VERTICAL/HORIZONTAL band readings).
+- **Headless check**: 5/5 elysia anchors HTTP 200, 4/4 image URLs HTTP 200 (poster / card1 / card2 / card3 all WP 200), 2/2 theme avatar URLs (LiteSpeed placeholders) HTTP 200, permalink HTTP 200.
+- **DOM check (rendered)**: 1 article H1 (theme `entry-title` per WP 6323), 9 article H2 (8 body + 1 nav per WP 6323 lesson), 0 H3, 1 article-poster, 3 highlight-card figures, 6 imgs all with alt. wpautop converted 2 ASCII apostrophes (`CFD's`, `Little's`) to `&#8217;s` in H2#3 + H2#4 text (cosmetic, both render identically).
+- **Pitfall count: 0 new pitfalls.** Existing pitfalls fired: (1) WP 6323 phantom-slug on `/tools/data-analysis` (not in whitelist) — pre-empted by switching to `/tools?category=data-analysis`. (2) WP 6122 + WP 6370 + WP 6376 — confirmed 0 nested artifacts via `audit_payload.py` belt-and-suspenders checks. (3) WP 5683/6109 subtitle pre-measure — kept subtitle at 59 chars (under the 60-char safety band). (4) WP 6212 0-body-H3 rule — no `###` in source.
+- **Cleanup**: assets retained in WP media library; `/tmp/wp_cron_kanban_20261016_160903/` archive preserved for this session.
+- **Asset archive**: ~/www/blog/2026-10-16-kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/

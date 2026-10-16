@@ -1,0 +1,368 @@
+{
+  "id": 8405,
+  "date": "2026-10-17T00:15:00",
+  "date_gmt": "2026-10-16T16:15:00",
+  "guid": {
+    "rendered": "https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/",
+    "raw": "https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/"
+  },
+  "modified": "2026-10-17T00:14:59",
+  "modified_gmt": "2026-10-16T16:14:59",
+  "password": "",
+  "slug": "kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16",
+  "status": "publish",
+  "type": "post",
+  "link": "https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/",
+  "title": {
+    "raw": "Kanban Cycle Time & Throughput Coach Field Guide: When Five Numbers Reveal Whether the Board Is Flowing or Stuck",
+    "rendered": "Kanban Cycle Time &#038; Throughput Coach Field Guide: When Five Numbers Reveal Whether the Board Is Flowing or Stuck"
+  },
+  "content": {
+    "raw": "<figure class=\"article-poster\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/poster-64.png\" alt=\"Kanban Cycle Time &amp; Throughput Coach field guide cover\"></figure>\n<p><strong>A paste of ten Jira rows tells you nothing about flow on its own.</strong> The Kanban Cycle Time &amp; Throughput Coach turns <code>Created</code>, <code>Started</code>, and <code>Resolved</code> timestamps into the five numbers an agile coach actually argues with on Monday morning: lead-time and cycle-time percentiles (50 / 85 / 95), work-in-progress age, daily / weekly / monthly throughput counts, a cumulative flow diagram with the WIP and approximate-cycle-time reading rules, and a Little's Law consistency check that tells you whether the inputs are internally coherent or somebody typo'd a date. Run it at <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Kanban Cycle Time &amp; Throughput Coach</a> on Elysia Tools.</p>\n<h2>The five metrics the Coach surfaces on every paste</h2>\n<p>The Coach assumes the simplest Jira-style schema: one row per ticket, a <code>Created</code> column (date or ISO timestamp), a <code>Started</code> column (date or empty for not-yet-started), and a <code>Resolved</code> column (date or empty for still-in-progress). On a clean paste it computes:</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/card1-54.png\" alt=\"Five metrics the Coach surfaces on every Jira CSV paste\" loading=\"lazy\"></figure>\n<ul>\n  <li><strong>Lead time</strong> = <code>Resolved - Created</code>, in days, for every completed ticket.</li>\n  <li><strong>Cycle time</strong> = <code>Resolved - Started</code>, in days, for every ticket whose <code>Started</code> is non-empty.</li>\n  <li>Lead and cycle time <strong>percentiles 50 / 85 / 95</strong>, computed separately.</li>\n  <li><strong>WIP age</strong> = <code>today - Started</code> for every ticket whose <code>Resolved</code> is empty, ranked largest first.</li>\n  <li><strong>Throughput</strong> counts bucketed per day, per week, or per month (user-selectable).</li>\n  <li>A <strong>cumulative flow diagram (CFD)</strong> SVG with WIP and approximate-cycle-time reading annotations.</li>\n  <li>A <strong>Little's Law consistency check</strong>: <code>WIP approx Throughput x Cycle Time</code>.</li>\n<p></p></ul>\n<p>You can try the running tool at the <a href=\"https://elysiatools.com/en/tools?category=data-analysis\">Elysia Tools data analysis catalog</a>, where flow / workload / throughput instruments live side by side.</p>\n<h2>Why percentile 85 is the number that survives contact with stakeholders</h2>\n<p>Average cycle time is a trap. One two-week outlier moves a 3-day mean to 4.5 days and triggers a \"the team's slowing down\" Slack thread. The Coach reports three percentiles because each one answers a different question:</p>\n<ul>\n  <li><strong>p50 (median)</strong> tells you what a typical ticket takes when nothing goes wrong.</li>\n  <li><strong>p85</strong> tells you what 85 percent of tickets finish inside; it is the number senior engineers and PMs negotiate against for sprint commitments.</li>\n  <li><strong>p95</strong> is the tail; if p95 is more than 3x p50, an outlier class is dragging the board -- usually dependency-wait, code-review stall, or a deploy queue that nobody owns.</li>\n<p></p></ul>\n<p>The Coach pins the analysis clock to a date you supply (<code>asOf</code>) so today's open WIP items are aged against your chosen snapshot, not against the wall clock. That is what makes a retrospective number reproducible next quarter.</p>\n<h2>A worked example: ten Jira rows across three weekly buckets</h2>\n<p>Paste the small July 2026 sample CSV from the tool catalog, with <code>Started</code> and <code>Resolved</code> columns populated and two tickets still in progress (<code>PROJ-109</code> and <code>PROJ-110</code>, <code>Resolved</code> empty). The Coach returns:</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/card2-54.png\" alt=\"Ten-row worked example with p85 4.0d and Little's Law check\" loading=\"lazy\"></figure>\n<ul>\n  <li>Cycle time percentiles: <strong>p50 3.0 d / p85 4.0 d / p95 4.0 d</strong>.</li>\n  <li>Lead time: <strong>p50 4.0 d</strong> -- the one-day gap between <code>Created</code> and <code>Started</code> on most rows.</li>\n  <li>WIP panel: 2 aging items, ranked largest first.</li>\n  <li>Weekly throughput: <strong>1 / 4 / 3</strong> across three buckets (mid-sprint startup, mid-sprint burst, week-3 taper).</li>\n  <li>CFD: outer lines stay nearly parallel, no fanning -- the healthy-flow signature.</li>\n  <li>Little's Law: <code>WIP = 2</code> against <code>Throughput(4 / wk) x Cycle(3 d) approx 1.7</code>, within the +/- 20 percent fuzz factor.</li>\n<p></p></ul>\n<p>You can run this exact sample at the Coach, then re-paste your own board to compare percentile ratios. The tool survives a five-row or a five-hundred-row paste without complaint.</p>\n<h2>The CFD's two reading rules: WIP band and approximate cycle time</h2>\n<p>The cumulative flow diagram is the only chart on the board that needs no axis label to read. Two vertical distances encode two different numbers:</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/card3-54.png\" alt=\"Two CFD reading rules: WIP band and approximate cycle time\" loading=\"lazy\"></figure>\n<ul>\n  <li><strong>Vertical distance between the top two curves = WIP today.</strong> Track this band over time: a widening band means more work is sitting in <code>In Progress</code> + <code>Code Review</code> than the team is finishing. A narrowing band means items are completing faster than new ones are starting.</li>\n  <li><strong>Horizontal distance between the bottom two curves = approximate cycle time, in days.</strong> This is the chart's \"how long do things take?\" reading, and it is robust to one missing <code>Started</code> date because it derives from cumulative counts rather than from per-ticket math.</li>\n<p></p></ul>\n<p>These two readings are why CFDs survive questions of \"but what about average?\" -- the bands answer directly to <a href=\"https://blog.flowrust.com/tag/flow-efficiency/\" class=\"wpai-auto-tags-link\">flow-efficiency</a> discussions without any aggregation. The Coach draws the bands explicitly and labels them. A board with a flat CFD but a widening WIP band is a warning, not a stable state.</p>\n<h2>Little's Law: the consistency check that catches bad inputs</h2>\n<p>The Coach applies <code>WIP approx Throughput x Cycle Time</code> to every paste, then computes a consistency percentage. A result within +/- 20 percent is flagged \"consistent\"; a result outside the band is flagged with the offending number so you can spot which input is wrong.</p>\n<p>Three real failure modes the consistency check catches:</p>\n<ul>\n  <li><strong>The <code>Created</code> column is a string, not a date.</strong> Cycle time comes out as zero for every row; Little's Law wildly disagrees.</li>\n  <li><strong>Half the <code>Resolved</code> dates are missing</strong> because the export cut off mid-status. Throughput drops but WIP does not, so the product is way below WIP.</li>\n  <li><strong>The <code>Started</code> column is empty for every row</strong> (the team skipped the workflow step). Cycle time is undefined; the Coach falls back to lead-time percentiles and reports the substitution.</li>\n<p></p></ul>\n<p>For a comparative read on a different domain that uses a similar 5-band fan-out at low C*, the <a href=\"https://elysiatools.com/en/tools/heat-exchanger-ntu\">Heat Exchanger NTU Calculator</a> shares the same structural pattern: four arrangement curves fanning out as a dimensionless parameter approaches zero.</p>\n<h2>Pitfalls the calculator prevents by construction</h2>\n<p>Three anti-patterns show up in every retrospective regardless of team:</p>\n<ul>\n  <li><strong>Committing on a moving average.</strong> The Coach's p85 is a quantile, not a mean, so an outlier cannot corrupt next sprint's commitment.</li>\n  <li><strong>Forgetting work in progress.</strong> Every empty <code>Resolved</code> becomes a WIP aging row, ranked largest first, so the next standup surfaces it instead of letting it age quietly.</li>\n  <li><strong>Reading a flat CFD as healthy.</strong> The Coach draws the WIP and cycle-time bands; a flat CFD with a widening WIP band is a warning, not a stable state.</li>\n<p></p></ul>\n<p>Reading the Coach's verdict panel teaches the team what each metric actually means, instead of training them to chase whichever number moved last week.</p>\n<h2>What the Coach deliberately does NOT compute</h2>\n<p>A short list of common asks the Coach refuses by design, and the equivalent you should reach for instead:</p>\n<ul>\n  <li><strong>Monte Carlo sprint forecast.</strong> The Coach reports percentiles from the pasted data only; it does not run a forward simulation against the throughput history. Reach for a discrete-event simulator if you need that.</li>\n  <li><strong>Per-assignee decomposition.</strong> Cycle-time percentiles are computed over the whole paste. If you need a per-engineer breakdown, split the CSV yourself first and re-paste.</li>\n  <li><strong>Story-point normalization.</strong> The Coach does not know your points scale; lead and cycle time are reported in calendar days.</li>\n<p></p></ul>\n<p>This is on purpose -- the Coach's job is to be the fastest paste-and-read answer on the board, and that means staying out of the layers where each team has its own conventions.</p>\n<h2>Putting the metrics together for sprint planning</h2>\n<p>A practical one-line summary is enough: read <code>p85</code> as the upper bound for a one-sprint commitment, treat any <code>p95 &gt; 3x p50</code> as a tail-class trigger, and let the CFD's cycle-time band be your story when somebody asks \"what's our typical cycle time?\"</p>\n<p>The Coach is built for the realistic case -- a CSV paste of last sprint's tickets -- and the output is the kind of thing you can paste into your retro deck without reformatting. You can find it on the <a href=\"https://elysiatools.com/en/tools?category=data-analysis\">Elysia Tools data analysis catalog</a> alongside the calculators that share its workflow theme, and it is one of many flow / metrics / workload instruments at <a href=\"https://elysiatools.com/en/tools\">Elysia Tools</a>.</p>",
+    "rendered": "<figure class=\"article-poster\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/poster-64.png\" alt=\"Kanban Cycle Time &amp; Throughput Coach field guide cover\"></figure>\n<p><strong>A paste of ten Jira rows tells you nothing about flow on its own.</strong> The Kanban Cycle Time &amp; Throughput Coach turns <code>Created</code>, <code>Started</code>, and <code>Resolved</code> timestamps into the five numbers an agile coach actually argues with on Monday morning: lead-time and cycle-time percentiles (50 / 85 / 95), work-in-progress age, daily / weekly / monthly throughput counts, a cumulative flow diagram with the WIP and approximate-cycle-time reading rules, and a Little&#8217;s Law consistency check that tells you whether the inputs are internally coherent or somebody typo&#8217;d a date. Run it at <a href=\"https://elysiatools.com/en/tools/kanban-cycle-time-throughput-coach\">Kanban Cycle Time &amp; Throughput Coach</a> on Elysia Tools.</p>\n<h2>The five metrics the Coach surfaces on every paste</h2>\n<p>The Coach assumes the simplest Jira-style schema: one row per ticket, a <code>Created</code> column (date or ISO timestamp), a <code>Started</code> column (date or empty for not-yet-started), and a <code>Resolved</code> column (date or empty for still-in-progress). On a clean paste it computes:</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/card1-54.png\" alt=\"Five metrics the Coach surfaces on every Jira CSV paste\" loading=\"lazy\"></figure>\n<ul>\n<li><strong>Lead time</strong> = <code>Resolved - Created</code>, in days, for every completed ticket.</li>\n<li><strong>Cycle time</strong> = <code>Resolved - Started</code>, in days, for every ticket whose <code>Started</code> is non-empty.</li>\n<li>Lead and cycle time <strong>percentiles 50 / 85 / 95</strong>, computed separately.</li>\n<li><strong>WIP age</strong> = <code>today - Started</code> for every ticket whose <code>Resolved</code> is empty, ranked largest first.</li>\n<li><strong>Throughput</strong> counts bucketed per day, per week, or per month (user-selectable).</li>\n<li>A <strong>cumulative flow diagram (CFD)</strong> SVG with WIP and approximate-cycle-time reading annotations.</li>\n<li>A <strong>Little&#8217;s Law consistency check</strong>: <code>WIP approx Throughput x Cycle Time</code>.</li>\n</ul>\n<p>You can try the running tool at the <a href=\"https://elysiatools.com/en/tools?category=data-analysis\">Elysia Tools data analysis catalog</a>, where flow / workload / throughput instruments live side by side.</p>\n<h2>Why percentile 85 is the number that survives contact with stakeholders</h2>\n<p>Average cycle time is a trap. One two-week outlier moves a 3-day mean to 4.5 days and triggers a &#8220;the team&#8217;s slowing down&#8221; Slack thread. The Coach reports three percentiles because each one answers a different question:</p>\n<ul>\n<li><strong>p50 (median)</strong> tells you what a typical ticket takes when nothing goes wrong.</li>\n<li><strong>p85</strong> tells you what 85 percent of tickets finish inside; it is the number senior engineers and PMs negotiate against for sprint commitments.</li>\n<li><strong>p95</strong> is the tail; if p95 is more than 3x p50, an outlier class is dragging the board &#8212; usually dependency-wait, code-review stall, or a deploy queue that nobody owns.</li>\n</ul>\n<p>The Coach pins the analysis clock to a date you supply (<code>asOf</code>) so today&#8217;s open WIP items are aged against your chosen snapshot, not against the wall clock. That is what makes a retrospective number reproducible next quarter.</p>\n<h2>A worked example: ten Jira rows across three weekly buckets</h2>\n<p>Paste the small July 2026 sample CSV from the tool catalog, with <code>Started</code> and <code>Resolved</code> columns populated and two tickets still in progress (<code>PROJ-109</code> and <code>PROJ-110</code>, <code>Resolved</code> empty). The Coach returns:</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/card2-54.png\" alt=\"Ten-row worked example with p85 4.0d and Little's Law check\" loading=\"lazy\"></figure>\n<ul>\n<li>Cycle time percentiles: <strong>p50 3.0 d / p85 4.0 d / p95 4.0 d</strong>.</li>\n<li>Lead time: <strong>p50 4.0 d</strong> &#8212; the one-day gap between <code>Created</code> and <code>Started</code> on most rows.</li>\n<li>WIP panel: 2 aging items, ranked largest first.</li>\n<li>Weekly throughput: <strong>1 / 4 / 3</strong> across three buckets (mid-sprint startup, mid-sprint burst, week-3 taper).</li>\n<li>CFD: outer lines stay nearly parallel, no fanning &#8212; the healthy-flow signature.</li>\n<li>Little&#8217;s Law: <code>WIP = 2</code> against <code>Throughput(4 / wk) x Cycle(3 d) approx 1.7</code>, within the +/- 20 percent fuzz factor.</li>\n</ul>\n<p>You can run this exact sample at the Coach, then re-paste your own board to compare percentile ratios. The tool survives a five-row or a five-hundred-row paste without complaint.</p>\n<h2>The CFD&#8217;s two reading rules: WIP band and approximate cycle time</h2>\n<p>The cumulative flow diagram is the only chart on the board that needs no axis label to read. Two vertical distances encode two different numbers:</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/10/card3-54.png\" alt=\"Two CFD reading rules: WIP band and approximate cycle time\" loading=\"lazy\"></figure>\n<ul>\n<li><strong>Vertical distance between the top two curves = WIP today.</strong> Track this band over time: a widening band means more work is sitting in <code>In Progress</code> + <code>Code Review</code> than the team is finishing. A narrowing band means items are completing faster than new ones are starting.</li>\n<li><strong>Horizontal distance between the bottom two curves = approximate cycle time, in days.</strong> This is the chart&#8217;s &#8220;how long do things take?&#8221; reading, and it is robust to one missing <code>Started</code> date because it derives from cumulative counts rather than from per-ticket math.</li>\n</ul>\n<p>These two readings are why CFDs survive questions of &#8220;but what about average?&#8221; &#8212; the bands answer directly to <a href=\"https://blog.flowrust.com/tag/flow-efficiency/\" class=\"wpai-auto-tags-link\">flow-efficiency</a> discussions without any aggregation. The Coach draws the bands explicitly and labels them. A board with a flat CFD but a widening WIP band is a warning, not a stable state.</p>\n<h2>Little&#8217;s Law: the consistency check that catches bad inputs</h2>\n<p>The Coach applies <code>WIP approx Throughput x Cycle Time</code> to every paste, then computes a consistency percentage. A result within +/- 20 percent is flagged &#8220;consistent&#8221;; a result outside the band is flagged with the offending number so you can spot which input is wrong.</p>\n<p>Three real failure modes the consistency check catches:</p>\n<ul>\n<li><strong>The <code>Created</code> column is a string, not a date.</strong> Cycle time comes out as zero for every row; Little&#8217;s Law wildly disagrees.</li>\n<li><strong>Half the <code>Resolved</code> dates are missing</strong> because the export cut off mid-status. Throughput drops but WIP does not, so the product is way below WIP.</li>\n<li><strong>The <code>Started</code> column is empty for every row</strong> (the team skipped the workflow step). Cycle time is undefined; the Coach falls back to lead-time percentiles and reports the substitution.</li>\n</ul>\n<p>For a comparative read on a different domain that uses a similar 5-band fan-out at low C*, the <a href=\"https://elysiatools.com/en/tools/heat-exchanger-ntu\">Heat Exchanger NTU Calculator</a> shares the same structural pattern: four arrangement curves fanning out as a dimensionless parameter approaches zero.</p>\n<h2>Pitfalls the calculator prevents by construction</h2>\n<p>Three anti-patterns show up in every retrospective regardless of team:</p>\n<ul>\n<li><strong>Committing on a moving average.</strong> The Coach&#8217;s p85 is a quantile, not a mean, so an outlier cannot corrupt next sprint&#8217;s commitment.</li>\n<li><strong>Forgetting work in progress.</strong> Every empty <code>Resolved</code> becomes a WIP aging row, ranked largest first, so the next standup surfaces it instead of letting it age quietly.</li>\n<li><strong>Reading a flat CFD as healthy.</strong> The Coach draws the WIP and cycle-time bands; a flat CFD with a widening WIP band is a warning, not a stable state.</li>\n</ul>\n<p>Reading the Coach&#8217;s verdict panel teaches the team what each metric actually means, instead of training them to chase whichever number moved last week.</p>\n<h2>What the Coach deliberately does NOT compute</h2>\n<p>A short list of common asks the Coach refuses by design, and the equivalent you should reach for instead:</p>\n<ul>\n<li><strong>Monte Carlo sprint forecast.</strong> The Coach reports percentiles from the pasted data only; it does not run a forward simulation against the throughput history. Reach for a discrete-event simulator if you need that.</li>\n<li><strong>Per-assignee decomposition.</strong> Cycle-time percentiles are computed over the whole paste. If you need a per-engineer breakdown, split the CSV yourself first and re-paste.</li>\n<li><strong>Story-point normalization.</strong> The Coach does not know your points scale; lead and cycle time are reported in calendar days.</li>\n</ul>\n<p>This is on purpose &#8212; the Coach&#8217;s job is to be the fastest paste-and-read answer on the board, and that means staying out of the layers where each team has its own conventions.</p>\n<h2>Putting the metrics together for sprint planning</h2>\n<p>A practical one-line summary is enough: read <code>p85</code> as the upper bound for a one-sprint commitment, treat any <code>p95 &gt; 3x p50</code> as a tail-class trigger, and let the CFD&#8217;s cycle-time band be your story when somebody asks &#8220;what&#8217;s our typical cycle time?&#8221;</p>\n<p>The Coach is built for the realistic case &#8212; a CSV paste of last sprint&#8217;s tickets &#8212; and the output is the kind of thing you can paste into your retro deck without reformatting. You can find it on the <a href=\"https://elysiatools.com/en/tools?category=data-analysis\">Elysia Tools data analysis catalog</a> alongside the calculators that share its workflow theme, and it is one of many flow / metrics / workload instruments at <a href=\"https://elysiatools.com/en/tools\">Elysia Tools</a>.</p>\n",
+    "protected": false,
+    "block_version": 0
+  },
+  "excerpt": {
+    "raw": "A field guide to the Kanban Cycle Time & Throughput Coach on Elysia Tools: lead/cycle percentiles, WIP aging, throughput buckets, CFD reading rules, and Little's Law as a consistency check.",
+    "rendered": "<p>A field guide to the Kanban Cycle Time &#038; Throughput Coach on Elysia Tools: lead/cycle percentiles, WIP aging, throughput buckets, CFD reading rules, and Little&#8217;s Law as a consistency check.</p>\n",
+    "protected": false
+  },
+  "author": 1,
+  "featured_media": 0,
+  "comment_status": "open",
+  "ping_status": "open",
+  "sticky": false,
+  "template": "",
+  "format": "standard",
+  "meta": {
+    "om_disable_all_campaigns": false,
+    "_monsterinsights_skip_tracking": false,
+    "footnotes": ""
+  },
+  "categories": [
+    1
+  ],
+  "tags": [
+    2098,
+    165,
+    2493,
+    2097,
+    1224
+  ],
+  "permalink_template": "https://blog.flowrust.com/2026/10/17/%postname%/",
+  "generated_slug": "kanban-cycle-time-throughput-coach-field-guide-when-five-numbers-reveal-whether-the-board-is-flowing-or-stuck",
+  "class_list": [
+    "post-8405",
+    "post",
+    "type-post",
+    "status-publish",
+    "format-standard",
+    "hentry",
+    "category-uncategorized",
+    "tag-agile-metrics",
+    "tag-data-analysis",
+    "tag-flow-efficiency",
+    "tag-kanban",
+    "tag-project-management"
+  ],
+  "aioseo_notices": [],
+  "aioseo_head": "\n\t\t<!-- All in One SEO 4.9.10 - aioseo.com -->\n\t<meta name=\"description\" content=\"A field guide to the Kanban Cycle Time &amp; Throughput Coach on Elysia Tools: lead/cycle percentiles, WIP aging, throughput buckets, CFD reading rules, and Little&#039;s Law as a consistency check.\" />\n\t<meta name=\"robots\" content=\"max-image-preview:large\" />\n\t<meta name=\"author\" content=\"xiezixing\"/>\n\t<meta name=\"google-site-verification\" content=\"xcSlplMgocNnrNwmxi7j46JcdU6F-L2jrlAnpUB5Lxg\" />\n\t<link rel=\"canonical\" href=\"https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/\" />\n\t<meta name=\"generator\" content=\"All in One SEO (AIOSEO) 4.9.10\" />\n\t\t<meta property=\"og:locale\" content=\"en_US\" />\n\t\t<meta property=\"og:site_name\" content=\"COSESAI - Sharing my AI experiences\" />\n\t\t<meta property=\"og:type\" content=\"article\" />\n\t\t<meta property=\"og:title\" content=\"Kanban Cycle Time &amp; Throughput Coach Field Guide: When Five Numbers Reveal Whether the Board Is Flowing or Stuck - COSESAI\" />\n\t\t<meta property=\"og:description\" content=\"A field guide to the Kanban Cycle Time &amp; Throughput Coach on Elysia Tools: lead/cycle percentiles, WIP aging, throughput buckets, CFD reading rules, and Little&#039;s Law as a consistency check.\" />\n\t\t<meta property=\"og:url\" content=\"https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/\" />\n\t\t<meta property=\"og:image\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<meta property=\"og:image:secure_url\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<meta property=\"og:image:width\" content=\"512\" />\n\t\t<meta property=\"og:image:height\" content=\"512\" />\n\t\t<meta property=\"article:published_time\" content=\"2026-10-16T16:15:00+00:00\" />\n\t\t<meta property=\"article:modified_time\" content=\"2026-10-16T16:14:59+00:00\" />\n\t\t<meta name=\"twitter:card\" content=\"summary_large_image\" />\n\t\t<meta name=\"twitter:title\" content=\"Kanban Cycle Time &amp; Throughput Coach Field Guide: When Five Numbers Reveal Whether the Board Is Flowing or Stuck - COSESAI\" />\n\t\t<meta name=\"twitter:description\" content=\"A field guide to the Kanban Cycle Time &amp; Throughput Coach on Elysia Tools: lead/cycle percentiles, WIP aging, throughput buckets, CFD reading rules, and Little&#039;s Law as a consistency check.\" />\n\t\t<meta name=\"twitter:image\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<script type=\"application/ld+json\" class=\"aioseo-schema\">\n\t\t\t{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/17\\/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16\\/#blogposting\",\"name\":\"Kanban Cycle Time & Throughput Coach Field Guide: When Five Numbers Reveal Whether the Board Is Flowing or Stuck - COSESAI\",\"headline\":\"Kanban Cycle Time &#038; Throughput Coach Field Guide: When Five Numbers Reveal Whether the Board Is Flowing or Stuck\",\"author\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"publisher\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\"},\"image\":{\"@type\":\"ImageObject\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/uploads\\/2026\\/10\\/poster-64.png\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/17\\/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16\\/#articleImage\",\"width\":1080,\"height\":800},\"datePublished\":\"2026-10-17T00:15:00+08:00\",\"dateModified\":\"2026-10-17T00:14:59+08:00\",\"inLanguage\":\"en-US\",\"mainEntityOfPage\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/17\\/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16\\/#webpage\"},\"isPartOf\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/17\\/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16\\/#webpage\"},\"articleSection\":\"\\u672a\\u5206\\u7c7b, agile metrics, data analysis, flow-efficiency, kanban, Project Management\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/17\\/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16\\/#breadcrumblist\",\"itemListElement\":[{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com#listItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/blog.flowrust.com\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"name\":\"\\u672a\\u5206\\u7c7b\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"position\":2,\"name\":\"\\u672a\\u5206\\u7c7b\",\"item\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/17\\/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16\\/#listItem\",\"name\":\"Kanban Cycle Time &#038; Throughput Coach Field Guide: When Five Numbers Reveal Whether the Board Is Flowing or Stuck\"},\"previousItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com#listItem\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/17\\/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16\\/#listItem\",\"position\":3,\"name\":\"Kanban Cycle Time &#038; Throughput Coach Field Guide: When Five Numbers Reveal Whether the Board Is Flowing or Stuck\",\"previousItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"name\":\"\\u672a\\u5206\\u7c7b\"}}]},{\"@type\":\"Person\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\",\"name\":\"xiezixing\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/17\\/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16\\/#personImage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/litespeed\\/avatar\\/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1791810041\",\"width\":96,\"height\":96,\"caption\":\"xiezixing\"}},{\"@type\":\"Person\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\",\"url\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/\",\"name\":\"xiezixing\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/17\\/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16\\/#authorImage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/litespeed\\/avatar\\/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1791810041\",\"width\":96,\"height\":96,\"caption\":\"xiezixing\"}},{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/17\\/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16\\/#webpage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/17\\/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16\\/\",\"name\":\"Kanban Cycle Time & Throughput Coach Field Guide: When Five Numbers Reveal Whether the Board Is Flowing or Stuck - COSESAI\",\"description\":\"A field guide to the Kanban Cycle Time & Throughput Coach on Elysia Tools: lead\\/cycle percentiles, WIP aging, throughput buckets, CFD reading rules, and Little's Law as a consistency check.\",\"inLanguage\":\"en-US\",\"isPartOf\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/10\\/17\\/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16\\/#breadcrumblist\"},\"author\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"creator\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"datePublished\":\"2026-10-17T00:15:00+08:00\",\"dateModified\":\"2026-10-17T00:14:59+08:00\"},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/#website\",\"url\":\"https:\\/\\/blog.flowrust.com\\/\",\"name\":\"COSESAI\",\"description\":\"Sharing my AI experiences\",\"inLanguage\":\"en-US\",\"publisher\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\"}}]}\n\t\t</script>\n\t\t<!-- All in One SEO -->\n\n",
+  "aioseo_head_json": {
+    "title": "Kanban Cycle Time & Throughput Coach Field Guide: When Five Numbers Reveal Whether the Board Is Flowing or Stuck - COSESAI",
+    "description": "A field guide to the Kanban Cycle Time & Throughput Coach on Elysia Tools: lead/cycle percentiles, WIP aging, throughput buckets, CFD reading rules, and Little's Law as a consistency check.",
+    "canonical_url": "https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/",
+    "robots": "max-image-preview:large",
+    "keywords": "",
+    "webmasterTools": {
+      "google-site-verification": "xcSlplMgocNnrNwmxi7j46JcdU6F-L2jrlAnpUB5Lxg",
+      "miscellaneous": ""
+    },
+    "schema": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "@id": "https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/#blogposting",
+          "name": "Kanban Cycle Time & Throughput Coach Field Guide: When Five Numbers Reveal Whether the Board Is Flowing or Stuck - COSESAI",
+          "headline": "Kanban Cycle Time &#038; Throughput Coach Field Guide: When Five Numbers Reveal Whether the Board Is Flowing or Stuck",
+          "author": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "publisher": {
+            "@id": "https://blog.flowrust.com/#person"
+          },
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://blog.flowrust.com/wp-content/uploads/2026/10/poster-64.png",
+            "@id": "https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/#articleImage",
+            "width": 1080,
+            "height": 800
+          },
+          "datePublished": "2026-10-17T00:15:00+08:00",
+          "dateModified": "2026-10-17T00:14:59+08:00",
+          "inLanguage": "en-US",
+          "mainEntityOfPage": {
+            "@id": "https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/#webpage"
+          },
+          "isPartOf": {
+            "@id": "https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/#webpage"
+          },
+          "articleSection": "未分类, agile metrics, data analysis, flow-efficiency, kanban, Project Management"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/#breadcrumblist",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com#listItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://blog.flowrust.com",
+              "nextItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+                "name": "未分类"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+              "position": 2,
+              "name": "未分类",
+              "item": "https://blog.flowrust.com/category/uncategorized/",
+              "nextItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/#listItem",
+                "name": "Kanban Cycle Time &#038; Throughput Coach Field Guide: When Five Numbers Reveal Whether the Board Is Flowing or Stuck"
+              },
+              "previousItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com#listItem",
+                "name": "Home"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "@id": "https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/#listItem",
+              "position": 3,
+              "name": "Kanban Cycle Time &#038; Throughput Coach Field Guide: When Five Numbers Reveal Whether the Board Is Flowing or Stuck",
+              "previousItem": {
+                "@type": "ListItem",
+                "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+                "name": "未分类"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://blog.flowrust.com/#person",
+          "name": "xiezixing",
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/#personImage",
+            "url": "https://blog.flowrust.com/wp-content/litespeed/avatar/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1791810041",
+            "width": 96,
+            "height": 96,
+            "caption": "xiezixing"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://blog.flowrust.com/author/xiezixing/#author",
+          "url": "https://blog.flowrust.com/author/xiezixing/",
+          "name": "xiezixing",
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/#authorImage",
+            "url": "https://blog.flowrust.com/wp-content/litespeed/avatar/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1791810041",
+            "width": 96,
+            "height": 96,
+            "caption": "xiezixing"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/#webpage",
+          "url": "https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/",
+          "name": "Kanban Cycle Time & Throughput Coach Field Guide: When Five Numbers Reveal Whether the Board Is Flowing or Stuck - COSESAI",
+          "description": "A field guide to the Kanban Cycle Time & Throughput Coach on Elysia Tools: lead/cycle percentiles, WIP aging, throughput buckets, CFD reading rules, and Little's Law as a consistency check.",
+          "inLanguage": "en-US",
+          "isPartOf": {
+            "@id": "https://blog.flowrust.com/#website"
+          },
+          "breadcrumb": {
+            "@id": "https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/#breadcrumblist"
+          },
+          "author": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "creator": {
+            "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+          },
+          "datePublished": "2026-10-17T00:15:00+08:00",
+          "dateModified": "2026-10-17T00:14:59+08:00"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://blog.flowrust.com/#website",
+          "url": "https://blog.flowrust.com/",
+          "name": "COSESAI",
+          "description": "Sharing my AI experiences",
+          "inLanguage": "en-US",
+          "publisher": {
+            "@id": "https://blog.flowrust.com/#person"
+          }
+        }
+      ]
+    },
+    "og:locale": "en_US",
+    "og:site_name": "COSESAI - Sharing my AI experiences",
+    "og:type": "article",
+    "og:title": "Kanban Cycle Time &amp; Throughput Coach Field Guide: When Five Numbers Reveal Whether the Board Is Flowing or Stuck - COSESAI",
+    "og:description": "A field guide to the Kanban Cycle Time &amp; Throughput Coach on Elysia Tools: lead/cycle percentiles, WIP aging, throughput buckets, CFD reading rules, and Little's Law as a consistency check.",
+    "og:url": "https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/",
+    "og:image": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp",
+    "og:image:secure_url": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp",
+    "og:image:width": 512,
+    "og:image:height": 512,
+    "article:published_time": "2026-10-16T16:15:00+00:00",
+    "article:modified_time": "2026-10-16T16:14:59+00:00",
+    "twitter:card": "summary_large_image",
+    "twitter:title": "Kanban Cycle Time &amp; Throughput Coach Field Guide: When Five Numbers Reveal Whether the Board Is Flowing or Stuck - COSESAI",
+    "twitter:description": "A field guide to the Kanban Cycle Time &amp; Throughput Coach on Elysia Tools: lead/cycle percentiles, WIP aging, throughput buckets, CFD reading rules, and Little's Law as a consistency check.",
+    "twitter:image": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp"
+  },
+  "aioseo_meta_data": [],
+  "aioseo_breadcrumb": "<div class=\"aioseo-breadcrumbs\"><span class=\"aioseo-breadcrumb\">\n\t\t\t<a href=\"https://blog.flowrust.com\" title=\"Home\">Home</a>\n\t\t</span><span class=\"aioseo-breadcrumb-separator\">&raquo;</span><span class=\"aioseo-breadcrumb\">\n\t\t\t<a href=\"https://blog.flowrust.com/category/uncategorized/\" title=\"未分类\">未分类</a>\n\t\t</span><span class=\"aioseo-breadcrumb-separator\">&raquo;</span><span class=\"aioseo-breadcrumb\">\n\t\t\tKanban Cycle Time &amp; Throughput Coach Field Guide: When Five Numbers Reveal Whether the Board Is Flowing or Stuck\n\t\t</span></div>",
+  "aioseo_breadcrumb_json": [
+    {
+      "label": "Home",
+      "link": "https://blog.flowrust.com"
+    },
+    {
+      "label": "未分类",
+      "link": "https://blog.flowrust.com/category/uncategorized/"
+    },
+    {
+      "label": "Kanban Cycle Time &#038; Throughput Coach Field Guide: When Five Numbers Reveal Whether the Board Is Flowing or Stuck",
+      "link": "https://blog.flowrust.com/2026/10/17/kanban-cycle-time-throughput-coach-field-guide-when-five-flow-numbers-surface-from-one-jira-csv-paste-2026-10-16/"
+    }
+  ],
+  "_links": {
+    "self": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8405",
+        "targetHints": {
+          "allow": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE"
+          ]
+        }
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts"
+      }
+    ],
+    "about": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/types/post"
+      }
+    ],
+    "author": [
+      {
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/users/1"
+      }
+    ],
+    "replies": [
+      {
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/comments?post=8405"
+      }
+    ],
+    "version-history": [
+      {
+        "count": 1,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8405/revisions"
+      }
+    ],
+    "predecessor-version": [
+      {
+        "id": 8406,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8405/revisions/8406"
+      }
+    ],
+    "wp:attachment": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/media?parent=8405"
+      }
+    ],
+    "wp:term": [
+      {
+        "taxonomy": "category",
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/categories?post=8405"
+      },
+      {
+        "taxonomy": "post_tag",
+        "embeddable": true,
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/tags?post=8405"
+      }
+    ],
+    "wp:action-publish": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8405"
+      }
+    ],
+    "wp:action-unfiltered-html": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8405"
+      }
+    ],
+    "wp:action-sticky": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8405"
+      }
+    ],
+    "wp:action-assign-author": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8405"
+      }
+    ],
+    "wp:action-create-categories": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8405"
+      }
+    ],
+    "wp:action-assign-categories": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8405"
+      }
+    ],
+    "wp:action-create-tags": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8405"
+      }
+    ],
+    "wp:action-assign-tags": [
+      {
+        "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8405"
+      }
+    ],
+    "curies": [
+      {
+        "name": "wp",
+        "href": "https://api.w.org/{rel}",
+        "templated": true
+      }
+    ]
+  }
+}
