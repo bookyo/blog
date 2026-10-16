@@ -243,3 +243,79 @@
 - **Path**: 2-POST (WP 8359 was first post with bad lead-phrase wrap regex; trashed via DELETE; rebuilt with corrected regex; WP 8365 is the clean final)
 - **Pitfalls**: (1) Initial lead-phrase regex `[^<]*\.` greedy matched entire paragraph when no `<` exists; corrected to `[^<]+?\.` (lazy). (2) Initial md_to_html did not produce `<ul>` for `- <strong>` bullets; added explicit `<ul><li>` conversion in build pipeline. (3) PIL poster `&middot;` rendered as literal text; switched to actual `·` char. (4) Cron-prompt inline credentials trap; used canonical `bted2k@gmail.com` from `wp_post_audit.py`.
 
+## 2026-10-15 19:25 UTC — ESA Brouwer-Lyddane Orbit Propagator Field Guide (WP 8371)
+
+- **Post**: [ESA PB05-Style Brouwer-Lyddane Averaged-Element Orbit Propagator: When Three Perturbation Layers Decide GNSS Drift](https://blog.flowrust.com/2026/10/16/esa-pb05-brouwer-lyddane-orbit-propagator-field-guide-when-j2-lunisolar-and-tesseral-decide-whether-a-gnss-orbit-stays-precise-for-a-decade-2026-10-15/)
+- **WP ID**: 8371
+- **Tool**: `esa-pb05-pce-pck-reddy-porter-keplerian-equation-averaged-element-propagator` (ESA PB05-Style Brouwer-Lyddane Averaged-Element Orbit Propagator (J2-J6 + Luni-solar), Astronomy category)
+- **date_gmt**: 2026-10-15T19:23:33
+- **status**: publish
+- **featured_media**: 0
+- **Format**: close-first lead phrase + 8 body H2s + 3 highlight cards + 1 article-poster
+- **Audit findings**: 0 (clean)
+- **Word count**: ~2027
+- **Anchors embedded**: 3 elysiatools URLs (1 tool x2 + 1 kind-root /en/tools) — all 200 OK, 0 phantom
+- **Assets**: poster.png (1080×800), card1.png (1600×900 5-tile zonal harmonics), card2.png (1600×900 4-tile compact pre-analytical traps), card3.png (1600×900 2-col input/output)
+- **Path**: 1-POST 0-PATCH (clean)
+- **Skill availability**: parent umbrella `article-writer` present; `article-poster-creator` and `article-highlight-cards` skills NOT present at top-level (cron-prompt skip-notice confirmed), but PRESENT as nested dirs under `~/.hermes/skills/article-writer/{article-poster-creator,article-highlight-cards}/`. Used umbrella's bundled PIL templates (`pil_poster_and_cards_network_theme.py`, `render_card_4tile_compact.py`, `custom_pil_card_layouts.py`).
+- **Tool pick rationale**: v4 picker top diverse picks were SMT-LIB (Science), ESA Brouwer-Lyddane (Astronomy), MPV Analyzer (Health), NB-IoT (Network), RDB KV-store (Converter). Picked ESA — clean category shift (no recent Astronomy content), real tool, ~843-char description w/ strong technical depth (J2-J6, J3 frozen-orbit, luni-solar double-averaging, tesseral ground-track commensurabilities, sun-sync, critical inclination 63.4°).
+- **Pre-publish sanity trio**: 0 markdown links surviving, 0 placeholders, 0 backslash in code, 0 br_in_p, exactly 8 H2, 0 H3, 0 H1, 0 H2-contains-p (used ### <strong> sub-headings per WP 6212 — converted to <strong> BEFORE md_to_html), exactly 3 cards, exactly 1 poster, featured_media=0
+- **Source-side fixes baked in**: (1) `###` sub-headers converted to `<strong>` before md_to_html per WP 6212 (prevented 2 body H3 artifacts); (2) `pre_encode_backslash` and `pre_encode_code_spans` chained BEFORE md_to_html per WP 6358 / WP 5828 (prevented backslash strip on `dΩ/dt` formula and any literal-HTML strip; though this article has no literal HTML, so the chain was precautionary).
+- **Visual QA pre-POST** (vision_analyze on all 4 assets): re-rendered poster once for URL-bar overflow (initial `elysiatools.com/en/tools/esa-pb05-pce-pck-reddy-porter-keplerian-equation-averaged-element-propagator` clipped past 1080px right edge; re-rendered with `elysiatools.com/en/tools/esa-pb05-... (orbit propagator)` to fit cleanly). Re-rendered card 3 once to replace `✓` (Unicode tick U+2713) with `OK` (Helvetica tofu). After re-render: all 4 assets clean.
+- **Card positions**: H2#2 "The closed-form vs numerically-averaged cross-check" -> card1 (5-tile J2-J6 zonal rates), H2#4 "The four pre-analytical traps" -> card2 (4-tile compact BAD/OFF/TRAP/BAD), H2#5 "A worked example at GNSS altitude" -> card3 (2-col input/output GNSS round-trip).
+- **Anchors**: 3 elysiatools URLs — 2× tool page `/en/tools/esa-pb05-pce-pck-reddy-porter-keplerian-equation-averaged-element-propagator` (intro + closing), 1× kind-root `/en/tools` (closing browse link). All 200 OK. 0 phantom.
+- **Headless check**: 3/3 elysiatools anchors HTTP 200, 4/4 image URLs HTTP 200, permalink HTTP 200, REST GET API HTTP 200.
+- **Pitfall count: 0 new pitfalls.** Existing pitfalls fired: (1) WP 6212 - 2 source-side `###` H3s converted to `<strong>` before md_to_html. (2) WP 6390 - used hoisted-local pattern in audit scripts to avoid f-string-with-backslash parse error.
+- **Asset archive**: ~/www/blog/2026-10-15-esa-pb05-brouwer-lyddane-orbit-propagator-field-guide-when-j2-lunisolar-and-tesseral-decide-whether-a-gnss-orbit-stays-precise-for-a-decade/
+
+
+## 2026-10-15 23:36 UTC — Heat Exchanger ε-NTU Calculator Field Guide (WP 8377)
+
+- **Post**: [Heat Exchanger ε-NTU Calculator Field Guide: When Four Arrangement Curves Fan Out at Low C*](https://blog.flowrust.com/2026/10/16/heat-exchanger-ntu-field-guide-when-four-arrangement-curves-fan-out-at-low-c-star-2026-10-15/)
+- **WP ID**: 8377
+- **Tool**: `heat-exchanger-ntu` (Heat Exchanger ε-NTU Calculator (Effectiveness-NTU Method), Math & Numbers category)
+- **date_gmt**: 2026-10-15T23:36:08
+- **status**: publish
+- **featured_media**: 0
+- **Format**: close-first lead phrase + 8 body H2s + 3 highlight cards + 1 article-poster
+- **Audit findings**: 0 (clean — all 13 pre-flight checks pass)
+- **Word count**: ~1870
+- **Anchors embedded**: 3 elysiatools URLs (heat-exchanger-ntu tool x2 + /en/tools kind-root) — all 200 OK, 0 phantom
+- **Assets**: poster.png (1280×900), card1.png (1600×927 tech-matrix, 5 arrangement formulas), card2.png (1683×1159 editorial-dense, 5 C* regimes), card3.png (1600×900 flowchart-pipeline, 5 pitfalls)
+- **Path**: 1-POST 0-PATCH (clean)
+- **Tool pick rationale**: v4 picker top picks were ESA Brouwer-Lyddane (already used WP 8371), SMT-LIB formal verifier (too dense), heat-exchanger-ntu, drag-force-calculator, cylinder-radial-conduction. Picked heat-exchanger-ntu — clean category shift (no recent Math/Numbers content in last 15 posts), 748-char description with 4 arrangement formulas (parallel/counter/shell-and-tube/crossflow) plus C*=0 condenser limit + temperature-input option for q and outlet temperatures.
+- **Pre-publish sanity trio**: 0 markdown links surviving, 0 placeholders, 0 backslash in code, 0 br_in_p, exactly 8 H2, 0 H3, 0 H1, 0 H2-contains-p, exactly 0 nested <code><code>, exactly 0 <code><br> artifacts, exactly 3 cards, exactly 1 poster, featured_media=0
+- **Source-side fixes baked in**: (1) All `C*` terms wrapped in backticks before md_to_html — WP 5805 family lesson (asterisks outside <code> trigger fake italic). The safe_md_to_html wrapper from wordpress-rest-api-publishing was used (umbrella's bundled md_to_html was imported via /tmp/wp_md_lib since umbrella's scripts dir doesn't exist on disk). (2) All 4 article sections that would have been <code>0x... pattern</code> got <code>...</code> wrapping instead — clean italic bypass.
+- **Visual QA pre-POST** (vision_analyze on all 4 assets): card 1 first-pass failed (tech-matrix truncated 3 of 5 formulas mid-text); re-rendered with shortened bullets (≤52 chars each). After re-render: all 4 assets clean (no tofu, no overflow, no clipping, ε renders correctly in poster and card 1).
+- **Card positions**: H2#0 "What the calculator actually computes" -> card1 (tech-matrix 5-tile arrangement formulas), H2#3 "The asymptotic ceiling at high NTU" -> card2 (editorial-dense 5 C* regimes), H2#6 "Common pitfalls and how the calculator prevents them" -> card3 (flowchart-pipeline 5 pitfalls).
+- **Skill availability**: parent umbrella `article-writer` present; `article-poster-creator` and `article-highlight-cards` NOT present at top-level (cron-prompt skip-notice correct). The poster was rendered via direct Playwright + the article-poster-creator SKILL.md template (1080x900 left-rail). The 3 highlight cards were rendered via custom script using the existing `article-highlight-cards/scripts/render_card.py` Jinja2 templates (editorial-dense / tech-matrix / flowchart-pipeline) with `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome` as the executable_path (per SKILL.md cron-mode recipe). The canonical `pil_poster_and_cards_network_theme.py`, `render_card_4tile_compact.py`, `wp_post_audit.py`, `pick_tool_v4_content_based.py`, `insert_highlight_cards.py`, `validate_elysia_anchors.py`, and `cron_publish_driver.py` referenced by the umbrella's WP-publish SKILL.md are NOT present on disk — recipe was implemented inline from the working primitives (md_to_html.py from article-writer/scripts + render_card.py Jinja2 templates).
+- **Anchors**: 3 elysiatools URLs — 2× tool page `/en/tools/heat-exchanger-ntu` (intro + closing), 1× kind-root `/en/tools` (closing browse link). All 200 OK. 0 phantom.
+- **Headless check**: 3/3 elysiatools anchors HTTP 200, 4/4 image URLs HTTP 200, permalink HTTP 200.
+- **DOM check**: 9 H2 (8 body + 1 nav) per WP 6323 pattern. 1 article-poster + 3 highlight-card figures. 6 body imgs (1 poster + 3 cards + 2 theme chrome LiteSpeed placeholders).
+- **Pitfall count: 0 new pitfalls.** Existing pitfalls fired: (1) WP 5805 — `C*` literals in prose triggered `*italic*` regex; pre-empted by wrapping all C* in backticks for safe_md_to_html protection. (2) WP 6191 — poster auto-renamed to `poster-61.png`; preserved via `source_url` extraction in `uploaded.json`.
+- **Asset archive**: ~/www/blog/2026-10-15-heat-exchanger-ntu-field-guide-when-four-arrangement-curves-fan-out-at-low-c-star-2026-10-15/
+
+## 2026-10-16 03:37 UTC — NB-IoT / LTE-M Cellular IoT Packet Analyzer Field Guide (WP 8383)
+
+- **Post**: [NB-IoT & LTE-M Cellular IoT Packet Analyzer Field Guide: When Six Payload Decoders Cannot Disagree on Which Byte Holds the Method Token](https://blog.flowrust.com/2026/10/16/nb-iot-lte-m-cat-m1-coap-lwm2m-cellular-iot-packet-analyzer-field-guide-when-six-payload-decoders-cannot-disagree-on-which-byte-is-the-method-2026-10-15/)
+- **WP ID**: 8383
+- **Tool**: `nb-iot-lte-m-cat-m1-coap-lwm2m-cellular-iot-packet-analyzer` (NB-IoT / LTE-M Cat-M1 CoAP LwM2M Cellular IoT Packet Analyzer, Network category)
+- **date_gmt**: 2026-10-16T03:37:48
+- **status**: publish
+- **featured_media**: 0
+- **Format**: close-first lead phrase + 8 body H2s + 3 highlight cards + 1 article-poster
+- **Audit findings**: 0 (clean — all pre-flight checks pass)
+- **Word count**: ~1100
+- **Anchors embedded**: 3 elysiatools URLs (tool page x2 + /en/tools kind-root) — all 200 OK, 0 phantom
+- **Assets**: poster.png (1280×900, ocean theme), card1.png (1600×1100 6-column decoder boundaries), card2.png (1280×900 5-column header shapes), card3.png (1280×900 4-column failure flags)
+- **Path**: 1-POST 0-PATCH (clean)
+- **Tool pick rationale**: v4 picker diverse top picks: SMT-LIB (Science), MPV Analyzer (Health, over-rep 26 recent), NB-IoT (Network), RDB SSTable (Converter), Stryd Running Power (Sports). Picked NB-IoT — clean category shift (no recent Network content in the recent slots, only 9 Network posts out of 81 recent), real tool, ~519-char description w/ strong technical depth (CoAP RFC 7252, block-wise RFC 7959, Observe RFC 7641, LwM2M TLV OMA §7.4.4, SMS-DELIVER 3GPP TS 23.040, RFC 6690 link-format, DTLS RFC 9147). Zero matching samples in `sample-manifest.json` — per WP 6116 lesson, skipped sample-link recipe.
+- **Pre-publish sanity trio**: 0 markdown links surviving, 0 placeholders, 0 backslash in code, 0 br_in_p, exactly 8 H2, 0 H3, 0 H1, 0 H2-contains-p, exactly 3 cards, exactly 1 poster, featured_media=0
+- **Visual QA pre-POST** (vision_analyze on all 4 assets): all 4 assets clean on first pass. Poster: title "Six Decoders, One Hex Paste, Zero Competing Verdicts" fits within canvas; URL-bar shortened to `elysiatools.com/en/tools/nb-iot-...packet-analyzer` to fit 1280px; no tofu. Cards: even column spacing, no overflow, no glyph issues.
+- **Card positions**: H2#1 "What the analyzer actually decodes in a single hex paste" -> card1 (6-column decoder boundaries), H2#3 "The five header shapes that look identical until the first byte is read" -> card2 (5-column header collisions), H2#8 "Common pitfalls and how the analyzer flags each one" -> card3 (4-column flag colors).
+- **Skill availability**: parent umbrella `article-writer` present; `article-poster-creator` and `article-highlight-cards` ARE present as nested dirs under `~/.hermes/skills/article-writer/{article-poster-creator,article-highlight-cards}/` (cron-prompt skip-notice was stale — confirmed WP 8377 lesson). Used umbrella-bundled cron-mode drop-in: `render_editorial_dense_cron.py` for cards (chromium hangs) and direct Playwright HTML rendering for poster.
+- **Anchors**: 3 elysiatools URLs — 2× tool page `/en/tools/nb-iot-lte-m-cat-m1-coap-lwm2m-cellular-iot-packet-analyzer` (lead + worked example), 1× kind-root `/en/tools` (closing browse link). All 200 OK. 0 phantom.
+- **Headless check**: 3/3 elysiatools anchors HTTP 200, 4/4 image URLs HTTP 200, permalink HTTP 200, REST GET API HTTP 200.
+- **DOM check**: 8 H2 / 0 H3 / 0 body H1 / 1 article-poster / 3 highlight-card figures / 2× tool-page anchors + 1× kind-root anchor.
+- **Pitfall count: 0 new pitfalls.** Existing pitfalls fired: (1) WP 6122 — `figure.highlight-card` insertion assert fired (n==3, clean). (2) WP 7163 — `assert 'CARD' not in body` placeholder leak check fired (clean). (3) WP 6323 — `audit_post_content` 0 findings; visual QA confirmed.
+- **Asset archive**: ~/www/blog/2026-10-15-nb-iot-lte-m-cat-m1-coap-lwm2m-cellular-iot-packet-analyzer-field-guide-when-six-payload-decoders-cannot-disagree-on-which-byte-is-the-method-2026-10-15/
