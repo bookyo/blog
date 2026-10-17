@@ -367,3 +367,85 @@
 - Audit: 0 findings
 - Assets: poster.png + 3 cards
 - Elysia anchors: 5
+
+## 2026-10-17 04:57 UTC — Matrix Inverse Calculator Field Guide (WP 8424)
+- **Tool**: matrix-inverse-calculator (Math & Numbers)
+- **Slug**: matrix-inverse-calculator-field-guide-when-three-branches-of-linear-algebra-decide-whether-one-square-matrix-has-a-solution-2026-10-17
+- **Post**: https://blog.flowrust.com/2026/10/17/matrix-inverse-calculator-field-guide-when-three-branches-of-linear-algebra-decide-whether-one-square-matrix-has-a-solution-2026-10-17/
+- **Status**: publish (1-POST 0-PATCH)
+- **Word count**: 1688
+- **Structure**: 0 body H1 + 8 body H2 + 1 article-poster + 3 highlight-cards
+- **Anchors**: 3× `/en/tools/matrix-inverse-calculator` + 1× `/en/tools` kind-root, 0 phantom
+- **Assets**: poster + 3 cards (1280x900 + 1600x900), all 4 HEAD=200
+- **Vision QA**: poster + 3 cards passed (no tofu, no overflow, no clipping)
+- **Audit**: 8 H2, 0 H1 body, 0 angle-in-code, 0 md-links, 4 elysia anchors valid
+
+## 2026-10-17 09:06 UTC — Snowflake / Discord ID Bit Decoder Field Guide (WP 8430)
+
+- **Post**: [Snowflake / Discord ID Bit Decoder Field Guide: When Six Platforms Share One 64-Bit Layout but Five Different Epochs Decide Whether the Timestamp Points Anywhere Useful](https://blog.flowrust.com/2026/10/17/snowflake-discord-id-bit-decoder-field-guide-when-six-platforms-share-one-64-bit-layout-but-five-different-epochs-decide-whether-the-timestamp-points-anywhere-useful/)
+- **WP ID**: 8430
+- **Tool**: `snowflake-discord-id-bit-decoder` (Snowflake / Discord ID Bit Decoder, Development category)
+- **date_gmt**: 2026-10-17T09:06:25
+- **status**: publish
+- **featured_media**: 0 (COSESAI non-hero-duplication defense)
+- **Format**: close-first lead + 8 body H2s + 3 highlight cards + 1 article-poster
+- **Audit findings**: 0 (after 1-PATCH; pre-PATCH had literal `title:` paragraph in body)
+- **Word count**: ~2347
+- **Anchors embedded**: 5 elysiatools URLs — 4× `/en/tools/snowflake-discord-id-bit-decoder` + 1× `/en/tools` kind-root — all 200 OK, 0 phantom
+- **Assets**: poster.png (1280×900 ocean theme, 170325 bytes), card1.png (1280×900 5-tile "Six layouts over the same 64 bits" 58428 bytes), card2.png (1280×900 5-tile "Why the same 64-bit number parses five different ways" 60122 bytes), card3.png (1280×900 5-tile "Four internal Snowflakes you will meet in production" 68746 bytes). Card anchor H2s: H2#0 "A Snowflake is just a 64-bit integer split into three fields...", H2#3 "Worker slots and the shard calculation...", H2#6 "When the custom profile is the only path that works".
+- **Path**: 1-POST + 1-PATCH (literal `title:` paragraph in body)
+- **Tool pick rationale**: v4 picker diverse top picks were dominated by Math/Numbers cluster (matrix-inverse WP 8424 yesterday, photoelectric-effect, convolution-integral, central-limit-theorem, laplace-transform). text-format category was underrepresented in last 30 posts (3 in-scope only). Top text-format candidates: `data-bom-remover` (excluded per WP 8162 BOM coverage), `ulid-nanoid-ksuid-snowflake-id-decoder` (excluded per WP 7099 coverage), `duplicate-column-remover`, `header-remover` (excluded per WP 5699 coverage). Picked `snowflake-discord-id-bit-decoder` for clean text-format/Development category shift — real 434-char description with full Snowflake bit-layout coverage (Discord/Twitter/Mastodon/Sonyflake/Instagram/custom 6 presets + shift-mask constants + custom profile JSON + shard calculation).
+- **Pre-publish sanity trio**: 0 markdown links surviving, 0 placeholders, 0 backslash in code, exactly 8 H2, 0 H3, 0 H1, 0 H2-contains-p, exactly 0 nested <code><code>, exactly 0 <code><br> artifacts, exactly 3 cards, exactly 1 poster, featured_media=0
+- **Source-side fixes baked in**: (1) Started article draft with `title: "..."` plain text instead of YAML frontmatter — md_to_html.py didn't strip the frontmatter key, so the literal `title: "Snowflake / ..."` paragraph leaked into the body. Confirmed pre-PATCH audit returned 1 wpai-auto-tags-link on the same `<p>` (the "Discord" anchor tag). PATCH round 1: removed the offending `<p>title: ...<a...>Discord</a>...</p>` block. Resolved in 1 round-trip (~2s). (2) Card-anchor regex updated to use prefix match (`.+?</h2>` rather than `</h2>`) since H2 inner text continues past the chosen anchor — same pattern as WP 6122 / WP 6370 lessons.
+- **Visual QA pre-POST** (vision_analyze on all 4 assets): all 4 assets clean on first pass. Poster: title "Six Platforms, One BigInt, Five Epochs" fits within canvas (1280px), subtitle 99 chars fits cleanly without wrap. Cards: even 5-column layout, no overflow, no tofu, no glyph issues.
+- **Card positions**: H2#0 "A Snowflake is just a 64-bit integer..." -> card1 (5-tile Discord/Twitter/Sonyflake/Instagram/Mastodon bit allocations), H2#3 "Worker slots and the shard calculation..." -> card2 (5-tile shift/mask triples per platform), H2#6 "When the custom profile is the only path that works" -> card3 (5-tile 4 internal Snowflake schemes).
+- **Skill availability**: parent umbrella `article-writer` present; `article-poster-creator` and `article-highlight-cards` both ALSO present as nested dirs under `~/.hermes/skills/article-writer/{article-poster-creator,article-highlight-cards}/` (cron-prompt skip-notice was stale — confirmed WP 8377/WP 8424 lesson). Used `scripts/md_to_html.py` for HTML conversion; rendered poster via direct Playwright + ad-hoc left-rail HTML template; rendered cards via `render_editorial_dense_cron.py` (the bundled cron-mode fallback) — that's the canonical pattern.
+- **Anchors**: 2 unique elysia URLs — `/en/tools/snowflake-discord-id-bit-decoder` (4 occurrences in body) + `/en/tools` kind-root. All 200 OK. 0 phantom.
+- **Headless check**: 2/2 elysia anchors HTTP 200, 4/4 image URLs HTTP 200 (poster / card1 / card2 / card3 all WP 200), permalink HTTP 200, REST GET API HTTP 200.
+- **DOM check (rendered)**: 0 body H1 (theme `<h1 class="entry-title">` is theme chrome per WP 6323), 8 body H2, 0 wpai-auto-tags-link after PATCH, 1 article-poster, 3 highlight-card figures, 6 imgs (4 body + 2 theme chrome LiteSpeed placeholders).
+- **Pitfall count: 0 new pitfalls.** Existing pitfalls fired: (1) WP 6122 + WP 6370 — `figure.highlight-card` insertion assert fired (n==3, clean). (2) WP 6376 — 0 nested `<code><code>` artifacts. (3) WP 5683 subtitle pre-measure — kept poster subtitle at 99 chars (under the 100-char practical limit). (4) WP 5648 wpai-auto-tags-link — 1 false-positive tag on `<p>title: </p>` block pre-PATCH, removed post-PATCH. (5) WP 6191 — poster auto-rename to canonical `snowflake-discord-id-bit-decoder-poster.png`; preserved via `source_url` extraction in uploaded.json.
+- **Cleanup**: assets retained in WP media library; `/tmp/wp_assets_snowflake/` archive preserved for this session.
+- **Asset archive**: ~/www/blog/2026-10-17-snowflake-discord-id-bit-decoder-field-guide/
+
+
+## 2026-10-17 13:16 UTC — WP 8439 protein-extinction-coefficient (Education)
+
+**Tool:** Protein Extinction Coefficient Calculator (ε280) — Pace 1995 / Gill & von Hippel 1989
+**Category:** Education
+**Post ID:** 8439 | **Slug:** protein-extinction-coefficient-field-guide-when-three-residue-classes-and-one-redox-state-decide-your-a280
+**Status:** publish (1-POST, 0-PATCH)
+**date_gmt:** 2026-10-17T13:16:19
+**Cards:** 1 poster + 3 highlight cards (5-tile formula, 4-tile redox bounds, 2-column applicability)
+**Image IDs:** 8435 (poster), 8436 (card1), 8437 (card2), 8438 (card3) — all 200 OK
+**Elysia anchors (4):**
+- https://elysiatools.com/en/tools/protein-extinction-coefficient (2x — tool intro + worked example)
+- https://elysiatools.com/en/hubs/protein-quantification-enzyme-kinetics-sequence-tools (related hub)
+- https://elysiatools.com/en/tools (browse all tools)
+- https://elysiatools.com (footer)
+All HTTP 200 verified. The hub anchor triggered `validate_anchors()`'s "alternate route not validated" warning, but the URL returned HTTP 200 with a real title "Protein Quantification, Enzyme Kinetics, and Sequence Calculators | Elysia Tools" — confirmed live.
+
+**Pre-flight checks (all PASS):**
+- 0 body `<h1>`, exactly 8 body `<h2>`
+- 1 `<figure class="article-poster">` + 3 `<figure class="highlight-card">`
+- No `[text](url)` markdown leak
+- No `CARD*_URL` / `POSTER_URL` placeholder leaks
+- 0 audit_post_content findings
+
+**Pitfalls encountered / encoded:**
+- PIL poster subtitling bleed: original poster used raw `pdraw.text((60, ...))` for left-rail style; full text clipped off the left edge because no flex centering. Switched to canonical `render_poster()` (W=1080, draw_centered). Re-rendered clean.
+- Card 2 horizontal overflow: first pass had body strings "molar coefficient,\nall cysteines reduced" overflow past 290px tile borders at F_SMALL. Re-keyed tiles to (label, count, body, sub) 4-tuple shape (canonical `render_card_4tile_compact`) with shorter body lines and the auto-shrink count chain kicked in for "25440"/"25690" at 150pt → 84pt.
+- Card 3 takeaway clip: first pass had 92-char takeaway. Shortened to 73 chars to clear W-40 width.
+- Trailing comma Python tuple bug: `takeaway2 = '...',` produced a 1-tuple `(string,)` which PIL `textbbox` rejected. Stripped trailing comma. (Lesson — always check string assignments don't end with a stray comma in cron-mode scripts.)
+
+**Audit cycle ready (passed all pre-flight). Next audit cycle (likely 4h later) should pass with 0 PATCH round-trips.**
+
+## 2026-10-17 ~17:30 UTC — WP 8445 Pedigree Probability Tree
+- Tool: pedigree-probability-tree (Education, ~700 chars description)
+- Slug: pedigree-probability-tree-field-guide-when-two-layers-of-carrier-prior-and-offspring-ratio-fit-on-one-branching-diagram-2026-10-17
+- date_gmt: 2026-10-17T17:41:17
+- Status: publish, 1-POST 0-PATCH clean
+- 4 assets: poster (1080x800) + 3 cards (1600x900) — render_card_5tile (card1), render_card_4tile_compact (card2), render_card_input_output_2col (card3)
+- DOM: 1 H1 + 9 H2 (8 body + 1 nav) + 3 highlight-card + 1 article-poster, 0 audit findings
+- Links: 3x /en/tools/pedigree-probability-tree + 1x /en/tools (kind-root)
+- vision_analyze passed all 4 assets (no clipping/tofu/overlap)
+- Slide-name patterns: heredity × Mendelian, autosomal recessive (CF), autosomal dominant (Huntington), X-linked recessive (hemophilia)
