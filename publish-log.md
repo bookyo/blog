@@ -449,3 +449,35 @@ All HTTP 200 verified. The hub anchor triggered `validate_anchors()`'s "alternat
 - Links: 3x /en/tools/pedigree-probability-tree + 1x /en/tools (kind-root)
 - vision_analyze passed all 4 assets (no clipping/tofu/overlap)
 - Slide-name patterns: heredity × Mendelian, autosomal recessive (CF), autosomal dominant (Huntington), X-linked recessive (hemophilia)
+
+
+## 2026-10-17 ~21:47 UTC — WP 8451 CHA₂DS₂-VASc Score Field Guide
+
+- **Tool:** chads2-vasc-score (Health — CHA₂DS₂-VASc AFib stroke risk stratifier)
+- **Category:** Health
+- **Post ID:** 8451 | **Slug:** chads2-vasc-score-field-guide-when-eight-checkboxes-decide-whether-an-anticoagulation-discussion-becomes-a-prescription-2026-10-17
+- **Status:** publish (1-POST + 1-PATCH clean)
+- **date_gmt:** 2026-10-17T21:47:51
+- **Cards:** 1 poster + 3 highlight cards (5-tile components, 4-tile recommendation bands, 2-column worked-example audit)
+- **Image IDs:** 8447 (poster), 8448 (card1), 8449 (card2), 8450 (card3) — all 200 OK
+- **Elysia anchors (5):**
+  - https://elysiatools.com/en/tools/chads2-vasc-score (3x)
+  - https://elysiatools.com/en/tools/has-bled-score (1x — paired-bleeding-risk companion tool)
+  - https://elysiatools.com/en/tools (1x — kind-root)
+- All HTTP 200 verified.
+
+**Pre-flight checks (all PASS):**
+- 0 body `<h1>`, exactly 8 body `<h2>`
+- 1 `<figure class="article-poster">` + 3 `<figure class="highlight-card">`
+- No `[text](url)` markdown leak
+- 0 audit_post_content findings post-PATCH
+
+**Pitfalls encountered / encoded:**
+- Initial card 3 verdict row "Women 75+ HTN stroke" overflowed column width (label-vs-value collision at the 240px gap). Shortened to "CASE A" + "Score 6 / 13.6%" with the case context kept in the row body. Vision_analyze caught it pre-PATCH; this was the 1st round of PATCH-side defect.
+- Poster subtitle (first attempt) had 124 chars and clipped on right edge at F_MED; shortened to 88 chars (dropped "the score thresholds that pick DOACs over warfarin", kept "...override that picks DOACs"). Re-rendered clean.
+- Card 1 label "PRIOR STROKE / TIA" (17 chars) overflowed 290px tile; shortened to "STROKE / TIA". Final pass clean.
+- WP wpautop converted 3 deliberate en-dash bullet paragraphs (`– **X** — body` style) into a single `<p>` with 7-8 inline `<strong>` tags — caught by `audit_post_content` MERGED_BULLET_LIST post-POST. PATCH rewritten each merged paragraph as `<ul><li>` (14 `<li>` total after PATCH). Re-audit clean.
+- WP wpautop also dropped the bare `>=` characters from card 1 AGE label: rendered as `AGE >= 75` in PIL but ksess stripping rule cleaned it back; card PNG was uploaded before PATCH so the published card1 image shows `AGE >= 75` literally — this is preferred (the calculator UI uses `>=`). No PATCH needed for the image.
+
+**Audit cycle ready (passed all post-PATCH). Next audit cycle (likely 4h later) should pass with 0 PATCH round-trips.**
+
