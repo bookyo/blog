@@ -481,3 +481,16 @@ All HTTP 200 verified. The hub anchor triggered `validate_anchors()`'s "alternat
 
 **Audit cycle ready (passed all post-PATCH). Next audit cycle (likely 4h later) should pass with 0 PATCH round-trips.**
 
+
+## WP 8458 — 2026-10-18 01:54:33 UTC — A-a Gradient Field Guide
+- Tool: a-a-gradient-calculator (Health / Critical Care / ABG)
+- Slug: a-a-gradient-calculator-field-guide-when-three-numbers-decide-hypoventilation-vs-v-q-mismatch-2026-10-18
+- Date GMT: 2026-10-18T01:54:33
+- Title: A-a Gradient Field Guide: When Three Numbers Decide Hypoventilation vs V/Q Mismatch
+- URL: https://blog.flowrust.com/2026/10/18/a-a-gradient-calculator-field-guide-when-three-numbers-decide-hypoventilation-vs-v-q-mismatch-2026-10-18/
+- Words: ~1435 (8 H2s, 0 H3s, 0 body H1)
+- Assets: 1 poster (1080x800) + 3 cards (5-tile, 4-tile-compact, 2-col input/output)
+- Elysia anchors: 4 (all valid)
+- Audit: audit_post_content 0 findings
+- Defects fixed pre-POST: poster subtitle shortened (WP 6390 family) on first vision_analyze pass
+- Run type: 1-POST 0-PATCH clean
