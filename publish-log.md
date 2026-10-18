@@ -494,3 +494,16 @@ All HTTP 200 verified. The hub anchor triggered `validate_anchors()`'s "alternat
 - Audit: audit_post_content 0 findings
 - Defects fixed pre-POST: poster subtitle shortened (WP 6390 family) on first vision_analyze pass
 - Run type: 1-POST 0-PATCH clean
+
+
+## WP 8476 — 2026-10-18 06:10:52 UTC — Ligation Insert:Vector Molar Ratio Field Guide
+- Tool: ligation-molar-ratio (Education / Cloning & Ligation)
+- Slug: ligation-insert-vector-molar-ratio-field-guide-when-two-pmol-of-ends-equations-decide-whether-colonies-have-your-insert-2026-10-18
+- Date GMT: 2026-10-18T06:10:52
+- Title: Ligation Insert:Vector Molar Ratio Field Guide: When Two Equations Decide Which Colonies Have Your Insert
+- URL: https://blog.flowrust.com/2026/10/18/ligation-insert-vector-molar-ratio-field-guide-when-two-pmol-of-ends-equations-decide-whether-colonies-have-your-insert-2026-10-18/
+- Words: ~1675 (8 H2s, 0 H3s, 0 body H1)
+- Assets: 1 poster (1080x800) + 3 cards (5-tile, audit, audit-6row)
+- Elysia anchors: 5 (3 tool-page + 1 sample-root + 1 kind-root, all validated)
+- Audit: audit_post_content 0 findings after PATCH
+- Run type: 1-POST + 1-PATCH (PATCH converted 4 markdown links + 2 raw bold to HTML)
