@@ -1,0 +1,67 @@
+<figure class="article-poster"><img decoding="async" src="POSTER_URL" alt="Cover illustration for a field guide to the trimmed mean: a judging panel scorecard where one extreme value is trimmed away before averaging" /></figure>
+<p><strong>An arithmetic mean is a hostage to its extremes.</strong> One runaway sensor reading or one judge who felt unappreciated can drag a reported score somewhere no judge actually voted for, and no amount of downstream formatting will bring it back. A trimmed mean buys that hostage back by refusing to average the values that broke the process in the first place.</p>
+<p>Statistics is full of summaries that quietly change what a number means. The sample mean describes the sum of every observation divided by how many there were. The median describes the value at the middle of the sorted list. The trimmed mean describes something narrower and, for noisy data, far more useful: it sorts the data, discards the same percentage from each end, then averages whatever survived. The <a href="https://elysiatools.com/en/tools/trimmed-mean-calculator">Trimmed Mean Calculator</a> does exactly that and reports the discarded values so you can see what the trim removed.</p>
+<h2>What a Trimmed Mean Actually Computes</h2>
+
+<p>Three operations, in this order. First, sort the dataset ascending. Second, remove a chosen percentage from the low end and the same percentage from the high end. Third, average the retained values.</p>
+<p>The trim percentage is per tail, not total. A trim of 20 percent with six values removes one value from the bottom and one from the top, leaving four. A trim of 10 percent on the same six values removes nothing at all, because one sixth of six is exactly one value, which rounds to zero removal under the usual floor rule.</p>
+<p>That rounding behaviour is the part people get wrong. With small datasets, trim percentages behave like a step function rather than a dial: you cross a threshold and a whole value disappears. The calculator exposes the retained count and the removed count for exactly this reason, so you can see which side of the threshold you landed on rather than guessing.</p>
+<p>Every trimmed mean still depends on a sorted, numeric, finite dataset. A stray non-numeric entry or a missing cell quietly changes what gets sorted, which means the first job is always the same: get the data clean before you argue about the trim level.</p>
+<h2>Why the Plain Mean Breaks Down</h2>
+
+<p>Consider judging scores of 7.2, 7.4, 7.1, 7.3, and 24. The arithmetic mean is 10.6. Nobody on that panel scored 24, and no judge intended 10.6. But that is the number the mean reports, because the mean is a sum, and a sum has no veto.</p>
+
+<figure class="highlight-card">
+<img decoding="async" src="CARD1_URL" alt="Five-tile card showing the three operations of a trimmed mean in order: sort ascending, trim the low tail, trim the high tail, average the retained set, and report the gap against the original mean" loading="lazy" />
+</figure>
+
+<p>Trim 20 percent from a five-value dataset and you remove the lowest and highest value, leaving 7.1, 7.2, 7.3, and 7.4. The trimmed mean is 7.25, which is a number that actually describes what the panel did.</p>
+<p>The failure is not rare, it is structural. Any single unbounded value multiplies its own magnitude into the result. In survey scores, judging panels, latency monitoring, and laboratory measurements with occasional sensor glitches, one extreme reading does not nudge the average, it hijacks it.</p>
+<p>This is why trimmed means show up wherever panels produce data. Search <a href="https://elysiatools.com/en/tools">elysiatools.com</a> for the tools that sit next to it and you will find <a href="https://elysiatools.com/en/tools/median-calculator">Median Calculator</a> for the position-based alternative, and <a href="https://elysiatools.com/en/tools/winsorized-mean-calculator">Winsorized Mean Calculator</a> for the variant that caps outliers instead of deleting them.</p>
+<h2>Trimmed Mean Versus Winsorized Mean</h2>
+
+<p>The two robust averages are routinely confused, and the distinction is not academic. It changes the output value, not just the process.</p>
+<p>A winsorized mean replaces the trimmed values with the nearest retained value rather than deleting them. Trim the same five scores and the 24 becomes a 7.4, because the largest surviving value absorbs it. The winsorized mean of that panel is 7.28. The trimmed mean is 7.25.</p>
+<p>That two-thousandths difference looks trivial here and is not trivial at scale. Winsorizing keeps the dataset size constant, which matters when downstream tooling expects a fixed count. Trimming reduces the count, which matters when the sample size is already small.</p>
+<p>A practical rule: use trimming when the extreme values are genuinely invalid or come from a different population, such as a corrupted upload or an entry from a different test form. Use winsorizing when the extreme values are real measurements that merely sit far from the cluster, because you still want them represented, just not dominant. Both are available side by side in the <a href="https://elysiatools.com/en/tools/statistics-calculator">statistics tools collection</a>.</p>
+<h2>Choosing the Trim Percentage</h2>
+
+<p>There is no magic number, which is exactly why tooling that exposes the knob is useful. The common starting points are 5 percent for lightly contaminated data, 10 percent for moderate contamination, and 20 percent for heavily contaminated data.</p>
+
+<figure class="highlight-card">
+<img decoding="async" src="CARD2_URL" alt="Four-tile card ranking trim bands by risk: 5 percent for light contamination, 10 percent as the usual starting point, 20 percent for heavy contamination, and 40 percent or more where the retained set collapses toward a single value" loading="lazy" />
+</figure>
+
+<p>For small datasets, lower is safer. Removing 20 percent from five values removes 40 percent of your data. A dataset under twenty values should rarely be trimmed past 10 percent, and under ten values should generally stay untrimmed, because the median already does the robust job without discarding anything.</p>
+<p>Watch for the collapsed case. At high trim percentages on small datasets, the retained set can shrink to a single value, and the trimmed mean silently becomes that value. The calculator reports the retained count, so check it against the trim level you chose. If you are retaining one value out of six, you have not computed a robust average, you have selected a data point.</p>
+<p>For broader distribution context, <a href="https://elysiatools.com/en/tools/interquartile-range-calculator">Interquartile Range Calculator</a> gives you the middle 50 percent spread of the same data, and <a href="https://elysiatools.com/en/tools/quartile-calculator">Quartile Calculator</a> shows where the quartile boundaries sit. Between the retained count and the IQR you can tell whether a trim level is defensible without eyeballing the raw list.</p>
+<h2>Reading the Output</h2>
+
+<p>The result set carries more than the headline number, and each field answers a different question.</p>
+
+<figure class="highlight-card">
+<img decoding="async" src="CARD3_URL" alt="Two-column worked example comparing input trim steps for the dataset 10 12 14 16 18 100 at 20 percent against the output fields: retained set 12 14 16 18, trimmed mean 15, original mean 28.33, and median 15" loading="lazy" />
+</figure>
+
+<p><code>trimmedMean</code> is the number you came for. <code>originalMean</code> is the untrimmed arithmetic mean of the full dataset, and the gap between the two is the honest measure of how much contamination you had. <code>median</code> is included as a comparison point, because when the trimmed mean and median disagree sharply, the data is likely not symmetric and your trim assumption deserves a second look. <code>retainedCount</code> and <code>removedCount</code> tell you exactly how much data survived and how much did not.</p>
+<p><code>lowerTrimmed</code> and <code>upperTrimmed</code> list the actual values discarded from each end. Read them. If the upper trimmed value is 24 on a panel that otherwise sits between 7.1 and 7.4, that is a data-entry error and no statistical method will repair it. If it is 9.2 on an otherwise tight cluster, that is a legitimate high score and the trim is doing real work.</p>
+<p>To reproduce this workflow on realistic data rather than typed-in numbers, the <a href="https://elysiatools.com/en/samples/data-science">Data Science Samples</a> collection has worked pandas and numpy analysis datasets you can trim directly.</p>
+<h2>Where Trimming Goes Wrong in Practice</h2>
+
+<p>Four failure modes account for most bad trimmed-mean reporting.</p>
+<p>Trim level chosen by taste rather than inspection. The right level is whatever your contamination rate implies, and you cannot know that without looking at the discarded values first. Set the trim, read <code>lowerTrimmed</code> and <code>upperTrimmed</code>, and adjust.</p>
+<p>Trim applied to already-clean data. If the trimmed mean and original mean differ by less than rounding, the trim bought nothing and only cost you sample size. Report the untrimmed mean in that case.</p>
+<p>Trim level applied after averaging groups. Averages are not exchangeable with raw data. If you have per-category groups, trim within each group before you combine, otherwise a large group silently dominates the global trim. <a href="https://elysiatools.com/en/tools/weighted-average-calculator">Weighted Average Calculator</a> handles the combination step once the per-group values are clean.</p>
+<p>Data quality errors mistaken for outliers. The trim removes the evidence instead of surfacing it. A missing cell parsed as zero is not an outlier, it is a bug, and trimming hides it.</p>
+<h2>A Worked Comparison</h2>
+
+<p>Take a dataset of 10, 12, 14, 16, 18, and 100 with a trim of 20 percent. Sorted, that is already ascending. One sixth of the values is one value per tail, so 10 and 100 are removed. The retained set is 12, 14, 16, and 18, and the trimmed mean is 15.</p>
+<p>The original mean of the full set is 28.33, which the 100 completely dominates. The median of the full set is 15 as well, which tells you the central four values are already symmetric, so trimming changed nothing about the shape of the data, only its scale. That agreement between the trimmed mean and the median is the signal you want to see: it means the trim removed distortion without distorting anything in return.</p>
+<p>This is the worked example shipped in the calculator's own example results, and it is the cleanest demonstration of the whole idea. For larger inputs, <a href="https://elysiatools.com/en/samples/csv-samples">CSV Samples</a> has export files at several sizes and complexity levels, so you can test the same trim against a hundred rows instead of six.</p>
+<h2>When to Reach for a Different Tool</h2>
+
+<p>A trimmed mean is the right tool for symmetric contamination on a reasonably large dataset. It is the wrong tool in several common cases.</p>
+<p>Non-symmetric contamination, where one tail is far heavier than the other, calls for a skewed trim that removes different percentages per tail. Skewed distributions in general mean the median is usually a better summary, since the trimmed mean still assumes roughly balanced tails. Heavy tails such as financial returns or power-law data are better served by a median or a Huber-style estimator.</p>
+<p>Trend data is not a trimming problem. When values rise over time, trimming the ends mixes incompatible regimes. Segment by period and trim within each segment instead. <a href="https://elysiatools.com/en/tools/moving-average-calculator">Moving Average Calculator</a> handles the windowed case.</p>
+<p>And if the question is not which single number summarises the data but how much the data varies, skip the means entirely and go to <a href="https://elysiatools.com/en/tools/standard-deviation-calculator">Standard Deviation Calculator</a> or <a href="https://elysiatools.com/en/tools/variance-calculator">Variance Calculator</a>. A trimmed mean deliberately hides variation, which is a virtue when outliers are noise and a liability when they are signal.</p>
+<p>The rule is simple. Reach for the trimmed mean when a few extreme values are distorting a summary and you are confident they are not part of the signal you care about. Reach for something else when you are not confident.</p>

@@ -1,0 +1,84 @@
+<figure class="article-poster"><img decoding="async" src="POSTER_URL" alt="Poster: when pure play fails, mixing is the only answer" /></figure>
+<p><strong>No row is safe and no column is dangerous.</strong> Most people meet the minimax theorem as an abstraction — a payoff matrix, a saddle-point test, then a shrug. This guide starts where people actually get stuck: a real 3×3 bidding game where neither player has a pure move and the only rational answer is a mixture. The Zero-Sum Game Solver at <a href="https://elysiatools.com/en/tools/game-theory-zero-sum">elysiatools.com</a> does that work in one paste. What follows is about reading what it hands back.</p>
+<h2>The Game That Has No Pure Answer</h2>
+<p>Take three bidders competing for one contract, each choosing a bid level, with the payoff written as gain to the bidder:</p><figure class="highlight-card"><img decoding="async" src="CARD1_URL" loading="lazy" alt="The saddle test on two near-identical payoff matrices: A1 maximin 0 equals minimax 0 so a pure equilibrium exists, A2 maximin -1 is below minimax 0 so only a mixed equilibrium remains" /></figure>
+<table style="border-collapse:collapse;width:100%;margin:1em 0;">
+<thead><tr>
+<th style="border:1px solid #cfd6e4;padding:8px 12px;text-align:left;vertical-align:top;background:#f5f7fb;font-weight:600;">Bid</th>
+<th style="border:1px solid #cfd6e4;padding:8px 12px;text-align:left;vertical-align:top;background:#f5f7fb;font-weight:600;">Low</th>
+<th style="border:1px solid #cfd6e4;padding:8px 12px;text-align:left;vertical-align:top;background:#f5f7fb;font-weight:600;">Mid</th>
+<th style="border:1px solid #cfd6e4;padding:8px 12px;text-align:left;vertical-align:top;background:#f5f7fb;font-weight:600;">High</th>
+<p></tr></thead></p>
+<tbody>
+<tr>
+<td style="border:1px solid #cfd6e4;padding:8px 12px;text-align:left;vertical-align:top;"><strong>Low</strong></td>
+<td style="border:1px solid #cfd6e4;padding:8px 12px;text-align:left;vertical-align:top;">0</td>
+<td style="border:1px solid #cfd6e4;padding:8px 12px;text-align:left;vertical-align:top;">1</td>
+<td style="border:1px solid #cfd6e4;padding:8px 12px;text-align:left;vertical-align:top;">2</td>
+<p></tr></p>
+<tr>
+<td style="border:1px solid #cfd6e4;padding:8px 12px;text-align:left;vertical-align:top;"><strong>Mid</strong></td>
+<td style="border:1px solid #cfd6e4;padding:8px 12px;text-align:left;vertical-align:top;">-1</td>
+<td style="border:1px solid #cfd6e4;padding:8px 12px;text-align:left;vertical-align:top;">0</td>
+<td style="border:1px solid #cfd6e4;padding:8px 12px;text-align:left;vertical-align:top;">1</td>
+<p></tr></p>
+<tr>
+<td style="border:1px solid #cfd6e4;padding:8px 12px;text-align:left;vertical-align:top;"><strong>High</strong></td>
+<td style="border:1px solid #cfd6e4;padding:8px 12px;text-align:left;vertical-align:top;">-2</td>
+<td style="border:1px solid #cfd6e4;padding:8px 12px;text-align:left;vertical-align:top;">-1</td>
+<td style="border:1px solid #cfd6e4;padding:8px 12px;text-align:left;vertical-align:top;">0</td>
+<p></tr> </tbody> </table></p>
+<p>Row minima are <code>0, -1, -2</code>, so the row player can guarantee <code>0</code>. Column maxima are <code>0, 1, 2</code>, so the column player can hold the row player to <code>0</code>. The bounds meet, so a pure equilibrium exists at the <code>Low</code>/<code>Low</code> cell.</p>
+<p>Now change one entry — <code>Mid</code>/<code>Low</code> moves from <code>1</code> to <code>-1</code> — and the tidy case collapses. Row minima become <code>-1, -1, -2</code> (maximin <code>-1</code>), while column maxima become <code>0, 0, 2</code> (minimax <code>0</code>). Since <code>maximin < minimax</code>, no cell is optimal for both players, and the only remaining answer is a mixture. The solver returns value <code>-0.5</code> with both players putting probability <code>0.5</code> on <code>Low</code> and <code>0.5</code> on <code>Mid</code>.</p>
+<h2>Why Pure Equilibria Are the Exception</h2>
+<p>The correct saddle test is easy to get backwards. Because the row player maximises, an equilibrium cell must be the <strong>largest entry in its column</strong> (nothing else in that column beats it) and the <strong>smallest entry in its row</strong> (nothing else in that row is worse). A cell that is largest in its row is not an equilibrium candidate at all — the column player would simply avoid it.</p>
+<p>That conjunction is a strong coincidence in a 2×2 game and close to impossible in a 6×6. Real competitive settings make it rarer still. When you model competitors or customers you are usually encoding structural facts: one firm has a cost advantage, one platform has a larger installed base. Structural advantages produce matrices where each side's best move is predictable, and that is precisely the shape that destroys pure equilibria.</p>
+<p>The practical warning: if you plan against a competent opponent using a single fixed strategy, you are probably playing the game with your information advantage already spent.</p>
+<h2>What a Mixed Strategy Actually Means</h2>
+<p>A mixed strategy is a probability distribution over your pure actions — a vector <code>x</code> with one non-negative component per row, summing to 1. The column player gets <code>y</code>, one component per column, also summing to 1. The value of the game is the payoff where the two meet: <code>v = xᵀAy</code>.</p>
+<p>Two inequalities define a correct solution, and the solver checks both numerically:</p>
+<ul>
+<li><strong>Row guarantee:</strong> <code>xᵀA ≥ v</code> componentwise — no column choice can pull the row player below the value.</li>
+<li><strong>Column guarantee:</strong> <code>Ay ≤ v</code> componentwise — no row choice can push the payoff above the value.</li>
+<p></ul></p>
+<p>For the perturbed game above, <code>x = y = (0.5, 0.5, 0)</code> gives <code>xᵀA = (-0.5, -0.5, 1.5)</code>, which sits above <code>v = -0.5</code>, and <code>Ay = (-0.5, -0.5, -1.5)</code>, which sits below it. Neither player can deviate profitably.</p>
+<p>Compare matching pennies on <code>[[1, -1], [-1, 1]]</code>, where the row minima are both <code>-1</code> and the column maxima are both <code>1</code>. There is a gap of two and the solver returns value <code>0</code> with both players mixing <code>0.5/0.5</code>: a fair coin, where neither side can do better than an even split. Mixing is not a trick — it is the shape of rational play when someone is watching.</p>
+<h2>The Shift Trick, and Why Every Entry Must Go Positive</h2>
+<p>The mixed solver reaches <code>x</code> and <code>y</code> through linear programming, and LP needs a non-negative feasible region. Bidding games routinely contain negative payoffs, which would make the problem infeasible for no good reason. The solver adds a constant <code>K</code> to every entry so the smallest becomes exactly <code>1</code>, then solves the shifted matrix <code>B = A + K</code>. For the game above the minimum entry is <code>-2</code>, so <code>K = 3</code>.</p><figure class="highlight-card"><img decoding="async" src="CARD2_URL" loading="lazy" alt="One simplex solve returns both players: row mix x = (0.5, 0.5, 0) guarantees v = -0.5 with x transpose A above v, column mix y = (0.5, 0.5, 0) caps v = -0.5 with A y below v, and the shift K = 3 moves the value by exactly 3 without changing either mix" /></figure>
+<p>Adding <code>K</code> everywhere changes no strategy at all. Each player's mix sums to 1, so the expected payoff shifts by exactly <code>K·(xᵀ1)(1ᵀy) = K</code> — a constant that does not depend on how the mixture is chosen. The optimal <code>x</code> and <code>y</code> are identical in <code>A</code> and <code>B</code>; only the reported value moves. Solving the shifted game gives value <code>2.5</code>, exactly <code>3</code> above the original <code>-0.5</code>, with identical mixes.</p>
+<p>That is why you can paste a matrix full of negative entries and get a correct mixture instead of an infeasibility error, and why the solver reports the shift it applied. If you ever see the value move unexpectedly when you add a constant to every entry, check that report first.</p>
+<h2>One Solve, Two Strategies</h2>
+<p>The most elegant property of the LP formulation is that both players fall out of a single solve. With the column player maximising and constraints <code>Bz ≤ 1</code> for shifted matrix <code>B</code>:</p><figure class="highlight-card"><img decoding="async" src="CARD3_URL" loading="lazy" alt="Six-line reference: saddle test maximin versus minimax, equilibrium cell is max in its column and min in its row, row floor x transpose A above v, and column ceiling A y below v, both componentwise" /></figure>
+<ul>
+<li>The <strong>primal slack variables</strong> give the column player's mix <code>y</code> directly.</li>
+<li>The <strong>dual variables</strong> — the shadow prices on the <code>Bz ≤ 1</code> constraints — give the row player's mix <code>x</code>.</li>
+<p></ul></p>
+<p>Duality guarantees the two are consistent, so one simplex pass yields a complete, verified equilibrium pair. The solver uses Bland's rule for its pivot choice, which guarantees termination instead of cycling, and its final verification step re-evaluates <code>xᵀA</code> and <code>Ay</code> against the reported value before showing you anything. Recovering a four-by-four dual solution by hand is error-prone in a way that is genuinely hard to notice; a solver that checks both inequality families turns a silent mistake into a visible one. For the same two-phase machinery applied to general constraints rather than a payoff matrix, the <a href="https://elysiatools.com/en/tools/linear-programming-simplex">Linear Programming Simplex Solver</a> is the natural companion.</p>
+<h2>Sizing the Problem Before You Solve It</h2>
+<p>Matrix shape tells you how much structure there is to exploit:</p>
+<ul>
+<li><strong>2×2 with a saddle point</strong> — arithmetic only. Compare four cells and you are done.</li>
+<li><strong>2×2 without one</strong> — the classic mixing case, where four probabilities fall out of a cross-multiplication rule.</li>
+<li><strong>3×3 and up</strong> — LP territory, with as many constraints as rows and much less pleasant algebra.</li>
+<p></ul></p>
+<p>Non-square matrices are legitimate: 3×6 is a real game with six column actions against three row actions. One caution — a large matrix full of near-equal payoffs is harder to <em>estimate</em> than to <em>solve</em>. Your answer is limited by how well you know the payoffs, not by the linear programming.</p>
+<p>A cheap sanity check before trusting any result: perturb one payoff and see whether the mix moves at all. If a single edit swings the answer wildly, the game is nearly degenerate and the numbers deserve more scepticism than the exact arithmetic would suggest.</p>
+<h2>From Numbers to a Randomisation Policy</h2>
+<p>The solver returns probabilities, not a policy. Turning them into repeatable play needs three more decisions:</p>
+<ul>
+<li><strong>Randomisation method.</strong> Use a private seed per decision. A predictable pseudo-random sequence is not a mixed strategy — it is a pure strategy with extra steps.</li>
+<li><strong>Timing.</strong> Commit to the full mix for the whole game or redraw each round. Redrawing weakens your opponent's inference, which is usually the goal in repeated play.</li>
+<li><strong>Estimation honesty.</strong> Payoff entries are usually estimates. Ask how far the mix moves when the entries that matter shift by ten percent, because the mix is often far more sensitive than the value is.</li>
+<p></ul></p>
+<p>To see how a distribution-based payoff estimate behaves under uncertainty, feed the entry into the <a href="https://elysiatools.com/en/tools/monte-carlo-simulation-builder">Monte Carlo Simulation Builder</a> and watch the equilibrium move as a distribution instead of a single number.</p>
+<h2>A Compact Reference and the Model's Limits</h2>
+<ul>
+<li><strong>Saddle test:</strong> <code>max(row minima)</code> versus <code>min(column maxima)</code>; equality means a pure equilibrium exists.</li>
+<li><strong>Equilibrium cell:</strong> largest in its column <em>and</em> smallest in its row.</li>
+<li><strong>Mixed solution:</strong> <code>xᵀA ≥ v</code> for the maximiser, <code>Ay ≤ v</code> for the minimiser, both summing to 1.</li>
+<li><strong>Shift invariance:</strong> adding <code>K</code> to every entry moves the value by exactly <code>K</code> and changes no strategy.</li>
+<li><strong>Dual recovery:</strong> primal slack variables give one player's mix, shadow prices give the other's.</li>
+<p></ul></p>
+<p>Zero-sum also assumes the payoff is exactly opposite for both sides, which real competition rarely honours. Price wars leave both firms worse off; bidding wars transfer surplus to a leftover bidder who is not a player at all. That leak makes a zero-sum model conservative in a useful direction — it assumes your opponent is maximising purely against you with no outside option, so the equilibrium it produces is a floor you can usually beat rather than a ceiling. When a third party profits from the interaction, model that surplus explicitly or add a player, because no amount of linear programming precision repairs a payoff matrix that allocates the money to nobody in the game.</p>
+<p>The solver also assumes both strategies are chosen without observing the other. In sequential games — where one player moves, sees the reply, then moves again — you want backward induction instead, and the equilibrium is usually sharper and easier to compute than the mixed strategy of the simultaneous version.</p>
+<p>The Zero-Sum Game Solver at <a href="https://elysiatools.com/en/tools">elysiatools.com</a> takes a matrix of 2×2 to 6×6, runs the saddle-point test first, falls through to the shifted single-phase simplex when pure play fails, and verifies both players' security strategies numerically before reporting. Paste the matrix, read the value and the two mixes, and check the verification line — that is the whole workflow.</p>

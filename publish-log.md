@@ -507,3 +507,15 @@ All HTTP 200 verified. The hub anchor triggered `validate_anchors()`'s "alternat
 - Elysia anchors: 5 (3 tool-page + 1 sample-root + 1 kind-root, all validated)
 - Audit: audit_post_content 0 findings after PATCH
 - Run type: 1-POST + 1-PATCH (PATCH converted 4 markdown links + 2 raw bold to HTML)
+
+## NO PUBLISH — 2026-10-21 15:49 UTC (tick 7) — origin 502 outage, 7th consecutive aborted tick
+- Tool (staged, unpublished): markdown-table-to-csv-json-schema
+- Slug: markdown-table-to-csv-json-schema-field-guide-when-four-parse-traps-decide-your-schema-2026-10-21
+- Title: Markdown Table to CSV JSON Schema Field Guide: When Four Parse Traps Decide Your Schema
+- Status: NOT published — origin down ~42h. Re-verified from disk, re-parked, aborted cleanly (exit 2, waited_real 304).
+- Ladder: / = 502 (CF-RAY a4e168fd0bc6e7b9-FRA) | wp-json unauth 502 | wp-json authed 502 | 3x retry 502 | example.com 200 | elysiatools.com/en/tools 200
+- Verification: audit_post_content 0 findings | validate_anchors ok=True (0 of 5 phantom) | 8 H2 / 0 H1 / 0 H3 | 3 highlight-card | 1 article-poster | 1979 words
+- Assets: poster 1080x800 + card1-3 1600x900, all 4 sha256 MATCH vs archive; article.md + article_final.html sha256 MATCH
+- Dry run: 13705-byte payload, 0 placeholder leaks, 3 card figures, featured_media=0, substituted-body re-audit 0 findings
+- Run type: 0-POST 0-PATCH (blocked on host state; no rebuild, no data loss)
+- Reference: references/cron-session-origin-outage-2026-10-21-run7-1549-utc.md
