@@ -519,3 +519,25 @@ All HTTP 200 verified. The hub anchor triggered `validate_anchors()`'s "alternat
 - Dry run: 13705-byte payload, 0 placeholder leaks, 3 card figures, featured_media=0, substituted-body re-audit 0 findings
 - Run type: 0-POST 0-PATCH (blocked on host state; no rebuild, no data loss)
 - Reference: references/cron-session-origin-outage-2026-10-21-run7-1549-utc.md
+## WP 8499 — 2026-10-21 18:49:32 UTC — Markdown Table to CSV JSON Schema Field Guide
+- Tool: markdown-table-to-csv-json-schema (Data Processing)
+- Slug: markdown-table-to-csv-json-schema-field-guide-when-four-parse-traps-decide-your-schema-2026-10-21
+- Date GMT: 2026-10-21T18:49:32 (computed at POST time, not park time)
+- Title: Markdown Table to CSV JSON Schema Field Guide: When Four Parse Traps Decide Your Schema
+- URL: https://blog.flowrust.com/2026/10/22/markdown-table-to-csv-json-schema-field-guide-when-four-parse-traps-decide-your-schema-2026-10-21/
+- Words: 2052 (8 H2s, 0 H3s, 0 body H1)
+- Assets: 1 poster (1080x800) + 3 cards (1600x900), all uploaded 201
+- Elysia anchors: 5 (2 tool + 2 sample + 1 kind-root), validate_anchors ok=True, 0 phantom
+- Audit: audit_post_content 0 findings | rendered-page DOM check PASS
+- Rendered: 1 entry-title h1, 0 body h1, 8 body h2 (+1 theme "Post navigation" = 9 DOM), 3 highlight-card, 1 article-poster, 0 pipe-table leak, 0 literal **bold**, 0 imgs missing alt
+- Run type: 1-POST 0-PATCH (origin recovered after ~42h / 7 aborted ticks; published from the parked driver with no rebuild)
+- Archive: 2026-10-21-markdown-table-to-csv-json-schema-field-guide-when-four-parse-traps-decide-your-schema-2026-10-21/
+
+## AUDIT CYCLE — 2026-10-21 18:52 UTC — 5/5 in-scope clean, 1 PATCH
+- Raw fetched 5, in-scope 5, out-of-scope 0 (no CJK titles)
+- WP 8499 Markdown Table to CSV JSON Schema — CLEAN (0 findings)
+- WP 8492 Drag Force Calculator — PATCHED: phantom anchor `/en/tools/math` → `/en/tools/math-numbers`
+- WP 8483 CSV Header Alias Resolver — CLEAN
+- WP 8476 Ligation Insert:Vector Molar Ratio — CLEAN
+- WP 8458 A-a Gradient — CLEAN
+- PATCH round-trips: 1 (WP 8492). Re-audit after PATCH: 0 findings, anchors ok=True, images 4/4 200, permalink 200

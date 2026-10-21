@@ -1,0 +1,17 @@
+{
+  "post_id": 8499,
+  "http_fetch": "200",
+  "status": "publish",
+  "featured_media": 0,
+  "h1": 0,
+  "h2": 8,
+  "h3": 0,
+  "cards": 3,
+  "poster": 1,
+  "audit_findings": -1,
+  "raw_defect_total": 0,
+  "img_failures": 0,
+  "permalink": "200",
+  "anchor_failures": 1,
+  "link": "https://blog.flowrust.com/2026/10/22/markdown-table-to-csv-json-schema-field-guide-when-four-parse-traps-decide-your-schema-2026-10-21/"
+}

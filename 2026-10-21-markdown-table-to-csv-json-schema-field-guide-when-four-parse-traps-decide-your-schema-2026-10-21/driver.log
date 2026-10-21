@@ -1,0 +1,78 @@
+[02:10:20] driver start; will wait up to 540s for origin
+[02:11:25]   still down after 65s
+[02:12:31]   still down after 130s
+[02:13:36]   still down after 195s
+[02:14:41]   still down after 260s
+[02:15:46]   still down after 326s
+[02:16:51]   still down after 391s
+[02:17:56]   still down after 456s
+[02:19:02]   still down after 521s
+[02:19:35] origin never recovered within 540s real -- aborting, nothing published
+[11:25:44] driver start; will wait up to 3600s for origin
+[11:26:49]   still down after 64s
+[11:27:54]   still down after 130s
+[11:28:59]   still down after 195s
+[14:59:15] driver start; will wait up to 1500s for origin
+[15:00:24]   still down after 68s
+[15:01:30]   still down after 135s
+[15:02:36]   still down after 200s
+[15:03:43]   still down after 267s
+[15:04:51]   still down after 335s
+[15:06:00]   still down after 404s
+[15:07:06]   still down after 470s
+[15:08:13]   still down after 537s
+[15:09:24]   still down after 608s
+[15:10:31]   still down after 675s
+[15:11:39]   still down after 743s
+[15:12:50]   still down after 814s
+[15:13:58]   still down after 882s
+[15:15:08]   still down after 952s
+[15:16:13]   still down after 1018s
+[15:17:23]   still down after 1087s
+[15:18:31]   still down after 1155s
+[15:19:41]   still down after 1225s
+[15:21:30]   still down after 1334s
+[15:22:36]   still down after 1400s
+[15:23:41]   still down after 1465s
+[15:24:31] origin never recovered within 1500s real -- aborting, nothing published
+[19:35:25] driver start; will wait up to 540s for origin
+[19:36:33]   still down after 68s
+[19:37:40]   still down after 135s
+[19:38:46]   still down after 201s
+[19:39:51]   still down after 266s
+[19:40:57]   still down after 332s
+[19:42:33] driver start; will wait up to 300s for origin
+[19:43:40]   still down after 67s
+[19:44:46]   still down after 132s
+[19:45:52]   still down after 199s
+[19:47:01]   still down after 267s
+[19:47:35] origin never recovered within 300s real -- aborting, nothing published
+[21:41:23] driver start; will wait up to 300s for origin
+[21:42:28]   still down after 65s
+[21:43:36]   still down after 133s
+[21:44:44]   still down after 201s
+[21:45:55]   still down after 271s
+[21:46:31] origin never recovered within 300s real -- aborting, nothing published
+[23:49:49] driver start; will wait up to 300s for origin
+[23:49:49] driver start; will wait up to 300s for origin
+[23:50:56]   still down after 67s
+[23:50:56]   still down after 67s
+[23:52:03]   still down after 133s
+[23:52:03]   still down after 133s
+[23:53:10]   still down after 200s
+[23:53:10]   still down after 200s
+[23:54:19]   still down after 269s
+[23:54:19]   still down after 269s
+[23:54:54] origin never recovered within 300s real -- aborting, nothing published
+[23:54:54] origin never recovered within 300s real -- aborting, nothing published
+[02:49:17] driver start; will wait up to 300s for origin
+[02:49:18] origin is UP after 1s
+[02:49:22]   uploaded poster.png -> id=8495 https://blog.flowrust.com/wp-content/uploads/2026/10/poster-68.png
+[02:49:24]   uploaded card1.png -> id=8496 https://blog.flowrust.com/wp-content/uploads/2026/10/card1-58.png
+[02:49:28]   uploaded card2.png -> id=8497 https://blog.flowrust.com/wp-content/uploads/2026/10/card2-58.png
+[02:49:32]   uploaded card3.png -> id=8498 https://blog.flowrust.com/wp-content/uploads/2026/10/card3-58.png
+[02:49:32]   substitution verified: 0 placeholders left, 3 card figures
+[02:49:32]   date_gmt at publish time: 2026-10-21T18:49:32
+[02:49:35]   POST /wp/v2/posts -> 201
+[02:49:35]   PUBLISHED id=8499 status=publish link=https://blog.flowrust.com/2026/10/22/markdown-table-to-csv-json-schema-field-guide-when-four-parse-traps-decide-your-schema-2026-10-21/
+[02:49:35] driver complete
