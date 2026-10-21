@@ -541,3 +541,18 @@ All HTTP 200 verified. The hub anchor triggered `validate_anchors()`'s "alternat
 - WP 8476 Ligation Insert:Vector Molar Ratio — CLEAN
 - WP 8458 A-a Gradient — CLEAN
 - PATCH round-trips: 1 (WP 8492). Re-audit after PATCH: 0 findings, anchors ok=True, images 4/4 200, permalink 200
+
+## 2026-10-21 20:04 UTC — WP 8505 — otel-semantic-convention-migration-tool (1-POST + 1-PATCH)
+
+- **date_gmt**: 2026-10-21T20:04:59 (UTC, resolved at POST time via `DATE_GMT=NOW`)
+- **Tool**: `otel-semantic-convention-migration-tool` — *OpenTelemetry Semantic-Convention v1.20 -> v1.27 Attribute Migration Tool* (category: Development)
+- **Title**: OpenTelemetry semconv v1.20 to v1.27: the renames that quietly break your dashboards
+- **URL**: https://blog.flowrust.com/2026/10/22/otel-semantic-convention-migration-tool-field-guide-when-five-attribute-renames-quietly-break-every-dashboard-2026-10-22/
+- **Media**: poster-69.png (1080x800), card1-59.png, card2-59.png, card3-59.png (1600x900 each) — 4 uploads, 3 highlight cards
+- **Elysia anchors (5, all manifest-verified)**: otel-semantic-convention-migration-tool, logfmt-to-json-structured-log-bridge, opentelemetry-w3c-traceparent-...-validator, json-diff-visualizer, /en/tools kind-root
+- **Structure**: 0 body h1 / 8 body h2 / 0 body h3, 1524 words, featured_media=0
+- **Audit**: audit_post_content 0 findings; 0 phantom anchors; 0 placeholder leaks; 9 rendered URLs all HTTP 200
+- **PATCH 1**: WP REST rejected string tag names (`rest_invalid_param`, `tags[0] is not of type integer`). Re-resolved term IDs; two pre-existing tags returned `term_exists` with their IDs in `additional_data` (opentelemetry=1325, observability=1297); attached those + new semantic-conventions=2510 via POST /wp/v2/posts/8505.
+- **PATCH 2**: `md_to_html` does not process `- ` or `1. ` list syntax (WP 6185/6212 family). Both the 5-rename list and the 7-step checklist collapsed into single run-on paragraphs in the live render — a defect the content audit cannot see. Rebuilt both as explicit `<ul>`/`<ol>` HTML and PATCHed via POST /wp/v2/posts/8505. Re-fetch confirms 2 ul / 1 ol with 16 li (5 + 7 + 4 theme share-widget li).
+- **Skill drift**: cron-prompt listed article-writer, article-poster-creator, article-highlight-cards as missing. Disk probe: article-writer/SKILL.md present (100KB); article-poster-creator and article-highlight-cards genuinely absent (they are not listed in skills_list). Umbrella PIL path used.
+- **Browser backend down**: `npm ERR! 404 cdp-url` — fell back to curl rendered-page check with theme chrome stripped (tick-8 recipe).

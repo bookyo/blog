@@ -1,0 +1,21 @@
+{
+  "post_id": 8505,
+  "link": "https://blog.flowrust.com/2026/10/22/otel-semantic-convention-migration-tool-field-guide-when-five-attribute-renames-quietly-break-every-dashboard-2026-10-22/",
+  "status": "publish",
+  "date_gmt": "2026-10-21T20:04:59",
+  "urls": {
+    "POSTER_URL": "https://blog.flowrust.com/wp-content/uploads/2026/10/poster-69.png",
+    "CARD1_URL": "https://blog.flowrust.com/wp-content/uploads/2026/10/card1-59.png",
+    "CARD2_URL": "https://blog.flowrust.com/wp-content/uploads/2026/10/card2-59.png",
+    "CARD3_URL": "https://blog.flowrust.com/wp-content/uploads/2026/10/card3-59.png"
+  },
+  "slug": "otel-semantic-convention-migration-tool-field-guide-when-five-attribute-renames-quietly-break-every-dashboard-2026-10-22",
+  "title": "OpenTelemetry semconv v1.20 to v1.27: the renames that quietly break your dashboards",
+  "tags": [
+    2510
+  ],
+  "categories": [
+    1
+  ],
+  "featured_media": 0
+}
