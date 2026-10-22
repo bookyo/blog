@@ -556,3 +556,18 @@ All HTTP 200 verified. The hub anchor triggered `validate_anchors()`'s "alternat
 - **PATCH 2**: `md_to_html` does not process `- ` or `1. ` list syntax (WP 6185/6212 family). Both the 5-rename list and the 7-step checklist collapsed into single run-on paragraphs in the live render — a defect the content audit cannot see. Rebuilt both as explicit `<ul>`/`<ol>` HTML and PATCHed via POST /wp/v2/posts/8505. Re-fetch confirms 2 ul / 1 ol with 16 li (5 + 7 + 4 theme share-widget li).
 - **Skill drift**: cron-prompt listed article-writer, article-poster-creator, article-highlight-cards as missing. Disk probe: article-writer/SKILL.md present (100KB); article-poster-creator and article-highlight-cards genuinely absent (they are not listed in skills_list). Umbrella PIL path used.
 - **Browser backend down**: `npm ERR! 404 cdp-url` — fell back to curl rendered-page check with theme chrome stripped (tick-8 recipe).
+
+## 2026-10-22 00:16 UTC — WP 8518 — APNG frame timing field guide (1-POST 0-PATCH)
+
+- **date_gmt**: 2026-10-22T00:16:50 (UTC, resolved at POST time)
+- **Tool**: `apng-idat-fdat-chunk-streaming-deflate-replay-and-disposal-method-analyzer` — *APNG IDAT/fdAT Chunk, Streaming Deflate Replay and Disposal Method Frame-Timing Analyzer* (category: Compression)
+- **Title**: APNG IDAT/fdAT Chunk, Streaming Deflate Replay and Disposal Method Frame-Timing Analyzer Field Guide: When Three Chunks and a Hundredth of a Second Decide Whether Your Animation Ships
+- **URL**: https://blog.flowrust.com/2026/10/22/apng-frame-timing-field-guide-when-three-chunks-and-a-hundredth-of-a-second-decide-whether-your-animation-ships-2026-10-22/
+- **Media**: poster-73.png (1080x800), card1-60.png, card2-60.png, card3-60.png (1600x900 each) — 4 uploads, 3 highlight cards
+- **Elysia anchors (3, all manifest-verified)**: the APNG analyzer tool, crc32-checksum, /en/tools kind-root. All 3 HTTP 200 on the live page.
+- **Structure**: 0 body h1 / 8 body h2 / 0 body h3, 2047 words, 6 ul / 19 li, featured_media=0
+- **Audit**: audit_post_content 0 findings (pre-POST and post-POST read-back); 0 phantom anchors; 0 placeholder leaks; 0 backslashes in code; live page 4/4 images 200, 3/3 anchors 200, 0 wpautop glitches, body h1=0, body h2=8 (+1 "Post navigation" theme chrome).
+- **PATCH round-trips**: 0. Publish was clean on first POST; no `future` status fallback needed.
+- **Skill drift**: cron-prompt listed article-writer, article-poster-creator, article-highlight-cards as missing. Disk probe: article-writer/SKILL.md present (100KB); article-poster-creator/ and article-highlight-cards/ genuinely absent. Umbrella PIL path used (render_poster + render_card_5tile + render_card_4tile_compact + render_card_audit).
+- **Browser backend down**: `npm ERR! 404 cdp-url` — fell back to curl rendered-page check with theme chrome stripped.
+- **Operator incident (self-inflicted, resolved)**: an orphan-media cleanup script filtered the media library by URL substring (`'poster' in u or 'card' in u`), which matched prior published posts' assets (WP 8492/8499/8505). It issued `POST /media/<id> -d force_delete=true`, which WordPress treats as an UPDATE, not a delete — so all 13 media rows and their PNGs survived (verified HTTP 200). Fixed properly: explicit ID allowlist scoped to this run + `DELETE /media/<id>?force=true` (NOT `force_delete`), which returned `{"deleted":true}` for the 6 true orphans (3 credtest + 3 duplicate posters). Prior-post assets re-verified 200 after cleanup. **Lesson: never identify orphans by URL substring — scope deletion to an explicit ID list.**
