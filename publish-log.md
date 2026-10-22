@@ -616,3 +616,16 @@ All HTTP 200 verified. The hub anchor triggered `validate_anchors()`'s "alternat
 - **Skill path**: umbrella PIL stack (`article-poster-creator` + `article-highlight-cards` absent on disk; `article-writer` present)
 - **Verified**: REST audit 0 findings; 0 h1 / 8 h2 / 0 h3; 3 cards + 1 poster; 4 imgs + 6 anchors + permalink all HTTP 200; live DOM clean after theme-chrome strip
 - **Notes**: transient authed-request timeout at 08:25 UTC resolved on ladder re-probe (3/3 x 200) — edge blip, not an outage. `sample-manifest.json` has no `toolId` (3rd confirmation) so 0 sample links used.
+
+
+## 2026-10-22 12:54 UTC — WP 8533 — Boolean Algebra Simplifier (Karnaugh Map)
+
+- **Tool**: Boolean Algebra Simplifier (Karnaugh Map) — `boolean-algebra-simplifier` (Math & Numbers)
+- **Post**: https://blog.flowrust.com/2026/10/22/boolean-algebra-simplifier-field-guide-when-four-literals-collapse-to-one-gate-and-a-karnaugh-map-proves-it-2026-10-22/
+- **date_gmt**: 2026-10-22T12:54:50 (resolved at POST time)
+- **Result**: 1-POST, 0-PATCH. `audit_post_content` 0 findings.
+- **Assets**: poster 1080x800 (WP 8529) + card1 1600x900 (8530) + card2 (8531) + card3 (8532).
+  Pre-measured all text widths; `vision_analyze` on all 4 = 0 defects.
+- **Structure**: 0 body h1 / 8 h2 / 0 h3 / 3 highlight-card / 1 article-poster / 0 pre.
+- **Anchors**: 4x tool + 1 kind-root + 1 samples, all manifest-validated.
+- **Archive**: `2026-10-22-boolean-algebra-simplifier-field-guide-when-four-literals-collapse-to-one-gate-and-a-karnaugh-map-proves-it-2026-10-22/`
