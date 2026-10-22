@@ -671,3 +671,15 @@ All HTTP 200 verified. The hub anchor triggered `validate_anchors()`'s "alternat
 - **Duplicate media**: the upload-verify re-ran and re-uploaded (`poster-74`/`card*-64`
   then `poster-75`/`card*-65`). Live post uses the -75/-65 set; the -74/-64 set is
   orphaned media-library rows, not referenced by the post.
+
+## 2026-10-23 — WP 8547 — WebAuthn Passkey Assertion Debugging: Signatures Pass, Binding Checks Fail
+
+- **Tool**: webauthn-passkey-assertion-decoder-challenge-debugger — WebAuthn Passkey Assertion Decoder & Challenge Debugger (Cryptography)
+- **URL**: https://blog.flowrust.com/2026/10/23/webauthn-passkey-assertion-decoder-challenge-debugger-field-guide-when-signatures-pass-and-the-binding-checks-fail-first-2026-10-23/
+- **date_gmt**: 2026-10-22T21:15:31
+- **Shape**: 1-POST 0-PATCH · 0 body H1 · 8 H2 · 3 highlight cards · 1 poster · 41 li · 8 elysia anchors
+- **Assets**: poster.png (1080x800) + card1-3.png (1600x900), PIL network theme, vision_analyze QA on all 4
+- **Notes**: poster title line 2 clipped at 1188px > 1080 on first render (WP 6390/7144 draw_centered
+  rule) — re-rendered with a 900px line. Taxonomy POST 400 `rest_invalid_param` on first attempt
+  (names not integer IDs); resolved via term_exists `term_id` parse (WP 8505 lesson).
+  Browser backend down (cdp-url 404) — used the curl rendered-page fallback.

@@ -1,0 +1,93 @@
+<figure class="article-poster"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/10/poster-76.png" alt="Cover image: three encoded blobs of a WebAuthn passkey assertion and the four binding checks that decide whether it is accepted" /></figure>
+
+<p><strong>A passkey assertion fails silently, and almost never because the signature is wrong.</strong> In practice the assertion is cryptographically intact and the relying party still rejects it, because a binding check failed first: the <code>challenge</code> in <code>clientDataJSON</code> is not the one your server minted, the <code>origin</code> is the staging URL you forgot to allow, or the <code>rpIdHash</code> belongs to a different relying-party domain than the one the request arrived on. Those three fields are plain text inside a nested, two-layer container, which is exactly why they are so easy to get wrong and so hard to see from the outside.</p>
+<p>That container is the reason a dedicated decoder exists. A WebAuthn assertion arrives as three separately base64url-encoded blobs, and the middle one — <code>authenticatorData</code> — is raw binary with a fixed-width header, a flag byte that packs eight distinct bits, and a 4-byte counter. Nothing about that is legible without unpacking it. This guide walks the structure byte by byte, shows which flag bits decide whether an assertion is even worth verifying, and walks through a real debug session where four different defects each look identical from the server side.</p>
+<p>If you want to jump straight to unpacking a real payload, the <a href="https://elysiatools.com/en/tools/webauthn-passkey-assertion-decoder-challenge-debugger">WebAuthn Passkey Assertion Decoder &amp; Challenge Debugger</a> takes a full assertion and prints the decoded <code>authenticatorData</code>, every named flag, the binding-check verdicts, and — when you paste a COSE public key — the signature verification result.</p>
+<h2>The Three Blobs An Assertion Arrives In</h2>
+<p>A WebAuthn assertion response is not one object. It is a container with three independently encoded payloads, and each one is decoded differently:</p>
+<ul>
+<li><strong>clientDataJSON</strong> — UTF-8 JSON, base64url-encoded. Carries <code>type</code>, <code>challenge</code>, <code>origin</code>, <code>crossOrigin</code>, and <code>crossOriginIsolated</code>.</li>
+<li><strong>authenticatorData</strong> — raw binary, base64url-encoded. Carries <code>rpIdHash</code>, the flag byte, <code>signCount</code>, and optionally attested credential data plus extensions.</li>
+<li><strong>signature</strong> — DER-wrapped ASN.1 for ES256 and RS256, or 64 raw bytes for Ed25519. Produced by the authenticator over a message your server must reconstruct exactly.</li>
+<p></ul></p>
+<p>The consequence is that a server cannot "just verify the signature." Verification requires the server to first reassemble the exact byte string the authenticator signed, and that string is defined by the COSE algorithm identifier negotiated at registration time. For ES256 it is <code>authenticatorData || SHA-256(clientDataJSON)</code>. For RS256 it is also the hash-prefixed digest of <code>authenticatorData || SHA-256(clientDataJSON)</code>, wrapped in PKCS#1 v1.5 padding. For Ed25519 — and this is the detail that trips up almost every first implementation — the signed message is <code>authenticatorData || clientDataJSON</code> with the JSON hashed <em>inside</em> the Ed25519 algorithm, not pre-hashed by the server. One extra SHA-256 and verification fails with a perfectly good key.</p>
+<p>Because the JSON is hashed in one case and not the other, "the same assertion, same key, different verifier" can disagree. If you have ever gotten a 100% signature failure only on Ed25519 credentials, this is why.</p>
+<p>Decoding the JSON layer is not hard, but it is fiddly to do by hand when the payload is long. The <a href="https://elysiatools.com/en/tools/base64url-encoder">Base64URL Encoder/Decoder</a> handles the transport encoding, and the <a href="https://elysiatools.com/en/tools/jwt-decoder">JWT Decoder</a> unpacks the base64url-and-JSON layer cleanly for anything shaped like a signed token.</p>
+<h2>Byte by Byte Inside authenticData</h2>
+<p><code>authenticatorData</code> has a fixed 37-byte header before any optional data. Those 37 bytes are not variable-length, which makes them the one part of the assertion you can validate structurally with a ruler:</p><figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/10/card1-66.png" alt="Card 1: the 37-byte authenticatorData header - rpIdHash, flag byte, and 4-byte signCount at fixed offsets" loading="lazy" /></figure>
+<ul>
+<li><strong>rpIdHash — 32 bytes.</strong> <code>SHA-256</code> of the relying-party ID, typically the registrable domain. This is what binds the credential to the domain.</li>
+<li><strong>flags — 1 byte.</strong> Eight named bits, described in the next section.</li>
+<li><strong>signCount — 4 bytes, big-endian unsigned.</strong> A monotonically increasing counter maintained by the authenticator.</li>
+<li><strong>attestedCredentialData — variable, present only when the AT flag is set.</strong> On registration this follows immediately; on assertion it is normally absent.</li>
+<li><strong>extensions — variable CBOR map.</strong> Present only when the extension-data flag is set.</li>
+<p></ul></p>
+<p><code>rpIdHash</code> is the field worth checking first, because it is the one your server can compute. Hash the expected RP ID yourself and compare. If they differ, every subsequent step is meaningless, and the usual cause is not a cryptographic bug at all — it is a relying-party ID that was configured as the full origin including scheme and port when it must be a bare domain.</p>
+<p>The <code>signCount</code> deserves a note on its own: it is a 32-bit value, so it wraps. A counter that goes backwards by a small negative delta after roughly 4.29 billion operations is arithmetic, not an attack. Authenticators that are hardware tokens and reset to zero on firmware update are a different matter entirely, and WebAuthn's own guidance is that a counter regression on a previously-registered credential is a strong signal worth flagging rather than silently accepting.</p>
+<h2>Decoding the Flags Byte</h2>
+<p>The single byte at offset 32 decides how much of the rest of the blob you are allowed to believe. Reading it as a plain integer is the single most common decoding mistake:</p><figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/10/card2-66.png" alt="Card 2: the eight named flag bits decoded from the single byte at offset 32 - UP, UV, AT, ED and MF" loading="lazy" /></figure>
+<ul>
+<li><strong>Bit 0 (0x01) UP</strong> — User Present. The user touched the authenticator. Always set on any assertion worth verifying.</li>
+<li><strong>Bit 1 (0x02) UV</strong> — User Verified. Local biometric or PIN check passed. Strongly recommended by every major consumer deployment.</li>
+<li><strong>Bit 2 (0x04) BE</strong> — Backup Eligibility. The credential can be synced to a backup.</li>
+<li><strong>Bit 3 (0x08) BS</strong> — Backup State. The credential is currently backed up.</li>
+<li><strong>Bit 4 (0x10) RFU1</strong> — Reserved. A server that reads meaning into it is reading noise.</li>
+<li><strong>Bit 5 (0x20) AT</strong> — Attested credential data included. Set on registration; usually clear on assertion.</li>
+<li><strong>Bit 6 (0x40) ED</strong> — Extension data included. If clear, there are no extensions and the blob ends early.</li>
+<li><strong>Bit 7 (0x80) MF</strong> — Multi-factor, an extension-derived hint. Not a core bit in older revisions.</li>
+<p></ul></p>
+<p>The practical decision is simple: refuse the assertion if UP is clear, because an assertion with no user presence is not an authentication. Treat a clear UV as a policy failure on any passkey-only flow. And when ED is clear, do not attempt to parse trailing bytes as a CBOR extensions map — you will either find nothing or invent structure.</p>
+<p>Registration assertions are the mirror image. On those, AT is set and the bytes after <code>signCount</code> are the attested credential data: an 16-byte credential ID, a 2-byte credential public key length, the COSE key itself, and an optional extension block. If your parser assumes a 37-byte header on a registration blob and stops there, you will silently lose the credential ID.</p>
+<h2>Binding Checks: Challenge, Origin, rpIdHash</h2>
+<p>These four checks are the difference between a working passkey flow and a support queue. They are also the four that fail in production.</p><figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/10/card3-66.png" alt="Card 3: the four binding checks - challenge, origin, rpIdHash and type - that all surface as one generic error" loading="lazy" /></figure>
+<ul>
+<li><strong>1. challenge</strong> — the value in <code>clientDataJSON</code> must equal the one your server minted, compared byte-for-byte. This is the replay defence: a stolen assertion is worthless if the challenge was already consumed.</li>
+<li><strong>2. origin</strong> — must match an entry in the server's allowlist exactly. Scheme, host and port all count. <code>https</code> versus <code>http</code> is a mismatch; a trailing slash is a mismatch; a preview-deployment hostname is a mismatch.</li>
+<li><strong>3. rpIdHash</strong> — must equal <code>SHA-256</code> of the RP ID you expect, computed server-side.</li>
+<li><strong>4. type</strong> — must be <code>webauthn.get</code> for a login assertion and <code>webauthn.create</code> for a registration. Crossed type values indicate a confused-deputy path between your two endpoints.</li>
+<p></ul></p>
+<p>Every one of these produces the same client-visible outcome: the sign-in button spins, then reports a generic failure. That is why they need to be checked in order and reported distinctly in your logs. In practice origin is the usual culprit — an allowlist written for the production domain and never extended to the staging host — and <code>challenge</code> is the usual culprit when a load balancer replicates session state but not the one-time challenge store, so a second node cannot find the value it is supposed to match against.</p>
+<p>For the flow that sits immediately before all of this, the <a href="https://elysiatools.com/en/tools/pkce-code-verifier-generator">PKCE Code Verifier &amp; Challenge Generator</a> covers the authorization-request half of a passkey-adjacent sign-in, and the <a href="https://elysiatools.com/en/tools/oauth-oidc-authorization-code-pkce-flow-visualizer">OAuth 2.0 / OIDC Authorization Code with PKCE visualizer</a> shows where the WebAuthn ceremony gets invoked inside the wider flow.</p>
+<h2>Signature Verification and the COSE Key</h2>
+<p>To verify, your server needs the credential's public key in COSE form — the same CBOR-encoded structure the authenticator returned at registration. The relevant labels are <code>1</code> for key type, <code>3</code> for algorithm and <code>-1</code> for the curve:</p>
+<ul>
+<li><strong>label 1 (kty)</strong> — <code>2</code> is an elliptic-curve key, <code>1</code> is an RSA key.</li>
+<li><strong>label 3 (alg)</strong> — the negotiated algorithm, typically <code>-7</code> for ES256, <code>-257</code> for RS256, <code>-8</code> for Ed25519.</li>
+<li><strong>label -1 (crv)</strong> — the named curve, <code>1</code> for P-256.</li>
+<li><strong>label -2 (x) and label -3 (y)</strong> — the uncompressed public coordinates for EC2 keys.</li>
+<li><strong>label -1 / label -2 (n, e)</strong> — modulus and exponent for RSA keys.</li>
+<p></ul></p>
+<p>Because the key is CBOR, the practical move is to decode it as CBOR first, confirm the algorithm label matches what the client negotiated, and only then hand the coordinates to your crypto library. A mismatch between the registered algorithm and the verification algorithm is a genuine, common bug — and it produces the same generic rejection as everything else. The <a href="https://elysiatools.com/en/tools/cbor-converter">CBOR Converter</a> handles that unpacking step, and the <a href="https://elysiatools.com/en/tools/jwk-generator">JWK Generator &amp; Parser</a> is the right tool if you need the same key material in JWK form for a library that will not accept COSE directly.</p>
+<p>Two verification details are worth internalising. First, DER signatures are strictly encoded — a signature that verifies after lenient DER parsing is a signal that something in your stack is being too permissive. Second, for Ed25519 the message is <code>authenticatorData || clientDataJSON</code> with no external hash, and the raw 64-byte signature is not ASN.1 at all. Handing that to a DER parser yields a confusing error rather than an honest one.</p>
+<h2>A Worked Debug Session</h2>
+<p>Here is a realistic failure shape. The client sends an assertion, the server logs <code>verification failed</code>, and the response body contains nothing useful:</p>
+<ul>
+<li><strong>clientDataJSON</strong> — base64url of JSON with <code>type</code>, <code>challenge</code>, <code>origin</code>, <code>crossOrigin</code>.</li>
+<li><strong>authenticatorData</strong> — 37 bytes minimum: <code>rpIdHash</code>, one flag byte, four counter bytes.</li>
+<li><strong>flag byte</strong> — decodes to UP set, UV set, AT clear.</li>
+<li><strong>rpIdHash mismatch</strong> — the hash does not equal <code>SHA-256</code> of the expected RP ID.</li>
+<li><strong>origin</strong> — the allowlist has only the production domain; staging is missing.</li>
+<li><strong>challenge</strong> — minted on node A, consumed on node B with no shared store.</li>
+<li><strong>COSE key label 3</strong> — algorithm is <code>-8</code>, so the server's Ed25519 path applies.</li>
+<li><strong>result</strong> — a valid assertion rejected for three independent configuration reasons at once.</li>
+<p></ul></p>
+<p>Note what the worked session actually demonstrates: the assertion was never forged, and the signature probably verifies fine. Three separate deployment-configuration defects produced one indistinguishable error. This is the single strongest argument for running the layers in order — decode, bind, verify — because fixing them in any other order means fixing them one support ticket at a time.</p>
+<h2>What the Decoder Shows You That Logs Do Not</h2>
+<p>The reason to decode rather than log is that a decoded assertion separates <em>state</em> from <em>verdict</em>. The flag byte is state: it tells you what the authenticator claims happened. The binding checks are verdicts: they tell you what your server concluded. A log line mixes both into one string, which is why the same message text appears for eight different underlying situations.</p>
+<p>Concretely, a decoded assertion makes four facts immediately visible. Whether <code>rpIdHash</code> is the domain you expect, or the domain of a sibling tenant in a multi-tenant deployment. Whether <code>signCount</code> is advancing, stationary, or reset — a counter stuck at exactly zero across many sign-ins is an emulator or a software token, not a hardware authenticator. Whether UP and UV are both set, which tells you if the ceremony actually involved the user at all. And whether the COSE algorithm label matches the branch your verifier is about to take, which is the check that catches the Ed25519 double-hash bug before it becomes a signature failure.</p>
+<p>The same decode also answers the question every passkey support thread opens with — "is this a real assertion at all?" A structurally invalid blob fails immediately: fewer than 37 bytes of <code>authenticatorData</code>, a <code>clientDataJSON</code> that does not parse as JSON, a <code>type</code> field that is neither <code>webauthn.get</code> nor <code>webauthn.create</code>. Those three structural checks catch a large share of malformed payloads, and they cost nothing to run before any crypto is attempted.</p>
+<p>Run the same three layers in reverse when you are debugging a <em>successful</em> sign-in that should have failed, such as a counter regression or a credential registered to the wrong relying-party domain. The decode step shows you immediately whether the credential you are evaluating is even the credential you meant to be evaluating.</p>
+<h2>A Pre-Passkey Sanity Checklist</h2>
+<p>Before you ship, or when you inherit a broken passkey flow, check these in order:</p>
+<ul>
+<li><strong>Decode first.</strong> Never verify a payload you have not visually unpacked. Confirm three blobs, and confirm the flag byte reads as a set of bits.</li>
+<li><strong>Compute your own <code>rpIdHash</code>.</strong> Hash the RP ID server-side and compare against offset 0. If it differs, stop — nothing downstream can be trusted.</li>
+<li><strong>Allowlist origins exactly.</strong> Every environment that can complete a ceremony needs its own entry, with scheme and port included.</li>
+<li><strong>Store challenges where every node can reach them.</strong> Single use, short TTL, and shared across the fleet.</li>
+<li><strong>Branch on the registered algorithm.</strong> ES256 and RS256 hash <code>clientDataJSON</code> before signing; Ed25519 does not. Derive the message from the COSE label, not from a hardcoded default.</li>
+<li><strong>Reject UP clear.</strong> An assertion without user presence is not an authentication.</li>
+<li><strong>Make signCount regressions observable.</strong> Log them, page on them if the credential is expected to be hardware-backed.</li>
+<li><strong>Distinguish your error codes.</strong> The client sees one generic failure; your logs should see four.</li>
+<p></ul></p>
+<p>Every one of these is a configuration or plumbing check, not a cryptography check. That is the recurring lesson of passkey debugging: the crypto is almost always right, and the bindings are almost always wrong. Once <code>authenticatorData</code> is unpacked and the four bindings are compared one at a time, a "WebAuthn is broken" ticket becomes a two-minute diff.</p>
+<p>Browse the rest of the toolset at <a href="https://elysiatools.com/en/tools">elysiatools.com</a> when you need the adjacent primitives — key generation, encoding layers, and the certificate inspection that passkey deployment pipelines tend to need next.</p>
