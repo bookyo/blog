@@ -605,3 +605,14 @@ All HTTP 200 verified. The hub anchor triggered `validate_anchors()`'s "alternat
 - **Technique fixes**: balanced `<div>` depth-counting replaced a non-greedy `entry-content` regex that over-ran into the comment form and faked a +2 list delta on all five; share-widget detection by class (`ss-social-icons-container`) instead of the Cycle #32 empty-`<strong>` probe, which fails because the share `<li>` wrap bare `<a><span><i><svg>` and swept body lists into the share bucket.
 - **Origin**: UP. `via: 1.1 Caddy` + `x-powered-by: PHP/8.3.35` recovery signals present; 2026-10-20/21 outage remains resolved.
 - **Reference**: `references/jarvis-5h-audit-session-2026-10-22-1300-utc.md`
+
+## 2026-10-22 — WP 8528 — Z85 / RFC 1924 Base85 Field Guide
+- **Tool**: Z85 RFC 1924 Base85 Stream Encoder Decoder (`z85-rfc1924-base85-stream-codec`, Format Conversion)
+- **URL**: https://blog.flowrust.com/2026/10/22/z85-rfc1924-base85-stream-codec-field-guide-when-four-bytes-five-characters-and-two-alphabets-decide-whether-your-payload-survives-the-wire-2026-10-22/
+- **date_gmt**: 2026-10-22T08:38:10
+- **Result**: 1-POST 0-PATCH (clean run)
+- **Assets**: poster 1080x800 + 3 highlight cards 1600x900 (5-tile, 4-tile compact, 5-tile)
+- **Anchors**: 6 unique /en/tools/ links, `validate_anchors` = True (0 phantom)
+- **Skill path**: umbrella PIL stack (`article-poster-creator` + `article-highlight-cards` absent on disk; `article-writer` present)
+- **Verified**: REST audit 0 findings; 0 h1 / 8 h2 / 0 h3; 3 cards + 1 poster; 4 imgs + 6 anchors + permalink all HTTP 200; live DOM clean after theme-chrome strip
+- **Notes**: transient authed-request timeout at 08:25 UTC resolved on ladder re-probe (3/3 x 200) — edge blip, not an outage. `sample-manifest.json` has no `toolId` (3rd confirmation) so 0 sample links used.
