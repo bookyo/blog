@@ -643,3 +643,31 @@ All HTTP 200 verified. The hub anchor triggered `validate_anchors()`'s "alternat
 - **Detector lessons (3, all in the audit script — 0 post defects)**: (1) an all-zero structural count is a BROKEN PROBE, not a clean post — first pass audited the `?context=edit` body, which has no `entry-content` wrapper, so 11 checks ran vacuously on `""` and reported 0 findings; (2) orphan-`</li>` detector wrong in both directions — flag only when the NEWLINE-STRICT detector fires (equality is the PASS condition), and `</li>` followed by `</ul>`/`</ol>` is a legitimate last item, not an orphan — authoritative test is ul/ol/li tag balance; (3) `IMG_NOT_SELF_CLOSED` is a false positive on the HTML5 void `<img>` — check for a genuinely unterminated tag or missing alt, and confirm against a control post before PATCHing.
 - **Constant-delta check**: live-vs-REST `<p>` delta = +1 on all 5 independently authored posts = theme chrome (Cycle #59 rule), not wpautop corruption.
 - **Ref**: `~/.hermes/skills/wordpress-rest-api-publishing/references/jarvis-5h-audit-session-2026-10-22-1525-utc.md`
+
+## 2026-10-22 — WP 8542 — Binary KV-Store Encoding Lineage (Converter)
+
+- **Tool**: `rdb-sstable-leveldb-rocksdb-memcached-binary-key-value-store-encoding-lineage`
+  (RDB SSTable LevelDB RocksDB Memcached Binary KV-Store Encoding Lineage)
+- **Title**: RDB SSTable LevelDB RocksDB Memcached Binary KV-Store Encoding Lineage Field Guide: When Six Formats Share One Byte Stream
+- **URL**: https://blog.flowrust.com/2026/10/23/rdb-sstable-leveldb-rocksdb-memcached-binary-key-value-store-encoding-lineage-field-guide-2026-10-22/
+- **date_gmt**: 2026-10-22T17:07:08 (resolved at POST time)
+- **Result**: 1-POST 0-PATCH. featured_media=0.
+- **Shape**: 0 body H1, 8 H2, 3 highlight-cards, 1 article-poster, 4 images, 0 lists. 2461 words of HTML.
+- **Anchors**: 6 elysia links, all validated against tool-manifest.json (5 tool IDs + 1 kind-root /en/tools).
+- **Sources used**: manifest metadata.description + options + 2 real exampleResults
+  (431-byte redis-server 7.2.4 RDB with CRC-64 valid + keyspace diff; 5-packet memcached binary chain).
+- **Pitfalls hit this run**:
+  1. `requests`/urllib3 SSLEOFError against blog.flowrust.com while `curl` returned 200
+     (Cycle #54 class) -> whole transport swapped to curl subprocess.
+  2. Tofu pre-flight regex with `\u1F150` in a character class: `re` only supports
+     4-hex-digit `\uXXXX`, so it parsed as `\u1F1` + literal '5' and matched plain ASCII
+     letters. Rebuilt with `chr()` loops + a self-test that asserts ASCII is NOT matched.
+  3. `entry-content` extractor: `rfind('<div', 0, class_index)` walked depth from the
+     wrong div and returned a 2,398-byte truncated span -> all-zero counts (Cycle #61 trap).
+     Anchoring on the matched opening tag fixed it (23,095 bytes).
+  4. Whole-page `<p>` balance read -11: theme chrome (`<p class="site-description">`,
+     `<p class="ss-social-share-label">`) opens `<p>` with attributes. Balance must be
+     counted attribute-aware AND scoped to entry-content.
+- **Duplicate media**: the upload-verify re-ran and re-uploaded (`poster-74`/`card*-64`
+  then `poster-75`/`card*-65`). Live post uses the -75/-65 set; the -74/-64 set is
+  orphaned media-library rows, not referenced by the post.
