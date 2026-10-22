@@ -1,0 +1,39 @@
+page HTTP: 200
+page bytes: 113937
+
+=== RENDERED DOM (theme chrome stripped) ===
+  body h1          : 0 (expect 0)
+  body h2          : 8 (expect 8)
+  body h3          : 0 (expect 0)
+  highlight-cards  : 3 (expect 3)
+  article-poster   : 1 (expect 1)
+  li (authored 15) : 19
+
+  H2 texts:
+    [0] What the Tool Actually Stores Inside Your PNG
+    [1] The 12-Byte Header That Breaks Sequential Extractors
+    [2] Scattering the Payload With a Seeded Permutation
+    [3] Why Chi-Square Catches LSB Embedding
+    [4] Reading the Falling-P Curve Across Channels
+    [5] The Bit-Plane Preview and Entropy Statistics
+    [6] Interoperability With Other Steganography Tools
+    [7] A Reproducible Embed, Detect, and Verify Workflow
+
+=== FULL-PAGE THEME CHECK (unmodified <article>) ===
+  DOM h1 (incl entry-title): 1 (expect 1)
+  DOM h2 (incl post-nav)   : 9 (expect 9 = 8 body + 1 nav)
+  total li (incl share)    : 19 (expect ~19 = 15 + 4 share)
+
+=== IMG ALT ATTRIBUTE COVERAGE (article only) ===
+  imgs in article: 6 | missing alt: 0
+
+=== WPDPAGEDOM: list integrity ===
+  orphan </p> after </figure>: 0
+  <ul> immediately followed by </p>: 0
+  li closed by </p>          : 0
+  empty <p></p>             : 0
+  lead-phrase occurrences   : 1 (expect 1)
+  <code> opens/closes       : 2 / 2
+  <pre> blocks              : 0
+
+VERDICT: PASS
