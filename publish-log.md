@@ -629,3 +629,17 @@ All HTTP 200 verified. The hub anchor triggered `validate_anchors()`'s "alternat
 - **Structure**: 0 body h1 / 8 h2 / 0 h3 / 3 highlight-card / 1 article-poster / 0 pre.
 - **Anchors**: 4x tool + 1 kind-root + 1 samples, all manifest-validated.
 - **Archive**: `2026-10-22-boolean-algebra-simplifier-field-guide-when-four-literals-collapse-to-one-gate-and-a-karnaugh-map-proves-it-2026-10-22/`
+
+
+## 2026-10-22 15:25 UTC — 5h AUDIT cycle #61 — 5/5 in-scope clean, 0 PATCH
+
+- **Scope**: WP 8533 / 8528 / 8523 / 8518 / 8505 (latest 5, all English field guides). RAW 5, IN-SCOPE 5, DIRTY 0.
+- **Result**: 41st consecutive clean cycle. 0 PATCH round-trips. `audit_post_content` = 0 findings on all 5.
+- **Structure**: 0 body h1 / 8 h2 / 0 h3 / 3 highlight-card / 1 article-poster on all 5 (9 DOM h2 = 8 body + post-nav chrome).
+- **Assets**: 20/20 image URLs pass ranged-GET magic-byte + dimension check (poster 1080x800, cards 1600x900).
+- **Anchors**: 16 elysiatools anchors across the batch, 0 phantom (manifest-validated).
+- **Env**: origin healthy on ladder rung 1 (example.com 200, wp-json 200 unauth+authed); no proxy vars set.
+- **Browser backend DOWN** (`npm ERR! 404 cdp-url`) — used canonical curl rendered-page fallback (balanced-depth `entry-content`, chrome stripped by class).
+- **Detector lessons (3, all in the audit script — 0 post defects)**: (1) an all-zero structural count is a BROKEN PROBE, not a clean post — first pass audited the `?context=edit` body, which has no `entry-content` wrapper, so 11 checks ran vacuously on `""` and reported 0 findings; (2) orphan-`</li>` detector wrong in both directions — flag only when the NEWLINE-STRICT detector fires (equality is the PASS condition), and `</li>` followed by `</ul>`/`</ol>` is a legitimate last item, not an orphan — authoritative test is ul/ol/li tag balance; (3) `IMG_NOT_SELF_CLOSED` is a false positive on the HTML5 void `<img>` — check for a genuinely unterminated tag or missing alt, and confirm against a control post before PATCHing.
+- **Constant-delta check**: live-vs-REST `<p>` delta = +1 on all 5 independently authored posts = theme chrome (Cycle #59 rule), not wpautop corruption.
+- **Ref**: `~/.hermes/skills/wordpress-rest-api-publishing/references/jarvis-5h-audit-session-2026-10-22-1525-utc.md`
