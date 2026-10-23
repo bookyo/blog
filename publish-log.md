@@ -741,3 +741,50 @@ references/jarvis-5h-audit-session-2026-10-23-0630-utc.md
 - **Result:** 1-POST 0-PATCH, `status: publish` on first POST
 - **Notes:** PIL pre-measure gate caught 7 overflows pre-render (4 labels, 2 auto-shrunk counts, 1 panel header) — first asset set clean on first `vision_analyze`. `pre_encode_backslash` pre-empted the backslash PATCH. Browser backend down (`cdp-url` npm E404) → curl rendered-page fallback.
 - **Reference:** `references/cron-session-clean-post-8557-unicode-bidi-paired-bracket-rule-explainer-2026-10-23.md`
+
+## 2026-10-23 06:55 UTC — Audit Cycle #64 — 5/5 in-scope CLEAN, 0 PATCH
+
+- Posts audited: 8557, 8552, 8547, 8542, 8533 (latest 5, all English, 0 out-of-scope).
+- Result: **5/5 in-scope CLEAN, 0 PATCH round-trips.** 44th consecutive clean cycle.
+- Structure verified on THREE independent surfaces (REST raw + REST rendered + live permalink):
+  0 body h1 / 8 body h2 / 0 body h3 / 3 highlight-card figures / 1 article-poster figure /
+  4 img on every post; `p` tags balanced; 0 nested `<p>` in h2/h3; 0 trailing duplicate closes.
+- Canonical `audit_post_content()` returned `[]` on all 5 posts.
+- Theme chrome constant across all 5 (no per-post delta => no wpautop list corruption):
+  post-nav `h2` = 1 (outside `entry-content` under Bloglo), share-widget `li` = 4
+  (`ul.ss-social-icons-container`, stripped by class). Live body `li` == REST `li` on all 5.
+- Images: **20/20 HTTP 200** (poster + 3 cards x 5 posts).
+- elysia anchors: 27 total, **0 phantom** — every slug resolves to a real
+  `tool-manifest.json` ID (3085 entries) or to a real index page.
+- `li=0` posts (8557, 8542, 8533) verified against archived source under `~/www/blog/`
+  (`article.md` has 0 markdown list items) => authored without lists, NOT the WP 8505
+  collapsed-list defect. No PATCH (Cycle #59 rule b).
+
+### Three false positives triaged this cycle (each would have cost a PATCH)
+
+1. **Live-page `</li><li>` is Bloglo minification, not corruption.** REST
+   `content.raw` keeps `</li>\n<li>`; the rendered live page strips the inter-tag
+   newline, so a newline-strict orphan detector fires on every list item. Run the
+   orphan-`</li>` detector against **REST raw**, not the live page. Authoritative test
+   remains tag balance + 0 `<li>` outside any list. (WP 8547 = 34 same-line,
+   WP 8552 = 12 same-line; both clean.)
+2. **The skill anchor validator cannot see bare index links.** `ANCHOR_RE` requires a
+   slug segment, so `https://elysiatools.com/en/tools` and `/en/samples` never match —
+   while an independent raw-`href` scan does. Exclude bare index links from the
+   independent scan and compare **unique** hrefs (repeated links to the same tool are
+   legitimate: WP 8557 x2, WP 8533 x4) before flagging a method mismatch.
+3. **`/en/tools` and `/en/samples` are real listing pages** — confirmed by `<title>`
+   ("Browse the tool catalog" / "Explore sample collections") and 12 child links each.
+   The "Page not found" 404 marker is present in EVERY page's Next.js payload,
+   including real tool pages, so a body-text 404-marker scan is NOT a validity
+   discriminator. Use `<title>` + child-link count instead.
+
+### Environment
+
+- Ladder: root 200 / wp-json unauth 200 / wp-json authed 200 / example.com 200.
+- Browser backend DOWN again (`npm ERR! 404 'cdp-url@latest' is not in the npm
+  registry`) -> curl rendered-page fallback used for all live DOM checks.
+- `env | grep -i proxy` -> empty; `--noproxy '*'` on every curl.
+- `article-writer/templates/` still GONE; all canonical modules under
+  `wordpress-rest-api-publishing/` (imported in place, no `cp` into `/private/tmp`).
+- Reference: `references/jarvis-5h-audit-session-2026-10-23-0655-utc.md`
