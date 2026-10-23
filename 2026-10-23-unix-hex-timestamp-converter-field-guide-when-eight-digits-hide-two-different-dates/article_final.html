@@ -1,0 +1,56 @@
+<figure class="article-poster"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/10/poster-77.png" alt="Cover illustration for the Unix Hex Timestamp Converter field guide, showing a hex timestamp decoded into every output form." width="1080" height="800" /></figure>
+<p><strong>A hex timestamp is a byte string wearing a number's clothes.</strong> Read as written, <code>0x5F6B3A2F</code> decodes to a plausible 1995 date; reverse those same four bytes and you get a real 2020 log entry. Almost every bad hex timestamp traces back to that ambiguity rather than to a broken conversion, so the fix is a reading rule, not a better parser.</p>
+<p>The <a href="https://elysiatools.com/en/tools/unix-hex-timestamp-converter">Unix Hex Timestamp Converter</a> exists for exactly this class of problem. It takes a hex seconds value, a bare 8-digit hex value, decimal seconds, decimal milliseconds, or a plain date, and hands back every form of that instant at once: ISO 8601 in UTC, decimal seconds, decimal milliseconds, and both hexadecimal outputs.</p>
+<h2>The Four Input Kinds the Converter Recognises</h2>
+<p>The tool classifies what you paste before it converts anything, and reports that classification back to you as an input kind. That label matters, because the four kinds are not interchangeable.</p>
+<ul>
+<li><strong>Hex seconds.</strong> Either prefixed, as in <code>0x5F6B3A2F</code>, or bare, as in <code>5F6B3A2F</code>. Both are the same 32-bit value.</li>
+<li><strong>Decimal seconds.</strong> A 10-digit number like <code>1600862767</code>, the form most APIs emit.</li>
+<li><strong>Decimal milliseconds.</strong> A 13-digit number like <code>1600862767000</code>, the form JavaScript, Java, and most telemetry pipelines emit.</li>
+<li><strong>A date.</strong> Any parsable date string, useful when the log gave you a rendered timestamp instead of a number.</li>
+<p></ul></p>
+<p>Alongside the text field there is a byte-order selector with two choices: big-endian, described as as written, and little-endian, described as reverse bytes. Default is big-endian, which is the correct assumption for a value a human typed or a network protocol carried.</p>
+<p>If your workflow is decimal-first and hex is incidental, a dedicated <a href="https://elysiatools.com/en/tools/timestamp-converter">Timestamp Converter</a> handles that direction without the byte-order decision in the way.</p>
+<h2>Why Timestamps End Up Hexadecimal in the First Place</h2>
+<p>A Unix timestamp is a 32-bit unsigned integer. Written in hexadecimal it occupies exactly eight digits, which is exactly four bytes, which is one 32-bit word. That is a very good fit for the places these values actually show up.</p>
+<p>Embedded firmware writes timestamps into fixed-width struct fields, so a dump of a device buffer naturally shows eight hex digits per timestamp. Hexdumps of network traffic do the same thing. C headers with precomputed constants render times as hex literals. Processor register and memory dumps from a debugger print in hex by default. In every one of those cases the eight digits are the machine's own word, not a display choice.</p>
+<p>The consequence is that a hex timestamp is not primarily a number you converted into hex for readability. It is a field of bytes that happens to be printable. Reading it means deciding which of several conventions the field follows, and the digit count is the cheapest clue you have.</p>
+<h2>The Digit-Count Rule You Should Apply First</h2>
+<p>Before parsing anything, count the hex digits. The count tells you the field width, and the field width tells you the unit.</p>
+<ul>
+<li><strong>Eight hex digits</strong> is a 32-bit value, which means seconds. The decimal range spans <code>268435456</code> to <code>4294967295</code>, which is 1978 through 2106 for a sane epoch.</li>
+<li><strong>Eleven or twelve hex digits</strong> is a 5 or 6 byte value, which means milliseconds. An eleven-digit hex number covers the millisecond range well past the year 2000.</li>
+<li><strong>Sixteen hex digits</strong> is a 64-bit value, which is usually microseconds or nanoseconds.</li>
+<p></ul></p>
+<p>Run this check mentally before you trust any decoded output. A value with eight digits that decodes to a year in 1978 may well be correct; a value with eight digits that decodes to 2306 is far more likely milliseconds that lost a digit somewhere upstream.</p>
+<h2>Worked Example: Decoding 0x5F6B3A2F</h2>
+<p>Take the canonical value. <code>0x5F6B3A2F</code> is eight hex digits, so by the rule above it is 32-bit seconds. Converting to decimal gives <code>1600862767</code>, and that instant in UTC is <code>2020-09-23T12:06:07.000Z</code>.</p><figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/10/card1-67.png" alt="Card showing one hex timestamp value converted into ISO 8601 UTC, decimal seconds, decimal milliseconds, and hexadecimal milliseconds." width="1600" height="900" loading="lazy" /></figure>
+<p>The same instant in the other forms is worth writing down, because this is what you paste into a bug report or a log annotation:</p>
+<ul>
+<li>ISO 8601 UTC: <code>2020-09-23T12:06:07.000Z</code></li>
+<li>Decimal seconds: <code>1600862767</code></li>
+<li>Decimal milliseconds: <code>1600862767000</code></li>
+<li>Hexadecimal milliseconds: <code>0x174BADB4798</code></li>
+<p></ul></p>
+<p>Notice that the milliseconds value is not the seconds value with three zeros appended in hex. It is the seconds value multiplied by one thousand, then re-rendered, which is why it grows to eleven digits. Anyone expecting <code>0x5F6B3A2F000</code> will be off by a wide margin, and that mistake is common enough to be worth naming.</p>
+<h2>The Byte-Order Trap That Yields a Plausible Wrong Date</h2>
+<p>Now the case that motivates the byte-order switch. Take the value <code>2F3A6B5F</code>. Read as big-endian it is <code>792357727</code>, which is a perfectly valid timestamp: <code>1995-02-09T19:22:07Z</code>.</p><figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/10/card2-67.png" alt="Card comparing the same four bytes read as big-endian and as little-endian, producing a 1995 date and a 2020 date." width="1600" height="900" loading="lazy" /></figure>
+<p>But suppose the field was actually written by a little-endian producer. Reverse the four bytes and <code>2F3A6B5F</code> becomes <code>0x5F6B3A2F</code>, which is <code>1600862767</code>, which is <code>2020-09-23T12:06:07Z</code> — the exact instant from the previous section.</p>
+<p>This is the dangerous failure mode precisely because the wrong answer looks right. A 1995 date in a 2026 log does get noticed. A misread that lands somewhere in the plausible present does not. When a decoded timestamp looks odd but valid, flip the byte order before you go looking for a data problem.</p>
+<h2>Seconds Versus Milliseconds, Seen From the Hex Side</h2>
+<p>The same year looks very different in the two units. Today's epoch seconds at midnight UTC is <code>1792713600</code>, which is <code>0x6ADAA380</code> — eight hex digits. The same instant in milliseconds is <code>1792713600000</code>, which is <code>0x1A1660EAC00</code> — eleven hex digits.</p><figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/10/card3-67.png" alt="Card explaining that hex digit count determines the field width and therefore the time unit." width="1600" height="900" loading="lazy" /></figure>
+<p>Two practical rules follow. First, a seconds field and a milliseconds field never share a hex length, so length alone disambiguates them. Second, when you are comparing a hex field against a value your API printed in decimal, match the lengths before comparing the values, or the comparison will look like a data corruption when it is only a unit mismatch.</p>
+<h2>Five Checks Before You Trust a Decoded Timestamp</h2>
+<p>Run these in order. They take under a minute and catch nearly every wrong answer.</p>
+<ul>
+<li><strong>Count the digits.</strong> Eight means seconds. Eleven or twelve means milliseconds. Sixteen means microseconds or nanoseconds.</li>
+<li><strong>Confirm the byte order.</strong> If the instant is plausible but wrong, the field was probably little-endian.</li>
+<li><strong>Check the decade.</strong> A 1995 result from a 2026 device usually means the byte order is flipped, not that the clock is.</li>
+<li><strong>Fix the timezone explicitly.</strong> The output above is UTC. If your incident timeline is local time, convert deliberately instead of assuming.</li>
+<li><strong>Validate the date you derived.</strong> A general <a href="https://elysiatools.com/en/tools/date-time-validator">Date and Time Validator</a> catches malformed input before it reaches a downstream parser.</li>
+<p></ul></p>
+<h2>Where Hex Timestamps Turn Up in Real Systems</h2>
+<p>Network timekeeping is the most common source, because NTP encodes its era and offset fields in hex-adjacent binary structures. If your problem involves leap seconds or era rollover rather than plain unit conversion, the <a href="https://elysiatools.com/en/tools/ntp-rfc-5905-sntp-leap-second-epoch-decoder">NTP RFC 5905 SNTP Leap Second and Epoch Decoder</a> handles the era logic the simple converter deliberately skips.</p>
+<p>Token-based systems are the second. A JWT carries <code>iat</code> and <code>exp</code> as JSON numbers that a hex-oriented debugger will render as eight hex digits. When you are reading one by hand, decode the claims first with a <a href="https://elysiatools.com/en/tools/jwt-decoder">JWT Decoder</a>, then convert the timestamps you find.</p>
+<p>The third is raw log triage. When you need to see how bytes map to printable characters alongside a timestamp field, the <a href="https://elysiatools.com/en/samples/text-hex-unicode-formats">text-hex-unicode-formats sample</a> shows the same bytes in three renderings. For everything else in the catalog, browse the full set of <a href="https://elysiatools.com/en/tools">tools on elysiatools.com</a>.</p>
+<p>The rule worth remembering is short. Count the digits to get the width, use the width to get the unit, and when the result is plausible but wrong, suspect byte order before you suspect the data.</p>

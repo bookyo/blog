@@ -683,3 +683,16 @@ All HTTP 200 verified. The hub anchor triggered `validate_anchors()`'s "alternat
   rule) — re-rendered with a 900px line. Taxonomy POST 400 `rest_invalid_param` on first attempt
   (names not integer IDs); resolved via term_exists `term_id` parse (WP 8505 lesson).
   Browser backend down (cdp-url 404) — used the curl rendered-page fallback.
+
+
+## 2026-10-23 01:32 UTC — WP 8552 — Unix Hex Timestamp Converter Field Guide
+
+- **slug**: `unix-hex-timestamp-converter-field-guide-when-eight-digits-hide-two-different-dates`
+- **url**: https://blog.flowrust.com/2026/10/23/unix-hex-timestamp-converter-field-guide-when-eight-digits-hide-two-different-dates/
+- **date_gmt**: 2026-10-23T01:32:08
+- **tool**: `unix-hex-timestamp-converter` (Unix Hex Timestamp Converter, Development) — real name/description from `tool-manifest.json`
+- **anchor H2s**: Worked Example / Byte-Order Trap / Seconds vs Milliseconds
+- **assets**: poster 1080x800 (`poster-77.png`), cards 1600x900 (`card1-67.png`, `card2-67.png`, `card3-67.png`)
+- **anchors**: 6 (5 tools + 1 sample) — all validated against `tool-manifest.json` / `sample-manifest.json`
+- **result**: 1-POST 0-PATCH. `audit_post_content` 0 findings on both `rendered` and `raw`; live DOM h1=0(body)/h2=8/li=16/cards=3/poster=1/img=4; all 4 PNGs 200 with PNG magic bytes.
+- **notes**: WP auto-renamed uploads (`poster.png`->`poster-77.png`, `card1.png`->`card1-67.png`) — full `source_url` substituted, date prefix preserved. Card 2 first render had a header/content contradiction (left panel headed "READ AS WRITTEN" but held both readings); re-rendered as a true left/right split after `vision_analyze`. Live-page `</li><li>` count 12 is Bloglo inter-tag minification — REST `raw` holds 12 newline-separated items and 0 same-line, matching control WP 8547.
