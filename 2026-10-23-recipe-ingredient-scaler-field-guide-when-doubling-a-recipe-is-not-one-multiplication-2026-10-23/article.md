@@ -1,0 +1,75 @@
+Doubling a recipe is not one multiplication. The <strong>Recipe Ingredient Scaler</strong> treats a recipe as five different kinds of line, and only one of them is a plain volume you can multiply by two.
+
+A cookie batch at 24 servings, scaled to 48, is the clean case: 2¼ cups of flour becomes 540 g, a full cup of butter becomes 455 g, chocolate chips go from 2 cups to 510 g, and two eggs become four. Every one of those is the same arithmetic applied four times. Salt is not. At a doubled batch, 1 tsp of salt does not become 2 tsp — it becomes roughly 1.8 tsp along a sub-linear curve, because saltiness is a ratio and ratios do not scale the way masses do. And a line reading "salt and pepper, to taste" has no quantity to scale at all, so it passes through untouched. Open the tool at [Elysia Tools](https://elysiatools.com/en/tools/recipe-ingredient-scaler) and paste your own list in.
+
+## The factor is one number, and it is not the whole story
+
+Every scaler starts the same way. You declare an original serving count and a target serving count, and the tool divides:
+
+<blockquote>factor = target_servings / original_servings</blockquote>
+
+For 24 to 48 that is 2.0. For 6 to 3 it is 0.5. That single number is correct for bulk ingredients and wrong for three other categories of line, which is why "multiply the whole recipe by two" produces a batch that is technically bigger and noticeably worse.
+
+The factor also feeds a second conversion. If you ask for metric output, each volume line needs a density before it can become grams, and that density is a property of the ingredient rather than of the recipe. Flour at 120 g per cup is a packing measurement, not a fundamental constant. The tool carries a per-ingredient density table covering more than seventy common baking foods, and it is worth knowing that this table is an empirical convenience rather than a law of physics.
+
+## Parsing the line before scaling the number
+
+The genuinely hard part is not the arithmetic. It is extracting a quantity from a line of text that a human wrote for a human reader. Recipe lines are inconsistent in ways that break naive parsers, and the scaler handles five shapes explicitly.
+
+A <strong>mixed number</strong> is the most common: `2 1/4 cups all-purpose flour` is a whole part plus a vulgar fraction sharing a single quantity. A <strong>unicode fraction</strong> is a single glyph with no slash character at all — the character U+00BC rather than the two ASCII characters `1/4`, which means the parser cannot look for a `/` and must handle the codepoint. A <strong>range</strong> such as `2-3 tbsp olive oil` carries two bounds, and scaling has to move both ends rather than picking one. An <strong>ingredient with no quantity</strong> — "salt and pepper, to taste" — has nothing to compute, so the line is copied through verbatim and flagged as unscaled. Finally, a line can carry a <strong>qualifier that is not a quantity</strong> at all: "3 cloves garlic, minced" is three cloves that need to become one and a half, which is not a number you can put in a measuring cup.
+
+That last case is where most scaling advice goes wrong. A clove is a count, not a volume, so it scales like one but renders with a fraction because the cook will be halving actual cloves.
+
+## Volume, weight, and the density table
+
+Once a quantity is extracted, the unit decides what happens next. Volume units — cups, tablespoons, teaspoons — can be rescaled directly in their own system, because 1 tbsp is 1 tbsp regardless of the batch. That is why the "keep original units" mode produces correct results for most recipes with no density lookup at all.
+
+Converting volume to weight requires the density table, and the numbers are ingredient-specific rather than universal. In the cookie example, 2¼ cups of all-purpose flour at 120 g per cup gives 540 g; 1 cup of softened butter at 227 g per cup gives 455 g, and the manifest's own worked example asserts exactly that figure. Those two numbers encode different physical realities: flour is a porous solid whose "cup" depends on how firmly you packed it, while butter is nearly water-dense and its cup is a genuine volume.
+
+This is also the honest limit of the tool. The density table gives you a good default, not a measurement. If your recipe's flour came from a dense scoop rather than a level one, the grams will be off, and no conversion table can recover the difference.
+
+## Why seasoning scales on a curve
+
+Salt, spices, and extracts get special treatment because a doubled batch does not want doubled seasoning. The tool applies a sub-linear exponent to those lines, with the plain linear value still shown underneath so nothing is hidden. Doubling lands at roughly 1.8x rather than 2.0x, which reflects how a doubled volume of dough is already more heavily seasoned through dilution effects than the ratio alone suggests.
+
+The curve is a heuristic, and heuristics have opinions baked in. It assumes your doubled batch behaves like one batch, not like two batches baked side by side and merged. If you are scaling a soup by doubling it, doubling the salt outright is closer to correct. The distinction is that dry baked goods concentrate differently than liquid ones, and the tool applies the same curve to both because it cannot tell from the line alone. The <strong>smart seasoning</strong> toggle exists for exactly this reason — turn it off when you know your recipe wants a straight multiplication.
+
+## When a double turns into a quadruple
+
+Scaling by two is where the arithmetic still looks like arithmetic. Scaling by four or eight is where it stops being one, because the same quantity starts to mean different things at different batch sizes. A factor of 4 on 2¼ cups of flour is a clean 9 cups, and a clean 9 cups is also a lot of dough that will outgrow a home oven and change its bake time.
+
+The factor itself never grows up and warns you. Neither does the density table, which keeps returning the same grams per cup whether you are making a snack or a party batch. This is the honest boundary of the tool: it computes quantities correctly and says nothing about whether the result fits your equipment, your oven, or your afternoon. If the target count takes you past a double, the arithmetic is still right, but treat it as a prompt to divide the work back into separate batches rather than a licence to commit everything at once.
+
+The same reasoning applies to the seasoning curve, which is tuned around modest factors. It is a better model at 1.5x than at 8x, because at large factors "slightly less than linear" is doing more work than the underlying arithmetic of a recipe can justify. Turn <strong>smart seasoning</strong> off and apply your own judgment when you cross into factors above three.
+
+## A line-by-line read of the doubled batch
+
+The cookie example is worth reading in full, because it is the clearest single demonstration of all five decisions in one output. Nine lines go in at 24 servings.
+
+<ul>
+<li><strong>2 1/4 cups all-purpose flour</strong> becomes 540 g: mixed number parsed, doubled, then converted at 120 g per cup.</li>
+<li><strong>1 tsp baking soda</strong> becomes 2 tsp: seasoning line, sub-linear curve applied, linear value shown underneath.</li>
+<li><strong>1 tsp salt</strong> becomes roughly 1.8 tsp: the same curve, and the one place where 2.0x would have been wrong.</li>
+<li><strong>1 cup butter, softened</strong> becomes 455 g: linear volume doubled, then converted at 227 g per cup. The word "softened" is a state, not a quantity, and it carries through untouched.</li>
+<li><strong>3/4 cup granulated sugar</strong> and <strong>3/4 cup packed brown sugar</strong> both become 1 1/2 cups: identical arithmetic, different ingredients, and "packed" survives into the output because it changes how you measure.</li>
+<li><strong>2 large eggs</strong> become 4 large eggs: a count, scaled by doubling and rendered as whole units with the adjective intact.</li>
+<li><strong>2 cups chocolate chips</strong> become 510 g, and <strong>1 tsp vanilla extract</strong> takes the seasoning curve.</li>
+</ul>
+
+Only two of those nine lines are pure multiplication. That ratio is the whole point: a scaler that treats all nine identically will get seven of them approximately right and the two that matter most for flavor wrong.
+
+## Counts, rounding, and the lines that stay whole
+
+Scaling down is where counts get interesting. A 6-serving soup halved to 3 gives 1 tbsp of oil becoming ½ tbsp, and 4 cups of broth becoming 2 cups. Those are exact. But 1 onion becomes 1 onion, not half an onion, because nobody peels half a medium onion and calls it a recipe. Three cloves of garlic become 1½, because the cook is being told to use a clove and a half and will do exactly that.
+
+This is a real distinction from volume, and conflating them is how a "halved" recipe ends up with ½ onion and a panic in the prep kitchen. Counts round to whole numbers where the item is divisible — onions, carrots, eggs, cloves — and preserve fractions where the cook can genuinely use them, as with garlic. <strong>1 large carrot</strong> rather than 1 carrot also carries the adjective forward, because "large" was information in the original line and dropping it silently changes the dish.
+
+If you want to see the same machinery working on a different scale, the [tablespoon to teaspoon converter](https://elysiatools.com/en/tools/tablespoon-to-teaspoon) and [cup to ounce converter](https://elysiatools.com/en/tools/cup-to-oz) handle pure unit conversion with none of the density guessing, and the [volume unit converter](https://elysiatools.com/en/tools/volume-converter) covers the wider unit table if you are working outside the kitchen.
+
+## Reading the output like a recipe, not like a spreadsheet
+
+The output format matters more than it sounds. A scaler that prints `0.375 cup` has technically produced the right number and practically given you a worse recipe than one that printed `6 tbsp`. Kitchen-friendly fraction rendering is not a cosmetic preference — it is the difference between a number you can act on and a number you have to convert in your head at 6am.
+
+The same logic drives the count handling and the untouched lines. A line flagged as unscaled is not a failure; it is the tool telling you it deliberately left your "to taste" alone, which is more honest than multiplying a quantity that does not exist.
+
+Scaling is not arithmetic. It is a set of decisions about which quantities are physical, which are ratios, and which were never quantities at all. Get those three right and a doubled recipe scales cleanly; get them wrong and no amount of precise arithmetic saves the batch. Run your own list through the [Recipe Ingredient Scaler](https://elysiatools.com/en/tools/recipe-ingredient-scaler), and explore the rest of the catalog at [elysiatools.com](https://elysiatools.com/en/tools).

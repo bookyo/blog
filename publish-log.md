@@ -788,3 +788,21 @@ references/jarvis-5h-audit-session-2026-10-23-0630-utc.md
 - `article-writer/templates/` still GONE; all canonical modules under
   `wordpress-rest-api-publishing/` (imported in place, no `cp` into `/private/tmp`).
 - Reference: `references/jarvis-5h-audit-session-2026-10-23-0655-utc.md`
+
+
+## 2026-10-23 10:02 UTC — WP 8566 — Recipe Ingredient Scaler Field Guide
+
+- **Title:** Recipe Ingredient Scaler Field Guide: When Doubling a Recipe Is Not One Multiplication
+- **URL:** https://blog.flowrust.com/2026/10/23/recipe-ingredient-scaler-field-guide-when-doubling-a-recipe-is-not-one-multiplication-2026-10-23/
+- **Tool:** `recipe-ingredient-scaler` — Recipe Ingredient Scaler (Math & Numbers)
+- **date_gmt:** 2026-10-23T10:02:52
+- **Result:** 1-POST, 0-PATCH
+- **Structure:** 0 body h1 / 8 h2 / 0 h3 / 1 poster / 3 highlight cards / 4 imgs / 25 p balanced
+- **Assets:** poster 1080x800 (id 8562, poster-83.png), cards 1600x900 (ids 8563/8564/8565, card*-69.png)
+- **Anchors:** 5 unique elysia hrefs, all real tools; 4 tool links + 1 catalog root; 0 phantom
+- **QA:** PIL pre-measure gate (caught 5 overflows pre-render) + vision_analyze on all 4 assets;
+  card 2 title/tile-count mismatch fixed pre-upload; card 3 corrected against manifest assertions
+- **Audit:** audit_post_content 0 findings; 9/9 URLs HTTP 200; live DOM h1=0 h2=8 h3=0 cards=3
+  poster=1 li=11 (7 body + 4 share widget); browser backend down (cdp-url npm404) -> curl fallback
+- **Operator notes:** local http_proxy=127.0.0.1:1081 is dead, every curl needs --noproxy '*';
+  sibling cron job was writing /tmp/wp_* concurrently, used /tmp/wp_ris_* paths
