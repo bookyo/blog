@@ -892,3 +892,47 @@ references/jarvis-5h-audit-session-2026-10-23-0630-utc.md
   fetched 200 on first attempt (109–121KB).
 - **Skill:** added `references/jarvis-5h-audit-session-2026-10-23-1712-utc.md` + pointers
   in SKILL.md (condensed the resolved origin-outage narrative to stay under the 100K limit).
+
+---
+
+## 2026-10-23 23:25 UTC — WP 8582 — Subtitle Platform Spec Checker Field Guide
+
+- **Tool:** `subtitle-platform-spec-checker` — "Subtitle Platform Spec Checker" (category: Media).
+  Confirmed **unpublished** against the full-corpus WP-derived index
+  (`scripts/published_tool_index.py --refresh`: 446 tool-ids / 1,255 slug roots) and against
+  the latest-12 post list. Picked via `scripts/sparse_category_picker.py`.
+- **Title:** Subtitle Platform Spec Checker Field Guide: When One Cue Reads at 33.6 CPS and the Limit Is 20
+- **URL:** https://blog.flowrust.com/2026/10/24/subtitle-platform-spec-checker-field-guide-when-one-cue-reads-at-33-6-cps-and-the-limit-is-20/
+- **date_gmt:** 2026-10-23T23:25:03 (current UTC at POST time)
+- **Run shape:** 1-POST, 0-PATCH. `featured_media: 0`, status `publish` on first POST (no
+  `future` parking, so the two-step force-publish was not needed).
+- **Assets:** PIL poster 1080×800 + 3 highlight cards 1600×900, all uploaded via curl with a
+  3-attempt retry (card2 hit one transient SSL EOF, retried clean).
+  - poster → `poster-85.png` (id 8578), card1 → `card1-71.png` (8579), card2 → `card2-71.png` (8580), card3 → `card3-71.png` (8581)
+- **Card set (document order):** card3 = the CPS worked example (2-col input/output),
+  card2 = five checks on every profile (5-tile), card1 = four platform profiles (4-tile compact).
+- **Anchors (7, all validated against the manifest — 5 tools + 2 samples):**
+  `subtitle-platform-spec-checker`, `subtitle-reading-speed-localization-auditor`,
+  `subtitle-framerate-retime-converter`, `srt-sdh-annotation-cleaner`, `lrc-srt-converter`,
+  `srt-samples`, `vtt-samples`. All 7 re-verified live by the title + child-link discriminator
+  (not HTTP 200), all REAL.
+- **Article numbers are machine-checkable, not invented:** the 84-chars/2.5 s = 33.6 CPS
+  failure, the 4200 ms required duration, cueCount 4, failCount 1, verdict fail, and the
+  clean-file counterpart (0 failures / 0 warnings) all come from the tool's own
+  `metadata.exampleResults[].assertions`.
+- **Pre-POST gate:** 0 h1 / 8 h2 / 0 h3, p balance 21/21, 0 empty `<p></p>`, list balance
+  (5 li, 0 outside any list, 0 unclosed), 3 cards + 1 poster, 0 audit findings, 0 phantom
+  anchors, 1,829 words. `audit_post_content` = 0 findings.
+- **Post-publish audit:** REST `content.rendered` and the live DOM (balanced-depth
+  `entry-content` slice) both report h1=0 h2=8 h3=0 cards=3 poster=1 img=4, li=5
+  (+4 theme share-widget), 0 empty p, 0 pipe-leak, 0 raw italic/bold, 4/4 images with alt.
+  Live `naturalWidth` = 1080 / 1600 / 1600 / 1600. Poster + 3 cards visually reviewed in-page.
+- **Two of my own probe bugs caught before POST (both would have produced a false report):**
+  (a) the **curl upload status parser** used `rfind('@@')`, which returns the *second* `@@` of
+  a `@@<code>@@` pair and yielded an empty status — three uploads actually succeeded (201)
+  and were then retried, creating 3 duplicate poster attachments (8575/8576/8577), which were
+  force-deleted. Fixed with an explicit `@@HTTP:(\d+)@@END` marker regex.
+  (b) the **list-balance walker** popped the container stack on `</li>`, so every `<li>` after
+  the first item looked "outside its list" (4 false positives). `</li>` closes an ITEM, never
+  a container.
+- **Skill:** added `references/cron-session-clean-post-8582-subtitle-platform-spec-checker-2026-10-23.md`.
