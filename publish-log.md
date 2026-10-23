@@ -835,3 +835,16 @@ references/jarvis-5h-audit-session-2026-10-23-0630-utc.md
 - **Operator notes:** no local http_proxy this run; all curl used `--noproxy '*'`.
   WP 8542's live permalink failed its first fetch and succeeded on retry — the Cycle #61
   all-zero guard correctly halted the batch instead of reporting a vacuous clean.
+
+
+## 2026-10-23 14:28 UTC — WP 8572 — PQC & ZK Signature Verifier Auditor Field Guide
+
+- **Tool**: `ml-dsa-slh-dsa-fn-dsa-pqc-bbs-plus-plonk-halo2-zk-verifier` (PQC & ZK Signature Verifier Auditor, Cryptography)
+- **date_gmt**: 2026-10-23T14:28:58
+- **URL**: https://blog.flowrust.com/2026/10/23/pqc-and-zk-signature-verifier-auditor-field-guide-when-one-signature-name-hides-a-75x-spread-in-byte-sizes/
+- **Run**: 1-POST + 1-PATCH (2 empty `<p></p>` shells removed; byte-exact read-back verified)
+- **Shape**: 0 body h1 / 8 h2 / 0 h3 / 3 highlight cards / 1 article poster / 4 images / 1503 words
+- **Anchors**: 6 elysiatools links, all validated against tool-manifest + probed REAL (proper `<title>`, non-zero internal hrefs)
+- **Assets**: poster 1080x800 + 3 cards 1600x900, PIL pre-measure gate PASS (caught 2 overflows pre-render), all 4 clean on first `vision_analyze`
+- **Tooling defect fixed**: `scripts/validate_elysia_anchors.py` category whitelist was stale (`crypto` not `cryptography`) — replaced with manifest-derived `_load_category_slugs()` + `_category_slug()`; 15-case regression test
+- **Browser backend down** (`npm cdp-url` E404, 4th confirmation) — curl rendered-page fallback with balanced-depth `entry-content bloglo-entry` slice
