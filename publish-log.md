@@ -726,3 +726,18 @@ All HTTP 200 verified. The hub anchor triggered `validate_anchors()`'s "alternat
 
 Lesson recorded in the umbrella SKILL.md +
 references/jarvis-5h-audit-session-2026-10-23-0630-utc.md
+
+## 2026-10-23 05:47 UTC — WP 8557 — Unicode Bidi Paired Bracket Isolate Embedding CF Rule Explainer
+
+- **date_gmt:** 2026-10-23T05:47:25
+- **Tool:** `unicode-bidi-paired-bracket-isolate-embedding-cf-rule-explainer` (Text Processing) — UAX #9 bidi rule-by-rule explainer
+- **Title:** Unicode Bidi Rule Explainer Field Guide: When BD16 and N0 Put Your Brackets on the Wrong Side
+- **Slug:** `unicode-bidi-paired-bracket-isolate-embedding-cf-rule-explainer-field-guide-when-bd16-and-n0-put-your-brackets-on-the-wrong-side-2026-10-23`
+- **URL:** https://blog.flowrust.com/2026/10/23/unicode-bidi-paired-bracket-isolate-embedding-cf-rule-explainer-field-guide-when-bd16-and-n0-put-your-brackets-on-the-wrong-side-2026-10-23/
+- **Assets:** 1 poster (1080x800) + 3 cards (1600x900) = 4 uploads (WP media IDs 8553-8556; auto-renamed poster-78.png, card1-68.png, card2-68.png, card3-68.png)
+- **Anchors:** 5 total, 0 phantom — tool x2 (bidi explainer), `mirror-text`, `pdf-rtl-ltr-support`, category root `text-processing`
+- **Structure:** 0 body h1 / 8 body h2 / 0 body h3 / 3 highlight-card figures / 1 article-poster figure / 5 code spans / p balanced 20-20
+- **Audit:** `audit_post_content` 0 findings; live DOM h1=0 h2=8 h3=0 cards=3 poster=1 img=4 (all alt present, all 200); 0 wpautop artifacts; 0 duplicate/merged paragraphs
+- **Result:** 1-POST 0-PATCH, `status: publish` on first POST
+- **Notes:** PIL pre-measure gate caught 7 overflows pre-render (4 labels, 2 auto-shrunk counts, 1 panel header) — first asset set clean on first `vision_analyze`. `pre_encode_backslash` pre-empted the backslash PATCH. Browser backend down (`cdp-url` npm E404) → curl rendered-page fallback.
+- **Reference:** `references/cron-session-clean-post-8557-unicode-bidi-paired-bracket-rule-explainer-2026-10-23.md`
