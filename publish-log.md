@@ -848,3 +848,47 @@ references/jarvis-5h-audit-session-2026-10-23-0630-utc.md
 - **Assets**: poster 1080x800 + 3 cards 1600x900, PIL pre-measure gate PASS (caught 2 overflows pre-render), all 4 clean on first `vision_analyze`
 - **Tooling defect fixed**: `scripts/validate_elysia_anchors.py` category whitelist was stale (`crypto` not `cryptography`) — replaced with manifest-derived `_load_category_slugs()` + `_category_slug()`; 15-case regression test
 - **Browser backend down** (`npm cdp-url` E404, 4th confirmation) — curl rendered-page fallback with balanced-depth `entry-content bloglo-entry` slice
+
+## 5h audit cycle #66 — 2026-10-23 ~17:12 UTC
+
+- **Batch:** WP 8572, 8566, 8557, 8552, 8547 (5/5 in-scope English elysiatools articles, 0 OoS)
+- **Result:** 5/5 clean, **0 PATCH round-trips** (46th consecutive clean batch). Canonical
+  `audit_post_content` = 0 findings on all 5; independent live-page structural pass = 0 defects.
+- **Structure (live `entry-content`, all 5):** h1=0 h2=8 h3=0 cards=3 poster=1 imgs=4,
+  p balanced (23/26/21/24/29), 0 `<li>` outside a list, 0 unclosed lists, 0 `<p></p>`,
+  0 nested block inside an H2, 0 leftover `**`, 0 raw markdown links, 0 pipe-table leaks,
+  0 placeholder leaks. Page-level h1=1 (theme entry-title), h2=9 (+post-nav), h3=2 (comments).
+- **Anchors:** 30 unique elysia hrefs across the batch, 0 phantom (manifest validation PASS
+  on all 5; live probe confirms proper `<title>` + non-zero internal hrefs on every one).
+- **Images:** 20/20 HTTP 200 **and** decoded with PIL to confirm exact dimensions —
+  posters 1080×800, cards 1600×900. Stricter than a HEAD probe.
+- **ROOT CAUSE FOUND + FIXED — publish-side dedup was leaking duplicates:**
+  the pickers deduplicated against a **30-post window** (~5 days at the 4h cadence) plus a
+  `covered_slugs` state list that had **reset to 63 entries** against **1,255 distinct
+  tool-ids**. A full-corpus scan (all 1,345 published posts) found **68 tool-ids published
+  2–5× each** — `bom-character-remover` ×5, `recipe-ingredient-scaler` ×4,
+  `xlsx-csv-batch-converter` ×4, `tpn-osmolality-estimator` ×4, and 64 more.
+  New `scripts/published_tool_index.py` derives the published-tool-id set **from the WP REST
+  API itself** (self-maintaining, no state file to drift), recovering ids from BOTH the post
+  slug and the body anchors (slug-prefix alone finds only 446 of 1,121 — the manifest id
+  often differs from the slug root, e.g. `bom-character-remover` ↔ `data-bom-remover`).
+  Wired into `pick_tool_v4_content_based.py` + `sparse_category_picker.py` with try/except
+  degradation; state `covered_slugs` backfilled 63 → **2,142**.
+  **Verified: 68/68 previously-duplicated tool-ids now excluded** (each via its real
+  manifest id); eligible pool 2,047 stale → **1,582 fresh** tools. New self-test
+  `scripts/test_published_tool_index.py` (15 checks, all pass).
+- **Not touched (publish-side decision, out of audit scope):** the 68 existing duplicate
+  posts are still live. `scripts/trash_duplicate_post.py` exists for the operator.
+- **4 scanner traps caught in my own probes (all FALSY alarms, batch was clean):**
+  `<li>` counted open+close → constant 2× ratio vs live DOM; a bare-text probe that did not
+  track the block-container stack (45–232 hits/post → true value 0); a stray-`<` regex that
+  rejected `<tag attr="v">` (13–16 hits/post → true value 0); a "card immediately after H2"
+  check that ignores the canonical "after the first `<p>` following the H2" placement.
+- **`/en/categories/<slug>` returns HTTP 308** → `/en/tools?category=<slug>`; with `-L` it is
+  200 / ~150KB / proper title, i.e. a redirect, NOT a defect (WP 8557's cycle-65 href fix
+  re-verified intact: the phantom `/en/tools/text-processing` is absent).
+- **Browser backend down** (`npm cdp-url` E404, 5th confirmation) — curl rendered-page
+  fallback with the balanced-depth `entry-content bloglo-entry` slice; all 5 permalinks
+  fetched 200 on first attempt (109–121KB).
+- **Skill:** added `references/jarvis-5h-audit-session-2026-10-23-1712-utc.md` + pointers
+  in SKILL.md (condensed the resolved origin-outage narrative to stay under the 100K limit).
