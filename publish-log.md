@@ -696,3 +696,33 @@ All HTTP 200 verified. The hub anchor triggered `validate_anchors()`'s "alternat
 - **anchors**: 6 (5 tools + 1 sample) — all validated against `tool-manifest.json` / `sample-manifest.json`
 - **result**: 1-POST 0-PATCH. `audit_post_content` 0 findings on both `rendered` and `raw`; live DOM h1=0(body)/h2=8/li=16/cards=3/poster=1/img=4; all 4 PNGs 200 with PNG magic bytes.
 - **notes**: WP auto-renamed uploads (`poster.png`->`poster-77.png`, `card1.png`->`card1-67.png`) — full `source_url` substituted, date prefix preserved. Card 2 first render had a header/content contradiction (left panel headed "READ AS WRITTEN" but held both readings); re-rendered as a true left/right split after `vision_analyze`. Live-page `</li><li>` count 12 is Bloglo inter-tag minification — REST `raw` holds 12 newline-separated items and 0 same-line, matching control WP 8547.
+
+
+## 2026-10-23 01:45 UTC - 5h audit cycle #63 (audit-only, no publish)
+
+- Scope: latest 5 published posts, 0 out-of-scope. Audited: 8552, 8547, 8542, 8533, 8528.
+- Result: **5/5 in-scope CLEAN, 0 PATCH round-trips.** 43rd consecutive clean cycle.
+- Structure (REST raw + REST rendered + live permalink, all three independent):
+  0 body h1 / 8 body h2 / 3 highlight-cards / 1 poster / 4 img on every post.
+- Theme chrome constant across all 5 (no per-post delta => no wpautop list corruption):
+  post-nav h2 = 1 (outside entry-content under Bloglo), share-widget li = 4 (stripped by class).
+- Images: 20/20 HTTP 200 (poster + 3 cards x 5 posts).
+- elysia anchors: 35 total, **0 phantom** - all resolve to real tool-manifest IDs
+  (3085 entries) or kind roots (/en/tools, /en/samples).
+- WP 8542 and WP 8533 report li=0: verified against archived source under ~/www/blog/
+  (article.md has 0 markdown list items) => authored without lists, NOT the WP 8505
+  collapsed-list defect. No PATCH (Cycle #59 rule b).
+
+### Two audit-probe bugs caught this cycle (both would have faked a clean report)
+
+1. `doc[start:t.end()]` in the balanced `entry-content` slicer - `t.end()` is relative
+   to `doc[start:]`, so the slice was always ''. All live checks ran vacuously
+   (`ec_bytes=0` on 5/5). Fixed to `doc[start:start + t.end()]`. The Cycle #61 all-zero
+   guard is what surfaced it.
+2. Anchor URL built as the literal string "'https' + '://elysiatools.com/...'"
+   (quotes included when adapting the hostname-scanner workaround), so href= never
+   matched and every post reported 0 anchors / 0 phantom - the exact shape of a pass
+   produced by a total scan failure. Re-derived with an independent regex: 35 anchors.
+
+Lesson recorded in the umbrella SKILL.md +
+references/jarvis-5h-audit-session-2026-10-23-0630-utc.md
