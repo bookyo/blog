@@ -806,3 +806,32 @@ references/jarvis-5h-audit-session-2026-10-23-0630-utc.md
   poster=1 li=11 (7 body + 4 share widget); browser backend down (cdp-url npm404) -> curl fallback
 - **Operator notes:** local http_proxy=127.0.0.1:1081 is dead, every curl needs --noproxy '*';
   sibling cron job was writing /tmp/wp_* concurrently, used /tmp/wp_ris_* paths
+
+---
+
+## 5h audit cycle #65 — 2026-10-23 ~12:00 UTC
+
+- **Batch:** WP 8566, 8557, 8552, 8547, 8542 (5/5 in-scope English elysiatools articles, 0 OoS)
+- **Result:** 4/5 clean, **1 real defect found and PATCHed** (WP 8557), 0 false PATCHes
+- **Defect:** WP 8557 carried `https://elysiatools.com/en/tools/text-processing` — a PHANTOM.
+  The validator's `CATEGORY_ROOT_WHITELIST` had allowlisted 16 category slugs under `/en/tools/<slug>`
+  based on HTTP-200 checks; all 16 are phantoms (Next.js 404 shell, bare `<title>Elysia Tools</title>`,
+  0 internal hrefs, 92,634 bytes vs a known-phantom tool slug's 92,671).
+  Fixed href → `/en/categories/text-processing` (real, 148,413 bytes, 18 internal hrefs).
+  Single-href swap, anchor text unchanged, +5 bytes; verified byte-exact via REST read-back and live page.
+- **Validator fix:** `scripts/validate_elysia_anchors.py` now REJECTS `tools/<category>` naming the
+  correct href, and accepts the new `categories/<slug>` route. 13-case regression test passes.
+- **Anchors:** 30 unique elysia hrefs across the batch, 26 unique URLs, 26/26 HTTP 200, 0 phantom (post-fix)
+- **Images:** 20/20 HTTP 200 (one `000` blip on WP 8552 card1-67.png confirmed via 5x HEAD +
+  ranged GET magic bytes + 1600x900 full fetch = transport, not defect)
+- **Structure (live entry-content, all 5):** h1=0 h2=8 h3=0 cards=3 poster=1 imgs=4, p balanced,
+  0 `<li>` outside a list, 0 unclosed lists. Page-level h1=1 (theme entry-title), h2=9 (+post-nav),
+  h3=2 (comment area, outside entry-content).
+- **Audit-methodology bugs caught in my own scanner (both produced plausible wrong numbers):**
+  `<p` vs `<p\b` inflated a balanced 42/42 into 46/42 via 4 SVG `<path>` tags; and a `<li>`
+  walk counting open+close reported a constant 2x vs live DOM on 5/5 posts.
+- **Skill:** added `references/cron-session-5h-audit-cycle-65-2026-10-23-1200-utc.md` +
+  one-line pointer in SKILL.md (condensed two verbose entries to stay under the 100K patch limit)
+- **Operator notes:** no local http_proxy this run; all curl used `--noproxy '*'`.
+  WP 8542's live permalink failed its first fetch and succeeded on retry — the Cycle #61
+  all-zero guard correctly halted the batch instead of reporting a vacuous clean.
