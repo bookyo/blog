@@ -936,3 +936,18 @@ references/jarvis-5h-audit-session-2026-10-23-0630-utc.md
   the first item looked "outside its list" (4 false positives). `</li>` closes an ITEM, never
   a container.
 - **Skill:** added `references/cron-session-clean-post-8582-subtitle-platform-spec-checker-2026-10-23.md`.
+
+## 2026-10-24 — WP 8587 — PDF Photo Contact Sheet Field Guide
+
+- **Title**: PDF Photo Contact Sheet Field Guide: When Cover Mode Trims 43.75% of a Portrait and Never Says So
+- **URL**: https://blog.flowrust.com/2026/10/24/pdf-photo-contact-sheet-field-guide-when-cover-mode-trims-43-75-of-a-portrait-and-never-says-so/
+- **Slug**: pdf-photo-contact-sheet-field-guide-when-cover-mode-trims-43-75-of-a-portrait-and-never-says-so
+- **date_gmt**: 2026-10-24T03:50:14
+- **Tool**: `pdf-photo-contact-sheet` (PDF Photo Contact Sheet, Document Tools)
+- **Sample**: `pdf-samples` collection (https://elysiatools.com/en/samples/pdf-samples)
+- **Assets**: poster 1080x800 + 3 highlight cards 1600x900 (media IDs 8583-8586)
+- **Anchors**: 7 elysiatools links (4 tools, 1 samples, 1 category, 1 tools index)
+- **Result**: 1-POST 0-PATCH. Pre-measure gate caught 4 PIL overflows pre-render; vision QA
+  caught 2 content-coherence defects (card 1 title said "four frame shapes" with a mode tile;
+  card 3 subtitle said "same three" with only two CUT tiles) — both fixed pre-POST.
+- **Word count**: 2016 | **H2**: 8 | **Cards**: 3 | **Audit findings**: 0

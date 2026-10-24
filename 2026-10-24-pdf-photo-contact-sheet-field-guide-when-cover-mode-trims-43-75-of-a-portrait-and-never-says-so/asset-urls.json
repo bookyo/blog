@@ -1,0 +1,26 @@
+{
+  "poster": {
+    "id": 8583,
+    "url": "https://blog.flowrust.com/wp-content/uploads/2026/10/poster-86.png",
+    "filename": "poster.png",
+    "alt": "Field-guide poster for the PDF Photo Contact Sheet: a 4:3 thumbnail grid where cover mode trims 43.75 percent of a portrait frame."
+  },
+  "card1": {
+    "id": 8584,
+    "url": "https://blog.flowrust.com/wp-content/uploads/2026/10/card1-72.png",
+    "filename": "card1.png",
+    "alt": "Highlight card: what cover mode removes from four frame shapes - 43.75 percent of a 3:4 portrait height, 25 percent of a square, 25 percent of a 16:9 width, and 0 percent from a native 4:3 frame."
+  },
+  "card2": {
+    "id": 8585,
+    "url": "https://blog.flowrust.com/wp-content/uploads/2026/10/card2-72.png",
+    "filename": "card2.png",
+    "alt": "Highlight card: the bundled example cell by cell - ten sample images at 4 columns by 3 rows give 12 cells per sheet, 10 cells used and 2 empty, with the header reading Sheet 1, items 1 to 10."
+  },
+  "card3": {
+    "id": 8586,
+    "url": "https://blog.flowrust.com/wp-content/uploads/2026/10/card3-72.png",
+    "filename": "card3.png",
+    "alt": "Highlight card: seven EXIF fields are read but only four lines are printed - camera, lens, aperture and ISO always print, while shutter speed, focal length and the capture timestamp are always cut."
+  }
+}
