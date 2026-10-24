@@ -1020,3 +1020,32 @@ references/jarvis-5h-audit-session-2026-10-23-0630-utc.md
   metadata field is hardcoded to 1 while the chart draws 15 changed bits at the
   wrap — the field is a rule, not a measurement. Numbers re-derived independently
   from the tool's TypeScript source.
+
+## 2026-10-24 — WP 8603 — Web Push Encryption Field Guide
+
+- **Tool:** `web-push-rfc8030-vapid-rfc8291-payload-encrypted-content-encoder` —
+  "Web Push RFC 8030 Request + VAPID + RFC 8291 Payload Encryption Encoder"
+  (Format Conversion).
+- **Slug:** `web-push-encryption-field-guide-41-bytes-in-144-bytes-out`
+- **URL:** https://blog.flowrust.com/2026/10/25/web-push-encryption-field-guide-41-bytes-in-144-bytes-out/
+- **date_gmt:** `2026-10-24T21:45:39` (sent alone; `date` never sent)
+- **Assets:** media ids 8599–8602 (`poster-89.png`, `card1-75.png`,
+  `card2-75.png`, `card3-75.png`)
+- **Anchors (7, all REAL):** 4 tools + 1 sample (`samples/cryptography`) +
+  `categories/format-conversion` (308 -> `/en/tools?category=format-conversion`)
+- **Result:** 1-POST, 0 PATCH. `audit_post_content` = 0 findings. Live
+  `entry-content` slice: h1=0 h2=8 h3=0 cards=3 poster=1 img=4 p=35/35
+  empty_p=0, li=14 body (18 total - 4 share widget). All 4 images downloaded
+  and decoded with PIL (1080x800, 1600x900 x3) and resolved in-page
+  (naturalWidth 1080 / 1600 / 1600 / 1600).
+- **Editorial note:** every cryptographic number in the article was recomputed
+  independently in Python (HKDF + AES-GCM + ECDH P-256 via `cryptography`),
+  NOT copied from the manifest — the CEK `oIhVW04MRdy2XN9CiKLxTg`, the nonce
+  `4h_95klXJ5E_qnoN`, the ECDH secret
+  `kyrL1jIIOHEzg3sM2ZWRHDRB62YACZhhSlknJ672kSs` and the 144-byte body
+  layout all match the RFC 8291 §5 vector byte for byte.
+- **Pre-POST catch:** the first article draft linked the tool as
+  `.../web-push-rfc8030-vapid-rfc8291-payload-encryption-encoder` — a PHANTOM
+  slug missing the real `-encrypted-content-` segment. `validate_anchors()`
+  rejected it pre-POST; the poster URL bar and both body anchors were corrected
+  before the single POST.
