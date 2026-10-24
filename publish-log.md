@@ -951,3 +951,54 @@ references/jarvis-5h-audit-session-2026-10-23-0630-utc.md
   caught 2 content-coherence defects (card 1 title said "four frame shapes" with a mode tile;
   card 3 subtitle said "same three" with only two CUT tiles) — both fixed pre-POST.
 - **Word count**: 2016 | **H2**: 8 | **Cards**: 3 | **Audit findings**: 0
+
+
+## 2026-10-24 12:47 UTC — WP 8592 — Rockall Score Field Guide
+
+- **Tool:** `rockall-score` — "Rockall Score (Upper GI Bleeding, Complete)" (category: Health).
+  Confirmed **unpublished** against the full-corpus WP-derived index
+  (`scripts/published_tool_index.py --refresh`: 448 tool-ids / 1,257 slug roots)
+  and against the latest-14 post list. Picked via `scripts/pick_tool_v4_content_based.py`.
+- **Title:** Rockall Score Field Guide: When the Same 3 Reads as High Risk Before Endoscopy and Intermediate After
+- **URL:** https://blog.flowrust.com/2026/10/24/rockall-score-field-guide-when-the-same-3-reads-as-high-risk-before-endoscopy-and-intermediate-after/
+- **date_gmt:** 2026-10-24T12:47:25 (current UTC at POST time)
+- **Run shape:** 1-POST + 1 date-fix POST, 0 content PATCH. `featured_media: 0`, status
+  `publish` on the first POST (no `future` parking, so the two-step force-publish was not needed).
+- **Assets:** PIL poster 1080×800 + 3 highlight cards 1600×900, uploaded via curl with a
+  3-attempt retry. Media ids 8588–8591 (`poster-87.png`, `card1-73.png`, `card2-73.png`,
+  `card3-73.png`).
+- **Card set (document order):** card1 = the five components and their point scale (5-tile),
+  card2 = the 80-year-old worked example scored on both ladders (2-col input/output),
+  card3 = the four complete-scale risk bands (4-tile compact).
+- **Anchors (7, all validated against the manifest AND live-verified by the title +
+  child-link discriminator, not HTTP 200):** `rockall-score`, `child-pugh-score`,
+  `has-bled-score`, `charlson-comorbidity-index`, `apache-ii-score`, `categories/health`,
+  `en/tools` index. All 7 REAL.
+- **Article numbers are machine-checkable, not invented:** the 9 / 6 split, the
+  2+2+2+1+2 component breakdown, the four complete bands (0–2, 3–4, 5–7, 8–11) and the
+  three pre-endoscopic bands (0, 1–2, ≥3) all come from the tool's TypeScript source
+  (`src/tools/2026-08-07/rockall-score.ts`) and its `metadata.exampleResults[].assertions`.
+  The source also revealed a 4th "Very high risk" band (≥8) that the manifest's one-line
+  description omits — the article covers all four bands, which is the article's hook.
+- **Pre-POST gate:** 0 h1 / 8 h2 / 0 h3, p balance 26/26, 0 empty `<p></p>`, list balance
+  (5 li, 0 outside any list, 0 unclosed), 3 cards + 1 poster, 0 audit findings, 0 phantom
+  anchors, 1,811 words. `audit_post_content` = 0 findings.
+- **Post-publish audit:** REST `content.rendered`, REST `content.raw` and the live DOM
+  (balanced-depth `entry-content bloglo-entry` slice) all report h1=0 h2=8 h3=0 cards=3
+  poster=1 img=4, p balanced, 0 empty p, 0 pipe-leak, 0 raw italic/bold, 4/4 images with alt.
+  Live `naturalWidth` = 1080 / 1600 / 1600 / 1600. The live li=9 vs REST li=5 delta is the
+  theme share widget (1 × `ul.ss-social-icons-container` with 4 `<li>`), confirmed by
+  class-scoped extraction. The 9th DOM h2 is the theme's `screen-reader-text` "Post
+  navigation" heading.
+- **Two defects caught and fixed pre-POST / post-POST:**
+  (a) **`date` + `date_gmt` sent together shifted the stored date by 8 hours.** The first
+  POST sent both fields with the same UTC value; WP read `date` as SITE-LOCAL (CST, UTC+8)
+  and recomputed `date_gmt = date − 8h`, so the post stored `2026-10-24T04:47:25` instead of
+  the true UTC `12:47:25`. **Root cause: the canonical `scripts/build_post_payload.py` sends
+  ONLY `date_gmt`** — adding `date` is the regression. Fixed with one POST carrying
+  `date_gmt` alone; verified `date − date_gmt == 8:00:00` after.
+  (b) **Card 2's left panel showed raw option keys** (`gte80`, `hypo`, `other`, `other`,
+  `major`) — two rows read "other" and the panel was not readable on its own. Re-rendered
+  with human-readable findings ("80 or over", "SBP < 100", "other major", "other dx",
+  "visible vessel") and re-verified in-page.
+- **Skill:** added `references/cron-session-clean-post-8592-rockall-score-field-guide-2026-10-24.md`.
