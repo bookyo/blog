@@ -1002,3 +1002,21 @@ references/jarvis-5h-audit-session-2026-10-23-0630-utc.md
   with human-readable findings ("80 or over", "SBP < 100", "other major", "other dx",
   "visible vessel") and re-verified in-page.
 - **Skill:** added `references/cron-session-clean-post-8592-rockall-score-field-guide-2026-10-24.md`.
+
+## 2026-10-24 — WP 8598 — Gray Code and Thermometer Encoder Field Guide
+
+- **Tool:** `gray-code-and-thermometer-bcd-encoder-visualizer` — "Gray Code and
+  Thermometer BCD Encoder Visualizer" (Development).
+- **Slug:** `gray-code-and-thermometer-encoder-field-guide-when-7-to-8-flips-four-bits-and-gray-flips-one`
+- **URL:** https://blog.flowrust.com/2026/10/25/gray-code-and-thermometer-encoder-field-guide-when-7-to-8-flips-four-bits-and-gray-flips-one/
+- **date_gmt:** `2026-10-24T17:18:37` (sent alone; `date` never sent)
+- **Assets:** media ids 8594–8597 (`poster-88.png`, `card1-74.png`,
+  `card2-74.png`, `card3-74.png`)
+- **Anchors (6, all REAL):** 5 tools + `categories/development` (308 -> `/en/tools?category=development`)
+- **Result:** 1-POST, 0 PATCH. `audit_post_content` = 0 findings. Live
+  `entry-content` slice: h1=0 h2=8 h3=0 cards=3 poster=1 img=4 p=28/28
+  empty_p=0. All 4 images downloaded and decoded with PIL (1080x800, 1600x900 x3).
+- **Editorial note:** the article documents that the tool's `thermometerHdAlways`
+  metadata field is hardcoded to 1 while the chart draws 15 changed bits at the
+  wrap — the field is a rule, not a measurement. Numbers re-derived independently
+  from the tool's TypeScript source.
