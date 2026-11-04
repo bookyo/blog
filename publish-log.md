@@ -895,6 +895,51 @@ references/jarvis-5h-audit-session-2026-10-23-0630-utc.md
 
 ---
 
+## 5h audit cycle #67 — 2026-10-26 ~06:00 UTC
+
+- **Batch:** WP 8603, 8598, 8592, 8587, 8582 (5/5 in-scope English elysiatools
+  articles, 0 OoS) — all newer than cycle #66's batch, so this was the first audit
+  pass over all five.
+- **Result:** 5/5 clean, **0 PATCH round-trips** (47th consecutive clean batch).
+  Canonical `audit_post_content` = 0 findings on all 5; independent live-page
+  structural pass = 0 defects; live DOM probe = 0 defects.
+- **Structure (live `entry-content`, all 5):** h1=0 h2=8 h3=0 cards=3 poster=1
+  imgs=4, p balanced (36/28/27/34/22), 0 `<li>` outside a list, 0 unclosed lists,
+  0 `<p></p>`, 0 nested block inside an H2/H3, 0 leftover `**`, 0 raw markdown links,
+  0 pipe-table leaks, 0 placeholder leaks, 0 empty `<strong>`, 0 duplicated lead
+  paragraph, 0 repeated 12-gram. Page-level h1=1 (theme entry-title), h2=9
+  (+post-nav), h3=2 (comments, outside entry-content).
+- **Anchors:** 32 anchor hrefs across the batch (31 unique slugs), 0 phantom (manifest
+  validation PASS on all 5; live probe confirms proper `<title>` + non-zero internal
+  hrefs on every one).
+- **Images:** 20/20 HTTP 200 **and** decoded with PIL to confirm exact dimensions —
+  posters 1080×800, cards 1600×900. Stricter than a HEAD probe.
+- **Browser backend was UP this cycle** (after 5 consecutive down cycles) — the live
+  DOM probe ran natively for all 5 permalinks and matched the server-rendered slice
+  on every counter.
+- **2 probe results triaged (both FALSY alarms, batch was clean):**
+  (a) a newline-strict `</li><li>` detector fired on all 5 live pages (14/9/7/3/7)
+  but REST rendered content has **0** — Bloglo minification, not corruption; the
+  authoritative test (list tag balance + 0 OPEN `<li>` outside a list) passes on
+  both. **Never run the orphan-`</li>` detector against the minified live page**
+  (Cycle #59/#64 rule re-confirmed).
+  (b) WP 8587's poster showed `naturalWidth: 0` in the DOM — LiteSpeed lazy load;
+  forcing `img.src = img.dataset.src` gave 1080×800 and the download-and-decode
+  check had already confirmed the PNG.
+- **live-vs-archive `li`/`ul` delta = exactly the theme share widget** on all 5
+  (+4 li, +1 ul each). Stripping `ul.ss-social-icons-container` makes body-only
+  counts match the archived `article_final.html` exactly. WP 8587 legitimately has
+  0 lists in its source, so its live-only `li=4` is chrome, not a dropped list
+  (Cycle #59 guard).
+- **WP 8592's first highlight card follows a `<ul>` rather than a `<p>`** — valid
+  under the WP 6370 extended rule, with an empty gap between the block close and
+  the figure. The other 4 posts have all 3 cards after a `<p>`.
+- **Origin ladder first:** root / `/wp-json/` / `example.com` all 200 — no outage,
+  no parked article to re-verify.
+- **Skill:** added `references/jarvis-5h-audit-session-2026-10-26-0600-utc.md`.
+
+---
+
 ## 2026-10-23 23:25 UTC — WP 8582 — Subtitle Platform Spec Checker Field Guide
 
 - **Tool:** `subtitle-platform-spec-checker` — "Subtitle Platform Spec Checker" (category: Media).
@@ -1049,3 +1094,47 @@ references/jarvis-5h-audit-session-2026-10-23-0630-utc.md
   slug missing the real `-encrypted-content-` segment. `validate_anchors()`
   rejected it pre-POST; the poster URL bar and both body anchors were corrected
   before the single POST.
+
+## 2026-11-04 — WP 8610 — Convolution Integral Field Guide
+
+- **Tool:** `convolution-integral-calculator` — "Convolution Integral Calculator
+  (Numeric)" (Math & Numbers).
+- **Slug:** `convolution-integral-field-guide-when-the-formula-is-right-and-the-window-is-not`
+- **URL:** https://blog.flowrust.com/2026/11/04/convolution-integral-field-guide-when-the-formula-is-right-and-the-window-is-not/
+- **date_gmt:** `2026-11-04T14:42:14` (sent alone; `date` never sent).
+  Verified after POST: `date - date_gmt == 8:00:00` AND `date_gmt` equals the
+  sent UTC value exactly.
+- **Assets:** media ids 8606-8609 (`poster-conv.png`, `card1-conv.png`,
+  `card2-conv.png`, `card3-conv.png`).
+- **Anchors (6, all REAL):** 5 tools + `categories/math--and--numbers`
+  (title "Browse the tool catalog - Math And Numbers | Elysia Tools").
+- **Result:** 1-POST, 0 PATCH. `audit_post_content` = 0 findings. REST
+  `content.rendered`: h1=0 h2=8 h3=0 cards=3 poster=1 img=4 p=30/30 empty_p=0.
+  Live `entry-content bloglo-entry` slice: h1=0 h2=8 h3=0 cards=3 poster=1
+  img=4, body-only li=10 (14 total - 4 `ss-social-icons-container` share
+  items). List-balance walk: 14/14 `<li>`, 0 open-outside-a-list, 0 unclosed
+  containers. All 4 images downloaded and decoded with PIL (1080x800,
+  1600x900 x3) and resolved in-page at naturalWidth 1080 / 1600 / 1600 / 1600.
+- **Editorial note (the article's thesis, independently re-derived):** in causal
+  mode the upper bound is `min(tauMax, t)`, so once `t` passes `tauMax` the
+  tail is silently truncated. With the default `tauMax = 20` and
+  `f = g = exp(-x/10)` the relative error is exactly `(t - tauMax) / t` --
+  0.0% at t=10 and t=20, 20.0% low at t=25, 33.3% low at t=30, 50.0% low at
+  t=40. The error ratio is independent of the decay constant. Widening the
+  window to `tauMax = 60` with the same expressions restores the exact value
+  (`t * exp(-t/10)`) to float precision. Every number was recomputed in
+  Python with an independent composite Simpson implementation, NOT copied
+  from the manifest.
+- **Simpson error scaling verified:** error x n^4 is constant at `0.001292` for
+  n = 100/200/400 (true 4th-order behaviour); at n=2000 the error is already
+  at the double-precision floor (1.1e-16) and n=8000 wanders back up to
+  4.4e-16. The quadrature is never the lever -- the window is.
+- **Pre-POST catches (both fixed before the single POST):**
+  (a) The PIL pre-measure gate rejected two 4-tile labels (`BELOW THRESHOLD`
+  389px, `BEFORE THE START` 378px) against the 300px budget
+  (`tile_w - 60`, the label is drawn LEFT-aligned at `x+30`).
+  (b) `vision_analyze` caught a CONTENT-COHERENCE defect that every
+  measurement passed: card 3 was titled "Four Ways to Read a Zero" but its
+  fourth tile was the 8-point output cap, not a zero. Re-titled to "Four
+  Limits of One Run" and the fourth tile replaced with the verified
+  `WINDOW CLIP 0.3663 / true value is 0.7326` case.
