@@ -1138,3 +1138,50 @@ references/jarvis-5h-audit-session-2026-10-23-0630-utc.md
   fourth tile was the 8-point output cap, not a zero. Re-titled to "Four
   Limits of One Run" and the fourth tile replaced with the verified
   `WINDOW CLIP 0.3663 / true value is 0.7326` case.
+
+---
+
+## 5h Audit — Cycle #73 (2026-11-04 ~22:30 UTC)
+
+- **Scope:** audit-only cycle (no publish). Latest 5 published posts.
+- **Batch:** WP 8610 (Convolution Integral), WP 8603 (Web Push Encryption),
+  WP 8598 (Gray Code and Thermometer Encoder), WP 8592 (Rockall Score),
+  WP 8587 (PDF Photo Contact Sheet).
+- **Result:** 5/5 in-scope clean, 0 OoS, **0 PATCH round-trips**
+  (51st consecutive clean cycle). Origin ladder root/wp-json/example.com all
+  200, no proxy env vars set. Browser backend UP.
+- **Canonical shape on all 5** (REST `content.rendered`): h1=0, h2=8, h3=0,
+  3 `figure.highlight-card`, 1 `figure.article-poster`, img=4,
+  `<p>` balanced, 0 `<p></p>` shells, 0 body `<pre>`, 0 orphan `<code>`,
+  0 literal-HTML-in-code, 0 markdown leftovers, 0 pipe-table leaks,
+  0 heading-contains-block, 0 duplicate H1.
+- **Live DOM (browser):** `art_h1=1` (theme `h1.entry-title`), `ec_h1=0`,
+  `art_h2=9` (8 body + 1 post-nav `h2.screen-reader-text`), `ec_h2=8`,
+  `ec_h3=0`, cards=3, posters=1, `nested_p_in_h2=0`, `img_no_alt=0`.
+- **Images:** every PNG downloaded and decoded with PIL — poster 1080x800 +
+  3 cards 1600x900 on all 5. LiteSpeed lazy-load confirmed: cards report
+  `naturalWidth: 0` until a real `scrollIntoView()` fires, then resolve
+  1600x900.
+- **Anchors:** 31 unique `/en/...` URLs across the 5 posts. `validate_anchors`
+  (manifest-authoritative) = 0 phantom on both `content.rendered` and
+  `content.raw`. Live-verified with the Cycle #64 discriminator (`<title>` !=
+  bare "Elysia Tools" or >=1 child `/en/` href) — 0 suspects.
+- **False alarms triaged (0 PATCH):**
+  (a) `ANCHOR_VALIDATOR_EXCEPTION` on 5/5 — my own probe bug:
+      `validate_anchors()` returns a tuple `(ok, reasons)`, not a dict.
+      A finding type firing identically on every post is a scanner bug.
+  (b) Live `<p>` = REST + 1 on all 5 — the theme share widget's
+      `<p class="ss-social-share-label">Share via:</p>` lives inside
+      `entry-content`. Strip it with the `ss-social-icons-container` `<ul>`.
+  (c) Archive `<p>` > REST rendered on 8610 (32 vs 30) and 8603 (40 vs 35) —
+      the archive keeps md_to_html's `<p></ul></p>` / `<p></thead></p>` /
+      `<p></ol></p>` wrapper shells, which wpautop strips at render.
+      Entity-normalized paragraph-text comparison shows 0 non-empty
+      paragraphs lost.
+  (d) `</ul><p>` adjacency on 8610/8603/8598 — normal block sequence, not the
+      WP 8523 trigger. The corrected WP 8572 rule (non-whitespace TEXT between
+      block tags) reports 0 on all 5.
+- **Skill updated:** `references/jarvis-5h-audit-session-2026-11-04-2230-utc.md`
+  + a pointer in SKILL.md (cycle #73). SKILL.md was over the 100,000-char
+  `skill_manage` patch limit, so the archived WP 5683/5731/5738/5746
+  SSL-EOF retry narrative was condensed first to free room.
