@@ -1,0 +1,22 @@
+{
+  "poster": {
+    "id": 8612,
+    "url": "https://blog.flowrust.com/wp-content/uploads/2026/11/poster.png",
+    "alt": "Noise profile extractor field guide: the measurement records a 60 Hz hum but the label reads white hiss so no high-pass is applied"
+  },
+  "card1": {
+    "id": 8613,
+    "url": "https://blog.flowrust.com/wp-content/uploads/2026/11/card1.png",
+    "alt": "The six-branch classification cascade of the noise profile extractor with five tiles, showing that only the hum and rumble branches add a high-pass"
+  },
+  "card2": {
+    "id": 8614,
+    "url": "https://blog.flowrust.com/wp-content/uploads/2026/11/card2.png",
+    "alt": "One measurement sweep at minus 55 dBFS of 60 Hz hum over a minus 30 dBFS white bed showing flatness 0.971, low ratio 0.413, a white-hiss label, hum recorded at 60 Hz, and a null high-pass"
+  },
+  "card3": {
+    "id": 8615,
+    "url": "https://blog.flowrust.com/wp-content/uploads/2026/11/card3.png",
+    "alt": "Four limits of the saved noise profile: a recorded hum with no filter, the stored noise reduction value always 20, the clamped noise floor range, and the unguarded speech risk"
+  }
+}

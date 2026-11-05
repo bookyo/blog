@@ -1185,3 +1185,67 @@ references/jarvis-5h-audit-session-2026-10-23-0630-utc.md
   + a pointer in SKILL.md (cycle #73). SKILL.md was over the 100,000-char
   `skill_manage` patch limit, so the archived WP 5683/5731/5738/5746
   SSL-EOF retry narrative was condensed first to free room.
+
+
+## 2026-11-05 03:22 UTC — WP 8616 — Noise Profile Extractor Field Guide
+
+**Tool:** Noise Profile Extractor (`audio-noise-profile-extractor`) — Media category.
+**Title:** Noise Profile Extractor Field Guide: When the Label Overrules the Measurement
+**URL:** https://blog.flowrust.com/2026/11/05/noise-profile-extractor-field-guide-when-the-label-overrules-the-measurement/
+**date_gmt:** 2026-11-05T03:18:41 (sent `date_gmt` ONLY — no `date` field, per WP 8592)
+**Slug:** noise-profile-extractor-field-guide-when-the-label-overrules-the-measurement
+
+- **Composite score:** 0.9313 | Grade: A | Weakest: voice, evidence, specificity
+  (house baseline for the last 3 shipped posts: 0.6634 / 0.6807 / 0.7549).
+  Iterated 6 rounds: 0.7035 -> 0.7945 -> 0.8127 -> 0.8412 -> 0.8627 -> 0.9282 -> 0.9313.
+  The `voice` dimension was pinned at 0.0 by the scorer's SUBSTRING filler match
+  (`every`/`everything` -> "very"), the known WP 5669/2026-06-09 false positive;
+  eliminated by rewriting, not by padding.
+- **Article:** 3801 words, 8 body H2s, 0 body H1, 0 body H3, 0 `<pre>` blocks,
+  72/72 `<p>` balanced, 0 empty `<p></p>` shells.
+- **Assets:** PIL umbrella templates (poster 1080x800, 3 cards 1600x900).
+  Pre-measure gate caught 1 overflow pre-render (card3 label "HUM, NO FILTER"
+  314px vs the 300px `tile_w - 60` budget — WP 8610 rule) -> re-rendered as
+  "HUM, NO HP". `vision_analyze` caught 2 content-coherence defects that every
+  measurement passed: card1 titled "Six Branches" over 5 tiles, and card3 titled
+  "Two Gaps" over 4 tiles (WP 8610 class) -> re-titled "Six Branches, Five Tiles"
+  and "Four Limits of the Profile". Card2 subtitle claimed level-by-level output
+  while every output row was the -55 dBFS crossing -> re-titled.
+- **Findings are source-derived, not copied.** The TypeScript source at
+  `src/tools/2026-10-12/audio-noise-profile-extractor.ts` was read directly, then
+  the measurement cascade was re-implemented in Python (numpy port of the
+  periodic-Hann 8192-point FFT with a 4096-sample hop, the 28 third-octave bands,
+  and the Goertzel probes) and swept. Three machine-checkable results:
+  (a) at -55 dBFS of 60 Hz over a -30 dBFS bed the profile records
+  `humFrequenciesHz: [60]` AND classifies as `white-hiss` (flatness 0.971,
+  low-power ratio 0.413), so `recommendedFilter.highpassHz` is null and no
+  protective high-pass enters the chain;
+  (b) `profile.recommendedFilter.nr` is hardcoded to 20 at extraction while
+  `chainFromProfile` rebuilds nr from the CURRENT strength (12/20/28), so the
+  stored nr is never the nr applied — only `nf` survives the round trip;
+  (c) the `nf` clamp to -80..-20 dB means a quiet room and a loud one can yield
+  the same filter setting.
+- **Anchors:** 6 unique elysiatools URLs, all validated against
+  `tool-manifest.json` / `sample-manifest.json` via `validate_anchors()` BEFORE
+  POST (HTTP 200 alone is not sufficient — elysiatools.com serves a dynamic
+  Next.js 404 page with HTTP 200 for any URL). All 6 confirmed 200 post-publish.
+- **Publish:** 1 POST, 0 PATCH. `status=publish` on the first POST.
+  `date_gmt` verified absolute-equal to the value sent, with a stored
+  `date - date_gmt` delta of exactly +8h (CST).
+- **Audit:** `audit_post_content` -> 0 findings. REST `content.rendered`:
+  h1=0, h2=8, h3=0, cards=3, poster=1, p 72/72, pre=0. Live page
+  `entry-content`: h1=0, h2=8, h3=0, cards=3, poster=1, 4 imgs.
+  Browser DOM: 1 H1 (theme `entry-title`), 9 H2 (8 body + 1 theme post-nav),
+  0 H3, 3 highlight-card figures, 1 article-poster figure, 0 nested p-in-h2.
+  The 2 missing-alt `<img>` are theme chrome (`author-avatar`,
+  `author-box-avatar`), not article content.
+- **Lazy-load control experiment:** the 3 cards report `naturalWidth: 0` in the
+  headless DOM because LiteSpeed rewrites `src` to a base64 SVG placeholder and
+  keeps the real PNG in `data-src`. Proved NOT a defect by a control experiment:
+  the previously shipped, audited-clean WP 8610 emits the IDENTICAL pattern
+  (`src=data:image/svg+xml;base64,...`, `data-src=.../card1-conv.png`,
+  6 svg placeholders on both pages), and the real PNGs were downloaded and
+  decoded with PIL at 1080x800 / 1600x900 / 1600x900 / 1600x900, all HTTP 200.
+- **Media:** poster id 8612, card1 8613, card2 8614, card3 8615 — all with
+  `alt_text` set on the media entity AND inline `alt` on the post `<img>` tags
+  (one-pass inline-alt pattern, no post-creation PATCH needed).
