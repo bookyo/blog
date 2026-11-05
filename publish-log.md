@@ -1249,3 +1249,102 @@ references/jarvis-5h-audit-session-2026-10-23-0630-utc.md
 - **Media:** poster id 8612, card1 8613, card2 8614, card3 8615 — all with
   `alt_text` set on the media entity AND inline `alt` on the post `<img>` tags
   (one-pass inline-alt pattern, no post-creation PATCH needed).
+
+## 5h Audit — Cycle #74 (2026-11-05 ~22:40 UTC)
+
+- **Posts audited**: 5 (WP 8616 / 8610 / 8603 / 8598 / 8592)
+- **In-scope**: 5 | **OoS**: 0 | **Clean**: 5/5
+- **Real issues**: 0 | **Broken images**: 0 | **Broken elysia links**: 0
+  | **Phantom anchors**: 0
+- **PATCH round-trips**: 0
+- **Cycle status**: clean (52nd consecutive clean cycle, extends the
+  Cycle #73 streak)
+- **Origin ladder**: root=200, wp-json=200 (authed), example.com=200,
+  no proxy env vars set
+- **Browser backend**: UP (3rd cycle in a row after the 5 down cycles
+  noted in cycle #67)
+- **Reference**: `~/.hermes/skills/wordpress-rest-api-publishing/references/jarvis-5h-audit-session-2026-11-05-2240-utc.md`
+- **Log**: `/tmp/wp_audit_20261105/cycle74*.log`
+
+### Batch shape (all 5 identical — a healthy canonical article)
+
+| WP | slug root | h1 | h2 | h3 | cards | poster | img | li | ul | ol | code | pre |
+|----|-----------|----|----|----|-------|--------|-----|----|----|----|------|-----|
+| 8616 | noise-profile-extractor | 0 | 8 | 0 | 3 | 1 | 4 | 0 | 0 | 0 | 24 | 0 |
+| 8610 | convolution-integral | 0 | 8 | 0 | 3 | 1 | 4 | 10 | 2 | 0 | 99 | 0 |
+| 8603 | web-push-encryption | 0 | 8 | 0 | 3 | 1 | 4 | 14 | 2 | 1 | 0 | 0 |
+| 8598 | gray-code-and-thermometer | 0 | 8 | 0 | 3 | 1 | 4 | 8 | 2 | 0 | 17 | 0 |
+| 8592 | rockall-score | 0 | 8 | 0 | 3 | 1 | 4 | 5 | 1 | 0 | 19 | 0 |
+
+REST `content.rendered` == REST `content.raw` == LIVE `entry-content` on
+every count. Browser DOM on all 5 permalinks: 1 theme `h1.entry-title`,
+9 article H2 (8 body + 1 post-nav `h2.screen-reader-text`), 0 body H3,
+3 highlight-card figures, 1 article-poster figure, 0 nested p-in-h2,
+0 images missing `alt`, 0 `<pre>` blocks.
+
+### Verification performed
+
+- `audit_post_content()` on REST `content.rendered` AND on REST
+  `content.raw` -> 0 findings on all 5.
+- `validate_elysia_anchors.py::validate_anchors()` (tuple form) ->
+  ok=True, 0 phantom anchors on all 5; 31 unique anchors, all
+  manifest-validated.
+- Live anchor probes: 31 unique `/en/...` URLs -> 26 direct 200 (9 child
+  links each), 5 category routes 308 -> 200 via `-L`
+  (`Location: /en/tools?category=<slug>`), 1 `/en/tools` index 200.
+- Image probes: 20/20 images, HTTP 200, **PIL-decoded** to the exact
+  expected dimensions (poster 1080x800, cards 1600x900), 0 missing `alt`.
+- Archive cross-check: paragraph TEXT sets identical (0 lost after quote
+  folding), list counts identical, all 20 asset PNGs present at exact dims.
+- Bare-text walker (container-stack rule): 0 bare text blocks on all 5.
+- H2 audit: exactly 8 body H2 on all 5, 0 nested `<p>` inside an H2,
+  0 nested `<a>`, 0 orphan closing tags at the tail.
+- Markdown leftovers: 0 `[text](url)` links, 0 `**bold**` residues,
+  0 GFM pipe-table leaks, 0 `<p></p>` empty shells, 0 duplicate paragraphs.
+
+### Two reusable lessons
+
+1. **A threshold that gates a SCOPE decision must be re-derived from the
+   FULL shipped corpus.** `scripts/jarvis_audit_oos_heuristic.py`'s
+   5,000-20,000 content-length window was derived from short posts and
+   misclassified TWO real cron posts as out-of-scope: WP 8616 (23,481
+   chars) and WP 8097 (23,349) — both canonical cron articles (8 H2 +
+   1 poster + 3 cards + elysia anchors). Re-derived over 100 posts:
+   cron-shaped posts span 7,114-23,481 (p50 12,703, p95 18,171).
+   **Fix landed:** `_CONTENT_MAX` 20,000 -> 30,000 AND the length test
+   moved BELOW the structural-shape test, so a length override alone can
+   never mark a structurally-canonical post OoS. Regression over the
+   100-post corpus: 2 classification changes, both canonical; 0 CJK/manual
+   posts affected; post-fix split 93 in-scope / 7 OoS (every OoS post is
+   a genuine manual post — 6 foreign-script titles, 1 `n_h2=7` manual
+   English article). **The misclassification was invisible because OoS
+   posts are skipped, not reported.**
+2. **Archive-vs-REST paragraph comparison MUST fold smart quotes and
+   dashes.** wpautop rewrites `'` -> `&#8217;` and `"` -> `&#8220;`, so a
+   text-set comparison that skips folding reports FALSE content loss
+   (11/5/9/4 paragraphs "lost" across 4 posts; **0 lost** after folding
+   `’ ‘ “ ”` and `– —`).
+
+### Traps hit and rejected (all false alarms, 0 PATCH)
+
+1. Two elysiatools anchors returned HTTP `000`; retry returned 200 with
+   9 child links and the correct `<title>` for both. A `000` is a
+   transport blip, not a phantom.
+2. `/en/categories/<slug>` returned 308 with an empty `<title>`; with
+   `-L` it resolves to 200 with the `Browse the tool catalog - <Name> |
+   Elysia Tools` title. Always probe category anchors with `-L`.
+3. WP 8598's poster returned HEAD `000` while GET returned 200; 3/3 HEAD
+   retries -> 200, ranged GET -> 206, PIL `verify()` -> OK at 1080x800.
+4. The 3 highlight cards report `naturalWidth: 0` in the headless DOM —
+   LiteSpeed lazy-load (`src` = base64 SVG placeholder, real PNG in
+   `data-src`). After `scrollIntoView()` + wait, all 4 images resolve at
+   the expected dimensions on all 5 posts.
+5. `UnicodeDecodeError: 'utf-8' codec can't decode byte 0x89` killed the
+   image probe — `subprocess.run(..., text=True)` on a PNG body. Always
+   `curl -o <file>` then `Image.open(path)`.
+6. `content.raw` requires `?context=edit` — `GET /wp/v2/posts?_fields=content`
+   returns `content.rendered` only, so `p['content']['raw']` raises
+   `KeyError`.
+7. My first anchor sweep classified a `000` response as PHANTOM because
+   `children == 0` and `title == ''` — both consequences of the transport
+   failure, not of a missing page.
