@@ -1404,3 +1404,23 @@ every count. Browser DOM on all 5 permalinks: 1 theme `h1.entry-title`,
   double-count (scope to `entry-content`).
 - **Reference:** `~/.hermes/skills/wordpress-rest-api-publishing/references/jarvis-5h-audit-session-2026-11-06-1055-utc.md`
 
+
+## 2026-11-06 17:08 UTC — Tarjan SCC / Bridge / Articulation-Point Graph Decomposer
+
+- **WP post id**: 8628
+- **Title**: Tarjan Graph Decomposer Field Guide: Two Algorithms, One Wrong Graph
+- **URL**: https://blog.flowrust.com/2026/11/07/tarjan-scc-graph-decomposer-field-guide-two-algorithms-one-wrong-graph/
+- **Tool**: tarjan-scc-tarjan-bridge-and-strongly-connected-components-topological-order-graph-decomposer
+- **Tool name (manifest)**: Tarjan SCC / Bridge / Articulation-Point Graph Decomposer with Condensation Topological Order
+- **Category**: Development
+- **date_gmt**: 2026-11-06T17:08:04
+- **Assets**: poster.png (1080x800), card1.png, card2.png, card3.png (1600x900 each)
+- **Media ids**: poster=https://blog.flowrust.com/wp-content/uploads/2026/11/poster-2.png (uploads/poster-2.png)
+- **Anchors**: 6 (5 tools + 1 category) — all validated against tool-manifest.json
+- **Scorer**: composite 0.9252 / grade A
+- **Runs**: 1-POST 0-PATCH
+- **Notes**: Every number re-derived in an independent Python port of src/lib/graph-decomposition.ts
+  before publishing. Two verified defects documented: the parser's arrow-strip regex has no /g flag
+  so `a -> b -> c` silently drops node c (nodeCount 2, 0 warnings), and the SCC/condensation/traversal
+  passes read the DIRECTIONAL adjacency even when "Directed graph" is unticked, so the same
+  undirected triangle yields 1 or 3 components depending on write order.

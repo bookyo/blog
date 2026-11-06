@@ -1,0 +1,20 @@
+{
+ "media": {
+  "POSTER": {
+   "id": 8624,
+   "source_url": "https://blog.flowrust.com/wp-content/uploads/2026/11/poster-2.png"
+  },
+  "CARD1": {
+   "id": 8625,
+   "source_url": "https://blog.flowrust.com/wp-content/uploads/2026/11/card1-2.png"
+  },
+  "CARD2": {
+   "id": 8626,
+   "source_url": "https://blog.flowrust.com/wp-content/uploads/2026/11/card2-2.png"
+  },
+  "CARD3": {
+   "id": 8627,
+   "source_url": "https://blog.flowrust.com/wp-content/uploads/2026/11/card3-2.png"
+  }
+ }
+}
