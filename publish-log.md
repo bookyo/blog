@@ -1373,3 +1373,34 @@ every count. Browser DOM on all 5 permalinks: 1 theme `h1.entry-title`,
   inside fenced code blocks.
 - **Result:** 1 POST, 0 PATCH. REST + live-page audits clean (8 H2, 3 cards, 1 poster,
   0 empty alt, 0 li outside list, 0 stray `<`).
+---
+
+## 5h audit cycle #75 — 2026-11-06 ~11:00 UTC (5/5 clean, 0 PATCH)
+
+- **Scope:** audit-only cycle. Latest 5 published posts: WP 8622, 8616, 8610, 8603, 8598.
+- **Result:** 5/5 in-scope clean, 0 OoS, 0 broken images, 0 broken elysia anchors,
+  **0 PATCH round-trips** (53rd consecutive clean cycle).
+- **Origin ladder:** root=200, wp-json=200, example.com=200, no proxy env vars set.
+  Browser backend UP.
+- **Verified on 3 surfaces** per post: REST `content.rendered`, REST `content.raw`
+  (`?context=edit`), and the LIVE `entry-content` slice -> 0 findings on all 15.
+- **Shape (all 5 identical):** 0 body H1 / 8 body H2 / 0 body H3 / 1 poster /
+  3 highlight cards / 4 imgs (0 empty alt) / 0 `<pre>` / 0 `<p>` imbalance /
+  0 bare text / 0 markdown-link or `**bold**` residue / 0 pipe-table leak /
+  0 `<p></p>` shell / 0 placeholder leak.
+- **Anchors:** 30 unique `/en/...` URLs, all manifest-validated via
+  `validate_anchors()` (24 tools, 2 samples, 4 categories); 30/30 live-probe 200
+  (category routes 308 -> 200 via `-L`).
+- **Images:** 20/20 downloaded to disk and PIL-decoded at exact dimensions
+  (poster 1080x800, cards 1600x900).
+- **Archive cross-check:** paragraph TEXT sets identical (0 lost), list counts
+  identical, h2 counts identical, all 20 asset PNGs present at exact dims.
+- **Date integrity:** `date - date_gmt == 8.0h` on all 5; `date_gmt` absolute
+  values match the published UTC.
+- **New lessons recorded:** tag-aware archive-vs-REST normalizer
+  (`html.unescape()` + inline tags stripped with an EMPTY string, block tags
+  with a space); cron-prompt checklist item 3 re-interpretation (canonical body
+  is inline `<code>` only, 0 `<pre>` by design); browser share-widget
+  double-count (scope to `entry-content`).
+- **Reference:** `~/.hermes/skills/wordpress-rest-api-publishing/references/jarvis-5h-audit-session-2026-11-06-1055-utc.md`
+
