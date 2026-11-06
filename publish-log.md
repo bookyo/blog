@@ -1348,3 +1348,28 @@ every count. Browser DOM on all 5 permalinks: 1 theme `h1.entry-title`,
 7. My first anchor sweep classified a `000` response as PHANTOM because
    `children == 0` and `title == ''` — both consequences of the transport
    failure, not of a missing page.
+
+
+## 2026-11-06 — WP 8622 — Markdown Slide Deck to PDF
+
+- **Title:** Why 2 of 7 Markdown Slide Settings Do Almost Nothing
+- **Slug:** `md-slide-deck-to-pdf-two-settings-do-nothing`
+- **URL:** https://blog.flowrust.com/2026/11/06/md-slide-deck-to-pdf-two-settings-do-nothing/
+- **date_gmt:** 2026-11-06T04:29:55
+- **Tool:** `md-slide-deck-to-pdf` (Markdown Slide Deck to PDF, Document Tools)
+- **Sample:** `md-slide-deck-to-pdf` (Remark/Marp Starter Deck, 22.9 KB PDF)
+- **Scorer:** Composite 0.9283 | Grade A | Weakest: voice, hook, specificity
+- **Assets:** poster.png (1080x800), card1.png, card2.png, card3.png (1600x900 each)
+- **Media IDs:** poster=8618, card1=8619, card2=8620, card3=8621
+- **elysiatools anchors (5, all manifest-validated):**
+  - https://elysiatools.com/en/tools/md-slide-deck-to-pdf (tool)
+  - https://elysiatools.com/en/samples/md-slide-deck-to-pdf (sample)
+  - https://elysiatools.com/en/tools/markdown-to-pdf-theme-pack (tool)
+  - https://elysiatools.com/en/tools/pdf-header-footer-snippets (tool)
+  - https://elysiatools.com/en/categories/document-tools (category, 308 -> /en/tools?category=document-tools, 200)
+- **Verified findings:** baseFontSize scales only 3 of 15 element types (rem/em in the stylesheet);
+  printBackground is a no-op because the CSS hard-codes `print-color-adjust: exact`;
+  front matter is extracted and discarded; the `---` separator is a regex that also splits
+  inside fenced code blocks.
+- **Result:** 1 POST, 0 PATCH. REST + live-page audits clean (8 H2, 3 cards, 1 poster,
+  0 empty alt, 0 li outside list, 0 stray `<`).
