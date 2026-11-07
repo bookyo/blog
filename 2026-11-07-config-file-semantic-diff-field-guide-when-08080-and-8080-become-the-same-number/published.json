@@ -1,0 +1,29 @@
+{
+  "post_id": 8658,
+  "link": "https://blog.flowrust.com/2026/11/07/config-file-semantic-diff-field-guide-when-08080-and-8080-become-the-same-number/",
+  "slug": "config-file-semantic-diff-field-guide-when-08080-and-8080-become-the-same-number",
+  "date_gmt": "2026-11-07T05:31:39",
+  "media": {
+    "poster.png": {
+      "id": 8654,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/11/poster-3.png",
+      "alt": "Config File Semantic Diff field guide: a leading bracket sends valid TOML down the JSON path, and zero-padded dotenv values 08080 and 8080 compare as equal"
+    },
+    "card1.png": {
+      "id": 8655,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/11/card1-3.png",
+      "alt": "What every diff row tells you: added, removed, changed, type-changed, and the unchanged case that emits no row"
+    },
+    "card2.png": {
+      "id": 8656,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/11/card2-3.png",
+      "alt": "One valid TOML file compared two ways: auto-detect parses it as JSON and fails, while pinning the format to TOML reports server.port changed"
+    },
+    "card3.png": {
+      "id": 8657,
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/11/card3-3.png",
+      "alt": "Zero-padded dotenv values compared against their unpadded twins: 08080 against 8080, 1.50 against 1.5 and 007 against 7 all report 0 differences, while the control pair reports 1"
+    }
+  },
+  "title": "Config File Semantic Diff: When 08080 and 8080 Become the Same Number"
+}

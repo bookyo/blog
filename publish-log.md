@@ -1424,3 +1424,25 @@ every count. Browser DOM on all 5 permalinks: 1 theme `h1.entry-title`,
   so `a -> b -> c` silently drops node c (nodeCount 2, 0 warnings), and the SCC/condensation/traversal
   passes read the DIRECTIONAL adjacency even when "Directed graph" is unticked, so the same
   undirected triangle yields 1 or 3 components depending on write order.
+
+## 2026-11-07 — Config File Semantic Diff (WP 8658)
+- **Tool**: Config File Semantic Diff (`config-file-semantic-diff`) — Development
+- **Title**: Config File Semantic Diff: When 08080 and 8080 Become the Same Number
+- **Slug**: `config-file-semantic-diff-field-guide-when-08080-and-8080-become-the-same-number`
+- **URL**: https://blog.flowrust.com/2026/11/07/config-file-semantic-diff-field-guide-when-08080-and-8080-become-the-same-number/
+- **date_gmt**: 2026-11-07T05:31:39 (UTC, date_gmt only — never send `date`)
+- **Post ID**: 8658 — 1-POST 0-PATCH
+- **Scorer**: composite 0.9426 / A (article-writer score.py; 8 H2s, 2331 body words)
+- **Assets**: 1 poster (1080x800) + 3 highlight cards (1600x900), PIL deep-navy/cyan-teal
+- **Media IDs**: poster=8654 card1=8655 card2=8656 card3=8657
+- **Anchors**: 5 tools + 1 category, all manifest-validated, all HTTP 200
+  - /en/tools/config-file-semantic-diff (subject)
+  - /en/tools/json-diff-visualizer
+  - /en/tools/environment-config-diff-visualizer
+  - /en/tools/hcl-toml-converter
+  - /en/tools/hcl-yaml-converter
+  - /en/categories/development (308 -> /en/tools?category=development -> 200)
+- **Verified defects found in the tool** (re-derived via an independent Node port using the repo's own js-yaml + @iarna/toml):
+  1. A valid TOML file with a `[section]` header is auto-detected as JSON (leading `[`) and the parse fails with `Unexpected token s in JSON at position 1`. The tool's TOML auto-detect branch is unreachable for realistic TOML documents — measured 2 of 10 in a sweep, both with digit- or hyphen-led keys.
+  2. dotenv numeric coercion drops leading zeros: `CODE=08080` and `CODE=8080` both become the Number 8080, so the diff reports 0 differences. Measured across 4 padded pairs (08080/8080, 012345/12345, 007/7, 1.50/1.5); the control pair was correctly reported as 1 difference.
+- **Article**: /Users/quyue/www/blog/2026-11-07-config-file-semantic-diff-field-guide-when-08080-and-8080-become-the-same-number
