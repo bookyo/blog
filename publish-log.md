@@ -1446,3 +1446,26 @@ every count. Browser DOM on all 5 permalinks: 1 theme `h1.entry-title`,
   1. A valid TOML file with a `[section]` header is auto-detected as JSON (leading `[`) and the parse fails with `Unexpected token s in JSON at position 1`. The tool's TOML auto-detect branch is unreachable for realistic TOML documents — measured 2 of 10 in a sweep, both with digit- or hyphen-led keys.
   2. dotenv numeric coercion drops leading zeros: `CODE=08080` and `CODE=8080` both become the Number 8080, so the diff reports 0 differences. Measured across 4 padded pairs (08080/8080, 012345/12345, 007/7, 1.50/1.5); the control pair was correctly reported as 1 difference.
 - **Article**: /Users/quyue/www/blog/2026-11-07-config-file-semantic-diff-field-guide-when-08080-and-8080-become-the-same-number
+
+## 2026-11-08 — Hebrew / Jewish Calendar Bilingual Date Converter (WP 8664)
+- **Tool**: Hebrew / Jewish Calendar Bilingual Date Converter (`hebrew-calendar-bilingual-date-converter`) — Date & Time
+- **Title**: Two Months Called Adar, and One Line That Chooses Wrong
+- **Slug**: `two-months-called-adar-field-guide-when-one-line-picks-the-wrong-month`
+- **URL**: https://blog.flowrust.com/2026/11/08/two-months-called-adar-field-guide-when-one-line-picks-the-wrong-month/
+- **date_gmt**: 2026-11-07T18:59:15 (UTC, date_gmt only — never send `date`)
+- **Post ID**: 8664 — 1-POST 0-PATCH
+- **Scorer**: composite 0.9073 / A- (article-writer score.py; 8 H2s, 2179 body words)
+- **Scorer trajectory**: 0.6999 B -> 0.8023 B+ -> 0.9073 A- (voice 0.0 -> 1.0, ending 0.34 -> 1.0, evidence 0.27 -> 0.69)
+- **Assets**: 1 poster (1080x800) + 3 highlight cards (1600x900), PIL deep-navy/cyan-teal
+- **Media IDs**: poster=8660 card1=8661 card2=8662 card3=8663
+- **Anchors**: 1 subject tool + 1 catalogue index, both manifest-validated, both HTTP 200
+  - /en/tools/hebrew-calendar-bilingual-date-converter (subject)
+  - /en/tools (catalogue index)
+  - NOTE: this tool has 0 entries in sample-manifest.json (recursive toolId walk found none), so no /en/samples anchors were added rather than inventing them.
+- **Verified defect** (re-derived with an independent Python port of the calendar core, not read off the implementation):
+  1. `parseHebrewDate` maps the bare month name `adar` to sentinel -1, and the next line resolves it as `if (month === -1) month = 12`. Month 12 is Adar I. In a common year that IS Adar, so the branch is right ~63% of the time; in a leap year month 13 is Adar II, and every observance (Purim, yahrzeit, b'nai mitzvah) uses Adar II. Verified: 14 Adar I 5784 = 2024-02-23, 14 Adar II 5784 = 2024-03-24 (Purim). Error is exactly 30 days, and 37 of the 101 years from 5780 to 5880 are leap.
+  2. The same file's festival schedule builds the Purim row with `isLeapYear(heb.year) ? 13 : 12` — the correct branch, forty lines away. So the tool prints Purim on March 24 in one panel and February 23 in another for the same query. Narrow than ignorance: one path never got the leap-year test.
+- **What did NOT break** (the point of the article): Rosh Hashanah 5784-5788 = 2023-09-16, 2024-10-03, 2025-09-23, 2026-09-12, 2027-10-02 (5/5 published). Pesach 5784-5787 = 2024-04-23, 2025-04-13, 2026-04-02, 2027-04-22 (4/4). 200-year census 5700-5899: only 353/354/355/383/384/385 appear, distribution 18/50/58 and 33/9/32, 74 leap of 200 = 37.0%. Month lengths summed to year length in 200/200 years. Omer span 16 Nisan..5 Sivan = 49 days in all four tested years.
+- **PIL pre-measure gate**: 47 strings measured before render, 0 overflows (poster title 1080 budget, callout/url 920, 4-tile label/body/sub 300, 2-col row 640). Cards 2 and 3 were re-rendered 4 rows -> 6 rows after `vision_analyze` reported the panels were mostly empty (template `col_h=580` is fixed, so rows are the only lever); re-gated and re-verified clean.
+- **verification**: date - date_gmt = +8.0h and date_gmt identical to the value sent; REST content.rendered h1=0 h2=8 h3=0 poster=1 cards=3 pre=0 `<p></p>`=0; 4/4 images HTTP 200 with alt text 80-144 chars; 2/2 elysiatools anchors HTTP 200; `audit_post_content` 0 findings; live DOM h1=0 h2=8 h3=0 cards=3 poster=1 code=2 strong=9, ul/li = 2/8 REST vs 3/12 DOM (the documented +1 ul / +4 li Bloglo share widget), 0 `<li>` outside a list. LiteSpeed lazy-load showed the base64 SVG placeholder in `src` while `naturalWidth` read 1080/1600 and `dataset.src` held the real URLs — verified as lazy-load, not breakage, by curl.
+- **Article**: /Users/quyue/www/blog/2026-11-08-two-months-called-adar-field-guide
