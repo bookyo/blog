@@ -1489,3 +1489,25 @@ every count. Browser DOM on all 5 permalinks: 1 theme `h1.entry-title`,
 - **Live page** (balanced entry-content bloglo-entry slice, share widget stripped): h1=0 h2=8 h3=0 cards=3 poster=1 img=4 li=11 ul=2.
 - **Article**: /Users/quyue/www/blog/2026-11-08-queuing-theory-mmc
 - **Round trips**: 1 POST + 1 PATCH. The PATCH added the three `<strong>` emphases the canonical close-first shape wants (lead phrase, two claim phrases) — the first POST shipped 0 `<strong>` anywhere. Raw re-POST with `content` only: date_gmt unchanged, status=publish, paragraph text identical apart from the three insertions, 0 unexpected diffs across all 30 paragraphs.
+
+## 2026-11-09 04:15 CST (2026-11-08 20:15 UTC) - WP 8677 - Audio Chord Progression Detector
+
+- **Tool**: audio-chord-progression-detector (Media). 0 prior posts on chord detection (WP search on `chord-progression` returned 0); skipped the ISO 8601 duration workbench because two adjacent ISO-8601 duration posts already exist (WP 6492, WP 6770).
+- **Article**: Your Chord Chart Disagrees With Your Ears. The Grid Is the Reason.
+- **URL**: https://blog.flowrust.com/2026/11/09/audio-chord-progression-detector-field-guide-when-the-grid-decides-what-your-ears-hear-2026-11-09/
+- **Score**: composite 0.8827, grade A- (title 0.8075, hook 0.725, structure 0.9435, readability 1.0, specificity 0.8695, evidence 0.732, transitions 1.0, voice 0.9251, ending 1.0). Iterations: 0.7598 -> 0.8172 -> 0.8739 -> 0.8827.
+- **Anchors** (6, all manifest-validated via `validate_elysia_anchors.validate_anchors`, all HTTP 200):
+  - /en/tools/audio-chord-progression-detector (x2, subject tool)
+  - /en/samples/flac-samples (real top-level sample collection id)
+  - /en/samples/mp3-samples (real top-level sample collection id)
+  - /en/categories/media
+  - /en/tools (catalogue index)
+- **Numbers independently re-derived** from the tool source: frame 4,096 / hop 2,048 at 11,025 Hz = 371 ms window, 186 ms hop; FFT bin = 2.69 Hz; 12 x 9 = 108 templates; a 0.57 fit floor and a confidence formula that is a margin, not a probability.
+- **PIL pre-measure gate**: all poster and card strings measured before render, 0 overflows.
+- **vision_analyze caught 2 content-coherence defects that every measurement passed**: card1's subtitle claimed "all three settings" over four tiles (fixed to "at any setting"), and card3's tile 04 label rendered as the truncated "POWER CHRDS" (fixed to "POWER 5THS"), plus a subtitle that mismatched the fifth (structural, not vocabulary) item. Re-rendered and re-verified clean.
+- **REST content.rendered**: h1=0 h2=8 h3=0 poster=1 cards=3 img=4 alt=4 empty-alt=0 p 32/32 pre=0 anchors=6; `content.raw` closing-tag shells 0 (Cycle #76 detector).
+- **Live page**: 113,114 bytes, 1 h1 (theme entry-title), 9 h2 (8 body + post-nav), 3 cards, 1 poster, 0 pipe leaks. li 40 / ul 9 are all Bloglo chrome (no body lists authored).
+- **Assets**: poster 1080x800, card1/card2/card3 1600x900, all 4 image URLs HTTP 200.
+- **Article dir**: /Users/quyue/www/blog/2026-11-09-audio-chord-progression-detector
+- **Round trips**: 1 POST + 0 PATCH. `date_gmt` sent alone; stored date_gmt matches exactly and date - date_gmt = 8:00:00.
+- **Infrastructure note**: `requests`/`urllib` raised `ssl.SSLEOFError` on blog.flowrust.com while `curl --noproxy '*'` returned 200 in ~1.5 s, so the whole run used curl via subprocess (the documented Cycle #54 fallback).

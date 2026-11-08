@@ -1,0 +1,22 @@
+{
+ "poster.png": {
+  "id": 8673,
+  "url": "https://blog.flowrust.com/wp-content/uploads/2026/11/poster-5.png",
+  "alt": "Cover: The Grid Decides What Your Ears Hear, a guide to chord detection borders"
+ },
+ "card1.png": {
+  "id": 8674,
+  "url": "https://blog.flowrust.com/wp-content/uploads/2026/11/card1-5.png",
+  "alt": "Resolution grid card: 1.5s, 1.0s and 0.5s segment lengths against a 186 ms frame hop"
+ },
+ "card2.png": {
+  "id": 8675,
+  "url": "https://blog.flowrust.com/wp-content/uploads/2026/11/card2-5.png",
+  "alt": "Balanced and detailed runs of the same fixture both return the sequence C Am F G"
+ },
+ "card3.png": {
+  "id": 8676,
+  "url": "https://blog.flowrust.com/wp-content/uploads/2026/11/card3-5.png",
+  "alt": "Five things a 108-name chord vocabulary cannot express: inversions, ninths, slash chords, power fifths and downbeats"
+ }
+}
