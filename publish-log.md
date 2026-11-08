@@ -1469,3 +1469,23 @@ every count. Browser DOM on all 5 permalinks: 1 theme `h1.entry-title`,
 - **PIL pre-measure gate**: 47 strings measured before render, 0 overflows (poster title 1080 budget, callout/url 920, 4-tile label/body/sub 300, 2-col row 640). Cards 2 and 3 were re-rendered 4 rows -> 6 rows after `vision_analyze` reported the panels were mostly empty (template `col_h=580` is fixed, so rows are the only lever); re-gated and re-verified clean.
 - **verification**: date - date_gmt = +8.0h and date_gmt identical to the value sent; REST content.rendered h1=0 h2=8 h3=0 poster=1 cards=3 pre=0 `<p></p>`=0; 4/4 images HTTP 200 with alt text 80-144 chars; 2/2 elysiatools anchors HTTP 200; `audit_post_content` 0 findings; live DOM h1=0 h2=8 h3=0 cards=3 poster=1 code=2 strong=9, ul/li = 2/8 REST vs 3/12 DOM (the documented +1 ul / +4 li Bloglo share widget), 0 `<li>` outside a list. LiteSpeed lazy-load showed the base64 SVG placeholder in `src` while `naturalWidth` read 1080/1600 and `dataset.src` held the real URLs — verified as lazy-load, not breakage, by curl.
 - **Article**: /Users/quyue/www/blog/2026-11-08-two-months-called-adar-field-guide
+## 2026-11-08 15:47 CST (07:47 UTC) - M/M/c Multi-Server Queue Calculator (WP 8670)
+
+- **Post**: [80% Utilization Is Two Different Queues](https://blog.flowrust.com/2026/11/08/queue-utilization-is-two-different-queues-2026-11-08/)
+- **WP Post ID**: 8670 | status=publish on first POST | date_gmt 2026-11-08T07:47:49 (stored identically; date-date_gmt = +8.0h)
+- **Tool**: queuing-theory-mmc (Math & Numbers) - Erlang-C multi-server queue metrics
+- **Media IDs**: poster=8666 card1=8667 card2=8668 card3=8669
+- **Anchors** (6, all manifest-validated, all HTTP 200):
+  - /en/tools/queuing-theory-mmc (x3, subject tool)
+  - /en/tools/queuing-theory-mm1 (M/M/1 variant)
+  - /en/categories/math--and--numbers (308 -> /en/tools?category=math--and--numbers, 200, proper catalog title)
+  - /en/tools (catalogue index)
+  - NOTE: 0 entries in sample-manifest.json for this tool, so no /en/samples anchors.
+- **Numbers independently re-derived** from the Erlang-C recurrence in Python, then matched against the tool's own machine-checkable assertions (exact match on all 11 values in the two shipped examples).
+- **Verified semantics from the source** (`src/tools/2026-08-26/queuing-theory-mmc.ts`): rho >= 1 raises BusinessRejectError (so lambda >= c*mu is refused, e.g. the bank at c=2 is exactly rho=1.0); c clamped to 1..20 integer; dp 0..8; a non-finite guard rejects rho too close to 1; Little's law is printed as a cross-check on every run.
+- **PIL pre-measure gate**: every poster/card string measured before render, 0 overflows.
+- **vision_analyze caught 2 content defects that all measurements passed**: card1 tile 1 caption "every arrival waits" contradicted its own 0.80 wait probability (-> "teller at 80%"), and card3's takeaway claimed "3.7x the arrivals" when 16.0 -> 19.6 is +22% (-> "22% more arrivals between 0.80 and 0.98. 19.6x the line."). Both re-rendered and re-verified clean.
+- **REST content.rendered**: h1=0 h2=8 h3=0 poster=1 cards=3 img=4 ul=2 li=11 code=7 empty-p=0 p-balance 30/30; `audit_post_content` 0 findings; 4/4 images HTTP 200 image/png with alts 104-130 chars.
+- **Live page** (balanced entry-content bloglo-entry slice, share widget stripped): h1=0 h2=8 h3=0 cards=3 poster=1 img=4 li=11 ul=2.
+- **Article**: /Users/quyue/www/blog/2026-11-08-queuing-theory-mmc
+
