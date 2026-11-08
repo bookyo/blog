@@ -1488,4 +1488,4 @@ every count. Browser DOM on all 5 permalinks: 1 theme `h1.entry-title`,
 - **REST content.rendered**: h1=0 h2=8 h3=0 poster=1 cards=3 img=4 ul=2 li=11 code=7 empty-p=0 p-balance 30/30; `audit_post_content` 0 findings; 4/4 images HTTP 200 image/png with alts 104-130 chars.
 - **Live page** (balanced entry-content bloglo-entry slice, share widget stripped): h1=0 h2=8 h3=0 cards=3 poster=1 img=4 li=11 ul=2.
 - **Article**: /Users/quyue/www/blog/2026-11-08-queuing-theory-mmc
-
+- **Round trips**: 1 POST + 1 PATCH. The PATCH added the three `<strong>` emphases the canonical close-first shape wants (lead phrase, two claim phrases) — the first POST shipped 0 `<strong>` anywhere. Raw re-POST with `content` only: date_gmt unchanged, status=publish, paragraph text identical apart from the three insertions, 0 unexpected diffs across all 30 paragraphs.
