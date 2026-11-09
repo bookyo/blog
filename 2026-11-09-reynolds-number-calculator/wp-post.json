@@ -1,0 +1,443 @@
+{
+ "id": 8684,
+ "date": "2026-11-09T16:43:15",
+ "date_gmt": "2026-11-09T08:43:15",
+ "guid": {
+  "rendered": "https://blog.flowrust.com/2026/11/09/reynolds-number-calculator-flow-regime-field-guide/",
+  "raw": "https://blog.flowrust.com/2026/11/09/reynolds-number-calculator-flow-regime-field-guide/"
+ },
+ "modified": "2026-11-09T16:43:19",
+ "modified_gmt": "2026-11-09T08:43:19",
+ "password": "",
+ "slug": "reynolds-number-calculator-flow-regime-field-guide",
+ "status": "publish",
+ "type": "post",
+ "link": "https://blog.flowrust.com/2026/11/09/reynolds-number-calculator-flow-regime-field-guide/",
+ "title": {
+  "raw": "The Reynolds Number Is Exact. The 2,300 Label Is Not.",
+  "rendered": "The Reynolds Number Is Exact. The 2,300 Label Is Not."
+ },
+ "content": {
+  "raw": "<figure class=\"article-poster\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/11/poster-6.png\" alt=\"Cover: The Reynolds number is exact, the 2300 label is not\"></figure>\n<p>A 50 mm pipe carrying water at 2 m/s returns Re = 100,000. A 20 mm duct of glycerin at 0.1 m/s returns Re = 1.68. Both figures are exact, reproducible, and dimensionless, but both arrive with a word attached \u2014 turbulent, laminar. The number is a fact about the flow. The word is a fact about a convention, and that convention was written for one geometry.</p>\n<h2>Inertia divided by viscosity, and nothing else</h2>\n<p>Reynolds number is a ratio of two forces acting on the same parcel of fluid. Inertial forces scale like \u03c1\u00b7v\u00b2/D: heavier fluid, faster fluid, or a tighter channel all push harder toward disorder. Viscous forces scale like \u03bc\u00b7v/D\u00b2: thick fluid, slow fluid, or a tight channel all smear disturbances back out. Divide one by the other and the D cancels down to a single power:</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/11/card1-6.png\" alt=\"Four Reynolds numbers compared. Water in a 50 mm pipe at 2 m/s gives 100,000 and turbulent. Glycerin in a 20 mm duct gives 1.68 and laminar. The pipe band is 2,300 and the flat plate threshold is 500,000.\" loading=\"lazy\"></figure>\n<p><code>Re = \u03c1 \u00b7 v \u00b7 D / \u03bc</code></p>\n<p>Three inputs decide the result. Density and velocity are measured values. The third, the length D, is a decision, and that decision breaks more calculations than any unit conversion. The formula contains no term for <a href=\"https://blog.flowrust.com/tag/turbulence/\" class=\"wpai-auto-tags-link\">turbulence</a>. It contains no term for roughness, inlet shape, or how much the floor vibrates. It is a ratio, and a ratio cannot classify anything until you tell it which threshold belongs to your hardware.</p>\n<h2>Two viscosity forms, one number</h2>\n<p>Dynamic viscosity \u03bc, in Pa\u00b7s, is a fluid's resistance to being sheared. Kinematic viscosity \u03bd, in m\u00b2/s, is that same resistance divided by how much mass each cubic metre carries, so \u03bd = \u03bc/\u03c1. Water at 20 \u00b0C, for example, sits at \u03bc = 0.001 Pa\u00b7s and \u03c1 = 1000 kg/m\u00b3, which gives \u03bd = 0.000001 m\u00b2/s. Air at the same temperature sits at \u03bc \u2248 0.0000181 Pa\u00b7s and \u03c1 \u2248 1.204 kg/m\u00b3, which gives \u03bd \u2248 0.0000150 m\u00b2/s.</p>\n<p>Air is roughly 55 times less viscous than water by the dynamic measure, yet 15 times more viscous by the kinematic one, because it is 830 times lighter. That inversion forces a choice: which mode you enter. The calculator takes either route \u2014 dynamic (\u03c1, v, D, \u03bc) or kinematic (v, D, \u03bd) \u2014 and in dynamic mode it also returns \u03bd = \u03bc/\u03c1 as a cross-check. Use that cross-check. It catches a unit error before the error reaches a drawing.</p>\n<h2>Where 2,300 and 4,000 come from</h2>\n<p>In 1883 Osborne Reynolds threaded a dye line into a glass tube and watched it hold straight, then break. Reynolds reported the transition in his 1883 study near a value of the dimensionless group later named for him: roughly 2,000 for his apparatus, his fluid, and his inlet. According to that paper, the figure belongs to the apparatus, not to water in general. The lower bound of 2,300 lives in that family. It is an empirical result from one tube.</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/11/card2-6.png\" alt=\"Five tiles on where the thresholds come from. Reynolds 1883 saw the transition at about 2,000, the pipe band runs 2,300 to 4,000, the flat plate transitions near 500,000, the lab maximum is about 1e5, and the gap between the two thresholds is 220x.\" loading=\"lazy\"></figure>\n<p>The upper bound is a different animal. The number 4,000 is not the output of a measurement; it is the point where engineering practice stops hedging and agrees to call the flow turbulent. No experiment produces a sharp boundary there. Textbooks report laminar pipe flow sustained to Re \u2248 100,000 under vibration-free, polished-inlet conditions \u2014 an observed ceiling, not a design target. The 1,700-wide band between 2,300 and 4,000 is not uncertainty in the <a href=\"https://blog.flowrust.com/tag/physics/\" class=\"wpai-auto-tags-link\">physics</a>. It is an accounting convention for a flow that genuinely flickers between two states, forming turbulent slugs that appear, travel, and decay.</p>\n<h2>The same vessel, two labels, one heartbeat</h2>\n<p>Take the human aorta, for instance: \u03c1 \u2248 1,060 kg/m\u00b3, diameter \u2248 25 mm, \u03bc \u2248 0.0035 Pa\u00b7s. Feed in the cycle-mean velocity of 0.3 m/s and Re = 2,271, which lands in the laminar band. Feed in the measured peak at 1.0 m/s and Re = 7,571, firmly turbulent. Same vessel, same second of the same heartbeat, two opposite labels, and both are arithmetically correct.</p><figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/11/card3-6.png\" alt=\"The aorta at cycle mean flow of 0.3 m/s gives Reynolds 2,271 and a laminar label. At peak systole of 1.0 m/s it gives 7,571 and a turbulent label. Same vessel, same beat.\" loading=\"lazy\"></figure>\n<p>This is where the three-band model starts to fray. Blood flow stays laminar for most of the cardiac cycle and turns transitional in a slice of it. The mean-velocity label summarizes one column of data from a cycle; it does not describe a state. If your downstream decision depends on which regime dominates \u2014 wall shear stress, endothelial response, the noise a stenosis makes \u2014 then the velocity you type is the whole argument, and the label is only its shadow.</p>\n<h2>The flat plate that switches regime mid-span</h2>\n<p>Now change the geometry. Air at 10 m/s over a smooth flat plate one metre long gives Re = 10 \u00b7 1.0 / 0.0000150 \u2248 666,667 at the trailing edge. Run that through any pipe-flow classifier and you get turbulent. For the last quarter of the plate, the answer is right.</p>\n<p>The transition for an external boundary layer is not 2,300. It is Re \u2248 500,000, reached here at x = 0.75 m. The first 75 cm of the plate is laminar; the remaining 25 cm is not. One surface, one airstream, both regimes, and a single Reynolds number that shows neither of them. The gap between the two thresholds has one honest figure: 220. That is roughly the size of the mistake available to anyone who applies a duct rule to an external flow.</p>\n<h2>What the calculator will not tell you</h2>\n<p>The tool asks for a diameter and calls it a characteristic length, which is honest, but it cannot check that you supplied the right one. Three cases where the choice breaks the answer:</p>\n<ul>\n<li>Non-circular ducts need the hydraulic diameter, not the width. For a 300 mm \u00d7 100 mm duct, D<sub>h</sub> = 4A/P = 2ab/(a+b) = 0.15 m. Feed the 0.30 m width instead and the Reynolds number doubles. </li>\n<li>Open channels still work, but the label does not. A 10 m wide, 2 m deep channel at 1 m/s has a wetted perimeter of 14 m, a hydraulic diameter of 5.71 m, and Re \u2248 5,710,000. The number is meaningful; the word \"turbulent\" is trivially true and proves nothing you did not already know. </li>\n<li>Each geometry gets the same three bands. The classifier has no field for a boundary layer, a packed bed, or a microchannel where surface effects dominate well below 2,300. </li>\n</ul>\n<p>The gap is stated plainly in the tool's own description: the bands cover internal pipe flow. The rest is on you. That is a fair scope for a calculator, but it means the output is a number plus a hint, not a number plus an answer. When the hint is wrong, the number is still right \u2014 so keep them apart. Halve the diameter and Re halves. Change the geometry and the threshold moves. Only one of those two things is arithmetic.</p>\n<h2>The rounding that reads as a contradiction</h2>\n<p>Two behaviours in the output deserve attention before any of it reaches a report.</p>\n<p>The trap sits in the order of two operations: Re is classified at full precision, then rounded for display. Set decimal places to 0 and feed a 50 mm water pipe a velocity of 0.045990 m/s. The Reynolds number is 2,299.5, so the output reads <code>Re = 2300 (laminar)</code> while the tool's stated rule puts 2,300 in the transitional band. Both lines are computed correctly. They disagree because one was rounded and the other was not.</p>\n<p>The second behaviour hides in kinematic mode. The payload still carries <code>density_kg_m3</code> and <code>dynamicViscosity_Pa_s</code>, both as 0 \u2014 not null, not omitted. A downstream script that reads density from the response without checking <code>solveFor</code> will build a model of a fluid with zero density and no warning. Check the mode flag, not the field's presence.</p>\n<p>One more detail: \u03bd is emitted at six significant figures before rounding, so glycerin reports 0.00119048 m\u00b2/s while Re itself is cut to four decimal places. Compare viscosities at the precision they were emitted, not at the precision you displayed.</p>\n<h2>Before you trust the label</h2>\n<p>The number scales. The threshold does not. A short checklist that has saved more bad designs than any single formula:</p>\n<ul>\n<li>Write down which length you used as D, and one sentence on why that length. </li>\n<li>If the duct is not circular, compute the hydraulic diameter first, then check it against the width you nearly typed. </li>\n<li>Compute Re at the velocity that governs the decision \u2014 peak, not mean, when peak drives the failure mode. </li>\n<li>Look up the transition for the geometry: closed duct \u2248 2,300 to 4,000, smooth flat plate \u2248 500,000. Neither is a law of nature. </li>\n<li>Treat any result inside the band as unresolved, never as laminar-ish. </li>\n<li>Keep the exact number and the rounded display separate, in your notes and in your code. </li>\n</ul>\n<p>The fastest way to run the arithmetic, including the \u03bd cross-check and the regime hint, is the <a href=\"https://elysiatools.com/en/tools/reynolds-number-calculator\">Reynolds number calculator</a>. For the downstream questions, the same site carries <a href=\"https://elysiatools.com/en/tools/minor-loss-calculator\">minor loss</a> for fitting-by-fitting head loss, <a href=\"https://elysiatools.com/en/tools/pump-npsh-calculator\">NPSH</a> for cavitation margin, and <a href=\"https://elysiatools.com/en/tools/weir-flow-calculator\">weir flow</a> for open-channel discharge. Browse the <a href=\"https://elysiatools.com/en/categories/math--and--numbers\">math and numbers catalogue</a> or start from the <a href=\"https://elysiatools.com/en/tools\">full tool index</a>.</p>\n<p>For years I read 2,300 and 4,000 as properties of liquids. They are not. In the end they are a convention inherited from one glass tube, one dye thread, and one patient experiment in 1883. Keep the exact number. Question the borrowed adjective. Then find the transition for your own geometry, because that value \u2014 not the one printed in the band \u2014 is what your design has to survive.</p>",
+  "rendered": "<figure class=\"article-poster\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/11/poster-6.png\" alt=\"Cover: The Reynolds number is exact, the 2300 label is not\"></figure>\n<p>A 50 mm pipe carrying water at 2 m/s returns Re = 100,000. A 20 mm duct of glycerin at 0.1 m/s returns Re = 1.68. Both figures are exact, reproducible, and dimensionless, but both arrive with a word attached \u2014 turbulent, laminar. The number is a fact about the flow. The word is a fact about a convention, and that convention was written for one geometry.</p>\n<h2>Inertia divided by viscosity, and nothing else</h2>\n<p>Reynolds number is a ratio of two forces acting on the same parcel of fluid. Inertial forces scale like \u03c1\u00b7v\u00b2/D: heavier fluid, faster fluid, or a tighter channel all push harder toward disorder. Viscous forces scale like \u03bc\u00b7v/D\u00b2: thick fluid, slow fluid, or a tight channel all smear disturbances back out. Divide one by the other and the D cancels down to a single power:</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/11/card1-6.png\" alt=\"Four Reynolds numbers compared. Water in a 50 mm pipe at 2 m/s gives 100,000 and turbulent. Glycerin in a 20 mm duct gives 1.68 and laminar. The pipe band is 2,300 and the flat plate threshold is 500,000.\" loading=\"lazy\"></figure>\n<p><code>Re = \u03c1 \u00b7 v \u00b7 D / \u03bc</code></p>\n<p>Three inputs decide the result. Density and velocity are measured values. The third, the length D, is a decision, and that decision breaks more calculations than any unit conversion. The formula contains no term for <a href=\"https://blog.flowrust.com/tag/turbulence/\" class=\"wpai-auto-tags-link\">turbulence</a>. It contains no term for roughness, inlet shape, or how much the floor vibrates. It is a ratio, and a ratio cannot classify anything until you tell it which threshold belongs to your hardware.</p>\n<h2>Two viscosity forms, one number</h2>\n<p>Dynamic viscosity \u03bc, in Pa\u00b7s, is a fluid&#8217;s resistance to being sheared. Kinematic viscosity \u03bd, in m\u00b2/s, is that same resistance divided by how much mass each cubic metre carries, so \u03bd = \u03bc/\u03c1. Water at 20 \u00b0C, for example, sits at \u03bc = 0.001 Pa\u00b7s and \u03c1 = 1000 kg/m\u00b3, which gives \u03bd = 0.000001 m\u00b2/s. Air at the same temperature sits at \u03bc \u2248 0.0000181 Pa\u00b7s and \u03c1 \u2248 1.204 kg/m\u00b3, which gives \u03bd \u2248 0.0000150 m\u00b2/s.</p>\n<p>Air is roughly 55 times less viscous than water by the dynamic measure, yet 15 times more viscous by the kinematic one, because it is 830 times lighter. That inversion forces a choice: which mode you enter. The calculator takes either route \u2014 dynamic (\u03c1, v, D, \u03bc) or kinematic (v, D, \u03bd) \u2014 and in dynamic mode it also returns \u03bd = \u03bc/\u03c1 as a cross-check. Use that cross-check. It catches a unit error before the error reaches a drawing.</p>\n<h2>Where 2,300 and 4,000 come from</h2>\n<p>In 1883 Osborne Reynolds threaded a dye line into a glass tube and watched it hold straight, then break. Reynolds reported the transition in his 1883 study near a value of the dimensionless group later named for him: roughly 2,000 for his apparatus, his fluid, and his inlet. According to that paper, the figure belongs to the apparatus, not to water in general. The lower bound of 2,300 lives in that family. It is an empirical result from one tube.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/11/card2-6.png\" alt=\"Five tiles on where the thresholds come from. Reynolds 1883 saw the transition at about 2,000, the pipe band runs 2,300 to 4,000, the flat plate transitions near 500,000, the lab maximum is about 1e5, and the gap between the two thresholds is 220x.\" loading=\"lazy\"></figure>\n<p>The upper bound is a different animal. The number 4,000 is not the output of a measurement; it is the point where engineering practice stops hedging and agrees to call the flow turbulent. No experiment produces a sharp boundary there. Textbooks report laminar pipe flow sustained to Re \u2248 100,000 under vibration-free, polished-inlet conditions \u2014 an observed ceiling, not a design target. The 1,700-wide band between 2,300 and 4,000 is not uncertainty in the <a href=\"https://blog.flowrust.com/tag/physics/\" class=\"wpai-auto-tags-link\">physics</a>. It is an accounting convention for a flow that genuinely flickers between two states, forming turbulent slugs that appear, travel, and decay.</p>\n<h2>The same vessel, two labels, one heartbeat</h2>\n<p>Take the human aorta, for instance: \u03c1 \u2248 1,060 kg/m\u00b3, diameter \u2248 25 mm, \u03bc \u2248 0.0035 Pa\u00b7s. Feed in the cycle-mean velocity of 0.3 m/s and Re = 2,271, which lands in the laminar band. Feed in the measured peak at 1.0 m/s and Re = 7,571, firmly turbulent. Same vessel, same second of the same heartbeat, two opposite labels, and both are arithmetically correct.</p>\n<figure class=\"highlight-card\"><img decoding=\"async\" src=\"https://blog.flowrust.com/wp-content/uploads/2026/11/card3-6.png\" alt=\"The aorta at cycle mean flow of 0.3 m/s gives Reynolds 2,271 and a laminar label. At peak systole of 1.0 m/s it gives 7,571 and a turbulent label. Same vessel, same beat.\" loading=\"lazy\"></figure>\n<p>This is where the three-band model starts to fray. Blood flow stays laminar for most of the cardiac cycle and turns transitional in a slice of it. The mean-velocity label summarizes one column of data from a cycle; it does not describe a state. If your downstream decision depends on which regime dominates \u2014 wall shear stress, endothelial response, the noise a stenosis makes \u2014 then the velocity you type is the whole argument, and the label is only its shadow.</p>\n<h2>The flat plate that switches regime mid-span</h2>\n<p>Now change the geometry. Air at 10 m/s over a smooth flat plate one metre long gives Re = 10 \u00b7 1.0 / 0.0000150 \u2248 666,667 at the trailing edge. Run that through any pipe-flow classifier and you get turbulent. For the last quarter of the plate, the answer is right.</p>\n<p>The transition for an external boundary layer is not 2,300. It is Re \u2248 500,000, reached here at x = 0.75 m. The first 75 cm of the plate is laminar; the remaining 25 cm is not. One surface, one airstream, both regimes, and a single Reynolds number that shows neither of them. The gap between the two thresholds has one honest figure: 220. That is roughly the size of the mistake available to anyone who applies a duct rule to an external flow.</p>\n<h2>What the calculator will not tell you</h2>\n<p>The tool asks for a diameter and calls it a characteristic length, which is honest, but it cannot check that you supplied the right one. Three cases where the choice breaks the answer:</p>\n<ul>\n<li>Non-circular ducts need the hydraulic diameter, not the width. For a 300 mm \u00d7 100 mm duct, D<sub>h</sub> = 4A/P = 2ab/(a+b) = 0.15 m. Feed the 0.30 m width instead and the Reynolds number doubles. </li>\n<li>Open channels still work, but the label does not. A 10 m wide, 2 m deep channel at 1 m/s has a wetted perimeter of 14 m, a hydraulic diameter of 5.71 m, and Re \u2248 5,710,000. The number is meaningful; the word &#8220;turbulent&#8221; is trivially true and proves nothing you did not already know. </li>\n<li>Each geometry gets the same three bands. The classifier has no field for a boundary layer, a packed bed, or a microchannel where surface effects dominate well below 2,300. </li>\n</ul>\n<p>The gap is stated plainly in the tool&#8217;s own description: the bands cover internal pipe flow. The rest is on you. That is a fair scope for a calculator, but it means the output is a number plus a hint, not a number plus an answer. When the hint is wrong, the number is still right \u2014 so keep them apart. Halve the diameter and Re halves. Change the geometry and the threshold moves. Only one of those two things is arithmetic.</p>\n<h2>The rounding that reads as a contradiction</h2>\n<p>Two behaviours in the output deserve attention before any of it reaches a report.</p>\n<p>The trap sits in the order of two operations: Re is classified at full precision, then rounded for display. Set decimal places to 0 and feed a 50 mm water pipe a velocity of 0.045990 m/s. The Reynolds number is 2,299.5, so the output reads <code>Re = 2300 (laminar)</code> while the tool&#8217;s stated rule puts 2,300 in the transitional band. Both lines are computed correctly. They disagree because one was rounded and the other was not.</p>\n<p>The second behaviour hides in kinematic mode. The payload still carries <code>density_kg_m3</code> and <code>dynamicViscosity_Pa_s</code>, both as 0 \u2014 not null, not omitted. A downstream script that reads density from the response without checking <code>solveFor</code> will build a model of a fluid with zero density and no warning. Check the mode flag, not the field&#8217;s presence.</p>\n<p>One more detail: \u03bd is emitted at six significant figures before rounding, so glycerin reports 0.00119048 m\u00b2/s while Re itself is cut to four decimal places. Compare viscosities at the precision they were emitted, not at the precision you displayed.</p>\n<h2>Before you trust the label</h2>\n<p>The number scales. The threshold does not. A short checklist that has saved more bad designs than any single formula:</p>\n<ul>\n<li>Write down which length you used as D, and one sentence on why that length. </li>\n<li>If the duct is not circular, compute the hydraulic diameter first, then check it against the width you nearly typed. </li>\n<li>Compute Re at the velocity that governs the decision \u2014 peak, not mean, when peak drives the failure mode. </li>\n<li>Look up the transition for the geometry: closed duct \u2248 2,300 to 4,000, smooth flat plate \u2248 500,000. Neither is a law of nature. </li>\n<li>Treat any result inside the band as unresolved, never as laminar-ish. </li>\n<li>Keep the exact number and the rounded display separate, in your notes and in your code. </li>\n</ul>\n<p>The fastest way to run the arithmetic, including the \u03bd cross-check and the regime hint, is the <a href=\"https://elysiatools.com/en/tools/reynolds-number-calculator\">Reynolds number calculator</a>. For the downstream questions, the same site carries <a href=\"https://elysiatools.com/en/tools/minor-loss-calculator\">minor loss</a> for fitting-by-fitting head loss, <a href=\"https://elysiatools.com/en/tools/pump-npsh-calculator\">NPSH</a> for cavitation margin, and <a href=\"https://elysiatools.com/en/tools/weir-flow-calculator\">weir flow</a> for open-channel discharge. Browse the <a href=\"https://elysiatools.com/en/categories/math--and--numbers\">math and numbers catalogue</a> or start from the <a href=\"https://elysiatools.com/en/tools\">full tool index</a>.</p>\n<p>For years I read 2,300 and 4,000 as properties of liquids. They are not. In the end they are a convention inherited from one glass tube, one dye thread, and one patient experiment in 1883. Keep the exact number. Question the borrowed adjective. Then find the transition for your own geometry, because that value \u2014 not the one printed in the band \u2014 is what your design has to survive.</p>\n",
+  "protected": false,
+  "block_version": 0
+ },
+ "excerpt": {
+  "raw": "",
+  "rendered": "<p>A 50 mm pipe carrying water at 2 m/s returns Re = 100,000. A 20&hellip;</p>\n",
+  "protected": false
+ },
+ "author": 1,
+ "featured_media": 0,
+ "comment_status": "open",
+ "ping_status": "open",
+ "sticky": false,
+ "template": "",
+ "format": "standard",
+ "meta": {
+  "om_disable_all_campaigns": false,
+  "_monsterinsights_skip_tracking": false,
+  "footnotes": ""
+ },
+ "categories": [
+  1
+ ],
+ "tags": [
+  865,
+  857,
+  228,
+  2532,
+  2533
+ ],
+ "permalink_template": "https://blog.flowrust.com/2026/11/09/%postname%/",
+ "generated_slug": "the-reynolds-number-is-exact-the-2300-label-is-not",
+ "class_list": [
+  "post-8684",
+  "post",
+  "type-post",
+  "status-publish",
+  "format-standard",
+  "hentry",
+  "category-uncategorized",
+  "tag-engineering",
+  "tag-fluid-dynamics",
+  "tag-physics",
+  "tag-reynolds-number",
+  "tag-turbulence"
+ ],
+ "aioseo_notices": [],
+ "aioseo_head": "\n\t\t<!-- All in One SEO 4.9.10 - aioseo.com -->\n\t<meta name=\"description\" content=\"A 50 mm pipe carrying water at 2 m/s returns Re = 100,000. A 20 mm duct of glycerin at 0.1 m/s returns Re = 1.68. Both figures are exact, reproducible, and dimensionless, but both arrive with a word attached \u2014 turbulent, laminar. The number is a fact about the flow. The word is a\" />\n\t<meta name=\"robots\" content=\"max-image-preview:large\" />\n\t<meta name=\"author\" content=\"xiezixing\"/>\n\t<meta name=\"google-site-verification\" content=\"xcSlplMgocNnrNwmxi7j46JcdU6F-L2jrlAnpUB5Lxg\" />\n\t<link rel=\"canonical\" href=\"https://blog.flowrust.com/2026/11/09/reynolds-number-calculator-flow-regime-field-guide/\" />\n\t<meta name=\"generator\" content=\"All in One SEO (AIOSEO) 4.9.10\" />\n\t\t<meta property=\"og:locale\" content=\"en_US\" />\n\t\t<meta property=\"og:site_name\" content=\"COSESAI - Sharing my AI experiences\" />\n\t\t<meta property=\"og:type\" content=\"article\" />\n\t\t<meta property=\"og:title\" content=\"The Reynolds Number Is Exact. The 2,300 Label Is Not. - COSESAI\" />\n\t\t<meta property=\"og:description\" content=\"A 50 mm pipe carrying water at 2 m/s returns Re = 100,000. A 20 mm duct of glycerin at 0.1 m/s returns Re = 1.68. Both figures are exact, reproducible, and dimensionless, but both arrive with a word attached \u2014 turbulent, laminar. The number is a fact about the flow. The word is a\" />\n\t\t<meta property=\"og:url\" content=\"https://blog.flowrust.com/2026/11/09/reynolds-number-calculator-flow-regime-field-guide/\" />\n\t\t<meta property=\"og:image\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<meta property=\"og:image:secure_url\" content=\"https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<meta property=\"article:published_time\" content=\"2026-11-09T08:43:15+00:00\" />\n\t\t<meta property=\"article:modified_time\" content=\"2026-11-09T08:43:19+00:00\" />\n\t\t<meta name=\"twitter:card\" content=\"summary_large_image\" />\n\t\t<meta name=\"twitter:title\" content=\"The Reynolds Number Is Exact. The 2,300 Label Is Not. - COSESAI\" />\n\t\t<meta name=\"twitter:description\" content=\"A 50 mm pipe carrying water at 2 m/s returns Re = 100,000. A 20 mm duct of glycerin at 0.1 m/s returns Re = 1.68. Both figures are exact, reproducible, and dimensionless, but both arrive with a word attached \u2014 turbulent, laminar. The number is a fact about the flow. The word is a\" />\n\t\t<meta name=\"twitter:image\" content=\"http://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp\" />\n\t\t<script type=\"application/ld+json\" class=\"aioseo-schema\">\n\t\t\t{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/11\\/09\\/reynolds-number-calculator-flow-regime-field-guide\\/#blogposting\",\"name\":\"The Reynolds Number Is Exact. The 2,300 Label Is Not. - COSESAI\",\"headline\":\"The Reynolds Number Is Exact. The 2,300 Label Is Not.\",\"author\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"publisher\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\"},\"image\":{\"@type\":\"ImageObject\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/uploads\\/2026\\/11\\/poster-6.png\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/11\\/09\\/reynolds-number-calculator-flow-regime-field-guide\\/#articleImage\",\"width\":1080,\"height\":800,\"caption\":\"Cover: The Reynolds number is exact, the 2300 label is not\"},\"datePublished\":\"2026-11-09T16:43:15+08:00\",\"dateModified\":\"2026-11-09T16:43:19+08:00\",\"inLanguage\":\"en-US\",\"mainEntityOfPage\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/11\\/09\\/reynolds-number-calculator-flow-regime-field-guide\\/#webpage\"},\"isPartOf\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/11\\/09\\/reynolds-number-calculator-flow-regime-field-guide\\/#webpage\"},\"articleSection\":\"\\u672a\\u5206\\u7c7b, Engineering, fluid-dynamics, physics, reynolds number, turbulence\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/11\\/09\\/reynolds-number-calculator-flow-regime-field-guide\\/#breadcrumblist\",\"itemListElement\":[{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com#listItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/blog.flowrust.com\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"name\":\"\\u672a\\u5206\\u7c7b\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"position\":2,\"name\":\"\\u672a\\u5206\\u7c7b\",\"item\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/11\\/09\\/reynolds-number-calculator-flow-regime-field-guide\\/#listItem\",\"name\":\"The Reynolds Number Is Exact. The 2,300 Label Is Not.\"},\"previousItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com#listItem\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/11\\/09\\/reynolds-number-calculator-flow-regime-field-guide\\/#listItem\",\"position\":3,\"name\":\"The Reynolds Number Is Exact. The 2,300 Label Is Not.\",\"previousItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/category\\/uncategorized\\/#listItem\",\"name\":\"\\u672a\\u5206\\u7c7b\"}}]},{\"@type\":\"Person\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\",\"name\":\"xiezixing\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/11\\/09\\/reynolds-number-calculator-flow-regime-field-guide\\/#personImage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/litespeed\\/avatar\\/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1793809818\",\"width\":96,\"height\":96,\"caption\":\"xiezixing\"}},{\"@type\":\"Person\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\",\"url\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/\",\"name\":\"xiezixing\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/11\\/09\\/reynolds-number-calculator-flow-regime-field-guide\\/#authorImage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/wp-content\\/litespeed\\/avatar\\/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1793809818\",\"width\":96,\"height\":96,\"caption\":\"xiezixing\"}},{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/11\\/09\\/reynolds-number-calculator-flow-regime-field-guide\\/#webpage\",\"url\":\"https:\\/\\/blog.flowrust.com\\/2026\\/11\\/09\\/reynolds-number-calculator-flow-regime-field-guide\\/\",\"name\":\"The Reynolds Number Is Exact. The 2,300 Label Is Not. - COSESAI\",\"description\":\"A 50 mm pipe carrying water at 2 m\\/s returns Re = 100,000. A 20 mm duct of glycerin at 0.1 m\\/s returns Re = 1.68. Both figures are exact, reproducible, and dimensionless, but both arrive with a word attached \\u2014 turbulent, laminar. The number is a fact about the flow. The word is a\",\"inLanguage\":\"en-US\",\"isPartOf\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/2026\\/11\\/09\\/reynolds-number-calculator-flow-regime-field-guide\\/#breadcrumblist\"},\"author\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"creator\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/author\\/xiezixing\\/#author\"},\"datePublished\":\"2026-11-09T16:43:15+08:00\",\"dateModified\":\"2026-11-09T16:43:19+08:00\"},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/blog.flowrust.com\\/#website\",\"url\":\"https:\\/\\/blog.flowrust.com\\/\",\"name\":\"COSESAI\",\"description\":\"Sharing my AI experiences\",\"inLanguage\":\"en-US\",\"publisher\":{\"@id\":\"https:\\/\\/blog.flowrust.com\\/#person\"}}]}\n\t\t</script>\n\t\t<!-- All in One SEO -->\n\n",
+ "aioseo_head_json": {
+  "title": "The Reynolds Number Is Exact. The 2,300 Label Is Not. - COSESAI",
+  "description": "A 50 mm pipe carrying water at 2 m/s returns Re = 100,000. A 20 mm duct of glycerin at 0.1 m/s returns Re = 1.68. Both figures are exact, reproducible, and dimensionless, but both arrive with a word attached \u2014 turbulent, laminar. The number is a fact about the flow. The word is a",
+  "canonical_url": "https://blog.flowrust.com/2026/11/09/reynolds-number-calculator-flow-regime-field-guide/",
+  "robots": "max-image-preview:large",
+  "keywords": "",
+  "webmasterTools": {
+   "google-site-verification": "xcSlplMgocNnrNwmxi7j46JcdU6F-L2jrlAnpUB5Lxg",
+   "miscellaneous": ""
+  },
+  "schema": {
+   "@context": "https://schema.org",
+   "@graph": [
+    {
+     "@type": "BlogPosting",
+     "@id": "https://blog.flowrust.com/2026/11/09/reynolds-number-calculator-flow-regime-field-guide/#blogposting",
+     "name": "The Reynolds Number Is Exact. The 2,300 Label Is Not. - COSESAI",
+     "headline": "The Reynolds Number Is Exact. The 2,300 Label Is Not.",
+     "author": {
+      "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+     },
+     "publisher": {
+      "@id": "https://blog.flowrust.com/#person"
+     },
+     "image": {
+      "@type": "ImageObject",
+      "url": "https://blog.flowrust.com/wp-content/uploads/2026/11/poster-6.png",
+      "@id": "https://blog.flowrust.com/2026/11/09/reynolds-number-calculator-flow-regime-field-guide/#articleImage",
+      "width": 1080,
+      "height": 800,
+      "caption": "Cover: The Reynolds number is exact, the 2300 label is not"
+     },
+     "datePublished": "2026-11-09T16:43:15+08:00",
+     "dateModified": "2026-11-09T16:43:19+08:00",
+     "inLanguage": "en-US",
+     "mainEntityOfPage": {
+      "@id": "https://blog.flowrust.com/2026/11/09/reynolds-number-calculator-flow-regime-field-guide/#webpage"
+     },
+     "isPartOf": {
+      "@id": "https://blog.flowrust.com/2026/11/09/reynolds-number-calculator-flow-regime-field-guide/#webpage"
+     },
+     "articleSection": "\u672a\u5206\u7c7b, Engineering, fluid-dynamics, physics, reynolds number, turbulence"
+    },
+    {
+     "@type": "BreadcrumbList",
+     "@id": "https://blog.flowrust.com/2026/11/09/reynolds-number-calculator-flow-regime-field-guide/#breadcrumblist",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "@id": "https://blog.flowrust.com#listItem",
+       "position": 1,
+       "name": "Home",
+       "item": "https://blog.flowrust.com",
+       "nextItem": {
+        "@type": "ListItem",
+        "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+        "name": "\u672a\u5206\u7c7b"
+       }
+      },
+      {
+       "@type": "ListItem",
+       "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+       "position": 2,
+       "name": "\u672a\u5206\u7c7b",
+       "item": "https://blog.flowrust.com/category/uncategorized/",
+       "nextItem": {
+        "@type": "ListItem",
+        "@id": "https://blog.flowrust.com/2026/11/09/reynolds-number-calculator-flow-regime-field-guide/#listItem",
+        "name": "The Reynolds Number Is Exact. The 2,300 Label Is Not."
+       },
+       "previousItem": {
+        "@type": "ListItem",
+        "@id": "https://blog.flowrust.com#listItem",
+        "name": "Home"
+       }
+      },
+      {
+       "@type": "ListItem",
+       "@id": "https://blog.flowrust.com/2026/11/09/reynolds-number-calculator-flow-regime-field-guide/#listItem",
+       "position": 3,
+       "name": "The Reynolds Number Is Exact. The 2,300 Label Is Not.",
+       "previousItem": {
+        "@type": "ListItem",
+        "@id": "https://blog.flowrust.com/category/uncategorized/#listItem",
+        "name": "\u672a\u5206\u7c7b"
+       }
+      }
+     ]
+    },
+    {
+     "@type": "Person",
+     "@id": "https://blog.flowrust.com/#person",
+     "name": "xiezixing",
+     "image": {
+      "@type": "ImageObject",
+      "@id": "https://blog.flowrust.com/2026/11/09/reynolds-number-calculator-flow-regime-field-guide/#personImage",
+      "url": "https://blog.flowrust.com/wp-content/litespeed/avatar/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1793809818",
+      "width": 96,
+      "height": 96,
+      "caption": "xiezixing"
+     }
+    },
+    {
+     "@type": "Person",
+     "@id": "https://blog.flowrust.com/author/xiezixing/#author",
+     "url": "https://blog.flowrust.com/author/xiezixing/",
+     "name": "xiezixing",
+     "image": {
+      "@type": "ImageObject",
+      "@id": "https://blog.flowrust.com/2026/11/09/reynolds-number-calculator-flow-regime-field-guide/#authorImage",
+      "url": "https://blog.flowrust.com/wp-content/litespeed/avatar/44a334d05ddda68e6bcc16896a8eb6d0.jpg?ver=1793809818",
+      "width": 96,
+      "height": 96,
+      "caption": "xiezixing"
+     }
+    },
+    {
+     "@type": "WebPage",
+     "@id": "https://blog.flowrust.com/2026/11/09/reynolds-number-calculator-flow-regime-field-guide/#webpage",
+     "url": "https://blog.flowrust.com/2026/11/09/reynolds-number-calculator-flow-regime-field-guide/",
+     "name": "The Reynolds Number Is Exact. The 2,300 Label Is Not. - COSESAI",
+     "description": "A 50 mm pipe carrying water at 2 m/s returns Re = 100,000. A 20 mm duct of glycerin at 0.1 m/s returns Re = 1.68. Both figures are exact, reproducible, and dimensionless, but both arrive with a word attached \u2014 turbulent, laminar. The number is a fact about the flow. The word is a",
+     "inLanguage": "en-US",
+     "isPartOf": {
+      "@id": "https://blog.flowrust.com/#website"
+     },
+     "breadcrumb": {
+      "@id": "https://blog.flowrust.com/2026/11/09/reynolds-number-calculator-flow-regime-field-guide/#breadcrumblist"
+     },
+     "author": {
+      "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+     },
+     "creator": {
+      "@id": "https://blog.flowrust.com/author/xiezixing/#author"
+     },
+     "datePublished": "2026-11-09T16:43:15+08:00",
+     "dateModified": "2026-11-09T16:43:19+08:00"
+    },
+    {
+     "@type": "WebSite",
+     "@id": "https://blog.flowrust.com/#website",
+     "url": "https://blog.flowrust.com/",
+     "name": "COSESAI",
+     "description": "Sharing my AI experiences",
+     "inLanguage": "en-US",
+     "publisher": {
+      "@id": "https://blog.flowrust.com/#person"
+     }
+    }
+   ]
+  },
+  "og:locale": "en_US",
+  "og:site_name": "COSESAI - Sharing my AI experiences",
+  "og:type": "article",
+  "og:title": "The Reynolds Number Is Exact. The 2,300 Label Is Not. - COSESAI",
+  "og:description": "A 50 mm pipe carrying water at 2 m/s returns Re = 100,000. A 20 mm duct of glycerin at 0.1 m/s returns Re = 1.68. Both figures are exact, reproducible, and dimensionless, but both arrive with a word attached \u2014 turbulent, laminar. The number is a fact about the flow. The word is a",
+  "og:url": "https://blog.flowrust.com/2026/11/09/reynolds-number-calculator-flow-regime-field-guide/",
+  "og:image": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp",
+  "og:image:secure_url": "https://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp",
+  "article:published_time": "2026-11-09T08:43:15+00:00",
+  "article:modified_time": "2026-11-09T08:43:19+00:00",
+  "twitter:card": "summary_large_image",
+  "twitter:title": "The Reynolds Number Is Exact. The 2,300 Label Is Not. - COSESAI",
+  "twitter:description": "A 50 mm pipe carrying water at 2 m/s returns Re = 100,000. A 20 mm duct of glycerin at 0.1 m/s returns Re = 1.68. Both figures are exact, reproducible, and dimensionless, but both arrive with a word attached \u2014 turbulent, laminar. The number is a fact about the flow. The word is a",
+  "twitter:image": "http://blog.flowrust.com/wp-content/uploads/2026/03/cropped-resized_1773040512002_image-resize-1773040490707-ol3uaylz3h.webp"
+ },
+ "aioseo_meta_data": {
+  "post_id": "8684",
+  "title": null,
+  "description": null,
+  "keywords": null,
+  "keyphrases": null,
+  "primary_term": null,
+  "canonical_url": null,
+  "og_title": null,
+  "og_description": null,
+  "og_object_type": "default",
+  "og_image_type": "default",
+  "og_image_url": null,
+  "og_image_width": null,
+  "og_image_height": null,
+  "og_image_custom_url": null,
+  "og_image_custom_fields": null,
+  "og_video": null,
+  "og_custom_url": null,
+  "og_article_section": null,
+  "og_article_tags": null,
+  "twitter_use_og": false,
+  "twitter_card": "default",
+  "twitter_image_type": "default",
+  "twitter_image_url": null,
+  "twitter_image_custom_url": null,
+  "twitter_image_custom_fields": null,
+  "twitter_title": null,
+  "twitter_description": null,
+  "schema": {
+   "blockGraphs": [],
+   "customGraphs": [],
+   "default": {
+    "data": {
+     "Article": [],
+     "Course": [],
+     "Dataset": [],
+     "FAQPage": [],
+     "Movie": [],
+     "Person": [],
+     "Product": [],
+     "ProductReview": [],
+     "Car": [],
+     "Recipe": [],
+     "Service": [],
+     "SoftwareApplication": [],
+     "WebPage": []
+    },
+    "graphName": "",
+    "isEnabled": true
+   },
+   "graphs": []
+  },
+  "schema_type": "default",
+  "schema_type_options": null,
+  "pillar_content": false,
+  "robots_default": true,
+  "robots_noindex": false,
+  "robots_noarchive": false,
+  "robots_nosnippet": false,
+  "robots_nofollow": false,
+  "robots_noimageindex": false,
+  "robots_noodp": false,
+  "robots_notranslate": false,
+  "robots_max_snippet": null,
+  "robots_max_videopreview": null,
+  "robots_max_imagepreview": "large",
+  "priority": null,
+  "frequency": null,
+  "local_seo": null,
+  "breadcrumb_settings": null,
+  "limit_modified_date": false,
+  "ai": null,
+  "created": "2026-11-09 08:43:17",
+  "updated": "2026-11-09 08:43:17",
+  "seo_analyzer_scan_date": null
+ },
+ "aioseo_breadcrumb": "<div class=\"aioseo-breadcrumbs\"><span class=\"aioseo-breadcrumb\">\n\t\t\t<a href=\"https://blog.flowrust.com\" title=\"Home\">Home</a>\n\t\t</span><span class=\"aioseo-breadcrumb-separator\">&raquo;</span><span class=\"aioseo-breadcrumb\">\n\t\t\t<a href=\"https://blog.flowrust.com/category/uncategorized/\" title=\"\u672a\u5206\u7c7b\">\u672a\u5206\u7c7b</a>\n\t\t</span><span class=\"aioseo-breadcrumb-separator\">&raquo;</span><span class=\"aioseo-breadcrumb\">\n\t\t\tThe Reynolds Number Is Exact. The 2,300 Label Is Not.\n\t\t</span></div>",
+ "aioseo_breadcrumb_json": [
+  {
+   "label": "Home",
+   "link": "https://blog.flowrust.com"
+  },
+  {
+   "label": "\u672a\u5206\u7c7b",
+   "link": "https://blog.flowrust.com/category/uncategorized/"
+  },
+  {
+   "label": "The Reynolds Number Is Exact. The 2,300 Label Is Not.",
+   "link": "https://blog.flowrust.com/2026/11/09/reynolds-number-calculator-flow-regime-field-guide/"
+  }
+ ],
+ "_links": {
+  "self": [
+   {
+    "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8684",
+    "targetHints": {
+     "allow": [
+      "GET",
+      "POST",
+      "PUT",
+      "PATCH",
+      "DELETE"
+     ]
+    }
+   }
+  ],
+  "collection": [
+   {
+    "href": "https://blog.flowrust.com/wp-json/wp/v2/posts"
+   }
+  ],
+  "about": [
+   {
+    "href": "https://blog.flowrust.com/wp-json/wp/v2/types/post"
+   }
+  ],
+  "author": [
+   {
+    "embeddable": true,
+    "href": "https://blog.flowrust.com/wp-json/wp/v2/users/1"
+   }
+  ],
+  "replies": [
+   {
+    "embeddable": true,
+    "href": "https://blog.flowrust.com/wp-json/wp/v2/comments?post=8684"
+   }
+  ],
+  "version-history": [
+   {
+    "count": 1,
+    "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8684/revisions"
+   }
+  ],
+  "predecessor-version": [
+   {
+    "id": 8685,
+    "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8684/revisions/8685"
+   }
+  ],
+  "wp:attachment": [
+   {
+    "href": "https://blog.flowrust.com/wp-json/wp/v2/media?parent=8684"
+   }
+  ],
+  "wp:term": [
+   {
+    "taxonomy": "category",
+    "embeddable": true,
+    "href": "https://blog.flowrust.com/wp-json/wp/v2/categories?post=8684"
+   },
+   {
+    "taxonomy": "post_tag",
+    "embeddable": true,
+    "href": "https://blog.flowrust.com/wp-json/wp/v2/tags?post=8684"
+   }
+  ],
+  "wp:action-publish": [
+   {
+    "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8684"
+   }
+  ],
+  "wp:action-unfiltered-html": [
+   {
+    "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8684"
+   }
+  ],
+  "wp:action-sticky": [
+   {
+    "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8684"
+   }
+  ],
+  "wp:action-assign-author": [
+   {
+    "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8684"
+   }
+  ],
+  "wp:action-create-categories": [
+   {
+    "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8684"
+   }
+  ],
+  "wp:action-assign-categories": [
+   {
+    "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8684"
+   }
+  ],
+  "wp:action-create-tags": [
+   {
+    "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8684"
+   }
+  ],
+  "wp:action-assign-tags": [
+   {
+    "href": "https://blog.flowrust.com/wp-json/wp/v2/posts/8684"
+   }
+  ],
+  "curies": [
+   {
+    "name": "wp",
+    "href": "https://api.w.org/{rel}",
+    "templated": true
+   }
+  ]
+ }
+}
