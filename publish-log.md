@@ -1511,3 +1511,32 @@ every count. Browser DOM on all 5 permalinks: 1 theme `h1.entry-title`,
 - **Article dir**: /Users/quyue/www/blog/2026-11-09-audio-chord-progression-detector
 - **Round trips**: 1 POST + 0 PATCH. `date_gmt` sent alone; stored date_gmt matches exactly and date - date_gmt = 8:00:00.
 - **Infrastructure note**: `requests`/`urllib` raised `ssl.SSLEOFError` on blog.flowrust.com while `curl --noproxy '*'` returned 200 in ~1.5 s, so the whole run used curl via subprocess (the documented Cycle #54 fallback).
+
+## 2026-11-09 09:51 CST (2026-11-09 01:51 UTC) - AUDIT cycle #80 - 5 posts, 1 PATCH (WP 8670)
+
+- **Scope**: latest 5 by date = 8677, 8670, 8664, 8658, 8628 (all in-scope; 8677 is the new post since cycle #79, which also dropped 8622 out of the window).
+- **Result**: 5/5 audited, 1 real defect found and fixed, 0 broken images (20/20 HTTP 200 + PIL-decoded), 0 broken elysiatools anchors (23 unique hrefs, all 200), 0 out-of-scope posts.
+- **Defect — WP 8670 (queue utilization, M/M/c)**: two Erlang-C formulas had lost their multiplication operator. `content.raw` carried
+  `<code>Pw = P0 <em> a^c / (c! (1 - rho))</em></code>` and `<code>Lq = Pw  rho / (1 - rho)</code>`.
+  Root cause: the authored source (article.md line 37) had `Pw = P0 * a^c / ...` and `Lq = Pw * rho / ...`; `md_to_html`'s italic regex
+  `\*([^*\n]+?)\*` paired the two multiplication asterisks ACROSS two separate `<code>` spans, consuming both and injecting `<em>`.
+  The publish run did not use `safe_md_to_html` (the `*`-in-backtick-span case it exists for). Reader-visible: the Erlang-C probability
+  formula rendered with no operator and the tail italicized; the Lq formula showed a double space.
+- **Fix**: 1 raw re-POST with `content` only (never `date`/`date_gmt`). Restored `&#42;` inside both spans and removed the stray `<em>`.
+  Verified: 0 `<em>` inside any code span, 0 double-space inside code spans, `date` 2026-11-08T15:47:49 / `date_gmt` 2026-11-08T07:47:49 /
+  status / slug / link / featured_media=0 all unchanged, structure identical (h1=0 h2=8 h3=0 cards=3 poster=1 img=4 pre=0 li=11,
+  7 code spans balanced), exactly 1 paragraph differs across 49, live page decodes to `Pw = P0 * a^c` and `Lq = Pw * rho`, canonical
+  `audit_post_content` = 0 findings post-PATCH.
+- **WP 8670 archive/REST parity**: 1 paragraph differs because the publish run was 1 POST + 1 PATCH (the PATCH added the three `<strong>`
+  lead/claim emphases) — expected, not content loss. The other four posts are paragraph-exact (40/40, 58/58, 54/54, 57/57) with matching
+  `<li>` counts. The archived `article_final.html` for 8670 shows the `<em>` closer in the *second* code span while the stored post has it in
+  the first — KSES rebalanced it on save, so an archive-vs-live diff at that paragraph is expected for this defect class.
+- **Archive resolution**: dirs are `2026-11-09-audio-chord-progression-detector` (tool-named) and `2026-11-08-queuing-theory-mmc`
+  (tool-named) — a slug-prefix glob reports NO_ARCHIVE_DIR on healthy posts. Resolved by matching the post id in `wp-post.json` /
+  `publish_result.json` inside each `~/www/blog/*` dir.
+- **Observations, not PATCHed**: WP 8664 carries only 2 `<a>` (1 unique elysiatools destination) — below the 6–8 anchor canon, a content/SEO
+  gap outside format scope, and unchanged from cycle #79. WP 8677 authored no body `<ul>`/`<code>`, so `li 40 / ul 9` on the live page is
+  Bloglo chrome only.
+- **Transport**: curl `--noproxy '*'` throughout; browser backend timed out on `Page.navigate` (5 s IPC timeout), so the live-DOM check ran as
+  the curl rendered-page fallback with the balanced-depth `entry-content bloglo-entry` slice and the share widget stripped by class prefix.
+- **Scratch**: `/tmp/wp_a80/{phaseA,phaseB,phaseC,phaseD,fix8670,verify8670}.py`.
