@@ -1576,3 +1576,4 @@ every count. Browser DOM on all 5 permalinks: 1 theme `h1.entry-title`,
 - **REST `content.raw`**: h1 0, h2 8, h3 0, pre 0, cards 3, poster 1, empty p 0, `<p></p></(ul|ol)>` (Cycle #76 detector) 0, double-space-in-code 0; img 4 with alt 4/4 non-empty.
 - **Article dir**: /Users/quyue/www/blog/2026-11-10-nihss-stroke-scale-field-guide
 - **Round trips**: 1 POST, 0 PATCH. `date_gmt` sent ALONE (never `date`) as 2026-11-09T21:07:27 and stored as exactly that value. `featured_media: 0`. status=publish on the first attempt, no two-step needed.
+- 2026-11-10 09:26 UTC | WP 8697 | A1Z26 Letter-Number Workbench | A=1 Is Easy. Decoding It Back Is Not. | 1-POST 0-PATCH | 4 assets (poster + 3 cards) | https://blog.flowrust.com/2026/11/10/a1z26-letter-number-workbench-field-guide-when-one-dropdown-turns-ab-into-l-2026-11-10/
