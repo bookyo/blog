@@ -2217,3 +2217,15 @@
 | 2026-11-10 | A1Z26 Letter-Number Workbench | A=1 Is Easy. Decoding It Back Is Not. | [WP 8697](https://blog.flowrust.com/2026/11/10/a1z26-letter-number-workbench-field-guide-when-one-dropdown-turns-ab-into-l-2026-11-10/) |
 
 | 2026-11-11 | Linear Programming Simplex Solver (Two-Phase) | Why a Slack Variable Re-Enters the Basis at z = 36 | [WP 8703](https://blog.flowrust.com/2026/11/11/linear-programming-simplex-two-phase-field-guide/) |
+
+## A Blank Cell Is Not Empty. To a CSV Converter, It's a Deletion.
+
+**Date:** 2026-11-11
+**Tool:** Markdown to CSV (`markdown-to-csv`)
+**Category:** Format Conversion
+**Tags:** markdown, CSV, table conversion, delimiter, pipe escaping, data integrity, column shift
+**Asset Dir:** /Users/quyue/www/blog/2026-11-11-markdown-to-csv-blank-cell
+**Notes:** Verified against the tool's published `process` function, ported to Python line-by-line. Thesis: the converter's `.filter(cell => cell !== '')` cannot distinguish the empty token a surrounding pipe creates from an empty cell you wrote on purpose, so interior blanks are deleted and every later value shifts one column left. Measured on a 6-column, 40-row table with 8 deliberate blanks: 41 records in, 41 out, but 8 records lost a column and 13 cell positions held a value from a different column (20 percent of rows). Five reproduced behaviours: interior blank deleted, escaped pipe splits a cell, pipe inside an inline code span splits and leaks backticks, a dash-only data row is deleted as a separator, and unchecking "Include Headers" renames the header rather than removing it. Size measured: 2,697 bytes of Markdown to 2,088 bytes of CSV (23 percent smaller), 2,564 with Quote All Fields. Honest gap stated in section 7: the numbers come from a port of the published source, not from clicking the hosted UI. 1,363 words / 8 H2s / 3 cards / 1 poster / 0 body H1 / 0 body H3 / 0 pre-blocks. Composite 0.9496 (grade A). 1 POST, 0 PATCH.
+
+| 2026-11-11 | Markdown to CSV | A Blank Cell Is Not Empty. To a CSV Converter, It's a Deletion. | [WP 8709](https://blog.flowrust.com/2026/11/11/markdown-to-csv-blank-cell-shift/) |
+
