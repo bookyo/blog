@@ -2229,3 +2229,11 @@
 
 | 2026-11-11 | Markdown to CSV | A Blank Cell Is Not Empty. To a CSV Converter, It's a Deletion. | [WP 8709](https://blog.flowrust.com/2026/11/11/markdown-to-csv-blank-cell-shift/) |
 
+
+**Tool:** Rate-Pressure Product Calculator (RPP) (`rate-pressure-product`)
+**Category:** Health
+**Tags:** rate pressure product, RPP, double product, myocardial oxygen demand, angina threshold, beta blocker, shock, stress testing
+**Asset Dir:** /Users/quyue/www/blog/2026-11-12-rate-pressure-product-rpp
+**Notes:** Read `src/tools/2026-08-12/rate-pressure-product.ts` (274 lines) and re-implemented the `process` function in Python to derive every number. Discovery that carries the piece: the band logic uses strict inequalities, so exactly 12,000 returns Normal and 12,001 returns High, and the Normal band spans 6,000-12,000 while the same output's prose splits 6,000-10,000 (rest) from 10,000-12,000 (light exertion) under one label. Second discovery: SBP 60 x HR 155 = 9,300 in circulatory shock lands in the same band as a healthy adult at rest (8,640) because a product hides which factor did the work. Honest gap stated in section 7: RPP drops contractility, wall stress, ejection time, oxygen-carrying capacity and the whole supply side. 1,523 words / 8 H2s / 3 cards / 1 poster / 0 body H1 / 0 body H3. Composite 0.8874 (grade A-). 1 POST, 1 content-only PATCH (bold lead phrase).
+
+| 2026-11-12 | Rate-Pressure Product Calculator (RPP) | A Normal RPP Can Hide a Collapsing Circulation | [WP 8717](https://blog.flowrust.com/2026/11/12/rate-pressure-product-rpp-field-guide/) |
