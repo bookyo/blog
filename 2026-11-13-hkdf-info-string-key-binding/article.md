@@ -1,0 +1,89 @@
+---
+title: The HKDF Info String Is Not a Label. It Binds the Key.
+---
+
+I fed the same 22-byte keying material and the same 13-byte salt into two HKDF runs. The only change sat in the info string: the final byte, f9 became f8. Extract returned a byte-identical PRK, but all 42 bytes of output keying material changed. That is not a quirk of one library. It is the design, and it shows where your protocol's real decisions live.
+
+## Two Steps, Two Different Jobs
+
+HKDF has a bad habit of being described as one function. It is two, and they answer different questions.
+
+Extract takes input keying material and a salt and compresses them into a pseudorandom key. The PRK is exactly one hash length: 32 bytes for SHA-256, 64 for SHA-512. Its job is to turn uneven input into a uniform secret, so the RFC can hand you a bounded, predictable value no matter what you feed it.
+
+Expand then takes that PRK plus an info string and produces as many bytes as you ask for. Because Expand is a counter-mode HMAC chain, output length is not a wall: request 42 bytes and you get two HMAC blocks, request 4096 and you get 128.
+
+The split matters because only one of the two steps reads your context. Extract never sees info. So rotating an info string costs nothing at the PRK layer and changes all of the output downstream.
+
+## The RFC 5869 Vector You Can Check Yourself
+
+The tool ships a preset for test case 1 from RFC 5869. I re-derived each value in a separate Python implementation, measured the same bytes, and compared them with the vector as reported in the RFC. The tool's metadata returns the PRK, the OKM, and the block count, and I diffed that data against the vector.
+
+The inputs are short enough to read: IKM is 22 bytes of 0b, salt is the 13-byte run 000102030405060708090a0b0c, info is 10 bytes f0f1f2f3f4f5f6f7f8f9, and the requested output is 42 bytes.
+
+Extract gives PRK = HMAC(salt, IKM) = 077709362c2e32df0ddc3f0dc47bba6390b6c73bb50f9c3122ec844ad7c2b3e5. Expand runs twice: T(1) = 3cb25f25faacd57a90434f64d0362f2a2d2d0a90cf1a5a4c5db02d56ecc4c5bf and T(2) = 34007208d5b887185865b4b0a85a993b89b9b65683d60f0106d28fff039d0b6f. Concatenated and truncated to 42 bytes, the OKM matches the published vector byte for byte.
+
+Two blocks for 42 bytes, because 42 is more than one 32-byte HashLen and less than two. Run the same inputs through the walkthrough at [Elysia Tools](https://elysiatools.com/en/tools/sp800-56c-hkdf-extract-and-expand-walkthrough) and each HMAC input is printed in full: the previous T, then info, then the single counter byte.
+
+## One Byte of Info Moved All 42 Output Bytes
+
+I flipped the last info byte from f9 to f8 and reran the whole derivation. The PRK did not move: same 32 bytes, same 077709362c2e32df prefix.
+
+Then I measured the rest, and the result was not subtle. T(1) changed in all 32 of its bytes, T(2) in all 32 of its bytes, and the 42-byte OKM changed in 42 of 42 positions. At the bit level, I observed 150 of 336 bits flipped.
+
+That is what a chained construction gives you. T(1) absorbs the info string, and T(2) is HMAC over T(1) plus info plus the counter, so a change in round one propagates into each later round. There is no partial re-derivation to optimize.
+
+The consequence is operational, and I observed the same pattern on the ECDH preset: one info string, one independent key. If two subsystems derive keys from the same PRK with different info strings, their keys are independent and neither party can compute the other's output. That property is the reason info exists in the first place, and [the walkthrough](https://elysiatools.com/en/tools/sp800-56c-hkdf-extract-and-expand-walkthrough) shows it per round instead of hiding it behind one digest.
+
+## The Salt Is Public, and HMAC Zero-Pads It Anyway
+
+The salt is not a secret. According to RFC 5869, an empty salt is a zero-filled string of one hash length, and the tool says as much in its placeholder text: "Optional; empty uses a zero-filled HashLen salt".
+
+I expected that choice to matter, and it does not. For SHA-256, an empty salt, a 32-byte zero salt, and a literally empty HMAC key all produce the same PRK, 19ef24a32c717b167f33a91d6f648bdf96596776afdb6377ac434c1c293ccb04, because HMAC pads its key to the 64-byte block size with zeros. One zero byte or thirty-two, the padded block looks the same.
+
+So the salt buys freshness and domain separation, not confidentiality. An attacker who learns your salt learns nothing usable without the IKM, and an attacker who learns your IKM needs no salt to reproduce the PRK.
+
+Where the salt does earn its keep: a per-session or per-tenant salt turns one shared secret into a family of unrelated PRKs. For instance, a load balancer issuing a fresh salt per connection forces a fresh PRK per connection, such as a rotation per hour. That is the same job info does one layer down, and it explains why protocol designers pick one, the other, or both.
+
+## Where the Walkthrough Rejects You First
+
+Validation runs before any key material is touched, and the rules are stricter than most interfaces. Hex must be an even number of characters: 0b0 is rejected while 0B0B passes and gets lowercased.
+
+Base64 is matched against a strict pattern, so AAECAwQFBgcICQoL= is rejected while AAECAwQFBgcICQo= passes. UTF-8 mode takes your text literally, which is the quiet trap: typing 0001020304 in text mode produces 10 ASCII bytes, not 5 hex bytes, including a 2-byte prefix that no hex reader would expect.
+
+An empty IKM raises an error, because Expand over an empty secret is not a key. An empty salt is allowed. Length must be a whole number of bytes from 1 to 4096 in the form, while the library enforces a wider ceiling of 255 hash lengths.
+
+That ceiling is arithmetic, not policy. The counter is a single byte, so 255 blocks is the maximum: for SHA-256 the hard limit is 8160 bytes, and 8161 is refused. In each case the cap is checked before the first HMAC call. The form's 4096 limit hides the edge case, which is a sensible default and also the reason nobody discovers the limit from the UI.
+
+## The Preset Overwrites Five Fields You Typed
+
+This behavior cost me a few minutes. The preset selector does not seed the form; it overrides it at run time.
+
+Choose the RFC 5869 preset and the code replaces hash, IKM, salt, info, and length with the vector's values, whatever you typed into those boxes. The ECDH demo does the same thing: SHA-256, a 32-byte IKM, a salt that decodes to the ASCII string "tls13 ecdh demo", info that decodes to "client write key", and a fixed 32-byte output.
+
+Two consequences follow. Editing the length field while a preset is selected has no effect on the result. Input encoding is not applied in preset mode either, because that path never calls the converter.
+
+Switch to Custom values first, then type. That ordering is the difference between a derivation you specified and one you inherited. The [preset selector](https://elysiatools.com/en/tools/sp800-56c-hkdf-extract-and-expand-walkthrough) is documented as a starting point; treat it as a hard override until the fields come back under your control.
+
+## Block Count Is Arithmetic You Can Predict
+
+Expand produces the ceiling of length divided by HashLen, one block at a time, and each block costs one HMAC over the previous block. With SHA-256 that means one block up to 32 bytes, two up to 64, three up to 96.
+
+The output is the concatenation truncated to your requested length. Ask for 33 bytes and you get T(1) in full plus exactly one byte of T(2): 3cb25f25faacd57a90434f64d0362f2a2d2d0a90cf1a5a4c5db02d56ecc4c5bf followed by 34.
+
+Hash choice moves the same inputs somewhere else entirely. Rerun the RFC 5869 inputs with SHA-512 and the PRK becomes 665799823737ded04a88e47e54a5890b, produced in one block, because a 64-byte HashLen covers 42 bytes without help.
+
+For example, a 42-byte request costs two blocks under SHA-256 and one under SHA-512, and that comparison is the cheapest way to see the real unit here. Block counts, PRK size, and the 255-block ceiling all scale with HashLen, and the derived bytes scale with none of your intentions.
+
+## Where HKDF Stops Being the Right Tool
+
+HKDF is a derivation function, not a password function. It carries no work factor, no memory hardness, and no notion of cost.
+
+If your input keying material is a human password, HKDF will expand it into 32 clean-looking bytes and hand an attacker the same cheap guess rate as a single hash. That job belongs to PBKDF2, scrypt, or Argon2 — for example the [PBKDF2 Generator](https://elysiatools.com/en/tools/pbkdf2-generator), which exposes iteration counts for exactly this reason.
+
+It adds no entropy either. Extract makes uneven input uniform, and it cannot build a 32-byte secret out of a 4-byte one. It also authenticates nothing: an OKM is not a MAC, so if you need proof that a key came from a particular party, that is a signature or a MAC over the exchange, such as the [HMAC Generator and Verifier](https://elysiatools.com/en/tools/hmac-generator-verifier).
+
+Explore more tools at [elysiatools.com](https://elysiatools.com/en/tools).
+
+I still use HKDF for what it does well. ECDH hands you a shared secret with structure and no protocol binding; Extract makes it uniform, Expand binds it to a context. The gap is that the context is a string you have to choose, and nothing in the algorithm will tell you whether you chose it correctly.
+
+I started this piece thinking HKDF was a way to stretch a short secret into a longer key. After two runs and one flipped byte, I think of it as a lease: Extract hands you an unlabeled secret, and Expand stamps each copy with the name of the thing it may open. The question is not whether your KDF is strong. It is whether you chose the label on purpose.
