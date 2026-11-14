@@ -48,3 +48,5 @@ sp800-56c-hkdf-extract-and-expand-walkthrough-done 2026-11-13 https://blog.flowr
 audio-gapless-album-validator-done 2026-11-13 https://blog.flowrust.com/2026/11/13/audio-gapless-album-validator-field-guide-when-a-seam-is-a-tail-plus-a-head-2026-11-13/
 
 iso-8601-duration-parser-arithmetic-workbench-done 2026-11-14 https://blog.flowrust.com/2026/11/14/p1m-is-not-p30d-iso-8601-duration-arithmetic-2026-11-14/
+
+http-link-header-rfc8288-parser-and-pagination-crawler-preview-done 2026-11-14 https://blog.flowrust.com/2026/11/14/http-link-header-parses-crawler-stops-before-page-2/
