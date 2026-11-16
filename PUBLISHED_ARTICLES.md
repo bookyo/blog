@@ -2287,3 +2287,15 @@
 **Notes:** Read `src/tools/margin-calculator.ts` (262 lines) and re-implemented the math in Python so each figure is independently derived. The manifest description hides three things the article is built on: (1) `sellingPrice = cost/(1-margin/100)` is a division, so adding 20% to a $42.50 cost lists at $51.00 and returns a **16.7%** margin — a 20% margin needs a **25% markup**, and 50% needs **100%**; (2) price/cost = `1/(1-m)` makes the top of the range a singularity, not a taper — 90% margin is 10x cost and the 99.99% input cap is **10,000x cost**; (3) price/profit/markup round independently while the arithmetic stays unrounded, so 7,768 of the swept cases ($10.01-$200.00 at 20% margin) print a price-minus-cost that disagrees with the printed profit. Also: JPY and CNY share `¥` and the summary prints the symbol without the code. Honest gap stated as an accepted display trade-off.
 
 | 2026-11-15 | Margin Calculator | Margin Is Not Markup: A 20% Target Is a 25% Markup | [WP 8768](https://blog.flowrust.com/2026/11/15/margin-is-not-markup-20-percent-target-is-25-percent-markup/) |
+
+### The Enzyme With the Highest kcat Usually Loses
+
+- **Tool:** `enzyme-catalytic-efficiency` (Catalytic Efficiency Calculator, Education)
+- **WP ID:** 8815
+- **URL:** https://blog.flowrust.com/2026/11/16/enzyme-catalytic-efficiency-field-guide-when-one-ratio-decides-which-substrate-wins/
+- **Date (UTC):** 2026-11-16T13:30:36
+- **Score:** 0.9215 (A)
+- **Asset Dir:** /Users/quyue/www/blog/2026-11-16-enzyme-catalytic-efficiency
+- **Notes:** Read `src/tools/2026-08-17/enzyme-catalytic-efficiency.ts` (399 lines) and re-derived each figure in Python (convert kcat min->s by /60, Km nM/uM/mM -> M, ratio = kcat(M/s)/Km(M)). Three behaviours the manifest hides: (1) the band is assigned from the **rounded** result, so at decimalPlaces=0 a true 999.6 M^-1 s^-1 reads "modest" not "inefficient"; (2) the 10^7 boundary sits in the NEXT band, so the tool's own first example (1.00x10^7) returns the 10^7-10^8 label while the prose calls 10^5-10^7 efficient; (3) `kcat` validates only non-negative, so a blank/mis-bound field arriving as 0 forces a confident "inefficient" diagnosis instead of an error, while Km rejects 0 outright. Article spine: a 10 s^-1 / 1 uM enzyme (1.0x10^7) beats a 100,000 s^-1 / 50 mM one (2.0x10^6) by 5x, and above ~10^8 the ratio measures diffusion, not chemistry.
+
+| 2026-11-16 | Catalytic Efficiency Calculator (kcat/Km) | The Enzyme With the Highest kcat Usually Loses | [WP 8815](https://blog.flowrust.com/2026/11/16/enzyme-catalytic-efficiency-field-guide-when-one-ratio-decides-which-substrate-wins/) |
