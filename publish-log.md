@@ -1794,3 +1794,23 @@ every count. Browser DOM on all 5 permalinks: 1 theme `h1.entry-title`,
 - composite 0.9403 (grade A) | 8 H2 | 3 highlight cards | audit findings: 0
 - anchors: /en/tools/pcr-primer-tm (200), /en/tools (200)
 - 1-POST 0-PATCH
+
+## 2026-11-18 16:12 UTC — WP 8917
+- tool: wifi-channel-overlap-planner (Wi-Fi Channel Overlap Planner, 2.4/5/6 GHz)
+- title: Channel 1 Is a Label, Not a 20 MHz Footprint
+- url: https://blog.flowrust.com/2026/11/19/channel-1-is-a-label-not-a-20-mhz-footprint/
+- date_gmt: 2026-11-18T16:12:28 | status: publish | featured_media: 0
+- assets: poster + 3 cards (1080x800, 1600x900) | media ids 8919, 8920, 8921, 8922
+- composite 0.9107 (grade A) | 8 H2 | 3 highlight cards | audit findings: 0
+- anchors: /en/tools/wifi-channel-overlap-planner (200), /en/tools (200)
+- 1-POST 1-PATCH (content re-POST to swap 4 wrong media URLs)
+- INCIDENT: first transport (requests) timed out mid-run; media ids 8887-8890 were
+  REUSED from WP 8891 (pcr-primer-tm) by a generic-basename matcher, so the first
+  POST shipped the wrong 4 images. Fixed by uploading unique-named copies
+  (8919-8922, sha256-verified byte-identical to local) and re-POSTing `content` only.
+  LESSON: never match cron media by generic basename (poster.png/card*.png) —
+  every 4h run uses those names. Match on a per-article unique prefix or never reuse.
+- Grounding: read src/lib/wifi-channel-planner.ts + smoke case + test; re-derived every
+  interval/score in an independent Python port. Two accuracy fixes pre-publish:
+  bonding source bands are 36-64 / 100-144 / 149-161 / 165 (not 36-48 + 52-64), and
+  160 MHz is rejected at ch132/ch144 but fits at 100-128 (5490-5650).
