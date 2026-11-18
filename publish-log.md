@@ -1784,3 +1784,13 @@ every count. Browser DOM on all 5 permalinks: 1 theme `h1.entry-title`,
 - **THE PATCH — backslash strip on first POST, entity survives on PATCH (WP 5717/5822 family, re-confirmed).** The source-side `pre_encode_backslash` ran and the built HTML carried `<code>/^&#92;s$/</code>`, but the create POST decoded-and-stripped all 5 backslashes: the live post read `/^s$/`, `JavaScript's s matches`, `Only rn is normalised` — a materially WRONG article that `audit_post_content()` scored 0 findings on. Re-POSTing the same `&#92;` entities via `POST /wp/v2/posts/<id>` (content-only) preserved them (`RAW ent: [/^&#92;s$/, &#92;s, &#92;r&#92;n]`), diff opcode count exactly 3 (the 3 intended spans), `date`/`date_gmt`/`featured_media`/`status` unchanged. **Lesson: `audit_post_content`'s `POSSIBLE_BACKSLASH_STRIPPED` only fires on a regex-adjacent `\w/d/s`, so a stripped `\` in a *prose* regex literal passes clean — grep `content.raw` for the expected entities after POST, not just for findings.**
 - **Verification:** 4/4 images HTTP 206 `image/png` with PNG IHDR 1080x800 / 1600x900 (poster + 3 cards); every `<img src>` contains exactly ONE `/wp-content/uploads/`; 4/4 alts present on first read (no alt PATCH); 2/2 elysiatools anchors 200 (`/en/tools/fixed-width-column-parser`, `/en/categories/text-processing`) and `validate_anchors()` True; `audit_post_content()` 0 findings; rendered h1 0 / h2 8 / h3 0 / pre 0 / cards 3 / poster 1 / img 4 / li 2 / ul 1; raw 0 empty `<p>`, 0 `<p></p></ul>` shells, 0 `<em>`-in-code, 0 doubled `uploads/` path, 0 placeholder leak, 0 pipe-table leak; U+FFFD, 東京 and the emoji all preserved in raw + live page; live page 200 with the balanced `entry-content` slice matching REST (no `li` outside a list, `ul`/`ol` balanced); last paragraph ends with the intended question (no truncation).
 - **Driver:** `/Users/quyue/.hermes/cache/scratch/pick_1117d.py`, `fw_verify_1117.js`, `fw_verify2_1117.js`, `fw_verify3_1117.js`, `fw_render_1117.py`, `fw_build_1117.py`, `fw_publish_1117.py`, `fw_fix_bs_1117.py`, `fw_audit_1117.py`
+
+## 2026-11-18 03:22 UTC — WP 8891
+- tool: pcr-primer-tm (PCR Primer Tm Calculator, Wallace / Nearest-Neighbor)
+- title: One Primer, Two Melting Points: Why a 16 °C Gap Is the Signal
+- url: https://blog.flowrust.com/2026/11/18/pcr-primer-tm-one-primer-two-melting-points-why-the-gap-is-the-signal-2026-11-18/
+- date_gmt: 2026-11-18T03:22:19 | status: publish | featured_media: 0
+- assets: poster + 3 cards (1080x800, 1600x900) | media ids 8887, 8888, 8889, 8890
+- composite 0.9403 (grade A) | 8 H2 | 3 highlight cards | audit findings: 0
+- anchors: /en/tools/pcr-primer-tm (200), /en/tools (200)
+- 1-POST 0-PATCH
