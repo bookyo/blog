@@ -1814,3 +1814,11 @@ every count. Browser DOM on all 5 permalinks: 1 theme `h1.entry-title`,
   interval/score in an independent Python port. Two accuracy fixes pre-publish:
   bonding source bands are 36-64 / 100-144 / 149-161 / 165 (not 36-48 + 52-64), and
   160 MHz is rejected at ch132/ch144 but fits at 100-128 (5490-5650).
+
+## 2026-11-19 04:40 UTC — WP 8955
+- Tool: vancomycin-dosing (Vancomycin Empiric Dosing Calculator, 2020 ASHP/IDSA)
+- Title: Your Vancomycin Trough Is Now the Backup Test
+- URL: https://blog.flowrust.com/2026/11/19/vancomycin-empiric-dosing-field-guide-when-the-trough-became-the-backup-test/
+- Assets: poster.png (1080x800) + card1/2/3.png (1600x900), media ids 8951/8952/8953/8954
+- Run: 1-POST 0-PATCH; 8 body H2, 0 H1, 0 H3, 3 highlight cards, 4 images, 3 elysiatools anchors (all HTTP 200)
+- Scorer: composite 0.8715, grade A- (voice 0.79 / evidence 0.82 / ending 1.0 / hook 0.86)

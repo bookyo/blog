@@ -2302,3 +2302,4 @@
 - 2026-11-17 — [The PERT Sigma Describes One Path. Not Your Project.](https://blog.flowrust.com/2026/11/17/pert-network-analyzer-field-guide-when-the-sigma-prices-one-path/) — `pert-network-analyzer` (WP 8839)
 | 2026-11-18 | [One Primer, Two Melting Points](https://blog.flowrust.com/2026/11/18/pcr-primer-tm-one-primer-two-melting-points-why-the-gap-is-the-signal-2026-11-18/) | pcr-primer-tm | PCR Primer Tm Calculator (Wallace / Nearest-Neighbor) | WP 8891 |
 | 2026-11-19 | [Channel 1 Is a Label, Not a 20 MHz Footprint](https://blog.flowrust.com/2026/11/19/channel-1-is-a-label-not-a-20-mhz-footprint/) | wifi-channel-overlap-planner | Wi-Fi Channel Overlap Planner | WP 8917 |
+- 2026-11-19 — Your Vancomycin Trough Is Now the Backup Test (WP 8955, tool: vancomycin-dosing)
