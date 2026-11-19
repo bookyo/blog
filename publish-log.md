@@ -1822,3 +1822,16 @@ every count. Browser DOM on all 5 permalinks: 1 theme `h1.entry-title`,
 - Assets: poster.png (1080x800) + card1/2/3.png (1600x900), media ids 8951/8952/8953/8954
 - Run: 1-POST 0-PATCH; 8 body H2, 0 H1, 0 H3, 3 highlight cards, 4 images, 3 elysiatools anchors (all HTTP 200)
 - Scorer: composite 0.8715, grade A- (voice 0.79 / evidence 0.82 / ending 1.0 / hook 0.86)
+
+## 2026-11-19 16:59 UTC — WP 8978
+- Tool: email-html-linter (Email HTML Linter, Development)
+- Title: Why 11 CSS Properties Vanish Before Your Email Reaches Outlook
+- URL: https://blog.flowrust.com/2026/11/20/email-html-linter-field-guide-when-eleven-css-properties-never-arrive/
+- Assets: poster.png (1080x800) + card1/2/3.png (1600x900), media ids 8974/8975/8976/8977
+- Run: 1-POST 0-PATCH; 8 body H2, 0 H1, 0 H3, 3 highlight cards, 4 images, 2 unique elysiatools anchors (both HTTP 200)
+- Scorer: composite 0.9642, grade A (hook 1.0 / voice 1.0 / ending 1.0 / evidence 0.84 / specificity 0.90)
+- Grounding: read src/tools/2026-07-06/email-html-linter.ts; every count in the article (11 CSS rules,
+  7 units, 9 categories, 3 strictness levels, 11 entries / 12 keyword values) re-derived from the rule
+  tables, and the three stated blind spots (static-only, tracking-pixel filename heuristic, no size/
+  preheader rule, units unscanned inside <style>) confirmed against the source before drafting.
+- Note: sample-manifest has 0 samples for this toolId, so no /en/samples anchors were used (avoid phantoms).
