@@ -1855,3 +1855,19 @@ every count. Browser DOM on all 5 permalinks: 1 theme `h1.entry-title`,
   (CJK terms match inside compounds), text.slice(0,20000) AI window, glossary multi-`=` truncation,
   and the COMMON acronym bypass list.
 - Note: sample-manifest carries no toolId samples for this tool, so no /en/samples anchors were used.
+
+## 2026-11-21 01:30 CST (17:30 UTC) — Punctuation Normalizer
+- WP ID **9027** — https://blog.flowrust.com/2026/11/21/punctuation-normalizer-field-guide-when-one-toggle-turns-3-14-into-3-14-2026-11-21/
+- Title: "The Punctuation Pass That Turns 3.14 Into 3. 14"
+- Tool: `punctuation-normalizer` (Punctuation Normalizer, Text Processing). date_gmt 2026-11-20T17:30:45, featured_media 0.
+- Score: composite **0.9447**, grade **A** (title .9125 / hook .9625 / structure .98 / readability 1.0 / specificity .8439 / evidence .9546 / transitions 1.0 / voice .921 / ending .96 / medium_fit .8962). Weakest: specificity, medium_fit, title.
+- Assets: poster 1080x800 + 3 cards 1600x900 (PIL network theme: 2x 5-tile, 1x 4-tile compact). Pre-measure gate PASS after 4 fixes; vision QA caught 1 real coherence defect (card2 title said "Four Ways" over 5 tiles) plus redundant notes on card1 — both re-rendered before POST.
+- Result: **1-POST, 0-PATCH**. raw/rendered: h1=0 h2=8 h3=0 cards=3 poster=1 empty_p=0 figures=4. 4 img tags, single uploads path each, alts intact on the first POST. Live DOM: 0 h1 / 8 h2 inside entry-content, li=13 (9 body + 4 share widget), ul=3 (2 body + 1 share), all 3 cards load at 1600x900 after lazy-load.
+- Method: read `src/tools/punctuation-normalizer.ts` (430 lines), ported the whole pipeline to Python, then measured. Verified behaviours used in the article:
+  - the space rule `([,.!?;:])([^\s])` runs in EVERY mode with no exemption list, so 3.14159 becomes 3. 14159, 1,000,000 becomes 1, 000, 000, example.com becomes example. com, v2.5.1 becomes v2. 5. 1, and 73 chars becomes 80; with spaces off the output is byte-identical.
+  - englishToChinese maps a hyphen to a double em dash, an asterisk to a reference mark, and angle brackets to CJK book-title marks, so a date, a price and a negative number all break.
+  - mixed mode left a bilingual line unchanged (0 changes) — the one honest positive.
+  - per-line right-trim destroys Markdown hard breaks (two trailing spaces); non-breaking spaces survive untouched.
+  - the change counter compares by INDEX (original[i] vs normalized[i]), so one length change marks the whole tail; an ellipsis expansion reported 3 changes for 1 substitution on 2 words.
+  - custom replacements cascade in listed order (a=b then b=c turns "a b c" into "c c c") and truncate at a second equals sign.
+- Links: 2x /en/tools/punctuation-normalizer + 1x /en/tools index. All HTTP 200 with real tool titles. sample-manifest carries no entries for this toolId, so no /en/samples anchors were used.
