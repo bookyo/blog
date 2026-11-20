@@ -1835,3 +1835,23 @@ every count. Browser DOM on all 5 permalinks: 1 theme `h1.entry-title`,
   tables, and the three stated blind spots (static-only, tracking-pixel filename heuristic, no size/
   preheader rule, units unscanned inside <style>) confirmed against the source before drafting.
 - Note: sample-manifest has 0 samples for this toolId, so no /en/samples anchors were used (avoid phantoms).
+
+## 2026-11-20 05:18 UTC — WP 9001
+- Tool: terminology-glossary-consistency-auditor (Terminology & Glossary Consistency Auditor, Text Processing)
+- Title: 31 Findings, 5 Problems, and a Heading in All Caps
+- URL: https://blog.flowrust.com/2026/11/20/terminology-glossary-audit-31-findings-5-problems/
+- Assets: poster.png (1080x800) + card1/2/3.png (1600x900), media ids 8997/8998/8999/9000
+- Run: 1-POST 0-PATCH; 8 body H2, 0 H1, 0 H3, 3 highlight cards, 4 images, 2 unique elysiatools anchors
+  (tool page HTTP 200; /en/categories/text-processing 308 -> 200 via /en/tools?category=)
+- Scorer: composite 0.8787, grade A- (ending 1.0 / structure 0.96 / title 0.91 / hook 0.86 /
+  readability 0.86 / voice 0.82 / specificity 0.80 / evidence 0.75)
+- Grounding: read src/tools/2026-08-07/terminology-glossary-consistency-auditor.ts, then ported
+  auditLocal() to Python (re.ASCII to match JS \w) and ran it on a 20-line doc + 3-entry glossary.
+  Derived counts: 31 rows (1 error / 7 warn / 23 info), 21 abbreviation rows (SDK x17, CI, and
+  READ/THIS/FIRST from a caps heading), 5 distinct problems, 6 rows pointing at nothing.
+- Verified defect: the glossary variant regex is case-insensitive with no case guard, so the
+  canonical form matches its own variant and ships `Non-standard "GitHub" -> "GitHub"` twice on the
+  correct spelling's line. Also confirmed: per-line `seen` reset, ASCII-only \w boundary guards
+  (CJK terms match inside compounds), text.slice(0,20000) AI window, glossary multi-`=` truncation,
+  and the COMMON acronym bypass list.
+- Note: sample-manifest carries no toolId samples for this tool, so no /en/samples anchors were used.
