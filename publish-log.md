@@ -1888,3 +1888,15 @@ every count. Browser DOM on all 5 permalinks: 1 theme `h1.entry-title`,
   - dates: `2024-13-45` and `99/99/9999` accepted; `1.2.3` and `192.168.0.1` rejected (2 of 5 impossible).
   - count mode writes `Found N matches` into result, error AND message.
 - Links: 2x /en/tools/text-extractor + 1x /en/tools index, all HTTP 200 with real tool titles. sample-manifest has no entries for this toolId, so no /en/samples anchors.
+
+## 2026-11-22 02:17 CST (2026-11-21 18:17 UTC) - Post 9085: JSON Unflattener
+
+- **Result: 1-POST + 0 PATCH** (disposable DRAFT probe readback before publishing).
+- Title: Two Keys, One Path: Why Unflattening Cannot Be Exact
+- URL: https://blog.flowrust.com/2026/11/22/two-keys-one-path-why-json-unflattening-cannot-be-exact/
+- Tool: json-unflattener (JSON Unflattener, Data Processing)
+- Scored: composite **0.9312 / A** (title 1.0, hook 0.8625, structure 0.9732, readability 1.0, specificity 0.8369, evidence 0.8324, transitions 1.0, voice 0.9335, ending 1.0, medium_fit 0.9379). The first draft scored 0.8805 because `voice` sat at 0.4272: five `rather` hits cost 0.33 of hedge penalty (FILLER/HEDGES are substring matches). Cutting them plus four weak-verb swaps took voice to 0.9335.
+- Assets: PIL poster 1080x800 + 3 cards 1600x900 (4tile-compact / 2col / 5tile), all pre-measured before render. `vision_analyze` caught one content-coherence defect the width gate cannot see: card3's subtitle said "Three array modes" beside FIVE tiles; re-rendered as "Five measured behaviors" (the WP 8566/8739 countable-claim class).
+- Final state: rendered h1=0 h2=8 h3=0 cards=3 poster=1 imgs=4 empty_p=0; audit_post_content **0 findings**; 4/4 image HEAD 200 `image/png`; 2 unique elysiatools anchors (3 links) all 200; live `entry-content` slice 0 h1 / 8 h2 / 3 cards / 1 poster / 23 li (19 body + 4 share widget) / 58 code spans; 0 `data-cfemail`.
+- date_gmt sent 2026-11-21T18:17:05, stored identical, `date` - `date_gmt` = +8.0h exactly (`date_gmt` only - never `date`).
+- Method: extracted `parseValue` / `parseKeyPath` / `shouldCreateArray` / `unflattenJson` verbatim from `src/tools/json-unflattener.ts` and ran them under bun instead of reasoning about the source. 16 behaviours measured; the order-dependent crash and the inert `bracket` array mode are the two the manifest cannot hint at.

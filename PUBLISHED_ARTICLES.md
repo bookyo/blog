@@ -2316,3 +2316,24 @@
 **ElysiaTools URL:** https://elysiatools.com/en/tools/text-extractor
 **Asset Dir:** ~/www/blog/2026-11-21-text-extractor
 **Composite Score:** 0.9603 / A
+
+## 2026-11-22 | Two Keys, One Path: Why Unflattening Cannot Be Exact
+
+**URL:** https://blog.flowrust.com/2026/11/22/two-keys-one-path-why-json-unflattening-cannot-be-exact/
+**WP Post ID:** 9085
+**Featured Image WP ID:** 0 (poster embedded inline)
+**Highlight Cards:** 3 (inline figures; media 9081-9084)
+**Tool Covered:** JSON Unflattener
+**Slug:** json-unflattener
+**ElysiaTools URL:** https://elysiatools.com/en/tools/json-unflattener
+**Asset Dir:** ~/www/blog/2026-11-22-json-unflattener
+**Composite Score:** 0.9312 / A
+
+- **Notes:** Read `src/tools/json-unflattener.ts` (616 lines), extracted `parseValue` / `parseKeyPath` / `shouldCreateArray` / `unflattenJson` verbatim and exercised them under bun - 16 behaviours measured, not inferred. Findings used in the article:
+  - **Type inference never runs on JSON input.** `parseValue()` is called only in the `keyvalue` branch; JSON input goes straight through `JSON.parse`. All three modes (auto / string / smart) return byte-identical output on the same map, so `{"user.age": "30"}` stays the string `"30"` even though the tool's own placeholder example shows exactly that input.
+  - **Order-dependent failure.** `{"a": "scalar", "a.b": "leaf"}` throws `Attempted to assign to readonly property.`; reversing the keys returns `{"a": "scalar"}` with the nested object silently destroyed (conflictsResolved 1); `{"a": null, "a.b": "leaf"}` returns the correct tree. Same two keys, three outcomes.
+  - **`arrayMode: "bracket"` is inert.** `shouldCreateArray()` returns false unconditionally for that mode, so `user[0]`/`user[1]` yields an object with string keys. `arrayMode: "numeric"` on the same bracket keys does allocate. The root object is never converted, so top-level numeric keys `0`/`1` stay an object; sparse indices pad with `null` (`user.0` + `user.2` -> `["a", null, "c"]`).
+  - **Key=value inference destroys identifiers.** `02134` -> `2134`, `1e3` -> `1000`, `0x10` -> `16`, empty string -> `0`, while `TRUE` stays a string. Six inputs, five silent type changes, no warning line.
+  - **`nested` and `dot` are the same knob at the default delimiter** (`dot` hardcodes the period and ignores the delimiter field). `merge` on a type conflict drops leaves (`{"a.b":"1","a.0":"2"}` -> `{"a":["2"]}`); duplicate-key errors are reachable only in `path` format; `maxDepth` counts keys whose values `preserveEmpty=false` discarded.
+- Links: 2x `/en/tools/json-unflattener` + 1x `/en/categories/data-processing`, all HTTP 200 and manifest-validated.
+- Method: a disposable DRAFT probe before publish confirmed KSES kept all 58 `<code>` spans and all 11 `<code>`-inside-`<li>` items, so the run needed 0 PATCHes.
