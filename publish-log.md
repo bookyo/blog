@@ -1871,3 +1871,20 @@ every count. Browser DOM on all 5 permalinks: 1 theme `h1.entry-title`,
   - the change counter compares by INDEX (original[i] vs normalized[i]), so one length change marks the whole tail; an ellipsis expansion reported 3 changes for 1 substitution on 2 words.
   - custom replacements cascade in listed order (a=b then b=c turns "a b c" into "c c c") and truncate at a second equals sign.
 - Links: 2x /en/tools/punctuation-normalizer + 1x /en/tools index. All HTTP 200 with real tool titles. sample-manifest carries no entries for this toolId, so no /en/samples anchors were used.
+
+## 2026-11-21 13:54 CST (05:54 UTC) — Text Extractor (WP 9054)
+- Tool: `text-extractor` (Text Extractor, Text Processing). date_gmt 2026-11-21T05:54:14, featured_media 0.
+- Score: composite **0.9600**, grade **A** (title 1.0 / hook .9925 / structure .9615 / readability 1.0 / specificity .9449 / evidence .8886 / transitions 1.0 / voice .9199 / ending .96 / medium_fit .9). Weakest: evidence, medium_fit, voice.
+- Assets: poster 1080x800 + 3 cards 1600x900 (PIL network theme: 5-tile, 2-col input/output, 4-tile compact). Pre-measure gate PASS after 1 fix (poster title split). vision QA caught 3 real defects before POST: card1 footer said "Six modes" over 5 tiles, card2 subtitle said "Six number formats" over 5 rows, and card2 paired the number pattern with a phone-pattern result (a false relationship) — all re-rendered.
+- Result: **1-POST + 2 content-only POSTs, 0 editorial PATCH**. First POST: 2 audit findings (MARKDOWN_LINK_REMAINS on an intentional `[link](url)` code example; all 7 backslashes stripped from 3 code spans — the WP 5717/5822 KSES family). Second POST (content-only, `&#92;` entities) restored the backslashes and removed the link example.
+- Third defect, found only on the live page: **Cloudflare Email Address Obfuscation rewrote all 5 email literals to `[email protected]`** — `a@-bad.com` (the title's subject) rendered as `[email protected]`, with 4 `data-cfemail` spans. REST content was clean; only the CF-transformed HTML was damaged. Fix: wrap the `@` in `<code>` spans as `<span>&#64;</span>`; CF stops matching, browsers still render `a@-bad.com`. One content-only POST, verified 0 `data-cfemail`.
+- Final state: rendered h1=0 h2=8 h3=0 cards=3 poster=1 imgs=4 empty_p=0; audit_post_content **0 findings**; 4/4 image HEAD 200; 2/2 elysiatools anchors 200; live `entry-content` slice 0 h1 / 8 h2 / 3 cards / 4 imgs; 3 code spans keep their backslashes; `a@-bad.com`, `2024-13-45`, `12345678901`, `0.5e-3` all present in visible text.
+- Method: read `src/tools/text-extractor.ts` (249 lines) and ported the 5 built-in patterns to Python, then measured 37 matches across 20 test strings. Findings used in the article:
+  - `flags` is computed at the top and referenced once, inside the `custom` branch only, so the Case Sensitive checkbox is inert for 5 of 6 modes.
+  - emails: `a@-bad.com` and `a@b..com` accepted, `user@localhost` missed, `ivan@example.xn--p1ai` truncated to `ivan@example.xn` (6 matches, 3 invalid).
+  - phones: no word boundaries, so a 15-digit order ID yields `12345678901`; `+44 20 7946 0958` returns nothing (5 matches, 1 fabricated).
+  - urls: greedy `[^\s]+` captures trailing `.`, `)`, `>` (4 of 7 matches dirty).
+  - numbers: `v2.5.1`→`5.1`, `1,000`→`1`+`000`, `$1,299.99`→`1`+`299.99`, `0.5e-3`→`0.`+`3`; 8 of 14 matches were fragments.
+  - dates: `2024-13-45` and `99/99/9999` accepted; `1.2.3` and `192.168.0.1` rejected (2 of 5 impossible).
+  - count mode writes `Found N matches` into result, error AND message.
+- Links: 2x /en/tools/text-extractor + 1x /en/tools index, all HTTP 200 with real tool titles. sample-manifest has no entries for this toolId, so no /en/samples anchors.

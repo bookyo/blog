@@ -2304,3 +2304,15 @@
 | 2026-11-19 | [Channel 1 Is a Label, Not a 20 MHz Footprint](https://blog.flowrust.com/2026/11/19/channel-1-is-a-label-not-a-20-mhz-footprint/) | wifi-channel-overlap-planner | Wi-Fi Channel Overlap Planner | WP 8917 |
 - 2026-11-19 — Your Vancomycin Trough Is Now the Backup Test (WP 8955, tool: vancomycin-dosing)
 | 2026-11-20 | [31 Findings, 5 Problems, and a Heading in All Caps](https://blog.flowrust.com/2026/11/20/terminology-glossary-audit-31-findings-5-problems/) | terminology-glossary-consistency-auditor | Terminology & Glossary Consistency Auditor | WP 9001 |
+
+## 2026-11-21 | Why Your Text Extractor Returned 6 Emails and 3 That Bounce
+
+**URL:** https://blog.flowrust.com/2026/11/21/text-extractor-field-guide-why-6-emails-came-back-and-3-would-bounce/
+**WP Post ID:** 9054
+**Featured Image WP ID:** 0 (poster embedded inline)
+**Highlight Cards:** 3 (inline figures)
+**Tool Covered:** Text Extractor
+**Slug:** text-extractor
+**ElysiaTools URL:** https://elysiatools.com/en/tools/text-extractor
+**Asset Dir:** ~/www/blog/2026-11-21-text-extractor
+**Composite Score:** 0.9603 / A
