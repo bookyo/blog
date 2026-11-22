@@ -74,3 +74,4 @@ punctuation-normalizer-done 2026-11-21 https://blog.flowrust.com/2026/11/21/punc
 text-extractor-done 2026-11-21 https://blog.flowrust.com/2026/11/21/text-extractor-field-guide-why-6-emails-came-back-and-3-would-bounce/
 
 json-unflattener-done 2026-11-22 https://blog.flowrust.com/2026/11/22/two-keys-one-path-why-json-unflattening-cannot-be-exact/
+robots-txt-lint-validator-done 2026-11-22 https://blog.flowrust.com/2026/11/22/robots-txt-lint-validator-broken-disallow-fails-silently/

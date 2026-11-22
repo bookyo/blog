@@ -2337,3 +2337,21 @@
   - **`nested` and `dot` are the same knob at the default delimiter** (`dot` hardcodes the period and ignores the delimiter field). `merge` on a type conflict drops leaves (`{"a.b":"1","a.0":"2"}` -> `{"a":["2"]}`); duplicate-key errors are reachable only in `path` format; `maxDepth` counts keys whose values `preserveEmpty=false` discarded.
 - Links: 2x `/en/tools/json-unflattener` + 1x `/en/categories/data-processing`, all HTTP 200 and manifest-validated.
 - Method: a disposable DRAFT probe before publish confirmed KSES kept all 58 `<code>` spans and all 11 `<code>`-inside-`<li>` items, so the run needed 0 PATCHes.
+
+## 2026-11-22 | A Broken Disallow Rule Fails Silently. Catch It Before a Crawler Does.
+
+**URL:** https://blog.flowrust.com/2026/11/22/robots-txt-lint-validator-broken-disallow-fails-silently/
+**WP Post ID:** 9111
+**Tool:** `robots-txt-lint-validator` — Robots.txt Lint Validator (Validation)
+**Assets:** poster 1080x800 + 3 cards 1600x900 (media 9107-9110)
+**Score:** 0.9266 / A (hook 1.0, structure 0.9595, evidence 0.7275, voice 0.9231, ending 0.9267)
+**State:** 1-POST 0-PATCH · audit_post_content 0 findings · 8 H2 · 3 cards · 4/4 images 200 · 3/3 anchors 200
+
+- **The manifest's own reference case is the argument.** A three-line draft (`User-agent: *`, `Disallow /admin` with no colon, `Allow: /admin/help`) reports exactly 1 error on line 2, and the tester returns **allowed for all three test URLs including `/admin`** — the path the file was written to close. The only rule that survives parsing is the exception.
+- **Four error shapes, all with line numbers and nothing else:** `missing-colon`, `empty-user-agent`, `orphan-rule`, `missing-group`. Consecutive `User-agent` lines share one group until a rule appears, so `Googlebot` + `Bingbot` on two lines is a single group.
+- **The known-directive set is six** (`user-agent`, `allow`, `disallow`, `sitemap`, `crawl-delay`, `host`); `Clean-param` / `Request-rate` / `Noindex` land as warnings, not errors. `Sitemap` is collected globally, outside the group structure.
+- **Longest pattern wins, and a tie goes to Allow** — measured on the rule pattern's length, which equals the matched-path length only for literal patterns. `Disallow: /admin` (6) vs `Allow: /admin/help` (11) blocks the folder and allows the page; order never matters. An empty `Disallow:` matches nothing and reopens everything.
+- **`*` becomes `.*`, a trailing `$` anchors the end, every other metacharacter is escaped:** `Disallow: /*.php$` blocks `/x.php` and allows `/x.phpx`.
+- **The URL tester only consults the `User-agent: *` group** — a named group that disallows a path the wildcard group allows still reads "allowed".
+- **Honest gaps stated in the piece:** no live fetch, a 5xx for robots.txt is read as a full disallow while 404 means crawl freely, crawlers need only read the first 500 KiB (RFC 9309), `crawl-delay` is ignored by Google, and a comment at column 0 reports `unknown-line` because the stripper only eats `#` preceded by whitespace.
+- Method: the parser was ported from `src/lib/robots-txt-lint.ts` and run per case, so every number above is measured, not inferred.
