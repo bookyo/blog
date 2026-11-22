@@ -2355,3 +2355,26 @@
 - **The URL tester only consults the `User-agent: *` group** — a named group that disallows a path the wildcard group allows still reads "allowed".
 - **Honest gaps stated in the piece:** no live fetch, a 5xx for robots.txt is read as a full disallow while 404 means crawl freely, crawlers need only read the first 500 KiB (RFC 9309), `crawl-delay` is ignored by Google, and a comment at column 0 reports `unknown-line` because the stripper only eats `#` preceded by whitespace.
 - Method: the parser was ported from `src/lib/robots-txt-lint.ts` and run per case, so every number above is measured, not inferred.
+
+
+## 2026-11-23 | 0 dB Is Not Silence. It's 20 Micropascals.
+
+**URL:** https://blog.flowrust.com/2026/11/23/sound-pressure-level-converter-field-guide-0-db-is-not-silence/
+**WP Post ID:** 9139
+**Featured Image WP ID:** 9135 (poster, featured_media 0 by COSESAI convention)
+**Highlight Cards:** 3 (9136, 9137, 9138)
+**Tool Covered:** Sound Pressure Level Converter (Pa / dB SPL re 20 uPa)
+**Slug:** sound-pressure-level-converter-field-guide-0-db-is-not-silence
+**ElysiaTools URL:** https://elysiatools.com/en/tools/sound-pressure-level-converter
+**Tags:** sound-pressure, spl, decibel, db-spl, acoustics, pascal, microbar, microphone-calibration, 20-log
+**Asset Dir:** /Users/quyue/www/blog/2026-11-23-sound-pressure-level-converter-field-guide
+**Composite Score:** 0.9428 / A
+
+- **Reference is ISO 1683:** p0 = 20 micropascals (2e-5 Pa RMS); Lp = 20 log10(p / p0), inverse p = p0 * 10^(Lp/20). Five units: Pa 1, uPa 0.000001, ubar 0.1, mbar 100, dB SPL is the reference wrapped in a logarithm.
+- **Calibration anchor re-derived in Python:** 1 Pa = 93.9794 dB SPL; 2 Pa = exactly 100.00 dB; a calibrator stamped 94 dB is 1.0024 Pa, so rounding to 1 Pa costs 0.02 dB.
+- **Summing ladder measured:** two uncorrelated 60 dB talkers sum to 63.01 dB (0.0283 Pa), ten to 70 dB, a hundred to 80 dB; 94 + 94 = 97.01 dB. Rule: L + 10 log10(N); coherent sources instead add pressure at +6.02 dB per doubling.
+- **Unit traps:** ubar vs mbar differ 1000x (73.98 vs 133.98 dB); 1013 mbar = 194.08 dB is barometric, not acoustic; a 1 uPa reference (underwater acoustics) shifts readings +26.02 dB; 0 Pa returns -Infinity by design.
+- **Honest gaps stated:** no A/C/Z weighting, no Fast/Slow/Impulse, no Leq, no distance (6.02 dB per doubling, free field), no RMS-vs-peak split (94 dB RMS sine peaks at 1.4176 Pa).
+- **Ceiling derived:** 101,325 Pa = 194.09 dB, the arithmetic ceiling where a sine trough hits absolute zero; an entire atmosphere is 100.11 dB above the 1 Pa anchor.
+- **Worked error:** three readings of 70, 74, 80 dB average to 74.67 dB arithmetically but 76.53 dB on energy, a 1.86 dB gap.
+- Method: every number above was recomputed in Python before drafting; the article's claims come from the tool's own .ts source (units, factors, guards) and its exampleResults.
