@@ -2392,3 +2392,18 @@
 **Tags:** text-pipeline, recipe, caseSensitive, uniqueLines, sortLines, diff, text-cleaning, determinism, defaults
 **Asset Dir:** /Users/quyue/www/blog/2026-11-23-text-pipeline-builder
 **Composite Score:** 0.9533 / A
+
+---
+
+## 2026-11-24 | Booklet Page Order Isn't Backwards: Why 8 Prints Beside 1
+
+**URL:** https://blog.flowrust.com/2026/11/24/pdf-booklet-imposer-page-order-isnt-backwards-why-8-prints-beside-1-2026-11-24/
+**WP Post ID:** 9197
+**Featured Image WP ID:** 9193 (poster, featured_media 0 by Bloglo convention)
+**Highlight Cards:** 3 (9194, 9195, 9196)
+**Tool Covered:** PDF Booklet Imposer (saddle-stitch imposition for duplex booklet printing)
+**Slug:** pdf-booklet-imposer-page-order-isnt-backwards-why-8-prints-beside-1-2026-11-24
+**ElysiaTools URL:** https://elysiatools.com/en/tools/pdf-booklet-imposer
+**Tags:** pdf, booklet, imposition, duplex, saddle-stitch, creep, print
+**Asset Dir:** /Users/quyue/www/blog/2026-11-24-pdf-booklet-imposer
+**Composite Score:** 0.9256 / A

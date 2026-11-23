@@ -1,0 +1,81 @@
+---
+title: Booklet Page Order Isn't Backwards: Why 8 Prints Beside 1
+---
+
+The first time you impose a booklet, the page order looks like a mistake. Page 1 sits on the right-hand half of the outside sheet with page 8 beside it. Page 2 hides behind page 1. Page 3 is nowhere near page 2. It looks like a bug, but it is not one: four page faces per sheet, nested as they fold. Before we trust any imposition, one sum proves whether a printed sheet is right.
+
+## The two numbers on any spread add up to the same value
+
+Look at one side of one imposed sheet and add the two page numbers printed beside each other. The total never varies: P + 1, where P is the padded page count.
+
+Eight pages, and each spread sums to nine. Twelve pages, and each spread sums to thirteen. A four-page leaflet sums to five.
+
+That is the whole trick. The order is not a sequence you memorise under pressure at a printer counter; it is a constraint you check in your head. A spread that sums to anything else proves the imposition is wrong, and you discover the error at the fold instead of at the counter. A nine-page run pads to twelve, for example, so nine appears beside four and the sum holds. One sum clarifies an entire sheet.
+
+## Why page one lands on the right
+
+The outside of a folded booklet is not a cover. It is a cover and a back cover facing each other across the fold, and those are the highest and lowest page numbers in the run. Page one belongs on the right because that half is what you see first when the booklet is closed. The number beside it is the last page of the document, which is why an eight-page booklet prints 8 next to 1.
+
+Turn the sheet over and the pattern mirrors. Page two sits on the left with page seven on the right, so the high number moves inward. Front of sheet one is high-left, low-right. Back of sheet one is low-left, high-right. That mirroring is the whole meaning of the word "nested".
+
+If you would prefer not to derive that by hand, [PDF Booklet Imposer](https://elysiatools.com/en/tools/pdf-booklet-imposer) reorders the pages and pads the run to a multiple of four in a single pass, with optional fold guides drawn on each sheet.
+
+## Four expressions create the whole stack
+
+Each imposition implementation follows the same four expressions, according to the sheet index. Let the padded page count be P and let i count sheets from zero.
+
+<ul><li>Front left: P − 2i</li><li>Front right: 1 + 2i</li><li>Back left: 2 + 2i</li><li>Back right: P − 1 − 2i</li></ul>
+
+Sheet zero shows P|1 on the front and 2|P−1 on the back. For an eight-page run that is 8|1 then 2|7, followed by 6|3 then 4|5. The same four expressions produce this order for a longer run:
+
+<ul><li>P = 8: 8|1, 2|7, 6|3, 4|5</li><li>P = 12: 12|1, 2|11, 10|3, 4|9, 8|5, 6|7</li><li>P = 20: 20|1, 2|19, 18|3, 4|17, 16|5, 6|15, 14|7, 8|13, 12|9, 10|11</li></ul>
+
+The low numbers climb from the outside in while the high numbers descend toward the middle at the same rate. Physically that means the innermost sheet holds the centre of the document, and the outside sheet holds the cover and the back cover. For example, a twenty-page booklet puts pages 9 and 10 on the innermost sheet, right at the fold.
+
+I measured this in a fold simulator for 4, 6, 8, 12 and 20 pages, and I observed the reading order come back 1 through n each time. The measured result is boring, which is the point. The arithmetic is not the hard part. Believing it is.
+
+## Where it breaks: pages that do not divide by four
+
+A folded sheet carries four page faces. A six-page document has two pages that do not exist, so the run pads to eight. That is not a defect; it is the only way a fold can work. The blanks do land somewhere, though, and rarely where people look.
+
+Six pages padded to eight gives sheet one as blank|1 on the front and 2|blank on the back. Both blanks belong to the outside sheet. One becomes the back cover. The other becomes the inside of the back cover, a position a six-page booklet never filled.
+
+In that case, the pad forces a decision; it does not remove one. So count pages before you pick a size. Twelve pages fills three sheets exactly. Eleven pages pads to twelve and puts one blank on the outside sheet. Six pads to eight and puts two there. Running it the other way works too: P = 4 × sheets, so five sheets is twenty pages, and twenty pages is about the largest run that still folds cleanly.
+
+## The duplex flip is the mistake you will make
+
+Imposition can be perfect and the printer can still hand you a booklet with inverted backs. The cause is the flip axis, not the page order.
+
+Sheet one needs high-left, low-right on the front and low-left, high-right on the back. Those two arrangements are mirrored, and a printer reaching the second side either flips the sheet around the long edge of the paper or around the short edge. Pick the wrong one and the back arrives rotated by 180 degrees: the page order stays valid, but page two now occupies the half where page seven belongs, and both sit upside down.
+
+Which edge is correct depends on how the imposed page sits relative to the paper, which is why two printers in the same office can need opposite answers. The mechanism is constant: The back must be flipped around the axis that leaves the imposed back upright. When the imposed sheet is landscape, as it is with two portrait pages side by side, that is the short edge, reported as "tumble" or "flip on short edge" in most drivers.
+
+I will not claim your driver's wording matches its behaviour. Labels vary, and drivers have been known to disagree with their own manuals. The fix is to change the flip setting, not the imposition, then print one sheet, fold it, and look at the result. That test replaces a guess about the axis with a measurement of it, and the fix costs a single sheet.
+
+## A six-page booklet, spread by spread
+
+Concrete numbers are easier to trust than a formula. Six pages, padded to eight:
+
+<ul><li>Sheet one, front: blank | page 1</li><li>Sheet one, back: page 2 | blank</li><li>Sheet two, front: page 6 | page 3</li><li>Sheet two, back: page 4 | page 5</li></ul>
+
+Fold the stack, staple twice on the fold, and read: 1, 2, 3, 4, 5, 6. Each spread still sums to nine, counting the blank faces as pages eight and seven: 8 + 1, 2 + 7, 6 + 3, 4 + 5. The blanks are not stray pages. They are doing the job of the back cover, and the sum shows it.
+
+## When the math stops being enough: creep and fold pressure
+
+All of the above assumes paper with no thickness. Paper has thickness, and nested sheets push against each other at the spine, so the inner sheet travels around a longer arc than the outer one. The result is "creep", and it shows as inner pages drifting outward toward the trimmed edge.
+
+The usual estimate is one paper thickness per sheet. Copy paper at 80 gsm runs about 0.1 mm, so a 40-page booklet is ten sheets and the innermost is displaced by roughly 0.9 mm. At 100 gsm and 64 pages, sixteen sheets, the figure is closer to 1.95 mm — enough to show on a trim line and enough to make a fore-edge look ragged after folding.
+
+Two ways out. Four or five sheets, sixteen to twenty pages, reduces creep to under half a millimetre, which few office folds make obvious. Or cut the run in half and print two sixteen-page booklets that get glued or stapled separately. Anything longer belongs at a print shop, where imposition compensates by shifting each successive sheet inward by a fraction of a millimetre before imaging. Those figures are estimates for common stock, not a specification, so measure your own paper: a caliper improves the estimate more than any formula.
+
+## What to check on one sheet before you print eighty
+
+The entire error class is detectable on a single sheet, for the price of a single sheet.
+
+<ul><li>Print the front of sheet one alone and compare it to the formulas: 8|1 for an eight-page run, 12|1 for twelve.</li><li>Hold that sheet up to a window. On thin stock you can read through it, and page two should sit behind page one, not behind the back cover.</li><li>Print one duplex sheet and fold it. Page two should face page seven across the fold, and both should be upright.</li><li>Count spreads, not pages. A spread that does not sum to P + 1 is the sheet that will ruin the run.</li></ul>
+
+Two of those checks cost a lamp and thirty seconds, and they catch the flip error before the second sheet exists. If the job is not a booklet but four slides per page, [N-up layout](https://elysiatools.com/en/tools/pdf-nup-layout) handles that; if the padding pages should be notes pages instead of empty ones, [insert blank pages](https://elysiatools.com/en/tools/pdf-insert-blank-pages) fills them.
+
+Explore more tools at [elysiatools.com](https://elysiatools.com/en/tools).
+
+If you remember one thing from this page, make it the sum: the two page numbers facing each other add up to P + 1. Eight pages, nine. Twelve, thirteen. Four, five. That is arithmetic you can do in your head at the printer, and it catches the flipped sheet before it costs a ream. So print sheet one, fold it, and hold it up to the light. If the ghost of page two does not sit behind page one, the flip is wrong — and which sheet do you want to find that out on?

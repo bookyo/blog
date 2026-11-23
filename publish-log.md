@@ -1938,3 +1938,19 @@ Audit-only run; **1 defect class found and fixed on 2 posts** (2 content-only PO
 - Final audit: REST raw == rendered shape `h1=0 h2=8 h3=0 cards=3 poster=1 img=4 code=100`; live `entry-content` slice identical (share widget stripped by class); 0 `<p></p>` shells, 0 pipe-table leak, 0 nested p-in-h2, 0 fake italic in code, 0 doubled uploads path, 0 placeholder leak; 4/4 images 200 `image/png` with IHDR 1080x800 + 3x 1600x900; lazy-load `naturalWidth 0` confirmed benign (`dataset.src` -> correct files); `date - date_gmt` = +8.00h exact; `featured_media 0`.
 - False positives triaged, NOT patched: `</li><li>` x4 = my own 4-item and 2-item lists (3+1 item boundaries, legitimate markup); "double space in code" x3 = the intentional whitespace test strings (`"  a   b  \n  c  \n"`) whose whole point is runs of spaces; `fake italic in code` was CLEAN, so they are not stripped-operator artifacts.
 - 1-POST + 2 content-only POSTs = 3 write calls, 0 PATCH round-trips.
+
+---
+
+**2026-11-24 (cron, 03:46 CST / 2026-11-23T19:46:04Z) — PDF Booklet Imposer**
+- Published: **Booklet Page Order Isn't Backwards: Why 8 Prints Beside 1** -> https://blog.flowrust.com/2026/11/24/pdf-booklet-imposer-page-order-isnt-backwards-why-8-prints-beside-1-2026-11-24/
+- WP 9197, 1-POST 0-PATCH. Media 9193 (poster), 9194-9196 (3 cards).
+- Composite **0.9256 / A** (title 1.0, hook 1.0, transitions 1.0, ending 0.9733, readability 0.9619, structure 0.9333, medium_fit 0.9129, specificity 0.8758, voice 0.8748, evidence 0.7274).
+- Tool: `pdf-booklet-imposer` (PDF Tools). Source read: `src/tools/2026-02-19/pdf-booklet-imposer.ts` (371 lines).
+- **Imposition math verified against a fold simulator, not re-asserted:** `bookletLogicalOrder()` uses front=[P-2i, 1+2i], back=[2+2i, P-1-2i] with `padded = ceil(n/4)*4`. Rebuilt the reading order from the imposed spreads for n = 4, 6, 8, 12, 20; the sequence came back 1..n in every case, and every spread sums to P+1 (blanks counted by their padded number). Cards/article derive P=8, 12, 20 by hand AND in code.
+- Second implementation used as an oracle (per the skill's re-derive rule): an independent simulator that walks "front-right, back-left, then reversed back-right, front-left" — this is what proved the four expressions rather than the code commenting on itself.
+- Honest gaps kept in the article: creep figures are estimates for 80/100 gsm, and the driver's flip-edge label is explicitly NOT asserted (the text says to print one sheet and look).
+- Assets: umbrella PIL stack (poster 1080x800 + 3 cards 1600x900). Pre-measure gate ran BEFORE render, all strings inside budget; `vision_analyze` on all 4 confirmed no clipping/overlap/tofu. Caught one **content** error at QA: card1 tile 1 read `8|1 and 2|3` for a 4-page booklet; re-rendered as `4|1 and 2|3` and re-verified with a zoomed re-read. Also fixed card3 takeaway grammar (sheets keep, not keeps).
+- Links: `pdf-booklet-imposer` (x1 body + poster URL bar), `pdf-nup-layout`, `pdf-insert-blank-pages`, `/en/tools` root. `validate_anchors()` True (3/3 real tool ids). No samples exist for this toolId, so none invented.
+- Audit: `audit_post_content()` **0 findings**; REST rendered `h1=0 h2=8 h3=0 cards=3 poster=1 pshells=0 li=15/15 ul=4/4`; live `entry-content bloglo-entry` slice identical after stripping `ss-social-icons-container`; 0 `data-cfemail`; 4/4 images 200 image/png; 4/4 elysiatools anchors 200; `date - date_gmt` = +8.00h exact; `featured_media 0`.
+- Note: `requests` upload needs `files=(name, bytes, mime)` — `data=bytes` returns `rest_upload_no_content_type` 400.
+- **Defects found in OTHER tools while picking (reported, not published):** `base45-converter` is not RFC 9285 compliant (big-endian group order, and an odd-length tail corrupts the last byte: "Hello" -> "96%DV E1" -> "Helln"); `iccid-validator` computes a non-standard Luhn (doubles the wrong parity), so it rejects every standards-valid ICCID. Both were skipped for this post.
