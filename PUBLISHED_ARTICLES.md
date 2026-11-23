@@ -2378,3 +2378,17 @@
 - **Ceiling derived:** 101,325 Pa = 194.09 dB, the arithmetic ceiling where a sine trough hits absolute zero; an entire atmosphere is 100.11 dB above the 1 Pa anchor.
 - **Worked error:** three readings of 70, 74, 80 dB average to 74.67 dB arithmetically but 76.53 dB on energy, a 1.86 dB gap.
 - Method: every number above was recomputed in Python before drafting; the article's claims come from the tool's own .ts source (units, factors, guards) and its exampleResults.
+
+---
+
+**Title:** The Steps Are Portable. The Defaults Are Not.
+**URL:** https://blog.flowrust.com/2026/11/23/text-pipeline-builder-field-guide-one-option-name-four-defaults/
+**WP Post ID:** 9166
+**Featured Image WP ID:** 9162 (poster, featured_media 0 by Bloglo convention)
+**Highlight Cards:** 3 (9163, 9164, 9165)
+**Tool Covered:** Text Pipeline Builder (9-op deterministic text-cleaning recipes)
+**Slug:** text-pipeline-builder-field-guide-one-option-name-four-defaults
+**ElysiaTools URL:** https://elysiatools.com/en/tools/text-pipeline-builder
+**Tags:** text-pipeline, recipe, caseSensitive, uniqueLines, sortLines, diff, text-cleaning, determinism, defaults
+**Asset Dir:** /Users/quyue/www/blog/2026-11-23-text-pipeline-builder
+**Composite Score:** 0.9533 / A
