@@ -1,0 +1,22 @@
+{
+ "poster.png": {
+  "id": 9229,
+  "url": "https://blog.flowrust.com/wp-content/uploads/2026/11/poster-llms-robots-lock.png",
+  "alt": "Cover image: llms.txt describes a site while robots.txt decides who may fetch it"
+ },
+ "card1.png": {
+  "id": 9230,
+  "url": "https://blog.flowrust.com/wp-content/uploads/2026/11/card-five-robots-rules.png",
+  "alt": "Five RFC 9309 robots.txt rules: token match, merged groups, longest octets win, allow wins ties, no match means allowed"
+ },
+ "card2.png": {
+  "id": 9231,
+  "url": "https://blog.flowrust.com/wp-content/uploads/2026/11/card-four-ai-crawlers.png",
+  "alt": "Four AI crawlers and cited block rates: GPTBot 22 percent, ClaudeBot 21, PerplexityBot 17, Bytespider 22"
+ },
+ "card3.png": {
+  "id": 9232,
+  "url": "https://blog.flowrust.com/wp-content/uploads/2026/11/card-wildcard-tie.png",
+  "alt": "Disallow /docs/ versus Allow /docs/* both count six octets, so the allow wins and the block never fires"
+ }
+}

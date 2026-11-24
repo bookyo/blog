@@ -2407,3 +2407,26 @@
 **Tags:** pdf, booklet, imposition, duplex, saddle-stitch, creep, print
 **Asset Dir:** /Users/quyue/www/blog/2026-11-24-pdf-booklet-imposer
 **Composite Score:** 0.9256 / A
+
+
+## 2026-11-24 | llms.txt Is a Welcome Mat. robots.txt Is the Lock.
+
+**URL:** https://blog.flowrust.com/2026/11/24/llms-txt-welcome-mat-robots-txt-lock/
+**WP Post ID:** 9233
+**Featured Image WP ID:** 9229 (poster, featured_media 0 by Bloglo convention)
+**Highlight Cards:** 3 (9230, 9231, 9232)
+**Tool Covered:** llms.txt / AI Crawler Audit Generator (llms.txt v2 generation + RFC 9309 robots.txt audit)
+**Slug:** llms-txt-welcome-mat-robots-txt-lock
+**ElysiaTools URL:** https://elysiatools.com/en/tools/llms-txt-and-ai-crawler-audit
+**Tags:** llms.txt, robots.txt, rfc9309, ai-crawler, gptbot, claudebot
+**Asset Dir:** /Users/quyue/www/blog/2026-11-24-llms-txt-ai-crawler-audit
+**Score:** 0.9212 / A (hook 1.0, transitions 1.0, ending 1.0, structure 0.9559, voice 0.9295)
+**State:** 1-POST 1-PATCH · audit_post_content 0 findings · 8 H2 · 3 cards · 4/4 images 200 · 4/4 anchors 200
+
+- **The thesis is the tool's own description split in two:** llms.txt describes a site to a model that already has permission; robots.txt decides whether permission exists. RFC 9309 §1 says it outright — "These rules are not a form of access authorization" — so even the enforced file runs on cooperation, and llms.txt has no pact at all.
+- **Five rules, measured on a port of the published evaluator:** case-insensitive token match; matching groups merge; most octets wins with wildcards excluded; equal specificity goes to allow; no match is allowed. Two extra facts from §2.2.2: `/robots.txt` is implicitly allowed, and a parser must accept at least 500 KiB.
+- **The wildcard betrayal:** `Disallow: /docs/` and `Allow: /docs/*` both count 6 octets because the asterisk is excluded, so they tie and the allow wins — adding a wildcard to an allow rule deletes the rule it was meant to soften. Anchoring cuts the other way: `Disallow: /docs$` is 5 octets and matches `/docs` alone.
+- **Group selection flips the answer:** the published `rulesForAgent()` flattens the `*` group into the specific group; RFC 9309 §2.2.1 applies the wildcard group only "if no matching group exists". One four-line file gives GPTBot 2 blocked paths under one reading and 0 under the other.
+- **Four bots, four different decisions:** GPTBot 22% / ClaudeBot 21% (with `Claude-User` and `Claude-SearchBot` as separate live-traffic tokens) / PerplexityBot 17% / Bytespider 22% — the last reported to ignore robots.txt, so it needs edge enforcement, not a text file. Block rates labelled as registry statistics, not measurements of your site.
+- **Audit arithmetic stated plainly:** the audited path set is the root plus distinct page pathnames, so four pages yield five paths and `5/5 blocked` describes your inventory, not your site. Live crawl obeys the site's rules for its own token and caps at 26 pages.
+- Honest gap in the piece: the deviation was proven by porting the source, not by driving the hosted form — said in the article, with the tool link for readers who want the live verdict.

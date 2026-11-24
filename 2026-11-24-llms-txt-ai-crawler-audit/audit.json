@@ -1,0 +1,35 @@
+{
+ "id": 9233,
+ "findings": [],
+ "checks": {
+  "h1": 0,
+  "h2": 8,
+  "h3": 0,
+  "highlight-card": 3,
+  "article-poster": 1,
+  "img": 4,
+  "li": 9,
+  "ul": 2,
+  "pre": 0,
+  "empty-p": 0,
+  "p-open": 33,
+  "p-close": 33,
+  "pipe-leak": 0,
+  "code-double-space": 0,
+  "em-in-code": 0,
+  "em-wraps-code": 0,
+  "empty-code": 0,
+  "literal-backslash": 0,
+  "placeholders": 0,
+  "doubled-uploads": 0
+ },
+ "link": "https://blog.flowrust.com/2026/11/24/llms-txt-welcome-mat-robots-txt-lock/",
+ "title": "llms.txt Is a Welcome Mat. robots.txt Is the Lock.",
+ "date_gmt": "2026-11-24T08:24:05",
+ "images": [
+  "https://blog.flowrust.com/wp-content/uploads/2026/11/poster-llms-robots-lock.png",
+  "https://blog.flowrust.com/wp-content/uploads/2026/11/card-five-robots-rules.png",
+  "https://blog.flowrust.com/wp-content/uploads/2026/11/card-wildcard-tie.png",
+  "https://blog.flowrust.com/wp-content/uploads/2026/11/card-four-ai-crawlers.png"
+ ]
+}
