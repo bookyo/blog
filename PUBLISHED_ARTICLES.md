@@ -2430,3 +2430,27 @@
 - **Four bots, four different decisions:** GPTBot 22% / ClaudeBot 21% (with `Claude-User` and `Claude-SearchBot` as separate live-traffic tokens) / PerplexityBot 17% / Bytespider 22% — the last reported to ignore robots.txt, so it needs edge enforcement, not a text file. Block rates labelled as registry statistics, not measurements of your site.
 - **Audit arithmetic stated plainly:** the audited path set is the root plus distinct page pathnames, so four pages yield five paths and `5/5 blocked` describes your inventory, not your site. Live crawl obeys the site's rules for its own token and caps at 26 pages.
 - Honest gap in the piece: the deviation was proven by porting the source, not by driving the hosted form — said in the article, with the tool link for readers who want the live verdict.
+
+## 2026-11-25 | Why Hardy-Weinberg Has 3 Terms but Only 1 Degree of Freedom
+
+**URL:** https://blog.flowrust.com/2026/11/25/hardy-weinberg-equilibrium-field-guide-three-terms-one-degree/
+**WP Post ID:** 9292
+**Featured Image WP ID:** 9288 (poster, featured_media 0 by Bloglo convention)
+**Highlight Cards:** 3 (9289, 9290, 9291)
+**Tool Covered:** Hardy-Weinberg Equilibrium Calculator (p squared + 2pq + q squared = 1)
+**Slug:** hardy-weinberg-equilibrium-field-guide-three-terms-one-degree
+**ElysiaTools URL:** https://elysiatools.com/en/tools/hardy-weinberg-equilibrium
+**Tags:** hardy-weinberg, allele-frequency, genotype-frequency, chi-square, population-genetics
+**Asset Dir:** /Users/quyue/www/blog/2026-11-25-hardy-weinberg-three-terms-one-degree
+**Score:** 0.9093 / A (hook 0.8625, ending 1.0, readability 1.0, transitions 1.0, structure 0.9643, medium_fit 1.0, specificity 0.8441, voice 0.8059, title 1.0, evidence 0.7130)
+**State:** 1-POST 0-PATCH · audit_post_content 0 findings · 8 H2 · 3 cards · 4/4 images 200 · 4/5 anchors 200 + 1 canonical 308
+
+- **The thesis is algebraic, verified in Python:** with p estimated from the same counts, the three chi-square terms are one number d repeated as d, -2d, d across AA, Aa, aa (0 violations in 5,000 random triples), so the statistic equals N(1 - Ho/He)^2 (max deviation 1.7e-13 over 19,999 triples). The article's sticky line states it in the lead.
+- **Worked example:** 30 AA / 50 Aa / 20 aa, p = 0.55, expected 30.25 / 49.50 / 20.25, chi-square 0.0102 from three terms and 0.0102 from the heterozygote term alone.
+- **Degenerate case (card 2):** 0 AA / 0 Aa / 10 aa returns chi-square 0.0000, df 1, not significant, because the implementation skips cells with zero expectation - two of three categories are never tested.
+- **Small-sample case:** 1 AA / 3 Aa / 1 aa gives expected 1.25 / 2.50 / 1.25 and chi-square 0.20 with no minimum-expected-count guard.
+- **Rounding case (card 3):** 7/6/8 -> 3.8338 prints as 4 at 0 decimals and stays not significant; 20/32/31 -> 3.8413 prints as 3.84 at 2 decimals and is significant. The flag compares the unrounded statistic to a hard-coded 3.841 (exact 0.05 point is 3.8415).
+- **Carrier scaling:** PKU incidence 1/10,000 -> q 0.01, 2pq 0.0198 = 1 in 50.5 (198x the disease rate); incidence 1/2,500 -> 1 in 25.5.
+- Honest gaps stated in the piece: biallelic diploid locus only, no continuity correction, a significant chi-square rejects the assumption bundle rather than naming the broken assumption, and null alleles mimic a heterozygote deficit.
+- Assets: umbrella PIL stack with a pre-measure gate (all PASS pre-render) + `vision_analyze` on all 4 published PNGs (0 clipping, 0 tofu, 0 overlap, title/tile counts consistent). Media uploaded with alt text inline AND patched on the media entity; 4/4 alts survive on the first POST.
+- Links: 1 tool anchor + 2 related tool anchors + 1 category anchor + 1 `/en/tools` root. No sample anchor - `sample-manifest.json` has no `toolId` for this tool, so none was invented.
