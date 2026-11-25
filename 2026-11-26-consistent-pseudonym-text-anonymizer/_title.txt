@@ -1,0 +1,1 @@
+Two Redactions, One Join: Why Masking Your Logs Breaks the Query

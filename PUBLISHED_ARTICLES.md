@@ -1,3 +1,17 @@
+## 2026-11-26 | Two Redactions, One Join: Why Masking Your Logs Breaks the Query
+
+**URL:** https://blog.flowrust.com/2026/11/26/two-redactions-one-join-why-masking-your-logs-breaks-the-query/
+**WP Post ID:** 9316
+**Featured Image WP ID:** poster-33.png
+**Highlight Cards:** 3 (card1-33.png, card2-33.png, card3-33.png)
+**Tool Covered:** Consistent Pseudonym Text Anonymizer
+**Slug:** consistent-pseudonym-text-anonymizer
+**ElysiaTools URL:** https://elysiatools.com/en/tools/consistent-pseudonym-text-anonymizer
+**Tags:** pii, pseudonymization, anonymization, redaction, logging, text-processing, privacy
+**Asset Dir:** ~/www/blog/2026-11-26-consistent-pseudonym-text-anonymizer
+**Composite Score:** 0.9511 / A
+
+
 ## 2026-06-08 | Why One Tiny Number Hides the Secret of How Machines Compare Anything
 
 **URL:** https://blog.flowrust.com/2026/06/08/dot-product-calculator/
