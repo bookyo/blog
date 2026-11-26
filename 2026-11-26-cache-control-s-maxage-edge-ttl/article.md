@@ -1,0 +1,58 @@
+---
+title: Your CDN Doesn't Read max-age. It Reads s-maxage.
+---
+
+<strong>One header line, two clocks.</strong> Ship <code>public, max-age=60, s-maxage=600</code> and a reader's browser keeps its copy for a minute while the CDN keeps its own copy for ten. Yet only one of those numbers shows up in the curl you ran from your laptop, which is why "I set a short TTL" and "the deploy took twenty minutes to appear" tend to be the same sentence.
+
+## One header, four caches, two numbers
+
+A single response can pass four caches before it reaches a reader: the browser's HTTP cache, the CDN edge, an origin shield, and any reverse proxy sitting in between. All four read the same line. According to RFC 9111, <code>max-age</code> applies to all of them and <code>s-maxage</code> applies only to the shared ones, so the header above carries two independent lifetimes — 60 seconds for the private copy, 600 seconds for the edge copy, a 10&times; gap inside a single directive list. A TTL budget analyzer reports both as separate fields (<code>effectiveBrowserTtl</code> and <code>effectiveEdgeTtl</code>), and the edge value falls back to the browser value whenever <code>s-maxage</code> is missing — which is precisely how a team ends up believing it configured a CDN TTL.
+
+## s-maxage is not a bigger max-age
+
+The two numbers answer different questions. The browser TTL answers "how quickly must a fix reach a reader who already has a copy?" The edge TTL answers "how often may this POP wake the origin?" At <code>max-age=60</code> a single client revalidates up to 60 times an hour; at <code>s-maxage=600</code> one edge location reaches the origin at most six times an hour, no matter how many readers sit behind it. That is the same object with two bills attached. Shortening the wrong one either fails to fix staleness or multiplies origin traffic for a gain nobody can see.
+
+The shared-cache reading is stricter in a second way. RFC 9111 says <code>s-maxage</code> "also implies the semantics of the proxy-revalidate response directive", so a shared cache may not hand out a stale copy without asking the origin first. A browser may. That asymmetry is the reason a purge feels instant for one user and invisible for the rest of the audience.
+
+## The stale window is a budget, not a switch
+
+<code>stale-while-revalidate=30</code> lets the edge serve a 60-second-old copy for 30 more seconds while it fetches a fresh one in the background. It buys latency, not correctness. <code>stale-if-error=120</code> applies only when the origin fails; it buys availability, not speed. Stack both on the header above and the worst-case age a reader can see becomes 60 + 30 + 120 = 210 seconds, or three and a half minutes of visible staleness. For example, a price correction written at 09:00 can still be served at 09:03:30 by a cache that never called the origin once during those 210 seconds. That composite figure, not <code>max-age</code>, is what you weigh against how fast a wrong number has to disappear.
+
+## Four contradictions the parser never rejects
+
+None of the classic contradictions are syntax errors, so the response ships and the caches disagree in silence:
+
+- <code>no-store</code> beside <code>max-age</code> or <code>s-maxage</code>: both parse, and storage is supposed to lose.
+- <code>private</code> with <code>s-maxage</code>: one directive confines the copy to the reader, the other targets shared caches.
+- <code>public</code> with <code>private</code>: two contradictory cacheability claims in one line.
+- <code>must-revalidate</code> with a <code>stale-*</code> directive: reported as a warning, and the winner differs by implementation.
+
+A conflict detector flags all four and still prints a TTL for each side. For an analyzer that is honest behavior; for a reader skimming the report it is a trap, because the numeric field survives the warning that disqualified it. In that case the report is a list of what the header claims, and the resolution belongs to whichever cache answers the next request.
+
+## Where the arithmetic stops
+
+Read the order of operations in the analyzer source and one gap opens. For <code>private, max-age=600</code> it zeroes the browser TTL, but the edge TTL was copied from the browser value before that zeroing, and only <code>no-cache</code> or <code>no-store</code> zero the edge number. The report therefore shows an edge TTL of 600 for a response that shared caches must not store at all. The number describes the header, not your CDN. Treat <code>private</code> plus any TTL as a case for the response headers on the wire.
+
+The same caution applies to <code>must-revalidate</code> beside <code>stale-while-revalidate</code>. Both directives are valid, they address different moments of a response's life, and implementations order them differently. No calculator can settle that for you; only a probe against your own edge can. Two calls answer it: Age on the second response shows which tier served it, and the observed delta shows how much of the declared TTL was real.
+
+## What the edge believes
+
+The authoritative answer arrives in the response, not the request. <code>Age</code> counts seconds since the origin generated or validated the copy; when the measured <code>Age</code> climbs past <code>s-maxage</code>, your TTL is not in charge. Two fields carry most of the answer: Age and Cache-Status, the RFC 9211 summary of hit, miss and remaining TTL. Vendor headers fill in the rest — Cloudflare writes <code>cf-cache-status</code>, Fastly writes <code>X-Cache</code> and <code>X-Cache-Hits</code>, and Akamai writes <code>X-Cache</code> as well.
+
+The CDN selector in the optimizer is deliberately modest about this. It prints fixed posture notes per vendor, and the Cloudflare note reads: "Cloudflare may apply an edge TTL configured by Cache Rules/Page Rules that differs from origin Cache-Control." That is the right level of claim. Vendor behavior changes faster than any table, and the only current statement is the header on the wire.
+
+## A pair of headers that holds up under a deploy
+
+Split the jobs instead of tuning one number. A hashed asset gets <code>public, max-age=31536000, immutable</code>: a year, keyed on a filename that changes when the bytes change, with revalidation switched off even on reload. An HTML document gets <code>public, max-age=0, s-maxage=60, stale-while-revalidate=30</code>: the browser always revalidates, cheaply, against an edge copy rewritten once a minute, and the worst case is 90 seconds of age.
+
+One line for both kinds of object is how a project ends up with a TTL that is somehow always wrong — too long for the document, too short for the bundle. Two lines force the right number onto each audience: 31536000 seconds for a hashed asset, 60 for a document, 90 visible seconds in the worst case. The second line also cuts origin traffic from one fetch per reader per minute to six per hour. Try the arithmetic on both at [the TTL budget optimizer](https://elysiatools.com/en/tools/http-cache-control-cdn-edge-ttl-budget-optimizer).
+
+## The audit that fits in one curl
+
+Fetch the same URL twice, thirty seconds apart, and read the second response:
+
+<code>curl -sI https://example.com/ | grep -iE '^(age|cache-status|cf-cache-status|x-cache)'</code>
+
+An <code>Age</code> that increases between calls means a hit. No <code>Age</code> at all means each request reached the origin, whatever the request header claimed. The probe shows which tier answered, and the delta between the two calls shows how much of your TTL budget is real. Then put numbers on the policy: set a browser budget, an edge budget and a stale budget in the optimizer, and it returns within-budget, over-budget or not-configured per field. A <code>s-maxage=600</code> against an edge budget of 300 now fails in review, and that is the whole point — the check runs before the cache does. Explore more header and network tools at [elysiatools.com](https://elysiatools.com/en/tools).
+
+The header you send is not the configuration. It is a request addressed to four caches that each keep their own books, and the only one that answers in public is the <code>Age</code> header on the way back. So the next time a deploy takes twenty minutes to appear, do not re-read the line you wrote — read the receipt, and let the number that comes back overrule the number you meant. Which is older: the copy sitting in your cache, or your belief about it?

@@ -2468,3 +2468,26 @@
 - Honest gaps stated in the piece: biallelic diploid locus only, no continuity correction, a significant chi-square rejects the assumption bundle rather than naming the broken assumption, and null alleles mimic a heterozygote deficit.
 - Assets: umbrella PIL stack with a pre-measure gate (all PASS pre-render) + `vision_analyze` on all 4 published PNGs (0 clipping, 0 tofu, 0 overlap, title/tile counts consistent). Media uploaded with alt text inline AND patched on the media entity; 4/4 alts survive on the first POST.
 - Links: 1 tool anchor + 2 related tool anchors + 1 category anchor + 1 `/en/tools` root. No sample anchor - `sample-manifest.json` has no `toolId` for this tool, so none was invented.
+
+
+## 2026-11-26 | Your CDN Doesn't Read max-age. It Reads s-maxage.
+
+**URL:** https://blog.flowrust.com/2026/11/26/http-cache-control-two-lifetimes-max-age-s-maxage-2026-11-26/
+**WP Post ID:** 9351
+**Featured Image WP ID:** 9347 (poster, featured_media 0 by Bloglo convention)
+**Highlight Cards:** 3 (9348, 9349, 9350)
+**Tool Covered:** HTTP Cache-Control CDN Edge TTL Budget Optimizer
+**Slug:** http-cache-control-two-lifetimes-max-age-s-maxage-2026-11-26
+**ElysiaTools URL:** https://elysiatools.com/en/tools/http-cache-control-cdn-edge-ttl-budget-optimizer
+**Tags:** cache-control, cdn, ttl, s-maxage, stale-while-revalidate
+**Asset Dir:** /Users/quyue/www/blog/2026-11-26-cache-control-s-maxage-edge-ttl
+**Score:** 0.9396 / A (hook 1.0, ending 1.0, voice 1.0, transitions 1.0, structure 0.9559, readability 0.9307, medium_fit 0.925, title 0.9125, specificity 0.8452, evidence 0.8388)
+**State:** 1-POST 0-PATCH - audit_post_content 0 findings - 8 H2 - 3 cards - 4/4 images 200 - 2/2 anchors 200
+
+- **The thesis is two clocks in one line:** RFC 9111 gives `max-age` to every cache and `s-maxage` only to shared caches, so `public, max-age=60, s-maxage=600` carries a 60 s private lifetime and a 600 s edge lifetime (10x). The article's sticky line is in the lead, and the closing paragraph is the reverse-retraction of the "s-maxage is a bigger max-age" reading.
+- **Budget chain, recomputed:** `stale-while-revalidate=30` + `stale-if-error=120` = 150 s of stale budget, and 60 + 30 + 120 = 210 s = 3.5 min is the oldest copy a reader can be served after a deploy.
+- **Conflicts vs warnings, from the analyzer's own codes:** 3 hard conflicts (`no-store` with a TTL, `private` with `s-maxage`, `public` with `private`) and 2 warnings (`must-revalidate` with `stale-*`, duplicate directive with differing values) - all five parse without an error, which is the article's point.
+- **Honest gap, verified against the source order of operations:** `private, max-age=600` reports edge TTL 600 because the edge value is copied before the browser value is zeroed; only `no-cache`/`no-store` zero the edge number. Card 3 therefore points at `Age` / `Cache-Status` (RFC 9211) / `cf-cache-status` / `X-Cache` / `X-Cache-Hits` as the only authoritative reading.
+- **What the tool's CDN dropdown really is:** fixed posture notes per vendor (verified constant strings in `cache-control-analyzer.ts`), not a per-vendor simulation - stated in the article rather than glossed over.
+- Assets: umbrella PIL stack, pre-measure gate all PASS before render + `vision_analyze` on all 4 PNGs (0 clipping, 0 tofu, 0 overlap). One card re-render: the 5-tile conflict card's title count had to match its tiles (3 conflicts + 2 warnings), catching the WP 8566/8739 count-vs-tiles defect class before POST.
+- Links: 1 tool anchor + 1 `/en/tools` root. No sample anchor - `sample-manifest.json` has no `toolId` for this tool, so none was invented.
