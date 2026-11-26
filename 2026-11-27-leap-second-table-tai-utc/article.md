@@ -1,0 +1,95 @@
+---
+title: Your Duration Math Is 27 Seconds Short. Here Is Where They Went.
+---
+
+Twenty-seven times since 1972 the world has paused, inserted a second, and carried on. Each one of those seconds is missing from a duration you compute by subtracting two POSIX timestamps — but nothing fails, nothing logs, and the answer comes back short. That gap is not a bug in your code. It is an inheritance from a 1972 decision your code never read.
+
+## The 37 seconds are two numbers, not one
+
+Start with the figure most people quote. TAI − UTC is 37 seconds today, and the useful part is that 37 is not a count of anything. It is a sum.
+
+Ten of those seconds existed on day one. When UTC took its modern form on 1972-01-01, its rate was deliberately offset from TAI's by exactly 10 seconds, so the two scales could tick at slightly different speeds while staying aligned at the second. The remaining 27 are individual insertions, each one voted, announced in advance, and applied at 23:59:60 UTC.
+
+Ten plus twenty-seven equals thirty-seven. The arithmetic is exact, and a leap-second table returns the two halves as separate fields — <code>currentTaiUtc: 37</code> and <code>insertions: 27</code> — which is why the first thing to check in any timekeeping report is whether the 37 it prints is a measurement or a running total. According to IANA's leap-seconds.list, the 27 rows below the baseline are the whole record.
+
+That distinction changes the answer to a common question. Ask how many leap seconds have been added since the epoch and "37" is wrong, and has always been wrong. The answer is 27; the baseline 10 arrived by agreement, not by insertion.
+
+## Where the missing seconds go
+
+POSIX time does not count leap seconds. It defines a timestamp as elapsed seconds since 1970-01-01T00:00:00Z, with no facility for 23:59:60, so the extra second is absorbed by replaying 23:59:59 twice. Two different instants therefore share one timestamp, and the scale stays monotonic by refusing to notice. The converter states the consequence without softening it: "POSIX/Unix timestamps cannot unambiguously represent a leap second."
+
+The shortfall compounds. An interval that spans a leap-second boundary, measured by subtracting two POSIX timestamps, comes back one second short of the elapsed SI time. An interval spanning the whole era, 1972 through today, comes back 27 seconds short. No exception is raised, because subtraction of two integers cannot know what happened between them.
+
+<strong>The error is bounded by the number of insertions inside your window, not by the length of the window.</strong> A window covering 2016-12-31 absorbed exactly one extra second; a window from 2015 to now absorbed two. That is the case ladder that matters: a single boundary costs 1 second, a decade of boundaries costs whatever that decade inserted, and the general case reduces to a table lookup.
+
+For a satellite ground station, 27 seconds is a lost pass. For an observatory scheduling an exposure, it is a pointing error. For an hourly billing pipeline it is invisible, which is precisely why the defect survives review: the code never breaks, so nobody looks.
+
+## A 1995 timestamp carries a different offset than today's
+
+The offset is a function of the instant, not a constant you can store once. Resolve 1995-06-15T00:00:00Z against the table and the applicable offset is 29 seconds, set on 1994-07-01 and replaced on 1996-01-01. The same instant across systems reads:
+
+<ul>
+<li><code>UTC</code> — 1995-06-15T00:00:00.000Z</li>
+<li><code>TAI</code> — UTC + 29 s</li>
+<li><code>GPS</code> — UTC + 10 s, because GPS is TAI − 19 s</li>
+<li><code>UT1</code> — UTC + DUT1, your estimate</li>
+<li><code>POSIX</code> — 803174400000 ms</li>
+</ul>
+
+Today the same conversion returns TAI = UTC + 37 and GPS = UTC + 18. The GPS offset climbed from 10 to 18 seconds over three decades, one insertion at a time, while the 19-second TAI-to-GPS difference never moved at all. That fixed 19 is the design: GPS time was defined to run continuously from 1980-01-06 without ever adding a second, so its distance from TAI is constant and its distance from UTC is the thing that drifts.
+
+Anyone who stored "UTC plus 19" as GPS time in 1995 shipped a value that is 8 seconds wrong today. The constant was never constant, and the offset that fixes it is resolved per date, never cached.
+
+## Four clocks, one row, four different answers
+
+The scales are not four names for one quantity. They answer different questions:
+
+<ul>
+<li><code>TAI</code> — continuous atomic reference. No leap seconds, ever. The count of SI seconds.</li>
+<li><code>UTC</code> — civil time. Equals TAI − 37, and the offset changes at each insertion.</li>
+<li><code>UT1</code> — Earth rotation. Equals UTC + DUT1, and DUT1 is irregular.</li>
+<li><code>GPS</code> — continuous like TAI, anchored elsewhere. Equals UTC + 18.</li>
+<li><code>POSIX</code> — SI seconds since 1970, leap seconds excluded, 23:59:60 replayed.</li>
+<li><code>NTP</code> — 64-bit timestamp on a 1900 epoch, with a 2-bit leap indicator that warns of an upcoming insertion.</li>
+</ul>
+
+Two of those six are continuous counts and four are not, which shows the whole difficulty in one line. Convert between two continuous scales and subtraction is enough. Convert between a continuous scale and a civil one, and the answer depends on the date, which forces a dependency on someone keeping that table current.
+
+## DUT1 is the one number the tool will not give you
+
+Here is the honest gap. DUT1 is live data, published weekly in IERS Bulletin A, and it is an input to this conversion, not an output. The tool accepts a DUT1 estimate and warns that the authoritative value lives in the bulletin.
+
+That is the correct design, and it is also a limit you have to respect. DUT1 is the measured difference between UT1 and UTC, and it drifts as the planet's rotation rate does. Leap seconds exist to force it back inside ±0.9 seconds; without them, the offset would grow until civil noon no longer meant noon. A tool shipping a hardcoded DUT1 would break within weeks, so this one asks.
+
+The validation is equally blunt: an input outside ±5 seconds is rejected, because no plausible DUT1 is that large. If your pipeline reports a DUT1 magnitude above 0.9 seconds, the problem sits upstream of the conversion.
+
+## The longest gap in the record is the one we are in
+
+Twenty-eight rows sit in the table, and the last one is 2017-01-01. The table's own note reads: "The last insertion was 2016-12-31 23:59:60 UTC (offset → 37)." No insertion has been reported since.
+
+Compute the distances and the current quiet period stands out. The longest prior gap ran from 1999-01-01 to 2006-01-01, 2,557 days, or 7.00 years. The present gap, from 2017-01-01 to today, is 3,617 days and still open — 9.90 years, roughly 40 percent longer than the previous record. By decade the insertions run 8 in the 1970s, 6 in the 1980s, 8 in the 1990s, 2 in the 2000s, 3 in the 2010s, and 0 since.
+
+The trend is not an accident of the table. Earth's rotation has been speeding up relative to the atomic scale, so the corrections that were routine in the 1990s have been reduced to none since 2017. In 2022 the General Conference on Weights and Measures voted to stop inserting leap seconds altogether by 2035 at the latest, on the understanding that some other mechanism will keep civil time roughly aligned with the sky.
+
+Which means the tool you are reading is a record of a policy in its final decade. A leap-second table that stops growing is not a table that broke.
+
+## What to check before you compare two timestamps
+
+Four checks remove most of this risk, and none of them require a new library:
+
+<ul>
+<li><strong>Does the interval span a boundary?</strong> Resolve both endpoints against the table and compare the offsets. Differing offsets mean the interval contains at least one insertion — for example, 2015-01-01 against 2017-01-01 returns 35 and 37.</li>
+<li><strong>Which scale is stored?</strong> A column holding TAI is a continuous count; a column holding POSIX is not. Mixing them in one subtraction creates the defect.</li>
+<li><strong>Is the offset cached or resolved?</strong> A stored constant like 37 is correct today and wrong after the next insertion. Resolve by date.</li>
+<li><strong>Does the source flag the boundary?</strong> NTP carries a 2-bit leap indicator for exactly this purpose. A client that discards it has removed the warning.</li>
+</ul>
+
+None of this shows up in a code review, because the code is correct. The subtraction of two integers is correct. What breaks is the assumption that those integers count the same seconds a physicist would.
+
+## The check that fits in one request
+
+A leap-second table answers the historical question, and a conversion answers the immediate one. Enter a UTC instant, add a DUT1 estimate if you have one, and the tool proves the arithmetic in a single pass: TAI, GPS, UT1, the POSIX value and the leap-second status for that instant, with the offset resolved from the table, not assumed. Try it at [Elysia Tools](https://elysiatools.com/en/tools/leap-second-table-iers-dut1-tai-utc-offset-diff) and keep the output beside the interval you are about to measure.
+
+For the input side of the same problem, the NTP timestamp decoder walks the 64-bit format and the leap indicator directly: [decode an NTP packet](https://elysiatools.com/en/tools/ntp-rfc-5905-sntp-leap-second-epoch-decoder). New to the vocabulary of time scales? The [date and time tool index](https://elysiatools.com/en/categories/date--and--time) is the shortest route to the rest. Explore more tools at [elysiatools.com](https://elysiatools.com/en/tools).
+
+So the next time two timestamps disagree by a second you cannot account for, do not reach for a rounding rule. Reach for the table. The clock that runs the satellites is not the clock you read, and the difference between them is not noise — it is an audited list of 27 corrections, each one a decision about how a spinning planet gets to disagree with an oscillator. Which of your durations was measured, and which was merely subtracted?

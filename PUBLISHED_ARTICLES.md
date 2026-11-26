@@ -1,3 +1,26 @@
+## 2026-11-27 | Your Duration Math Is 27 Seconds Short. Here Is Where They Went.
+
+**URL:** https://blog.flowrust.com/2026/11/27/your-duration-math-is-27-seconds-short-leap-second-field-guide/
+**WP Post ID:** 9382
+**Featured Image WP ID:** leap-second-poster.png (9378)
+**Highlight Cards:** 3 (leap-second-card1-sum.png 9379, leap-second-card2-scales.png 9380, leap-second-card3-offsets.png 9381)
+**Tool Covered:** Leap Second Table — IERS DUT1, TAI-UTC Offset & Cross-System Time
+**Slug:** leap-second-table-iers-dut1-tai-utc-offset-diff
+**ElysiaTools URL:** https://elysiatools.com/en/tools/leap-second-table-iers-dut1-tai-utc-offset-diff
+**Tags:** leap second, iers, dut1, tai-utc, ut1, gps time, posix, ntp
+**Asset Dir:** ~/www/blog/2026-11-27-leap-second-table-tai-utc
+**Composite Score:** 0.9198 / A
+
+- **The 37 decomposes exactly:** TAI − UTC = 37 s today = the 10 s baseline set on 1972-01-01 plus 27 insertions, verified by iterating the tool's own `LEAP_EVENTS` table (28 rows, first is baseline, offset 10 → 37). GPS − UTC = 37 − 19 = 18 s.
+- **Case ladder:** a 1995-06-15 UTC instant resolves to offset 29 (GPS = UTC + 10 s) vs 37/18 today; the POSIX value 803174400000 ms was computed with `datetime(...).timestamp()`, which caught a wrong figure carried in the first draft.
+- **Longest gap, recomputed:** 1999-01-01 → 2006-01-01 = 2,557 days (7.00 yr); 2017-01-01 → 2026-11-27 = 3,617 days (9.90 yr), about 40 percent longer, with 0 insertions since 2017 and per-decade counts 8/6/8/2/3/0.
+- **Honest gap:** DUT1 is an input the tool cannot supply — it is live IERS Bulletin A data, validated to ±5 s and expected within ±0.9 s; stated in the article instead of glossed.
+- **Two verbatim quotes** taken from the tool's rendered output (the POSIX ambiguity warning and the last-insertion note), not invented.
+- Assets: umbrella PIL stack; pre-measure gate all PASS before render; `vision_analyze` on all 4 PNGs = 0 clipping, 0 tofu, 0 overlap. **One card re-rendered:** card 3 shipped as "One Instant, Two Offsets" with an "OUTPUT same instant today" header over two *different* UTC instants — retitled "Two Dates, Two Offsets" with `INPUT UTC 1995-06-15` / `OUTPUT UTC 2026-11-27`. Card 2 note "not a count" for POSIX sharpened to "ignores leaps".
+- Links: 2 tool anchors (target + NTP leap-indicator decoder), 1 category anchor (`/en/categories/date--and--time`), 1 `/en/tools` root — all 4 HTTP 200, both tool slugs manifest-validated (no `sample-manifest.json` `toolId` exists, so no sample anchor was invented).
+
+
+
 ## 2026-11-26 | Two Redactions, One Join: Why Masking Your Logs Breaks the Query
 
 **URL:** https://blog.flowrust.com/2026/11/26/two-redactions-one-join-why-masking-your-logs-breaks-the-query/
