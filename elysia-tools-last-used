@@ -95,3 +95,6 @@ http-cache-control-cdn-edge-ttl-budget-optimizer-done 2026-11-26 https://blog.fl
 leap-second-table-iers-dut1-tai-utc-offset-diff-done 2026-11-27 https://blog.flowrust.com/2026/11/27/your-duration-math-is-27-seconds-short-leap-second-field-guide/
 
 carmichael-function-done 2026-11-27 https://blog.flowrust.com/2026/11/27/carmichael-function-field-guide-lambda-vs-phi-and-the-561-disguise/
+
+
+pdf-latex-mathml-mathjax-formula-extractor-and-equation-number-preserver-done 2026-11-28 https://blog.flowrust.com/2026/11/28/pdf-formula-extractor-field-guide-when-font-names-baselines-and-margin-numbers-are-the-only-evidence/

@@ -2535,3 +2535,15 @@
 - **What the tool's CDN dropdown really is:** fixed posture notes per vendor (verified constant strings in `cache-control-analyzer.ts`), not a per-vendor simulation - stated in the article rather than glossed over.
 - Assets: umbrella PIL stack, pre-measure gate all PASS before render + `vision_analyze` on all 4 PNGs (0 clipping, 0 tofu, 0 overlap). One card re-render: the 5-tile conflict card's title count had to match its tiles (3 conflicts + 2 warnings), catching the WP 8566/8739 count-vs-tiles defect class before POST.
 - Links: 1 tool anchor + 1 `/en/tools` root. No sample anchor - `sample-manifest.json` has no `toolId` for this tool, so none was invented.
+
+## A PDF Does Not Store Equations: Only Glyphs at Coordinates
+
+- **Post:** WordPress 9436 - https://blog.flowrust.com/2026/11/28/pdf-formula-extractor-field-guide-when-font-names-baselines-and-margin-numbers-are-the-only-evidence/
+- **Tool:** `pdf-latex-mathml-mathjax-formula-extractor-and-equation-number-preserver` (Document Tools)
+- **Thesis:** a vector PDF never stores math as math. What survives a copy-paste is three signals - the font family on a run, its baseline offset, and the `(4a)` sitting in the right margin - and each one is measurable.
+- **The thresholds are ratios, so they scale with the type size:** a chunk is a script when its lift is past `0.22x` the base glyph height, at most `0.95x`, with glyph height `<= 0.8x` the base. A fraction needs exactly two math lines, a baseline gap above `1.3x` the taller line, and centers within `0.45x` of the wider line.
+- **The AMS tag is the part OCR loses:** a chunk matching `^\((\d{1,3}[a-zA-Z]?)\)$` past `62%` of the page width, blanked after capture, with a subequation group counted only when two or more cards carry a letter suffix.
+- **Honest gap, stated in the article:** scanned PDFs have no text layer and are refused with an explicit message rather than an empty report; matrices and multi-line alignments are best-effort; a page whose operator list will not resolve drops to medium confidence.
+- **Measured example:** the bundled two-page sample returns 7 display formulas / 6 numbered in display scope and 12 formulas (7 display + 5 inline) with scope set to all - the same page, two counts.
+- Assets: umbrella PIL stack, pre-measure gate all PASS before render, `vision_analyze` on all 4 PNGs caught the card-2 count-vs-tiles defect pre-POST (retitled from "Three Thresholds" over five tiles).
+- Links: 1 tool anchor + 1 `/en/tools` root. No sample anchor - the sample manifest carries no `toolId` for this tool.
