@@ -23,7 +23,7 @@ A `tracestate` header is a list of up to 32 members, each shaped as `<vendor-key
 
 - ≤ 32 list members (the W3C ceiling).
 - Vendor key length ≤ 256 characters, must match `[a-z][a-z0-9_\-*/]{0,255}`.
-- Value length ≤ 256 characters, must match `[!#$%&'()*+\-.^_`|~0-9a-zA-Z/]+` (RFC 7230 quoted-string with restrictions).
+- Value length ≤ 256 characters, must match <code>[!#$%&amp;'()*+\-.^_&#96;|~0-9a-zA-Z/]+</code> (RFC 7230 quoted-string with restrictions).
 - Total header length ≤ 512 characters once the propagation header is split across multiple `tracestate` lines.
 
 A `baggage` header is a similar list with percent-encoded values. Members use `key=value` pairs joined by `,`, with percent-encoding for reserved characters. The validator checks each value against the percent-encoding grammar and rejects values whose decoded length exceeds 4096 bytes.

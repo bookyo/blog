@@ -1,23 +1,36 @@
+<figure class="article-poster"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/10/poster-20.png" alt="OpenTelemetry W3C trace propagation validator cover poster"></figure>
 <p><strong>Propagation bugs hide in byte positions your mocks never visit.</strong> W3C trace context headers travel in every span you ship, and every one of them has at least three places where a byte flip silently breaks distributed traces: a missing version prefix, a tracestate list with 33 members instead of 32, or a baggage value whose percent-encoding lost a delimiter. The OpenTelemetry W3C traceparent / tracestate / baggage + OTLP Header Propagation Validator catches each of those break modes in a single parse, then runs the two-header correlation round-trip that finds child span-id collisions your unit tests never reach. This is the field guide that walks the propagation contract as a contract — every byte position, every list-member ceiling, every encoding edge — and shows how to fold the validator into a CI gate so broken traces stop being a Monday-morning surprise.</p>
 <p>The validator sits between your HTTP client and your collector's first hop. Paste a traceparent, a tracestate, or a baggage header and it returns the parsed fields, the version compliance flag, the W3C rule violations, and a propagation matrix that walks traceparent → tracestate → baggage → OTLP Content-Type → gRPC <code>grpc-trace-context-bin</code> so you can see how a single-byte edit in one header cascades into the next. The two-header correlation round-trip is the part most teams skip; it generates a child span-id, validates that the child fits inside the parent's trace-id namespace, and flags the case where two children collide on the same parent. For full end-to-end testing, run headers through the <a href="https://elysiatools.com/en/tools/opentelemetry-w3c-traceparent-tracestate-baggage-and-otlp-protobuf-headers-propagation-validator">OpenTelemetry W3C traceparent / tracestate / baggage + OTLP Header Propagation Validator</a> alongside your existing unit suite — the validator catches what your mocks missed because mocks only test the happy path, and propagation bugs only show up on the broken path.</p>
 <h2>How the W3C Trace Context Headers Are Structured</h2>
-<p>The W3C Trace Context spec defines two HTTP headers that travel with every request: <code>traceparent</code> and <code>tracestate</code>. Each one has a fixed byte layout, a fixed length budget, and a fixed set of allowed characters. Most propagation bugs come from a sloppy edit to one of those layouts.</p>
+<p>The W3C Trace Context spec defines two HTTP headers that travel with every request: <code>traceparent</code> and <code>tracestate</code>. Each one has a fixed byte layout, a fixed length budget, and a fixed set of allowed characters. Most propagation bugs come from a sloppy edit to one of those layouts.</p><figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/10/card1-16.png" alt="Five parts of a traceparent header" loading="lazy"></figure>
 <p>A <code>traceparent</code> header is a four-field ASCII string in this exact order:</p>
-<pre><code class="language-">traceparent: 00-<32 hex trace-id>-<16 hex parent-id>-<2 hex trace-flags></code></pre>
-<p>- <code>00</code> is the version. <code>ff</code> is reserved as "invalid" — anything else is future-version. - <code><32 hex trace-id></code> is the 16-byte trace identifier. All zeros (<code>00000000000000000000000000000000</code>) is invalid. - <code><16 hex parent-id></code> is the 8-byte parent span identifier. All zeros is also invalid. - <code><2 hex trace-flags></code> is the bitfield (<code>01</code> = sampled, <code>02</code> = unknown, plus reserved bits).</p>
+<pre><code class="language-">traceparent: 00-&lt;32 hex trace-id&gt;-&lt;16 hex parent-id&gt;-&lt;2 hex trace-flags&gt;</code></pre>
+<ul>
+<li><code>00</code> is the version. <code>ff</code> is reserved as "invalid" — anything else is future-version.</li>
+<li><code>&lt;32 hex trace-id&gt;</code> is the 16-byte trace identifier. All zeros (<code>00000000000000000000000000000000</code>) is invalid.</li>
+<li><code>&lt;16 hex parent-id&gt;</code> is the 8-byte parent span identifier. All zeros is also invalid.</li>
+<li><code>&lt;2 hex trace-flags&gt;</code> is the bitfield (<code>01</code> = sampled, <code>02</code> = unknown, plus reserved bits).</li>
+</ul>
 <p>Total length is exactly 55 ASCII characters. Any deviation is a parse failure. Most services accept lowercase or uppercase hex; the validator normalizes both.</p>
-<p>A <code>tracestate</code> header is a list of up to 32 members, each shaped as <code><vendor-key>=<value></code>, comma-separated. The validator enforces:</p>
-<p>- ≤ 32 list members (the W3C ceiling). - Vendor key length ≤ 256 characters, must match <code>[a-z][a-z0-9_\-*/]{0,255}</code>. - Value length ≤ 256 characters, must match <code>[!#$%&'()*+\-.^_</code>|~0-9a-zA-Z/]+<code> (RFC 7230 quoted-string with restrictions). - Total header length ≤ 512 characters once the propagation header is split across multiple </code>tracestate<code> lines.</p>
-<p>A </code>baggage<code> header is a similar list with percent-encoded values. Members use </code>key=value<code> pairs joined by </code>,<code>, with percent-encoding for reserved characters. The validator checks each value against the percent-encoding grammar and rejects values whose decoded length exceeds 4096 bytes.</p>
+<p>A <code>tracestate</code> header is a list of up to 32 members, each shaped as <code>&lt;vendor-key&gt;=&lt;value&gt;</code>, comma-separated. The validator enforces:</p>
+<ul>
+<li>≤ 32 list members (the W3C ceiling).</li>
+<li>Vendor key length ≤ 256 characters, must match <code>[a-z][a-z0-9_\-*/]{0,255}</code>.</li>
+<li>Value length ≤ 256 characters, must match <code>[!#$%&amp;'()*+\-.^_&#96;|~0-9a-zA-Z/]+</code> (RFC 7230 quoted-string with restrictions).</li>
+<li>Total header length ≤ 512 characters once the propagation header is split across multiple <code>tracestate</code> lines.</li>
+</ul>
+<p>A <code>baggage</code> header is a similar list with percent-encoded values. Members use <code>key=value</code> pairs joined by <code>,</code>, with percent-encoding for reserved characters. The validator checks each value against the percent-encoding grammar and rejects values whose decoded length exceeds 4096 bytes.</p>
 <h2>Why Your Mocks Miss Propagation Bugs</h2>
 <p>Three propagation bugs survive most unit suites:</p>
-<p>1. <strong>A version byte that doesn't exist yet.</strong> If you write </code>01-...<code> thinking </code>01<code> is "the next version", the validator flags it as a future-version header and marks the parse as non-compliant. Most code silently accepts unknown versions and forwards them, which means downstream consumers treat the header as </code>00<code>-compatible and lose the version semantics the sender intended.</p>
-<p>2. <strong>A tracestate list that grew past 32 members.</strong> The W3C spec lets vendors add list members freely, but if the total exceeds 32, downstream consumers are required to drop the overflow. The validator shows which members would be dropped and flags the line so you can see which vendor over-allocated.</p>
-<p>3. <strong>A baggage value whose percent-encoding is malformed.</strong> A stray </code>+<code> in a percent-encoded string can be either literal or space-encoded depending on the encoder. The validator normalizes both, but flags the case where a value decoded to a reserved character (e.g. </code>=<code> inside a key segment) that breaks the </code>key=value<code> grammar.</p>
+<ol>
+<li><strong>A version byte that doesn't exist yet.</strong> If you write <code>01-...</code> thinking <code>01</code> is "the next version", the validator flags it as a future-version header and marks the parse as non-compliant. Most code silently accepts unknown versions and forwards them, which means downstream consumers treat the header as <code>00</code>-compatible and lose the version semantics the sender intended.</li>
+<li><strong>A tracestate list that grew past 32 members.</strong> The W3C spec lets vendors add list members freely, but if the total exceeds 32, downstream consumers are required to drop the overflow. The validator shows which members would be dropped and flags the line so you can see which vendor over-allocated.</li>
+<li><strong>A baggage value whose percent-encoding is malformed.</strong> A stray <code>+</code> in a percent-encoded string can be either literal or space-encoded depending on the encoder. The validator normalizes both, but flags the case where a value decoded to a reserved character (e.g. <code>=</code> inside a key segment) that breaks the <code>key=value</code> grammar.</li>
+</ol>
 <p>For end-to-end propagation testing, the validator's two-header correlation round-trip is the missing test: feed it a parent traceparent and a child traceparent that share the trace-id but differ on parent-id, then ask whether the child-id collides with any sibling span-id in the tracestate list. Most propagation bugs hide in that intersection.</p>
 <h2>What the Validator Parses and What It Rejects</h2>
-<p>The validator's parser walks each header character by character and rejects anything outside the W3C grammar. For </code>traceparent<code> it enforces: total length 55, version byte in </code>[0-9a-f]{2}<code> excluding </code>ff<code>, trace-id and parent-id in </code>[0-9a-f]{32}<code> and </code>[0-9a-f]{16}<code> excluding all-zeros, and trace-flags in </code>[0-9a-f]{2}<code>. For </code>tracestate<code> it enforces the ≤ 32 list members, vendor-key grammar, value grammar, and total length budget. For </code>baggage<code> it enforces the percent-encoding grammar and 4096-byte value ceiling.</p>
-<p>The parser outputs a structured object with one field per rule, plus a top-level </code>compliance<code> boolean that flips to </code>false<code> on the first violation. CI tests can assert on either the structured object or the boolean; the structured object gives you the byte offset when a test fails.</p>
+<p>The validator's parser walks each header character by character and rejects anything outside the W3C grammar. For <code>traceparent</code> it enforces: total length 55, version byte in <code>[0-9a-f]{2}</code> excluding <code>ff</code>, trace-id and parent-id in <code>[0-9a-f]{32}</code> and <code>[0-9a-f]{16}</code> excluding all-zeros, and trace-flags in <code>[0-9a-f]{2}</code>. For <code>tracestate</code> it enforces the ≤ 32 list members, vendor-key grammar, value grammar, and total length budget. For <code>baggage</code> it enforces the percent-encoding grammar and 4096-byte value ceiling.</p><figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/10/card2-16.png" alt="Five rule violations the validator catches" loading="lazy"></figure>
+<p>The parser outputs a structured object with one field per rule, plus a top-level <code>compliance</code> boolean that flips to <code>false</code> on the first violation. CI tests can assert on either the structured object or the boolean; the structured object gives you the byte offset when a test fails.</p>
 <h2>The Propagation Matrix: From traceparent to gRPC Binary Context</h2>
 <p>The validator walks five propagation channels in order:</p>
 <pre><code class="language-">HTTP traceparent (ASCII, 55 chars)
@@ -26,10 +39,16 @@
       → OTLP/HTTP Content-Type (application/json or application/protobuf)
         → gRPC grpc-trace-context-bin (25-byte binary: 1 flag + 16 trace-id + 8 span-id)</code></pre>
 <p>Each hop has its own parser. The validator checks:</p>
-<p>- </code>traceparent<code> matches the four-field grammar above. - </code>tracestate<code> parses to ≤ 32 members with valid vendor keys. - </code>baggage<code> percent-decodes without throwing and each value fits the 4096-byte budget. - OTLP </code>Content-Type<code> is one of </code>application/json<code>, </code>application/protobuf<code>, or </code>application/x-protobuf<code> (legacy alias). - gRPC </code>grpc-trace-context-bin<code> is exactly 25 bytes when decoded.</p>
+<ul>
+<li><code>traceparent</code> matches the four-field grammar above.</li>
+<li><code>tracestate</code> parses to ≤ 32 members with valid vendor keys.</li>
+<li><code>baggage</code> percent-decodes without throwing and each value fits the 4096-byte budget.</li>
+<li>OTLP <code>Content-Type</code> is one of <code>application/json</code>, <code>application/protobuf</code>, or <code>application/x-protobuf</code> (legacy alias).</li>
+<li>gRPC <code>grpc-trace-context-bin</code> is exactly 25 bytes when decoded.</li>
+</ul>
 <p>If any hop fails, the validator returns the failing hop's byte offset and the offending character. This is the part that's most useful in CI: a test that fails on byte 47 of a 55-byte header tells you exactly which character to fix.</p>
 <h2>Two-Header Correlation Round-Trip</h2>
-<p>The validator's standout feature is the correlation test, which catches span-id collisions your unit tests never see:</p>
+<p>The validator's standout feature is the correlation test, which catches span-id collisions your unit tests never see:</p><figure class="highlight-card"><img decoding="async" src="https://blog.flowrust.com/wp-content/uploads/2026/10/card3-16.png" alt="Five fields the correlation round-trip returns" loading="lazy"></figure>
 <pre><code class="language-">Input:
   parent:    00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01
   child:     00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b8-01
@@ -39,22 +58,36 @@ Output:
   parent_id:   00f067aa0ba902b7
   trace_id:    4bf92f3577b34da6a3ce929d0e0e4736
   sampled:     true</code></pre>
-<p>The collision check works by walking every </code>tracestate<code> member and every baggage key, computing the hash of the candidate child-id, and flagging any match. A collision means two spans in the same trace share a parent-id — your collector will dedupe them and you'll lose one of the spans.</p>
+<p>The collision check works by walking every <code>tracestate</code> member and every baggage key, computing the hash of the candidate child-id, and flagging any match. A collision means two spans in the same trace share a parent-id — your collector will dedupe them and you'll lose one of the spans.</p>
 <p>For teams that want to add this check to CI, the simplest integration is to take a real trace from your staging environment, paste the headers into the validator, save the parsed output as a fixture, then assert in CI that the fixture matches the new parse. If anyone edits the propagation code and the parse drifts, CI fails with the byte offset of the changed character. To see how this pattern fits into a full HTTP trace pipeline, browse other Development tools at <a href="https://elysiatools.com/en/tools">Elysia Tools</a>.</p>
 <h2>OTLP Content-Type Edge Cases</h2>
 <p>OTLP defines two wire formats for HTTP export:</p>
-<p>- </code>application/json<code> — JSON-encoded request and response bodies. - </code>application/protobuf<code> — protobuf-encoded request and response bodies. </code>application/x-protobuf<code> is the legacy alias and should be treated as equivalent.</p>
+<ul>
+<li><code>application/json</code> — JSON-encoded request and response bodies.</li>
+<li><code>application/protobuf</code> — protobuf-encoded request and response bodies. <code>application/x-protobuf</code> is the legacy alias and should be treated as equivalent.</li>
+</ul>
 <p>The validator catches three common Content-Type bugs:</p>
-<p>1. <strong></code>application/x-protobuf<code> rejected by a downstream that only knows </code>application/protobuf<code>.</strong> Treat both as the same wire format — the validator normalizes them and emits a warning when the legacy alias is used.</p>
-<p>2. <strong>A missing </code>Content-Type<code> header on the OTLP export.</strong> Some HTTP clients omit it when the body is empty. The validator flags the export as "no wire format declared" and treats the body as protobuf by default.</p>
-<p>3. <strong>A </code>charset=utf-8<code> parameter on the Content-Type.</strong> OTLP doesn't define charset for binary wire formats; the validator strips charset before the comparison.</p>
+<ol>
+<li><strong><code>application/x-protobuf</code> rejected by a downstream that only knows <code>application/protobuf</code>.</strong> Treat both as the same wire format — the validator normalizes them and emits a warning when the legacy alias is used.</li>
+<li><strong>A missing <code>Content-Type</code> header on the OTLP export.</strong> Some HTTP clients omit it when the body is empty. The validator flags the export as "no wire format declared" and treats the body as protobuf by default.</li>
+<li><strong>A <code>charset=utf-8</code> parameter on the Content-Type.</strong> OTLP doesn't define charset for binary wire formats; the validator strips charset before the comparison.</li>
+</ol>
 <p>For teams shipping OTLP exports to multiple backends (one collector with JSON, another with protobuf), the validator's Content-Type assertion is the single source of truth. If you also want to see how this fits into a generic HTTP header inspection pipeline, browse the related <a href="https://elysiatools.com/en/samples">Elysia Tools samples</a> for header parse patterns.</p>
 <h2>Where the Validator Fits in a CI Gate</h2>
 <p>The pattern that works in practice:</p>
-<p>1. Pull a real trace from staging (any span, any service). 2. Extract the </code>traceparent<code>, </code>tracestate<code>, </code>baggage<code>, and OTLP Content-Type from the wire format. 3. Run each header through the validator. 4. Assert the parsed output matches a stored fixture. 5. Run the two-header correlation round-trip on the parent + child pair. 6. Block the merge if any assertion fails.</p>
+<ol>
+<li>Pull a real trace from staging (any span, any service).</li>
+<li>Extract the <code>traceparent</code>, <code>tracestate</code>, <code>baggage</code>, and OTLP Content-Type from the wire format.</li>
+<li>Run each header through the validator.</li>
+<li>Assert the parsed output matches a stored fixture.</li>
+<li>Run the two-header correlation round-trip on the parent + child pair.</li>
+<li>Block the merge if any assertion fails.</li>
+</ol>
 <p>The fixture is the load-bearing piece. Most teams skip the fixture and end up with a test that always passes because the test reads its own output. A stored fixture forces the test to detect drift, which is the whole point.</p>
-<p>For teams that want to extend the pattern beyond HTTP, the validator's gRPC </code>grpc-trace-context-bin<code> parser is the entry point: it accepts the 25-byte binary context, decodes it to the same </code>traceparent<code> fields, and runs the same compliance checks. The propagation matrix becomes a single regex across both wire formats.</p>
+<p>For teams that want to extend the pattern beyond HTTP, the validator's gRPC <code>grpc-trace-context-bin</code> parser is the entry point: it accepts the 25-byte binary context, decodes it to the same <code>traceparent</code> fields, and runs the same compliance checks. The propagation matrix becomes a single regex across both wire formats.</p>
 <h2>Closing: Treat Propagation as a Contract</h2>
-<p>Most teams treat </code>traceparent<code> and </code>tracestate` as opaque strings their HTTP library sets. That's fine until a vendor adds a new tracestate key, a future version byte ships, or a baggage value over-allocates. The validator turns propagation from an implicit assumption into an explicit contract you can test against.</p>
+<p>Most teams treat <code>traceparent</code> and <code>tracestate</code> as opaque strings their HTTP library sets. That's fine until a vendor adds a new tracestate key, a future version byte ships, or a baggage value over-allocates. The validator turns propagation from an implicit assumption into an explicit contract you can test against.</p>
 <p>The minimum viable test set is small — one parse of a well-formed traceparent, one parse of a tracestate list at exactly 32 members, one parse of a baggage value at exactly 4096 bytes, and one two-header correlation round-trip that includes a deliberate collision. Add a fixture for each, run them in CI on every merge, and your propagation layer stops being a source of midnight pages.</p>
 <p>To fold this into your own pipeline, start at the <a href="https://elysiatools.com/en/tools/opentelemetry-w3c-traceparent-tracestate-baggage-and-otlp-protobuf-headers-propagation-validator">OpenTelemetry W3C traceparent / tracestate / baggage + OTLP Header Propagation Validator</a>, pull a real trace, and walk the propagation matrix from your code side. The byte offsets in the parse output are the same byte offsets in your HTTP client. From there, treat every propagation layer as a contract you can pin to a fixture and you'll catch the next byte-flip bug before it reaches production.</p>
+
+<p class="zh-version-link">本文有中文版：<a href="https://blog.flowrust.com/2026/11/28/opentelemetry-w3c-traceparent-tracestate-baggage-and-otlp-protobuf-headers-propagation-validator-field-guide-when-byte-positions-become-a-contract-and-why-your-mocks-miss-every-propagation-bug-zh/">OpenTelemetry W3C traceparent / tracestate / baggage 与 OTLP 头传播验证器实战指南：字节位置何时成为契约，以及你的 mock 为什么漏掉每一个传播 bug</a></p>
