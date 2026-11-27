@@ -1,3 +1,24 @@
+## 2026-11-27 | φ(n) Counts the Units. λ(n) Tells You When They All Come Back.
+
+**URL:** https://blog.flowrust.com/2026/11/27/carmichael-function-field-guide-lambda-vs-phi-and-the-561-disguise/
+**WP Post ID:** 9409
+**Featured Image WP ID:** poster-35.png
+**Highlight Cards:** 3 (card1-35.png, card2-35.png, card3-35.png)
+**Tool Covered:** Carmichael Function λ(n) Calculator
+**Slug:** carmichael-function
+**ElysiaTools URL:** https://elysiatools.com/en/tools/carmichael-function
+**Tags:** carmichael function, lambda function, euler totient, korselt criterion, carmichael number, rsa, modular arithmetic, number theory
+**Asset Dir:** /Users/quyue/www/blog/2026-11-27-carmichael-function
+**Score:** 0.8929 / A- (ending 1.0, readability 1.0, transitions 1.0, medium_fit 1.0, structure 0.9722, title 0.895, hook 0.8625, specificity 0.8398, voice 0.7424, evidence 0.7019)
+**State:** 1-POST 0-PATCH - audit_post_content 0 findings - 8 H2 - 3 cards - 4/4 images 200 - 6/6 anchors 200
+
+- **The gap is the whole article:** φ(n) counts the units, λ(n) is their true exponent, and λ comes from the lcm over the prime-power components. For 561 the lcm of 2, 10 and 16 is 80 while the product is 320, so φ overstates by 4x; for 1729 it overstates by 36x.
+- **Verified independently, not copied from the manifest:** λ computed from the factorization matched a brute-force exponent scan for n = 1..399 (0 mismatches); λ(2^k) = φ(2^k)/2 held for k = 3..12; the λ = φ equivalence matched a brute-force primitive-root search for n = 1..500; and the Korselt flag matched a full Fermat sweep below 3,000 (both sets are 561, 1105, 1729, 2465, 2821).
+- **RSA section is measured, not asserted:** over 300 random six-digit-prime semiprimes with e = 65537, gcd(p-1, q-1) was 2 in 151 cases, the λ-inverse was smaller in 202 (67.3 percent), median gain 3.25x, mean 23.1x, tail 995x - and 98 keys produced the identical d, 0 produced a larger one. The article says so instead of promising a win.
+- **Honest gaps stated:** the tool caps n at 10^12 (trial division, 10^6 divisions worst case) and its verify mode samples at most 3 units found scanning bases 2..100 - for 561 that is 2, 4, 5 of 320 units, under one percent. The Korselt flag, by contrast, is a proof.
+- **Card defects caught by `vision_analyze` before POST:** card 1's subtitle claimed λ(2^k) is "always half of φ" while tiles 1-2 showed λ(2) = φ(2) and λ(4) = φ(4) (fixed to "only from k = 3"); card 2 was titled "Seven Carmichael Numbers" over five tiles, then "The first five" over a set that skipped 2821 (now the true first five); card 3 said "identical or worse" when no key was worse (now "98 keys, all identical").
+- **Sample anchors:** none invented - `sample-manifest.json` has no `toolId` match for this tool.
+
 ## 2026-11-27 | Your Duration Math Is 27 Seconds Short. Here Is Where They Went.
 
 **URL:** https://blog.flowrust.com/2026/11/27/your-duration-math-is-27-seconds-short-leap-second-field-guide/
